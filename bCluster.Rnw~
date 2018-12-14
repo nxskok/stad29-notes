@@ -1,0 +1,1068 @@
+\section{Cluster analysis}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Cluster Analysis}
+
+  \begin{itemize}
+  \item One side-effect of discriminant analysis: could draw picture of data (if 1st 2s \texttt{LD}s told most of story) and see which individuals ``close'' to each other.
+  \item Discriminant analysis requires knowledge of groups.
+  \item Without knowledge of groups, use {\em cluster analysis}: see which individuals close, which groups suggested by data.
+  \item Idea: see how individuals group into ``clusters'' of nearby individuals.
+  \item Base on ``dissimilarities'' between individuals.
+  \item Or base on standard deviations and correlations between variables (assesses dissimilarity behind scenes).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+<<>>=
+library(MASS) # for lda later
+library(tidyverse)
+library(ggrepel)
+@   
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{One to ten in 11 languages}
+
+  \begin{tabular}{lcccccc}
+    & English & Norwegian & Danish & Dutch & German\\
+    \hline
+    1 & one & en & en & een & eins\\
+    2 & two & to & to & twee & zwei\\
+    3 & three & tre & tre & drie & drei\\
+    4 & four & fire & fire & vier & vier\\
+    5 & five & fem & fem & vijf & funf\\
+    6 & six & seks & seks & zes & sechs\\
+    7 & seven & sju & syv & zeven & sieben\\
+    8 & eight & atte & otte & acht & acht\\
+    9 & nine & ni & ni & negen & neun\\
+    10 & ten & ti & ti & tien & zehn\\
+    \hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{One to ten}
+
+  \begin{small}
+  \begin{tabular}{lcccccc}
+    & French & Spanish & Italian & Polish & Hungarian & Finnish\\
+\hline
+    1 & un & uno & uno & jeden & egy & yksi\\
+    2 & deux & dos & due & dwa & ketto & kaksi\\
+    3 & trois & tres & tre & trzy &  harom & kolme\\
+    4 & quatre & cuatro & quattro & cztery & negy & nelja\\
+    5 & cinq & cinco & cinque & piec & ot & viisi\\
+    6 & six & seis & sei & szesc & hat & kuusi\\
+    7 & sept & siete & sette & siedem & het & seitseman \\
+    8 & huit & ocho & otto & osiem & nyolc & kahdeksan\\
+    9 & neuf & nueve & nove & dziewiec & kilenc & yhdeksan \\
+    10 & dix & diez & dieci & dziesiec & tiz & kymmenen\\
+    \hline
+  \end{tabular}
+    
+  \end{small}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Dissimilarities and languages example}
+
+  \begin{itemize}
+  \item Can define dissimilarities how you like (whatever makes sense in application).
+  \item Sometimes defining ``similarity'' makes more sense; can turn this into dissimilarity by subtracting from some maximum.
+  \item Example: numbers 1--10 in various European languages. Define
+    similarity between two languages by counting how often the same
+    number has a name starting with the same letter (and dissimilarity
+    by how often number has names starting with different letter).
+  \item Crude (doesn't even look at most of the words), but see how effective.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two kinds of cluster analysis}
+
+  \begin{itemize}
+  \item Looking at process of forming clusters (of similar languages):
+    \textbf{hierarchical cluster analysis} (\texttt{hclust}).
+    \begin{itemize}
+    \item Start with each individual in cluster by itself.
+    \item Join ``closest'' clusters one by one until all individuals in one cluster.
+    \item How to define closeness of two \emph{clusters}? Not obvious,
+      investigate in a moment.
+    \end{itemize}
+  \item Know how many clusters: which division into that many clusters
+    is ``best'' for individuals? \textbf{K-means clustering} (\texttt{kmeans}).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two made-up clusters}
+  
+<<echo=F, fig.height=4>>=
+set.seed(457299)
+a=data.frame(x=runif(5,0,20),y=runif(5,0,20))
+b=data.frame(x=runif(5,20,40),y=runif(5,20,40))
+ddd=bind_rows(a=a,b=b,.id="cluster")
+g=ggplot(ddd,aes(x=x,y=y,colour=cluster))+geom_point()+
+  coord_fixed(xlim=c(0,40),ylim=c(0,40))
+g
+@   
+
+How to measure distance between set of red points and set of blue
+ones? 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Single-linkage distance}
+  
+  Find the red point and the blue point that are closest together:
+  
+<<echo=F,fig.height=3.1>>=
+distance=function(p1,p2) {
+  sqrt((p1[1]-p2[1])^2+(p1[2]-p2[2])^2)
+}
+distances=matrix(0,nrow(a),nrow(b))
+for (i in 1:nrow(a)) {
+  for (j in 1:nrow(b)) {
+    dd=distance(a[i,],b[j,])
+    distances[i,j]=dd
+  }
+}
+wm1=which.min(apply(distances,1,min))
+wm2=which.min(apply(distances,2,min))
+closest=bind_rows(a=a[wm1,],b=b[wm2,],.id="cluster")
+# single linkage distance
+g+geom_segment(data=closest,aes(x=x[1],y=y[1],xend=x[2],yend=y[2]),colour="blue")
+@   
+
+Single-linkage distance between 2 clusters is distance between their
+closest points.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Complete linkage}
+  
+  Find the red and blue points that are farthest apart:
+  
+<<echo=F,fig.height=3.4>>=
+wm1=which.max(apply(distances,1,max))
+wm2=which.max(apply(distances,2,max))
+closest=bind_rows(a[wm1,],b[wm2,],.id="cluster")
+g+geom_segment(data=closest,aes(x=x[1],y=y[1],xend=x[2],yend=y[2]),colour="blue")
+@
+
+Complete-linkage distance is distance between farthest points. 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ward's method}
+  
+  Work out mean of each cluster and join point to its mean:
+  
+<<fig.height=3.2,echo=F>>=
+xm=aggregate(x~cluster,ddd,mean)
+ym=aggregate(y~cluster,ddd,mean)
+dm=cbind(xm,y=ym[,2])
+# loop through data frame and create grp that links to cluster's mean
+new=data.frame(x=double(),y=double(),cluster=character(),grp=integer(),
+  stringsAsFactors = F)
+count=0;
+for (i in 1:5) {
+  count=count+1
+  new[2*count-1,]=c(a[i,],cluster="a",grp=count)
+  new[2*count,]=c(dm[1,-1],cluster="a",grp=count)
+  count=count+1
+  new[2*count-1,]=c(b[i,],cluster="b",grp=count)
+  new[2*count,]=c(dm[2,-1],cluster="b",grp=count)
+}
+ggplot(ddd,aes(x=x,y=y,colour=cluster))+
+  coord_fixed(xlim=c(0,40),ylim=c(0,40))+
+  geom_point()+
+  geom_point(data=dm,shape=3)+
+  geom_line(data=new,aes(group=grp),alpha=0.5)
+@   
+
+(i) Work out sum of squared distances of points from means.
+\end{frame}
+
+\begin{frame}[fragile]{Ward's method part 2}
+  
+Now imagine combining the two clusters and working out overall
+mean. Join each point to this mean:
+
+<<echo=F,fig.height=3.0>>=
+ddd %>% summarize(x=mean(x),y=mean(y)) -> dm
+# loop through data frame and create grp that links to cluster's mean
+new=data.frame(x=double(),y=double(),cluster=character(),grp=integer(),
+  stringsAsFactors = F)
+count=0;
+for (i in 1:5) {
+  count=count+1
+  new[2*count-1,]=c(a[i,],cluster="a",grp=count)
+  new[2*count,]=c(dm[1,],cluster="a",grp=count)
+  count=count+1
+  new[2*count-1,]=c(b[i,],cluster="b",grp=count)
+  new[2*count,]=c(dm[1,],cluster="b",grp=count)
+}
+ggplot(ddd,aes(x=x,y=y,colour=cluster))+
+  coord_fixed(xlim=c(0,40),ylim=c(0,40))+
+  geom_point()+
+  geom_point(data=dm,aes(colour=NULL),shape=3)+
+  geom_line(data=new,aes(group=grp),alpha=0.5)
+@   
+(ii) Calc sum of squared distances of points to combined mean.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ward's method part 3}
+  
+  \begin{itemize}
+  \item (ii) will be bigger than (i) (points closer to own cluster
+    mean than combined mean).
+  \item Ward's distance is (ii) minus (i).
+  \item Think of as ``cost'' of combining clusters:
+    \begin{itemize}
+    \item if clusters close together, (ii) only a little larger than
+      (i)
+    \item if clusters far apart, (ii) a lot larger than (i) (as in
+      example). 
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Hierarchical clustering revisited}
+  
+  \begin{itemize}
+  \item Single linkage, complete linkage, Ward are ways of measuring
+    closeness of clusters.
+  \item Use them, starting with each observation in own cluster, to
+    repeatedly combine two closest clusters until all points in one
+    cluster.
+  \item They will give different answers (clustering stories). 
+  \item Single linkage tends to make ``stringy'' clusters because
+    clusters can be very different apart from two closest points.
+  \item Complete linkage insists on whole clusters being similar.
+  \item Ward tends to form many small clusters first.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Dissimilarity data in R}
+
+
+Dissimilarities for language data\label{p:numberd} were how many
+number names had \emph{different} first letter:
+
+<<include=F>>=
+options(width=60)
+@ 
+
+<<size="scriptsize",message=F>>=
+number.d=read_table("languages.txt")
+number.d
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{Making a distance object}
+  
+<<size="footnotesize">>=
+d = number.d %>% 
+    select(-la) %>%
+    as.dist()
+d
+class(d)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Cluster analysis and dendrogram}
+  
+<<fig.height=4>>=
+d.hc=hclust(d,method="single")
+plot(d.hc)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Tree shows how languages combined into clusters.
+  \item First (bottom), Spanish, French, Italian joined into one
+    cluster, Norwegian and Danish into another.
+  \item Later, English joined to Norse languages, Polish to Romance group.
+  \item Then German, Dutch make a Germanic group.
+  \item Finally, Hungarian and Finnish joined to each other and
+    everything else.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Clustering process}
+
+  \begin{minipage}[t]{0.45\linewidth}
+
+<<echo=F>>=
+options(width=25)
+@ %def 
+    
+{\small    
+<<>>=
+d.hc$labels
+d.hc$merge
+@ 
+}
+  \end{minipage}
+  \begin{minipage}[t]{0.5\linewidth}
+    \vspace{0.5in}
+    \begin{itemize}
+    \item Lines of \texttt{merge} show what was combined
+    \item First, languages 2 and 3 (\texttt{no} and \texttt{dk})
+    \item Then languages 6 and 8 (\texttt{fr} and \texttt{it})
+    \item Then \#7 combined with cluster formed at step 2 (\texttt{es}
+      joined to \texttt{fr} and \texttt{it}).
+    \item Then \texttt{en} joined to \texttt{no} and \texttt{dk} \ldots
+    \item Finally \texttt{fi} joined to all others.
+    \end{itemize}
+  \end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Complete linkage}
+  
+<<fig.height=4>>=
+d.hc=hclust(d,method="complete")
+plot(d.hc)
+@  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ward}
+  
+<<wardo,fig.height=4>>=
+d.hc=hclust(d,method="ward.D")
+plot(d.hc)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Chopping the tree}
+
+  \begin{itemize}
+  \item Three clusters (from Ward) looks good:
+<<>>=
+cutree(d.hc,3)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Drawing those clusters on the tree}
+  
+<<asfsagd,fig.height=4>>=
+plot(d.hc)
+rect.hclust(d.hc,3)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comparing single-linkage and Ward}
+
+  \begin{itemize}
+  \item In Ward, Dutch and German get joined earlier (before joining to Germanic cluster).
+  \item Also Hungarian and Finnish get combined earlier.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Making those dissimilarities}
+
+Original data:
+
+<<echo=F>>=
+options(width=60)
+@ %def 
+
+
+<<message=F, size="footnotesize">>=
+lang=read_delim("one-ten.txt"," ")
+lang 
+@ 
+
+It would be a lot easier to extract the first letter if the number
+names were all in one column.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidy, and extract first letter}
+  
+<<size="footnotesize">>=
+lang.long = lang %>% mutate(number=row_number()) %>%
+    gather(language,name,-number) %>%
+    mutate(first=str_sub(name,1,1))
+lang.long %>% print(n=12)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Calculating dissimilarity}
+  
+  \begin{itemize}
+  \item Suppose we wanted dissimilarity between English and
+    Norwegian. It's the number of first letters that are different.
+    
+    
+  \item First get the lines for English:
+    
+<<size="footnotesize">>=
+english = lang.long %>% filter(language=="en")
+english
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{And then the lines for Norwegian}
+  
+<<size="footnotesize">>=
+norwegian = lang.long %>% filter(language=="no")
+norwegian
+@   
+
+And now we want to put them side by side, matched by number. This is
+what \texttt{left\_join} does. (A ``join'' is a lookup of values in
+one table using another.)
+  
+\end{frame}
+
+\begin{frame}[fragile]{The join}
+  
+<<include=F>>=
+options(width=70)
+@   
+
+  
+<<size="scriptsize">>=
+english %>% left_join(norwegian, by="number")
+@   
+
+\texttt{first.x} is 1st letter of English word, \texttt{first.y} 1st
+letter of Norwegian word.
+
+\end{frame}
+
+\begin{frame}[fragile]{Counting the different ones}
+  
+<<>>=
+english %>% left_join(norwegian, by="number") %>%
+  mutate(different=(first.x!=first.y)) %>%
+  summarize(diff=sum(different))
+@   
+
+Words for 1 and 8 start with different letter; rest are same.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Function to do this for any two languages}
+  
+<<>>=
+countdiff=function(lang.1,lang.2,d) {
+    lang1d=d %>% filter(language==lang.1)
+    lang2d=d %>% filter(language==lang.2)
+    lang1d %>% left_join(lang2d, by="number") %>%
+        mutate(different=(first.x!=first.y)) %>%
+        summarize(diff=sum(different)) %>% 
+        pull(diff)
+}
+@   
+  
+Test:
+
+<<>>=
+countdiff("en","no",lang.long)
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{For all pairs of languages?}
+  
+  \begin{itemize}
+  \item First need all the languages:
+    
+<<include=F>>=
+options(width=50)
+@     
+<<size="footnotesize">>=
+languages=names(lang)
+languages
+@     
+
+\item and then all \emph{pairs} of languages:
+  
+<<size="scriptsize">>=
+pairs=crossing(lang=languages, lang2=languages) %>% print(n=12)
+@   
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Run \texttt{countdiff} for all those language pairs}
+  
+<<size="footnotesize">>=
+thediffs = pairs %>% 
+    mutate(diff=map2_int(lang,lang2,countdiff,lang.long)) %>% 
+    print(n=12)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Make square table of these}
+
+<<echo=F>>=
+options(width=60)
+@ %def 
+  
+<<size="scriptsize">>=
+thediffs %>% spread(lang2,diff)
+@   
+
+and that was where we began.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Another example}
+
+Birth, death and infant mortality rates for 97 countries (variables not dissimilarities):
+
+{\scriptsize
+\begin{verbatim}
+24.7  5.7  30.8 Albania         12.5 11.9  14.4 Bulgaria
+13.4 11.7  11.3 Czechoslovakia  12   12.4   7.6 Former_E._Germany
+11.6 13.4  14.8 Hungary         14.3 10.2    16 Poland
+13.6 10.7  26.9 Romania           14    9  20.2 Yugoslavia
+17.7   10    23 USSR            15.2  9.5  13.1 Byelorussia_SSR
+13.4 11.6    13 Ukrainian_SSR   20.7  8.4  25.7 Argentina
+46.6   18   111 Bolivia         28.6  7.9    63 Brazil
+23.4  5.8  17.1 Chile           27.4  6.1    40 Columbia
+32.9  7.4    63 Ecuador         28.3  7.3    56 Guyana
+...
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Want to find groups of similar countries (and how many groups, which countries in each group).
+\item Tree would be unwieldy with 97 countries.
+\item More automatic way of finding given number of clusters?
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reading in}
+
+  
+<<>>=
+vital=read_table("birthrate.txt")
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+
+<<>>=
+vital
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Standardizing}
+
+
+\begin{itemize}
+\item Infant mortality rate numbers bigger than others, consequence of
+  measurement scale (arbitrary).
+\item Standardize (numerical) columns of data frame to have mean 0, SD
+  1, done by \texttt{scale}.
+\end{itemize}
+
+<<size="footnotesize">>=
+vital.s = vital %>% mutate_if(is.numeric,scale) 
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Three clusters}
+  
+  Pretend we know 3 clusters is good. Take off the 4th column (of
+  countries) and run \texttt{kmeans} on the resulting data frame,
+  asking for 3 clusters:
+
+<<echo=FALSE>>=
+set.seed(457299)
+@   
+
+<<>>=
+vital.km3 = vital.s %>% select(-4) %>% kmeans(3)
+names(vital.km3)
+@   
+  
+  
+  A lot of output, so look at these individually.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{What's in the output?}
+  
+  \begin{itemize}
+  \item Cluster sizes:
+    
+
+<<>>=
+vital.km3$size
+@ %def 
+
+\item Cluster centres:
+  
+<<>>=
+vital.km3$centers
+@ %def 
+
+\item Cluster 2 has lower than average rates on everything; cluster 3
+  has much higher than average.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Cluster sums of squares and membership}
+  
+<<>>=
+vital.km3$withinss
+@ %def 
+
+Cluster 1 compact relative to others (countries in cluster 1  more similar).
+
+<<size="scriptsize">>=
+vital.km3$cluster
+@ %def 
+
+The cluster membership for each of the 97 countries.
+
+
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Store countries and clusters to which they belong}
+  
+<<>>=
+vital.3=tibble(country=vital.s$country,
+               cluster=vital.km3$cluster)
+@   
+
+Next, which countries in which cluster? 
+
+Write function to extract them:
+
+<<>>=
+get_countries=function(i,d) {
+    d %>% filter(cluster==i) %>% pull(country)
+}
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster membership: cluster 2}
+
+
+<<size="scriptsize">>=
+get_countries(2,vital.3)
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 3}
+<<size="footnotesize">>=
+get_countries(3,vital.3)
+@   
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 1}
+
+<<size="footnotesize">>=
+get_countries(1,vital.3)
+@   
+\end{frame}
+
+\begin{frame}[fragile]{Problem!}
+  
+  \begin{itemize}
+  \item \texttt{kmeans} uses randomization. So result of one run might
+    be different from another run.
+  \item Example: just run again on 3 clusters, \texttt{table} of results:
+<<echo=FALSE>>=
+set.seed(457298)
+@ 
+    
+<<size="small">>=
+vital.km3a=vital.s %>% select(-4) %>% kmeans(3)
+table(first=vital.km3$cluster,
+      second=vital.km3a$cluster)
+@
+\item Clusters are similar but \emph{not same}.
+  
+\item Solution: \texttt{nstart} option on \texttt{kmeans} runs that
+  many times, takes best. Should be same every time:
+<<eval=FALSE,size="small">>=
+vital.km3b = vital.s %>% select(-4) %>% 
+    kmeans(3,nstart=20)
+@   
+    
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How many clusters?}
+  
+  \begin{itemize}
+  \item Three was just a guess.
+  \item Idea: try a whole bunch of \#clusters (say 2--20), obtain measure of
+    goodness of fit for each, make plot.
+  \item Appropriate measure is \texttt{tot.withinss}.
+  \item Use loop to run \texttt{kmeans} for each \#clusters, keep
+    track of \texttt{tot.withinss}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Function to get \texttt{tot.withinss}}
+  
+  \ldots for an input number of clusters, taking only numeric columns
+  of input data frame:
+  
+<<>>=
+ss=function(i,d) {
+    km = d %>% select_if(is.numeric) %>%
+        kmeans(i,nstart=20)
+    km$tot.withinss
+}
+@  
+
+Note: writing function to be as general as possible, so that we can
+re-use it later.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Constructing within-cluster SS}
+    
+  Make a data frame with desired numbers of clusters, and fill it with
+  the total within-group sums of squares. ``For each number of
+  clusters, run \texttt{ss}'', so \texttt{map\_dbl}.
+  
+<<size="footnotesize">>=
+ssd = tibble(clusters=2:20) %>%
+    mutate(wss=map_dbl(clusters,ss,vital.s)) %>% 
+    print(n=10)
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot}
+
+<<favalli,fig.height=3.3>>=
+ggplot(ssd,aes(x=clusters,y=wss))+geom_point()+
+  geom_line()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interpreting scree plot}
+  
+  \begin{itemize}
+  \item Lower \texttt{wss} better.
+  \item But lower for larger \#clusters, harder to explain.
+  \item Compromise: low-ish \texttt{wss} and low-ish \#clusters.
+  \item Look for ``elbow'' in plot.
+  \item Idea: this is where \texttt{wss} decreases fast then slow.
+  \item On our plot, small elbow at 6 clusters. Try this many clusters.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Six clusters, using \texttt{nstart}}
+  
+<<>>=
+vital.km6 = vital.s %>% select(-4) %>% 
+    kmeans(6,nstart=20)
+vital.km6$size
+vital.km6$centers
+vital.6=tibble(country=vital.s$country,
+               cluster=vital.km6$cluster)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 1}
+
+  Below-average death rate, though other rates a little higher than average:
+
+  
+<<>>=
+get_countries(1,vital.6)
+@   
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 2}
+
+    High on everything:
+  
+<<size="small",echo=2>>=
+options(width=60)
+get_countries(2,vital.6)
+options(width=50)
+@   
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 3}
+
+  Low on everything, though death rate close to average:
+
+  
+<<size="footnotesize">>=
+get_countries(3,vital.6)
+@   
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 4}
+
+    Low on everything, especially death rate:
+
+  
+<<size="small">>=
+get_countries(4,vital.6)
+@   
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 5}
+
+  Higher than average on everything, though not the highest:
+  
+<<>>=
+get_countries(5,vital.6)
+@   
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 6}
+
+    Very high death rate, just below average on all else:
+
+  
+<<>>=
+get_countries(6,vital.6)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comparing our 3 and 6-cluster solutions}
+  
+<<>>=
+table(three=vital.km3$cluster,six=vital.km6$cluster)
+@   
+
+Compared to 3-cluster solution:
+
+\begin{itemize}
+\item most of cluster 1 gone to (new) cluster 1
+\item cluster 2 split into clusters 3 and 4 (two types of ``richer'' countries)
+\item cluster 3 split into clusters 2 and 5 (two types of ``poor''
+  countries, divided by death rate).
+\item cluster 6 (Mexico and Korea) was split before.
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Getting a picture from \texttt{kmeans}}
+  
+  \begin{itemize}
+  \item Use multidimensional scaling (later)
+  \item Use discriminant analysis on clusters found, treating them as
+    ``known'' groups.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{MANOVA and discriminant analysis}
+  
+  \begin{itemize}
+  \item Go back to 1st 3 columns of \texttt{vital.s} (variables,
+    standardized), plus \texttt{cf} (cluster as factor).
+    \texttt{clus} (6 clusters).
+  \item First, do they actually differ by group? (MANOVA):
+<<size="small">>=
+v = vital.s %>% select(-4) %>% as.matrix()
+cf = as.factor(vital.km6$cluster)
+vital.manova=manova(v~cf)
+summary(vital.manova)
+@ %def 
+
+Oh yes.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant analysis}
+  
+  \begin{itemize}
+  \item So what makes the groups different?
+  \item Uses package \texttt{MASS} (loaded):
+    
+  
+<<>>=
+vital.lda=lda(cf~birth+death+infant,data=vital.s)
+vital.lda$svd
+vital.lda$scaling
+@ %def 
+\item LD1 is some of everything, but not so much death rate
+  (high=poor, low=rich).
+\item LD2 mainly death rate, high or low.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{To make a plot}
+  
+  
+  \begin{itemize}
+  \item Get predictions first:
+<<size="small">>=
+vital.pred=predict(vital.lda)
+d=data.frame(country=vital.s$country,
+  cluster=vital.km6$cluster,vital.pred$x)
+glimpse(d)
+@   
+%$ %$ %$
+
+\item \texttt{d} contains country names, cluster memberships and
+  discriminant scores. Plot \texttt{LD1} against \texttt{LD2},
+  colouring points by cluster and labelling by country:
+  
+<<size="small">>=
+g=ggplot(d,aes(x=LD1,y=LD2,colour=factor(cluster),
+    label=country))+geom_point()+
+    geom_text_repel(size=2)+guides(colour=F)
+@   
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+<<fig.height=3.5>>=
+g
+@   
+\end{frame}
+
+\begin{frame}[fragile]{Final example: a hockey league}
+
+  \begin{itemize}
+  \item 
+An Ontario hockey league has teams in 21 cities. How can we arrange those teams into 4 geographical divisions?
+\item Distance data in spreadsheet.
+\item Take out spaces in team names.
+\item Save as ``text/csv''.
+  \item Distances, so back to \texttt{hclust}.
+
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{A map}
+
+\includegraphics[width=4.5in]{map1}
+\end{frame}
+
+\begin{frame}[fragile]{Attempt 1}
+
+<<message=F>>=
+ontario=read_csv("ontario-road-distances.csv")
+ontario.d = ontario %>% select(-1) %>% as.dist()
+ontario.hc=hclust(ontario.d,method="ward.D")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plot, with 4 clusters}
+  
+<<fig.height=4>>=
+plot(ontario.hc)
+rect.hclust(ontario.hc,4)
+@   
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Can't have divisions of 1 team!
+  \item ``Southern'' divisions way too big!
+  \item Try splitting into more. I found 7 to be good:
+  \end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Seven clusters}
+  
+<<fig.height=4>>= 
+plot(ontario.hc)
+rect.hclust(ontario.hc,7)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Divisions now}
+  
+  \begin{itemize}
+  \item I want to put Huntsville and North Bay together with northern teams.
+  \item I'll put the Eastern teams together. Gives:
+    \begin{itemize}
+    \item North: Sault Ste Marie, Sudbury, Huntsville, North Bay
+    \item East: Brockville, Cornwall, Ottawa, Peterborough,
+      Belleville, Kingston
+    \item West:  Windsor, London, Sarnia
+    \item Central: Owen Sound, Barrie, Toronto, Niagara Falls, St
+      Catharines, Brantford, Hamilton, Kitchener
+    \end{itemize}
+  \item Getting them same size beyond us!
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Another map}
+
+\includegraphics[width=4.5in]{map2}
+
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+
+\end{frame}
+

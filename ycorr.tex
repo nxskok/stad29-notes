@@ -1,0 +1,48 @@
+\documentclass{article}
+\title{The ycorr data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+1 0.9705 -0.9600
+. 1      -0.9980
+. .       1
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+options linesize=70;
+
+data yc(type=corr);
+  infile "ycorr.dat";
+  input x1 x2 x3;
+
+proc print;
+
+proc princomp;
+
+\end{Winput}
+\begin{Woutput}
+Obs    x1      x2        x3
+ 1      1    0.9705    -0.960
+ 2      .    1.0000    -0.998
+ 3      .     .         1.000
+
+The PRINCOMP Procedure
+Observations       10000
+Variables              3
+
+            Eigenvalues of the Correlation Matrix
+        Eigenvalue    Difference    Proportion    Cumulative
+   1    2.95242147    2.90600335        0.9841        0.9841
+   2    0.04641812    0.04525771        0.0155        0.9996
+   3    0.00116041                      0.0004        1.0000
+
+                Eigenvectors
+           Prin1         Prin2         Prin3
+x1      0.573007      0.811856      -.112035
+x2      0.580528      -.305586      0.754721
+x3      -.578489      0.497500      0.646408
+\end{Woutput}
+\end{document}

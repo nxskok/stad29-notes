@@ -1,0 +1,59 @@
+                            The SAS System                           1
+                                          11:36 Monday, March 19, 2012
+
+                        Obs      x     y    rx
+
+                          1    16.5    0    18
+                          2     4.3    1     1
+                          3    10.1    0    10
+                          4    10.7    0    13
+                          5    14.0    0    16
+                          6     7.9    1     5
+                          7     7.5    1     3
+                          8     8.3    0     6
+                          9     5.7    1     2
+                         10    10.3    0    12
+                         11     9.3    0     8
+                         12    10.2    0    11
+                         13     9.2    0     7
+                         14     7.8    1     4
+                         15    11.9    0    15
+                         16    11.8    0    14
+                         17    16.1    0    17
+                         18     9.4    0     9
+                            The SAS System                           2
+                                          11:36 Monday, March 19, 2012
+
+                         The TTEST Procedure
+ 
+                 Variable:  rx  (Rank for Variable x)
+
+     N        Mean     Std Dev     Std Err     Minimum     Maximum
+
+    18      9.5000      5.3385      1.2583      1.0000     18.0000
+
+        Mean       95% CL Mean        Std Dev      95% CL Std Dev
+
+      9.5000      6.8452  12.1548      5.3385      4.0060   8.0032
+
+                        DF    t Value    Pr > |t|
+
+                        17       2.78      0.0128
+                            The SAS System                           3
+                                          11:36 Monday, March 19, 2012
+
+                         The TTEST Procedure
+ 
+                             Variable:  x
+
+     N        Mean     Std Dev     Std Err     Minimum     Maximum
+
+    18     10.0556      3.1969      0.7535      4.3000     16.5000
+
+        Mean       95% CL Mean        Std Dev      95% CL Std Dev
+
+     10.0556      8.4658  11.6453      3.1969      2.3989   4.7926
+
+                        DF    t Value    Pr > |t|
+
+                        17       2.73      0.0143

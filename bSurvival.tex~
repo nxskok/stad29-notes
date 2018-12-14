@@ -1,0 +1,550 @@
+\section{Survival analysis}
+
+\begin{frame}[fragile]{Survival analysis}
+
+  \begin{itemize}
+  \item So far, have seen:
+    \begin{itemize}
+    \item response variable counted or measured (regression)
+    \item response variable categorized (logistic regression)
+    \end{itemize}
+    and have predicted response from explanatory variables.
+  \item But what if response is time until event (eg.\ time of
+    survival after surgery)?
+  \item Additional complication: event might not have happened at end of study (eg.\ patient still alive). But knowing that patient has ``not died yet'' presumably informative. Such data called {\em censored}. 
+  \item Enter {\em survival analysis}, in particular the ``Cox proportional hazards model''. 
+  \item Explanatory variables in this context often called {\em covariates}.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example: still dancing?}
+
+  \begin{itemize}
+  \item 12 women who have just started taking dancing lessons are
+    followed for up to a year, to see whether they are still taking
+    dancing lessons, or have quit. The ``event'' here is ``quit''.
+  \item This might depend on:
+    \begin{itemize}
+    \item a treatment (visit to a dance competition)
+    \item woman's age (at start of study).
+    \end{itemize}
+  \item Data:
+
+{\scriptsize
+\begin{verbatim}
+Months  Quit   Treatment Age
+   1      1        0      16
+   2      1        0      24
+   2      1        0      18
+   3      0        0      27
+   4      1        0      25
+   7      1        1      26
+   8      1        1      36
+  10      1        1      38
+  10      0        1      45
+  12      1        1      47
+\end{verbatim}
+}
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{About the data}
+
+  \begin{itemize}
+  \item \verb-months- and \verb-quit- are kind of combined response:
+    \begin{itemize}
+    \item  \verb-Months- is number of months a woman was actually observed dancing
+    \item \verb-quit- is 1 if woman quit, 0 if still dancing at end of study.
+    \end{itemize}
+  \item Treatment is 1 if woman went to dance competition, 0 otherwise.
+  \item Fit model and see whether \texttt{Age} or \texttt{Treatment}
+    have effect on survival.
+  \item Want to do predictions for probabilities of still dancing as
+    they depend on whatever is significant, and draw plot.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{The code}
+
+  \begin{itemize}
+  \item First, call in \texttt{survival} package, read data and make combined
+    response:
+{\small
+\begin{verbatim}
+> library(survival)
+> dance=read.table("dancing.txt",header=T)
+> attach(dance)
+> mth=Surv(Months,Quit)
+> mth
+ [1]  1   2   2   3+  4   5  11   7   8  10  10+ 12 
+\end{verbatim}
+}
+  \item Then fit model, predicting \texttt{mth} from explanatories:
+\begin{verbatim}
+> dance.1=coxph(mth~Treatment+Age)
+\end{verbatim}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The output}
+
+Looks a lot like a regression:
+
+{\scriptsize
+\begin{verbatim}
+> summary(dance.1)
+Call:
+coxph(formula = mth ~ Treatment + Age)
+
+  n= 12, number of events= 10 
+
+              coef exp(coef) se(coef)      z Pr(>|z|)  
+Treatment -4.44915   0.01169  2.60929 -1.705   0.0882 .
+Age       -0.36619   0.69337  0.15381 -2.381   0.0173 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+          exp(coef) exp(-coef) lower .95 upper .95
+Treatment   0.01169     85.554 7.026e-05    1.9444
+Age         0.69337      1.442 5.129e-01    0.9373
+
+Concordance= 0.964  (se = 0.125 )
+Rsquare= 0.836   (max possible= 0.938 )
+Likelihood ratio test= 21.68  on 2 df,   p=1.956e-05
+Wald test            = 5.67  on 2 df,   p=0.0587
+Score (logrank) test = 14.75  on 2 df,   p=0.0006274
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+
+  \begin{itemize}
+  \item Use $\alpha=0.10$ here since not much data.
+  \item Three tests at bottom like global F-test. Consensus that
+    something predicts survival time (whether or not dancer quit and how
+    long it took).
+  \item \emph{Age} (definitely), \texttt{Treatment} (marginally) both
+    predict survival time.
+  \end{itemize}
+
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Predicted survival probs}
+
+The function we use is called
+\texttt{survfit}, though actually works rather like
+\texttt{predict}. 
+
+First create a data frame of values to predict from. We'll do all
+combos of ages 20 and 40, treatment and not, using
+\texttt{expand.grid} to get all the combos:
+
+{\small
+\begin{verbatim}
+> dance.new=expand.grid(Treatment=c(0,1),Age=c(20,40))
+> dance.new
+  Treatment Age
+1         0  20
+2         1  20
+3         0  40
+4         1  40
+\end{verbatim}
+}
+
+Then run \texttt{survfit}. Actual predictions via \texttt{summary}
+(next page):
+
+\begin{verbatim}
+> s=survfit(dance.1,newdata=dance.new)
+\end{verbatim}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{The predictions}
+
+One prediction \emph{for each time} for each combo of age and treatment:
+
+{\scriptsize
+\begin{verbatim}
+> summary(s)
+Call: survfit(formula = dance.1, newdata = dance.new)
+
+ time n.risk n.event survival1 survival2 survival3 survival4
+    1     12       1  8.76e-01  9.98e-01  1.00e+00     1.000
+    2     11       2  3.99e-01  9.89e-01  9.99e-01     1.000
+    4      8       1  1.24e-01  9.76e-01  9.99e-01     1.000
+    5      7       1  2.93e-02  9.60e-01  9.98e-01     1.000
+    7      6       1 2.96e-323  1.70e-04  6.13e-01     0.994
+    8      5       1  0.00e+00  1.35e-98  2.99e-06     0.862
+   10      4       1  0.00e+00  0.00e+00  3.61e-20     0.593
+   11      2       1  0.00e+00  0.00e+00  0.00e+00     0.000
+   12      1       1  0.00e+00  0.00e+00  0.00e+00     0.000
+> t(dance.new)
+          [,1] [,2] [,3] [,4]
+Treatment    0    1    0    1
+Age         20   20   40   40
+\end{verbatim}
+}
+
+\texttt{dance.new} transposed (flipped around) shows which combo the
+four lists of survival probabilities belong to.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions from predicted probs}
+
+  \begin{itemize}
+  \item Older women more likely to be still dancing than younger women
+    (compare ``profiles'' for same treatment group).
+  \item Effect of treatment seems to be to increase prob of still dancing (compare ``profiles'' for same age for treatment group vs.\ not)
+  \item Would be nice to see this on a graph.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting survival probabilities}
+
+  \begin{itemize}
+  \item Each age - treatment combination has string of estimated
+    survival probabilities.
+  \item Would like to plot them against time (month), labelled by
+    which age - treatment combo they are for.
+  \item This \emph{almost} works:
+  \end{itemize}
+
+\begin{verbatim}
+> plot(s)
+\end{verbatim}
+
+\includegraphics[width=0.6\textwidth]{dance-1}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Graph, attempt 2}
+
+\ldots but, need to distinguish treatment and age groups. Use
+(respectively) line colour and line types.
+
+{\small
+\begin{verbatim}
+> line.types=c("dashed","solid")
+> colours=c("red","blue")
+> dance.new=expand.grid(Treatment=c(0,1),Age=c(20,40))
+> draw.new=expand.grid(colour=colours,
+          linetype=line.types,stringsAsFactors=F)
+> cbind(dance.new,draw.new)
+
+  Treatment Age colour linetype
+1         0  20    red   dashed
+2         1  20   blue   dashed
+3         0  40    red    solid
+4         1  40   blue    solid
+\end{verbatim}
+}
+
+Line colour matches up with \texttt{Treatment} and line type with
+\texttt{Age}. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Making the graph}
+
+\begin{verbatim}
+plot(s,col=draw.new$colour,lty=draw.new$linetype) 
+legend(x=10.5,y=1,legend=c(20,40),title="Age",
+       lty=line.types)
+legend(x=10.5,y=0.8,legend=0:1,title="Treatment",
+       fill=colours)
+\end{verbatim}
+
+Put on legends to show which line/colour is which. (Use 
+\texttt{x=, y=} to put in specific locations rather than eg.\
+\texttt{topright}.) 
+\end{frame}
+
+\begin{frame}[fragile]{\ldots and finally}
+
+\includegraphics[width=\textwidth]{dance-2}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Discussion}
+  \includegraphics[width=2in]{dance-2}
+
+  \begin{itemize}
+  \item Survivor curve farther to the right is better (better chance
+    of surviving longer).
+  \item Best is age 40 with treatment, worst age 20 without.
+  \item Appears to be:
+    \begin{itemize}
+    \item age effect (40 better than 20)
+    \item treatment effect (treatment better than not)
+    \end{itemize}
+  \item In analysis, treatment effect only marginally significant.
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{A more realistic example: lung cancer}
+
+
+\begin{itemize}
+\item When you
+load in an R package, get data sets to illustrate 
+functions in the package. 
+\item One such is \texttt{lung}. Data
+set measuring survival in patients with advanced lung cancer. 
+\item Along with survival time, number of ``performance scores''
+  included, measuring how well patients can perform daily
+  activities.
+\item Sometimes high good, but sometimes bad!
+\item Variables below,
+  from the help file data set (\texttt{?lung}).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{The variables}
+
+\includegraphics[width=\textwidth]{lung-cancer-data}  
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Model 1: use everything}
+
+{\scriptsize
+\begin{verbatim}
+> head(lung)
+  inst time status age sex ph.ecog ph.karno pat.karno meal.cal wt.loss
+1    3  306      2  74   1       1       90       100     1175      NA
+2    3  455      2  68   1       0       90        90     1225      15
+3    3 1010      1  56   1       0       90        90       NA      15
+4    5  210      2  57   1       1       90        60     1150      11
+5    1  883      2  60   1       0      100        90       NA       0
+6   12 1022      1  74   1       1       50        80      513       0
+
+> resp=Surv(time,status==2)
+> lung.1=coxph(resp~age+sex+ph.ecog+ph.karno+pat.karno+
+               meal.cal+wt.loss)
+\end{verbatim}
+}
+\end{frame}
+
+
+\begin{frame}[fragile]{\texttt{summary} of model 1, rearranged}
+
+At the bottom:
+
+{\small
+\begin{verbatim}
+> summary(lung.1)
+<...>
+Concordance= 0.651  (se = 0.031 )
+Rsquare= 0.155   (max possible= 0.998 )
+Likelihood ratio test= 28.33  on 7 df,   p=0.0001918
+Wald test            = 27.58  on 7 df,   p=0.0002616
+Score (logrank) test = 28.41  on 7 df,   p=0.0001849
+
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Coefficients for model 1}
+  
+{\footnotesize
+\begin{verbatim}
+> summary(lung.1)
+Call:
+coxph(formula = resp ~ age + sex + ph.ecog + ph.karno + 
+                pat.karno + meal.cal + wt.loss)
+
+  n= 168, number of events= 121 
+   (60 observations deleted due to missingness)
+
+                coef  exp(coef)   se(coef)      z Pr(>|z|)   
+age        1.065e-02  1.011e+00  1.161e-02  0.917  0.35906   
+sex       -5.509e-01  5.765e-01  2.008e-01 -2.743  0.00609 **
+ph.ecog    7.342e-01  2.084e+00  2.233e-01  3.288  0.00101 **
+ph.karno   2.246e-02  1.023e+00  1.124e-02  1.998  0.04574 * 
+pat.karno -1.242e-02  9.877e-01  8.054e-03 -1.542  0.12316   
+meal.cal   3.329e-05  1.000e+00  2.595e-04  0.128  0.89791   
+wt.loss   -1.433e-02  9.858e-01  7.771e-03 -1.844  0.06518 . 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Discussion of model 1}
+
+  \begin{itemize}
+  \item Model as a whole significant (strongly)
+  \item \texttt{sex} and
+\texttt{ph.ecog} definitely significant
+\item \texttt{age}, \texttt{pat.karno} and
+\texttt{meal.cal} definitely not
+\item  others in
+between
+\item Take out the three variables that are definitely not
+significant, and try again.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model 2 (edited)}
+
+{\footnotesize
+\begin{verbatim}
+> lung.2=coxph(resp~sex+ph.ecog+ph.karno+wt.loss)
+> summary(lung.2)
+Call:
+coxph(formula = resp ~ sex + ph.ecog + ph.karno + wt.loss)
+
+  n= 213, number of events= 151 
+   (15 observations deleted due to missingness)
+
+              coef exp(coef)  se(coef)      z Pr(>|z|)    
+sex      -0.623193  0.536229  0.176389 -3.533 0.000411 ***
+ph.ecog   0.753428  2.124270  0.194168  3.880 0.000104 ***
+ph.karno  0.013814  1.013910  0.009908  1.394 0.163241    
+wt.loss  -0.009008  0.991032  0.006511 -1.383 0.166516    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model 3, and last}
+
+  \begin{itemize}
+  \item Take out \texttt{ph.karno} and \texttt{wt.loss} as well.
+  \end{itemize}
+
+{\footnotesize
+\begin{verbatim}
+> lung.3=coxph(resp~sex+ph.ecog)
+> summary(lung.3)
+Call:
+coxph(formula = resp ~ sex + ph.ecog)
+
+  n= 227, number of events= 164 
+   (1 observation deleted due to missingness)
+
+           coef exp(coef) se(coef)      z Pr(>|z|)    
+sex     -0.5530    0.5752   0.1676 -3.300 0.000967 ***
+ph.ecog  0.4875    1.6282   0.1122  4.344  1.4e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Both variables strongly significant.
+\item Try to understand their effect on survival time.
+\item Picture best.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting survival probabilities}
+
+  \begin{itemize}
+  \item Same idea as before
+  \item Create new data frame of values to predict for
+  \item Mimic that for line types and colours (for \texttt{sex} and
+    \texttt{ph.ecog})
+  \item Idea: easier to distinguish colours than line types
+  \item Check that data frames match.
+  \end{itemize}
+
+{\scriptsize
+\begin{verbatim}
+> lung.new=expand.grid(sex=c(1,2),ph.ecog=0:3)
+> colours=c("blue","red","green","black")
+> line.types=c("solid","dashed")
+> plot.new=expand.grid(lty=line.types,col=colours,stringsAsFactors=F)
+> cbind(lung.new,plot.new)
+  sex ph.ecog    lty   col
+1   1       0  solid  blue
+2   2       0 dashed  blue
+3   1       1  solid   red
+4   2       1 dashed   red
+5   1       2  solid green
+6   2       2 dashed green
+7   1       3  solid black
+8   2       3 dashed black
+\end{verbatim}
+}
+ 
+\end{frame}
+
+
+\begin{frame}[fragile]{The plot code, with legends}
+
+\begin{verbatim}
+> plot(s,col=plot.new$col,lty=plot.new$lty)
+> legend(x=900,y=0.8,legend=0:3,fill=colours,
+         title="ph.ecog")
+> legend(x=900,y=1,legend=1:2,lty=line.types,
+         title="Sex")
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{and finally, the plot}
+
+\includegraphics[width=\textwidth]{lung-3}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Discussion of survival curves}
+
+  \begin{itemize}
+  \item Females (2, dashed) have better survival times than males (1, solid).
+  \item Lower \texttt{ecog.ph} score (blue) goes with better survival
+    than higher (black).
+  \item \texttt{sex} coeff in model 3 negative, so being higher
+    \texttt{sex} value (female) goes with \emph{less} hazard of dying.
+  \item \texttt{ph.ecog} coeff in model 3 positive, so higher
+    \texttt{ph.ecog} score goes with \emph{more} hazard of dying
+  \item Two coeffs about same size, so being male rather than female
+    corresponds to 1-point increase in \texttt{ph.ecog} score. Note
+    how survival curves come in 3 pairs plus 2 odd.
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+

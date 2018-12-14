@@ -1,0 +1,84 @@
+1                                                          The SAS System                             13:55 Wednesday, March 2, 2011
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-28-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.08 seconds
+      cpu time            0.04 seconds
+      
+1          data mp;
+2              infile "mp.dat";
+3              input x1 x2;
+4          
+
+NOTE: The infile "mp.dat" is:
+      Filename=/home/ken/stad29/notes/mp.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rw-r--r--,
+      Last Modified=Wed Mar  2 08:39:21 2011,
+      File Size (bytes)=25
+
+NOTE: 5 records were read from the infile "mp.dat".
+      The minimum record length was 4.
+      The maximum record length was 4.
+NOTE: The data set WORK.MP has 5 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+5          proc ttest;
+6              paired x1*x2;
+7          
+
+NOTE: The PROCEDURE TTEST printed page 1.
+2                                                          The SAS System                             13:55 Wednesday, March 2, 2011
+
+NOTE: PROCEDURE TTEST used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.08 seconds
+      
+
+8          proc glm;
+9              model x1 x2 = /nouni;
+10             repeated time;
+11         
+12         run;
+
+NOTE: The PROCEDURE GLM printed pages 2-4.
+NOTE: PROCEDURE GLM used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.02 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           0.22 seconds
+      cpu time            0.19 seconds
+      

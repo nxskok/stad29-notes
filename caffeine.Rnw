@@ -1,0 +1,445 @@
+% !Rnw master a5.Rnw
+
+\question Does caffeine help students do better on a certain test? To
+find out, 36 students were randomly allocated to three groups (12 in
+each group).  Each student received a fixed number of cups of coffee
+while they were studying, but the students didn't know whether they
+were receiving all full-strength coffee (``high''), all decaf coffee
+(``low'') or a 50-50 mixture of the two (``moderate''). For each
+subject, their group was recorded as well as their score on the
+test. The data are in
+\url{http://www.utsc.utoronto.ca/~butler/d29/caffeine.csv}, as a
+\texttt{.csv} file.
+
+\begin{parts}
+  \part Read in and examine the data. How are the values laid out?
+  
+  \begin{select}
+  \begin{solution}
+    \texttt{read.csv} because it's a \texttt{.csv} file:
+    
+<<>>=
+caffeine.untidy=read.csv("caffeine.csv",header=T)
+caffeine.untidy
+@     
+
+Or \texttt{head(caffeine.untidy)}, but I listed the whole thing since there's
+not too many values.
+
+The first column is the number of the subject (actually within each
+group, since each student only tried one amount of caffeine). Then
+follow the test scores for the students in each group, one group per column.
+
+I gave the data frame a kind of dumb name, since (looking ahead) I
+could see that I would need a less-dumb name for the tidied-up data,
+and it seemed sensible to keep \texttt{caffeine} for that.
+  \end{solution}
+    
+  \end{select}
+  
+  \part Explain briefly how the data are not ``tidy''.
+
+  \begin{select}
+  \begin{solution}
+    The last three columns are all scores on the test: that is, they
+    all measure the same thing, so they should all be in the same column.
+  \end{solution}
+    
+  \end{select}
+  
+  \part Use a suitable tool from \texttt{tidyr} to create one
+  column of test scores and and one column of group labels. Call your
+  column of group labels \texttt{amount} and make sure that it is an R \texttt{factor}.
+  
+  \begin{select}
+  \begin{solution}
+    We are combining several columns into one, so this is \texttt{gather}:
+    
+<<>>=
+library(tidyr)
+caffeine=gather(caffeine.untidy,amount,score,c(High,Moderate,None))
+@     
+
+I didn't ask you to list the resulting data frame, but it is smart to
+at least look at the \texttt{head} or \texttt{str} of it, to make sure \texttt{gather} has done
+what you expected.
+
+In fact, looking at the \texttt{str} reveals that we forgot something:
+
+<<>>=
+str(caffeine)
+@ 
+
+\texttt{amount} is text, not a factor, which is not what we wanted.
+So we should go back and put in \verb-factor_key-:
+
+<<>>=
+caffeine=gather(caffeine.untidy,amount,score,c(High,Moderate,None),
+  factor_key=T)
+str(caffeine)
+@ 
+
+Now we are good.
+
+The logic here is that \texttt{gather} needs a data frame (unless you
+are using it in a chain), what makes the columns-to-be-combined
+different (they're different amounts of caffeine), what makes them the
+same (they're all test scores), and then the columns to combine,
+without quotes.
+  \end{solution}
+    
+  \end{select}
+  
+  \part Obtain side-by-side boxplots of test scores by amount of caffeine.
+  
+  \begin{select}
+  \begin{solution}
+<<filton>>=
+attach(caffeine)
+boxplot(score~amount)
+@     
+
+Or if you want to try \texttt{ggplot}:
+
+<<>>=
+library(ggplot2)
+ggplot(caffeine,aes(x=amount,y=score))+geom_boxplot()
+@ 
+
+  \end{solution}
+    
+  \end{select}
+
+  \part Does caffeine amount seem to have an effect? If so, what
+  kind of effect?
+  
+  \begin{select}
+  \begin{solution}
+    On average, exam scores seem to be higher when the amount of
+    caffeine is higher (with
+    the effect being particularly pronounced for High caffeine). 
+    
+    If you want to, you can also say the the effect of caffeine seems
+    to be small, relative to the amount of variability there is (there
+    is a lot). The point is that you say \emph{something} supported by
+    the boxplot.
+  \end{solution}
+    
+  \end{select}
+  
+  \part Run a suitable analysis of variance to determine whether
+  the mean test score is equal or unequal for the three groups. What
+  do you conclude?
+
+  \begin{select}
+  \begin{solution}
+    Something like this:
+<<>>=
+caff.1=aov(score~amount)
+summary(caff.1)
+@     
+
+The P-value on the $F$-test is less than 0.05, so we reject the null
+hypothesis (which says that all the groups have equal means) in favour
+of the alternative: the group means are not all the same (one or more
+of them is different from the others).
+
+
+  \end{solution}
+    
+  \end{select}
+  
+  \part Why is it a good idea to run Tukey's method here?
+  
+  \begin{select} 
+  \begin{solution}
+    The analysis of variance $F$-test is significant, so that the
+    groups are not all the same. Tukey's method will tell us which
+    group(s) differ(s) from the others. There are three groups, so
+    there are differences to find that we don't know about yet.
+  \end{solution}
+   
+  \end{select}
+  
+  \part Run Tukey's method. What do you conclude?
+  
+  \begin{select}
+  \begin{solution}
+This kind of thing:
+
+<<>>=
+caff.3=TukeyHSD(caff.1)
+caff.3
+@ 
+
+The high-caffeine group definitely has a higher mean test score than
+the no-caffeine group. (The Moderate group is not significantly
+different from either of the other groups.)
+
+You might find that a plot of the \texttt{TukeyHSD} object (though I
+didn't ask for it) sheds some light:
+
+<<bedminster>>=
+plot(caff.3)
+@ 
+
+The group-comparison labels might have gotten messed up, but both the
+comparisons involving Moderate could go either way (the interval for
+the difference in means includes zero). The No-High comparison, 
+however, is away from zero, so this is the significant one. As is
+usual, we are pretty sure that the difference in means (this way
+around) is negative, but we are not at all clear about how big it is. 
+\end{solution}
+    
+  \end{select}
+\end{parts}
+
+
+\question Let's look again at the caffeine data, but this time look at
+contrasts. Suppose I knew ahead of time
+that I wanted to compare moderate caffeine with high, and any
+caffeine with none. (In the latter case, we're comparing ``no
+caffeine'' against the average of the other two groups.)
+
+\begin{parts}
+  
+  \part Using the tidied caffeine data, run the ANOVA \emph{as a
+    regression} (that is, using ANOVA). Look at the \texttt{summary}
+  of the output. What do you see?
+  
+  \begin{select}
+    \begin{solution}
+<<>>=
+caffeine.2=lm(score~amount,data=caffeine)
+summary(caffeine.2)
+@       
+Look at the slopes. They are \texttt{amount} followed by one of the
+amounts of caffeine. R is using ``high'' as a baseline  (that's the
+first level alphabetically), so the
+\texttt{amountModerate} line is testing high vs.\ moderate: high is
+\emph{not} significantly higher, in terms of test scores, than
+moderate. That's one of the things I wanted to test. What about the
+coefficient for \texttt{amountNone}? That's none vs.\ \emph{high},
+since high was the baseline. This is, as we saw from Tukey,
+significant. But it is not what I said we wanted to test. 
+
+\end{solution}
+  \end{select}
+  
+  \part Obtain the levels of the factor \texttt{amount}, in the order
+  that R has them.
+  
+  \begin{select}
+    \begin{solution}
+<<>>=
+levels(amount)
+@ 
+
+Or just print the whole thing and look at the  end:
+
+<<>>=
+amount
+@ 
+
+High, Moderate and None in that order. These happen to be in
+alphabetical order, but that's not the reason they came out that
+way. They did so because columns of those names were in the original
+data file in that order, and when we used \texttt{gather} with
+\verb-factor_key=T-, we created a factor \texttt{amount} with those
+levels in that order.
+
+    \end{solution}
+  \end{select}
+
+  \part Create a contrast that compares High with Moderate, ignoring
+  None. That is, create a vector whose length is the same as the
+  number of levels of \texttt{amount}, and which has a 1 to represent
+  High and a $-1$ to represent Moderate. (What do you think will be
+  the effect of ignoring None?)
+  
+  \begin{select}
+    \begin{solution}
+      Put a 0 in for None:
+<<>>=
+c.hm=c(1,-1,0)
+@       
+
+Having the 1 and the $-1$ the other way around is also fine.
+    \end{solution}
+  \end{select}
+  
+  \part Create a contrast that compares ``any caffeine'' against
+  ``none'' by comparing None against the average of Moderate and High.
+  
+  \begin{select}
+    \begin{solution}
+<<>>=
+c.any=c(-0.5,-0.5,1)
+@ 
+     
+Note that both our contrasts have coefficients that add up to zero:
+
+<<>>=
+sum(c.hm)
+sum(c.any)
+@ 
+    \end{solution}
+  \end{select}
+  
+  \part Verify that your two contrasts are orthogonal.
+  
+  \begin{select}
+    \begin{solution}
+      Multiply them together and check that what you get adds up to zero:
+      
+<<>>=
+c.hm*c.any
+@       
+
+(it does) or save a little mental processing by having R work out the sum too:
+
+<<>>=
+sum(c.hm*c.any)
+@ 
+
+Zero, so orthogonal.
+
+    \end{solution}
+  \end{select}
+  
+  \part Arrange your contrasts as columns of a matrix (using
+  \texttt{cbind}), and say that you want to use these as contrasts for \texttt{amount}.
+  
+  \begin{select}
+    \begin{solution}
+<<>>=
+m=cbind(c.hm,c.any)
+contrasts(amount)=m
+@ 
+      
+    \end{solution}
+  \end{select}
+  
+  \part Fit the ANOVA as an \texttt{lm}, and look at the
+  \texttt{summary}. What do you conclude about your contrasts?
+  
+  \begin{select}
+    \begin{solution}
+<<>>=
+caff.3=lm(score~amount)
+summary(caff.3)
+@ 
+
+\texttt{c.hm} was the contrast between high and moderate
+caffeine. This is not significant (P-value 0.142), which is the same
+conclusion as Tukey, but the P-value here is quite a bit lower (and
+thus closer to being significant). There's a reason for that: here we
+are focusing in on the two contrasts that we really wanted to test,
+and ignoring the $F$-test and the Tukey that tell us stuff that we
+don't care about. By focusing our comparison, we get a better
+(smaller) P-value.
+
+\texttt{c.any} was none vs.\ average of any
+caffeine. This one is significant, with a P-value of 0.023. So this
+contrast tells us that having any caffeine is better than having none.
+
+    \end{solution}
+  \end{select}
+  
+  \part What happens if you try to use high caffeine vs.\ moderate
+  caffeine and moderate vs.\ none as your two contrasts?
+  
+  \begin{select}
+    \begin{solution}
+<<>>=
+c.hm=c(1,-1,0)
+c.mn=c(0,1,-1)
+@ 
+
+So far so good: the coefficients add up to zero and they reflect the
+right comparisons. But now:
+
+<<>>=
+c.hm*c.mn
+@ 
+
+This does \emph{not} add up to zero, so these two contrasts are not
+orthogonal, and we can't do what we just did. R will give us an answer
+if we try it, but it'll be the \emph{wrong} answer.\endnote{SAS, for example,
+has a way of making non-orthogonal contrasts orthogonal in a way that
+the user doesn't have to worry about, but in R, you are ``closer to
+the ground'' and you have to make it happen yourself.}
+
+The best
+description I have seen of what to do here is by David Howell\endnote{the author of a famous
+text on Statistics in Psychology}, at
+\url{https://www.uvm.edu/~dhowell/StatPages/More_Stuff/R/AnovaOneway.html}
+(at the bottom).
+Let
+me try to follow his method. 
+
+First we need a vector that is all 1's, which I have called
+\texttt{c0} below. Since each of our contrasts \texttt{c.hm} and
+\texttt{c.mn} have 3 things in them (3 groups), we need to add a
+``dummy'' 3rd contrast to give us a $3\times 3$ array of numbers:\endnote{which we are going to invert, as a matrix. But I get ahead of myself.}
+
+<<>>=
+c0=rep(1,3)
+m=cbind(c0,c.hm,c.mn)
+m
+@ 
+
+This is what Howell calls an ``augmented'' matrix of contrasts, since
+it has our two contrasts as the second and third columns, plus
+the extra dummy one. Next we invert this matrix of contrasts,
+which we can do because it's square. \texttt{t(m)} means ``take the
+matrix transpose of \texttt{m}'', if you're trying to keep up at the
+back, and \texttt{solve} finds a matrix inverse:
+
+<<>>=
+minv=solve(t(m))
+@ 
+
+and then we remove the first column, which represents the contrast
+that we didn't want anyway (what Howell calls ``deaugmenting''):
+
+<<>>=
+m.contr=minv[,-1]
+m.contr
+contrasts(amount)=m.contr
+@ 
+
+The columns of \texttt{m.contr} are our new made-orthogonal contrasts.
+
+
+Now fit the model again:
+
+<<>>=
+caff.4=lm(score~amount)
+summary(caff.4)
+@ 
+
+The rows \texttt{amountc.hm} and \texttt{amountc.mn} are the proper tests
+for our contrasts \texttt{c.hm} and \texttt{c.mn}. \texttt{c.hm} was ``high
+vs.\ moderate'', which is not significant (P-value 0.14) and
+\texttt{c.mn} was ``moderate vs.\ none'', which is not significant either
+(P-value 0.20). This is the same significance as from Tukey, but note
+that the P-values for the non-significant tests are much lower than
+the corresponding ones from Tukey, once again because we have focused
+on just these comparisons, and not on any others. We decided ahead of
+time to test just these.
+
+
+Finally, this:
+
+<<>>=
+detach(caffeine)
+@ 
+
+since I have a variable called \texttt{score} in another question as
+well, and I don't want to get them mixed up.
+
+    \end{solution}
+  \end{select}
+  
+\end{parts}

@@ -1,0 +1,1168 @@
+\section{Logistic regression (ordinal/nominal response)}
+\frame{\sectionpage}
+
+
+\begin{frame}{Logistic regression}
+
+  \begin{itemize}
+  \item When response variable is measured/counted, regression can work well.
+  \item But what if response is yes/no, lived/died, success/failure?
+  \item Model {\em probability} of success.
+  \item Probability must be between 0 and 1; need method that ensures this.
+  \item {\em Logistic regression} does this. In R, is a
+    \emph{generalized linear model} with binomial ``family'': 
+\texttt{glm(y\textasciitilde x,family="binomial")}
+    
+  \item Begin with simplest case.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+<<>>=
+library(MASS)
+library(tidyverse)
+library(broom)
+library(nnet)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The rats, part 1}
+
+  \begin{itemize}
+  \item Rats given dose of some poison; either live or die:
+
+    \begin{small}
+\begin{verbatim}
+dose status
+0 lived
+1 died
+2 lived
+3 lived
+4 died
+5 died
+\end{verbatim}
+      
+    \end{small}
+
+  \item Read the data:
+
+ 
+<<size="small">>=
+rats=read_delim("rat.txt"," ")
+@ %def 
+  
+
+  \end{itemize}
+  
+
+
+
+\end{frame}
+  
+
+\begin{frame}[fragile]{Basic logistic regression}
+  
+  \begin{itemize}
+  \item Data:
+<<size="small">>=
+rats
+@   
+
+\item Make response into a factor first:
+  
+<<size="small">>=
+rats2 = rats %>% mutate(status=factor(status))
+@   
+
+\item then fit model:
+  
+<<size="small">>=
+status.1 = 
+  glm(status~dose,family="binomial",data=rats2)
+@   
+  \end{itemize}
+  
+
+<<>>=
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output}
+
+<<size="scriptsize">>=
+summary(status.1)
+@ %def 
+
+\end{frame}
+
+
+\begin{frame}{Interpreting the output}
+  \begin{itemize}
+  \item Like (multiple) regression, get
+   tests of significance of individual $x$'s
+  \item     Here not significant (only 6 observations).
+  \item ``Slope'' for dose is negative, meaning that as dose increases, probability of event modelled (survival) decreases.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Output part 2: predicted survival probs}
+
+  
+ 
+<<>>=
+p=predict(status.1,type="response")
+cbind(rats,p)
+@ %def 
+  
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{The rats, more}
+
+  \begin{itemize}
+  \item More realistic: more rats at each dose (say 10).
+  \item Listing each rat on one line makes a big data file.
+  \item Use format below: dose, number of survivals, number of deaths.
+\begin{verbatim}
+dose lived died
+   0    10    0
+   1     7    3 
+   2     6    4 
+   3     4    6 
+   4     2    8 
+   5     1    9  
+\end{verbatim}
+
+
+  \item 6 lines of data correspond to 60 actual rats.
+
+  \item Saved in \texttt{rat2.txt}.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{These data}
+
+ 
+<<size="footnotesize">>=
+rat2=read_delim("rat2.txt"," ")
+rat2
+@ %def 
+  
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{This logistic regression}
+  
+<<>>=
+response=with(rat2,cbind(lived,died))
+rat2.1=glm(response~dose,family="binomial",
+  data=rat2)
+@     
+\begin{itemize}
+\item Note construction of \emph{two-column} response, \#survivals in
+  first column, \#deaths in second.
+\item The response variable is an R \texttt{matrix}:
+  
+<<>>=
+class(response)
+@   
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output}
+
+<<size="scriptsize">>=
+summary(rat2.1)
+@ %def 
+  
+
+\end{frame}
+
+\begin{frame}[fragile]{Predicted survival probs}
+
+ 
+<<>>=
+p=predict(rat2.1,type="response")
+cbind(rat2,p)
+@ %def 
+  
+  
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+\begin{itemize}
+\item Significant effect of dose. 
+\item Effect of larger dose is to decrease survival probability
+  (``slope'' negative; also see in decreasing predictions.)
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}{Multiple logistic regression}
+
+  \begin{itemize}
+  \item With more than one $x$, works much like multiple regression.
+  \item Example: study of patients with blood poisoning severe enough to warrant surgery. Relate survival to other potential risk factors.
+  \item Variables, 1=present, 0=absent:
+    \begin{itemize}
+    \item survival (death from sepsis=1), response
+    \item shock
+    \item malnutrition
+    \item alcoholism
+    \item age (as numerical variable)
+    \item bowel infarction
+    \end{itemize}
+  \item See what relates to death.
+  \end{itemize}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Read in data}
+
+ 
+<<size="footnotesize">>=
+sepsis=read_delim("sepsis.txt"," ")
+@ %def 
+  
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<size="footnotesize">>=
+sepsis
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Fit model}
+  
+<<>>=
+sepsis.1=glm(death~shock+malnut+alcohol+age+
+              bowelinf,family="binomial",
+	      data=sepsis)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output part 1}
+
+ 
+<<size="footnotesize">>=
+tidy(sepsis.1)
+@ %def 
+
+\begin{itemize}
+\item All P-values fairly small
+\item but \texttt{malnut} not significant: remove.
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Removing \texttt{malnut}}
+
+ 
+<<size="footnotesize">>=
+sepsis.2=update(sepsis.1,.~.-malnut)
+tidy(sepsis.2)
+@ %def 
+
+\begin{itemize}
+\item Everything significant now.
+\end{itemize}
+  
+ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+%$  
+  \begin{itemize}
+\item Most of the original $x$'s helped predict death. Only \texttt{malnut} seemed not to add anything.
+\item Removed \texttt{malnut} and tried again.
+\item Everything remaining is significant (though \texttt{bowelinf}
+  actually became \emph{less} significant).
+\item All coefficients are \emph{positive}, so having any of the risk
+  factors (or being older)
+  \emph{increases} risk of death.  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Predictions from model without ``malnut''}
+  
+  \begin{itemize}
+  \item A few chosen at random:
+
+<<size="footnotesize">>=
+sepsis.pred=predict(sepsis.2,type="response")
+d=data.frame(sepsis,sepsis.pred)
+myrows=c(4,1,2,11,32) ; slice(d,myrows)
+@ %def 
+
+\item Survival chances pretty good if no risk factors, though decreasing with age.
+\item Having more than one risk factor reduces survival chances dramatically.
+\item Usually good job of predicting survival; sometimes death predicted to survive.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Assessing proportionality of odds for age}
+  \begin{itemize}
+  \item An assumption we made is that log-odds of survival depends
+    linearly on age.
+  \item Hard to get your head around, but 
+    basic idea is that survival chances go continuously up (or down)
+    with age, instead of (for example) going up and then down.
+  \item In this case, seems reasonable, but should check:
+
+  \end{itemize}
+    
+
+\end{frame}
+ 
+
+\begin{frame}[fragile]{Residuals vs.\ age}
+
+ 
+<<virtusentella,fig.height=3.4, warning=F>>=
+ggplot(augment(sepsis.2),aes(x=age,y=.resid))+
+  geom_point()
+@ %def 
+  
+  
+\begin{itemize}
+\item No apparent problems overall.
+\item Confusing ``line'' across: no risk factors, survived. 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Probability and odds}
+  
+  \begin{itemize}
+  \item For probability $p$, odds is $p/(1-p)$. Examples:
+    \vfill
+    \begin{tabular}{rrrl}
+      \hline
+      Prob.\ & Odds & log-odds & in words\\
+      \hline
+      0.5 & $0.5/0.5=1/1=1.00$ & 0.00 &  ``even money''\\
+      0.1 & $0.1/0.9=1/9=0.11$ & $-2.20$ & ``9 to 1''\\
+      0.4 & $0.4/0.6=1/1.5=0.67$ & $-0.41$ & ``1.5 to 1''\\
+      0.8 & $0.8/0.2=4/1=4.00$ & 1.39 & ``4 to 1 on''\\
+      \hline
+    \end{tabular}
+    \vfill
+  \item Gamblers use odds: if you win at 9 to 1 odds, get original
+    stake back plus 9 times the stake.
+  \item Probability has to be between 0 and 1
+  \item Odds between 0 and infinity
+  \item \emph{Log}-odds can be anything: any log-odds corresponds to
+    valid probability.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Odds ratio}
+  
+  \begin{itemize}
+  \item Suppose 90 of 100 men drank wine last week, but only 20 of 100 women.
+  \item Prob of man drinking wine $90/100=0.9$, woman $20/100=0.2$.
+  \item Odds of man drinking wine $0.9/0.1=9$, woman $0.2/0.8=0.25$.
+  \item Ratio of odds is $9/0.25=36$.
+  \item Way of quantifying difference between men and women: ``odds of
+    drinking wine 36 times larger for males than females''. 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Sepsis data again}
+  
+  \begin{itemize}
+  \item Recall prediction of probability of death from risk factors:
+    
+<<size="small">>=
+sepsis.2.tidy=tidy(sepsis.2)
+sepsis.2.tidy
+@     
+
+\item Slopes in column \texttt{estimate}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Multiplying the odds}
+
+  \begin{itemize}
+  \item Can interpret slopes by taking ``exp'' of them. We ignore intercept.
+
+ 
+<<size="small">>=
+cc=exp(sepsis.2.tidy$estimate)
+data.frame(sepsis.2.tidy$term,expcoeff=round(cc,2))
+@ %def 
+
+\item These say ``how much do you \emph{multiply} odds of death by
+    for increase of 1 in corresponding risk factor?'' Or, what is odds
+    ratio for that factor being 1 (present) vs.\ 0 (absent)?
+  \item Eg.\ being alcoholic vs.\ not increases odds of death by 24 times
+  \item One year older multiplies odds by about 1.1 times. Over 40 years,
+    about  $1.09^{40}=31$ times. 
+    
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Odds ratio and relative risk}
+  
+  \begin{itemize}
+  \item \textbf{Relative risk} is ratio of probabilities.
+  \item Above: 90 of 100 men (0.9) drank wine, 20 of 100 women (0.2).
+  \item Relative risk 0.9/0.2=4.5. (odds ratio was 36).
+  \item When probabilities small, relative risk and odds ratio similar.
+  \item Eg.\ prob of man having disease 0.02, woman 0.01.
+  \item Relative risk $0.02/0.01=2$.
+ 
+    \begin{multicols}{2}
+  \item Odds for men and for women:
+
+<<>>=
+(od1=0.02/0.98)
+(od2=0.01/0.99)
+@ %def
+
+\item Odds ratio 
+ 
+<<>>=
+od1/od2 
+@ %def 
+
+\item Very close to 2.
+      
+    \end{multicols}
+    
+  
+    
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}{More than 2 response categories}
+
+  \begin{itemize}
+  \item With 2 response categories, model the probability of one, and prob of other is one minus that. So doesn't matter which category you model.
+  \item With more than 2 categories, have to think more carefully about the categories: are they
+    \begin{itemize}
+    \item {\em ordered}: you can put them in a natural order (like low, medium, high)
+    \item {\em nominal}: ordering the categories doesn't make sense (like red, green, blue).
+    \end{itemize}
+  \item R handles both kinds of response; learn how.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ordinal response: the miners}
+
+
+  \begin{itemize}
+  \item 
+Model probability of being in given category {\em or lower}.
+\item Example: coal-miners often suffer disease pneumoconiosis. Likelihood of disease believed to be greater 
+among miners who have worked longer. 
+\item Severity of disease measured on categorical scale: 1 = none, 2
+= moderate, 3 = severe.
+\item Data are frequencies:
+\begin{verbatim}
+Exposure None Moderate Severe
+   5.8    98      0       0
+  15.0    51      2       1
+  21.5    34      6       3
+  27.5    35      5       8
+  33.5    32      10      9
+  39.5    23      7       8
+  46.0    12      6      10
+  51.5     4      2       5
+\end{verbatim}
+  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Reading the data}
+
+Data in aligned columns with more than one space between, so: 
+  
+<<>>=
+freqs=read_table("miners-tab.txt")
+@ %def 
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<>>=
+freqs
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidying and row proportions}
+  
+<<>>=
+freqs %>% gather(Severity, Freq, None:Severe) %>%
+    group_by(Exposure) %>%
+    mutate(proportion=Freq/sum(Freq)) -> miners
+@   
+   
+\end{frame}
+
+\begin{frame}[fragile]{Result}
+  
+<<>>=
+miners
+@     
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plot proportions against exposure}
+  
+<<fig.height=3.5,size="small">>=
+ggplot(miners,aes(x=Exposure,y=proportion,
+                  colour=Severity))+geom_point()+geom_line()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reminder of data setup}
+
+  \begin{footnotesize}
+<<>>=
+miners
+@   
+  \end{footnotesize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Creating an ordered factor}
+  
+  \begin{itemize}
+  \item Problem: on plot, \texttt{Severity} categories in \emph{wrong
+      order}. 
+  \item First we need the different values in  (text) \texttt{Severity}:
+    
+<<>>=
+v=unique(miners$Severity)
+v
+@
+
+\item These are in the right order. 
+  
+\item Now we make an ordered factor out
+  of \texttt{Severity} with these as its levels:
+  
+<<size="small">>=
+miners = miners %>% 
+    mutate(sev_ord=ordered(Severity,v))
+@   
+  \end{itemize}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{New data frame}
+
+<<>>=
+miners
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{In the opposite order}
+  
+\texttt{Severe} down to \texttt{None}:  
+  
+<<>>=
+miners %>% mutate(sev2=ordered(Severity,c(v[3],v[2],v[1])))
+@     
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Improved plot}
+  
+<<fig.height=3.5,size="small">>=
+ggplot(miners,aes(x=Exposure,y=proportion,
+    colour=sev_ord))+geom_point()+geom_line()
+@   
+   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Fitting ordered logistic model}
+
+Use function \texttt{polr} from package \texttt{MASS}. Like \texttt{glm}.
+
+ 
+<<>>=
+sev.1=polr(sev_ord~Exposure,weights=Freq,
+              data=miners)
+@ %def 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output: not very illuminating}
+  
+<<size="small">>=
+summary(sev.1)
+@   
+  
+\end{frame}
+ 
+\begin{frame}[fragile]{Does exposure have an effect?}
+  
+  Fit model without \texttt{Exposure}, and compare
+using \texttt{anova}. Note \texttt{1} for model with just intercept:
+
+<<echo=F>>=
+w=getOption("width")
+options(width=w-20)
+@ 
+
+<<size="footnotesize">>=
+sev.0=polr(sev_ord~1,weights=Freq,data=miners)
+anova(sev.0,sev.1)
+@ %def 
+
+
+Exposure definitely has effect on severity of disease. 
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Another way}
+  
+  \begin{itemize}
+  \item What (if anything) can we drop from model with \texttt{exposure}?
+    
+<<>>=
+drop1(sev.1,test="Chisq")
+@     
+
+\item Nothing. Exposure definitely has effect.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predicted probabilities}
+
+Make new data frame out of all the exposure values (from original data
+frame), and predict from that:
+
+<<echo=F>>=
+options(width=70)
+@ 
+ 
+<<size="small">>=
+sev.new=tibble(Exposure=freqs$Exposure)
+pr=predict(sev.1,sev.new,type="p")
+miners.pred=cbind(sev.new,pr)
+miners.pred
+@ %def 
+ 
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Model appears to match data: as exposure goes up, prob of None
+    goes down, Severe goes up (sharply for high exposure).
+  \item Like original data frame, this one nice to look at but
+    \emph{not tidy}. We want to make graph, so tidy it.
+  \item Usual \texttt{gather}:
+    
+<<size="small">>=
+preds = miners.pred %>% 
+  gather(Severity,probability,None:Severe) 
+@     
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Some of the gathered predictions}
+  
+<<size="small">>=
+preds %>% slice(1:15)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting predicted and observed proportions}
+  
+  \begin{itemize}
+    \item Plot:
+      \begin{itemize}
+      \item  predicted probabilities, lines (shown) joining points (not shown)
+      \item data, just the points. 
+      \end{itemize}
+  
+  \item Unfamiliar process: data from two \emph{different} data frames:
+  
+<<>>=
+g=ggplot(preds,aes(x=Exposure,y=probability,
+    colour=Severity)) + geom_line() +
+  geom_point(data=miners,aes(y=proportion))
+@   
+
+\item Idea: final \texttt{geom\_point} uses data in \texttt{miners}
+  rather than \texttt{preds}, $y$-variable for plot is \texttt{proportion}
+  from that data frame, but $x$-coordinate is \texttt{Exposure}, as it
+  was before, and \texttt{colour} is \texttt{Severity} as before. The
+  final \texttt{geom\_point} ``inherits'' from the first \texttt{aes}
+  as needed.
+\item Data conform to fitted relationship pretty well:
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+<<fig.height=3.6>>=
+g
+@   
+
+
+
+\end{frame}
+
+
+
+
+% mlogit.pdf
+
+\begin{frame}[fragile]{Unordered responses}
+
+  \begin{itemize}
+  \item With unordered (nominal) responses, can use {\em generalized logit}.
+  \item Example: 735 people, record age and sex (male 0, female 1), which of 3 brands of some product preferred.
+  \item Data in \verb-mlogit.csv- separated by commas (so
+    \texttt{read\_csv} will work):
+
+ 
+<<>>=
+brandpref=read_csv("mlogit.csv")
+@ %def 
+    
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<>>=
+brandpref
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Bashing into shape, and fitting model}
+
+  \begin{itemize}
+  \item \texttt{sex} and \texttt{brand} not meaningful as numbers, so
+    turn into factors:
+ 
+<<>>=
+brandpref = brandpref %>% 
+    mutate(sex=factor(sex)) %>%
+    mutate(brand=factor(brand))
+@ %def 
+    
+  \item We use \texttt{multinom} from package \texttt{nnet}. Works
+    like \texttt{polr}.
+  \end{itemize}
+
+ 
+<<>>=
+brands.1=multinom(brand~age+sex,data=brandpref)
+@ %def 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Can we drop anything?}
+  
+  
+  \begin{itemize}
+  \item Unfortunately \texttt{drop1} seems not to work:
+<<>>=
+drop1(brands.1,test="Chisq",trace=0)
+@   
+\item so fall back on fitting model without what you want to test, and
+  comparing using \texttt{anova}.    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Do age/sex help predict brand? 1/2}
+
+Fit models without each of age and sex:
+
+ 
+<<>>=
+brands.2=multinom(brand~age,data=brandpref)
+brands.3=multinom(brand~sex,data=brandpref)
+@ %def 
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Do age/sex help predict brand? 2/2}
+
+ 
+<<size="scriptsize">>=
+anova(brands.2,brands.1)
+anova(brands.3,brands.1)
+@ %def 
+  
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Do age/sex help predict brand? 3/3}
+
+  \begin{itemize}
+\item \texttt{age} definitely significant (second \texttt{anova})
+\item \texttt{sex} seems significant also (first \texttt{anova})
+\item Keep both.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Another way to build model}
+  
+  \begin{itemize}
+  \item Start from model with everything and run \texttt{step}:
+    
+<<>>=
+step(brands.1,trace=0)
+@     
+
+
+\item Final model contains both \texttt{age} and \texttt{sex} so neither
+could be removed.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predictions: all possible combinations}
+
+Create data frame with various age and sex:
+
+<<size="footnotesize">>=
+ages=c(24,28,32,35,38)
+sexes=factor(0:1)
+new=crossing(age=ages,sex=sexes)
+new
+@ %def 
+
+\end{frame}
+
+\begin{frame}[fragile]{Making predictions}
+  
+<<>>=
+p=predict(brands.1,new,type="probs")
+probs=cbind(new,p)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The predictions}
+
+<<>>=
+probs
+@   
+  
+  \begin{itemize}
+\item Young males (\texttt{sex=0}) prefer brand 1, 
+but older males prefer brand 3.
+\item Females similar, but like brand 1 less and
+  brand 2 more.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot}
+  
+  \begin{itemize}
+  \item Plot fitted probability against age, distinguishing brand by
+    colour and gender by plotting symbol.
+  \item Also join points by lines, and distinguish lines by gender. 
+  \item I thought about facetting, but this seems to come out clearer.
+  \item First need tidy data frame, by familiar process:
+    
+<<>>=
+probs.long = probs %>% 
+    gather(brand,probability,-(age:sex))
+sample_n(probs.long,7) # 7 random rows
+@     
+  
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+<<fig.height=3>>=
+ggplot(probs.long,aes(x=age,y=probability,
+  colour=brand,shape=sex))+
+  geom_point()+geom_line(aes(linetype=sex))
+@   
+\end{frame}
+
+
+\begin{frame}[fragile]{Digesting the plot}
+  
+  \begin{itemize}
+  \item Brand vs.\ age: younger people (of both genders) prefer brand
+    1, but older people (of both genders) prefer brand 3. (Explains
+    significant age effect.)
+  \item Brand vs.\ sex: females (dashed) like brand 1 less than males
+    (solid), like brand 2 more (for all ages). 
+    more.
+  \item Not much brand difference between genders (solid and dashed
+    lines of same colours close), but enough to be significant.
+  \item Model didn't include interaction, so modelled effect of gender
+    on brand same for each age, modelled effect of age same for each
+    gender. 
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Alternative data format}
+
+Summarize all people of same brand preference, same sex, same age on one line of data file with frequency on end:
+
+{
+\begin{verbatim}
+1 0 24 1
+1 0 26 2
+1 0 27 4
+1 0 28 4
+1 0 29 7
+1 0 30 3
+...
+\end{verbatim}
+}
+
+Whole data set in 65 lines not 735! But how?
+  
+\end{frame}
+
+\begin{frame}[fragile]{Getting alternative data format}
+  
+<<>>=
+brandpref %>%
+      group_by(age,sex,brand) %>%
+      summarize(Freq=n()) %>%
+      ungroup() -> b
+b %>% slice(1:6)
+@   
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Fitting models, almost the same}
+
+  \begin{itemize}
+  \item Just have to remember \texttt{weights} to incorporate
+frequencies.
+\item Otherwise \texttt{multinom} assumes you have just 1 obs
+on each line!
+\item Again turn (numerical) \texttt{sex} and \texttt{brand} into factors:
+ 
+<<size="scriptsize">>=
+bf = b %>%
+      mutate(sex=factor(sex)) %>%
+      mutate(brand=factor(brand)) 
+b.1=multinom(brand~age+sex,data=bf,weights=Freq)
+b.2=multinom(brand~age,data=bf,weights=Freq)
+@ %def 
+
+  \end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{P-value for \texttt{sex} identical}
+  
+<<size="footnotesize">>=
+anova(b.2,b.1)
+@ %def 
+
+Same P-value as before, so we haven't changed anything important.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Including data on plot}
+  
+  \begin{itemize}
+  \item Everyone's age given as whole
+    number, so maybe not too many different ages with sensible amount
+    of data at each:
+    
+<<size="scriptsize">>=
+b %>% group_by(age) %>%
+  summarize(total=sum(Freq)) 
+@           
+%$ %$
+    
+   
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments and next}
+  \begin{itemize}
+  \item Not great (especially at low end), but live with it.
+  \item Need proportions of frequencies in each brand for each
+    age-gender combination. Mimic what we did for miners:
+<<spal-b>>=
+b %>%  
+  group_by(age,sex) %>%
+  mutate(proportion=Freq/sum(Freq)) -> brands
+@     
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Checking proportions for age 32}
+  
+  
+<<>>=
+brands %>% filter(age==32)
+@   
+
+\begin{itemize}
+\item First three proportions (males) add up to 1.
+\item Last three proportions (females) add up to 1.
+\item So looks like proportions of right thing.
+  
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Attempting plot}
+  
+  \begin{itemize}
+  \item Take code from previous plot and:
+    \begin{itemize}
+    \item remove \texttt{geom\_point} for fitted values
+    \item add \texttt{geom\_point} with correct \texttt{data=} and
+      \texttt{aes} to plot data.
+    \end{itemize}
+    
+<<fig.height=3.2>>=
+g=ggplot(probs.long,aes(x=age,y=probability,
+  colour=brand,shape=sex))+
+  geom_line(aes(linetype=sex))+
+  geom_point(data=brands,aes(y=proportion))
+
+@     
+
+\item Data seem to correspond more or less to fitted curves:
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+<<fig.height=3.5>>=
+g
+@   
+\end{frame}
+
+\begin{frame}[fragile]{But\ldots}
+  
+  \begin{itemize}
+  \item Some of the plotted points based on a lot of people, and some
+    only a few.
+  \item Idea: make the \emph{size} of plotted point bigger if point
+    based on a lot of people (in \texttt{Freq}).
+  \item Hope that larger points then closer to predictions.
+    
+  \item Code:
+    
+<<>>=
+g=ggplot(probs.long,aes(x=age,y=probability,
+  colour=brand,shape=sex))+
+  geom_line(aes(linetype=sex))+
+  geom_point(data=brands,
+             aes(y=proportion,size=Freq))
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+<<fig.height=3.5>>=
+g
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Trying interaction between age and gender}
+
+<<echo=F>>=
+options(width=60)
+@   
+  \begin{scriptsize}
+<<>>=
+b.4=update(b.1,.~.+age:sex)
+anova(b.1,b.4)
+@   
+    
+  \end{scriptsize}
+
+  \begin{itemize}
+  \item No evidence that effect of age on brand preference differs for
+    the two genders.
+  \end{itemize}
+  
+% <<echo=F>>=
+% pkgs = names(sessionInfo()$otherPkgs) 
+% pkgs=paste('package:', pkgs, sep = "")
+% x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+% @   
+\end{frame}

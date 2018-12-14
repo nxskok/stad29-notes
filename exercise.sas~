@@ -1,0 +1,17 @@
+data ex;
+  infile "exercise.dat";
+  input exercise $ pulse1 pulse2 pulse3 diet $;
+
+proc means;
+  class exercise diet;
+  var pulse1--pulse3;
+
+
+proc glm;
+  class exercise diet;
+  model pulse1 pulse2 pulse3 = exercise diet / nouni;
+  repeated intensity;
+
+
+run;
+

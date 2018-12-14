@@ -1,0 +1,5309 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.12.5)  28 JAN 2013 15:22
+entering extended mode
+ %&-line parsing enabled.
+**slides.beamer
+(./slides.beamer.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf/tex/latex/beamer/base/beamer.cls
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasercs.sty
+Package: beamerbasercs 2010/06/12 (rcs-revision c3821710bb40)
+)
+Document Class: beamer 2010/06/21 development version 3.10 A class for typesett
+ing presentations (rcs-revision a6b1a8434d30)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasemodes.sty
+Package: beamerbasemodes 2010/05/01 (rcs-revision efa082c6111d)
+\beamer@tempbox=\box26
+\beamer@tempcount=\count79
+\c@beamerpauses=\count80
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasedecode.sty
+Package: beamerbasedecode 2010/05/01 (rcs-revision efa082c6111d)
+\beamer@slideinframe=\count81
+\beamer@minimum=\count82
+)
+\beamer@commentbox=\box27
+\beamer@modecount=\count83
+)
+\headheight=\dimen102
+\headdp=\dimen103
+\footheight=\dimen104
+\sidebarheight=\dimen105
+\beamer@tempdim=\dimen106
+\beamer@finalheight=\dimen107
+\beamer@animht=\dimen108
+\beamer@animdp=\dimen109
+\beamer@animwd=\dimen110
+\beamer@leftmargin=\dimen111
+\beamer@rightmargin=\dimen112
+\beamer@leftsidebar=\dimen113
+\beamer@rightsidebar=\dimen114
+\beamer@boxsize=\dimen115
+\beamer@vboxoffset=\dimen116
+\beamer@descdefault=\dimen117
+\beamer@descriptionwidth=\dimen118
+\beamer@lastskip=\skip41
+\beamer@areabox=\box28
+\beamer@animcurrent=\box29
+\beamer@animshowbox=\box30
+\beamer@sectionbox=\box31
+\beamer@logobox=\box32
+\beamer@linebox=\box33
+\beamer@sectioncount=\count84
+\beamer@subsubsectionmax=\count85
+\beamer@subsectionmax=\count86
+\beamer@sectionmax=\count87
+\beamer@totalheads=\count88
+\beamer@headcounter=\count89
+\beamer@partstartpage=\count90
+\beamer@sectionstartpage=\count91
+\beamer@subsectionstartpage=\count92
+\beamer@animationtempa=\count93
+\beamer@animationtempb=\count94
+\beamer@xpos=\count95
+\beamer@ypos=\count96
+\beamer@showpartnumber=\count97
+\beamer@currentsubsection=\count98
+\beamer@coveringdepth=\count99
+\beamer@sectionadjust=\count100
+\beamer@tocsectionnumber=\count101
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseoptions.sty
+Package: beamerbaseoptions 2010/04/27 (rcs-revision 982469101dd6)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+))
+\beamer@paperwidth=\skip42
+\beamer@paperheight=\skip43
+
+(/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2008/12/21 v4.2 Page Geometry
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count102
+\Gm@cntv=\count103
+\c@Gm@tempcnt=\count104
+\Gm@bindingoffset=\dimen119
+\Gm@wd@mp=\dimen120
+\Gm@odd@mp=\dimen121
+\Gm@even@mp=\dimen122
+\Gm@dimlist=\toks15
+)
+(/usr/share/texmf-texlive/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count105
+))
+\Gin@req@height=\dimen123
+\Gin@req@width=\dimen124
+)
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks16
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box34
+
+(/usr/share/texmf-texlive/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
+))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks19
+))
+\pgf@x=\dimen125
+\pgf@y=\dimen126
+\pgf@xa=\dimen127
+\pgf@ya=\dimen128
+\pgf@xb=\dimen129
+\pgf@yb=\dimen130
+\pgf@xc=\dimen131
+\pgf@yc=\dimen132
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count106
+\c@pgf@countb=\count107
+\c@pgf@countc=\count108
+\c@pgf@countd=\count109
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+)))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
+\pgfsyssoftpath@smallbuffer@items=\count110
+\pgfsyssoftpath@bigbuffer@items=\count111
+)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen133
+\pgfmath@count=\count112
+\pgfmath@box=\box35
+\pgfmath@toks=\toks20
+\pgfmath@stack@operand=\toks21
+\pgfmath@stack@operation=\toks22
+)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)))
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count113
+))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
+\pgf@picminx=\dimen134
+\pgf@picmaxx=\dimen135
+\pgf@picminy=\dimen136
+\pgf@picmaxy=\dimen137
+\pgf@pathminx=\dimen138
+\pgf@pathmaxx=\dimen139
+\pgf@pathminy=\dimen140
+\pgf@pathmaxy=\dimen141
+\pgf@xx=\dimen142
+\pgf@xy=\dimen143
+\pgf@yx=\dimen144
+\pgf@yy=\dimen145
+\pgf@zx=\dimen146
+\pgf@zy=\dimen147
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
+\pgf@path@lastx=\dimen148
+\pgf@path@lasty=\dimen149
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
+\pgf@shorten@end@additional=\dimen150
+\pgf@shorten@start@additional=\dimen151
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
+\pgfpic=\box36
+\pgf@hbox=\box37
+\pgf@layerbox@main=\box38
+\pgf@picture@serial@count=\count114
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
+\pgflinewidth=\dimen152
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
+\pgf@pt@x=\dimen153
+\pgf@pt@y=\dimen154
+\pgf@pt@temp=\dimen155
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
+\pgf@max=\dimen156
+\pgf@sys@shading@range@num=\count115
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
+
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
+\pgfexternal@startupbox=\box39
+))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
+)))
+(/usr/share/texmf/tex/latex/pgf/utilities/xxcolor.sty
+Package: xxcolor 2003/10/24 ver 0.1
+\XC@nummixins=\count116
+\XC@countmixins=\count117
+)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen157
+\Hy@linkcounter=\count118
+\Hy@pagecounter=\count119
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+))
+Package hyperref Info: Option `bookmarks' set `true' on input line 2864.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 2864.
+Package hyperref Info: Option `pdfpagelabels' set `false' on input line 2864.
+Package hyperref Info: Option `implicit' set `false' on input line 2864.
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing OFF on input line 2995.
+
+Implicit mode OFF; no redefinition of LaTeX internals
+Package hyperref Info: Bookmarks ON on input line 3191.
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3428.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)))
+\Fld@menulength=\count120
+\Field@Width=\dimen158
+\Fld@charsize=\dimen159
+\Field@toks=\toks23
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing OFF on input line 4392.
+Package hyperref Info: Link coloring OFF on input line 4397.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+Hyperref stopped early
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
+\Fld@listcount=\count121
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaserequires.sty
+Package: beamerbaserequires 2010/05/01  (rcs-revision efa082c6111d)
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasecompatibility.sty
+Package: beamerbasecompatibility 2010/07/12  (rcs-revision 6648c3177e4e)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasefont.sty
+Package: beamerbasefont 2010/05/10  (rcs-revision cd36e8a33c6b)
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks24
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)))
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetranslator.sty
+Package: beamerbasetranslator 2010/06/11  (rcs-revision 85fd1cc7fc42)
+
+(/usr/share/texmf/tex/latex/beamer/base/translator/translator.sty
+Package: translator 2010/06/12 ver 1.10
+
+(/usr/share/texmf/tex/latex/beamer/base/translator/translator-language-mappings
+.tex))) (/usr/share/texmf/tex/latex/beamer/base/beamerbasemisc.sty
+Package: beamerbasemisc 2010/06/06  (rcs-revision bff0a9294b45)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetwoscreens.sty
+Package: beamerbasetwoscreens 2010/05/01  (rcs-revision efa082c6111d)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseoverlay.sty
+Package: beamerbaseoverlay 2010/05/07  (rcs-revision 5584dad462a9)
+\beamer@argscount=\count122
+\beamer@lastskipcover=\skip44
+\beamer@trivlistdepth=\count123
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetitle.sty
+Package: beamerbasetitle 2010/06/12  (rcs-revision 717e481ca47a)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasesection.sty
+Package: beamerbasesection 2010/06/17  (rcs-revision e0d9401bb743)
+\c@lecture=\count124
+\c@part=\count125
+\c@section=\count126
+\c@subsection=\count127
+\c@subsubsection=\count128
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseframe.sty
+Package: beamerbaseframe 2010/06/06  (rcs-revision bff0a9294b45)
+\beamer@framebox=\box40
+\beamer@frametitlebox=\box41
+\beamer@zoombox=\box42
+\beamer@zoomcount=\count129
+\beamer@zoomframecount=\count130
+\beamer@frametextheight=\dimen160
+\c@subsectionslide=\count131
+\beamer@frametopskip=\skip45
+\beamer@framebottomskip=\skip46
+\beamer@frametopskipautobreak=\skip47
+\beamer@framebottomskipautobreak=\skip48
+\beamer@envbody=\toks25
+\c@framenumber=\count132
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseverbatim.sty
+Package: beamerbaseverbatim 2010/05/01  (rcs-revision efa082c6111d)
+\beamer@verbatimfileout=\write4
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseframesize.sty
+Package: beamerbaseframesize 2010/06/27  (rcs-revision 6baa2d92e6f1)
+\beamer@splitbox=\box43
+\beamer@autobreakcount=\count133
+\beamer@autobreaklastheight=\dimen161
+\beamer@frametitletoks=\toks26
+\beamer@framesubtitletoks=\toks27
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseframecomponents.sty
+Package: beamerbaseframecomponents 2010/07/12  (rcs-revision 09e82992d9b1)
+\beamer@footins=\box44
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasecolor.sty
+Package: beamerbasecolor 2010/06/06  (rcs-revision d1a9b48be06d)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasenotes.sty
+Package: beamerbasenotes 2010/05/01  (rcs-revision efa082c6111d)
+\beamer@frameboxcopy=\box45
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetoc.sty
+Package: beamerbasetoc 2010/06/11  (rcs-revision 242ecaa6783b)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetemplates.sty
+Package: beamerbasetemplates 2010/05/01  (rcs-revision efa082c6111d)
+\beamer@sbttoks=\toks28
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseauxtemplates.sty
+Package: beamerbaseauxtemplates 2010/05/01  (rcs-revision efa082c6111d)
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseboxes.sty
+Package: beamerbaseboxes 2010/05/01  (rcs-revision efa082c6111d)
+\bmb@box=\box46
+\bmb@colorbox=\box47
+\bmb@boxshadow=\box48
+\bmb@boxshadowball=\box49
+\bmb@boxshadowballlarge=\box50
+\bmb@temp=\dimen162
+\bmb@dima=\dimen163
+\bmb@dimb=\dimen164
+\bmb@prevheight=\dimen165
+)
+\beamer@blockheadheight=\dimen166
+))
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaselocalstructure.sty
+Package: beamerbaselocalstructure 2010/06/01  (rcs-revision 81f9e33f7cc2)
+
+(/usr/share/texmf-texlive/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks29
+)
+\c@figure=\count134
+\c@table=\count135
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasenavigation.sty
+Package: beamerbasenavigation 2010/05/01  (rcs-revision efa082c6111d)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetheorems.sty
+Package: beamerbasetheorems 2010/06/06  (rcs-revision 7e7cc5e53e9d)
+
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks30
+\ex@=\dimen167
+))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen168
+)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count136
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count137
+\leftroot@=\count138
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count139
+\DOTSCASE@=\count140
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+\big@size=\dimen169
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count141
+\c@MaxMatrixCols=\count142
+\dotsspace@=\muskip11
+\c@parentequation=\count143
+\dspbrk@lvl=\count144
+\tag@help=\toks31
+\row@=\count145
+\column@=\count146
+\maxfields@=\count147
+\andhelp@=\toks32
+\eqnshift@=\dimen170
+\alignsep@=\dimen171
+\tagshift@=\dimen172
+\tagwidth@=\dimen173
+\totwidth@=\dimen174
+\lineht@=\dimen175
+\@envbody=\toks33
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks34
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks35
+\thm@bodyfont=\toks36
+\thm@headfont=\toks37
+\thm@notefont=\toks38
+\thm@headpunct=\toks39
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks40
+)
+\c@theorem=\count148
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasethemes.sty
+Package: beamerbasethemes 2010/05/01  (rcs-revision efa082c6111d)
+))
+(/usr/share/texmf/tex/latex/beamer/base/themes/theme/beamerthemedefault.sty
+Package: beamerthemedefault 2010/06/17  (rcs-revision d02a7cf4d8ae)
+
+(/usr/share/texmf/tex/latex/beamer/base/themes/font/beamerfontthemedefault.sty
+Package: beamerfontthemedefault 2010/06/17  (rcs-revision d02a7cf4d8ae)
+)
+(/usr/share/texmf/tex/latex/beamer/base/themes/color/beamercolorthemedefault.st
+y
+Package: beamercolorthemedefault 2010/06/17  (rcs-revision d02a7cf4d8ae)
+)
+(/usr/share/texmf/tex/latex/beamer/base/themes/inner/beamerinnerthemedefault.st
+y
+Package: beamerinnerthemedefault 2010/06/17  (rcs-revision d02a7cf4d8ae)
+\beamer@dima=\dimen176
+\beamer@dimb=\dimen177
+)
+(/usr/share/texmf/tex/latex/beamer/base/themes/outer/beamerouterthemedefault.st
+y
+Package: beamerouterthemedefault 2010/06/17  (rcs-revision d02a7cf4d8ae)
+))) (./slides.tex (/usr/share/texmf-texlive/tex/latex/lastpage/lastpage.sty
+Package: lastpage 1994/06/25 v0.1b LaTeX2e package for refs to last page number
+ (JPG)
+)
+(./slides.beamer.aux (./bOutline.aux) (./bInference.aux) (./bRegression.aux)
+(./bLogistic.aux) (./bSurvival.aux) (./bAnova.aux) (./bAncova.aux)
+(./bManova.aux))
+\openout1 = `slides.beamer.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+
+*geometry auto-detecting driver*
+*geometry detected driver: pdftex*
+-------------------- Geometry parameters
+paper: user defined
+landscape: --
+twocolumn: --
+twoside: --
+asymmetric: --
+h-parts: 14.45377pt, 335.28783pt, 14.45377pt
+v-parts: 0.0pt, 273.14662pt, 0.0pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: true
+includefoot: true
+includemp: --
+driver: pdftex
+-------------------- Page layout dimensions and switches
+\paperwidth  364.19536pt
+\paperheight 273.14662pt
+\textwidth  335.28783pt
+\textheight 244.6939pt
+\oddsidemargin  -57.81622pt
+\evensidemargin -57.81622pt
+\topmargin  -72.26999pt
+\headheight 14.22636pt
+\headsep    0.0pt
+\footskip   14.22636pt
+\marginparwidth 4.0pt
+\marginparsep   10.0pt
+\columnsep  10.0pt
+\skip\footins  10.0pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count149
+\scratchdimen=\dimen178
+\scratchbox=\box53
+\nofMPsegments=\count150
+\nofMParguments=\count151
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count152
+\MPscratchDim=\dimen179
+\MPnumerator=\count153
+\everyMPtoPDFconversion=\toks42
+) ABD: EveryShipout initializing macros
+Package hyperref Info: Link coloring OFF on input line 25.
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count154
+)
+LaTeX Info: Redefining \ref on input line 25.
+LaTeX Info: Redefining \pageref on input line 25.
+
+(./slides.beamer.out) (./slides.beamer.out)
+\@outlinefile=\write5
+\openout5 = `slides.beamer.out'.
+
+\AtBeginShipoutBox=\box54
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 25.
+\symnumbers=\mathgroup6
+\sympureletters=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 25.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 25.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 25.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 25.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 25.
+
+(/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-basic-dicti
+onary/translator-basic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-bibliograph
+y-dictionary/translator-bibliography-dictionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+)
+(/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-environment
+-dictionary/translator-environment-dictionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+)
+(/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-months-dict
+ionary/translator-months-dictionary-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+)
+(/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-numbers-dic
+tionary/translator-numbers-dictionary-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+)
+(/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-theorem-dic
+tionary/translator-theorem-dictionary-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+) (./slides.beamer.nav)
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.38 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+(Font)              size <5> substituted on input line 38.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+\openout2 = `bOutline.aux'.
+
+ (./bOutline.tex
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.17 \end{frame}
+                
+? 
+(./slides.beamer.vrb
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+ (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+))
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3
+
+
+]
+[4]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.44 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5
+
+]
+[6]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.73 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7
+
+]
+[8])
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.44 \end{frame}
+                
+? 
+(./slides.beamer.toc)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9
+
+
+]
+[10]
+\openout2 = `bInference.aux'.
+
+ (./bInference.tex
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.2 \section{Review of inference; 2-sample t}
+                                             
+? 
+(./slides.beamer.toc)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11
+
+
+]
+[12]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.29 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13
+
+]
+[14]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.29 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15
+
+]
+[16]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.29 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17
+
+]
+[18]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.43 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19
+
+]
+[20]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.58 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21
+
+]
+[22]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.68 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23
+
+]
+[24]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.83 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25
+
+]
+[26]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.108 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27
+
+]
+[28]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.131 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29
+
+]
+[30]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.161 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31
+
+]
+[32]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.202 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33
+
+]
+[34]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.232 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Overfull \hbox (0.70924pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/10 NOTE: The data set WORK.DRP has 44 observations and 2 variab
+les.[] 
+ []
+
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35
+
+]
+[36]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.266 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37
+
+]
+[38]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.294 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39
+
+]
+[40]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.316 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41
+
+]
+[42])
+\openout2 = `bRegression.aux'.
+
+ (./bRegression.tex
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.1 \section{Review of (multiple) regression}
+                                             
+? 
+(./slides.beamer.toc)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [43
+
+
+
+]
+[44]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.18 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45
+
+]
+[46]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.35 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [47
+
+]
+[48]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.44 \end{frame}
+                
+? 
+(./slides.beamer.vrb <sleep-times.png, id=354, 658.46pt x 379.4175pt>
+File: sleep-times.png Graphic file (type png)
+
+<use sleep-times.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [49
+
+]
+[50 <./sleep-times.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.75 \end{frame}
+                
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [51
+
+]
+[52]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.85 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [53
+
+]
+[54]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.114 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [55
+
+]
+[56]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.136 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [57
+
+]
+[58]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.146 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [59
+
+]
+[60]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.164 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [61
+
+]
+[62]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.172 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <sleep-resid.png, id=428, 658.46pt x 379.4175pt>
+File: sleep-resid.png Graphic file (type png)
+
+<use sleep-resid.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [63
+
+]
+[64 <./sleep-resid.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.183 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <curvy-scatter.png, id=439, 658.46pt x 379.4175pt>
+File: curvy-scatter.png Graphic file (type png)
+
+<use curvy-scatter.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [65
+
+]
+[66 <./curvy-scatter.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.218 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Overfull \vbox (17.10466pt too high) detected at line 218
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [67
+
+]
+[68]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.228 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <curvy-residual.png, id=462, 658.46pt x 379.4175pt>
+File: curvy-residual.png Graphic file (type png)
+
+<use curvy-residual.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [69
+
+]
+[70 <./curvy-residual.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.260 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [71
+
+]
+[72]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.269 \end{frame}
+                 
+? 
+<curvy-resid2.png, id=483, 658.46pt x 379.4175pt>
+File: curvy-resid2.png Graphic file (type png)
+ <use curvy-resid2.png>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [73
+
+]
+[74 <./curvy-resid2.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.286 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [75
+
+]
+[76]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.301 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [77
+
+]
+[78]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.316 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [79
+
+]
+[80]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.345 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [81
+
+]
+[82]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.373 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [83
+
+]
+[84]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.402 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [85
+
+]
+[86]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.412 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <regressx1.png, id=557, 658.46pt x 379.4175pt>
+File: regressx1.png Graphic file (type png)
+
+<use regressx1.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [87
+
+]
+[88 <./regressx1.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.418 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <regressx1a.png, id=568, 658.46pt x 379.4175pt>
+File: regressx1a.png Graphic file (type png)
+
+<use regressx1a.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [89
+
+]
+[90 <./regressx1a.png (PNG copy)>]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.429 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [91
+
+]
+[92]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.448 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [93
+
+]
+[94]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.480 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [95
+
+]
+[96]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.491 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [97
+
+]
+[98]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.499 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <regressx2.png, id=623, 658.46pt x 379.4175pt>
+File: regressx2.png Graphic file (type png)
+
+<use regressx2.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [99
+
+]
+[100 <./regressx2.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.506 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <regressx2a.png, id=634, 658.46pt x 379.4175pt>
+File: regressx2a.png Graphic file (type png)
+
+<use regressx2a.png>)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [101
+
+]
+[102 <./regressx2a.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.520 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [103
+
+]
+[104]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.542 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [105
+
+]
+[106]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.554 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <boxcox.png, id=668, 718.685pt x 520.94624pt>
+File: boxcox.png Graphic file (type png)
+
+<use boxcox.png>)
+Overfull \vbox (1.69667pt too high) detected at line 554
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [107
+
+]
+[108 <./boxcox.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.571 \end{frame}
+                 
+? 
+(./slides.beamer.vrb <boxcox2.png, id=679, 718.685pt x 520.94624pt>
+File: boxcox2.png Graphic file (type png)
+
+<use boxcox2.png>)
+Overfull \vbox (10.78033pt too high) detected at line 571
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [109
+
+]
+[110 <./boxcox2.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.599 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ˜ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ™ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ˜ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ™ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ˜ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ™ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ˜ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ™ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ˜ in font cmtt10!
+Missing character: There is no â in font cmtt10!
+Missing character: There is no € in font cmtt10!
+Missing character: There is no ™ in font cmtt10!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [111
+
+]
+[112]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.611 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [113
+
+]
+[114]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.628 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [115
+
+]
+[116]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.653 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [117
+
+]
+[118]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.664 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [119
+
+]
+[120]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.686 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [121
+
+]
+[122]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.718 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [123
+
+]
+[124]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.746 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [125
+
+]
+[126])
+\openout2 = `bLogistic.aux'.
+
+ (./bLogistic.tex
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.1 ...stic regression (ordinal/nominal response)}
+                                                  
+? 
+(./slides.beamer.toc)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [127
+
+
+
+]
+[128]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.15 \end{frame}
+                
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [129
+
+]
+[130]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.46 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [131
+
+]
+[132]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.77 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [133
+
+]
+[134]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.95 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [135
+
+]
+[136]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.106 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [137
+
+]
+[138]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.130 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [139
+
+]
+[140]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.148 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [141
+
+]
+[142]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.180 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [143
+
+]
+[144]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.199 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [145
+
+]
+[146]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.209 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [147
+
+]
+[148]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.231 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [149
+
+]
+[150]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.250 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [151
+
+]
+[152]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.286 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Overfull \vbox (31.05606pt too high) detected at line 286
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [153
+
+]
+[154]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.329 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+Overfull \vbox (82.8644pt too high) detected at line 329
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [155
+
+]
+[156]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.355 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [157
+
+]
+[158]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.371 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [159
+
+]
+[160]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.383 \end{frame}
+                 
+? 
+<sepsis-age.png, id=964, 718.685pt x 520.94624pt>
+File: sepsis-age.png Graphic file (type png)
+ <use sepsis-age.png>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [161
+
+]
+[162 <./sepsis-age.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.405 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [163
+
+]
+[164]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.421 \end{frame}
+                 
+? 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [165
+
+]
+[166]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.447 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [167
+
+]
+[168]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.466 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [169
+
+]
+[170]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.488 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [171
+
+]
+[172]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.513 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [173
+
+]
+[174]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.513 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [175
+
+]
+[176]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.513 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [177
+
+]
+[178]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.513 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [179
+
+]
+[180]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.513 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [181
+
+]
+[182]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.513 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [183
+
+]
+[184]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.519 \end{frame}
+                 
+? 
+<miners-data.png, id=1089, 718.685pt x 520.94624pt>
+File: miners-data.png Graphic file (type png)
+ <use miners-data.png>
+Overfull \vbox (5.76723pt too high) detected at line 519
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [185
+
+]
+[186 <./miners-data.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.536 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [187
+
+]
+[188]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.569 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [189
+
+]
+[190]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.603 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [191
+
+]
+[192]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.626 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [193
+
+]
+[194]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.647 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [195
+
+]
+[196]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.647 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [197
+
+]
+[198]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.647 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [199
+
+]
+[200]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.647 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [201
+
+]
+[202]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.657 \end{frame}
+                 
+? 
+<miner-fit.png, id=1182, 718.685pt x 520.94624pt>
+File: miner-fit.png Graphic file (type png)
+ <use miner-fit.png>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [203
+
+]
+[204 <./miner-fit.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.686 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [205
+
+]
+[206]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.711 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [207
+
+]
+[208]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.742 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [209
+
+]
+[210]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.774 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [211
+
+]
+[212]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.794 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [213
+
+]
+[214]
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.800 \end{frame}
+                 
+? 
+<brands.png, id=1244, 718.685pt x 520.94624pt>
+File: brands.png Graphic file (type png)
+ <use brands.png>
+Overfull \vbox (5.76723pt too high) detected at line 800
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [215
+
+]
+[216 <./brands.png (PNG copy)>]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.821 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [217
+
+]
+[218]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.848 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [219
+
+]
+[220]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.873 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [221
+
+]
+[222]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.897 \end{frame}
+                 
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [223
+
+]
+[224])
+\openout2 = `bSurvival.aux'.
+
+ (./bSurvival.tex
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.1 \section{Survival analysis}
+                               
+? 
+(./slides.beamer.toc)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [225
+
+
+
+]
+[226]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.19 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [227
+
+]
+[228]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.52 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [229
+
+]
+[230]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.68 \end{frame}
+                
+? 
+(./slides.beamer.vrb)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [231
+
+]
+[232]
+\openout4 = `slides.beamer.vrb'.
+
+
+! Undefined control sequence.
+\beamer@frameslide ...duration=}\thispdfpagelabel 
+                                                  {\insertframenumber } \xde...
+l.121 \end{frame}
+                 
+? 
+(./slides.beamer.vrb
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+)
+! Extra }, or forgotten \endgroup.
+\endbeamer@frameslide ...amer@framepauses}\egroup 
+                                                  \ifx \beamer@frametitle \@...
+l.121 \end{frame}
+                 
+? 
+
+! LaTeX Error: \begin{beamer@framepauses} on input line 121 ended by \end{beame
+r@frameslide}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.121 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.136 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.168 \end{frame}
+                 
+? 
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[] \OT1/cmtt/m/n/10.95 time n.risk n.event survival1 survival2 survival3 surviv
+al4[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10.95 1     12       1  8.76e-01  9.98e-01  1.00e+00     1.
+000[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10.95 2     11       2  3.99e-01  9.89e-01  9.99e-01     1.
+000[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10.95 4      8       1  1.24e-01  9.76e-01  9.99e-01     1.
+000[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10.95 5      7       1  2.93e-02  9.60e-01  9.98e-01     1.
+000[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10.95 7      6       1 2.96e-323  1.70e-04  6.13e-01     0.
+994[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]    \OT1/cmtt/m/n/10.95 8      5       1  0.00e+00  1.35e-98  2.99e-06     0.
+862[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]   \OT1/cmtt/m/n/10.95 10      4       1  0.00e+00  0.00e+00  3.61e-20     0.
+593[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]   \OT1/cmtt/m/n/10.95 11      2       1  0.00e+00  0.00e+00  0.00e+00     0.
+000[] 
+ []
+
+
+Overfull \hbox (9.63344pt too wide) in paragraph at lines 192--192
+[]   \OT1/cmtt/m/n/10.95 12      1       1  0.00e+00  0.00e+00  0.00e+00     0.
+000[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.197 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.208 \end{frame}
+                 
+? 
+<dance-1.png, id=1355, 718.685pt x 520.94624pt>
+File: dance-1.png Graphic file (type png)
+ <use dance-1.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.226 \end{frame}
+                 
+? 
+
+Overfull \hbox (107.36113pt too wide) in paragraph at lines 245--245
+[]\OT1/cmtt/m/n/10.95 > draw.new=expand.grid(colour=colours,linetype=line.types
+,stringsAsFactors=F)[] 
+ []
+
+
+Overfull \hbox (15.38213pt too wide) in paragraph at lines 256--256
+[]\OT1/cmtt/m/n/10.95 legend(x=10.5,y=1,legend=c(20,40),title="Age",lty=line.ty
+pes)[] 
+ []
+
+
+Overfull \hbox (21.13081pt too wide) in paragraph at lines 256--256
+[]\OT1/cmtt/m/n/10.95 legend(x=10.5,y=0.8,legend=0:1,title="Treatment",fill=col
+ours)[] 
+ []
+
+<dance-2.png, id=1356, 718.685pt x 520.94624pt>
+File: dance-2.png Graphic file (type png)
+ <use dance-2.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.265 \end{frame}
+                 
+? 
+File: dance-2.png Graphic file (type png)
+<use dance-2.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.282 \end{frame}
+                 
+? 
+
+! LaTeX Error: File `lung-cancer-survival' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.303 ...idth=0.8\textwidth]{lung-cancer-survival}
+                                                  
+? 
+
+! LaTeX Error: \caption outside figure or table.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304   \caption
+                {Lung cancer data}
+? 
+
+! LaTeX Error: \begin{frame} on input line 286 ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.306 \end{figure}
+                  
+? 
+
+! LaTeX Error: \begin{frame} on input line 267 ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.306 \end{figure}
+                  
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.309 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.329 \end{frame}
+                 
+? 
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ˜ in font cmtt8!
+Missing character: There is no â in font cmtt8!
+Missing character: There is no € in font cmtt8!
+Missing character: There is no ™ in font cmtt8!
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.373 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.389 \end{frame}
+                 
+? 
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.414 \end{frame}
+                 
+? 
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ˜ in font cmtt9!
+Missing character: There is no â in font cmtt9!
+Missing character: There is no € in font cmtt9!
+Missing character: There is no ™ in font cmtt9!
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.447 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.479 \end{frame}
+                 
+? 
+
+Overfull \hbox (15.38213pt too wide) in paragraph at lines 488--488
+[]\OT1/cmtt/m/n/10.95 > legend(x=900,y=0.8,legend=0:3,fill=colours,title="ph.ec
+og")[] 
+ []
+
+<lung-3.png, id=1357, 718.685pt x 520.94624pt>
+File: lung-3.png Graphic file (type png)
+ <use lung-3.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.492 \end{frame}
+                 
+? 
+)
+\openout2 = `bAnova.aux'.
+
+ (./bAnova.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Brief review of analysis of variance}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Brief review of analysis of variance}
+                                                  
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Brief review of analysis of variance}
+                                                  
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.21 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.37 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.54 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.81 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.92 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.124 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.137 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.161 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.185 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.216 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.232 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.253 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.276 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.306 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.322 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.357 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.371 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.387 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.418 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.438 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.467 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.496 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.519 \end{frame}
+                 
+? 
+)
+\openout2 = `bAncova.aux'.
+
+ (./bAncova.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Analysis of covariance}
+                                    
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Analysis of covariance}
+                                    
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Analysis of covariance}
+                                    
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.19 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.49 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.73 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.100 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.132 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.155 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.181 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.201 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.233 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.263 \end{frame}
+                 
+? 
+)
+\openout2 = `bManova.aux'.
+
+ (./bManova.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Multivariate ANOVA}
+                                
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Multivariate ANOVA}
+                                
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Multivariate ANOVA}
+                                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.14 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.37 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.60 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.83 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.114 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.148 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.167 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.194 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.211 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.238 \end{frame}
+                 
+? 
+)
+\openout2 = `bProfile.aux'.
+
+ (./bProfile.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 ...tion{Repeated measures by profile analysis}
+                                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 ...tion{Repeated measures by profile analysis}
+                                                  
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 ...tion{Repeated measures by profile analysis}
+                                                  
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.16 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.42 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.65 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.94 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.119 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.139 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.168 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.189 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.209 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.241 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.260 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.287 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.317 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.336 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.349 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.375 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.400 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.423 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.452 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.484 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.495 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.520 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.531 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.558 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.583 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.601 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.627 \end{frame}
+                 
+? 
+)
+\openout2 = `bMultivRegression.aux'.
+
+ (./bMultivRegression.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Multivariate regression}
+                                     
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Multivariate regression}
+                                     
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Multivariate regression}
+                                     
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.23 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.44 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.65 \end{frame}
+                
+? 
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 87--87
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 87--87
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.34316907       2.54        15  
+  80.458    0.0039[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 87--87
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.82528864       2.35        15  
+      93    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 87--87
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      1.44875712       2.72        15  
+  49.769    0.0042[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 87--87
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         1.05511542       6.54         5  
+      31    0.0003[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.93 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.117 \end{frame}
+                 
+? 
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.96164244       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.03835756       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.03988755       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.03988755       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.77477885       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.22522115       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.29069088       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.29069088       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.73254211       3.53         3  
+      29    0.0271[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.26745789       3.53         3  
+      29    0.0271[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.36510923       3.53         3  
+      29    0.0271[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 144--144
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.36510923       3.53         3  
+      29    0.0271[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.150 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.166 \end{frame}
+                 
+? 
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.86310909       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.13689091       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.15860209       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.15860209       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.68623559       4.88         3  
+      32    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.31376441       4.88         3  
+      32    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.45722550       4.88         3  
+      32    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 190--190
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.45722550       4.88         3  
+      32    0.0066[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.195 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.208 \end{frame}
+                 
+? 
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 226--226
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 226--226
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.53681650       9.49         3  
+      33    0.0001[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 226--226
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.46318350       9.49         3  
+      33    0.0001[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 226--226
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.86283396       9.49         3  
+      33    0.0001[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 226--226
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.86283396       9.49         3  
+      33    0.0001[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.232 \end{frame}
+                 
+? 
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 259--259
+[] \OT1/cmtt/m/n/8 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 259--259
+[] \OT1/cmtt/m/n/8 Model                     1     1204.38021     1204.38021   
+    2.57    0.1176[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 259--259
+[] \OT1/cmtt/m/n/8 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 259--259
+[] \OT1/cmtt/m/n/8 Model                     1     2550.78211     2550.78211   
+   28.82    <.0001[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.262 \end{frame}
+                 
+? 
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 279--279
+[] \OT1/cmtt/m/n/8 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 279--279
+[] \OT1/cmtt/m/n/8 Model                     1       39.63250       39.63250   
+    4.55    0.0401[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.287 \end{frame}
+                 
+? 
+)
+\openout2 = `bDiscrim.aux'.
+
+ (./bDiscrim.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 bg\section{Discriminant analysis}
+                                     
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 bg\section{Discriminant analysis}
+                                     
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 bg\section{Discriminant analysis}
+                                     
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.16 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.52 \end{frame}
+                
+? 
+<fertilizer.png, id=1460, 833.1125pt x 476.78125pt>
+File: fertilizer.png Graphic file (type png)
+ <use fertilizer.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.61 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.87 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.113 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.133 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.157 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.185 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.216 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.242 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.264 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.290 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.314 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.349 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.380 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.407 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.434 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.466 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.496 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.531 \end{frame}
+                 
+? 
+<jobs-canplot.png, id=1461, 833.1125pt x 476.78125pt>
+File: jobs-canplot.png Graphic file (type png)
+ <use jobs-canplot.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.537 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.549 \end{frame}
+                 
+? 
+<mixup1.png, id=1462, 833.1125pt x 476.78125pt>
+File: mixup1.png Graphic file (type png)
+ <use mixup1.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.557 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.576 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.595 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.626 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.659 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.690 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.717 \end{frame}
+                 
+? 
+<mixup2.png, id=1463, 833.1125pt x 476.78125pt>
+File: mixup2.png Graphic file (type png)
+ <use mixup2.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.725 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.742 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.758 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.777 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.807 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.840 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.868 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.889 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.920 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.950 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.980 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1010 \end{frame}
+                  
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1041 \end{frame}
+                  
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1072 \end{frame}
+                  
+? 
+<remote-sensing-canplot.png, id=1464, 833.1125pt x 476.78125pt>
+File: remote-sensing-canplot.png Graphic file (type png)
+
+<use remote-sensing-canplot.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1082 \end{frame}
+                  
+? 
+)
+\openout2 = `bCluster.aux'.
+
+ (./bCluster.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Cluster analysis}
+                              
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Cluster analysis}
+                              
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Cluster analysis}
+                              
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.15 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.34 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.55 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.70 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.84 \end{frame}
+                
+? 
+<single-linkage.png, id=1482, 344.28625pt x 379.4175pt>
+File: single-linkage.png Graphic file (type png)
+
+<use single-linkage.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.93 \end{frame}
+                
+? 
+<complete-linkage.png, id=1483, 396.48125pt x 380.42125pt>
+File: complete-linkage.png Graphic file (type png)
+
+<use complete-linkage.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.101 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.112 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.123 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.135 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.169 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.189 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.220 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.234 \end{frame}
+                 
+? 
+<one-ten-tree-single.png, id=1484, 833.1125pt x 476.78125pt>
+File: one-ten-tree-single.png Graphic file (type png)
+
+<use one-ten-tree-single.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.240 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.253 \end{frame}
+                 
+? 
+<one-ten-tree-ward.png, id=1485, 833.1125pt x 476.78125pt>
+File: one-ten-tree-ward.png Graphic file (type png)
+
+<use one-ten-tree-ward.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.259 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.269 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.297 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.320 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.356 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.368 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.387 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.418 \end{frame}
+                 
+? 
+
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 443--443
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=1 -----------------------
+---------------------[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.446 \end{frame}
+                 
+? 
+
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 474--474
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=2 -----------------------
+---------------------[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.478 \end{frame}
+                 
+? 
+
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 507--507
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=3 -----------------------
+---------------------[] 
+ []
+
+
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 507--507
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=4 -----------------------
+---------------------[] 
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.510 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.551 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.586 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.600 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.623 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.656 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.678 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.707 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.723 \end{frame}
+                 
+? 
+<map1.png, id=1486, 1084.05pt x 722.7pt>
+File: map1.png Graphic file (type png)
+ <use map1.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.728 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.752 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.785 \end{frame}
+                 
+? 
+<hockey-tree.png, id=1487, 833.1125pt x 476.78125pt>
+File: hockey-tree.png Graphic file (type png)
+ <use hockey-tree.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.792 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.808 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.824 \end{frame}
+                 
+? 
+<map2.png, id=1488, 1084.05pt x 722.7pt>
+File: map2.png Graphic file (type png)
+ <use map2.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.830 \end{frame}
+                 
+? 
+)
+\openout2 = `bMDS.aux'.
+
+ (./bMDS.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Multidimensional scaling}
+                                      
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Multidimensional scaling}
+                                      
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Multidimensional scaling}
+                                      
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.16 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.42 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.66 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.96 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.121 \end{frame}
+                 
+? 
+<europe1.png, id=1506, 833.1125pt x 476.78125pt>
+File: europe1.png Graphic file (type png)
+ <use europe1.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.128 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.144 \end{frame}
+                 
+? 
+<europe2.png, id=1507, 833.1125pt x 476.78125pt>
+File: europe2.png Graphic file (type png)
+ <use europe2.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.150 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.177 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.204 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.235 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.263 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.292 \end{frame}
+                 
+? 
+<lang-map.png, id=1508, 833.1125pt x 476.78125pt>
+File: lang-map.png Graphic file (type png)
+ <use lang-map.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.298 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.308 \end{frame}
+                 
+? 
+
+Underfull \hbox (badness 1270) in paragraph at lines 317--318
+[]\OT1/cmss/m/n/10.95 Excellent: no prospect of mis-in-ter-pre-ta-tion
+ []
+
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.328 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.348 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.368 \end{frame}
+                 
+? 
+<cube.png, id=1509, 833.1125pt x 476.78125pt>
+File: cube.png Graphic file (type png)
+ <use cube.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.377 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.397 \end{frame}
+                 
+? 
+)
+\openout2 = `bPrincomp.aux'.
+
+ (./bPrincomp.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Principal components}
+                                  
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Principal components}
+                                  
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Principal components}
+                                  
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.15 \end{frame}
+                
+? 
+<test12.png, id=1527, 856.19875pt x 498.86375pt>
+File: test12.png Graphic file (type png)
+ <use test12.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.22 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.44 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.74 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.94 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.121 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.146 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.160 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.184 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.209 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.235 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.264 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.294 \end{frame}
+                 
+? 
+<track-field-pc.png, id=1528, 833.1125pt x 474.77374pt>
+File: track-field-pc.png Graphic file (type png)
+
+<use track-field-pc.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.300 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.317 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.350 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.366 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.395 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.425 \end{frame}
+                 
+? 
+)
+\openout2 = `bFactor.aux'.
+
+ (./bFactor.tex
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.1 \section{Exploratory factor analysis}
+                                         
+? 
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.1 \section{Exploratory factor analysis}
+                                         
+? 
+(./slides.beamer.toc)
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.1 \section{Exploratory factor analysis}
+                                         
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.23 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.51 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.74 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.99 \end{frame}
+                
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.132 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.160 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.189 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.205 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.220 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.251 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.262 \end{frame}
+                 
+? 
+<bem.png, id=1546, 624.3325pt x 411.5375pt>
+File: bem.png Graphic file (type png)
+ <use bem.png>
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.270 \end{frame}
+                 
+? 
+! Extra }, or forgotten \endgroup.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.291 \end{frame}
+                 
+? 
+! TeX capacity exceeded, sorry [grouping levels=255].
+\XC@edef #1#2->\begingroup 
+                           \ifnum \catcode `\!=13 \edef !{\string !}\fi \ifn...
+l.297 I
+       n our case, data in file \verb-factor.sas7bdat-, so code as
+If you really absolutely need more capacity,
+you can ask a wizard to enlarge me.
+
+ 
+Here is how much of TeX's memory you used:
+ 16380 strings out of 495061
+ 291970 string characters out of 1182621
+ 1225979 words of memory out of 3000000
+ 18381 multiletter control sequences out of 15000+50000
+ 16834 words of font info for 65 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 49i,11n,53p,398b,5069s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

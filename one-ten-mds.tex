@@ -1,0 +1,171 @@
+\documentclass{article}
+\title{The one-ten-mds data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+en 0 2 2  7 6  6   6  6  7  9 9
+no 2 0 1  5 4  6   6  6  7  8 9
+dk 2 1 0  6 5  6   5  5  6  8 9
+nl 7 5 6  0 5  9   9  9 10  8 9
+de 6 4 5  5 0  7   7  7  8  9 9
+fr 6 6 6  9 7  0   2  1  5 10 9
+es 6 6 5  9 7  2   0  1  3 10 9
+it 6 6 5  9 7  1   1  0  4 10 8
+pl 7 7 6 10 8  5   3  4  0 10 9
+hu 9 8 8  8 9  10 10 10 10  0 8
+sf 9 9 9  9 9  9   9  8  9  8 0
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data lang(type=distance);
+	infile "one-ten.dat";
+	input lang $ en no dk nl de fr es it pl hu sf;
+
+proc mds level=ordinal out=coords outres=dist;
+    id lang;
+
+proc print data=dist;
+   var _row_ _col_ data distance residual;
+
+proc print data=coords;
+
+proc plot data=coords vpercent=70;
+    plot dim2 * dim1 = '*' $ lang;
+
+run;
+\end{Winput}
+\begin{Woutput}
+Multidimensional Scaling:  Data=WORK.LANG.DATA
+Shape=TRIANGLE Condition=MATRIX Level=ORDINAL
+Coef=IDENTITY Dimension=2 Formula=1 Fit=1
+ Mconverge=0.01 Gconverge=0.01 Maxiter=100 Over=2 Ridge=0.0001
+
+                          Badness-                  Convergence Measures
+                            of-Fit    Change in    ----------------------
+Iteration    Type        Criterion    Criterion     Monotone     Gradient
+-------------------------------------------------------------------------
+      0      Initial        0.2009            .            .            .
+      1      Monotone       0.1478       0.0531       0.1358       0.6781
+      2      Gau-New        0.1126       0.0352            .            .
+      3      Monotone       0.1020       0.0105       0.0483       0.3363
+      4      Gau-New        0.0997     0.002376            .            .
+      5      Monotone       0.0928     0.006869       0.0374       0.2226
+      6      Gau-New        0.0923     0.000483            .            .
+      7      Monotone       0.0915     0.000823       0.0138       0.2190
+      8      Gau-New        0.0914    0.0000983            .            .
+      9      Monotone       0.0910     0.000349     0.009497       0.2341
+     10      Gau-New        0.0888     0.002191            .       0.0533
+     11      Gau-New        0.0887     0.000106            .       0.0169
+     12      Gau-New        0.0887    0.0000126            .     0.006850
+
+Convergence criteria are satisfied.
+
+Obs    _ROW_    _COL_    DATA    DISTANCE    RESIDUAL
+  1     no       en        2      0.42128    -0.03205
+  2     dk       en        2      0.41084    -0.02161
+  3     dk       no        1      0.33888     0.05036
+  4     nl       en        7      1.67790     0.21807
+  5     nl       no        5      1.31502    -0.27280
+  6     nl       dk        6      1.61869    -0.30413
+  7     de       en        6      0.81928     0.49528
+  8     de       no        4      0.57598    -0.01077
+  9     de       dk        5      0.91363     0.12859
+ 10     de       nl        5      0.91057     0.13165
+ 11     fr       en        6      1.08924     0.22532
+ 12     fr       no        6      1.43140    -0.11684
+ 13     fr       dk        6      1.16571     0.14885
+ 14     fr       nl        9      2.74432     0.06741
+ 15     fr       de        7      1.90852    -0.01255
+ 16     es       en        6      1.15668     0.15789
+ 17     es       no        6      1.44474    -0.13018
+ 18     es       dk        5      1.14337    -0.10115
+ 19     es       nl        9      2.75659     0.05514
+ 20     es       de        7      1.96444    -0.06847
+ 21     es       fr        2      0.25061     0.13863
+ 22     it       en        6      1.20574     0.10882
+ 23     it       no        6      1.42696    -0.11240
+ 24     it       dk        5      1.10041    -0.05819
+ 25     it       nl        9      2.71570     0.09603
+ 26     it       de        7      1.97877    -0.08280
+ 27     it       fr        1      0.50554    -0.11631
+ 28     it       es        1      0.26063     0.12861
+ 29     pl       en        7      1.72707     0.16890
+ 30     pl       no        7      1.95373    -0.05776
+ 31     pl       dk        6      1.62422    -0.30966
+ 32     pl       nl       10      3.23354     0.24178
+ 33     pl       de        8      2.50680    -0.14324
+ 34     pl       fr        5      0.81691     0.22530
+ 35     pl       es        3      0.61292    -0.04771
+ 36     pl       it        4      0.52808     0.03712
+ 37     hu       en        9      2.91842    -0.10669
+ 38     hu       no        8      2.51545    -0.15189
+ 39     hu       dk        8      2.58067    -0.21711
+ 40     hu       nl        8      2.02361     0.33995
+ 41     hu       de        9      2.56879     0.24294
+ 42     hu       fr       10      3.62303    -0.14771
+ 43     hu       es       10      3.49132    -0.01600
+ 44     hu       it       10      3.30518     0.17014
+ 45     hu       pl       10      3.66676    -0.19144
+ 46     sf       en        9      2.89228    -0.08055
+ 47     sf       no        9      2.67996     0.13177
+ 48     sf       dk        9      2.48611     0.32562
+ 49     sf       nl        9      3.15422    -0.34249
+ 50     sf       de        9      3.10815    -0.29643
+ 51     sf       fr        9      2.94928    -0.13755
+ 52     sf       es        9      2.72040     0.09132
+ 53     sf       it        8      2.46255    -0.09899
+ 54     sf       pl        9      2.54350     0.26823
+ 55     sf       hu        8      2.00452     0.35904
+
+Obs    _DIMENS_    _MATRIX_    _TYPE_       lang    _NAME_      Dim1        Dim2
+  1        2           .       CRITERION                       0.08872      .
+  2        2           .       CONFIG        en       en       0.30099     0.65225
+  3        2           .       CONFIG        no       no      -0.11417     0.58068
+  4        2           .       CONFIG        dk       dk       0.08220     0.30450
+  5        2           .       CONFIG        nl       nl      -1.30472     1.13912
+  6        2           .       CONFIG        de       de      -0.39587     1.08307
+  7        2           .       CONFIG        fr       fr       1.22529     0.07596
+  8        2           .       CONFIG        es       es       1.12900    -0.15541
+  9        2           .       CONFIG        it       it       0.96244    -0.35587
+ 10        2           .       CONFIG        pl       pl       1.33098    -0.73409
+ 11        2           .       CONFIG        hu       hu      -2.33345    -0.60349
+ 12        2           .       CONFIG        sf       sf      -0.88268    -1.98673
+
+                            Plot of Dim2*Dim1$lang.  Symbol used is '*'.
+     |
+     |
+   2 +
+     |
+     |
+     |
+     |
+     |                            * nl
+D  1 +                                                * de
+i    |
+m    |                                                                * en
+e    |                                                      * no
+n    |                                                           * dk
+s    |
+i  0 +                                                                                    * fr
+o    |                                                                                  * es
+n    |                                                                              * it
+     |
+2    |      * hu                                                                            * pl
+     |
+  -1 +
+     |
+     |
+     |
+     |
+     |
+  -2 +                                      * sf
+     |
+     ---+----------+----------+----------+----------+----------+----------+----------+----------+--
+      -2.5       -2.0       -1.5       -1.0       -0.5        0.0        0.5        1.0        1.5
+                                               Dimension 1
+NOTE: 1 obs had missing values.
+\end{Woutput}
+\end{document}

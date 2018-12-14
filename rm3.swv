@@ -1,0 +1,33 @@
+\documentclass{article}
+\title{The rm3 data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+a 10 10 11 13
+a 11 9 12 14
+a 10 11 12 12
+b 11 10 15 15
+b 10 12 14 14
+b 12 13 13 15
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+options linesize=75;
+
+data rm;
+  infile "rm3.dat";
+  input trt $ y1 y2 y3 y4;
+
+proc glm;
+  class trt;
+  model y1 y2 y3 y4 = trt / nouni;
+  repeated time;
+
+
+\end{SAScode}
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass{article}
+
+\title{Missing values and modelling in R}
+\author{Ken Butler}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+In class today, we were working with the lung cancer data set from the
+\texttt{survival} package. This had some missing data in it:
+
+<<>>=
+library(survival)
+head(lung,10)
+@ 
+
+You might have been wondering why (a) I could fit models, but (b) why
+I could \emph{not} do \texttt{anova} and suchlike things (which I
+really ought to have done, from a data analysis point of view.
+
+\section{Complete cases}
+
+An observation (row) of the data frame is called a \textbf{complete case}
+
+\end{document}
+

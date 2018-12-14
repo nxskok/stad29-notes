@@ -1,0 +1,45 @@
+\documentclass[12pt,semhelv,landscape]{seminar}
+\newcommand{\chapter}[1]{\newslide
+  {\begin{center}\Huge\bf#1\end{center}}\newslide}
+
+\usepackage{graphicx}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1.5ex}
+
+\setlength{\textwidth}{5in}
+\setlength{\textheight}{5in}
+
+\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+\begin{slide}
+
+\include{DataDistributions}
+\include{Minitab}
+\include{DataRelationships}
+\include{Producing}
+
+% don't skip chapter 4, refer back as necessary
+
+\include{Probability}
+
+\include{SamplingDistributions}
+\include{Inference}
+\include{InferenceDistributions}
+\include{InferenceProportions}
+\include{InferenceTwoProportions}
+%\include{TwoWayTables}
+% next
+%\include{ANOVA}
+
+
+\end{slide}
+
+\end{document}
+
+
+
+
+
+

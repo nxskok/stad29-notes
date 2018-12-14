@@ -1,0 +1,426 @@
+\section{Survival analysis}
+
+\begin{frame}[fragile]{Survival analysis}
+
+  \begin{itemize}
+  \item So far, have seen:
+    \begin{itemize}
+    \item response variable counted or measured (regression)
+    \item response variable categorized (logistic regression)
+    \end{itemize}
+    and have predicted response from explanatory variables.
+  \item But what if response is time until event (eg.\ time of
+    survival after surgery)?
+  \item Additional complication: event might not have happened at end of study (eg.\ patient still alive). But knowing that patient has ``not died yet'' presumably informative. Such data called {\em censored}. 
+  \item Enter {\em survival analysis}, in particular the ``Cox proportional hazards model''. 
+  \item Explanatory variables in this context often called {\em covariates}.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example: still dancing?}
+
+  \begin{itemize}
+  \item 12 women who have just started taking dancing lessons are
+    followed for up to a year, to see whether they are still taking
+    dancing lessons, or have quit. The ``event'' here is ``quit''.
+  \item This might depend on:o
+    \begin{itemize}
+    \item a treatment (visit to a dance competition)
+    \item woman's age (at start of study).
+    \end{itemize}
+  \item Data:
+
+{\scriptsize
+\begin{verbatim}
+Months  Quit   Treatment Age
+   1      1        0      16
+   2      1        0      24
+   2      1        0      18
+   3      0        0      27
+   4      1        0      25   7      1        1      26
+   8      1        1      36
+  10      1        1      38
+  10      0        1      45
+  12      1        1      47
+\end{verbatim}
+}
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{About the data}
+
+  \begin{itemize}
+  \item \verb-months- and \verb-quit- are kind of combined response:
+    \begin{itemize}
+    \item  \verb-Months- is number of months a woman was actually observed dancing
+    \item \verb-quit- is 1 if woman quit, 0 if still dancing at end of study.
+    \end{itemize}
+  \item Treatment is 1 if woman went to dance competition, 0 otherwise.
+  \item Fit model and see whether \texttt{Age} or \texttt{Treatment}
+    have effect on survival.
+  \item Want to do predictions for probabilities of still dancing as
+    they depend on whatever is significant, and draw plot.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{The code}
+
+  \begin{itemize}
+  \item First, call in \texttt{survival} package, read data and make combined
+    response:
+\begin{verbatim}
+> library(survival)
+> dance=read.table("dancing.txt",header=T)
+> attach(dance)
+> mth=Surv(Months,Quit)
+> mth
+ [1]  1   2   2   3+  4   5  11   7   8  10  10+ 12 
+\end{verbatim}
+  \item Then fit model, predicting \texttt{mth} from explanatories:
+\begin{verbatim}
+> dance.1=coxph(mth~Treatment+Age)
+\end{verbatim}
+
+  \end{itemize}
+
+\begin{frame}[fragile]{The output}
+
+Looks a lot like a regression:
+
+{\scriptsize
+\begin{verbatim}
+> summary(dance.1)
+Call:
+coxph(formula = mth ~ Treatment + Age)
+
+  n= 12, number of events= 10 
+
+              coef exp(coef) se(coef)      z Pr(>|z|)  
+Treatment -4.44915   0.01169  2.60929 -1.705   0.0882 .
+Age       -0.36619   0.69337  0.15381 -2.381   0.0173 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+          exp(coef) exp(-coef) lower .95 upper .95
+Treatment   0.01169     85.554 7.026e-05    1.9444
+Age         0.69337      1.442 5.129e-01    0.9373
+
+Concordance= 0.964  (se = 0.125 )
+Rsquare= 0.836   (max possible= 0.938 )
+Likelihood ratio test= 21.68  on 2 df,   p=1.956e-05
+Wald test            = 5.67  on 2 df,   p=0.0587
+Score (logrank) test = 14.75  on 2 df,   p=0.0006274
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+
+  \begin{itemize}
+  \item Use $\alpha=0.10$ here since not much data.
+  \item Three tests at bottom like global F-test. Consensus that
+    something predicts survival (whether or not dancer quit and how
+    long it took).
+  \item \emph{Age} (definitely), \texttt{Treatment} (marginally) both
+    predict survival.
+  \end{itemize}
+
+
+{\scriptsize
+\begin{verbatim}
+          Testing Global Null Hypothesis: BETA=0
+
+  Test                 Chi-Square       DF     Pr > ChiSq
+  Likelihood Ratio        21.0016        2         <.0001
+  Score                   14.2093        2         0.0008
+  Wald                     5.5556        2         0.0622
+
+                  Analysis of Maximum Likelihood Estimates
+
+                     Parameter  Standard                         Hazard
+ Parameter    DF      Estimate     Error  Chi-Square  Pr > ChiSq  Ratio
+ age           1      -0.35284   0.14973      5.5532      0.0184  0.703
+ treatment     1      -4.28283   2.54084      2.8412      0.0919  0.014
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Overall model seems significant.
+\item Survival depends on age but not apparently on treatment (could be small size of data set or confounding of treatment with age).
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predicted survival probs}
+
+{\scriptsize
+\begin{verbatim}
+Obs    months    dancing    treatment    age       s
+ 13       3         .           0         25    0.87856
+ 14       6         .           0         25    0.56647
+ 15       9         .           0         25    0.00000
+ 16      12         .           0         25    0.00000
+ 
+ 17       3         .           1         25    0.99821
+ 18       6         .           1         25    0.99219
+ 19       9         .           1         25    0.00000
+ 20      12         .           1         25    0.00000
+
+ 21       3         .           0         45    0.99989
+ 22       6         .           0         45    0.99951
+ 23       9         .           0         45    0.14589
+ 24      12         .           0         45    0.00000
+
+ 25       3         .           1         45    1.00000
+ 26       6         .           1         45    0.99999
+ 27       9         .           1         45    0.97378
+ 28      12         .           1         45    0.08223
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions from predicted probs}
+
+  \begin{itemize}
+  \item Older women more likely to be still dancing than younger women
+    (compare ``profiles'' for same treatment group).
+  \item Effect of treatment seems to be to increase prob of still dancing (compare ``profiles'' for same age for treatment group vs.\ not)
+  \item Would be nice to see this on a graph.
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Another way of doing predictions}
+
+Instead of adding lines to data file and creating an output data set, use \verb-baseline- command like this:
+
+{\scriptsize
+\begin{verbatim}
+data dancers;
+  infile "survival1.dat";
+  input months dancing treatment age;
+
+data mypred;
+  input treatment age;
+  datalines;
+  0 25 
+  0 45 
+  1 25 
+  1 45 
+;
+
+proc phreg data=dancers;
+  model months*dancing(0) = age treatment;
+  baseline out=fred covariates=mypred survival=s lower=lcl upper=ucl / 
+nomean;
+   
+proc print data=fred;
+\end{verbatim}
+}  
+
+\end{frame}
+
+\begin{frame}[fragile]{Results, including CIs}
+
+{\scriptsize
+\begin{verbatim}
+  Obs    age    treatment    months       s         lcl        ucl
+    1     25        0           0      1.00000     .          .     
+    2     25        0           1      0.96633    0.90266    1.00000
+    3     25        0           2      0.79225    0.60826    1.00000
+    4     25        0           4      0.63726    0.35919    1.00000
+    5     25        0           5      0.14748    0.05834    0.37282
+    6     25        0           7      0.00000    0.00000    1.00000
+    7     25        0           8      0.00000    0.00000    1.00000
+    8     25        0          10      0.00000    0.00000    1.00000
+    9     25        0          11      0.00000    0.00000    1.00000
+   10     25        0          12      0.00000     .          .     
+ 
+   11     45        0           0      1.00000     .          .     
+   12     45        0           1      0.99997    0.99980    1.00000
+   13     45        0           2      0.99980    0.99895    1.00000
+   14     45        0           4      0.99961    0.99760    1.00000
+   15     45        0           5      0.99835    0.99486    1.00000
+   16     45        0           7      0.75954    0.52629    1.00000
+   17     45        0           8      0.04468    0.00002    1.00000
+   18     45        0          10      0.00001    0.00000    1.00000
+   19     45        0          11      0.00000    0.00000    1.00000
+   20     45        0          12      0.00000     .          .     
+\end{verbatim}
+}
+\end{frame}
+
+\begin{frame}[fragile]{The rest}
+
+{\scriptsize
+\begin{verbatim}
+   21     25        1           0      1.00000     .          .     
+   22     25        1           1      0.99953    0.99727    1.00000
+   23     25        1           2      0.99679    0.98545    1.00000
+   24     25        1           4      0.99380    0.96712    1.00000
+   25     25        1           5      0.97393    0.92908    1.00000
+   26     25        1           7      0.01220    0.00080    0.18538
+   27     25        1           8      0.00000    0.00000    1.00000
+   28     25        1          10      0.00000    0.00000    1.00000
+   29     25        1          11      0.00000    0.00000    1.00000
+   30     25        1          12      0.00000     .          .     
+
+   31     45        1           0      1.00000     .          .     
+   32     45        1           1      1.00000    1.00000    1.00000
+   33     45        1           2      1.00000    0.99998    1.00000
+   34     45        1           4      0.99999    0.99995    1.00000
+   35     45        1           5      0.99998    0.99990    1.00000
+   36     45        1           7      0.99621    0.98945    1.00000
+   37     45        1           8      0.95800    0.88352    1.00000
+   38     45        1          10      0.84737    0.67929    1.00000
+   39     45        1          11      0.38657    0.09793    1.00000
+   40     45        1          12      0.00000     .          .     
+
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting survival probabilities}
+
+  \begin{itemize}
+  \item Each age - treatment combination has string of estimated
+    survival probabilities.
+  \item Would like to plot them against time (month), labelled by
+    which age - treatment combo they are for.
+  \item This \emph{almost} works:
+  \end{itemize}
+
+\begin{verbatim}
+proc gplot;
+  plot s*months;
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}{Graph, attempt 1}
+
+\includegraphics[width=4in]{splota}
+
+\begin{itemize}
+\item Can't distinguish treatment - age groups.
+\item Would like points joined by line, so can see trends.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Graph, attempt 2}
+
+If we just had one variable to distinguish, eg \texttt{age}, could do
+this:
+
+\begin{verbatim}
+proc gplot;
+    plot s*months=age;
+\end{verbatim}
+
+\includegraphics[width=3in]{splotb}
+
+but can't tell treatments apart.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Doing it the right way}
+
+  \begin{columns}
+    \column{0.5\textwidth}
+\begin{verbatim}
+data fred2;
+  set fred;
+  agetrt=cat(age,"-",treatment);  
+  
+goptions reset=all;
+symbol1 c=blue v=triangle i=l;
+symbol2 c=cyan v=circle i=l;
+symbol3 c=red v=diamond i=l;
+symbol4 c=black v=plus i=l;
+
+proc gplot;
+  plot s*months=agetrt;  
+
+\end{verbatim}
+    \column{0.5\textwidth}
+
+    \begin{itemize}
+    \item Create a new data set that is everything
+      in \texttt{fred}, plus new variable: \texttt{age} followed by
+      dash followed by \texttt{treatment}.
+    \item Reset SAS's preferred options for \texttt{gplot} in favour
+      of stuff we define. 4 age-treatment combos, so define 4
+      \texttt{symbol}s:
+      \begin{itemize}
+      \item \texttt{c=} gives colour.
+      \item \texttt{v=} gives symbol.
+      \item \texttt{i=l} says join plotted points by line.
+      \end{itemize}
+    \item When SAS needs symbols for a plot, takes from this list.
+    \item Then make plot, distinguishing age-treatment combos.
+    \end{itemize}
+
+  \end{columns}
+  
+\end{frame}
+
+\begin{frame}{The resulting plot}
+  \includegraphics[width=4in]{splotd}
+
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=2in]{splotd}
+
+  \begin{itemize}
+  \item Survivor curve farther to the right is better (better chance
+    of surviving longer).
+  \item Best is age 45 with treatment, worst age 25 without.
+  \item Appears to be:
+    \begin{itemize}
+    \item age effect (45 better than 25)
+    \item treatment effect (treatment better than not)
+    \end{itemize}
+  \item In analysis, treatment effect only marginally significant.
+  \end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

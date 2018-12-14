@@ -1,0 +1,7 @@
+\documentclass{article}
+
+\usepackage{pdfpages}
+
+\begin{document}
+\includepdf[pages=1-10]{slides-sw.pdf}
+\end{document}

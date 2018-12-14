@@ -1,0 +1,949 @@
+\section{Time Series}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Assessing time trends}
+  
+  To start, assess time trends using:
+  
+  \begin{itemize}
+  \item correlation methods:
+    \begin{itemize}
+    \item regular Pearson correlation
+    \item Mann-Kendall
+    \end{itemize}
+    
+
+  \item regression methods:
+    \begin{itemize}
+    \item regression slope
+    \item Theil-Sen slope
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{World mean temperatures}
+  
+  Since 1880:
+  
+<<>>=
+temp=read.csv("temperature.csv")
+head(temp)
+attach(temp)
+@   
+
+<<tempchunk,eval=F>>=
+plot(temperature~year,type="l")
+lines(lowess(temperature~year))
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{Time plot}
+  
+<<kahdkjheoiu,echo=F,fig.height=5.5>>=
+<<tempchunk>>
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Examining trend: Pearson}
+  
+  \begin{itemize}
+  \item Pearson (regular) correlation, tests for \emph{linear} trend
+    with \emph{normal} residuals (no outliers):
+{\small
+<<>>=
+cor.test(temperature,year)
+@     
+}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Examining trend: Kendall \& Mann-Kendall}
+  
+  
+  \begin{itemize}
+\item Kendall (nonparametric) correlation, tests for \emph{monotone}
+  trend, resistant to outliers:
+
+{\small  
+<<>>=
+cor.test(temperature,year,method="kendall")
+@ 
+}
+
+\item Another way to do this: Mann-Kendall correlation (Kendall test
+  against \emph{time} or \emph{order}:
+ 
+{\small  
+<<>>=
+library(Kendall)
+MannKendall(temperature)
+@   
+}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Rate of change}
+
+  \begin{itemize}
+  \item Ordinary regression against time:
+{\small
+<<>>=
+temp.lm=lm(temperature~year)
+tidy(temp.lm)
+@
+}
+\item Slope about 0.0059 per year, \Sexpr{round(0.005863*130,1)}
+  degrees over 
+  time period of study.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Theil-Sen slope}
+  \begin{itemize}
+  \item Slope that assumes linearity, but not affected by outliers:
+<<>>=
+library(zyp)
+temp.zs=zyp.sen(temperature~year,data=temp)
+tidy(temp.zs)
+@     
+\item Or:
+<<>>=
+z=zyp.trend.vector(temperature)
+z["trend"]
+detach(temp)
+@   
+\item Doesn't need year.
+\item Theil-Sen slope about 0.0057.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+  
+  \begin{itemize}
+\item Linear regression slope is 0.005863
+\item Theil-Sen slope is 0.005676
+\item Very close.
+\item Pearson correlation is 0.8675
+\item Kendall correlation is 0.6993
+\item Both correlations have P-value $< 2.2 \times 10^{-16}$. 
+\item Kendall correlation smaller, but P-value equally significant
+  (usually the case). 
+
+\item \textbf{Successive values assumed independent, but probably not
+    in actuality. To take care of dependence, need actual time series methods.}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The Monarchs of England}
+  \begin{itemize}
+  \item Age at death of Kings and Queens of England since William the
+    Conqueror (1066):
+<<>>=
+kings=read.table("kings.txt",header=F)
+head(kings)
+@     
+
+\item Data in one long column \texttt{V1}.
+\item Turn into time series \texttt{ts} object.
+  
+<<>>=
+kings.ts=ts(kings)
+@   
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Plotting a time series}
+  
+<<raghib,fig.height=5>>=
+plot(kings.ts) ; lines(lowess(kings.ts))
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item ``Time'' here order of monarch from William the Conqueror (1)
+    to George VI (42).
+  \item Slightly increasing trend of age at death
+  \item but lots of irregularity.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Stationarity}
+  
+  \begin{itemize}
+  \item Time series stationary if:
+    \begin{itemize}
+    \item mean constant over time
+    \item variability constant over time and not dependent on mean.
+    \end{itemize}
+  \item Kings series:
+    \begin{itemize}
+    \item non-constant mean
+    \item constant (?) variability
+    \item not stationary.
+    \end{itemize}
+  \item Fix stationarity by taking differences: 2nd minus 1st, 3rd
+    minus 2nd, etc:
+<<>>=
+kings.diff.ts=diff(kings.ts)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Did differencing fix stationarity? Yes.}
+  
+<<lsjahjsh, fig.height=4.5>>=
+plot(kings.diff.ts,main="Kings series, differenced")
+lines(lowess(kings.diff.ts))
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Births per month in New York City}
+  \begin{itemize}
+  \item From  January 1946 to December 1959:
+<<>>=
+ny=read.table("nybirths.txt",header=F)
+ny.ts=ts(ny,freq=12,start=c(1946,1))
+@
+\item Note extras on `ts`:
+  \begin{itemize}
+\item Time period is 1 year
+\item 12 observations per year (monthly) in `freq`
+\item First observation is 1st month of 1946 in `start`
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Printing formats nicely}
+  
+{\tiny
+<<echo=-1>>=
+options(width=90)
+ny.ts
+@   
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Time plot: extra pattern}
+  
+<<akjsalkasl,fig.height=4.5>>=
+plot(ny.ts)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on time plot}
+  
+  \begin{itemize}
+\item steady increase
+\item repeating pattern each year (seasonal component).
+\item Not stationary.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Differencing the New York births: does it help?}
+  
+Stationary, but regular spikes:  
+  
+<<sklsalhsa,fig.height=4>>=
+ny.diff.ts=diff(ny.ts)
+plot(ny.diff.ts)
+lines(lowess(ny.diff.ts))
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Visual: decomposing seasonal time series}
+  
+<<askjasklslak,fig.height=4.5>>=
+ny.d=decompose(ny.ts)
+plot(ny.d)
+@   
+  
+\end{frame}
+
+\begin{frame}{Decomposition bits}
+  
+  \begin{itemize}
+\item original series
+\item just the trend, going steadily up (except at the start)
+\item a "seasonal" part: something that repeats every year (births
+  lowest in Feb, highest in Jul).
+\item random: what is left over ("residuals")
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Time series basics: white noise}
+  
+Independent random normal. Knowing one value tells you nothing about
+the next.  ``Random'' process:
+
+<<echo=F>>=
+set.seed(457299)
+@ 
+
+{\small
+<<ternana,fig.height=4>>=
+wn=rnorm(100)
+wn.ts=ts(wn)
+plot(wn.ts)
+@ 
+}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Lagging a time series}
+
+Moving a time series one (or more) steps back in time:
+
+<<>>=
+x=rnorm(5)
+x.1=c(NA,x)
+x.0=c(x,NA)
+cbind(x.0,x.1)
+@ 
+
+Have to glue `NA` onto \emph{both} ends to keep series same length.
+
+\end{frame}
+
+\begin{frame}[fragile]{Lagging white noise}
+  
+<<ipswich,fig.height=5>>=
+wn.1=c(NA,wn) ; wn.0=c(wn,NA) ; plot(wn.1,wn.0)
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Correlation with lagged series}
+  \begin{itemize}
+  \item If you know about white noise at one time point, you know
+    \emph{nothing} about it at the next. This is shown by the scatterplot
+    and the correlation:
+<<>>=
+cor(wn.1,wn.0,use="c")
+@     
+  \item On the other hand, this:
+<<>>=
+kings.1=c(NA,kings.ts)
+kings.0=c(kings.ts,NA)
+cor(kings.1,kings.0,use="c")
+@ 
+
+\item If one value larger, the next value (a bit) more likely to be larger. 
+
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Plot of series vs. lagged series for kings data}
+  
+<<partington,fig.height=4.5>>=
+plot(kings.1,kings.0)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two steps back:}
+  
+<<>>=
+# one step back
+cor(kings.1,kings.0,use="c")
+# one step plus one more
+kings.2=c(NA,kings.1)
+kings.0=c(kings.0,NA)
+cor(kings.0,kings.2,use="c")
+@   
+
+Still a correlation two steps back, but smaller.
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Autocorrelation}
+  
+  \begin{itemize}
+  \item Correlation of time series with \emph{itself} one, two,... time
+    steps back is useful idea, called \textbf{autocorrelation}. Make a plot
+    of it with \texttt{acf}. White noise: 
+<<,fig.height=4>>=
+acf(wn.ts)
+@ 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+\item No autocorrelations beyond chance, anywhere. Ignore 0.
+
+\item Autocorrelations work best on \emph{stationary} series.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Kings, differenced}
+  
+<<,fig.height=4.5>>=
+acf(kings.diff.ts)
+@   
+  
+\end{frame}
+
+\begin{frame}{Comments on autocorrelations of kings series}
+  
+
+Negative autocorrelation at lag 1, nothing beyond that. 
+
+\begin{itemize}
+\item If one value of differenced series positive, next one most
+  likely negative. 
+\item If one king lives longer than predecessor, next one likely lives shorter.
+
+\end{itemize}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{NY births, differenced}
+  
+<<cesena,fig.height=4.5>>=
+acf(ny.diff.ts,main="NY births differenced")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+  Lots of stuff:
+
+  \begin{itemize}
+\item large positive autocorrelation at 1.0 years (July one year like July last year)
+\item large negative autocorrelation at 1 month.
+\item smallish but significant negative autocorrelation at 0.5 year = 6 months.
+\item Other stuff -- complicated.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Souvenir sales}
+  
+Monthly sales for a beach souvenir shop in Queensland, Australia:
+
+<<>>=
+souv=read.table("souvenir.txt",header=F)
+souv.ts=ts(souv,frequency=12,start=1987)
+@ 
+
+{\tiny
+<<>>=
+souv.ts
+@ 
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plot of souvenir sales}
+  
+<<fiorentina,fig.height=5>>=
+plot(souv.ts)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+Several problems:
+
+\begin{itemize}
+\item Mean goes up over time
+\item Variability gets larger as mean gets larger
+\item Not stationary
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Problem-fixing}
+  
+Fix non-constant variability first by taking logs:
+
+<<lupomartini,fig.height=4.5>>=
+souv.log.ts=log(souv.ts)
+plot(souv.log.ts)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Differencing}
+
+  Mean still not constant, so try taking differences:
+  
+<<sambennedetese,fig.height=4.5>>=
+souv.log.diff.ts=diff(souv.log.ts)
+plot(souv.log.diff.ts)
+@   
+  
+\end{frame}
+
+\begin{frame}{Comments}
+  
+  \begin{itemize}
+\item Now stationary
+\item but clear seasonal effect.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Decomposing to see the seasonal effect}
+    
+<<saklsdalkhdaskl,fig.height=4.5>>=
+souv.d=decompose(souv.log.diff.ts)
+plot(souv.d)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+\emph{Big} drop in one month's differences. Look at seasonal component to
+see which:  
+  
+<<echo=F>>=
+options(width=60)
+@ 
+
+{\small
+<<>>=
+round(souv.d$seasonal,2)
+@ 
+}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Autocorrelations}
+  
+  \begin{itemize}
+\item Big positive autocorrelation at 1 year (strong seasonal effect)
+\item Small negative autocorrelation at 1 and 2 months:
+  
+<<asjdhasjhsajkhdaskjhd,fig.height=4.5>>=
+acf(souv.log.diff.ts)
+@   
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Moving average}
+  
+``Moving average'' or MA process captures idea of autocorrelations at
+a few lags but not others. MA(1) process, with autocorrelation only at lag 1:
+
+{\footnotesize
+<<>>=
+e=rnorm(100)
+y=numeric(0)
+y[1]=0
+beta=1
+for (i in 2:100)
+{
+  y[i]=e[i]+beta*e[i-1]
+}
+y
+@ 
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+\item \texttt{e} contains independent ``random shocks''. 
+\item Start process at 0. 
+\item Then, each value of the time series has that time's random shock, plus a multiple of the last time's random shock. 
+\item \texttt{y[i]} has shock in common with \texttt{y[i-1]}; should be a lag 1 autocorrelation. 
+\item But \texttt{y[i]} has no shock in common with \texttt{y[i-2]},
+  so no lag 2 autocorrelation (or beyond).
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{ACF for MA(1) process}
+  
+<<sassuolo,fig.height=4.5>>=
+acf(y)
+@ 
+
+As promised, everything beyond lag 1 is just chance.
+
+\end{frame}
+
+\begin{frame}[fragile]{AR process}
+  
+Another kind of time series is AR process, where each value depends on previous one, like this:
+
+{\footnotesize
+<<>>=
+e=rnorm(100)
+x=numeric(0)
+x[1]=0
+alpha=0.7
+for (i in 2:100)
+{
+  x[i]=alpha*x[i-1]+e[i]
+}
+x
+@
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+\item Each random shock now only used for its own value of \texttt{x}
+\item but \texttt{x[i]} also depends on previous value \texttt{x[i-1]}
+\item so correlated with previous value
+\item but \texttt{x[i]} also contains multiple of \texttt{x[i-2]} and
+  previous x's 
+\item so all x's correlated, but autocorrelation dying away.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{ACF for AR(1) series}
+  
+<<dssahasjhs,fig.height=5>>=
+acf(x)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Partial autocorrelation function}
+  
+This cuts off for an AR series.
+The lag-2 autocorrelation should not be significant, and is only just:
+
+
+<<,fig.height=4.5>>=
+pacf(x)
+@ 
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{PACF for an MA series}
+  
+Decays slowly for an MA series:
+
+<<,fig.height=4.5>>=
+pacf(y)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{ACF for an MA series}
+  
+<<,fig.height=4.5>>=
+acf(y)
+@   
+  
+\end{frame}
+
+
+\begin{frame}{The old way of doing time series analysis}
+  
+Starting from a series with constant variability (eg. transform first to get it, as for souvenirs):
+
+\begin{itemize}
+\item Assess stationarity.
+\item If not stationary, take differences as many times as needed until it is.
+\item Look at ACF, see if it dies off. If it does, you have MA series.
+\item Look at PACF, see if that dies off. If it does, have AR series.
+\item If neither dies off, probably have a mixed "ARMA" series.
+\item Fit coefficients (like regression slopes).
+\item Do forecasts.
+
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The new way of doing time series analysis (in R)}
+  
+  \begin{itemize}
+\item Transform series if needed to get constant variability
+\item Use package \texttt{forecast}.
+\item Use function \texttt{auto.arima} to estimate what kind of series
+  best fits data. 
+\item Use \texttt{forecast} to see what will happen in future.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Load package \texttt{forecast}}
+  
+<<>>=
+library(forecast)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Anatomy of \texttt{auto.arima} output}
+
+{\footnotesize  
+
+<<>>=
+auto.arima(y)
+@   
+}
+
+\begin{itemize}
+\item ARIMA part tells you what kind of series you are estimated to have:
+\begin{itemize}
+  \item first number (first 0) is AR (autoregressive) part
+  \item second number (second 0) is amount of differencing here
+  \item third number (1) is MA (moving average) part
+
+\end{itemize}
+  
+\item Below that, coefficients (with SEs)
+\item AICc is measure of fit (lower better)
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{What other models were possible?}
+  
+Run \texttt{auto.arima} with \texttt{trace=T}:
+
+{\footnotesize
+<<>>=
+auto.arima(y,trace=T)
+@ 
+}
+
+Also possible were MA(2) and ARMA(1,1), both with \texttt{AICc}=289.5.
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Doing it all the new way: white noise}
+  
+<<>>=
+wn.aa=auto.arima(wn.ts)
+wn.aa
+@   
+
+Best fit \emph{is} white noise (no AR, no MA, no differencing). 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Forecasts}
+  
+{\small  
+<<>>=
+forecast(wn.aa)
+@   
+}
+
+Forecasts all 0, since the past doesn't help to predict future.
+
+\end{frame}
+
+\begin{frame}[fragile]{MA(1)}
+  
+<<>>=
+y.aa=auto.arima(y)
+y.aa
+y.f=forecast(y.aa)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting the forecasts for MA(1)}
+  
+<<catanzaro,fig.height=4.5>>=
+plot(y.f)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{AR(1)}
+  
+<<>>=
+x.aa=auto.arima(x)
+x.aa
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Oops!}
+  
+Got it wrong! Fit right AR(1) model:
+
+<<>>=
+x.arima=arima(x,order=c(1,0,0))
+x.arima
+@ 
+
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Forecasts for \texttt{x}}
+  
+<<reggiana,fig.height=5>>=
+plot(forecast(x.arima))
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Comparing wrong model}
+  
+<<reggina,fig.height=5>>=
+plot(forecast(x.aa))
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Kings}
+  
+<<>>=
+kings.aa=auto.arima(kings.ts)
+kings.aa
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Kings forecasts}
+  
+<<>>=
+kings.f=forecast(kings.aa)
+kings.f
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Kings forecasts, plotted}
+  
+<<dob,fig.height=5>>=
+plot(kings.f)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{NY births}
+
+<<>>=
+ny.aa=auto.arima(ny.ts)
+ny.aa
+ny.f=forecast(ny.aa,h=36)
+@   
+
+Going 36 time periods (3 years) into future.
+
+\end{frame}
+
+\begin{frame}[fragile]{NY births forecasts}
+  
+Not \emph{quite} same every year:
+
+{\small
+<<>>=
+ny.f$mean
+@ 
+}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Plotting the forecasts}
+
+<<bradford,fig.height=5>>=
+plot(ny.f)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Log-souvenir sales}
+  
+<<cache=T>>=
+souv.aa=auto.arima(souv.log.ts)
+souv.aa
+souv.f=forecast(souv.aa,h=27)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The forecasts}
+
+Differenced series showed low value for January (large drop). December
+highest, Jan and Feb lowest. Forecast actual sales, not log sales:
+
+{\footnotesize
+<<>>=
+exp(souv.f$mean)
+@   
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting the forecasts}
+  
+<<castleford,fig.height=5>>=
+plot(souv.f)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Global mean temperatures, revisited}
+  
+<<>>=
+attach(temp)
+temp.ts=ts(temperature,start=1880)
+temp.aa=auto.arima(temp.ts)
+temp.aa
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Forecasts}
+  
+<<wakefield,fig.height=4.5>>=
+temp.f=forecast(temp.aa)
+plot(temp.f)
+@   
+\end{frame}

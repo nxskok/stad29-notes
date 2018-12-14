@@ -1,0 +1,11 @@
+en no dk nl de fr es it pl hu fi
+one en en een eins un uno uno jeden egy yksi
+two to to twee zwei deux dos due dwa ketto kaksi
+three tre tre drie drei trois tres tre trzy harom kolme
+four fire fire vier vier quatre cuatro quattro cztery negy nelja
+five fem fem vijf funf cinq cinco cinque piec ot viisi
+six seks seks zes sechs six seis sei szesc hat kuusi
+seven sju syv zeven sieben sept siete sette siedem het seitseman
+eight atte otte acht acht huit ocho otto osiem nyolc kahdeksan
+nine ni ni negen neun neuf nueve nove dziewiec kilenc yhdeksan
+ten ti ti tien zehn dix diez dieci dziesiec tiz kymmenen

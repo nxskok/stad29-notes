@@ -1,0 +1,53 @@
+\documentclass{article}
+\title{The airport data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+losangeles alaska ontime 497
+losangeles alaska delayed 62
+losangeles aw ontime 694
+losangeles aw delayed 117
+phoenix alaska ontime 221
+phoenix alaska delayed 12
+phoenix aw ontime 4840
+phoenix aw delayed 415
+sandiego alaska ontime 212
+sandiego alaska delayed 20
+sandiego aw ontime 383
+sandiego aw delayed 65
+sanfran alaska ontime 503
+sanfran alaska delayed 102
+sanfran aw ontime 320
+sanfran aw delayed 129
+seattle alaska ontime 1841
+seattle alaska delayed 305
+seattle aw ontime 201
+seattle aw delayed 61
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+options ls=80;
+
+data airline;
+  infile "airport.dat";
+  input airport $ airline $ status $ freq;
+
+proc catmod;
+  weight freq;
+  model airport*airline*status=_response_;
+  loglin airport|airline|status;
+
+proc catmod;
+  weight freq;
+  model airport*airline*status=_response_;
+  loglin airport|airline|status @ 2;
+
+  
+run;
+\end{SAScode}
+\end{document}

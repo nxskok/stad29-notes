@@ -1,0 +1,1238 @@
+\section{Multiway frequency tables}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Multi-way frequency analysis}
+
+  \begin{itemize}
+  \item A study of gender and eyewear-wearing finds the following frequencies:
+
+    \begin{tabular}{lrrr}
+      \hline
+      Gender & Contacts & Glasses & None \\
+      \hline
+      Female & 121 & 32 & 129 \\
+      Male & 42 & 37 & 85\\
+      \hline
+    \end{tabular}
+
+
+  \item Is there association between eyewear and gender?
+  \item Normally answer this with chisquare test (based on observed and expected frequencies from null hypothesis of no association).
+  \item Two categorical variables and a frequency.
+  \item We assess in way that generalizes to more categorical variables.
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The data file}
+  
+\begin{verbatim}
+gender contacts glasses none
+female 121      32      129
+male   42       37      85
+\end{verbatim}
+  
+  \begin{itemize}
+  \item This is \emph{not tidy!}
+  \item Two variables are gender and \emph{eyewear}, and those numbers
+    all frequencies.
+  \end{itemize}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{eyewear}\hlkwb{=}\hlkwd{read.table}\hlstd{(}\hlstr{"eyewear.txt"}\hlstd{,}\hlkwc{header}\hlstd{=T)}
+\hlstd{eyewear}
+\end{alltt}
+\begin{verbatim}
+##   gender contacts glasses none
+## 1 female      121      32  129
+## 2   male       42      37   85
+\end{verbatim}
+\begin{alltt}
+\hlkwd{library}\hlstd{(tidyr)}
+\hlkwd{suppressMessages}\hlstd{(}\hlkwd{library}\hlstd{(dplyr))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidying the data}
+  
+  {\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{eyewear} \hlopt{%>%} \hlkwd{gather}\hlstd{(eyewear,frequency,contacts}\hlopt{:}\hlstd{none)} \hlkwb{->}
+   \hlstd{eyes}
+\hlstd{eyes}
+\end{alltt}
+\begin{verbatim}
+##   gender  eyewear frequency
+## 1 female contacts       121
+## 2   male contacts        42
+## 3 female  glasses        32
+## 4   male  glasses        37
+## 5 female     none       129
+## 6   male     none        85
+\end{verbatim}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(frequency}\hlopt{~}\hlstd{gender}\hlopt{+}\hlstd{eyewear,}\hlkwc{data}\hlstd{=eyes)}
+\hlstd{xt}
+\end{alltt}
+\begin{verbatim}
+##         eyewear
+## gender   contacts glasses none
+##   female      121      32  129
+##   male         42      37   85
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Modelling}
+
+  \begin{itemize}
+  \item Last table on previous page is ``reconstituted'' contingency table, for checking.
+  \item Predict frequency from other factors and combos. \texttt{glm}
+    with \texttt{poisson} family.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{eyes.1}\hlkwb{=}\hlkwd{glm}\hlstd{(frequency}\hlopt{~}\hlstd{gender}\hlopt{*}\hlstd{eyewear,}\hlkwc{data}\hlstd{=eyes,}
+    \hlkwc{family}\hlstd{=}\hlstr{"poisson"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\item Called \textbf{log-linear model}.
+    
+
+  \end{itemize}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{What can we get rid of?}
+
+{\small    
+ 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{drop1}\hlstd{(eyes.1,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## frequency ~ gender * eyewear
+##                Df Deviance    AIC    LRT  Pr(>Chi)    
+## <none>               0.000 47.958                     
+## gender:eyewear  2   17.829 61.787 17.829 0.0001345 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+
+  \begin{itemize}
+  \item \texttt{drop1} says what we can remove at this
+    step. Significant = must stay.
+  \item Cannot remove anything.
+  \item Frequency depends on \texttt{gender-wear}
+    \emph{combination}, cannot be simplified further.
+  \item Gender and eyewear are \emph{associated}.
+  \item Stop here.
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{\texttt{prop.table}}
+  
+Original table:
+
+{\footnotesize
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}
+\end{alltt}
+\begin{verbatim}
+##         eyewear
+## gender   contacts glasses none
+##   female      121      32  129
+##   male         42      37   85
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+    
+Calculate eg.\ row proportions like this:
+
+{\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##         eyewear
+## gender    contacts   glasses      none
+##   female 0.4290780 0.1134752 0.4574468
+##   male   0.2560976 0.2256098 0.5182927
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+\begin{itemize}
+\item \texttt{margin} says what to make add to 1.
+\item More females wear contacts and more males wear glasses.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{No association}
+
+  \begin{itemize}
+  \item Suppose table had been as shown below:
+    {\footnotesize
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{eyewear2}\hlkwb{=}\hlkwd{read.table}\hlstd{(}\hlstr{"eyewear2.txt"}\hlstd{,}\hlkwc{header}\hlstd{=T)}
+\hlstd{eyewear2} \hlopt{%>%} \hlkwd{gather}\hlstd{(eyewear,frequency,contacts}\hlopt{:}\hlstd{none)} \hlkwb{->} \hlstd{eyes2}
+\hlstd{xt2}\hlkwb{=}\hlkwd{xtabs}\hlstd{(frequency}\hlopt{~}\hlstd{gender}\hlopt{+}\hlstd{eyewear,}\hlkwc{data}\hlstd{=eyes2)}
+\hlstd{xt2}
+\end{alltt}
+\begin{verbatim}
+##         eyewear
+## gender   contacts glasses none
+##   female      150      30  120
+##   male         75      16   62
+\end{verbatim}
+\begin{alltt}
+\hlkwd{prop.table}\hlstd{(xt2,}\hlkwc{margin}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##         eyewear
+## gender    contacts   glasses      none
+##   female 0.5000000 0.1000000 0.4000000
+##   male   0.4901961 0.1045752 0.4052288
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+\item Females and males wear contacts and glasses in same proportions
+  (though more females and more contact-wearers). No
+  \emph{association} between gender and eyewear.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Analysis for revised data}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{eyes.2}\hlkwb{=}\hlkwd{glm}\hlstd{(frequency}\hlopt{~}\hlstd{gender}\hlopt{*}\hlstd{eyewear,}\hlkwc{data}\hlstd{=eyes2,}
+  \hlkwc{family}\hlstd{=}\hlstr{"poisson"}\hlstd{)}
+\hlkwd{drop1}\hlstd{(eyes.2,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## frequency ~ gender * eyewear
+##                Df Deviance    AIC      LRT Pr(>Chi)
+## <none>            0.000000 47.467                  
+## gender:eyewear  2 0.047323 43.515 0.047323   0.9766
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+No longer any association. Take out interaction.
+  
+\end{frame}
+
+\begin{frame}[fragile]{No interaction}
+  
+  {\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{eyes.3}\hlkwb{=}\hlkwd{update}\hlstd{(eyes.2,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{gender}\hlopt{:}\hlstd{eyewear)}
+\hlkwd{drop1}\hlstd{(eyes.3,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## frequency ~ gender + eyewear
+##         Df Deviance     AIC     LRT  Pr(>Chi)    
+## <none>        0.047  43.515                      
+## gender   1   48.624  90.091  48.577 3.176e-12 ***
+## eyewear  2  138.130 177.598 138.083 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+\begin{itemize}
+\item More females (gender effect)
+\item more contact-wearers (eyewear
+  effect)
+\item no association (no interaction). 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Chest pain, being overweight and being a smoker}
+  
+  \begin{itemize}
+  \item In a hospital emergency department, 176 subjects who attended
+    for acute chest pain took part in a study.
+  \item Each subject had a
+    normal or abnormal electrocardiogram reading (ECG), were
+    overweight (as judged by BMI) or not, and were a smoker or
+    not.
+  \item How are these three variables related, or not?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+  In modelling-friendly format:
+  
+\begin{verbatim}
+ecg bmi smoke count
+abnormal overweight yes 47
+abnormal overweight no 10
+abnormal normalweight yes 8 
+abnormal normalweight no 6
+normal overweight yes 25 
+normal overweight no 15 
+normal normalweight yes 35
+normal normalweight no 30
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{First step}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{chest}\hlkwb{=}\hlkwd{read.table}\hlstd{(}\hlstr{"ecg.txt"}\hlstd{,}\hlkwc{header}\hlstd{=T)}
+\hlstd{chest.1}\hlkwb{=}\hlkwd{glm}\hlstd{(count}\hlopt{~}\hlstd{ecg}\hlopt{*}\hlstd{bmi}\hlopt{*}\hlstd{smoke,}\hlkwc{data}\hlstd{=chest,}\hlkwc{family}\hlstd{=}\hlstr{"poisson"}\hlstd{)}
+\hlkwd{drop1}\hlstd{(chest.1,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## count ~ ecg * bmi * smoke
+##               Df Deviance    AIC    LRT Pr(>Chi)
+## <none>             0.0000 53.707                
+## ecg:bmi:smoke  1   1.3885 53.096 1.3885   0.2387
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+That 3-way interaction comes out.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Removing the 3-way interaction}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{chest.2}\hlkwb{=}\hlkwd{update}\hlstd{(chest.1,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{ecg}\hlopt{:}\hlstd{bmi}\hlopt{:}\hlstd{smoke)}
+\hlkwd{drop1}\hlstd{(chest.2,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## count ~ ecg + bmi + smoke + ecg:bmi + ecg:smoke + bmi:smoke
+##           Df Deviance    AIC     LRT  Pr(>Chi)    
+## <none>         1.3885 53.096                      
+## ecg:bmi    1  29.0195 78.727 27.6310 1.468e-07 ***
+## ecg:smoke  1   4.8935 54.601  3.5050   0.06119 .  
+## bmi:smoke  1   4.4689 54.176  3.0803   0.07924 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+At $\alpha=0.05$, \texttt{bmi:smoke} comes out.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Removing \texttt{bmi:smoke}}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{chest.3}\hlkwb{=}\hlkwd{update}\hlstd{(chest.2,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{bmi}\hlopt{:}\hlstd{smoke)}
+\hlkwd{drop1}\hlstd{(chest.3,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## count ~ ecg + bmi + smoke + ecg:bmi + ecg:smoke
+##           Df Deviance    AIC    LRT  Pr(>Chi)    
+## <none>          4.469 54.176                     
+## ecg:bmi    1   36.562 84.270 32.094 1.469e-08 ***
+## ecg:smoke  1   12.436 60.144  7.968  0.004762 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\texttt{ecg:smoke} has become significant. So we have to stop.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the final model}
+  
+  \begin{itemize}
+  \item Thinking of \texttt{ecg} as ``response'' that might depend on
+    anything else.
+  \item What is associated with \texttt{ecg}? Both \texttt{bmi} on its
+    own and \texttt{smoke} on its own, but \emph{not} the combination
+    of both.
+  \item \texttt{ecg:bmi} table:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{xtabs}\hlstd{(count}\hlopt{~}\hlstd{ecg}\hlopt{+}\hlstd{bmi,}\hlkwc{data}\hlstd{=chest)}
+\end{alltt}
+\begin{verbatim}
+##           bmi
+## ecg        normalweight overweight
+##   abnormal           14         57
+##   normal             65         40
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item Most normal weight people have a normal ECG, but a
+  majority of overweight people have an \emph{abnormal} ECG. That is,
+  knowing about BMI says something about likely ECG.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{ecg:smoke}}
+  
+  \begin{itemize}
+\item \texttt{ecg:smoke} table:
+  
+  
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{xtabs}\hlstd{(count}\hlopt{~}\hlstd{ecg}\hlopt{+}\hlstd{smoke,}\hlkwc{data}\hlstd{=chest)}
+\end{alltt}
+\begin{verbatim}
+##           smoke
+## ecg        no yes
+##   abnormal 16  55
+##   normal   45  60
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item Most nonsmokers have a normal ECG, but smokers are about 50--50
+  normal and abnormal ECG.
+  
+  \item Don't look at \texttt{smoke:bmi} table since not significant. 
+  
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Simpson's paradox: the airlines example}
+
+  \begin{tabular}{|l|rr|rr|}
+    \hline
+    & \multicolumn{2}{|c|}{Alaska Airlines} & 
+    \multicolumn{2}{|c|}{America West}\\
+    Airport & On time & Delayed & On time & Delayed\\
+    \hline
+    Los Angeles & 497 & 62 & 694 & 117\\
+    Phoenix & 221 & 12 & 4840 & 415\\
+    San Diego & 212 & 20 & 383 & 65\\
+    San Francisco & 503 & 102 & 320 & 129 \\
+    Seattle & 1841 & 305 & 201 & 61\\
+    \hline
+    Total & 3274 & 501 & 6438 & 787\\
+    \hline
+  \end{tabular}
+  
+  \vspace{2ex}
+  
+  Use \texttt{status} as variable name for ``on time/delayed''.
+
+   \begin{itemize}
+   \item Alaska: 13.3\% flights delayed ($501/(3274+501)$).
+   \item America West: 10.9\% ($787/(6438+787)$).
+   \item America West more punctual, right?
+   \end{itemize}
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Arranging the data}
+  
+  \begin{itemize}
+  \item Can only have single thing in columns, so we have to construct
+    column names like this:
+    
+\begin{verbatim}
+airport    aa.ontime aa.delayed aw.ontime aw.delayed
+LosAngeles   497          62       694        117
+Phoenix      221          12      4840        415
+SanDiego     212          20       383         65
+SanFrancisco 503         102       320        129
+Seattle     1841         305       201         61
+\end{verbatim}
+  \item Some tidying gets us the right layout, with frequencies all in
+    one column and the airline and delayed/on time status separated out:
+    
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{airlines}\hlkwb{=}\hlkwd{read.table}\hlstd{(}\hlstr{"airlines.txt"}\hlstd{,}\hlkwc{header}\hlstd{=T)}
+\hlstd{airlines} \hlopt{%>%} \hlkwd{gather}\hlstd{(line.status,freq,}
+    \hlstd{aa.ontime}\hlopt{:}\hlstd{aw.delayed)} \hlopt{%>%}
+    \hlkwd{separate}\hlstd{(line.status,}\hlkwd{c}\hlstd{(}\hlstr{"airline"}\hlstd{,}\hlstr{"status"}\hlstd{),}
+    \hlkwc{sep}\hlstd{=}\hlstr{"\textbackslash{}\textbackslash{}."}\hlstd{)} \hlkwb{->} \hlstd{punctual}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{The data frame \texttt{punctual}}
+
+  {\footnotesize
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##         airport airline  status freq
+## 1    LosAngeles      aa  ontime  497
+## 2       Phoenix      aa  ontime  221
+## 3      SanDiego      aa  ontime  212
+## 4  SanFrancisco      aa  ontime  503
+## 5       Seattle      aa  ontime 1841
+## 6    LosAngeles      aa delayed   62
+## 7       Phoenix      aa delayed   12
+## 8      SanDiego      aa delayed   20
+## 9  SanFrancisco      aa delayed  102
+## 10      Seattle      aa delayed  305
+## 11   LosAngeles      aw  ontime  694
+## 12      Phoenix      aw  ontime 4840
+## 13     SanDiego      aw  ontime  383
+## 14 SanFrancisco      aw  ontime  320
+## 15      Seattle      aw  ontime  201
+## 16   LosAngeles      aw delayed  117
+## 17      Phoenix      aw delayed  415
+## 18     SanDiego      aw delayed   65
+## 19 SanFrancisco      aw delayed  129
+## 20      Seattle      aw delayed   61
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Proportions delayed by airline}
+  
+  \begin{itemize}
+  \item Two-step process: get appropriate subtable:
+    
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{airline}\hlopt{+}\hlstd{status,}\hlkwc{data}\hlstd{=punctual)}
+\hlstd{xt}
+\end{alltt}
+\begin{verbatim}
+##        status
+## airline delayed ontime
+##      aa     501   3274
+##      aw     787   6438
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item and then calculate appropriate proportions:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##        status
+## airline   delayed    ontime
+##      aa 0.1327152 0.8672848
+##      aw 0.1089273 0.8910727
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item More of Alaska Airlines' flights delayed (13.3\% vs.\ 10.9\%).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Proportion delayed by airport, for each airline}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{airline}\hlopt{+}\hlstd{status}\hlopt{+}\hlstd{airport,}\hlkwc{data}\hlstd{=punctual)}
+\hlstd{xp}\hlkwb{=}\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{3}\hlstd{))}
+\hlkwd{ftable}\hlstd{(xp,}\hlkwc{row.vars}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"airport"}\hlstd{,}\hlstr{"airline"}\hlstd{),}
+\hlkwc{col.vars}\hlstd{=}\hlstr{"status"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##                      status    delayed     ontime
+## airport      airline                             
+## LosAngeles   aa             0.11091234 0.88908766
+##              aw             0.14426634 0.85573366
+## Phoenix      aa             0.05150215 0.94849785
+##              aw             0.07897241 0.92102759
+## SanDiego     aa             0.08620690 0.91379310
+##              aw             0.14508929 0.85491071
+## SanFrancisco aa             0.16859504 0.83140496
+##              aw             0.28730512 0.71269488
+## Seattle      aa             0.14212488 0.85787512
+##              aw             0.23282443 0.76717557
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+\end{frame}
+
+
+\begin{frame}{Simpson's Paradox}
+
+\begin{tabular}{|l|rr|}
+  \hline
+  Airport & Alaska & America West\\
+  \hline
+  Los Angeles & 11.4 & 14.4\\
+  Phoenix & 5.2 & 7.9\\
+  San Diego & 8.6 & 14.5\\
+  San Francisco & 16.9 & 28.7\\
+  Seattle & 14.2 & 23.2 \\
+  \hline
+  Total & 13.3 & 10.9 \\
+  \hline
+  
+\end{tabular}
+
+  \begin{itemize}
+  \item America West more punctual overall,
+  \item but worse at \emph{every single} airport!
+  \item How is that possible?
+  \item Log-linear analysis sheds some light.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model 1 and output}
+
+   
+ {\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{punctual.1}\hlkwb{=}\hlkwd{glm}\hlstd{(freq}\hlopt{~}\hlstd{airport}\hlopt{*}\hlstd{airline}\hlopt{*}\hlstd{status,}
+    \hlkwc{data}\hlstd{=punctual,}\hlkwc{family}\hlstd{=}\hlstr{"poisson"}\hlstd{)}
+\hlkwd{drop1}\hlstd{(punctual.1,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ airport * airline * status
+##                        Df Deviance    AIC    LRT Pr(>Chi)
+## <none>                      0.0000 183.44                
+## airport:airline:status  4   3.2166 178.65 3.2166   0.5223
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove 3-way interaction}
+
+ {\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{punctual.2}\hlkwb{=}\hlkwd{update}\hlstd{(punctual.1,}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{airport}\hlopt{:}\hlstd{airline}\hlopt{:}\hlstd{status)}
+\hlkwd{drop1}\hlstd{(punctual.2,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ airport + airline + status + airport:airline + airport:status + 
+##     airline:status
+##                 Df Deviance    AIC    LRT  Pr(>Chi)    
+## <none>                  3.2  178.7                     
+## airport:airline  4   6432.5 6599.9 6429.2 < 2.2e-16 ***
+## airport:status   4    240.1  407.5  236.9 < 2.2e-16 ***
+## airline:status   1     45.5  218.9   42.2 8.038e-11 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+Stop here.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the significance}
+  
+  \begin{itemize}
+  \item \texttt{airline:status}:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{airline}\hlopt{+}\hlstd{status,}\hlkwc{data}\hlstd{=punctual)}
+\hlkwd{prop.table}\hlstd{(xt,} \hlkwc{margin}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##        status
+## airline   delayed    ontime
+##      aa 0.1327152 0.8672848
+##      aw 0.1089273 0.8910727
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item More of Alaska Airlines' flights delayed overall.
+\item Saw this before.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the significance (2)}
+  
+  \begin{itemize}
+  \item \texttt{airport:status}:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{airport}\hlopt{+}\hlstd{status,}\hlkwc{data}\hlstd{=punctual)}
+\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##               status
+## airport           delayed     ontime
+##   LosAngeles   0.13065693 0.86934307
+##   Phoenix      0.07780612 0.92219388
+##   SanDiego     0.12500000 0.87500000
+##   SanFrancisco 0.21916509 0.78083491
+##   Seattle      0.15199336 0.84800664
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item Flights into San Francisco (and maybe Seattle) are often late, and
+  flights into Phoenix are usually on time.
+\item Considerable variation among airports.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the significance (3)}
+  
+  \begin{itemize}
+  \item \texttt{airport:airline}:
+    
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{airport}\hlopt{+}\hlstd{airline,}\hlkwc{data}\hlstd{=punctual)}
+\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##               airline
+## airport                aa         aw
+##   LosAngeles   0.14807947 0.11224913
+##   Phoenix      0.06172185 0.72733564
+##   SanDiego     0.06145695 0.06200692
+##   SanFrancisco 0.16026490 0.06214533
+##   Seattle      0.56847682 0.03626298
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item What fraction of each airline's flights are to each airport.
+\item Most of Alaska Airlines' flights to Seattle and San Francisco.
+\item Most of America West's flights to Phoenix.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The resolution}
+  
+  \begin{itemize}
+  \item Most of America West's flights to Phoenix, where it is easy to
+    be on time.
+  \item Most of Alaska Airlines' flights to San Francisco and Seattle,
+    where it is difficult to be on time.
+  \item Overall comparison looks bad for Alaska because of this.
+  \item But, \emph{comparing like with like}, if you compare each
+    airline's performance \emph{to the same airport}, Alaska does better.
+  \item Aggregating over the very different airports was a (big)
+    mistake: that was the cause of the Simpson's paradox.
+  \item Alaska Airlines is \emph{more} punctual when you do the proper comparison.
+  \end{itemize}
+  
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Ovarian cancer: a four-way table}
+
+  \begin{itemize}
+  \item Retrospective study of ovarian cancer done in 1973.
+  \item Information about 299 women operated on for ovarian cancer 10 years previously.
+  \item Recorded:
+    \begin{itemize}
+    \item stage of cancer (early or advanced)
+    \item type of operation (radical or limited)
+    \item X-ray treatment received (yes or no)
+    \item 10-year survival (yes or no)
+    \end{itemize}
+  \item Survival looks like response (suggests logistic
+    regression).
+
+  \item Log-linear model finds any associations at all.
+  \end{itemize}
+  
+\end{frame}
+
+ 
+\begin{frame}[fragile]{The data}
+
+after tidying:
+
+{\scriptsize
+\begin{verbatim}
+stage operation xray survival freq
+early radical no no 10
+early radical no yes 41
+early radical yes no 17
+early radical yes yes 64
+early limited no no 1
+early limited no yes 13
+early limited yes no 3
+early limited yes yes 9
+advanced radical no no 38
+advanced radical no yes 6
+advanced radical yes no 64
+advanced radical yes yes 11
+advanced limited no no 3
+advanced limited no yes 1
+advanced limited yes no 13
+advanced limited yes yes 5
+
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Stage 1}
+
+hopefully looking familiar by now:
+
+ 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer}\hlkwb{=}\hlkwd{read.table}\hlstd{(}\hlstr{"cancer.txt"}\hlstd{,}\hlkwc{header}\hlstd{=T)}
+\hlkwd{head}\hlstd{(cancer)}
+\end{alltt}
+\begin{verbatim}
+##   stage operation xray survival freq
+## 1 early   radical   no       no   10
+## 2 early   radical   no      yes   41
+## 3 early   radical  yes       no   17
+## 4 early   radical  yes      yes   64
+## 5 early   limited   no       no    1
+## 6 early   limited   no      yes   13
+\end{verbatim}
+\begin{alltt}
+\hlstd{cancer.1}\hlkwb{=}\hlkwd{glm}\hlstd{(freq}\hlopt{~}\hlstd{stage}\hlopt{*}\hlstd{operation}\hlopt{*}\hlstd{xray}\hlopt{*}\hlstd{survival,}
+    \hlkwc{data}\hlstd{=cancer,}\hlkwc{family}\hlstd{=}\hlstr{"poisson"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Output 1}
+
+See what we can remove:
+
+{\footnotesize
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{drop1}\hlstd{(cancer.1,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage * operation * xray * survival
+##                               Df Deviance    AIC     LRT Pr(>Chi)
+## <none>                            0.00000 98.130                 
+## stage:operation:xray:survival  1  0.60266 96.732 0.60266   0.4376
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+Non-significant interaction can come out.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Stage 2}
+  
+{\footnotesize
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer.2}\hlkwb{=}\hlkwd{update}\hlstd{(cancer.1,}\hlopt{~}\hlstd{.}
+\hlopt{-}\hlstd{stage}\hlopt{:}\hlstd{operation}\hlopt{:}\hlstd{xray}\hlopt{:}\hlstd{survival)}
+\hlkwd{drop1}\hlstd{(cancer.2,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     xray:survival + stage:operation:xray + stage:operation:survival + 
+##     stage:xray:survival + operation:xray:survival
+##                          Df Deviance    AIC     LRT Pr(>Chi)
+## <none>                       0.60266 96.732                 
+## stage:operation:xray      1  2.35759 96.487 1.75493   0.1853
+## stage:operation:survival  1  1.17730 95.307 0.57465   0.4484
+## stage:xray:survival       1  0.95577 95.085 0.35311   0.5524
+## operation:xray:survival   1  1.23378 95.363 0.63113   0.4269
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+Least significant term is \texttt{stage:xray:survival}: remove.
+
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Take out \texttt{stage:xray:survival}}
+    
+{\small  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer.3}\hlkwb{=}\hlkwd{update}\hlstd{(cancer.2,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{stage}\hlopt{:}\hlstd{xray}\hlopt{:}\hlstd{survival)}
+\hlkwd{drop1}\hlstd{(cancer.3,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     xray:survival + stage:operation:xray + stage:operation:survival + 
+##     operation:xray:survival
+##                          Df Deviance    AIC     LRT Pr(>Chi)
+## <none>                       0.95577 95.085                 
+## stage:operation:xray      1  3.08666 95.216 2.13089   0.1444
+## stage:operation:survival  1  1.56605 93.696 0.61029   0.4347
+## operation:xray:survival   1  1.55124 93.681 0.59547   0.4403
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+\texttt{operation:xray:survival} comes out next.
+   
+\end{frame}
+
+\begin{frame}[fragile]{Remove \texttt{operation:xray:survival}}
+  
+{\small  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer.4}\hlkwb{=}\hlkwd{update}\hlstd{(cancer.3,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{operation}\hlopt{:}\hlstd{xray}\hlopt{:}\hlstd{survival)}
+\hlkwd{drop1}\hlstd{(cancer.4,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     xray:survival + stage:operation:xray + stage:operation:survival
+##                          Df Deviance    AIC    LRT Pr(>Chi)  
+## <none>                        1.5512 93.681                  
+## xray:survival             1   1.6977 91.827 0.1464  0.70196  
+## stage:operation:xray      1   6.8420 96.972 5.2907  0.02144 *
+## stage:operation:survival  1   1.9311 92.061 0.3799  0.53768  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item \texttt{stage:operation:xray} has now become significant, so
+    won't remove that.
+  \item Shows value of removing terms one at a time.
+  \item There are no higher-order interactions containing both
+    \texttt{xray} and \texttt{survival}, so now we get to test (and
+    remove) \texttt{xray:survival}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove \texttt{xray:survival}}
+  
+{\small  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer.5}\hlkwb{=}\hlkwd{update}\hlstd{(cancer.4,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{xray}\hlopt{:}\hlstd{survival)}
+\hlkwd{drop1}\hlstd{(cancer.5,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     stage:operation:xray + stage:operation:survival
+##                          Df Deviance    AIC    LRT Pr(>Chi)  
+## <none>                        1.6977 91.827                  
+## stage:operation:xray      1   6.9277 95.057 5.2300   0.0222 *
+## stage:operation:survival  1   2.0242 90.154 0.3265   0.5677  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove \texttt{stage:operation:survival}}
+  
+{\small  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer.6}\hlkwb{=}\hlkwd{update}\hlstd{(cancer.5,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{stage}\hlopt{:}\hlstd{operation}\hlopt{:}\hlstd{survival)}
+\hlkwd{drop1}\hlstd{(cancer.6,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     stage:operation:xray
+##                      Df Deviance     AIC     LRT Pr(>Chi)    
+## <none>                     2.024  90.154                     
+## stage:survival        1  135.198 221.327 133.173   <2e-16 ***
+## operation:survival    1    4.116  90.245   2.092   0.1481    
+## stage:operation:xray  1    7.254  93.384   5.230   0.0222 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Last step?}
+  
+Remove \texttt{operation:survival}.  
+  
+{\small  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{cancer.7}\hlkwb{=}\hlkwd{update}\hlstd{(cancer.6,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{operation}\hlopt{:}\hlstd{survival)}
+\hlkwd{drop1}\hlstd{(cancer.7,}\hlkwc{test}\hlstd{=}\hlstr{"Chisq"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + stage:operation:xray
+##                      Df Deviance     AIC    LRT Pr(>Chi)    
+## <none>                     4.116  90.245                    
+## stage:survival        1  136.729 220.859 132.61   <2e-16 ***
+## stage:operation:xray  1    9.346  93.475   5.23   0.0222 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  
+Finally done!
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+  
+  \begin{itemize}
+  \item What matters is things associated with survival (survival is
+    ``response'').
+  \item Only significant such term is \texttt{stage:survival}:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{stage}\hlopt{+}\hlstd{survival,}\hlkwc{data}\hlstd{=cancer)}
+\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlnum{1}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##           survival
+## stage             no       yes
+##   advanced 0.8368794 0.1631206
+##   early    0.1962025 0.8037975
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item Most people in early stage of cancer survived, and most people
+  in advanced stage did not survive.
+\item This true \emph{regardless} of type of operation or whether or
+  not X-ray treatment was received. These things have no impact on
+  survival. 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{What about that other interaction?}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{xt}\hlkwb{=}\hlkwd{xtabs}\hlstd{(freq}\hlopt{~}\hlstd{operation}\hlopt{+}\hlstd{xray}\hlopt{+}\hlstd{stage,}\hlkwc{data}\hlstd{=cancer)}
+\hlkwd{ftable}\hlstd{(}\hlkwd{prop.table}\hlstd{(xt,}\hlkwc{margin}\hlstd{=}\hlnum{3}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+##                stage   advanced      early
+## operation xray                            
+## limited   no         0.02836879 0.08860759
+##           yes        0.12765957 0.07594937
+## radical   no         0.31205674 0.32278481
+##           yes        0.53191489 0.51265823
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\begin{itemize}
+\item Out of the people at each stage of cancer (since
+  \texttt{margin=3} and \texttt{stage} was listed 3rd).
+\item The association is between \texttt{stage} and \texttt{xray}
+  \emph{only for those who had the limited operation}.
+\item For those who
+  had the radical operation, there was no association between
+  \texttt{stage} and \texttt{xray}.
+\item This is of less interest than associations with
+  \texttt{survival}. 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{General procedure}
+
+\begin{itemize}
+\item Start with ``complete model'' including all possible interactions.
+\item \texttt{drop1} gives highest-order interaction(s) remaining, remove least non-significant.
+\item Repeat as necessary until everything significant.
+\item Look at subtables of significant interactions.
+  \item Main effects not usually very interesting.
+\item Interactions with ``response'' usually of most interest: show association with response.
+\end{itemize}
+\end{frame}
+

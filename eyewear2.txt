@@ -1,0 +1,3 @@
+gender contacts glasses none
+female 150      30      120
+male   75       16      62

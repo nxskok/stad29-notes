@@ -1,0 +1,488 @@
+\documentclass{article}
+\title{The Rohwer data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+ group SES SAT PPVT Raven  n  s ns na ss
+     1  Lo  49   48     8  1  2  6 12 16
+     1  Lo  47   76    13  5 14 14 30 27
+     1  Lo  11   40    13  0 10 21 16 16
+     1  Lo   9   52     9  0  2  5 17  8
+     1  Lo  69   63    15  2  7 11 26 17
+     1  Lo  35   82    14  2 15 21 34 25
+     1  Lo   6   71    21  0  1 20 23 18
+     1  Lo   8   68     8  0  0 10 19 14
+     1  Lo  49   74    11  0  0  7 16 13
+     1  Lo   8   70    15  3  2 21 26 25
+     1  Lo  47   70    15  8 16 15 35 24
+     1  Lo   6   61    11  5  4  7 15 14
+     1  Lo  14   54    12  1 12 13 27 21
+     1  Lo  30   55    13  2  1 12 20 17
+     1  Lo   4   54    10  3 12 20 26 22
+     1  Lo  24   40    14  0  2  5 14  8
+     1  Lo  19   66    13  7 12 21 35 27
+     1  Lo  45   54    10  0  6  6 14 16
+     1  Lo  22   64    14 12  8 19 27 26
+     1  Lo  16   47    16  3  9 15 18 10
+     1  Lo  32   48    16  0  7  9 14 18
+     1  Lo  37   52    14  4  6 20 26 26
+     1  Lo  47   74    19  4  9 14 23 23
+     1  Lo   5   57    12  0  2  4 11  8
+     1  Lo   6   57    10  0  1 16 15 17
+     1  Lo  60   80    11  3  8 18 28 21
+     1  Lo  58   78    13  1 18 19 34 23
+     1  Lo   6   70    16  2 11  9 23 11
+     1  Lo  16   47    14  0 10  7 12  8
+     1  Lo  45   94    19  8 10 28 32 32
+     1  Lo   9   63    11  2 12  5 25 14
+     1  Lo  69   76    16  7 11 18 29 21
+     1  Lo  35   59    11  2  5 10 23 24
+     1  Lo  19   55     8  0  1 14 19 12
+     1  Lo  58   74    14  1  0 10 18 18
+     1  Lo  58   71    17  6  4 23 31 26
+     1  Lo  79   54    14  0  6  6 15 14
+     2  Hi  24   68    15  0 10  8 21 22
+     2  Hi   8   82    11  7  3 21 28 21
+     2  Hi  88   82    13  7  9 17 31 30
+     2  Hi  82   91    18  6 11 16 27 25
+     2  Hi  90   82    13 20  7 21 28 16
+     2  Hi  77  100    15  4 11 18 32 29
+     2  Hi  58  100    13  6  7 17 26 23
+     2  Hi  14   96    12  5  2 11 22 23
+     2  Hi   1   63    10  3  5 14 24 20
+     2  Hi  98   91    18 16 12 16 27 30
+     2  Hi   8   87    10  5  3 17 25 24
+     2  Hi  88  105    21  2 11 10 26 22
+     2  Hi   4   87    14  1  4 14 25 19
+     2  Hi  14   76    16 11  5 18 27 22
+     2  Hi  38   66    14  0  0  3 16 11
+     2  Hi   4   74    15  5  8 11 12 15
+     2  Hi  64   68    13  1  6 10 28 23
+     2  Hi  88   98    16  1  9 12 30 18
+     2  Hi  14   63    15  0 13 13 19 16
+     2  Hi  99   94    16  4  6 14 27 19
+     2  Hi  50   82    18  4  5 16 21 24
+     2  Hi  36   89    15  1  6 15 23 28
+     2  Hi  88   80    19  5  8 14 25 24
+     2  Hi  14   61    11  4  5 11 16 22
+     2  Hi  24  102    20  5  7 17 26 15
+     2  Hi  24   71    12  0  4  8 16 14
+     2  Hi  24  102    16  4 17 21 27 31
+     2  Hi  50   96    13  5  8 20 28 26
+     2  Hi   8   55    16  4  7 19 20 13
+     2  Hi  98   96    18  4  7 10 23 19
+     2  Hi  98   74    15  2  6 14 25 17
+     2  Hi  50   78    19  5 10 18 27 26
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data rohwer;
+    infile "Rohwer.dat" firstobs=2;
+    input group SES $ SAT PPVT Raven n s ns na ss;
+    if SES='Lo';
+
+proc print;
+
+proc reg;
+    model SAT PPVT Raven = n s ns na ss;
+    mtest;
+    n: mtest n;
+    s: mtest s;
+    ns: mtest ns;
+    na: mtest na;
+    ss: mtest ss;
+
+
+proc reg;
+    model SAT PPVT Raven = ns na;
+    mtest;
+    ns2: mtest ns;
+    na2: mtest na;
+
+proc reg;
+    model SAT PPVT Raven = na;
+    na3: mtest;
+    
+run;
+
+   
+\end{Winput}
+\begin{Woutput}
+Obs    group    SES    SAT    PPVT    Raven     n     s    ns    na    ss
+  1      1      Lo      49     48        8      1     2     6    12    16
+  2      1      Lo      47     76       13      5    14    14    30    27
+  3      1      Lo      11     40       13      0    10    21    16    16
+  4      1      Lo       9     52        9      0     2     5    17     8
+  5      1      Lo      69     63       15      2     7    11    26    17
+  6      1      Lo      35     82       14      2    15    21    34    25
+  7      1      Lo       6     71       21      0     1    20    23    18
+  8      1      Lo       8     68        8      0     0    10    19    14
+  9      1      Lo      49     74       11      0     0     7    16    13
+ 10      1      Lo       8     70       15      3     2    21    26    25
+ 11      1      Lo      47     70       15      8    16    15    35    24
+ 12      1      Lo       6     61       11      5     4     7    15    14
+ 13      1      Lo      14     54       12      1    12    13    27    21
+ 14      1      Lo      30     55       13      2     1    12    20    17
+ 15      1      Lo       4     54       10      3    12    20    26    22
+ 16      1      Lo      24     40       14      0     2     5    14     8
+ 17      1      Lo      19     66       13      7    12    21    35    27
+ 18      1      Lo      45     54       10      0     6     6    14    16
+ 19      1      Lo      22     64       14     12     8    19    27    26
+ 20      1      Lo      16     47       16      3     9    15    18    10
+ 21      1      Lo      32     48       16      0     7     9    14    18
+ 22      1      Lo      37     52       14      4     6    20    26    26
+ 23      1      Lo      47     74       19      4     9    14    23    23
+ 24      1      Lo       5     57       12      0     2     4    11     8
+ 25      1      Lo       6     57       10      0     1    16    15    17
+ 26      1      Lo      60     80       11      3     8    18    28    21
+ 27      1      Lo      58     78       13      1    18    19    34    23
+ 28      1      Lo       6     70       16      2    11     9    23    11
+ 29      1      Lo      16     47       14      0    10     7    12     8
+ 30      1      Lo      45     94       19      8    10    28    32    32
+ 31      1      Lo       9     63       11      2    12     5    25    14
+ 32      1      Lo      69     76       16      7    11    18    29    21
+ 33      1      Lo      35     59       11      2     5    10    23    24
+ 34      1      Lo      19     55        8      0     1    14    19    12
+ 35      1      Lo      58     74       14      1     0    10    18    18
+ 36      1      Lo      58     71       17      6     4    23    31    26
+ 37      1      Lo      79     54       14      0     6     6    15    14
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: SAT
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     5     3653.77324      730.75465       1.63    0.1824
+Error                    31          13930      449.33949
+Corrected Total          36          17583
+
+Root MSE             21.19763    R-Square     0.2078
+Dependent Mean       31.27027    Adj R-Sq     0.0800
+Coeff Var            67.78844
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1        4.15106       13.79834       0.30      0.7655
+n             1       -0.60887        1.67108      -0.36      0.7181
+s             1       -0.05016        0.94151      -0.05      0.9579
+ns            1       -1.73240        0.91046      -1.90      0.0664
+na            1        0.49456        1.03690       0.48      0.6367
+ss            1        2.24772        1.10096       2.04      0.0498
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: PPVT
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     5     2883.67590      576.73518       6.47    0.0003
+Error                    31     2764.75653       89.18569
+Corrected Total          36     5648.43243
+
+Root MSE              9.44382    R-Square     0.5105
+Dependent Mean       62.64865    Adj R-Sq     0.4316
+Coeff Var            15.07426
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       33.00577        6.14734       5.37      <.0001
+n             1       -0.08057        0.74449      -0.11      0.9145
+s             1       -0.72105        0.41945      -1.72      0.0956
+ns            1       -0.29830        0.40562      -0.74      0.4676
+na            1        1.47042        0.46195       3.18      0.0033
+ss            1        0.32396        0.49049       0.66      0.5138
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: Raven
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     5       76.52860       15.30572       1.77    0.1486
+Error                    31      268.28221        8.65426
+Corrected Total          36      344.81081
+
+Root MSE              2.94181    R-Square     0.2219
+Dependent Mean       13.24324    Adj R-Sq     0.0965
+Coeff Var            22.21369
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       11.17338        1.91494       5.83      <.0001
+n             1        0.21100        0.23191       0.91      0.3699
+s             1        0.06457        0.13066       0.49      0.6247
+ns            1        0.21358        0.12635       1.69      0.1010
+na            1       -0.03732        0.14390      -0.26      0.7971
+ss            1       -0.05214        0.15279      -0.34      0.7352
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test 1
+                 Multivariate Statistics and F Approximations
+                            S=3    M=0.5    N=13.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.34316907       2.54        15    80.458    0.0039
+Pillai's Trace              0.82528864       2.35        15        93    0.0066
+Hotelling-Lawley Trace      1.44875712       2.72        15    49.769    0.0042
+Roy's Greatest Root         1.05511542       6.54         5        31    0.0003
+         NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: n
+                Multivariate Statistics and Exact F Statistics
+                            S=1    M=0.5    N=13.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.96164244       0.39         3        29    0.7642
+Pillai's Trace              0.03835756       0.39         3        29    0.7642
+Hotelling-Lawley Trace      0.03988755       0.39         3        29    0.7642
+Roy's Greatest Root         0.03988755       0.39         3        29    0.7642
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: s
+                Multivariate Statistics and Exact F Statistics
+                            S=1    M=0.5    N=13.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.88820667       1.22         3        29    0.3213
+Pillai's Trace              0.11179333       1.22         3        29    0.3213
+Hotelling-Lawley Trace      0.12586410       1.22         3        29    0.3213
+Roy's Greatest Root         0.12586410       1.22         3        29    0.3213
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: ns
+                Multivariate Statistics and Exact F Statistics
+                            S=1    M=0.5    N=13.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.77477885       2.81         3        29    0.0570
+Pillai's Trace              0.22522115       2.81         3        29    0.0570
+Hotelling-Lawley Trace      0.29069088       2.81         3        29    0.0570
+Roy's Greatest Root         0.29069088       2.81         3        29    0.0570
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: na
+                Multivariate Statistics and Exact F Statistics
+                            S=1    M=0.5    N=13.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.73254211       3.53         3        29    0.0271
+Pillai's Trace              0.26745789       3.53         3        29    0.0271
+Hotelling-Lawley Trace      0.36510923       3.53         3        29    0.0271
+Roy's Greatest Root         0.36510923       3.53         3        29    0.0271
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: ss
+                Multivariate Statistics and Exact F Statistics
+                            S=1    M=0.5    N=13.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.86103767       1.56         3        29    0.2203
+Pillai's Trace              0.13896233       1.56         3        29    0.2203
+Hotelling-Lawley Trace      0.16138937       1.56         3        29    0.2203
+Roy's Greatest Root         0.16138937       1.56         3        29    0.2203
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: SAT
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     2     1705.56004      852.78002       1.83    0.1765
+Error                    34          15878      466.99227
+Corrected Total          36          17583
+
+Root MSE             21.61000    R-Square     0.0970
+Dependent Mean       31.27027    Adj R-Sq     0.0439
+Coeff Var            69.10719
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       12.96360       11.68856       1.11      0.2752
+ns            1       -0.83824        0.80914      -1.04      0.3075
+na            1        1.32322        0.70976       1.86      0.0709
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: PPVT
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     2     2552.00497     1276.00248      14.01    <.0001
+Error                    34     3096.42746       91.07140
+Corrected Total          36     5648.43243
+
+Root MSE              9.54313    R-Square     0.4518
+Dependent Mean       62.64865    Adj R-Sq     0.4196
+Coeff Var            15.23278
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       36.62049        5.16175       7.09      <.0001
+ns            1       -0.04141        0.35732      -0.12      0.9084
+na            1        1.18805        0.31344       3.79      0.0006
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: Raven
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     2       66.86503       33.43252       4.09    0.0256
+Error                    34      277.94578        8.17488
+Corrected Total          36      344.81081
+
+Root MSE              2.85917    R-Square     0.1939
+Dependent Mean       13.24324    Adj R-Sq     0.1465
+Coeff Var            21.58968
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       10.10329        1.54649       6.53      <.0001
+ns            1        0.19540        0.10706       1.83      0.0768
+na            1        0.02256        0.09391       0.24      0.8116
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test 1
+                 Multivariate Statistics and F Approximations
+                              S=2    M=0    N=15
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.46333120       5.00         6        64    0.0003
+Pillai's Trace              0.59915258       4.70         6        66    0.0005
+Hotelling-Lawley Trace      1.02342563       5.38         6    40.936    0.0004
+Roy's Greatest Root         0.86807261       9.55         3        33    0.0001
+         NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+                 NOTE: F Statistic for Wilks' Lambda is exact.
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: ns2
+                Multivariate Statistics and Exact F Statistics
+                             S=1    M=0.5    N=15
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.86310909       1.69         3        32    0.1884
+Pillai's Trace              0.13689091       1.69         3        32    0.1884
+Hotelling-Lawley Trace      0.15860209       1.69         3        32    0.1884
+Roy's Greatest Root         0.15860209       1.69         3        32    0.1884
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: na2
+                Multivariate Statistics and Exact F Statistics
+                             S=1    M=0.5    N=15
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.68623559       4.88         3        32    0.0066
+Pillai's Trace              0.31376441       4.88         3        32    0.0066
+Hotelling-Lawley Trace      0.45722550       4.88         3        32    0.0066
+Roy's Greatest Root         0.45722550       4.88         3        32    0.0066
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: SAT
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     1     1204.38021     1204.38021       2.57    0.1176
+Error                    35          16379      467.96906
+Corrected Total          36          17583
+
+Root MSE             21.63259    R-Square     0.0685
+Dependent Mean       31.27027    Adj R-Sq     0.0419
+Coeff Var            69.17942
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       13.40010       11.69318       1.15      0.2596
+na            1        0.79855        0.49777       1.60      0.1176
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: PPVT
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     1     2550.78211     2550.78211      28.82    <.0001
+Error                    35     3097.65032       88.50429
+Corrected Total          36     5648.43243
+
+Root MSE              9.40767    R-Square     0.4516
+Dependent Mean       62.64865    Adj R-Sq     0.4359
+Coeff Var            15.01656
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       36.64205        5.08518       7.21      <.0001
+na            1        1.16213        0.21647       5.37      <.0001
+
+The REG Procedure
+Model: MODEL1
+Dependent Variable: Raven
+Number of Observations Read          37
+Number of Observations Used          37
+
+                             Analysis of Variance
+                                    Sum of           Mean
+Source                   DF        Squares         Square    F Value    Pr > F
+Model                     1       39.63250       39.63250       4.55    0.0401
+Error                    35      305.17831        8.71938
+Corrected Total          36      344.81081
+
+Root MSE              2.95286    R-Square     0.1149
+Dependent Mean       13.24324    Adj R-Sq     0.0897
+Coeff Var            22.29710
+
+                        Parameter Estimates
+                     Parameter       Standard
+Variable     DF       Estimate          Error    t Value    Pr > |t|
+Intercept     1       10.00155        1.59612       6.27      <.0001
+na            1        0.14486        0.06795       2.13      0.0401
+
+The REG Procedure
+Model: MODEL1
+Multivariate Test: na3
+                Multivariate Statistics and Exact F Statistics
+                            S=1    M=0.5    N=15.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.53681650       9.49         3        33    0.0001
+Pillai's Trace              0.46318350       9.49         3        33    0.0001
+Hotelling-Lawley Trace      0.86283396       9.49         3        33    0.0001
+Roy's Greatest Root         0.86283396       9.49         3        33    0.0001
+\end{Woutput}
+\end{document}

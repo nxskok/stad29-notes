@@ -1,0 +1,2 @@
+cp $1.dat $1_d.dat
+perl dedos.pl $1_d.dat > $1.dat

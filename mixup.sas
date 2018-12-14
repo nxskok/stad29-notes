@@ -1,0 +1,17 @@
+data mix;
+    infile "mixup.dat";
+    input group $ x y;
+
+proc gplot;
+    plot y*x=group;
+    
+proc discrim can list out=xx;
+    class group;
+    var x y;
+    
+proc print;
+
+proc gplot;
+    plot Can1 * Can2 = group;
+
+run;

@@ -1,0 +1,576 @@
+\section{R Scripts, projects and R Markdown: 
+  organizing your work}
+\frame{\sectionpage}
+
+\begin{frame}[frame]{R Scripts}
+  
+  \begin{itemize}
+  \item Typing commands in the bottom left Console window is OK, but:
+    \begin{itemize}
+    \item may need to type commands over again
+    \item can use up/down arrows to scroll through previous commands
+    \item no easy record of what you did.
+    \end{itemize}
+
+  \item File/New/R Script opens new window top left.
+  \item enter commands \emph{here}, control-enter or Run button runs
+    them (output in console).
+  \item select several lines, Run runs all.
+  \item \textbf{Have record of what you did}.
+  \item Editable: can save list of working commands, with no false
+    trails, re-run from start to check analysis reproducible.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Projects}
+  
+  \begin{itemize}
+  \item Provides a way of putting code and data in one place.
+  \item One overarching structure: can have scripts, text windows,
+    etc. all open in one place.
+  \item When you close a project and re-open it, code and data are as
+    you left it.
+  \item To create a project, Project-Create Project. Project
+    associated with folder (directory). Prompted to create new project
+    in new folder, or associate it with existing folder.
+  \item Then browse to folder where you want the project, and click
+    Create Project.
+  \item Can have different projects for eg.\ each assignment, to keep
+    them separate.
+  \item Helps solve ``folder problem'', because everything in Project folder.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{R Markdown}
+  
+  \begin{itemize}
+  \item Reproducible research: anyone should be able to reproduce
+    exactly the analysis you did.
+  \item Report and analysis combined (instead of copy-pasting).
+  \item Report uses ``markup language'' (simplified HTML) for text
+    and formatting.
+  \item To add code, insert \emph{code chunk}.
+  \item Inside code chunk, put \emph{only} code. This is run when
+    document is processed, and output inserted in final document.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Example R Markdown document}
+
+{\scriptsize  
+\begin{verbatim}
+This is the title
+=================
+Here is some data:
+
+```{r}
+x=c(10,11,13,14,17,18,22,24,27,41)
+x
+```
+
+and this is a summary of x:
+
+```{r}
+summary(x)
+```
+
+Finally, a boxplot of x:
+
+```{r}
+boxplot(x)
+```
+
+from which we see that x is right-skewed.
+\end{verbatim}
+  }
+  
+\end{frame}
+
+\begin{frame}[fragile]{How it looks when ``knitted'', some}
+
+  It falls off the bottom of the page:
+  
+  \includegraphics[height=0.9\textheight]{silly}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Doing it yourself}
+  
+  \begin{itemize}
+  \item File-New-R Notebook, pops up new window top left with template.
+  \item Save it (just filename, R supplies extension).
+  \item Write your report/assignment, inserting formatting code.
+  \item Insert code chunk by Chunks, Insert Chunk (control-alt-i).
+  \item In code chunk, just put the code you want to run. Can produce
+    text or graphics output.
+  \item To see how each chunk's output looks, click green arrow top
+    right of chunk
+  \item To see how it all looks, click Preview. Preview window pops up.
+  \item If you don't like it, edit R Markdown and preview again.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{When you're happy with it}
+  
+  \begin{itemize}
+  \item Find arrow to right of Preview. Click it. In drop-down, select
+    Knit to Word. This will produce Word copy of text plus code plus
+    output, suitable for handing in as assignment.
+  \item If you see any errors, \emph{close} Word, go back to R
+    Markdown, make changes and knit again.
+  \item You can make final cosmetic changes to the Word (eg.\ put
+    tables in fixed-width font so that they line up), but if you
+    change the R code and knit again, \emph{those changes will be lost}.
+  \item You can also knit to PDF, but that requires \LaTeX\ on your
+    computer. 
+  \end{itemize}
+  
+\end{frame}
+
+% \begin{frame}[fragile]{Tidying data}
+%   
+%   \begin{itemize}
+%   \item Most of this from
+%     \url{http://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html}. 
+%   \item Data don't often come to us in the format that we would like
+%     them for analysis.
+%   \item Often, columns should be rows (or vice versa), or columns
+%     should be combined or split.
+%   \item Guiding principle (for us): every value belongs to a \emph{variable}
+%     and an \emph{observation}:
+%     \begin{itemize}
+%     \item     A variable contains all values that
+%     measure the same thing (eg.\ height)
+%   \item An observation contains all values measured on the same
+%     subject (eg.\ person.)
+%   \item Each variable is in a column.
+%   \item Each observation is in one, or more than one, row.
+%     \end{itemize}
+%     
+%   \end{itemize}
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{The usual beginning}
+% <<>>=
+% library(tidyverse)
+% @   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{One variable in multiple columns}
+% <<message=F>>=
+% scores=read_delim("scores.txt"," ")
+% scores
+% @   
+% 
+% \begin{itemize}
+% \item \texttt{assgt.1} through \texttt{test.2} are all the same thing
+%   (scores on an assessment). Combine them into \emph{one} column, with
+%   a label showing which assessment they belong to. 
+%    
+% \end{itemize}
+% \end{frame}
+% 
+% \begin{frame}[fragile]{\texttt{gather}}
+% 
+%   
+% <<size="scriptsize">>=
+% library(tidyverse)
+% scores2 = scores %>% 
+%     gather(assessment,score,assgt.1:test.2)
+% scores2
+% @   
+% 
+% Now can find mean score on each assessment, or make boxplots of scores
+% for each assessment (side by side). 
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Anatomy of \texttt{gather}}
+%   
+%   Gather requires three things:
+%   \begin{itemize}
+%   \item What makes the columns different
+%   \item What makes the columns the same (what the columns to be combined
+%     are all instances of)
+%   \item Which columns to ``gather'' together. Can be \texttt{x:y}
+%     meaning columns \texttt{x} through \texttt{y} inclusive, or a
+%     vector of column names with \texttt{c()}, or column names to omit
+%     with \texttt{-}. No quotes needed in column names.
+%   \end{itemize}
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Splitting things up}
+%   
+% Suppose we want to split up that \texttt{assessment} column into two
+% things': the assessment type \texttt{assess.type} and which number
+% assessment it is \texttt{assess.num}. That is a job for \texttt{separate}:
+% 
+% {\footnotesize
+% <<>>=
+% separate(scores2,assessment,
+%          into=c("assess.type","assess.num"),
+%          sep="\\.")
+% @ 
+% }
+%   
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Chaining things together}
+%   
+%   To do \texttt{gather} and \texttt{separate} in sequence, use pipe
+%   \texttt{\%>\%}, ``and then''.
+% 
+% <<size="footnotesize">>=
+% scores %>% 
+%     gather(assessment,score,assgt.1:test.2) %>%
+%     separate(assessment,into=c("assess.type","assess.num"), 
+%       sep="\\.")
+% @   
+%   
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Anatomy of \texttt{separate}}
+%   
+%   This too needs three things:
+%   
+%   \begin{itemize}
+%   \item a variable \texttt{x} to separate out into parts
+%   \item a thing \texttt{into}: a vector of variable names to separate
+%     \texttt{x} into
+%   \item a thing \texttt{sep} to specify what to separate on. This is a
+%     ``regular expression'': the odd-looking code we used means
+%     ``separate by dot'', but a dot in a regular expression means ``any
+%     one character'', and we want an actual dot.
+%     
+%     \texttt{sep} can also be a number, which means ``separate after
+%     that many characters from the beginning''. Here, though, the dot
+%     could be anywhere, so we separate at the dot, wherever it is.
+%   \end{itemize}
+%   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{The weather data}
+%   
+% <<>>=
+% weather=read_delim("weather.txt"," ")
+% @   
+%   
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Making separate columns}
+%   
+% We have:
+%   
+% <<>>=
+% weather
+% @   
+% 
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{\texttt{spread}}
+% 
+% \texttt{temperature} is certainly temperature, but \texttt{type}
+% is two kinds of temperature: daily maximum and 
+% daily minimum. Two separate variables, and thus need to be
+% in two separate columns. Inverse of \texttt{gather}:
+% 
+% <<>>=
+% weather %>% spread(type,temperature)
+% @ 
+% 
+% \texttt{spread} needs two things: the variable for dividing into
+% groups (used as names for new variables), and the variable to be
+% divided. 
+% 
+% 
+% \end{frame}
+% 
+% \begin{frame}[fragile]{\texttt{dplyr}: doing things to tidy data frames}
+%   
+%   Real-life data frames, even after tidying, don't always  contain
+%   what we want. \texttt{dplyr} helps to ``bash things into shape'':
+%   
+%   \begin{itemize}
+%   \item Choosing rows (observations) (\texttt{filter})
+%   \item Sorting rows by variables (\texttt{arrange})
+%   \item Choosing columns (variables) (\texttt{select})
+%   \item Creating new variables (\texttt{mutate})
+%   \item Summarizing variables (\texttt{summarize})
+%   \item Randomly sampling rows (\texttt{sample\_n} and \texttt{sample\_frac})
+%   \end{itemize}
+%   
+%   This based on \url{http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html}.
+% 
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Choosing rows (1)}
+%   
+%   Start with somewhat-tidy marks data frame:
+%   
+% <<>>=
+% scores2
+% @   
+% 
+%   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Choosing rows (2)}
+%   
+%   To choose just Angela's marks (note \texttt{==}):
+%   
+% <<size="small">>=
+% scores2 %>% filter(name=="Angela")
+% @   
+% 
+% or just Angela's test 1 mark (``and'' implied):
+% 
+% <<size="footnotesize">>=
+% scores2 %>% 
+%     filter(name=="Angela",assessment=="test.1")
+% @ 
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Choosing rows (3)}
+%   
+% Choose marks which belong either to assignment 1 or to test 1:
+% 
+% <<>>=
+% scores2 %>% 
+%     filter(assessment=="assgt.1" | 
+%            assessment=="test.1")
+% @ 
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Choosing rows (4)}
+%   
+% The marks that are over 40:
+% 
+% <<>>=
+% scores2 %>% filter(score>40)
+% @ 
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Ordering rows (1)}
+%   
+% To sort rows into order (by one or more variables), use \texttt{arrange}:
+% 
+% {\small
+% <<>>=
+% scores2 %>% arrange(name)
+% @ 
+% }
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Ordering rows (2)}
+%   
+% In descending order:
+% 
+% {\small
+% <<>>=
+% scores2 %>% arrange(desc(score))
+% @ 
+% }
+%   
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Ordering rows (3)}
+%   
+% By name, breaking ties in descending order of score:
+% 
+% {\small
+% <<>>=
+% scores2 %>% arrange(name,desc(score))
+% @ 
+% }
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Choosing columns}
+% 
+%   \begin{itemize}
+%   \item   \texttt{select} chooses columns. You choose columns the same way as
+%   in \texttt{gather}.
+%   
+% \item \emph{But}, \texttt{MASS} also has a \texttt{select} (that does
+%   something different). So if you did \texttt{library(MASS)} in this R
+%   session, ``unattach'' it first:
+%   
+% <<eval=F>>=
+% detach("package:MASS", unload=T)
+% @   
+% 
+%     
+% 
+%   \end{itemize}
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Choosing columns (variables) (1)}
+% 
+%   \begin{itemize}
+%   \item Now, for
+%   example, to pull out just the marks (only the top few fit on the screen):
+% 
+% <<size="footnotesize">>=
+% scores2 %>% select(score)
+% @   
+%   \end{itemize}
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Choosing columns (variables) (2)}
+%   
+%   And to pull out everything but the names:
+%   
+% <<size="footnotesize">>=
+% scores2 %>% select(-name)
+% @   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Selecting columns (variables) (3)}
+%   
+% Or, choose ``assessment through score'':
+%   
+% <<size="footnotesize">>=
+% scores2 %>% select(assessment:score)
+% @   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Chaining things together}
+%   
+%   These functions can also be chained together in sequence. Again,
+%   remove the first data frame argument to any of the functions. Thus,
+%   to choose everything but name and display the first 5 rows of result:
+% 
+% <<size="footnotesize">>=
+% scores2 %>% select(-name) %>% head(5)
+% @ 
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Finding the different ones: \texttt{distinct}}
+%   
+%   ``What are the different
+%   assessments?'' Easiest done in a chain:
+%   
+% <<>>=
+% scores2 %>% select(assessment) %>% distinct() 
+% @   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{What does this one do?}
+%   
+% <<>>=
+% scores2 %>% select(-name) %>% head(5) %>% 
+%   distinct()
+% @ 
+%   
+% This shows the distinct assessment-score patterns (several people had
+% the same score on the same assessment, so even though we looked at the
+% top 5 lines of the result, several of them were identical, so we only
+% got 3 distinct ones).
+%   
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Creating new columns using \texttt{mutate}}
+%   
+%   Suppose the assignment is out of 10, the tests are out of 50, and we
+%   want to create a new column that is percentages:
+%   
+%   {\small
+% <<>>=
+% scores2 %>% mutate(out.of=c(rep(10,4),rep(50,8)),
+%                    percent=score/out.of*100)
+% @   
+% }
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Summarizing values}
+%   
+%   Use \texttt{summarize} (or \texttt{summarise}):
+%   
+% <<>>=
+% scores2 %>% summarize(mean.score=mean(score))
+% @   
+% 
+% Not useful yet, but very useful in making summaries by group (later).
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Random samples of rows}
+%   
+% <<echo=F>>=
+% set.seed(457299)
+% @   
+% 
+% By the number of rows you want:
+% 
+% <<>>=
+% scores2 %>% sample_n(5)
+% @ 
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{Random samples of rows (part 2)}
+%   
+% 
+% or the fraction of rows you want:
+% 
+% <<>>=
+% scores2 %>% sample_frac(0.25)
+% @ 
+%   
+% \end{frame}
+% 
+% 
+% \begin{frame}[fragile]{Doing things by groups}
+%   
+%   Start with \texttt{group\_by}. Then use \texttt{summarize()} or
+%   whatever as needed. This seems to work most naturally in a chain.
+%   
+%   To find the mean score on each assessment:
+%   
+% <<>>=
+% scores2 %>% group_by(assessment) %>% 
+%    summarize( assess.mean=mean(score),
+%               assess.sd=sd(score)
+%             )
+% @   
+%   
+% \end{frame}
+% 
+% \begin{frame}[fragile]{How many assessments did each person do?}
+%   
+% <<>>=
+% scores2 %>% group_by(name) %>%
+%    dplyr::summarize(how.many=n())
+% @   
+%   
+% 
+% This is actually ``how many times did each name appear in the original
+% data frame?''.
+% \end{frame}

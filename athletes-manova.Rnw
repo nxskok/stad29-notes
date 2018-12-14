@@ -1,0 +1,42 @@
+\question This question uses the data on Australian elite athletes,
+which can be found at
+\url{http://www.utsc.utoronto.ca/~butler/c32/ais.txt}. 202 elite
+athletes had various physical and physiological measurements taken,
+and for each their gender (in the column \texttt{Sex}) and the sport
+they play (\texttt{Sport}) was also noted. The data values are
+separated by \emph{tabs}, meaning that \texttt{read\_tsv} will read
+them in.
+
+\begin{parts}
+  \part[2] Read in the data and verify that you have 202 rows and 13
+  columns. 
+  
+  \begin{solution}
+    As in the hint:
+    
+<<>>=
+my_url="http://www.utsc.utoronto.ca/~butler/c32/ais.txt"
+athletes=read_tsv(my_url)
+athletes
+@     
+
+202 rows and 13 columns indeed.
+  \end{solution}
+  
+  \part[2] We are going to see whether the height-weight combination
+  of an athlete depends significantly on which sport they play and which gender
+  they are. Explain (very) briefly why a multivariate analysis of
+  variance will be necessary to do this.
+  
+  \begin{solution}
+    We now have \emph{two} response variables, height and weight,
+    rather than just one. In order to do a test with more than one
+    response variable, we need to use multivariate ANOVA rather than
+    regular ANOVA.
+    
+    Extra: the explanatory variables, sport and gender, are both
+    categorical here, which makes a MANOVA work. If either of them had
+    been categorical, we would have needed to do a multivariate
+    regression, which is beyond the scope of this course.
+  \end{solution}
+\end{parts}

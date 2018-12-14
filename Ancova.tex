@@ -1,0 +1,299 @@
+\documentclass[pdf]{prosper}
+\usepackage[Lakar]{HA-prosper}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{slide}{Analysis of covariance}
+
+  \begin{itemize}
+  \item ANOVA: explanatory variables categorical (divide data into groups)
+  \item traditionally, analysis of covariance has categorical $x$'s plus one numerical $x$ (``covariate'') to be adjusted for.
+  \item \texttt{lm} handles this too.
+  \item Simple example: two treatments (drugs) (\verb-a- and \verb-b-), with before and after scores. 
+    \begin{itemize}
+    \item 
+Does knowing before score and/or treatment help to predict after score?
+\item Is after score different by treatment/before score?
+    \end{itemize}
+  \end{itemize}
+
+\end{slide}
+
+\begin{slide}{Data}
+
+Treatment, before, after:
+
+{\scriptsize
+\begin{verbatim}
+a 5 20
+a 10 23
+a 12 30
+a 9 25
+a 23 34
+a 21 40
+a 14 27
+a 18 38
+a 6 24
+a 13 31
+b 7 19
+b 12 26
+b 27 33
+b 24 35
+b 18 30
+b 22 31
+b 26 34
+b 21 28
+b 14 23
+b 9 22
+\end{verbatim}
+  }
+\end{slide}
+
+\begin{slide}[fragile]{Matched pairs}
+
+One way to handle this is as matched pairs: take the difference after
+minus before and analyze \emph{those} (predicting the differences from
+\texttt{drug}:
+
+{\small
+\begin{verbatim}
+> prepost=read.table("ancova.txt",header=T)
+> head(prepost)
+  drug before after
+1    a      5    20
+2    a     10    23
+3    a     12    30
+4    a      9    25
+5    a     23    34
+6    a     21    40
+> attach(prepost)
+> diff=after-before
+> prepost.0=aov(diff~drug)
+> summary(prepost.0)
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+drug         1  180.0   180.0   22.22 0.000173 ***
+Residuals   18  145.8     8.1                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{SAS code}
+
+\begin{verbatim}
+options linesize=75;
+
+data drugs;
+  infile "ancova.dat";
+  input drug $ before after;
+
+proc means;
+  class drug;
+
+proc glm;
+  class drug;
+  model after = drug before drug*before;
+\end{verbatim}
+
+  \begin{itemize}
+  \item Get means of before and after scores for each treatment.
+  \item Make sure \verb-drug- treated as categorical (``class'')
+  \item Before score treated as numeric by default
+  \item Interaction means ``effect of before score on after score is different for each treatment''. Fit this first.
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{The means}
+{\scriptsize
+\begin{verbatim}
+                            The MEANS Procedure
+
+             N
+drug       Obs   Variable    N           Mean        Std Dev 
+-------------------------------------------------------------
+a           10   before     10     13.1000000      6.0452001 
+                 after      10     29.2000000      6.6131183 
+
+b           10   before     10     18.0000000      7.1492035 
+                 after      10     28.1000000      5.4660569 
+-------------------------------------------------------------
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Mean ``after'' score slightly higher for treatment A.
+\item Mean ``before'' score much higher for treatment B.
+\item Greater {\em improvement} on treatment A. 
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Testing for interaction}
+
+{\scriptsize
+\begin{verbatim}
+                               The GLM Procedure
+Dependent Variable: after
+                                       Sum of
+ Source              DF        Squares    Mean Square   F Value   Pr > F
+
+ Model                3    558.5668744    186.1889581     27.09   <.0001
+ Error               16    109.9831256      6.8739453
+ Corrected Total     19    668.5500000
+
+ Source              DF      Type I SS    Mean Square   F Value   Pr > F
+
+ drug                 1      6.0500000      6.0500000      0.88   0.3621
+ before               1    540.1797947    540.1797947     78.58   <.0001
+ before*drug          1     12.3370798     12.3370798      1.79   0.1991
+
+
+ Source              DF    Type III SS    Mean Square   F Value   Pr > F
+
+ drug                 1      1.2105592      1.2105592      0.18   0.6803
+ before               1    552.3578682    552.3578682     80.36   <.0001
+ before*drug          1     12.3370798     12.3370798      1.79   0.1991
+
+
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{Taking out interaction}
+
+  \begin{itemize}
+  \item Take out non-significant interaction.
+  \item Assuming linear dependence of after score on before score has {\em same slope} for both treatments (though possibly different intercept).
+  \item Get predicted means for ``after'' score depending on \verb-drug- and \verb-before-.
+  \item Also get means for treatments ``adjusted'' for before score.
+
+  \item Code:
+\begin{verbatim}
+proc glm;
+  class drug;
+  model after = drug before;
+  output out=z predict=pred;
+  lsmeans drug;
+
+proc print data=z;
+
+\end{verbatim}
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Results}
+
+{\scriptsize
+\begin{verbatim}
+Dependent Variable: after   
+                                     Sum of
+ Source                    DF       Squares   Mean Square  F Value  Pr > F
+ Model                      2   546.2297947   273.1148973    37.96  <.0001
+ Error                     17   122.3202053     7.1953062                 
+ Corrected Total           19   668.5500000                               
+
+ Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+
+ drug                       1     6.0500000     6.0500000     0.84  0.3720
+ before                     1   540.1797947   540.1797947    75.07  <.0001
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ drug                       1   115.3059567   115.3059567    16.03  0.0009
+ before                     1   540.1797947   540.1797947    75.07  <.0001
+
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{Interpreting the output}
+
+  \begin{itemize}
+  \item Requires care!
+  \item Model as a whole is significant.
+  \item Type I SS says ``is each variable significant when added {\em in order}: that is:
+    \begin{itemize}
+    \item \verb-drug- added to a model containing nothing (not sig)
+    \item \verb-before- added to model containing only \verb-drug- (sig)
+    \end{itemize}
+  \item Not really what we want to know.
+  \item Type III SS: ``can I take this variable out of a model
+    containing everything?'' Answer in both cases no. Interpretation:
+    once you allow for before score, there is a significant difference
+    between treatments. (But if you don't allow for before score, there
+    isn't.)
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{LS-means}
+Sample means for each treatment close:
+
+{\scriptsize
+\begin{verbatim}
+             N
+drug       Obs   Variable    N           Mean        Std Dev 
+-------------------------------------------------------------
+a           10   after      10     29.2000000      6.6131183 
+b           10   after      10     28.1000000      5.4660569 
+-------------------------------------------------------------
+
+\end{verbatim}
+}
+
+``Least squares means'': mean score for each treatment, after allowing for difference in before scores:
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+                            Least Squares Means
+
+                           drug    after LSMEAN
+                           a         31.2273292
+                           b         26.0726708
+\end{verbatim}
+}
+
+Treatment A noticeably (significantly) better than B, {\em once you allow for before score}.
+  
+\end{slide}
+
+\begin{slide}{Looking at the predictions}
+
+Some of them, arranged in before score order:
+
+{\scriptsize
+\begin{verbatim}
+             Obs    drug    before      pred
+               4     a         9      25.8073
+               3     a        12      28.2898
+               7     a        14      29.9447
+               8     a        18      33.2547
+               6     a        21      35.7371
+
+              20     b         9      20.6527
+              12     b        12      23.1351
+              19     b        14      24.7901
+              15     b        18      28.1000
+              18     b        21      30.5824
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Prediction for treatment A about 5 units higher than for treatment B at the same before score --- same difference as between LSMEANS.
+\item Consistent because no interaction.
+\item If interaction had been included, A might be higher for some before scores and B higher for others: clouds interpretation.
+\end{itemize}
+  
+\end{slide}
+
+\end{document}

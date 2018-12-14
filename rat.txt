@@ -1,0 +1,8 @@
+dose status
+0 lived
+1 died
+2 lived
+3 lived
+4 died
+5 died
+

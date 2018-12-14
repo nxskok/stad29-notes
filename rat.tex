@@ -1,0 +1,102 @@
+\documentclass{article}
+\title{The rat data}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+0 lived
+1 died
+2 lived
+3 lived
+4 died
+5 died
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data rat;
+  infile "rat.dat";
+  input dose survival $;
+
+proc print;
+
+proc logistic;
+  class survival;
+  model survival = dose;
+  output out=rat2 pred=pred;
+
+proc print data=rat2;
+
+run;
+\end{Winput}
+\begin{Woutput}
+Obs    dose    survival
+ 1       0      lived
+ 2       1      died
+ 3       2      lived
+ 4       3      lived
+ 5       4      died
+ 6       5      died
+
+The LOGISTIC Procedure
+              Model Information
+Data Set                      WORK.RAT
+Response Variable             survival
+Number of Response Levels     2
+Model                         binary logit
+Optimization Technique        Fisher's scoring
+
+Number of Observations Read           6
+Number of Observations Used           6
+
+          Response Profile
+ Ordered                      Total
+   Value     survival     Frequency
+       1     died                 3
+       2     lived                3
+Probability modeled is survival='died'.
+
+                    Model Convergence Status
+         Convergence criterion (GCONV=1E-8) satisfied.
+
+         Model Fit Statistics
+                             Intercept
+              Intercept            and
+Criterion          Only     Covariates
+AIC              10.318         10.773
+SC               10.110         10.356
+-2 Log L          8.318          6.773
+
+        Testing Global Null Hypothesis: BETA=0
+Test                 Chi-Square       DF     Pr > ChiSq
+Likelihood Ratio         1.5449        1         0.2139
+Score                    1.4286        1         0.2320
+Wald                     1.2037        1         0.2726
+
+             Analysis of Maximum Likelihood Estimates
+                               Standard          Wald
+Parameter    DF    Estimate       Error    Chi-Square    Pr > ChiSq
+Intercept     1     -1.6841      1.7978        0.8774        0.3489
+dose          1      0.6736      0.6140        1.2037        0.2726
+
+The LOGISTIC Procedure
+           Odds Ratio Estimates
+             Point          95% Wald
+Effect    Estimate      Confidence Limits
+dose         1.961       0.589       6.534
+
+Association of Predicted Probabilities and Observed Responses
+Percent Concordant     77.8    Somers' D    0.556
+Percent Discordant     22.2    Gamma        0.556
+Percent Tied            0.0    Tau-a        0.333
+Pairs                     9    c            0.778
+
+Obs    dose    survival    _LEVEL_      pred
+ 1       0      lived       died      0.15656
+ 2       1      died        died      0.26690
+ 3       2      lived       died      0.41658
+ 4       3      lived       died      0.58342
+ 5       4      died        died      0.73310
+ 6       5      died        died      0.84344
+\end{Woutput}
+\end{document}

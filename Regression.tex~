@@ -1,0 +1,510 @@
+\documentclass[pdf]{prosper}
+
+\usepackage[lakar]{HA-prosper}
+%\usepackage{HA-prosper}
+
+\usepackage{graphicx}
+
+% compile with latex and then dvips -t letter
+
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{30pt}
+
+%\setlength{\textwidth}{5in}
+%\setlength{\textheight}{5in}
+
+%\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\begin{slide}{Regression}
+
+  \begin{itemize}
+  \item Use regression when one variable is an outcome ({\em response}, $y$).
+  \item See if/how response depends on other variable(s), {\em explanatory}, $x_1, x_2,\ldots$.
+  \item Can have {\em one} or {\em more than one} explanatory variable, but always one response.
+  \item Assumes a {\em straight-line} relationship between response and explanatory.
+  \item Ask: 
+    \begin{itemize}
+    \item {\em is there} a relationship between $y$ and $x's$, and if so, which ones?
+    \item what does the relationship look like?
+    \end{itemize}
+
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{A regression with one $x$}
+
+13 children, measure average total sleep time (ATST, mins) and age (years) for each. See if ATST depends on age. Data in \verb-sleep.dat-, ATST then age. Read in data:
+
+\begin{verbatim}
+data sleep;
+  infile "sleep.dat";
+  input atst age;
+\end{verbatim}
+
+and make scatter plot of ATST (response) vs.\ age (explanatory) using this code:
+
+\begin{verbatim}
+proc plot;
+  plot atst * age;
+\end{verbatim}
+
+Either run this first and see what the plot looks like, or be an optimist and add regression to end of this:
+
+\begin{verbatim}
+proc reg;
+  model atst=age;
+\end{verbatim}
+
+Assemble these commands in file \verb-sleep.sas- and then run \verb-sas sleep.sas-. Check \verb-sleep.log- for any errors.
+
+\end{slide}
+
+\begin{slide}{The scatterplot}
+
+{\scriptsize
+\begin{verbatim}
+     Plot of atst*age.  Legend: A = 1 obs, B = 2 obs, etc.
+ 600 +
+     |
+     |   A
+     |         A
+     |                A
+     |
+ 550 +
+     |
+     |                   A      A     A
+atst |                      A
+     |                            A
+     |
+ 500 +
+     |                                   A    A
+     |
+     |                                               A
+     |
+     |                                          A             A
+ 450 +
+     --+----------+----------+----------+----------+----------+-
+       4          6          8         10         12         14
+                                 age
+
+\end{verbatim}
+}  
+
+\end{slide}
+
+\begin{slide}{The regression}
+
+Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can run the regression:
+
+\vspace{3ex}
+
+{\scriptsize
+\begin{verbatim}
+                       The REG Procedure
+                         Model: MODEL1
+                   Dependent Variable: atst
+
+            Number of Observations Read          13
+            Number of Observations Used          13
+
+                      Analysis of Variance
+                                  Sum of          Mean
+Source                  DF       Squares        Square   F Value   Pr > F
+
+Model                    1         18221         18221    105.33   <0.0001
+Error                   11    1902.83505     172.98500
+Corrected Total         12         20123
+\end{verbatim}
+}
+
+\end{slide}
+\begin{slide}{more\ldots and conclusions}
+
+{\scriptsize
+\begin{verbatim}
+      Root MSE             13.15238    R-Square     0.9054
+      Dependent Mean      519.30385    Adj R-Sq     0.8968
+      Coeff Var             2.53269
+
+                      Parameter Estimates
+
+                   Parameter      Standard
+Variable    DF      Estimate         Error   t Value   Pr > |t|
+
+Intercept    1     646.48334      12.91773     50.05     <.0001
+age          1     -14.04105       1.36812    -10.26     <.0001
+\end{verbatim}
+}
+
+\vspace{3ex}
+
+    \begin{itemize}
+  \item The relationship appears to be a straight line, with a downward trend.
+  \item $F$-tests for model as a whole and $t$-test for slope (same) both confirm this.
+  \item Slope is $-14$, so a 1-year increase in age goes with a 14-minute decrease in ATST on average.
+  \end{itemize}
+  
+\end{slide}
+
+% for week 2:
+% 
+% regression and multiple regression
+% 
+% including univariate + tests
+% ci, pi and influential points
+% multiple, re-interpretation of tests, correlated x's
+% residuals and plotting
+% 
+
+% next: ci and pi with children aged 10 and 3
+% then: maybe diagnostics
+
+\begin{slide}{CI for mean response and prediction intervals}
+
+Once useful regression exists, use it for prediction:
+
+\vspace{3ex}
+
+\begin{itemize}
+\item To get a single number for prediction at a given $x$, substitute into regression equation, eg.\ age 10: predicted ATST is $646.48-14.04(10)=506$ minutes.
+\item To express uncertainty of this prediction:
+  \begin{itemize}
+  \item {\em CI for mean response} expresses uncertainty about mean ATST for all children aged 10, based on data.
+  \item {\em Prediction interval} expresses uncertainty about predicted ATST for a new child aged 10 whose ATST not known. More uncertain.
+  \end{itemize}
+\item Also do above for a child aged 3.
+\end{itemize}
+\end{slide}
+\begin{slide}{Intervals in SAS}
+\begin{itemize}
+\item To get SAS to compute these:
+  \begin{itemize}
+  \item add to end of data file line for each prediction, missing for response:
+\begin{verbatim}
+ . 10
+ . 3  
+\end{verbatim}
+    (the dot is SAS's version of ``missing'')
+  \item modify SAS code to read
+\begin{verbatim}
+proc reg;
+  model atst=age / cli clm;
+\end{verbatim}
+The \verb-/- is to distinguish variables from options.
+  \end{itemize}
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{The output}
+  Includes all the stuff from before plus:
+
+{\scriptsize
+\begin{verbatim}
+                   Dependent Variable: atst
+
+                       Output Statistics
+
+          Dependent Predicted    Std Error
+      Obs  Variable     Value Mean Predict     95% CL Mean
+
+        1  586.0000  584.7027       7.3425  568.5420  600.8635
+        2  461.7500  449.9087       7.6829  432.9988  466.8185
+           ... snip
+       13  530.5000  545.3878       4.4459  535.6024  555.1731
+       14         .  506.0729       3.8689  497.5574  514.5883
+       15         .  604.3602       9.0549  584.4305  624.2899
+\end{verbatim}
+}
+
+Obs.\ 14 is new ``obs'' with age 10, obs.\ 15 with age 3.
+
+
+\end{slide}
+
+\begin{slide}{\ldots continued}
+{\scriptsize
+\begin{verbatim}
+
+                        Output Statistics
+
+               Obs     95% CL Predict         Residual
+
+                 1  551.5490     617.8564       1.2973
+                 2  416.3834     483.4339      11.8413
+                    ... snip
+                13  514.8305     575.9451     -14.8878
+                14  475.8982     536.2475            .
+                15  569.2149     639.5055            .
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Age 10 closer to centre of data, so intervals are both narrower than those for age 3.
+\item Age 3 assumes that straight line continues to hold (don't have any data to support that)
+\item Prediction intervals bigger than CI for mean (additional uncertainty).
+\end{itemize}
+
+\end{slide}
+
+\begin{slide}{Diagnostics}
+How do we tell whether a straight-line regression is appropriate?
+
+\vspace{3ex}
+
+\begin{itemize}
+\item Before: check scatterplot for straight trend.
+\item After: plot {\em residuals} (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
+\end{itemize}
+
+\vspace{3ex}
+
+SAS approach: compute residuals and {\em save} them in a new data set, then plot using stuff in new data set. Code:
+
+\begin{verbatim}
+proc reg;
+  model atst=age;
+  output out=z p=predicted r=residual;
+
+proc plot
+  plot residual * predicted;
+\end{verbatim}
+
+\end{slide}
+
+\begin{slide}{Output}
+{\scriptsize
+\begin{verbatim}
+Plot of residual*predicted.  Legend: A = 1 obs, B = 2 obs, etc.
+   20 +                 A
+      |
+      |A                            A
+      |
+      |      A              A           A
+R     |           A
+e   0 +                                      A
+s     |
+i     |                    A
+d     |                         A
+u     |               A           A
+a     |
+l -20 +
+      |          A
+      |
+      -+-------------+-------------+-------------+-------------+
+      450           500           550           600          650
+
+                        Predicted Value of atst
+\end{verbatim}
+}
+
+Not much pattern here (is residual predictable from predicted? No). Good, indicating regression appropriate.
+  
+\end{slide}
+
+\begin{slide}{An inappropriate regression}
+
+Scatterplot of different data:
+
+{\scriptsize
+\begin{verbatim}
+        Plot of y*x.  Legend: A = 1 obs, B = 2 obs, etc.
+
+
+ y |
+   |
+16 +                                A
+15 +                          A           A
+14 +                                            A           A
+13 +                                                  A
+12 +                    A
+11 +
+10 +              A
+ 9 +
+ 8 +
+ 7 +        A
+ 6 +
+ 5 +
+ 4 +  A
+   |
+   ---+-----+-----+-----+-----+-----+-----+-----+-----+-----+--
+      0     1     2     3     4     5     6     7     8     9
+
+                                 x
+\end{verbatim}
+
+}
+\end{slide}
+
+\begin{slide}{Regression line}
+
+Trend goes up, then levels off, but a line would keep going up.
+
+Try fitting a regression line anyway, saving and plotting residuals
+using this code:
+
+\begin{verbatim}
+proc reg;
+  model y=x;
+  output out=z p=pred r=resid;
+
+proc plot;
+  plot resid * pred;
+\end{verbatim}
+  
+\end{slide}
+
+\begin{slide}{Output}
+
+{\scriptsize
+\begin{verbatim}
+                       The REG Procedure
+                         Model: MODEL1
+                     Dependent Variable: y
+
+... snip
+                   Parameter      Standard
+Variable    DF      Estimate         Error   t Value   Pr > |t|
+
+Intercept    1       7.58182       1.56160      4.86     0.0013
+x            1       0.98182       0.29251      3.36     0.0100
+\end{verbatim}
+}
+
+Regression appears good: slope significantly different from zero. But \ldots
+  
+\end{slide}
+
+\begin{slide}{Residual plot}
+
+
+{\scriptsize
+\begin{verbatim}
+    Plot of resid*pred.  Legend: A = 1 obs, B = 2 obs, etc.
+       |
+       |                      A    A
+       |
+R  2.5 +
+e      |
+s      |                 A              A
+i      |            A
+d  0.0 +
+u      |                                     A
+a      |
+l      |       A
+  -2.5 +                                          A    A
+       |
+       |  A
+       |
+  -5.0 +
+       |
+       ---+---------+---------+---------+---------+---------+--
+        7.582     9.545    11.509    13.473    15.436    17.400
+
+                         Predicted Value of y
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{Fixing it up}
+
+Residual plot has {\em curve}: middle residuals positive, high and low ones negative. Bad.
+
+\vspace{3ex}
+
+Fitting a curve would be better. Try this:
+
+\begin{verbatim}
+data curve;
+  infile "curvy.dat";
+  input x y;
+  xsq=x*x;
+
+proc reg;
+  model y=x xsq;
+\end{verbatim}
+
+Define a new variable that is $x$-squared, and add this to the regression model (now {\em multiple} regression). 
+  
+\end{slide}
+
+\begin{slide}{The output}
+{\scriptsize
+\begin{verbatim}
+
+                       The REG Procedure
+                         Model: MODEL1
+                     Dependent Variable: y
+
+                      Analysis of Variance
+
+                                  Sum of          Mean
+Source                  DF       Squares        Square   F Value
+
+Model                    2     129.23182      64.61591     66.83
+Error                    7       6.76818       0.96688
+Corrected Total          9     136.00000
+
+                      Analysis of Variance
+
+                   Source              Pr > F
+
+                   Model               <.0001
+\end{verbatim}
+}
+Model as a whole fits well.
+\end{slide}
+
+\begin{slide}{Continued}
+{\scriptsize
+\begin{verbatim}
+      Root MSE              0.98330    R-Square     0.9502
+      Dependent Mean       12.00000    Adj R-Sq     0.9360
+      Coeff Var             8.19418
+
+                      Parameter Estimates
+
+                   Parameter      Standard
+Variable    DF      Estimate         Error   t Value   Pr > |t|
+
+Intercept    1       3.90000       0.77312      5.04     0.0015
+x            1       3.74318       0.40006      9.36     <.0001
+xsq          1      -0.30682       0.04279     -7.17     0.0002
+\end{verbatim}
+}
+
+R-squared is higher (better fit), and slope for new variable \verb-xsq- is significantly nonzero --- helps to predict $y$ over and above $x$. Curve better than straight line.
+  
+\end{slide}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{slide}{Multiple regression}
+
+  \begin{itemize}
+  \item What if more than one $x$? Extra issues: % regression ex from before
+    \begin{itemize}
+    \item Now one intercept and a slope for each $x$: how to interpret?
+    \item Which $x$-variables actually help to predict $y$?
+    \item Different interpretations of ``global'' $F$-test and individual $t$-tests.
+    \end{itemize}
+  \item SAS code easy: on \verb-model- line, add extra $x$s after \verb-=-
+  \end{itemize}
+
+\end{slide}
+
+% regress and punting code and output
+
+\end{document}
+
+
+
+
+
+

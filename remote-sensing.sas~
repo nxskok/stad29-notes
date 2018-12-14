@@ -1,0 +1,9 @@
+data crops;
+infile "remote-sensing.dat";
+input Crop $ x1-x4 label $;
+proc discrim can list pool=test out=zz crosslist;
+class Crop;
+var x1-x4;
+proc plot vpercent=50;
+plot Can1 * Can2 = label;
+run;

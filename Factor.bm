@@ -1,0 +1,46 @@
+\HAPbookmark{}{section.0.1}{Principal components and factor analysis}{1}{section.0}
+\HAPbookmark{}{section.0.2}{Example}{2}{section.0}
+\HAPbookmark{}{section.0.3}{Code}{3}{section.0}
+\HAPbookmark{}{section.0.4}{Output}{4}{section.0}
+\HAPbookmark{}{section.0.5}{Scree plot}{5}{section.0}
+\HAPbookmark{}{section.0.6}{Eigenvalues of reduced correlation matrix}{6}{section.0}
+\HAPbookmark{}{section.0.7}{Factor pattern and communality estimates}{7}{section.0}
+\HAPbookmark{}{section.0.8}{What to do next}{8}{section.0}
+\HAPbookmark{}{section.0.9}{More code}{9}{section.0}
+\HAPbookmark{}{section.0.10}{Rotated factors}{10}{section.0}
+\HAPbookmark{}{section.0.11}{A bigger example: BEM sex role inventory}{11}{section.0}
+\HAPbookmark{}{section.0.12}{The whole inventory}{12}{section.0}
+\HAPbookmark{}{section.0.13}{Reading a SAS data set}{13}{section.0}
+\HAPbookmark{}{section.0.14}{More; number of factors}{14}{section.0}
+\HAPbookmark{}{section.0.15}{Scree plot}{15}{section.0}
+\HAPbookmark{}{section.0.16}{The eigenvalues}{16}{section.0}
+\HAPbookmark{}{section.0.17}{Interpreting eigenvalues}{17}{section.0}
+\HAPbookmark{}{section.0.18}{Extract 4 factors for interpretation}{18}{section.0}
+\HAPbookmark{}{section.0.19}{Rotated factor pattern}{19}{section.0}
+\HAPbookmark{}{section.0.20}{More}{20}{section.0}
+\HAPbookmark{}{section.0.21}{More}{21}{section.0}
+\HAPbookmark{}{section.0.22}{Interpretation}{22}{section.0}
+\HAPbookmark{}{section.0.23}{Communalities}{23}{section.0}
+\HAPbookmark{}{section.0.24}{Interpreting communalities}{24}{section.0}
+\HAPbookmark{}{section.0.25}{Factor scores plot}{25}{section.0}
+\HAPbookmark{}{section.0.26}{Unusual individuals}{26}{section.0}
+\HAPbookmark{}{section.0.27}{The unusual individuals}{27}{section.0}
+\HAPbookmark{}{section.0.28}{What makes them unusual}{28}{section.0}
+\HAPbookmark{}{section.0.29}{12 factors}{29}{section.0}
+\HAPbookmark{}{section.0.30}{Confirmatory factor analysis}{30}{section.0}
+\HAPbookmark{}{section.0.31}{Children and tests again}{31}{section.0}
+\HAPbookmark{}{section.0.32}{New data file and code}{32}{section.0}
+\HAPbookmark{}{section.0.33}{How to specify theories}{33}{section.0}
+\HAPbookmark{}{section.0.34}{Code for the 1-factor model}{34}{section.0}
+\HAPbookmark{}{section.0.35}{Output (heavily edited)}{35}{section.0}
+\HAPbookmark{}{section.0.36}{Did it converge?}{36}{section.0}
+\HAPbookmark{}{section.0.37}{Assessing and testing the fit}{37}{section.0}
+\HAPbookmark{}{section.0.38}{Are we better than nothing?}{38}{section.0}
+\HAPbookmark{}{section.0.39}{Improving the model}{39}{section.0}
+\HAPbookmark{}{section.0.40}{Endogenous and exogenous variables}{40}{section.0}
+\HAPbookmark{}{section.0.41}{Convergence}{41}{section.0}
+\HAPbookmark{}{section.0.42}{Quality of fit}{42}{section.0}
+\HAPbookmark{}{section.0.43}{Better than nothing?}{43}{section.0}
+\HAPbookmark{}{section.0.44}{Communalities and estimated correlation}{44}{section.0}
+\HAPbookmark{}{section.0.45}{Using SAS to figure out those P-values}{45}{section.0}
+\HAPbookmark{}{section.0.46}{The P-value}{46}{section.0}

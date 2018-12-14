@@ -1,0 +1,29 @@
+7 NiagaraF    StCathar Brantfor    Hamilton  Kitchene  Toronto Barrie      OwenSoun 
+6 9 Bellevil    Kingston Peterbor 12 Brockvil    Cornwall  Ottawa  
+8 London      Sarnia  Windsor 
+10 Huntsvil    NorthBay 
+SaultSte
+ThunderB
+
+             NCL    --Clusters Joined---      FREQ      Dist    e
+
+              20    NiagaraF    StCathar         2    0.0339     
+              19    Brantfor    Hamilton         2    0.0678    T
+              18    CL19        Kitchene         3    0.0864     
+              17    Bellevil    Kingston         2    0.1271     
+              16    CL18        Toronto          4    0.1489     
+              15    Brockvil    Cornwall         2     0.161     
+              14    London      Sarnia           2    0.1695     
+              13    CL16        CL20             6    0.1742     
+              12    CL15        Ottawa           3    0.1782     
+              11    Barrie      OwenSoun         2    0.2034     
+              10    Huntsvil    NorthBay         2    0.2203     
+               9    CL17        Peterbor         3    0.2497     
+               8    CL14        Windsor          3    0.2977     
+               7    CL11        CL13             8    0.3246     
+               6    CL9         CL12             6    0.3842     
+               5    CL7         CL8             11    0.4606     
+               4    CL6         CL10             8    0.6431     
+               3    CL5         CL4             19    0.7445     
+               2    SaultSte    ThunderB         2    1.1694     
+               1    CL3         CL2             21    1.9625     

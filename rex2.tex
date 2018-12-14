@@ -1,0 +1,238 @@
+\documentclass{article}
+\title{The rex2 data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+para 1 0.722 0.714 0.203 0.095
+sent 0.722 1 0.685 0.246 0.181
+word 0.714 0.685 1 0.170 0.113
+add 0.203 0.246 0.170 1 0.585
+dots 0.095 0.181 0.113 0.585 1
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data rmat(type=corr);
+  infile "rex2.dat";
+  input _name_ $ para sent word add dots;
+
+proc print;
+
+proc factor scree method=prinit;
+
+proc factor method=prinit rotate=varimax;
+
+run;
+\end{Winput}
+\begin{Woutput}
+Obs    _name_     para     sent     word     add      dots
+ 1      para     1.000    0.722    0.714    0.203    0.095
+ 2      sent     0.722    1.000    0.685    0.246    0.181
+ 3      word     0.714    0.685    1.000    0.170    0.113
+ 4      add      0.203    0.246    0.170    1.000    0.585
+ 5      dots     0.095    0.181    0.113    0.585    1.000
+
+The FACTOR Procedure
+Input Data Type                Correlations
+N Set/Assumed in Data Set             10000
+N for Significance Tests              10000
+
+The FACTOR Procedure
+Initial Factor Method: Iterated Principal Factor Analysis
+Prior Communality Estimates: ONE
+
+       Preliminary Eigenvalues: Total = 5  Average = 1
+        Eigenvalue    Difference    Proportion    Cumulative
+   1    2.58746987    1.16575215        0.5175        0.5175
+   2    1.42171772    1.00652661        0.2843        0.8018
+   3    0.41519110    0.10409071        0.0830        0.8849
+   4    0.31110040    0.04657948        0.0622        0.9471
+   5    0.26452092                      0.0529        1.0000
+2 factors will be retained by the MINEIGEN criterion.
+
+\end{Woutput}
+\newpage
+\begin{Woutput}
+
+The FACTOR Procedure
+Initial Factor Method: Iterated Principal Factor Analysis
+Scree Plot of Eigenvalues
+      |
+      |
+      |
+      |
+  3.0 +
+      |
+      |
+      |
+      |
+      |
+      |                       1
+  2.5 +
+      |
+      |
+      |
+      |
+      |
+      |
+  2.0 +
+      |
+E     |
+i     |
+g     |
+e     |
+n     |
+v 1.5 +
+a     |                                      2
+l     |
+u     |
+e     |
+s     |
+      |
+  1.0 +
+      |
+      |
+      |
+      |
+      |
+      |
+  0.5 +
+      |                                                     3
+      |
+      |                                                                    4              5
+      |
+      |
+      |
+  0.0 +
+      |
+      |
+      |
+      |
+      ---------+--------------+--------------+--------------+--------------+--------------+---------
+               0              1              2              3              4              5
+                                                  Number
+
+The FACTOR Procedure
+Initial Factor Method: Iterated Principal Factor Analysis
+Iteration    Change                       Communalities
+    1        0.2131    0.82449    0.79958    0.79560    0.78693    0.80260
+    2        0.1079    0.77053    0.73280    0.72295    0.67904    0.70591
+    3        0.0546    0.75532    0.71087    0.69607    0.62448    0.65842
+    4        0.0276    0.75209    0.70379    0.68539    0.59683    0.63515
+    5        0.0141    0.75228    0.70158    0.68068    0.58274    0.62385
+    6        0.0073    0.75321    0.70091    0.67833    0.57543    0.61851
+    7        0.0039    0.75412    0.70072    0.67702    0.57152    0.61614
+    8        0.0022    0.75484    0.70066    0.67622    0.56932    0.61524
+    9        0.0013    0.75537    0.70064    0.67571    0.56797    0.61508
+   10        0.0009    0.75575    0.70062    0.67537    0.56705    0.61529
+
+Convergence criterion satisfied.
+
+Eigenvalues of the Reduced Correlation Matrix: Total = 3.31477718  Average = 0.66295544
+        Eigenvalue    Difference    Proportion    Cumulative
+   1    2.28220070    1.25031114        0.6885        0.6885
+   2    1.03188956    1.00687378        0.3113        0.9998
+   3    0.02501578    0.02604204        0.0075        1.0073
+   4    -.00102626    0.02227632       -0.0003        1.0070
+   5    -.02330258                     -0.0070        1.0000
+
+           Factor Pattern
+             Factor1         Factor2
+para         0.83498        -0.24200
+sent         0.82533        -0.13946
+word         0.78992        -0.22671
+add          0.40982         0.63174
+dots         0.33454         0.70949
+
+Variance Explained by Each Factor
+   Factor1         Factor2
+ 2.2822007       1.0318896
+
+               Final Communality Estimates: Total = 3.314090
+      para            sent            word             add            dots
+0.75574929      0.70062380      0.67537332      0.56705315      0.61529069
+
+The FACTOR Procedure
+Input Data Type                Correlations
+N Set/Assumed in Data Set             10000
+N for Significance Tests              10000
+
+The FACTOR Procedure
+Initial Factor Method: Iterated Principal Factor Analysis
+Prior Communality Estimates: ONE
+
+       Preliminary Eigenvalues: Total = 5  Average = 1
+        Eigenvalue    Difference    Proportion    Cumulative
+   1    2.58746987    1.16575215        0.5175        0.5175
+   2    1.42171772    1.00652661        0.2843        0.8018
+   3    0.41519110    0.10409071        0.0830        0.8849
+   4    0.31110040    0.04657948        0.0622        0.9471
+   5    0.26452092                      0.0529        1.0000
+2 factors will be retained by the MINEIGEN criterion.
+
+Iteration    Change                       Communalities
+    1        0.2131    0.82449    0.79958    0.79560    0.78693    0.80260
+    2        0.1079    0.77053    0.73280    0.72295    0.67904    0.70591
+    3        0.0546    0.75532    0.71087    0.69607    0.62448    0.65842
+    4        0.0276    0.75209    0.70379    0.68539    0.59683    0.63515
+    5        0.0141    0.75228    0.70158    0.68068    0.58274    0.62385
+    6        0.0073    0.75321    0.70091    0.67833    0.57543    0.61851
+    7        0.0039    0.75412    0.70072    0.67702    0.57152    0.61614
+    8        0.0022    0.75484    0.70066    0.67622    0.56932    0.61524
+    9        0.0013    0.75537    0.70064    0.67571    0.56797    0.61508
+   10        0.0009    0.75575    0.70062    0.67537    0.56705    0.61529
+
+Convergence criterion satisfied.
+
+Eigenvalues of the Reduced Correlation Matrix: Total = 3.31477718  Average = 0.66295544
+        Eigenvalue    Difference    Proportion    Cumulative
+   1    2.28220070    1.25031114        0.6885        0.6885
+   2    1.03188956    1.00687378        0.3113        0.9998
+   3    0.02501578    0.02604204        0.0075        1.0073
+   4    -.00102626    0.02227632       -0.0003        1.0070
+   5    -.02330258                     -0.0070        1.0000
+
+           Factor Pattern
+             Factor1         Factor2
+para         0.83498        -0.24200
+sent         0.82533        -0.13946
+word         0.78992        -0.22671
+add          0.40982         0.63174
+dots         0.33454         0.70949
+
+The FACTOR Procedure
+Initial Factor Method: Iterated Principal Factor Analysis
+Variance Explained by Each Factor
+   Factor1         Factor2
+ 2.2822007       1.0318896
+
+               Final Communality Estimates: Total = 3.314090
+      para            sent            word             add            dots
+0.75574929      0.70062380      0.67537332      0.56705315      0.61529069
+
+The FACTOR Procedure
+Rotation Method: Varimax
+    Orthogonal Transformation Matrix
+                       1               2
+       1         0.93037         0.36663
+       2        -0.36663         0.93037
+
+       Rotated Factor Pattern
+             Factor1         Factor2
+para         0.86556         0.08098
+sent         0.81899         0.17284
+word         0.81804         0.07868
+add          0.14966         0.73801
+dots         0.05112         0.78274
+
+Variance Explained by Each Factor
+   Factor1         Factor2
+ 2.1141352       1.1999550
+
+               Final Communality Estimates: Total = 3.314090
+      para            sent            word             add            dots
+0.75574929      0.70062380      0.67537332      0.56705315      0.61529069
+\end{Woutput}
+\end{document}

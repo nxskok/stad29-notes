@@ -1,0 +1,316 @@
+
+\section{Review of inference; 2-sample t}
+
+
+\begin{frame}{The statistical world}
+  \begin{itemize}
+  \item 
+  Consists of:
+
+  \begin{itemize}
+  \item objects or people of interest to us ({\em individuals})
+  \item things measured or counted on those individuals ({\em variables})
+  \end{itemize}
+
+\pause
+
+\item About the individuals:
+
+\begin{itemize}
+\item which ones do we care about? All of them, the {\em population}.
+\item which ones do we know about? The ones we happened to look at, the {\em sample}.
+\end{itemize}
+
+\pause
+
+\item Sample is (or should be) randomly chosen from population, with no favoritism.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sample to population: confidence interval}
+  
+  \begin{itemize}
+  \item 
+Want to know about population (parameter), but don't. Only have sample (statistic). Eg.\ population mean, only have sample mean.
+\item Logic:
+  \begin{itemize}
+  \item {\em If} we knew about population, could figure out kinds of samples that might appear (math).
+  \item In particular, can figure how far apart sample statistic and population parameter might be.
+  \item Use this to construct {\em confidence interval} for population parameter: says eg.\ ``based on my sample, I think population mean between $a$ and $b$''. 
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Test of significance}
+\begin{itemize}
+\item Or: 
+  \begin{itemize}
+  \item 
+might have theory leading to {\em null hypothesis} (eg.\ population mean is 20) and {\em alternative hypothesis} (eg.\ population mean not 20).
+\item This leads to {\em test of significance} (hypothesis test): ``based on my sample, I think pop.\ mean is (is not) 20''
+\item Done by choosing $\alpha$ (eg.\ 0.05), calculating {\em test statistic} and {\em P-value}. If P-value $< \alpha$, {\em reject null}: have evidence in favour of alternative.
+  \end{itemize}
+\item Math producing inference procedures can be difficult, but calculations (with software) and interpretations need not be.
+  \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Exploratory data analysis}
+  \begin{itemize}
+  \item Sometimes don't have theory (yet), just want to see what data
+    tell us.
+  \item Use graphs, simple descriptive statistics, some of methods we learn.
+  \item Idea: generate ideas (``hypotheses'') for future study.
+  \item Cannot make clear conclusions about populations.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{The Degree of Reading Power data}
+
+  \begin{itemize}
+  \item Have new method for teaching reading.
+  \item Want to see if better than ``standard'' method (``research hypothesis'').
+  \item Design: randomly allocate available children to ``treatment''
+    (new method) or ``control'' (standard).
+  \item Measure score for all children on standard reading test.
+  \item Analysis: is observed difference between treatment/control score
+    means big enough to be real not chance? Do 2-sample $t$-test.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Some of the data}
+
+\begin{verbatim}
+t 43
+t 53
+t 57
+t 49
+t 56
+t 33
+c 42
+c 33
+c 46
+c 37
+c 43
+\end{verbatim}
+
+  \begin{itemize}
+  \item 1st column label (``t'' for treatment, ``c'' for control).
+  \item 2nd column response (score on reading test).
+  \item Data in plain text file \verb-drp.dat-.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Writing a SAS program}
+
+  \begin{itemize}
+  \item 2 parts: 
+    \begin{itemize}
+    \item read data into SAS (DATA step)
+    \item tell SAS what to do with data (PROC step)
+    \end{itemize}
+  \item DATA step, basic format 1 obs per row, each word/number a
+    variable (separated by whitespace).
+  \item This reads DRP data:
+
+\begin{verbatim}
+data drp;
+  infile "drp.dat";
+  input group $ score;
+\end{verbatim}
+  \item Data in file \verb-drp.dat-; 2 variables, "group" 
+    (text), score (number).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The SAS PROC step}
+
+  \begin{itemize}
+  \item SAS has {\em many} procedures for doing things with data. We
+    look at 3:
+    \begin{itemize}
+    \item PROC PRINT simply lists data values
+    \item PROC MEANS computes means and SDs for variables given
+    \item PROC TTEST does 1- and 2-sample $t$ tests
+    \end{itemize}
+  \item Add PROC steps plus options to file containing data step. Here
+    PROC MEANS and PROC TTEST have same options: ``class'' is variable
+    splitting data into groups, ``var'' is (response) variable:
+
+{\small
+\begin{verbatim}
+proc means;
+  class group;
+  var score;
+
+proc ttest;
+  class group;
+  var score;
+\end{verbatim}
+}
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The whole thing}
+
+\begin{columns}
+
+\column{0.5\textwidth}
+
+{\small
+\begin{verbatim}
+options linesize=80;
+
+data drp;
+  infile "drp.dat";
+  input group $ score;
+
+proc print;
+
+proc means;
+  class group;
+  var score;
+
+proc ttest;
+  class group;
+  var score;
+
+run;
+\end{verbatim}
+}
+
+\column{0.5\textwidth}
+
+  \begin{itemize}
+  \item I like to indent lines belonging to each step and leave blank
+    line between steps.
+  \item (Optionally) Save in file like ``drp.sas''.
+
+  \end{itemize}
+
+\end{columns}
+  
+\end{frame}
+
+\begin{frame}[fragile]{To run SAS}
+
+Submit this program (Run, Submit).
+
+To see if it worked, look at Log window. Any lines beginning
+\verb-ERROR:- are things needing to be fixed. Go to Program Editor,
+select Run, Recall Last Submit.
+Fix errors,
+submit again.
+
+Things like this indicate success:
+
+{\small
+\begin{verbatim}
+NOTE: 44 records were read from the infile "drp.dat".
+      The minimum record length was 6.
+      The maximum record length was 6.
+NOTE: The data set WORK.DRP has 44 observations and 2 variables.
+
+NOTE: The PROCEDURE PRINT printed page 1.
+
+NOTE: The PROCEDURE MEANS printed page 2.
+
+NOTE: The PROCEDURE TTEST printed page 3.
+\end{verbatim}
+}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{The output, part 1}
+
+
+\begin{itemize}
+\item In Output window.
+\item Page 1 just a listing of data.
+\item Page 2:
+
+{\scriptsize
+\begin{verbatim}
+                         The MEANS Procedure
+                     Analysis Variable : score
+              N
+group       Obs     N            Mean         Std Dev         Minimum
+---------------------------------------------------------------------
+c            23    23      41.5217391      17.1487332      10.0000000
+t            21    21      51.4761905      11.0073568      24.0000000
+---------------------------------------------------------------------
+                     Analysis Variable : score
+                                 N
+                   group       Obs         Maximum
+                   -------------------------------
+                   c            23      85.0000000
+                   t            21      71.0000000
+                   -------------------------------
+\end{verbatim}
+}
+
+Treatment group has higher mean score, but control group scores more variable.
+
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The t-test}
+
+\ldots edited:
+{\scriptsize
+\begin{verbatim}
+ group        Method              Mean      95% CL Mean       Std Dev
+
+ c                             41.5217    34.1061  48.9374    17.1487
+ t                             51.4762    46.4657  56.4867    11.0074
+ Diff (1-2)   Pooled           -9.9545   -18.8176  -1.0913    14.5512
+ Diff (1-2)   Satterthwaite    -9.9545   -18.6759  -1.2330
+
+     Method           Variances        DF    t Value    Pr > |t|
+
+     Pooled           Equal            42      -2.27      0.0286
+     Satterthwaite    Unequal      37.855      -2.31      0.0264
+
+                        Equality of Variances
+
+          Method      Num DF    Den DF    F Value    Pr > F
+
+          Folded F        22        20       2.43    0.0507
+
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}{Conclusions}
+
+  \begin{itemize}
+  \item SAS does 2 $t$ procedures:
+    \begin{itemize}
+    \item Pooled: assumes 2 population variances/SDs are same
+    \item Satterthwaite: does not, but only approximation.
+    \end{itemize}
+  \item Sample SDs quite different, suggests use of Satterthwaite.
+  \item For test: look at P-value 0.0264. Less than 0.05, so have
+    evidence of difference in mean test scores between reading methods.
+  \item Satterthwaite CI for difference in means $-18.7$ to $-1.2$
+    (control minus treatment): treatment better.
+  \item P-values for Satterthwaite vs.\ pooled very close (0.0286 and
+    0.0264), so conclusion not affected by choice of test.
+  \item Last test for equality of variances/SDs between 2
+    groups. P-value 0.0507 very close to significance, supporting use
+    of Satterthwaite.
+  \end{itemize}
+  
+\end{frame}

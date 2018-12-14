@@ -1,0 +1,42 @@
+\documentclass{article}
+\title{The one-ten-mds data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+en 0 2 2  7 6  6   6  6  7  9 9
+no 2 0 1  5 4  6   6  6  7  8 9
+dk 2 1 0  6 5  6   5  5  6  8 9
+nl 7 5 6  0 5  9   9  9 10  8 9
+de 6 4 5  5 0  7   7  7  8  9 9
+fr 6 6 6  9 7  0   2  1  5 10 9
+es 6 6 5  9 7  2   0  1  3 10 9
+it 6 6 5  9 7  1   1  0  4 10 8
+pl 7 7 6 10 8  5   3  4  0 10 9
+hu 9 8 8  8 9  10 10 10 10  0 8
+sf 9 9 9  9 9  9   9  8  9  8 0
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data lang(type=distance);
+	infile "one-ten.dat";
+	input lang $ en no dk nl de fr es it pl hu sf;
+
+proc mds level=ordinal out=coords outres=dist;
+    id lang;
+
+proc print data=dist;
+   var _row_ _col_ data distance residual;
+
+proc print data=coords;
+
+proc plot data=coords vpercent=70;
+    plot dim2 * dim1 = '*' $ lang;
+
+run;
+\end{SAScode}
+\end{document}

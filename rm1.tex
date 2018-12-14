@@ -1,0 +1,91 @@
+\documentclass{article}
+\title{The rm1 data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+a 10 10 9 10
+a 11 9 10 11
+a 10 11 10 9
+b 9 10 12 10
+b 11 10 10 8
+b 11 10 8 9
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+options linesize=75;
+
+data rm;
+  infile "rm1.dat";
+  input trt $ y1 y2 y3 y4;
+
+proc glm;
+  class trt;
+  model y1 y2 y3 y4 = trt / nouni;
+  repeated time;
+
+
+\end{Winput}
+\begin{Woutput}
+The GLM Procedure
+   Class Level Information
+Class         Levels    Values
+trt                2    a b
+
+Number of Observations Read           6
+Number of Observations Used           6
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+           Repeated Measures Level Information
+Dependent Variable          y1       y2       y3       y4
+     Level of time           1        2        3        4
+
+                MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no time Effect
+                     H = Type III SSCP Matrix for time
+                           E = Error SSCP Matrix
+                            S=1    M=0.5    N=0
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.60922541      0.43        3        2   0.7557
+Pillai's Trace             0.39077459      0.43        3        2   0.7557
+Hotelling-Lawley Trace     0.64142857      0.43        3        2   0.7557
+Roy's Greatest Root        0.64142857      0.43        3        2   0.7557
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no time*trt Effect
+                   H = Type III SSCP Matrix for time*trt
+                           E = Error SSCP Matrix
+                            S=1    M=0.5    N=0
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.64279155      0.37        3        2   0.7865
+Pillai's Trace             0.35720845      0.37        3        2   0.7865
+Hotelling-Lawley Trace     0.55571429      0.37        3        2   0.7865
+Roy's Greatest Root        0.55571429      0.37        3        2   0.7865
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+Tests of Hypotheses for Between Subjects Effects
+Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+trt                        1    0.16666667    0.16666667     0.40  0.5614
+Error                      4    1.66666667    0.41666667
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+Univariate Tests of Hypotheses for Within Subject Effects
+Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+time                       3    2.16666667    0.72222222     0.53  0.6698
+time*trt                   3    1.50000000    0.50000000     0.37  0.7779
+Error(time)               12   16.33333333    1.36111111
+                         Adj Pr > F
+Source                 G - G     H-F-L
+time                  0.6190    0.6698
+time*trt              0.7177    0.7779
+Error(time)
+
+Greenhouse-Geisser Epsilon      0.7191
+Huynh-Feldt-Lecoutre Epsilon    1.5893
+\end{Woutput}
+\end{document}

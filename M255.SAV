@@ -1,0 +1,693 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<title>Annotated SPSS Output: Factor Analysis</title>
+<link href="/stat/ats_style.css" type="text/css" rel="stylesheet">
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+</style>
+<![endif]-->
+<link rel="File-List" href="factor1_files/filelist.xml">
+<!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+</head>
+
+<body>
+
+
+
+<!--
+ 
+Revision history:
+
+
+
+-->
+
+
+
+<link href="/stat/idre/css/body.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/header.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/breadcrumb.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/footerTop.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/footerBottom.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="/stat/idre/js/webfont.js"></script>
+
+
+
+
+<!-- tag opened in header.htm, closed in footer.htm -->  
+<div id="bodyWrap">
+<div id="header">
+  <div id="logo">
+    <h1 class="page_h1" title="Welcome to Institute for Digital Research and Education">Welcome to the Institute for Digital Research and Education</h1>
+    <a class="logoSprite" title="Institute for Digital Research and Education Home" href="https://idre.ucla.edu">Institute for Digital Research and Education Home</a> </div>
+
+<div id="searchBox">
+    <div class="btnContainer">
+        <span class="btnLabel">Help the Stat Consulting Group by</span> <a href="https://giving.ucla.edu/Standard/NetDonate.aspx?SiteNum=371" class='idreBtn'>giving a gift</a>
+    </div>
+    <!-- Google Provided Code Starts Here -->
+<script type="text/javascript">
+  (function() {
+    var cx = '017078209654322335373:o5ngkv1vghw';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Place this tag where you want the search box to render -->
+<gcse:searchbox-only></gcse:searchbox-only>
+<!-- Google Provided Code Ends Here -->
+</div>
+
+</div>
+
+<script type="text/javascript" src="/stat/apps/tree.js"></script>
+<script>
+function stuff(dir) {
+
+  var x = document.getElementById("bc" + dir);
+
+  if ( !x.stuffed){
+
+    var inner = "<ul>";
+
+    var listing = tree[dir];
+
+    for(var d in listing) {
+        var subdir = listing[d];
+        var base = subdir.replace("^.*\/", "");
+      inner = inner + "<li><a href='" + subdir +"'><span>" + base + "</span></a></li>";
+    }
+
+
+
+
+
+    inner = inner + "</ul>";
+
+    x.innerHTML = x.innerHTML + inner;
+    x.stuffed = true;
+  }
+
+
+}
+</script>
+
+<style>
+#cssmenu ul,
+#cssmenu li,
+#cssmenu span,
+#cssmenu a {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#cssmenu {
+/*  height: 49px;
+  border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  background: #fefefe;
+  background: -moz-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #eee9f0));
+  background: -webkit-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: -o-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: -ms-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  border-bottom: 2px solid #db000b;
+  width: auto; */
+}
+#cssmenu:after,
+#cssmenu ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#cssmenu a {
+/*  background: #fefefe;
+  background: -moz-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #ececec));
+  background: -webkit-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: -o-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: -ms-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: linear-gradient(top, #fefefe 0%, #ececec 100%);
+  color: #000; 
+  display: inline-block;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 49px;*/
+  padding: 0 20px;
+  text-decoration: none;
+}
+#cssmenu ul {
+  list-style: none;
+}
+#cssmenu > ul {
+  float: left;
+}
+#cssmenu > ul > li {
+  float: left;
+}
+#cssmenu > ul > li > a {
+  color: #000;
+  font-size: 12px;
+}
+#cssmenu > ul > li:hover:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #db000b;
+  margin-left: -10px;
+}
+#cssmenu > ul > li:first-child > a {
+  border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+}
+#cssmenu > ul > li.active:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #db000b;
+  margin-left: -10px;
+}
+#cssmenu > ul > li.active > a {
+  -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  background: #ececec;
+  background: -moz-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #ffeeff ef));
+  background: -webkit-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -o-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -ms-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+}
+#cssmenu > ul > li:hover > a {
+/*  background: #ececec;
+  background: -moz-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #ffeeff ef));
+  background: -webkit-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -o-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -ms-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);*/
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+}
+#cssmenu .has-sub {
+  z-index: 1;
+}
+#cssmenu .has-sub:hover > ul {
+  display: block;
+}
+#cssmenu .has-sub ul {
+  display: none;
+  position: absolute;
+  width: 200px;
+/*  top: 100%;*/
+  left: 0;
+}
+#cssmenu .has-sub ul li {
+  *margin-bottom: -1px;
+}
+#cssmenu .has-sub ul li a {
+  background: #db000b;
+  border-bottom: 1px dotted #ff0f1b;
+  filter: none;
+  font-size: 11px;
+  display: block;
+  line-height: 120%;
+  padding: 10px;
+  color: #ffffff;
+}
+#cssmenu .has-sub ul li:hover a {
+  background: #a80008;
+}
+#cssmenu .has-sub .has-sub:hover > ul {
+  display: block;
+}
+#cssmenu .has-sub .has-sub ul {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+#cssmenu .has-sub .has-sub ul li a {
+  background: #a80008;
+  border-bottom: 1px dotted #ff0f1b;
+}
+#cssmenu .has-sub .has-sub ul li a:hover {
+  background: #8f0007;
+}
+
+
+</style>
+
+
+
+<div id="infobar">
+
+      <div id="breadcrumbBox"><div class="breadcrumb" id='cssmenu'>
+<ul>      
+<li id='bc/stat' onmouseover="stuff('/stat')" class='has-sub'><a href='/stat'>stat</a> &gt; </li><li id='bc/stat/spss' onmouseover="stuff('/stat/spss')" class='has-sub'><a href='/stat/spss'>spss</a> &gt; </li><li id='bc/stat/spss/output' onmouseover="stuff('/stat/spss/output')" class='has-sub'><a href='/stat/spss/output'>output</a> &gt; </li><li id='bc/stat/spss/output/factor1.htm' onmouseover="stuff('/stat/spss/output/factor1.htm')" class='has-sub'><a href='/stat/spss/output/factor1.htm'>factor1.htm</a> &gt; </li><li id='bc/stat/spss/output/factor1.htm/principal_components_files' onmouseover="stuff('/stat/spss/output/factor1.htm/principal_components_files')" class='has-sub'><a href='/stat/spss/output/factor1.htm/principal_components_files'>principal_components_files</a> &gt; </li><li id='bc/stat/spss/output/factor1.htm/principal_components_files/principal_components_files' onmouseover="stuff('/stat/spss/output/factor1.htm/principal_components_files/principal_components_files')" class='has-sub'><a href='/stat/spss/output/factor1.htm/principal_components_files/principal_components_files'>principal_components_files</a></li> &gt; M255.SAV
+</ul>
+</div></div></div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12327299-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- MathJax Provided Code Starts Here -->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/2.1-beta/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- MathJax Provided Code Ends Here -->
+
+<!-- tag opened in header.htm, closed in footer.htm -->  
+<div id="bodyContainer">
+
+
+
+
+
+
+
+
+
+<h3>Annotated SPSS Output<br>
+Factor Analysis</h3>
+
+<p>This page shows an example of a factor analysis with footnotes 
+explaining the output.&nbsp; The data used in this example were collected by 
+Professor James Sidanius, who has generously shared them with us.&nbsp; You can 
+download the data set <a href="principal_components_files/M255.SAV">here</a>. </p>
+<p>Overview:&nbsp; The &quot;what&quot; and &quot;why&quot; of factor analysis</p>
+<p>Factor analysis is a method of data reduction.&nbsp; It does this by seeking 
+underlying unobservable (latent) variables that are reflected in the observed 
+variables (manifest variables).&nbsp; There are many different methods that 
+can be used to conduct a factor analysis (such as principal axis factor, maximum 
+likelihood, generalized least squares, unweighted least squares), There are also 
+many different types of rotations that can be done after the initial extraction 
+of factors, including orthogonal rotations, such as varimax and equimax, which 
+impose the restriction that the factors cannot be correlated, and 
+oblique rotations, such as promax, which allow the factors to be correlated with 
+one another.&nbsp; You also need to determine the number of factors that you want to extract.&nbsp; 
+Given the number of factor analytic techniques and options, it is not surprising 
+that 
+different analysts could reach very different results analyzing the same data 
+set.&nbsp; However, all analysts are looking for simple structure.&nbsp; Simple 
+structure is pattern of results such that each variable loads highly onto one 
+and only one factor.&nbsp; </p>
+<p>Factor analysis is a technique that requires a large sample size.&nbsp; 
+Factor analysis is based on the correlation matrix of the variables involved, 
+and correlations usually need a large sample size before they stabilize.&nbsp; 
+Tabachnick and Fidell (2001, page 588) cite Comrey and Lee's (1992) advise 
+regarding sample size: 50 cases is very poor, 100 is poor, 200 is fair, 300 is 
+good, 500 is very good, and 1000 or more is excellent.&nbsp; As a rule of thumb, 
+a bare minimum of 10 observations per variable is necessary to avoid 
+computational difficulties.</p>
+<p>For the example below, we are going to do a rather &quot;plain vanilla&quot; factor 
+analysis.&nbsp; We will use iterated principal axis factor with three factors as our method of extraction, a varimax rotation, and 
+for comparison, we will also show the promax oblique solution.&nbsp; The determination of 
+the number of factors to extract should be guided by theory, but also informed 
+by running the analysis extracting different numbers of factors and seeing which 
+number of factors yields the most interpretable results.</p>
+<p>In this example we have included many options, including the original and 
+reproduced correlation matrix, the scree plot and the plot of the rotated 
+factors.&nbsp; While you may not wish 
+to use all of these options, we have included them here to aid in the 
+explanation of the analysis.&nbsp; We have also created a page of 
+annotated output for a principal components analysis that parallels this analysis.&nbsp; For 
+general information regarding the similarities and differences between principal 
+components analysis and factor analysis, see Tabachnick and Fidell (2001), for example.</p>
+<pre><b>factor
+ /variables item13 item14 item15 item16 item17 item18 item19 item20 item21 item22 item23 item24
+ /print initial det kmo repr extraction rotation fscore univariate
+ /format blank(.30)
+ /plot eigen rotation
+ /criteria factors(3)
+ /extraction paf
+ /rotation varimax
+ /method = correlation.</b></pre>
+<p><img SRC="spss_output_f1_0.png"></p>
+<p>The table above is output because we used the <b>univariate</b> option on the
+<b>/print</b> subcommand.&nbsp; Please note that the only way to see how many 
+cases were actually used in the factor analysis is to include the <b>univariate</b> 
+option on the <b>/print</b> subcommand.&nbsp; The number of cases used in the 
+analysis will be less than the total number of cases in the data file if there are 
+missing values on any of the variables used in the factor analysis, because, by 
+default, SPSS does a listwise deletion of incomplete cases.&nbsp; If the factor 
+analysis is being conducted on the correlations (as opposed to the covariances), 
+it is not much of a concern that the variables have very different means and/or 
+standard deviations (which is often the case when variables are measured on different 
+scales). </p>
+<p>a.  <b>Mean</b> - These are the means of the variables used in the factor analysis. </p>
+<p>b.  <b>Std. Deviation</b> - These are the standard deviations of the variables used in the factor analysis. </p>
+<p>c.  <b>Analysis N</b> - This is the number of cases used in the factor analysis.</p>
+
+<p><img SRC="spss_fa1_1.gif" width="211" height="65"></p>
+
+<p>The table above is included in the output because we used the <b>det</b> 
+option on the <b>/print</b> subcommand.&nbsp; All we want to see in this table 
+is that the determinant is not 0.&nbsp; If the determinant is 0, then there will 
+be computational problems with the factor analysis, and SPSS may issue a warning 
+message or be unable to complete the factor analysis.</p>
+
+<p><img SRC="spss_fa1_2a.gif" width="360" height="200"></p>
+
+<p>a.&nbsp;<b> Kaiser-Meyer-Olkin Measure of Sampling Adequacy</b> - This measure 
+varies between 0 and 1, and values closer to 1 are better.&nbsp; A value of .6 
+is a suggested minimum.&nbsp; </p>
+<p>b.&nbsp; <b>Bartlett's Test of Sphericity</b> - This tests the null hypothesis that 
+the correlation matrix is an identity matrix.&nbsp; An identity matrix is matrix 
+in which all of the diagonal elements are 1 and all off diagonal elements are 0.&nbsp; 
+You want to reject this null hypothesis.&nbsp; </p>
+<p>Taken together, these tests provide a minimum standard which should be passed 
+before a factor analysis (or a principal components analysis) should be 
+conducted.</p>
+
+<p><img SRC="spss_fa1_3a.gif" width="316" height="637"></p>
+<p>a.&nbsp; <b>Communalities</b> - This is the proportion of each variable's variance 
+that can be explained by the factors (e.g., the underlying latent 
+continua).&nbsp; It is also noted as h<sup>2</sup> and can be defined as the sum 
+of squared factor loadings for the variables.</p>
+<p>b.&nbsp; <b>Initial</b> - With principal factor axis factoring, the initial values 
+on the diagonal of the correlation matrix are determined by the squared multiple 
+correlation of the variable with the other variables.&nbsp; For example, if you regressed 
+items 14 through 24 on item 13, the squared multiple correlation coefficient 
+would be .564.</p>
+<p>c.&nbsp; <b>Extraction</b> - The values in this column indicate the proportion of 
+each variable's variance that can be explained by the retained factors.&nbsp; 
+Variables with high values are well represented in the common factor space, 
+while variables with low values are not well represented.&nbsp; (In this 
+example, we don't have any particularly low values.)&nbsp; They are the 
+reproduced variances from the factors that you have extracted.&nbsp; You can find these 
+values on the diagonal of the reproduced correlation matrix.</p>
+
+<p><img SRC="spss_fa1_4a.gif" width="848" height="317"></p>
+<p>a.&nbsp; <b>Factor</b> - The initial number of factors is the same as the number of 
+variables used in the factor analysis.&nbsp; However, not all 12 factors will be retained.&nbsp; In this 
+example, only the first three factors will be retained (as we requested).&nbsp; </p>
+<p>b.&nbsp; <b>Initial Eigenvalues</b> - Eigenvalues are the variances of the factors.&nbsp; Because we conducted our 
+factor analysis on the 
+correlation matrix, the variables are standardized, which means that the each 
+variable has a variance of 1, and the total variance is equal to the number of 
+variables used in the analysis, in this case, 12.&nbsp; </p>
+<p>c.&nbsp; <b>Total</b> - This column contains the eigenvalues.&nbsp; The first 
+factor will always account for the most variance (and hence have the highest 
+eigenvalue), and the next factor will account for as much of the left over 
+variance as it can, and so on.&nbsp; Hence, each successive factor will 
+account for less and less variance.&nbsp; </p>
+<p>d.&nbsp; <b>% of Variance</b> - This column contains the percent of total variance 
+accounted for by each factor.</p>
+<p>e.&nbsp; <b>Cumulative %</b> - This column contains the cumulative percentage of 
+variance accounted for by the current and all preceding factors.&nbsp; 
+For example, the third row shows a value of 68.313.&nbsp; This means that the 
+first three factors together account for 68.313% of the total variance.&nbsp; </p>
+<p>f.&nbsp; <b>Extraction Sums of Squared Loadings</b> - The number of rows in this 
+panel of the table correspond to the number of factors retained.&nbsp; In this 
+example, we requested that three factors be retained, so there are three rows, 
+one for each retained factor.&nbsp; The values in this panel of the table are 
+calculated in the same way as the values in the left panel, except that here the 
+values are based on the common variance.&nbsp; The values in this panel of the 
+table will always be lower than the values in the left panel of the table, 
+because they are based on the common variance, which is always smaller than the 
+total variance.</p>
+<p>g.&nbsp; <b>Rotation Sums of Squared Loadings</b> - The values in this panel of the 
+table represent the distribution of the variance after the varimax rotation.&nbsp; 
+Varimax rotation tries to maximize the variance of each of the factors, so the 
+total amount of variance accounted for is redistributed over the three extracted 
+factors.</p>
+
+<p><img SRC="spss_fa1_5.gif" width="500" height="500"></p>
+<p>The scree plot graphs the eigenvalue against the factor number.&nbsp; You 
+can see these values in the first two columns of the table immediately above.&nbsp; 
+From the third factor on, you can see that the line is almost flat, meaning 
+the each successive factor is accounting for smaller and smaller amounts of the 
+total variance.&nbsp; </p>
+
+<p><img SRC="spss_fa1_6a.gif" width="388" height="676"></p>
+<p>b.&nbsp; <b>Factor Matrix</b> - This table contains the unrotated factor loadings, which are 
+the correlations between the variable and the factor.&nbsp; Because these are 
+correlations, possible values range from -1 to +1.&nbsp; On the <b>/format</b> 
+subcommand, we used the option <b>blank(.30)</b>, which tells SPSS not to print 
+any of the correlations that are .3 or less.&nbsp; This makes the output easier 
+to read by removing the clutter of low correlations that are probably not 
+meaningful anyway.&nbsp; </p>
+<p>c.&nbsp; <b>Factor</b> - The columns under this heading are the unrotated factors 
+that have been extracted.&nbsp; As you can see by the footnote provided by SPSS 
+(a.), three factors were extracted (the three factors that we requested).&nbsp; </p>
+<p><img SRC="spss_fa1_7a.gif" width="1394" height="1344"></p>
+<p>c.&nbsp; <b>Reproduced Correlations</b> - This table contains two tables, the 
+reproduced correlations in the top part of the table, and the residuals in the 
+bottom part of the table.&nbsp; </p>
+<p>d.&nbsp; <b>Reproduced Correlation</b> - The reproduced correlation matrix is the 
+correlation matrix based on the extracted factors.&nbsp; You want the values 
+in the reproduced matrix to be as close to the values in the original 
+correlation matrix as possible.&nbsp; This means that the residual matrix, which 
+contains the differences between the original and the reproduced matrix to be 
+close to zero.&nbsp; If the reproduced matrix is very similar to the original 
+correlation matrix, then you know that the factors that were extracted 
+accounted for a great deal of the variance in the original correlation matrix, 
+and these few factors do a good job of representing the original data.&nbsp; 
+The numbers on the diagonal of the reproduced correlation matrix are presented 
+in the Communalities table in the column labeled Extracted.</p>
+<p>e.&nbsp; <b>Residual</b> - As noted in the first footnote provided by SPSS (a.), the 
+values in this part of the table represent the differences between original 
+correlations (shown in the correlation table at the beginning of the output) and 
+the reproduced correlations, which are shown in the top part of this table.&nbsp; 
+For example, the original correlation between item13 and item14 is .661, and the 
+reproduced correlation between these two variables is .646.&nbsp; The residual 
+is .016 = .661 - .646 (with some rounding error).</p>
+
+
+
+<p><img SRC="spss_fa1_8a.gif" width="388" height="691"></p>
+<p>b.&nbsp; <b>Rotated Factor Matrix</b> - This table contains the rotated factor loadings
+(factor pattern matrix), which represent both how the variables are weighted for each f
+actor but also the correlation between the variables and the factor.&nbsp; Because these are 
+correlations, possible values range from -1 to +1.&nbsp; On the <b>/format</b> 
+subcommand, we used the option <b>blank(.30)</b>, which tells SPSS not to print 
+any of the correlations that are .3 or less.&nbsp; This makes the output easier 
+to read by removing the clutter of low correlations that are probably not 
+meaningful anyway.</p>
+<p>For orthogonal rotations, such as varimax, the factor pattern and factor structure matrices are the same.</p>
+<p>c.&nbsp; <b>Factor</b> - The columns under this heading are the rotated factors that 
+have been extracted.&nbsp; As you can see by the footnote provided by SPSS (a.), 
+three factors were extracted (the three factors that we requested).&nbsp; These 
+are the factors that analysts are most interested in and try to name.&nbsp; For 
+example, the first factor might be called &quot;instructor competence&quot; because items 
+like &quot;instructor well prepare&quot; and &quot;instructor competence&quot; load highly on it.&nbsp; 
+The second factor might be called &quot;relating to students&quot; because items like 
+&quot;instructor is sensitive to students&quot; and &quot;instructor allows me to ask 
+questions&quot; load highly on it.&nbsp; The third factor has to do with comparisons 
+to other instructors and courses.</p><hr>
+<p>The table below is from another run of the factor analysis program shown 
+above, except with a promax rotation.&nbsp; We have included it here to show how 
+different the rotated solutions can be, and to better illustrate what is meant 
+by simple structure.&nbsp; As you can see with an oblique 
+rotation, such as a promax rotation, the factors are permitted to be correlated 
+with one another.&nbsp; With an orthogonal rotation, such as the varimax shown above, 
+the factors are not permitted to be correlated (they are orthogonal to one 
+another). Oblique rotations, such as promax, produce both factor pattern and 
+factor structure matrices. For orthogonal rotations, such as varimax and equimax, 
+the factor structure and the factor pattern matrices are the same.&nbsp; The factor 
+structure matrix represents the 
+correlations between the variables and the factors.&nbsp; The factor pattern matrix contain the coefficients for the linear 
+combination of the variables.</p><b>
+<span style="font-size: 10.0pt; font-family: System"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1025" type="#_x0000_t75" style='width:291.75pt;
+ height:503.25pt'>
+ <v:imagedata src="factor1_files/image001.wmz" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=389 height=671
+src="factor1_files/image002.gif" v:shapes="_x0000_s1025"><![endif]></span></b><p>
+<img SRC="spss_fa1_9.gif" width="388" height="691"></p>
+<p>
+The table below indicates that the rotation done is an oblique rotation.&nbsp; 
+If an orthogonal rotation had been done (like the varimax rotation shown above), 
+this table would not appear in the output because the correlations between the 
+factors are set to 0.&nbsp; Here, you can see that the factors are highly 
+correlated.</p>
+<p><img SRC="spss_fa1_10.gif" width="324" height="150"></p>
+<hr>
+<p>The rest of the output shown below is part of the output generated by the 
+SPSS syntax shown at the beginning of this page.</p>
+<p><img SRC="spss_fa1_11a.gif" width="325" height="198"></p>
+<p>a.&nbsp; <b>Factor Transformation Matrix</b> - This is the matrix by which you 
+multiply the unrotated factor matrix to get the rotated factor matrix.&nbsp; </p>
+<p><img SRC="spss_fa1_12.gif" width="500" height="500"></p>
+<p>The plot above shows the items (variables) in the rotated factor space.&nbsp; While this 
+picture may not be particularly helpful, when you get this graph in the SPSS 
+output, you can interactively rotate it.&nbsp; This may help you to see how the 
+items (variables) are organized in the common factor space.</p>
+
+<p><img SRC="spss_fa1_13a.gif" width="388" height="670"></p>
+<p>a.&nbsp; <b>Factor Score Coefficient Matrix</b> - This is the factor weight matrix 
+and is used to compute the factor scores.</p>
+<p><img SRC="spss_fa1_14a.gif" width="325" height="143"></p>
+
+<p>a.&nbsp; <b>Factor Score Covariance Matrix</b> - Because we used an orthogonal 
+rotation, this should be a diagonal matrix, meaning that the same number should 
+appear in all three places along the diagonal.&nbsp; In actuality the factors 
+are uncorrelated; however, because factor scores are estimated there may be 
+slight correlations among the factor scores.</p>
+
+
+
+
+
+<div style="clear:both;">
+<p style = "float:left;">
+<a href="/stat/mult_pkg/faq/general/citingats.htm">How to cite this page</a></p>
+<p style = "float:right;">
+<a href="/stat/apps/codetrack/errdirect.php">
+Report an error on this page or leave a comment</a>
+</p>
+</div>
+
+<div style="clear:both">
+<p>The content of this web site should not be construed as an endorsement
+of any particular web site, book, or software product by the
+University of California.</p>
+</div>
+
+<!-- closes bodycontainer from header -->
+</div>
+
+<div id="footerTop">
+  <div id="pageFooterBoxTop">
+    <div id="footerProjectsDetail">
+      <h2 class="footerProjectsDetailTitle">IDRE Research Technology Group</h2>
+      <div class="projectDetailBox">
+        <div class="projectIcon"></div>
+        <div class="projectDetail">
+          <h2><a href="https://idre.ucla.edu/hpc">High Performance Computing</a></h2>
+        </div>
+      </div>
+      <div class="projectDetailBox">
+        <div class="projectIcon"></div>
+        <div class="projectDetail">
+          <h2><a href="https://idre.ucla.edu/stats">Statistical Computing</a></h2>
+        </div>
+      </div>
+      <div class="projectDetailBox">
+        <div class="projectIcon"></div>
+        <div class="projectDetail">
+          <h2><a href="https://idre.ucla.edu/gis-visualization">GIS and Visualization</a></h2>
+        </div>
+      </div>
+    </div>
+    <div id="footerProjects">
+      <div class="projectMenu">
+<ul class="menu"><li class="leaf first menu-mlid-4445"><a href="https://idre.ucla.edu/hpc" title="High Performance Computing" id="custom_breadcrumbs_menu-4445">High Performance Computing</a></li>
+<li class="leaf menu-mlid-7191"><a href="https://idre.ucla.edu/gis" title="" id="custom_breadcrumbs_menu-7191">GIS</a></li>
+<li class="leaf menu-mlid-4447"><a href="https://idre.ucla.edu/stats" title="Statistical Computing" id="custom_breadcrumbs_menu-4447">Statistical Computing</a></li>
+<li class="leaf menu-mlid-4449"><a href="https://idre.ucla.edu/hoffman2" title="Hoffman2 Cluster" id="custom_breadcrumbs_menu-4449">Hoffman2 Cluster</a></li>
+<li class="leaf menu-mlid-4466"><a href="https://idre.ucla.edu/mapshare" title="" id="custom_breadcrumbs_menu-4466">Mapshare</a></li>
+<li class="leaf menu-mlid-7197"><a href="https://idre.ucla.edu/events/classes" title="" id="custom_breadcrumbs_menu-7197">Classes</a></li>
+<li class="leaf menu-mlid-7626"><a href="https://idre.ucla.edu/hoffman2/getting-started" title="" id="custom_breadcrumbs_menu-7626">Hoffman2 Account Application</a></li>
+<li class="leaf menu-mlid-4471"><a href="https://idre.ucla.edu/visualization" title="" id="custom_breadcrumbs_menu-4471">Visualization</a></li>
+<li class="leaf menu-mlid-7198"><a href="https://idre.ucla.edu/events/conferences" title="" id="custom_breadcrumbs_menu-7198">Conferences</a></li>
+<li class="leaf menu-mlid-7627"><a href="https://idre.ucla.edu/hoffman2/cluster-statistics" title="" id="custom_breadcrumbs_menu-7627">Hoffman2 Usage Statistics</a></li>
+<li class="leaf menu-mlid-4465"><a href="https://idre.ucla.edu/3d-modeling" title="" id="custom_breadcrumbs_menu-4465">3D Modeling</a></li>
+<li class="leaf menu-mlid-7192"><a href="https://idre.ucla.edu/reading-materials" title="" id="custom_breadcrumbs_menu-7192">Reading Materials</a></li>
+<li class="leaf menu-mlid-4472"><a href="http://portal.ucgrid.org/" title="" id="custom_breadcrumbs_menu-4472">UC Grid Portal</a></li>
+<li class="leaf menu-mlid-4467"><a href="https://idre.ucla.edu/technology-sandbox" title="" id="custom_breadcrumbs_menu-4467">Technology Sandbox</a></li>
+<li class="leaf menu-mlid-7713"><a href="http://lists.ucla.edu/cgi-bin/mailman/listinfo/idremailinglist" title="" id="custom_breadcrumbs_menu-7713">IDRE Listserv</a></li>
+<li class="leaf menu-mlid-4473"><a href="http://grid.ucla.edu/" title="" id="custom_breadcrumbs_menu-4473">UCLA Grid Portal</a></li>
+<li class="leaf menu-mlid-7671"><a href="https://idre.ucla.edu/gis-visualization/sandbox-access" title="" id="custom_breadcrumbs_menu-7671">Tech Sandbox Access</a></li>
+<li class="leaf menu-mlid-7773"><a href="https://idre.ucla.edu/resources" title="" id="custom_breadcrumbs_menu-7773">IDRE Resources</a></li>
+<li class="leaf menu-mlid-7630"><a href="https://idre.ucla.edu/hpc/shared-cluster-program" title="" id="custom_breadcrumbs_menu-7630">Shared Cluster &amp; Storage</a></li>
+<li class="leaf menu-mlid-7280"><a href="https://idre.ucla.edu/data-centers" title="Data Centers" id="custom_breadcrumbs_menu-7280">Data Centers</a></li>
+<li class="leaf menu-mlid-8026"><a href="http://dataarchives.ss.ucla.edu/" title="Social Sciences Data Archive" id="custom_breadcrumbs_menu-8026">Social Sciences Data Archive</a></li>
+<li class="leaf last menu-mlid-8013"><a href="https://idre.ucla.edu/about" title="" id="custom_breadcrumbs_menu-8013">About IDRE</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div><div id="footerBottom">
+  <div id="pageFooterBoxBtm">
+    <div id="footerLeft">
+      <div id="uclaSprite"> <a href="http://www.ucla.edu" title="University of California, Los Angeles Home"></a> </div>
+      <div id="footerMenu">
+        <ul class="footerMenu_List" title="Site Links">
+          <li> <a href="https://idre.ucla.edu/about">About</a> </li>
+          <li> <a href="https://idre.ucla.edu/contact">Contact</a> </li>
+          <li> <a href="https://idre.ucla.edu/news">News</a> </li>
+          <li> <a href="https://idre.ucla.edu/events">Events</a> </li>
+          <li> <a href="https://idre.ucla.edu/experts">Our Experts</a> </li>
+        </ul>
+        <div id="footerCopyright">
+          <ul class="footerTOS_List">
+             <li>&#169; 2016 UC Regents</li>
+          <li><a href="http://www.ucla.edu/terms-of-use/" target="_blank" title="UCLA Terms of Use">Terms of Use &amp; Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="footerRight">
+      <div id="oitSprite"> <a id="oitLink" title="Office of Information Technology" href="http://oit.ucla.edu/"></a> </div>
+      <div id="footerTOS"> </div>
+    </div>
+  </div>
+</div>
+
+<!-- closes bodywrap from header -->
+</div>
+
+<!--webbot bot="PurpleText" PREVIEW="Don't change anything below this line." -->
+
+</body>
+</html>

@@ -1,0 +1,666 @@
+                            The SAS System                           1
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+
+    Total Sample Size       18          DF Total                17
+    Variables                3          DF Within Classes       12
+    Classes                  6          DF Between Classes       5
+
+
+              Number of Observations Read             18
+              Number of Observations Used             18
+
+
+                       Class Level Information
+ 
+            Variable                                            Prior
+gp          Name        Frequency     Weight  Proportion  Probability
+
+meat        meat_____           3     3.0000    0.166667     0.166667
+-racquetb   racquetb                                                 
+meat        meat_____           3     3.0000    0.166667     0.166667
+-stairs     stairs                                                   
+meat        meat_____           3     3.0000    0.166667     0.166667
+-weights    weights                                                  
+veg         veg______           3     3.0000    0.166667     0.166667
+-racquetb   racquetb                                                 
+veg         veg______           3     3.0000    0.166667     0.166667
+-stairs     stairs                                                   
+veg         veg______           3     3.0000    0.166667     0.166667
+-weights    weights                                                  
+
+
+                 Pooled Covariance Matrix Information
+ 
+                                 Natural Log of the
+                   Covariance    Determinant of the
+                  Matrix Rank     Covariance Matrix
+
+                            3              13.63712
+                            The SAS System                           2
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+
+        Pairwise Generalized Squared Distances Between Groups
+
+                   2         _   _       -1  _   _  
+                  D (i|j) = (X - X )' COV   (X - X )
+                              i   j           i   j 
+
+
+                  Generalized Squared Distance to gp
+ 
+                      meat       meat       meat        veg        veg
+From gp          -racquetb    -stairs   -weights  -racquetb    -stairs
+
+meat                     0    1.16623    3.41757    3.41347    2.93105
+-racquetb      
+meat    -stairs    1.16623          0    7.38962    6.45912    3.17538
+meat               3.41757    7.38962          0    1.23812    9.55256
+-weights       
+veg                3.41347    6.45912    1.23812          0    6.12220
+-racquetb      
+veg     -stairs    2.93105    3.17538    9.55256    6.12220          0
+veg                7.33211   11.27939    3.86302    1.06346    7.79109
+-weights       
+
+                                             veg
+                      From gp           -weights
+
+                      meat               7.33211
+                      -racquetb      
+                      meat    -stairs   11.27939
+                      meat               3.86302
+                      -weights       
+                      veg                1.06346
+                      -racquetb      
+                      veg     -stairs    7.79109
+                      veg                      0
+                      -weights       
+                            The SAS System                           3
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+                   Canonical Discriminant Analysis
+
+                              Adjusted    Approximate        Squared
+              Canonical      Canonical       Standard      Canonical
+            Correlation    Correlation          Error    Correlation
+
+        1      0.827869       0.752161       0.076310       0.685368
+        2      0.682801       0.624790       0.129461       0.466217
+        3      0.330987       0.216824       0.215965       0.109553
+
+                             Eigenvalues of Inv(E)*H
+                               = CanRsq/(1-CanRsq)
+ 
+              Eigenvalue    Difference    Proportion    Cumulative
+
+          1       2.1783        1.3049        0.6861        0.6861
+          2       0.8734        0.7504        0.2751        0.9612
+          3       0.1230                      0.0388        1.0000
+
+             Test of H0: The canonical correlations in the
+               current row and all that follow are zero
+ 
+             Likelihood    Approximate
+                  Ratio        F Value    Num DF    Den DF    Pr > F
+
+         1   0.14954639           1.85        15    28.007    0.0778
+         2   0.47530543           1.24         8        22    0.3236
+         3   0.89044735           0.49         3        12    0.6943
+                            The SAS System                           4
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+                   Canonical Discriminant Analysis
+
+                      Total Canonical Structure
+ 
+    Variable              Can1              Can2              Can3
+
+    pulse1            0.830470          0.477368         -0.287123
+    pulse2            0.396156          0.818611         -0.415857
+    pulse3            0.365822          0.926576         -0.087358
+
+
+                     Between Canonical Structure
+ 
+    Variable              Can1              Can2              Can3
+
+    pulse1            0.896629          0.425084         -0.123939
+    pulse2            0.495028          0.843673         -0.207758
+    pulse3            0.431406          0.901217         -0.041188
+
+
+                  Pooled Within Canonical Structure
+ 
+    Variable              Can1              Can2              Can3
+
+    pulse1            0.725695          0.543331         -0.422087
+    pulse2            0.296660          0.798456         -0.523890
+    pulse3            0.288132          0.950569         -0.115752
+                            The SAS System                           5
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+                   Canonical Discriminant Analysis
+
+           Total-Sample Standardized Canonical Coefficients
+ 
+    Variable              Can1              Can2              Can3
+
+    pulse1         2.539388145      -0.730131075       0.325177695
+    pulse2        -1.815377011       0.201836212      -2.861371956
+    pulse3         0.295565486       1.438931612       2.360433074
+
+
+       Pooled Within-Class Standardized Canonical Coefficients
+ 
+    Variable              Can1              Can2              Can3
+
+    pulse1         1.940143588      -0.557834818       0.248442296
+    pulse2        -1.618486870       0.179945685      -2.551036460
+    pulse3         0.250534283       1.219701610       2.000806707
+
+
+                      Raw Canonical Coefficients
+ 
+    Variable              Can1              Can2              Can3
+
+    pulse1        0.1965980326      -.0565263460      0.0251750782
+    pulse2        -.0834670872      0.0092799901      -.1315596602
+    pulse3        0.0109568453      0.0533423277      0.0875031123
+
+
+                  Class Means on Canonical Variables
+ 
+ gp                            Can1             Can2             Can3
+
+ meat    -racquetb      0.759973767      0.519620228      0.281658046
+ meat    -stairs        1.542241535      0.452920427     -0.459854929
+ meat    -weights      -1.022206867      1.009888050      0.249376692
+ veg     -racquetb     -0.944474555     -0.004146803     -0.202075451
+ veg     -stairs        1.204085362     -1.133800397      0.277268748
+ veg     -weights      -1.539619242     -0.844481506     -0.146373106
+                            The SAS System                           6
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+
+                     Linear Discriminant Function
+
+                    _     -1 _                              -1 _ 
+     Constant = -.5 X' COV   X      Coefficient Vector = COV   X 
+                     j        j                                 j
+
+
+                 Linear Discriminant Function for gp
+ 
+                 meat        meat        meat         veg         veg
+ Variable   -racquetb     -stairs    -weights   -racquetb     -stairs
+
+ Constant   -65.05873   -71.26140   -53.92946   -47.11488   -59.28278
+ pulse1       1.42893     1.56783     1.05003     1.11127     1.60960
+ pulse2      -0.87104    -0.83940    -0.71349    -0.67000    -0.92288
+ pulse3       0.58116     0.52128     0.58496     0.49221     0.49744
+
+                                          veg
+                         Variable    -weights
+
+                         Constant   -38.04236
+                         pulse1       1.04317
+                         pulse2      -0.63545
+                         pulse3       0.44574
+                            The SAS System                           7
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+         Classification Results for Calibration Data: WORK.EX
+      Resubstitution Results using Linear Discriminant Function
+
+                Generalized Squared Distance Function
+
+                      2         _       -1   _  
+                     D (X) = (X-X )' COV  (X-X )
+                      j          j            j 
+
+            Posterior Probability of Membership in Each gp
+
+                               2                    2    
+            Pr(j|X) = exp(-.5 D (X)) / SUM exp(-.5 D (X))
+                               j        k           k    
+
+
+              Posterior Probability of Membership in gp
+ 
+                 Classified             meat         meat         meat
+Obs From gp      into gp           -racquetb      -stairs     -weights
+                                         veg          veg          veg
+                                   -racquetb      -stairs     -weights
+
+  1 meat         meat                 0.1377       0.7795       0.0018
+    -stairs      -stairs              0.0047       0.0761       0.0003
+  2 meat         meat                 0.2534       0.6860       0.0050
+    -stairs      -stairs              0.0049       0.0506       0.0002
+  3 meat         meat         *       0.3481       0.1306       0.1185
+    -stairs      -racquetb            0.1910       0.1549       0.0569
+  4 veg          veg                  0.2583       0.2844       0.0123
+    -stairs      -stairs              0.0411       0.3939       0.0100
+  5 veg          veg                  0.0392       0.0484       0.0010
+    -stairs      -stairs              0.0176       0.8760       0.0178
+  6 veg          veg                  0.2444       0.1247       0.0102
+    -stairs      -stairs              0.0286       0.5827       0.0095
+  7 meat         meat         *       0.3222       0.2060       0.3733
+    -racquetb    -weights             0.0913       0.0032       0.0039
+  8 meat         meat                 0.4837       0.0775       0.0697
+    -racquetb    -racquetb            0.0605       0.2924       0.0162
+  9 meat         veg          *       0.2008       0.3407       0.0071
+    -racquetb    -stairs              0.0338       0.4091       0.0084
+ 10 veg          veg                  0.1260       0.0931       0.1937
+    -racquetb    -racquetb            0.4342       0.0221       0.1309
+ 11 veg          veg                  0.0424       0.0042       0.2703
+    -racquetb    -racquetb            0.3752       0.0091       0.2986
+ 12 veg          veg                  0.0694       0.0098       0.1852
+    -racquetb    -racquetb            0.3814       0.0317       0.3225
+ 13 meat         meat                 0.0689       0.0035       0.7077
+    -weights     -weights             0.1729       0.0017       0.0452
+ 14 meat         veg          *       0.1675       0.0968       0.0942
+    -weights     -racquetb            0.3437       0.1255       0.1723
+ 15 meat         meat                 0.0277       0.0025       0.8073
+    -weights     -weights             0.1414       0.0002       0.0210
+ 16 veg          veg                  0.0000       0.0000       0.0063
+    -weights     -weights             0.0786       0.0000       0.9151
+                            The SAS System                           8
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+         Classification Results for Calibration Data: WORK.EX
+      Resubstitution Results using Linear Discriminant Function
+
+              Posterior Probability of Membership in gp
+ 
+                 Classified             meat         meat         meat
+Obs From gp      into gp           -racquetb      -stairs     -weights
+                                         veg          veg          veg
+                                   -racquetb      -stairs     -weights
+
+ 17 veg          veg          *       0.1478       0.0381       0.2263
+    -weights     -racquetb            0.3772       0.0410       0.1696
+ 18 veg          veg          *       0.1381       0.0250       0.0862
+    -weights     -racquetb            0.2766       0.2137       0.2604
+
+                   * Misclassified observation    
+                            The SAS System                           9
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+         Classification Summary for Calibration Data: WORK.EX
+      Resubstitution Summary using Linear Discriminant Function
+
+                Generalized Squared Distance Function
+
+                      2         _       -1   _  
+                     D (X) = (X-X )' COV  (X-X )
+                      j          j            j 
+
+            Posterior Probability of Membership in Each gp
+
+                               2                    2    
+            Pr(j|X) = exp(-.5 D (X)) / SUM exp(-.5 D (X))
+                               j        k           k    
+
+
+        Number of Observations and Percent Classified into gp
+ 
+              meat    meat     meat       veg     veg      veg
+From gp  -racquetb -stairs -weights -racquetb -stairs -weights   Total
+
+meat             1       0        1         0       1        0       3
+-       
+racquetb
+             33.33    0.00    33.33      0.00   33.33     0.00  100.00
+
+meat             1       2        0         0       0        0       3
+-stairs 
+             33.33   66.67     0.00      0.00    0.00     0.00  100.00
+
+meat             0       0        2         1       0        0       3
+-weights
+              0.00    0.00    66.67     33.33    0.00     0.00  100.00
+
+veg              0       0        0         3       0        0       3
+-       
+racquetb
+              0.00    0.00     0.00    100.00    0.00     0.00  100.00
+
+veg              0       0        0         0       3        0       3
+-stairs 
+              0.00    0.00     0.00      0.00  100.00     0.00  100.00
+
+veg              0       0        0         2       0        1       3
+-weights
+              0.00    0.00     0.00     66.67    0.00    33.33  100.00
+
+Total            2       2        3         6       4        1      18
+             11.11   11.11    16.67     33.33   22.22     5.56  100.00
+
+Priors     0.16667 0.16667  0.16667   0.16667 0.16667  0.16667        
+                                                                      
+
+                            The SAS System                          10
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+         Classification Summary for Calibration Data: WORK.EX
+      Resubstitution Summary using Linear Discriminant Function
+
+                     Error Count Estimates for gp
+ 
+                   meat     meat     meat       veg      veg      veg
+              -racquetb  -stairs -weights -racquetb  -stairs -weights
+
+ Rate            0.6667   0.3333   0.3333    0.0000   0.0000   0.6667
+ Priors          0.1667   0.1667   0.1667    0.1667   0.1667   0.1667
+
+                                        Total
+
+                        Rate           0.3333
+                        Priors               
+                            The SAS System                          11
+                                    13:43 Wednesday, February 29, 2012
+
+Obs        gp         pulse1 pulse2 pulse3   Can1        _INTO_
+
+  1 meat    -stairs     112    166    215   2.22750 meat    -stairs  
+  2 meat    -stairs     111    166    225   2.14047 meat    -stairs  
+  3 meat    -stairs      89    132    189   0.25875 meat    -racquetb
+  4 veg     -stairs      95    134    186   1.23853 veg     -stairs  
+  5 veg     -stairs      86    109    150   1.16138 veg     -stairs  
+  6 veg     -stairs      89    119    177   1.21234 veg     -stairs  
+  7 meat    -racquetb   105    177    241   0.21806 meat    -weights 
+  8 meat    -racquetb    85    117    186   0.69149 meat    -racquetb
+  9 meat    -racquetb    97    137    185   1.37037 veg     -stairs  
+ 10 veg     -racquetb    93    151    197  -0.45308 veg     -racquetb
+ 11 veg     -racquetb    77    122    178  -1.38628 veg     -racquetb
+ 12 veg     -racquetb    78    119    173  -0.99407 veg     -racquetb
+ 13 meat    -weights     81    134    205  -1.30566 meat    -weights 
+ 14 meat    -weights     88    133    180  -0.11993 veg     -racquetb
+ 15 meat    -weights     88    157    224  -1.64104 meat    -weights 
+ 16 veg     -weights     58     99    131  -3.71687 veg     -weights 
+ 17 veg     -weights     85    132    186  -0.56051 veg     -racquetb
+ 18 veg     -weights     78    110    164  -0.34147 veg     -racquetb
+                                                                    12
+                                    13:43 Wednesday, February 29, 2012
+
+                         m                       v
+                         e               m       e               v
+                         a       m       e       g       v       e
+                         t       e       a       _       e       g
+                         _       a       t       _       g       _
+                         _       t       _       _       _       _
+                         _       _       _       _       _       _
+                         _       _       _       _       _       _
+                         _       _       _       _       _       _
+                         r       _       _       r       _       _
+                         a       _       w       a       _       w
+                         c       s       e       c       s       e
+                         q       t       i       q       t       i
+                         u       a       g       u       a       g
+  O                      e       i       h       e       i       h
+  b         g            t       r       t       t       r       t
+  s         p            b       s       s       b       s       s
+
+  1 meat    -stairs   0.13770 0.77947 0.00180 0.00467 0.07608 0.00028
+  2 meat    -stairs   0.25337 0.68596 0.00503 0.00485 0.05059 0.00020
+  3 meat    -stairs   0.34811 0.13063 0.11847 0.19098 0.15494 0.05687
+  4 veg     -stairs   0.25831 0.28436 0.01226 0.04113 0.39391 0.01003
+  5 veg     -stairs   0.03924 0.04843 0.00096 0.01759 0.87601 0.01778
+  6 veg     -stairs   0.24437 0.12467 0.01025 0.02856 0.58268 0.00948
+  7 meat    -racquetb 0.32225 0.20603 0.37332 0.09132 0.00322 0.00386
+  8 meat    -racquetb 0.48368 0.07753 0.06972 0.06051 0.29235 0.01620
+  9 meat    -racquetb 0.20082 0.34074 0.00714 0.03384 0.40909 0.00837
+ 10 veg     -racquetb 0.12599 0.09311 0.19375 0.43418 0.02208 0.13090
+ 11 veg     -racquetb 0.04244 0.00423 0.27034 0.37524 0.00911 0.29863
+ 12 veg     -racquetb 0.06944 0.00977 0.18520 0.38139 0.03172 0.32249
+ 13 meat    -weights  0.06891 0.00348 0.70775 0.17292 0.00171 0.04523
+ 14 meat    -weights  0.16749 0.09678 0.09419 0.34370 0.12551 0.17232
+ 15 meat    -weights  0.02769 0.00245 0.80732 0.14137 0.00015 0.02102
+ 16 veg     -weights  0.00003 0.00000 0.00630 0.07856 0.00004 0.91506
+ 17 veg     -weights  0.14777 0.03807 0.22633 0.37720 0.04105 0.16958
+ 18 veg     -weights  0.13810 0.02505 0.08622 0.27658 0.21368 0.26036
+                                                                    13
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+
+    Total Sample Size       18          DF Total                17
+    Variables                3          DF Within Classes       16
+    Classes                  2          DF Between Classes       1
+
+
+              Number of Observations Read             18
+              Number of Observations Used             18
+
+
+                       Class Level Information
+ 
+         Variable                                              Prior
+  diet   Name       Frequency      Weight   Proportion   Probability
+
+  meat   meat               9      9.0000     0.500000      0.500000
+  veg    veg                9      9.0000     0.500000      0.500000
+
+
+                 Pooled Covariance Matrix Information
+ 
+                                 Natural Log of the
+                   Covariance    Determinant of the
+                  Matrix Rank     Covariance Matrix
+
+                            3              14.10099
+                                                                    14
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+
+        Pairwise Generalized Squared Distances Between Groups
+
+                   2         _   _       -1  _   _  
+                  D (i|j) = (X - X )' COV   (X - X )
+                              i   j           i   j 
+
+
+                 Generalized Squared Distance to diet
+ 
+                  From
+                  diet            meat           veg
+
+                  meat               0       2.75196
+                  veg          2.75196             0
+                                                                    15
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+                   Canonical Discriminant Analysis
+
+                              Adjusted    Approximate        Squared
+              Canonical      Canonical       Standard      Canonical
+            Correlation    Correlation          Error    Correlation
+
+        1      0.660529       0.621280       0.136718       0.436298
+
+                             Eigenvalues of Inv(E)*H
+                               = CanRsq/(1-CanRsq)
+ 
+              Eigenvalue    Difference    Proportion    Cumulative
+
+          1       0.7740                      1.0000        1.0000
+
+             Test of H0: The canonical correlations in the
+               current row and all that follow are zero
+ 
+             Likelihood    Approximate
+                  Ratio        F Value    Num DF    Den DF    Pr > F
+
+         1   0.56370159           3.61         3        14    0.0404
+
+                   NOTE: The F statistic is exact.
+                                                                    16
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+                   Canonical Discriminant Analysis
+
+                      Total Canonical Structure
+ 
+                      Variable              Can1
+
+                      pulse1            0.783941
+                      pulse2            0.891341
+                      pulse3            0.988166
+
+
+                      Between Canonical Structure
+ 
+                      Variable              Can1
+
+                      pulse1            1.000000
+                      pulse2            1.000000
+                      pulse3            1.000000
+
+
+                   Pooled Within Canonical Structure
+ 
+                      Variable              Can1
+
+                      pulse1            0.688006
+                      pulse2            0.827924
+                      pulse3            0.979290
+                                                                    17
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+                   Canonical Discriminant Analysis
+
+           Total-Sample Standardized Canonical Coefficients
+ 
+                      Variable              Can1
+
+                      pulse1         0.257304092
+                      pulse2        -0.664332487
+                      pulse3         1.702729286
+
+
+        Pooled Within-Class Standardized Canonical Coefficients
+ 
+                      Variable              Can1
+
+                      pulse1         0.226896194
+                      pulse2        -0.553513407
+                      pulse3         1.329699160
+
+
+                      Raw Canonical Coefficients
+ 
+                      Variable              Can1
+
+                      pulse1        0.0199203412
+                      pulse2        -.0305445631
+                      pulse3        0.0631215151
+
+
+                  Class Means on Canonical Variables
+ 
+                        diet              Can1
+
+                        meat      0.8294513579
+                        veg       -.8294513579
+                                                                    18
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+
+                     Linear Discriminant Function
+
+                    _     -1 _                              -1 _ 
+     Constant = -.5 X' COV   X      Coefficient Vector = COV   X 
+                     j        j                                 j
+
+
+                 Linear Discriminant Function for diet
+ 
+                 Variable          meat           veg
+
+                 Constant     -57.40763     -41.54239
+                 pulse1         0.56272       0.52967
+                 pulse2        -0.56976      -0.51909
+                 pulse3         0.70441       0.59970
+                                                                    19
+                                    13:43 Wednesday, February 29, 2012
+
+                        The DISCRIM Procedure
+         Classification Summary for Calibration Data: WORK.EX
+      Resubstitution Summary using Linear Discriminant Function
+
+                Generalized Squared Distance Function
+
+                      2         _       -1   _  
+                     D (X) = (X-X )' COV  (X-X )
+                      j          j            j 
+
+           Posterior Probability of Membership in Each diet
+
+                               2                    2    
+            Pr(j|X) = exp(-.5 D (X)) / SUM exp(-.5 D (X))
+                               j        k           k    
+
+
+       Number of Observations and Percent Classified into diet
+ 
+            From
+            diet           meat          veg        Total
+
+            meat              7            2            9
+                          77.78        22.22       100.00
+
+            veg               1            8            9
+                          11.11        88.89       100.00
+
+            Total             8           10           18
+                          44.44        55.56       100.00
+
+            Priors          0.5          0.5             
+                                                         
+
+                    Error Count Estimates for diet
+ 
+                               meat         veg       Total
+
+           Rate              0.2222      0.1111      0.1667
+           Priors            0.5000      0.5000            
+                                                                    20
+                                    13:43 Wednesday, February 29, 2012
+
+Obs  diet  pulse1  pulse2  pulse3    Can1      meat     veg    _INTO_
+
+  1  meat    112     166     215    1.16811  0.87411  0.12589   meat 
+  2  meat    111     166     225    1.77940  0.95035  0.04965   meat 
+  3  meat     89     132     189    0.10730  0.54438  0.45562   meat 
+  4  veg      95     134     186   -0.02363  0.49020  0.50980   veg  
+  5  veg      86     109     150   -1.71168  0.05523  0.94477   veg  
+  6  veg      89     119     177   -0.25308  0.39656  0.60344   veg  
+  7  meat    105     177     241    2.33384  0.97960  0.02040   meat 
+  8  meat     85     117     186    0.29642  0.62051  0.37949   meat 
+  9  meat     97     137     185   -0.13855  0.44279  0.55721   veg  
+ 10  veg      93     151     197    0.11160  0.54615  0.45385   meat 
+ 11  veg      77     122     178   -0.52064  0.29657  0.70343   veg  
+ 12  veg      78     119     173   -0.72469  0.23109  0.76891   veg  
+ 13  meat     81     134     205    0.89679  0.81573  0.18427   meat 
+ 14  meat     88     133     180   -0.51126  0.29982  0.70018   veg  
+ 15  meat     88     157     224    1.53302  0.92711  0.07289   meat 
+ 16  veg      58      99     131   -3.16331  0.00523  0.99477   veg  
+ 17  veg      85     132     186   -0.16175  0.43332  0.56668   veg  
+ 18  veg      78     110     164   -1.01788  0.15596  0.84404   veg  

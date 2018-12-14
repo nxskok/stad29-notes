@@ -1,0 +1,66 @@
+Choice . Y . N
+  Response 
+  variable?
+Tag
+Left
+Box 
+  Page
+  1 \& 2
+ToTag
+Down
+Choice . Cat Cont Distances
+  Explanatory
+  variables?
+Tag
+Left
+Box 4 4
+  Multiway
+  frequency
+  tables
+  (PROC 
+  CATMOD)
+ToTag
+Tag
+Down
+Choice . Grps Map .
+  Goal?
+Tag
+Left
+Box 4 3
+  Cluster 
+  Analysis
+  (PROC 
+  CLUSTER)
+ToTag
+Right
+Box 4.5 2.5
+  Multidimensional
+  Scaling
+  (PROC MDS)
+ToTag
+Choice N . Y .
+  Hidden
+  factors?
+Tag
+Up
+Box 5.2 3.5
+  Cluster
+  analysis
+  (PROC CLUSTER,
+  FASTCLUS)
+ToTag
+Right 0.4
+Choice Y . . N
+  Testing
+  hypotheses?
+Tag
+Down
+Box 5.5 3
+  PCA, FA
+  (PROC PRINCOMP,
+  PROC FACTOR)
+ToTag
+Up
+Box 
+  Confirmatory FA 
+  (PROC CALIS)

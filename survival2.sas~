@@ -1,0 +1,38 @@
+options linesize=70;
+
+data dancers;
+  infile "survival1.dat";
+  input months dancing treatment age;
+
+proc print;
+ 
+data mypred;
+  input treatment age;
+  datalines;
+  0 25 
+  0 45 
+  1 25 
+  1 45 
+;
+
+proc phreg data=dancers;
+  model months*dancing(0) = age treatment;
+  baseline out=fred covariates=mypred survival=s / nomean;
+
+data fred2;
+  set fred;
+  at=cat(age,"-",treatment);  
+  
+proc print;
+
+goptions reset=all;
+symbol1 c=red v=triangle i=stepj11;
+symbol2 c=blue v=circle i=stepj11;
+symbol3 c=green v=triangle i=stepj11;
+symbol4 c=black v=circle i=stepj11;
+
+proc gplot;
+  plot s*months=at;  
+
+run;
+

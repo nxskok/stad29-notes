@@ -1,0 +1,35 @@
+\documentclass[pdf]{prosper}
+
+\usepackage[lakar]{HA-prosper}
+
+\begin{document}
+
+\begin{slide}{Multiple regression and logistic regression}
+
+Predict response as linear function of explanatory variables:
+
+$$ y = \beta_0 +\beta_1 x_1 + \cdots + \beta_p x_p$$
+
+But if response is success/failure (lived/died)?
+
+Predict {\em probability} of success, but could be predicted as $<0$
+or $>1$.
+  
+\end{slide}
+
+\begin{slide}{Log-odds}
+
+Idea: predict not probability of success, but {\em log-odds}. If prob
+is $p$, log odds is
+$$ \ln \left( {p \over 1-p } \right) $$
+which could take any value for a legal probability, and is thus a
+reasonable thing to be predicted.
+
+To get probability from log-odds $x$:
+
+$$ p = { e^x \over 1 + e^x }$$
+  
+\end{slide}
+
+
+\end{document}

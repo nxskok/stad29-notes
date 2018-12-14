@@ -1,0 +1,25 @@
+\frametitle {Text}\framesubtitle {Prerequisites and exclusions}
+
+\begin{itemize}
+    \item {\bf Recommended text} for this course is my own (yes, I
+      know), available at
+      \verb=www.utsc.utoronto.ca/~butler/r/r-howto.pdf=.
+      I keep adding to this, so check in to get
+      the most recent version. I refer to this as ``the book''.
+
+      Another text that shares my philosophy (if you want additional background):
+      \begin{itemize}
+      \item ``Using Multivariate Statistics'' by Barbara G.\
+        Tabachnick and Linda S.\ Fidell, publ.\ Allyn and Bacon, ISBN
+        0205459382. There is a 5th edition around, but the 4th should
+        be fine.
+      \end{itemize}
+
+    \item Prerequisites: for undergrads STAB22 - STAB27
+      (or STA220-STA221). For grad students,
+      a first course, and some training in
+      regression and ANOVA. We can be flexible about this, since there
+      is some review anyway.
+    \item  Exclusions: this course not for Statistics majors. For students in other fields who wish to learn some more advanced statistical methods. The exclusions in the Calendar reflect this.
+\end{itemize}
+

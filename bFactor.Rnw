@@ -1,0 +1,1096 @@
+\section{Exploratory factor analysis}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Principal components and factor analysis}
+
+  \begin{itemize}
+  \item Principal components: 
+    \begin{itemize}
+    \item Purely mathematical.
+    \item Find eigenvalues, eigenvectors of correlation matrix.
+    \item No testing whether observed components reproducible, or even probability model behind it.
+    \end{itemize}
+  \item Factor analysis: 
+    \begin{itemize}
+    \item some way towards fixing this (get test of appropriateness)
+    \item In factor analysis, each variable modelled as: ``common factor'' (eg. verbal ability) and ``specific factor'' (left over).
+    \item Choose the common factors to ``best'' reproduce pattern seen in correlation matrix.
+    \item Iterative procedure, different answer from principal components.
+    \end{itemize}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+<<warning=F, message=F>>=
+library(lavaan) # confirmatory factor analysis
+library(ggbiplot)
+library(tidyverse)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Example}
+
+  \begin{itemize}
+  \item 
+145 children given 5 tests, called PARA, SENT, WORD, ADD and DOTS. 3 linguistic tasks (paragraph comprehension, sentence completion  and word meaning), 2 mathematical ones (addition and counting dots).
+\item Correlation matrix of scores on the tests:
+
+\begin{verbatim}
+para 1     0.722 0.714 0.203 0.095
+sent 0.722 1     0.685 0.246 0.181
+word 0.714 0.685 1     0.170 0.113
+add  0.203 0.246 0.170 1     0.585
+dots 0.095 0.181 0.113 0.585 1
+\end{verbatim}
+
+\item Is there small number of underlying ``constructs'' (unobservable) that explains this pattern of correlations?
+
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{To start: principal components}
+
+Using correlation matrix:
+
+<<kids-scree,message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/rex2.txt"
+kids = read_delim(my_url," ") 
+kids
+kids.pc = kids %>%
+    select_if(is.numeric) %>%
+    as.matrix() %>%
+    princomp(covmat=.)
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot}
+   
+<<fig.height=3.5>>=
+ggscreeplot(kids.pc)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Principal component results}
+  
+  \begin{itemize}
+  \item Need 2 components. Loadings:
+    
+<<size="footnotesize">>=
+kids.pc$loadings
+@
+
+\item First component has a bit of everything, though especially the
+  first three tests.
+\item Second component rather more clearly \texttt{add} and \texttt{dots}.
+\item No scores, plots since no actual data.
+  
+  \end{itemize}
+  
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Factor analysis}
+  
+  \begin{itemize}
+  \item Specify number of factors first, get solution with exactly
+    that many factors.
+  \item Includes hypothesis test, need to specify how many children
+    wrote the tests.
+  \item Works from correlation matrix via \texttt{covmat} or actual
+    data, like \texttt{princomp}.
+  \item Introduces extra feature, \emph{rotation}, to make
+    interpretation of loadings (factor-variable relation) easier.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Factor analysis for the kids data}
+
+  \begin{itemize}
+  \item Create ``covariance list'' to include number of children who
+    wrote the tests.
+  \item Feed this into \texttt{factanal}, specifying how many factors (2).
+  \end{itemize}
+  
+<<>>=
+km = kids %>%
+    select_if(is.numeric) %>%
+    as.matrix() 
+km2=list(cov=km,n.obs=145)
+kids.f2=factanal(factors=2,covmat=km2)
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Uniquenesses}
+
+<<>>=
+kids.f2$uniquenesses
+@   
+%$
+
+  \begin{itemize}
+  \item Uniquenesses say how ``unique'' a variable is (size of
+    specific factor). Small
+    uniqueness means that the variable is summarized by a factor (good).
+    
+  \item Mildly worried by how large \texttt{add}'s uniqueness is.
+  \item Also see ``communality'' for this, where \emph{large} is good.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Loadings}
+
+  \begin{minipage}[t]{0.58\linewidth}
+
+<<size="footnotesize">>=
+kids.f2$loadings
+@   
+
+%$
+  \end{minipage}
+  \begin{minipage}[t]{0.40\linewidth}
+  \begin{itemize}
+  \item Loadings show how each factor depends on variables. Blanks
+    indicate ``small'', less than 0.1.
+  \item Factor 1 clearly the ``linguistic'' tasks, factor 2 clearly
+    the ``mathematical'' ones.
+  \item Two factors together explain 68\% of variability (like
+    regression R-squared).
+  \end{itemize}    
+  \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{Are 2 factors enough?}
+  
+<<>>=
+kids.f2$STATISTIC
+kids.f2$dof
+kids.f2$PVAL
+@   
+
+P-value not small, so 2 factors OK.
+  
+\end{frame}
+
+\begin{frame}[fragile]{1 factor}
+
+<<>>=
+kids.f1=factanal(factors=1,covmat=km2)
+kids.f1$STATISTIC
+kids.f1$dof
+kids.f1$PVAL
+@   
+
+1 factor rejected (P-value small). Definitely need more than 1.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track running records revisited}
+
+<<fig.height=3.5>>=
+g2 
+@   
+
+\end{frame}
+
+\begin{frame}{Benefit of rotation}
+  
+  \begin{itemize}
+  \item 100m and marathon arrows almost perpendicular, but components
+    don't match anything much:
+    \begin{itemize}
+    \item sprinting: top left and bottom right
+    \item distance running: bottom left and top right.
+    \end{itemize}
+  \item Can we arrange things so that components (factors) correspond
+    to something meaningful?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track records by factor analysis}
+
+  Obtain factor scores (have actual data):
+  
+<<track-factor-biplot,size="footnotesize">>=
+track
+track.f = track %>% select_if(is.numeric) %>%
+    factanal(2,scores="r")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track data biplot}
+  
+Not so nice-looking:  
+  
+<<siracusa,fig.height=4>>=
+biplot(track.f$scores,track.f$loadings,
+xlabs=track$country)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item This time 100m ``up'' (factor 2), marathon ``right'' (factor 1).
+  \item Countries most negative on factor 2 good at sprinting.
+  \item Countries most negative on factor 1 good at distance running.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Rotated factor loadings}
+
+  {\small
+<<>>=
+track.f$loadings
+@ %def 
+  }
+  
+\end{frame}
+
+\begin{frame}[fragile]{Which countries are good at sprinting or
+    distance running?}
+  
+Make a data frame with the countries and scores in:
+
+<<>>=
+scores=data.frame(country=track$country,
+                  track.f$scores)
+scores %>% slice(1:6)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{The best sprinting countries}
+  
+Most negative on factor 2:  
+
+<<warning=F,size="footnotesize">>=
+scores %>% arrange(Factor2) %>% 
+  left_join(iso,by=c("country"="ISO2")) %>%
+  select(Country,Factor1,Factor2) %>%  
+  slice(1:10)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{The best distance-running countries}
+  
+Most negative on factor 1:
+
+<<warning=F, size="footnotesize">>=
+scores %>% arrange(Factor1) %>% 
+  left_join(iso,by=c("country"="ISO2")) %>%
+  select(Country,Factor1,Factor2) %>%  
+  slice(1:10)
+@ 
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{A bigger example: BEM sex role inventory}
+
+  \begin{itemize}
+  \item 369 women asked to rate themselves on 60 traits, like ``self-reliant'' or ``shy''.
+  \item Rating 1 ``never or almost never true of me'' to 7 ``always or
+    almost always true of me''.
+  \item 60 personality traits is a lot. Can we find a smaller number
+    of factors that capture aspects of personality?
+  \item The whole BEM sex role inventory on next page.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The whole inventory}
+
+\includegraphics[width=4.5in]{bem}
+
+\end{frame}
+
+\begin{frame}[fragile]{Some of the data}
+
+<<bem-scree,size="scriptsize",message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/factor.txt"
+bem=read_tsv(my_url)
+bem
+@   
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Principal components first}
+  
+  \ldots to decide on number of factors:
+  
+<<>>=
+bem.pc = bem %>% select(-subno) %>%
+  princomp(cor=T)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The scree plot}
+ 
+<<genoa,fig.height=3.5>>=
+g=ggscreeplot(bem.pc) ; g
+@ 
+
+  \begin{itemize}
+  \item No obvious elbow.
+  \end{itemize}
+
+  
+%  \includegraphics[height=\textheight]{bFactor-bem-scree}
+\end{frame}
+
+\begin{frame}[fragile]{Zoom in to search for elbow}
+  
+<<bem-scree-two,fig.height=3.5,warning=F>>=
+g+scale_x_continuous(limits=c(0,8))
+@
+
+Possible elbows at 3 (2 factors) and 6 (5).
+  
+\end{frame}
+
+\begin{frame}[fragile]{but is 2 really good?}
+  
+  {\scriptsize
+<<>>=
+summary(bem.pc)
+@   
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+  \begin{itemize}
+\item Want overall fraction of variance explained (``cumulative
+  proportion'') to be reasonably high.
+\item 2 factors, 28.5\%. Terrible!
+\item Even 56\% (10 factors) not that good!
+\item Have to live with that.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Biplot}
+
+<<bem-biplot,fig.height=3.5,>>=
+ggbiplot(bem.pc,alpha=0.3)
+@   
+%  \includegraphics[height=0.8\textheight]{bFactor-bem-biplot}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Ignore individuals for now.
+  \item Most variables point to 10 o'clock or 7 o'clock.
+  \item Suggests factor analysis with rotation will get interpretable
+    factors (rotate to 6 o'clock and 9 o'clock, for example).
+  \item Try for 2-factor solution (rough interpretation, will be bad):
+
+<<>>=
+bem.2 = bem %>% select(-subno) %>%
+    factanal(factors=2)
+@
+\item Show output in pieces (just print \texttt{bem.2} to see all of it).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Uniquenesses}
+  
+<<echo=-1,size="scriptsize">>=
+options(width=60)
+bem.2$uniquenesses
+@   
+
+\begin{itemize}
+\item Mostly high or very high (bad).
+\item Some smaller, eg.:
+  Leadership ability (0.409),
+  Acts like leader (0.417),
+  Warm (0.476),
+  Tender (0.493).
+\item Smaller uniquenesses captured by one of our two factors.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Factor loadings, some}
+
+<<size="scriptsize">>=
+bem.2$loadings
+@
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a data frame}
+  
+  There are too many to read easily, so make a data frame. This is a
+  bit tricky:
+  
+<<size="footnotesize">>=
+loadings = as.data.frame(unclass(bem.2$loadings)) %>%
+  mutate(trait=rownames(bem.2$loadings))
+loadings %>% slice(1:10)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Pick out the big ones on factor 1}
+
+Arbitrarily defining $>0.4$ or $<-0.4$ as ``big'':
+
+
+<<size="footnotesize">>=
+loadings %>% filter(abs(Factor1)>0.4)
+@
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 2, the big ones}
+  
+<<size="footnotesize">>=
+loadings %>% filter(abs(Factor2)>0.4)
+@   
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Plotting the two factors}
+  
+A bi-plot, this time with the variables reduced in size. Looking for
+unusual individuals.
+
+Have to run \texttt{factanal} again to get factor scores for plotting.
+
+<<biplot-two-again,fig.height=5,eval=F>>=
+bem.2a=factanal(bem[,-1],factors=2,scores="r")
+biplot(bem.2a$scores,bem.2a$loadings,cex=c(0.5,0.5))
+@ 
+
+Numbers on plot are row numbers of \texttt{bem}
+data frame.
+  
+\end{frame}
+
+\begin{frame}[fragile]{The (awful) biplot}
+  
+%\includegraphics[height=\textheight]{bFactor-biplot-two-again} 
+  
+<<biplot-two-ag,fig.height=4,echo=F>>=
+bem.2a=factanal(bem[,-1],factors=2,scores="r")
+biplot(bem.2a$scores,bem.2a$loadings,cex=c(0.5,0.5))
+@ 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Variables mostly up (``feminine'') and right (``masculine''),
+    accomplished by rotation.
+  \item Some unusual individuals: 311, 214 (low on factor 2), 366
+    (high on factor 2),
+    359, 258
+    (low on factor 1), 230 (high on factor 1).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Individual 366}
+  
+  \begin{multicols}{2}
+<<size="tiny">>=
+bem %>% slice(366) %>% glimpse()
+@ 
+
+\begin{itemize}
+\item High on factor 2, but hard to see which traits should have high scores
+(unless we remember).
+\item Idea: \emph{tidy} original data frame to make easier to look
+  things up.
+\end{itemize}
+  \end{multicols}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidying original data}
+  
+<<size="scriptsize">>=
+bem_tidy = bem %>% mutate(row=row_number()) %>%
+    gather(trait,score,c(-subno,-row))
+bem_tidy
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Recall data frame of loadings}
+  
+<<size="footnotesize">>=
+loadings %>% slice(1:10)
+@   
+
+Want to add the factor scores for each trait to our tidy data frame
+\texttt{bem\_tidy}. This is a left-join (over), matching on the column
+\texttt{trait} that is in both data frames (thus, the default):
+  
+\end{frame}
+
+\begin{frame}[fragile]{Looking up loadings}
+  
+<<size="scriptsize">>=
+bem_tidy = bem_tidy %>% left_join(loadings) 
+bem_tidy %>% sample_n(12)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Individual 366, high on Factor 2}
+  
+So now pick out the rows of the tidy data frame that belong to
+individual 366 (\texttt{row=366}) and for which the \texttt{Factor2}
+score exceeds 0.4 in absolute value (our ``big'' from before):
+
+<<size="footnotesize">>=
+bem_tidy %>% filter(row==366, abs(Factor2)>0.4)
+@ 
+  
+As expected, high scorer on these.
+\end{frame}
+
+\begin{frame}[fragile]{Several individuals}
+  
+  Rows 311 and 214 were \emph{low} on Factor 2, so their scores should
+  be low. Can we do them all at once?
+  
+<<size="footnotesize">>=
+bem_tidy %>% filter(row %in% c(366,311,214), 
+                    abs(Factor2)>0.4)
+@   
+
+Can we display each individual in own column?
+  
+\end{frame}
+
+\begin{frame}[fragile]{Individual by column}
+  
+Un-\texttt{tidy}, that is, \texttt{spread}:
+
+<<size="scriptsize">>=
+bem_tidy %>% filter(row %in% c(366,311,214), 
+                    abs(Factor2)>0.4) %>%
+    select(-subno,-Factor1,-Factor2) %>%
+    spread(row,score) 
+@ 
+  
+366 high, 311 middling, 214 (sometimes) low.
+\end{frame}
+
+\begin{frame}[fragile]{Individuals 230, 258, 359}
+  
+These were high, low, low on factor 1. Adapt code:
+
+
+<<size="scriptsize">>=
+bem_tidy %>% filter(row %in% c(359,258,230),abs(Factor1)>0.4) %>%
+    select(-subno,-Factor1,-Factor2) %>% spread(row,score) 
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Is 2 factors enough?}
+  
+  Suspect not:
+  
+<<>>=
+bem.2$PVAL
+@   
+
+2 factors resoundingly rejected. Need more. Have to go all the way to
+15 factors to not reject:
+
+<<>>=
+bem.15 = bem %>% select(-subno) %>% 
+    factanal(factors=15)
+bem.15$PVAL
+@ 
+
+Even then, only just over 50\% of variability explained.
+
+Let's have a look at the important things in those 15 factors.
+
+\end{frame}
+
+\begin{frame}[fragile]{Get factor loadings}
+  
+into a data frame, as before:  
+  
+<<size="small">>=
+loadings = as.data.frame(unclass(bem.15$loadings)) %>%
+  mutate(trait=rownames(bem.15$loadings))
+@   
+
+then show the highest few loadings on each factor.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 1}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor1))) %>%
+    select(Factor1, trait) %>% slice(1:10)
+@   
+  
+Compassionate, understanding, sympathetic, soothing: thoughtful of
+others. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 2}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor2))) %>%
+    select(Factor2, trait) %>% slice(1:10)
+@   
+
+Strong personality, forceful, assertive, dominant: getting ahead. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 3}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor3))) %>%
+    select(Factor3, trait) %>% slice(1:10)
+@   
+
+Self-reliant, self-sufficient, independent: going it alone.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 4}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor4))) %>%
+    select(Factor4, trait) %>% slice(1:10)
+@   
+
+Gentle, tender, warm (affectionate): caring for others.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 5}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor5))) %>%
+    select(Factor5, trait) %>% slice(1:10)
+@   
+
+Ambitious, competitive (with a bit of risk-taking and individualism):
+Being the best.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 6}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor6))) %>%
+    select(Factor6, trait) %>% slice(1:10)
+@   
+
+Acts like a leader, leadership ability (with a bit of Dominant):
+Taking charge.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 7}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor7))) %>%
+    select(Factor7, trait) %>% slice(1:10)
+@   
+
+Acts like a leader, leadership ability (with a bit of Dominant):
+Taking charge.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 8}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor8))) %>%
+    select(Factor8, trait) %>% slice(1:10)
+@   
+
+
+Affectionate, flattering: Making others feel good.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 9}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor9))) %>%
+    select(Factor9, trait) %>% slice(1:10)
+@   
+
+Taking a stand.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 10}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor10))) %>%
+    select(Factor10, trait) %>% slice(1:10)
+@   
+
+Feminine. (A little bit of not-masculine!)
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 11}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor11))) %>%
+    select(Factor11, trait) %>% slice(1:10)
+@   
+
+Loyal.
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 12}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor12))) %>%
+    select(Factor12, trait) %>% slice(1:10)
+@   
+
+Childlike. (With a bit of moody, shy, not-self-sufficient, not-conscientious.)
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 13}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor13))) %>%
+    select(Factor13, trait) %>% slice(1:10)
+@   
+
+Truthful. (With a bit of happy and not-gullible.)
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 14}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor14))) %>%
+    select(Factor14, trait) %>% slice(1:10)
+@   
+
+Decisive. (With a bit of self-sufficient and not-soft-spoken.)
+
+\end{frame}
+
+\begin{frame}[fragile]{Factor 15}
+  
+<<size="footnotesize">>=
+loadings %>% arrange(desc(abs(Factor15))) %>%
+    select(Factor15, trait) %>% slice(1:10)
+@   
+
+Not-compassionate, athletic, sensitive: A mixed bag. (``Cares about self''?)
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Anything left out? Uniquenesses}
+  
+<<size="scriptsize">>=
+data.frame(uniq=bem.15$uniquenesses) %>%
+    rownames_to_column() %>%
+    arrange(desc(uniq)) %>% slice(1:10)
+@   
+
+Uses foul language especially, also loves children and analytical. So
+could use even more factors.
+
+\end{frame}
+
+
+
+
+\section{Confirmatory factor analysis}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Confirmatory factor analysis}
+
+  \begin{itemize}
+  \item Exploratory: what do data suggest as hidden underlying factors (in terms of variables observed)?
+  \item Confirmatory: have {\em theory} about how underlying factors depend on observed variables; test whether theory supported by data:
+    \begin{itemize}
+    \item does theory provide {\em some} explanation (better than nothing)
+    \item can we do better?
+    \end{itemize}
+  \item Also can compare two theories about factors: is more complicated one significantly better than simpler one?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Children and tests again}
+
+\begin{itemize}
+\item
+Previously had this correlation matrix of test scores (based on 145
+children):
+
+<<>>=
+km
+@ %def 
+
+\item Will use package \texttt{lavaan} for confirmatory analysis.
+\item Can use actual data or correlation matrix.
+\item Latter (a bit) more work, as we see.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Two or three steps}
+  
+  \begin{enumerate}
+  \item Make sure correlation matrix (if needed) is handy.
+  \item Specify factor model (from theory)
+  \item Fit factor model: does it fit acceptably? 
+  \end{enumerate}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Specifying a factor model}
+  
+  \begin{itemize}
+
+  \item Jargon: thing you cannot observe called \textbf{latent variable}.
+  \item Thing you \emph{can} observe called \textbf{manifest variable}.
+  \item Model predicts latent variables from manifest variables.
+  \item Model with one factor including all the tests:
+    
+
+<<>>=
+test.model.1='ability=~para+sent+word+add+dots'
+@ %def 
+
+\item and a model that we really believe, that there are two factors,
+  a verbal and a mathematical:
+  
+
+<<>>=
+test.model.2='
+    verbal=~para+sent+word
+    math=~add+dots'
+@ %def 
+  
+\item Note the format: really all one line between single quotes, but
+  putting it on several lines makes the layout clearer.
+\item Also note special notation \texttt{=\textasciitilde} for ``this latent
+  variable depends on these observed variables''.  
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Fitting a 1-factor model}
+  
+  \begin{itemize}
+  \item Need to specify model, correlation matrix, $n$ like this:
+
+<<>>=
+fit1=cfa(test.model.1,sample.cov=km,
+    sample.nobs=145)
+@ %def 
+
+\item Has \texttt{summary}, or briefer version like this:
+  
+
+<<size="scriptsize">>=
+fit1
+@ %def 
+ 
+
+\item Test of fit: null ``model fits'' \emph{rejected}. We can do better.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two-factor model}
+
+
+<<size="scriptsize">>=
+fit2=cfa(test.model.2,sample.cov=km,sample.nobs=145)
+fit2
+@ %def 
+
+\begin{itemize}
+\item This fits OK: 2-factor model supported by the data.
+\item 1-factor model did not fit. We really need 2 factors.
+\item Same conclusion as from \texttt{factanal} earlier.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comparing models}
+  
+  \begin{itemize}
+  \item Use \texttt{anova} as if this were a regression:
+
+<<size="scriptsize">>=
+anova(fit1,fit2)
+@ %def 
+
+\item 2-factor model fits significantly better than 1-factor.
+\item No surprise!
+
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track and field data, yet again}
+  
+  \begin{itemize}
+  \item \texttt{cfa} works easier on actual data, such as the running records:
+{\small 
+
+<<size="footnotesize">>=
+track %>% print(n=6)
+@ %def 
+}
+
+\item Specify factor model. Factors seemed to be ``sprinting'' (up to
+  800m) and ``distance running'' (beyond):
+  
+
+<<size="footnotesize">>=
+track.model='
+sprint=~m100+m200+m400+m800
+distance=~m1500+m5000+m10000+marathon'
+@ %def 
+  
+  
+    
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Fit and examine the model}
+  
+  \begin{itemize}
+\item Fit the model. The observed variables are on different
+  scales, so we should standardize them first via \texttt{std.ov}:
+
+
+<<size="scriptsize">>=
+track.1 = track %>% select(-country) %>% 
+  cfa(track.model,data=.,std.ov=T)
+track.1
+@ %def 
+
+\item This fits badly. Can we do better?
+  
+
+\item Idea: move middle distance races (800m, 1500m) into a third factor.
+  
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Factor model 2}
+  
+  
+  \begin{itemize}
+  \item Define factor model:
+
+<<>>=
+track.model.2='
+sprint=~m100+m200+m400
+middle=~m800+m1500
+distance=~m5000+m10000+marathon'
+@ %def 
+
+\item Fit and examine:
+
+
+<<size="scriptsize">>=
+track.2 = track %>% select(-country) %>%
+  cfa(track.model.2,data=.,std.ov=T)
+track.2
+@ %def 
+
+\item Fits  marginally better, though still badly.
+  
+
+  \end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comparing the two models}
+  
+  \begin{itemize}
+  \item Second model doesn't fit well, but is it better than first?
+
+    {\small    
+
+<<size="footnotesize">>=
+
+anova(track.1,track.2)
+@ %def
+}
+
+
+\item Oh yes, a lot better.
+    
+  \end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+
+\end{frame}
+  

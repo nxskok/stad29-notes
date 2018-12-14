@@ -1,0 +1,14 @@
+This is some text.
+
+@ 
+<<first>>=
+x=rnorm(20)
+y=rnorm(20)
+z=data.frame(x,y)
+z
+write.table(z,"z.txt")
+@ %def 
+
+
+\texttt{This} is some random data.
+

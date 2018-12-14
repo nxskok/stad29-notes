@@ -1,0 +1,9 @@
+\documentclass{article}
+
+\begin{document}
+
+\begin{SAScode}
+  \input{rat.sas}
+\end{SAScode}
+
+\end{document}

@@ -1,0 +1,198 @@
+\documentclass{article}
+\title{The scaffold2 data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+ecm1 2 70
+ecm1 2 75
+ecm1 2 65
+ecm1 4 55
+ecm1 4 70
+ecm1 4 70
+ecm1 8 60
+ecm1 8 65
+ecm1 8 65
+ecm2 2 60
+ecm2 2 65
+ecm2 2 70
+ecm2 4 60
+ecm2 4 65
+ecm2 4 65
+ecm2 8 60
+ecm2 8 70
+ecm2 8 60
+ecm3 2 80
+ecm3 2 60
+ecm3 2 75
+ecm3 4 75
+ecm3 4 70
+ecm3 4 75
+ecm3 8 70
+ecm3 8 80
+ecm3 8 70
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data scaffold;
+  infile "scaffold2.dat";
+  input material $ weeks gpi;
+
+proc print;
+
+proc glm;
+  class material weeks;
+  model gpi=weeks|material;
+
+proc glm;
+  class material weeks;
+  model gpi=weeks material;
+  lsmeans material weeks / adjust=tukey lines;
+  
+run;
+\end{Winput}
+\begin{Woutput}
+Obs    material    weeks    gpi
+  1      ecm1        2       70
+  2      ecm1        2       75
+  3      ecm1        2       65
+  4      ecm1        4       55
+  5      ecm1        4       70
+  6      ecm1        4       70
+  7      ecm1        8       60
+  8      ecm1        8       65
+  9      ecm1        8       65
+ 10      ecm2        2       60
+ 11      ecm2        2       65
+ 12      ecm2        2       70
+ 13      ecm2        4       60
+ 14      ecm2        4       65
+ 15      ecm2        4       65
+ 16      ecm2        8       60
+ 17      ecm2        8       70
+ 18      ecm2        8       60
+ 19      ecm3        2       80
+ 20      ecm3        2       60
+ 21      ecm3        2       75
+ 22      ecm3        4       75
+ 23      ecm3        4       70
+ 24      ecm3        4       75
+ 25      ecm3        8       70
+ 26      ecm3        8       80
+ 27      ecm3        8       70
+
+The GLM Procedure
+        Class Level Information
+Class         Levels    Values
+material           3    ecm1 ecm2 ecm3
+weeks              3    2 4 8
+
+Number of Observations Read          27
+Number of Observations Used          27
+
+The GLM Procedure
+Dependent Variable: gpi
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        8      468.518519       58.564815       1.62    0.1874
+Error                       18      650.000000       36.111111
+Corrected Total             26     1118.518519
+
+R-Square     Coeff Var      Root MSE      gpi Mean
+0.418874      8.890400      6.009252      67.59259
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+weeks                        2      24.0740741      12.0370370       0.33    0.7209
+material                     2     385.1851852     192.5925926       5.33    0.0152
+material*weeks               4      59.2592593      14.8148148       0.41    0.7989
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+weeks                        2      24.0740741      12.0370370       0.33    0.7209
+material                     2     385.1851852     192.5925926       5.33    0.0152
+material*weeks               4      59.2592593      14.8148148       0.41    0.7989
+
+The GLM Procedure
+        Class Level Information
+Class         Levels    Values
+material           3    ecm1 ecm2 ecm3
+weeks              3    2 4 8
+
+Number of Observations Read          27
+Number of Observations Used          27
+
+The GLM Procedure
+Dependent Variable: gpi
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        4      409.259259      102.314815       3.17    0.0335
+Error                       22      709.259259       32.239057
+Corrected Total             26     1118.518519
+
+R-Square     Coeff Var      Root MSE      gpi Mean
+0.365894      8.400247      5.677945      67.59259
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+weeks                        2      24.0740741      12.0370370       0.37    0.6927
+material                     2     385.1851852     192.5925926       5.97    0.0085
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+weeks                        2      24.0740741      12.0370370       0.37    0.6927
+material                     2     385.1851852     192.5925926       5.97    0.0085
+
+The GLM Procedure
+Least Squares Means
+Adjustment for Multiple Comparisons: Tukey
+                              LSMEAN
+material      gpi LSMEAN      Number
+ecm1          66.1111111           1
+ecm2          63.8888889           2
+ecm3          72.7777778           3
+
+   Least Squares Means for effect material
+     Pr > |t| for H0: LSMean(i)=LSMean(j)
+           Dependent Variable: gpi
+i/j              1             2             3
+   1                      0.6886        0.0523
+   2        0.6886                      0.0084
+   3        0.0523        0.0084
+
+Tukey Comparison Lines for Least Squares Means of material
+LS-means with the same letter are not significantly different.
+                gpi                LSMEAN
+             LSMEAN    material    Number
+     A     72.77778    ecm3             3
+     A
+B    A     66.11111    ecm1             1
+B
+B          63.88889    ecm2             2
+
+The GLM Procedure
+Least Squares Means
+Adjustment for Multiple Comparisons: Tukey
+                           LSMEAN
+weeks      gpi LSMEAN      Number
+2          68.8888889           1
+4          67.2222222           2
+8          66.6666667           3
+
+     Least Squares Means for effect weeks
+     Pr > |t| for H0: LSMean(i)=LSMean(j)
+           Dependent Variable: gpi
+i/j              1             2             3
+   1                      0.8093        0.6886
+   2        0.8093                      0.9766
+   3        0.6886        0.9766
+
+Tukey Comparison Lines for Least Squares Means of weeks
+LS-means with the same letter are not significantly different.
+           gpi             LSMEAN
+        LSMEAN    weeks    Number
+A     68.88889    2             1
+A
+A     67.22222    4             2
+A
+A     66.66667    8             3
+\end{Woutput}
+\end{document}

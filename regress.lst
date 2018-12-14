@@ -1,0 +1,370 @@
+                            The SAS System                           1
+                                       13:36 Saturday, January 9, 2010
+
+                          The REG Procedure
+                            Model: MODEL1
+                     Dependent Variable: timedrs 
+
+               Number of Observations Read         465
+               Number of Observations Used         465
+
+
+                         Analysis of Variance
+ 
+                                 Sum of         Mean
+ Source                 DF      Squares       Square  F Value  Pr > F
+
+ Model                   3        12168   4056.10512    43.03  <.0001
+ Error                 461        43451     94.25409                 
+ Corrected Total       464        55619                              
+
+
+         Root MSE              9.70845    R-Square     0.2188
+         Dependent Mean        7.90108    Adj R-Sq     0.2137
+         Coeff Var           122.87510                       
+
+
+                         Parameter Estimates
+ 
+                      Parameter       Standard
+ Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+ Intercept     1       -3.70485        1.12420      -3.30      0.0011
+ phyheal       1        1.78695        0.22107       8.08      <.0001
+ menheal       1       -0.00967        0.12903      -0.07      0.9403
+ stress        1        0.01361        0.00361       3.77      0.0002
+                            The SAS System                           2
+                                       13:36 Saturday, January 9, 2010
+
+                          The REG Procedure
+                            Model: MODEL2
+                     Dependent Variable: timedrs 
+
+               Number of Observations Read         465
+               Number of Observations Used         465
+
+
+                         Analysis of Variance
+ 
+                                 Sum of         Mean
+ Source                 DF      Squares       Square  F Value  Pr > F
+
+ Model                   1   3632.84851   3632.84851    32.35  <.0001
+ Error                 463        51987    112.28208                 
+ Corrected Total       464        55619                              
+
+
+         Root MSE             10.59632    R-Square     0.0653
+         Dependent Mean        7.90108    Adj R-Sq     0.0633
+         Coeff Var           134.11243                       
+
+
+                         Parameter Estimates
+ 
+                      Parameter       Standard
+ Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+ Intercept     1        3.81588        0.87022       4.38      <.0001
+ menheal       1        0.66723        0.11730       5.69      <.0001
+                            The SAS System                           3
+                                       13:36 Saturday, January 9, 2010
+
+       Plot of res1*pred1.  Legend: A = 1 obs, B = 2 obs, etc.
+
+  100 +
+      |
+      |
+      |
+      |                               A
+R     |                                A
+e  50 +                 A  A     A  A
+s     |                   A A         A
+i     |               B       A        A       A
+d     |  A          A      A
+u     |         A  A  A A   A      B       A A    A
+a     |  AA   C  BACAB  AABAAAB  BB  AA   A   A     A
+l   0 + HGKGQORNMPHRUILHKMHCECACDFDABBE C AA AAAA A       A
+      |          DCCEEGHDCHHHEDEFBDADC ABE  A  B      A   A  A  A
+      |                                A  A  B A     A   A
+      |
+      |
+      |
+  -50 +
+      --+---------+---------+---------+---------+---------+---------+-
+        0         5        10        15        20        25        30
+
+                         Predicted Value of timedrs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            The SAS System                           4
+                                       13:36 Saturday, January 9, 2010
+
+                       The UNIVARIATE Procedure
+                     Variable:  res1  (Residual)
+
+                               Moments
+
+   N                         465    Sum Weights                465
+   Mean                        0    Sum Observations             0
+   Std Deviation      9.67701842    Variance            93.6446855
+   Skewness           3.34735403    Kurtosis             14.603265
+   Uncorrected SS     43451.1341    Corrected SS        43451.1341
+   Coeff Variation             .    Std Error Mean      0.44876098
+
+
+                      Basic Statistical Measures
+ 
+            Location                    Variability
+
+        Mean      0.00000     Std Deviation            9.67702
+        Median   -1.81468     Variance                93.64469
+        Mode       .          Range                   80.67744
+                              Interquartile Range      5.25493
+
+
+                      Tests for Location: Mu0=0
+ 
+           Test           -Statistic-    -----p Value------
+
+           Student's t    t         0    Pr > |t|    1.0000
+           Sign           M     -86.5    Pr >= |M|   <.0001
+           Signed Rank    S  -19060.5    Pr >= |S|   <.0001
+
+
+                       Quantiles (Definition 5)
+ 
+                       Quantile        Estimate
+
+                       100% Max       65.885554
+                       99%            47.564671
+                       95%            15.610091
+                       90%             6.798522
+                       75% Q3          0.901696
+                       50% Median     -1.814679
+                       25% Q1         -4.353234
+                       10%            -7.385004
+                       5%             -9.311842
+                       1%            -13.418388
+                       0% Min        -14.791886
+
+
+                         Extreme Observations
+ 
+              ------Lowest-----        -----Highest-----
+ 
+                 Value      Obs           Value      Obs
+
+              -14.7919       81         47.5647       40
+              -14.4645      320         48.3625      249
+                            The SAS System                           5
+                                       13:36 Saturday, January 9, 2010
+
+                       The UNIVARIATE Procedure
+                     Variable:  res1  (Residual)
+
+                         Extreme Observations
+ 
+              ------Lowest-----        -----Highest-----
+ 
+                 Value      Obs           Value      Obs
+
+              -14.3584      224         48.9516      275
+              -13.4354      391         59.4164      290
+              -13.4184      351         65.8856      405
+
+
+                         Histogram                         #   Boxplot
+   67.5+*                                                  1      *
+       .
+       .*                                                  1      *
+       .
+       .*                                                  4      *
+       .*                                                  3      *
+       .*                                                  1      *
+       .*                                                  4      *
+   27.5+*                                                  2      *
+       .*                                                  2      *
+       .**                                                 7      0
+       .***                                               13      0
+       .****                                              16      0
+       .*******************                               92   +--+--+
+       .**********************************************   229   *-----*
+       .****************                                  77      |
+  -12.5+***                                               13      0
+        ----+----+----+----+----+----+----+----+----+-
+        * may represent up to 5 counts
+
+
+                            Normal Probability Plot
+         67.5+                                                  *
+             |
+             |                                                  *
+             |
+             |                                                ***
+             |                                              **
+             |                                             *
+             |                                            **
+         27.5+                                           **
+             |                                           *  +++++
+             |                                         ***++
+             |                                    +++***
+             |                               +++++ ***
+             |                         +++++********
+             |                ***************
+             |      ***********+++
+        -12.5+*******   +++++
+              +----+----+----+----+----+----+----+----+----+----+
+                  -2        -1         0        +1        +2
+
+                            The SAS System                           6
+                                       13:36 Saturday, January 9, 2010
+
+                          The REG Procedure
+                            Model: MODEL1
+                     Dependent Variable: lgtime 
+
+        Number of Observations Read                        466
+        Number of Observations Used                        465
+        Number of Observations with Missing Values           1
+
+
+                         Analysis of Variance
+ 
+                                 Sum of         Mean
+ Source                 DF      Squares       Square  F Value  Pr > F
+
+ Model                   3    156.19705     52.06568    89.56  <.0001
+ Error                 461    268.00870      0.58136                 
+ Corrected Total       464    424.20574                              
+
+
+         Root MSE              0.76247    R-Square     0.3682
+         Dependent Mean        1.70687    Adj R-Sq     0.3641
+         Coeff Var            44.67073                       
+
+
+                         Parameter Estimates
+ 
+                      Parameter       Standard
+ Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+ Intercept     1        0.39039        0.08829       4.42      <.0001
+ phyheal       1        0.20194        0.01736      11.63      <.0001
+ menheal       1        0.00714        0.01013       0.71      0.4812
+ stress        1        0.00132     0.00028369       4.64      <.0001
+                            The SAS System                           7
+                                       13:36 Saturday, January 9, 2010
+
+                          The REG Procedure
+                            Model: MODEL1
+
+            Test 1 Results for Dependent Variable lgtime
+ 
+                                      Mean
+      Source             DF         Square    F Value    Pr > F
+
+      Numerator           2       51.73210      88.98    <.0001
+      Denominator       461        0.58136                     
+                            The SAS System                           8
+                                       13:36 Saturday, January 9, 2010
+
+                          The REG Procedure
+                            Model: MODEL1
+
+            Test 2 Results for Dependent Variable lgtime
+ 
+                                      Mean
+      Source             DF         Square    F Value    Pr > F
+
+      Numerator           2        0.54126       0.93    0.3949
+      Denominator       461        0.58136                     
+                            The SAS System                           9
+                                       13:36 Saturday, January 9, 2010
+
+       Plot of res2*pred2.  Legend: A = 1 obs, B = 2 obs, etc.
+
+        4 +
+          |
+          |
+          |
+          |
+     R    |             A          B
+     e  2 +                    AAA AA  A  A
+     s    |                BA A A   BA    B A
+     i    |             A  A BBAAAA         A
+     d    |            A    A ACABCAC B ABA      A
+     u    |              BAACEDBCDAE BBCCB  A AAA
+     a    |            CEACHDABBICIDB BCCABB A  AA A
+     l  0 +            C CHGKDDPEECCICC ACAD BBB AAA A
+          |            AEEEDBEGEGCDFBB C ACAAA A A
+          |            D   CCBDCAC DBACCACB  E   A    AA A
+          |            BCBFC    B  AAAAB       A A   A  A  A A
+          |                BBGBA      AA  A      A
+          |                     BBA          A
+       -2 +                         BA      A
+          ---+-----------+-----------+-----------+-----------+--
+             0           1           2           3           4
+
+                         Predicted Value of lgtime
+
+NOTE: 1 obs had missing values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

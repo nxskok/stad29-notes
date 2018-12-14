@@ -1,0 +1,294 @@
+\section{Analysis of covariance}
+\frame{\sectionpage}
+
+
+
+\begin{frame}[fragile]{Analysis of covariance}
+
+  \begin{itemize}
+  \item ANOVA: explanatory variables categorical (divide data into groups)
+  \item traditionally, analysis of covariance has categorical $x$'s plus one numerical $x$ (``covariate'') to be adjusted for.
+  \item \texttt{lm} handles this too.
+  \item Simple example: two treatments (drugs) (\verb-a- and \verb-b-), with before and after scores. 
+    \begin{itemize}
+    \item 
+Does knowing before score and/or treatment help to predict after score?
+\item Is after score different by treatment/before score?
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Data}
+
+Treatment, before, after:
+
+\begin{multicols}{2}
+
+\begin{verbatim}
+a 5 20
+a 10 23
+a 12 30
+a 9 25
+a 23 34
+a 21 40
+a 14 27
+a 18 38
+a 6 24
+a 13 31
+b 7 19
+b 12 26
+b 27 33
+b 24 35
+b 18 30
+b 22 31
+b 26 34
+b 21 28
+b 14 23
+b 9 22
+\end{verbatim}
+
+  
+\end{multicols}
+
+\end{frame}
+
+\begin{frame}[fragile]{Paired differences}
+
+One way: take differences after minus before, use as response:
+
+{\small
+  
+@ 
+<<>>=
+prepost=read.table("ancova.txt",header=T)
+attach(prepost)
+head(prepost)
+diff=after-before
+prepost.0=aov(diff~drug)
+summary(prepost.0)
+@ %def 
+  
+}
+
+Significant difference \emph{in differences} due to drug.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot}
+
+@ 
+<<eval=F>>=
+mycols=c("blue","red")
+mych=c(1,3)
+plot(after~before,col=mycols[drug],pch=mych[drug])
+legend("topleft",levels(drug),col=mycols,pch=mych)
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}{The plot}
+
+@ 
+<<echo=F,fig=T>>=
+mycols=c("blue","red")
+mych=c(1,3)
+plot(after~before,col=mycols[drug],pch=mych[drug])
+legend("topleft",levels(drug),col=mycols,pch=mych)
+@ %def 
+  
+  
+  \includegraphics[width=0.8\textwidth]{ancova-data}
+
+\begin{itemize}
+\item As before score goes up, after score goes up.
+\item Blue circles (drug A) generally above red crosses (drug B), for
+  comparable before score.
+\item Suggests before score effect \emph{and} drug effect.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The means}
+
+@ 
+<<>>=
+aggregate(before~drug,prepost,mean)
+aggregate(after~drug,prepost,mean)
+@ %def 
+  
+
+\begin{itemize}
+\item Mean ``after'' score slightly higher for treatment A.
+\item Mean ``before'' score much higher for treatment B.
+\item Greater {\em improvement} on treatment A. 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Testing for interaction}
+
+@ 
+<<>>=
+prepost.1=lm(after~before*drug)
+anova(prepost.1)
+@ %def 
+
+
+\begin{itemize}
+\item Interaction not significant.
+\item Before we take it out, though, have a look at predictions with
+  interaction included.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Predictions}
+
+@ 
+<<>>=
+# predictions for group a for before score 5, 15, 25
+prepost.a=expand.grid(before=c(5,15,25),drug="a")
+prepost.a.pred=predict(prepost.1,prepost.a)
+cbind(prepost.a,prepost.a.pred)
+
+# predictions for group b for before score 5, 15, 25
+prepost.b=expand.grid(before=c(5,15,25),drug="b")
+prepost.b.pred=predict(prepost.1,prepost.b)
+cbind(prepost.b,prepost.b.pred)
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot}
+
+@ 
+<<eval=F>>=
+plot(after~before,col=mycols[drug],pch=mych[drug])
+legend("topleft",levels(drug),col=mycols,pch=mych)
+lines(prepost.a$before,prepost.a.pred,col="blue")
+lines(prepost.b$before,prepost.b.pred,col="red")
+@ %def 
+
+library(ggplot2)
+qplot(before,after,prepost,geom=c("point","smooth"),se=F,method="lm",colour=drug))
+  
+{\small
+\begin{verbatim}
+\end{verbatim}
+}
+
+\begin{itemize}
+\item First two lines as before.
+\item 3rd line: predictions for drug A, with blue line.
+\item 4th line: predictions for drug B, with red line.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+
+@ 
+<<fig=T,echo=F,height=4.5>>=
+plot(after~before,col=mycols[drug],pch=mych[drug])
+legend("topleft",levels(drug),col=mycols,pch=mych)
+lines(prepost.a$before,prepost.a.pred,col="blue")
+lines(prepost.b$before,prepost.b.pred,col="red")
+@ %def 
+  
+  
+
+\begin{itemize}
+\item Lines almost parallel, but not quite.
+\item Non-parallelism (interaction) not significant.
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Taking out interaction}
+
+
+{\small
+  
+@ 
+<<>>=
+prepost.2=lm(after~before+drug)
+anova(prepost.2)
+@ %def 
+}
+  
+  \begin{itemize}
+  \item Take out non-significant interaction.
+  \item \texttt{before} and \texttt{drug} strongly significant.
+  \item Do predictions again and plot them.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predicted values again (no-interaction model)}
+
+{\small
+@ 
+<<>>=
+# drug A first
+prepost.a.pred=predict(prepost.2,prepost.a)
+cbind(prepost.a,prepost.a.pred)
+# then drug B
+prepost.b.pred=predict(prepost.2,prepost.b)
+cbind(prepost.b,prepost.b.pred)
+@ %def 
+}
+
+Each increase of 10 in before score results in 8.3 in predicted after
+score, \emph{the same for both drugs}.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot, again}
+
+@ 
+<<eval=F>>=
+plot(after~before,col=mycols[drug],pch=mych[drug])
+legend("topleft",levels(drug),col=mycols,pch=mych)
+lines(prepost.a$before,prepost.a.pred,col="blue")
+lines(prepost.b$before,prepost.b.pred,col="red")
+@ %def 
+ 
+
+Same idea as before.
+  
+\end{frame}
+
+\begin{frame}{The no-interaction plot of predicted values}
+  
+@ 
+<<fig=T,echo=F,height=5>>=
+plot(after~before,col=mycols[drug],pch=mych[drug])
+legend("topleft",levels(drug),col=mycols,pch=mych)
+lines(prepost.a$before,prepost.a.pred,col="blue")
+lines(prepost.b$before,prepost.b.pred,col="red")
+@ %def 
+
+
+Note that lines now \emph{parallel}. (No-interaction model forces them
+to have the same slope). 
+
+\end{frame}
+
+\begin{frame}[fragile]{Summary}
+
+  \begin{itemize}
+  \item ANCOVA model: fits different regression line for each group,
+    predicting response from covariate.
+  \item ANCOVA model with interaction between factor and covariate
+    allows different slopes for each line.
+  \item Sometimes those lines can cross over!
+  \item If interaction not significant, take out. Lines then parallel.
+  \item With parallel lines, groups have consistent effect regardless
+    of value of covariate.
+  \end{itemize}
+  
+\end{frame}

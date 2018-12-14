@@ -1,0 +1,950 @@
+
+R version 2.14.1 (2011-12-22)
+Copyright (C) 2011 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Workspace loaded from ~/teaching/d29/notes/Jan 16/.RData]
+
+> cars
+                         Car  MPG
+1              Buick Skylark 28.4
+2                 Dodge Omni 30.9
+3             Mercury Zephyr 20.8
+4                Fiat Strada 37.3
+5             Peugeot 694 SL 16.2
+6                  VW Rabbit 31.9
+7           Plymouth Horizon 34.2
+8                  Mazda GLC 34.1
+9         Buick Estate Wagon 16.9
+10                 Audi 5000 20.3
+11        Chevy Malibu Wagon 19.2
+12               Dodge Aspen 18.6
+13                 VW Dasher 30.5
+14            Ford Mustang 4 26.5
+15                Dodge Colt 35.1
+16                Datsun 810 22.0
+17               VW Scirocco 31.5
+18            Chevy Citation 28.8
+19                Olds Omega 26.8
+20    Chrysler LeBaron Wagon 18.5
+21                Datsun 510 27.2
+22           AMC Concord D/L 18.1
+23     Buick Century Special 20.6
+24               Saab 99 GLE 21.6
+25                Datsun 210 31.8
+26                  Ford LTD 17.6
+27              Volvo 240 GL 17.0
+28            Dodge St Regis 18.2
+29             Toyota Corona 27.5
+30                  Chevette 30.0
+31         Ford Mustang Ghia 21.9
+32                AMC Spirit 27.4
+33 Ford Country Squire Wagon 15.5
+34                  BMW 320i 21.5
+35           Pontiac Phoenix 33.5
+36           Honda Accord LX 29.5
+37     Mercury Grand Marquis 16.5
+38     Chevy Caprice Classic 17.0
+   Weight Cylinders Horsepower
+1   2.670         4         90
+2   2.230         4         75
+3   3.070         6         85
+4   2.130         4         69
+5   3.410         6        133
+6   1.925         4         71
+7   2.200         4         70
+8   1.975         4         65
+9   4.360         8        155
+10  2.830         5        103
+11  3.605         8        125
+12  3.620         6        110
+13  2.190         4         78
+14  2.585         4         88
+15  1.915         4         80
+16  2.815         6         97
+17  1.990         4         71
+18  2.595         6        115
+19  2.700         6        115
+20  3.940         8        150
+21  2.300         4         97
+22  3.410         6        120
+23  3.380         6        105
+24  2.795         4        115
+25  2.020         4         65
+26  3.725         8        129
+27  3.140         6        125
+28  3.830         8        135
+29  2.560         4         95
+30  2.155         4         68
+31  2.910         6        109
+32  2.670         4         80
+33  4.054         8        142
+34  2.600         4        110
+35  2.556         4         90
+36  2.135         4         68
+37  3.955         8        138
+38  3.840         8        130
+   Country
+1     U.S.
+2     U.S.
+3     U.S.
+4    Italy
+5   France
+6  Germany
+7     U.S.
+8    Japan
+9     U.S.
+10 Germany
+11    U.S.
+12    U.S.
+13 Germany
+14    U.S.
+15   Japan
+16   Japan
+17 Germany
+18    U.S.
+19    U.S.
+20    U.S.
+21   Japan
+22    U.S.
+23    U.S.
+24  Sweden
+25   Japan
+26    U.S.
+27  Sweden
+28    U.S.
+29   Japan
+30    U.S.
+31    U.S.
+32    U.S.
+33    U.S.
+34 Germany
+35    U.S.
+36   Japan
+37    U.S.
+38    U.S.
+> cars
+                         Car  MPG
+1              Buick Skylark 28.4
+2                 Dodge Omni 30.9
+3             Mercury Zephyr 20.8
+4                Fiat Strada 37.3
+5             Peugeot 694 SL 16.2
+6                  VW Rabbit 31.9
+7           Plymouth Horizon 34.2
+8                  Mazda GLC 34.1
+9         Buick Estate Wagon 16.9
+10                 Audi 5000 20.3
+11        Chevy Malibu Wagon 19.2
+12               Dodge Aspen 18.6
+13                 VW Dasher 30.5
+14            Ford Mustang 4 26.5
+15                Dodge Colt 35.1
+16                Datsun 810 22.0
+17               VW Scirocco 31.5
+18            Chevy Citation 28.8
+19                Olds Omega 26.8
+20    Chrysler LeBaron Wagon 18.5
+21                Datsun 510 27.2
+22           AMC Concord D/L 18.1
+23     Buick Century Special 20.6
+24               Saab 99 GLE 21.6
+25                Datsun 210 31.8
+26                  Ford LTD 17.6
+27              Volvo 240 GL 17.0
+28            Dodge St Regis 18.2
+29             Toyota Corona 27.5
+30                  Chevette 30.0
+31         Ford Mustang Ghia 21.9
+32                AMC Spirit 27.4
+33 Ford Country Squire Wagon 15.5
+34                  BMW 320i 21.5
+35           Pontiac Phoenix 33.5
+36           Honda Accord LX 29.5
+37     Mercury Grand Marquis 16.5
+38     Chevy Caprice Classic 17.0
+   Weight Cylinders Horsepower
+1   2.670         4         90
+2   2.230         4         75
+3   3.070         6         85
+4   2.130         4         69
+5   3.410         6        133
+6   1.925         4         71
+7   2.200         4         70
+8   1.975         4         65
+9   4.360         8        155
+10  2.830         5        103
+11  3.605         8        125
+12  3.620         6        110
+13  2.190         4         78
+14  2.585         4         88
+15  1.915         4         80
+16  2.815         6         97
+17  1.990         4         71
+18  2.595         6        115
+19  2.700         6        115
+20  3.940         8        150
+21  2.300         4         97
+22  3.410         6        120
+23  3.380         6        105
+24  2.795         4        115
+25  2.020         4         65
+26  3.725         8        129
+27  3.140         6        125
+28  3.830         8        135
+29  2.560         4         95
+30  2.155         4         68
+31  2.910         6        109
+32  2.670         4         80
+33  4.054         8        142
+34  2.600         4        110
+35  2.556         4         90
+36  2.135         4         68
+37  3.955         8        138
+38  3.840         8        130
+   Country
+1     U.S.
+2     U.S.
+3     U.S.
+4    Italy
+5   France
+6  Germany
+7     U.S.
+8    Japan
+9     U.S.
+10 Germany
+11    U.S.
+12    U.S.
+13 Germany
+14    U.S.
+15   Japan
+16   Japan
+17 Germany
+18    U.S.
+19    U.S.
+20    U.S.
+21   Japan
+22    U.S.
+23    U.S.
+24  Sweden
+25   Japan
+26    U.S.
+27  Sweden
+28    U.S.
+29   Japan
+30    U.S.
+31    U.S.
+32    U.S.
+33    U.S.
+34 Germany
+35    U.S.
+36   Japan
+37    U.S.
+38    U.S.
+> plot(cars)
+> names(cars)
+[1] "Car"        "MPG"       
+[3] "Weight"     "Cylinders" 
+[5] "Horsepower" "Country"   
+> cars$Cylinders
+ [1] 4 4 6 4 6 4 4 4 8 5 8 6 4 4 4 6 4
+[18] 6 6 8 4 6 6 4 4 8 6 8 4 4 6 4 8 4
+[35] 4 4 8 8
+> cars$Country
+ [1] U.S.    U.S.    U.S.    Italy  
+ [5] France  Germany U.S.    Japan  
+ [9] U.S.    Germany U.S.    U.S.   
+[13] Germany U.S.    Japan   Japan  
+[17] Germany U.S.    U.S.    U.S.   
+[21] Japan   U.S.    U.S.    Sweden 
+[25] Japan   U.S.    Sweden  U.S.   
+[29] Japan   U.S.    U.S.    U.S.   
+[33] U.S.    Germany U.S.    Japan  
+[37] U.S.    U.S.   
+6 Levels: France Germany ... U.S.
+> Cylinders
+Error: object 'Cylinders' not found
+> attach(cars)
+> Cylinders
+ [1] 4 4 6 4 6 4 4 4 8 5 8 6 4 4 4 6 4
+[18] 6 6 8 4 6 6 4 4 8 6 8 4 4 6 4 8 4
+[35] 4 4 8 8
+> Country
+ [1] U.S.    U.S.    U.S.    Italy  
+ [5] France  Germany U.S.    Japan  
+ [9] U.S.    Germany U.S.    U.S.   
+[13] Germany U.S.    Japan   Japan  
+[17] Germany U.S.    U.S.    U.S.   
+[21] Japan   U.S.    U.S.    Sweden 
+[25] Japan   U.S.    Sweden  U.S.   
+[29] Japan   U.S.    U.S.    U.S.   
+[33] U.S.    Germany U.S.    Japan  
+[37] U.S.    U.S.   
+6 Levels: France Germany ... U.S.
+> detach(cars)
+> Cylinders
+Error: object 'Cylinders' not found
+> attach(cars)
+> Cylinders
+ [1] 4 4 6 4 6 4 4 4 8 5 8 6 4 4 4 6 4
+[18] 6 6 8 4 6 6 4 4 8 6 8 4 4 6 4 8 4
+[35] 4 4 8 8
+> boxplot(MPG)
+> hist(MPG)
+> plot(MPG)
+> plot(Country)
+> summary(MPG)
+   Min. 1st Qu.  Median    Mean 3rd Qu. 
+  15.50   18.52   24.25   24.76   30.38 
+   Max. 
+  37.30 
+> summary(Country)
+ France Germany   Italy   Japan  Sweden 
+      1       5       1       7       2 
+   U.S. 
+     22 
+> cars
+                         Car  MPG Weight
+1              Buick Skylark 28.4  2.670
+2                 Dodge Omni 30.9  2.230
+3             Mercury Zephyr 20.8  3.070
+4                Fiat Strada 37.3  2.130
+5             Peugeot 694 SL 16.2  3.410
+6                  VW Rabbit 31.9  1.925
+7           Plymouth Horizon 34.2  2.200
+8                  Mazda GLC 34.1  1.975
+9         Buick Estate Wagon 16.9  4.360
+10                 Audi 5000 20.3  2.830
+11        Chevy Malibu Wagon 19.2  3.605
+12               Dodge Aspen 18.6  3.620
+13                 VW Dasher 30.5  2.190
+14            Ford Mustang 4 26.5  2.585
+15                Dodge Colt 35.1  1.915
+16                Datsun 810 22.0  2.815
+17               VW Scirocco 31.5  1.990
+18            Chevy Citation 28.8  2.595
+19                Olds Omega 26.8  2.700
+20    Chrysler LeBaron Wagon 18.5  3.940
+21                Datsun 510 27.2  2.300
+22           AMC Concord D/L 18.1  3.410
+23     Buick Century Special 20.6  3.380
+24               Saab 99 GLE 21.6  2.795
+25                Datsun 210 31.8  2.020
+26                  Ford LTD 17.6  3.725
+27              Volvo 240 GL 17.0  3.140
+28            Dodge St Regis 18.2  3.830
+29             Toyota Corona 27.5  2.560
+30                  Chevette 30.0  2.155
+31         Ford Mustang Ghia 21.9  2.910
+32                AMC Spirit 27.4  2.670
+33 Ford Country Squire Wagon 15.5  4.054
+34                  BMW 320i 21.5  2.600
+35           Pontiac Phoenix 33.5  2.556
+36           Honda Accord LX 29.5  2.135
+37     Mercury Grand Marquis 16.5  3.955
+38     Chevy Caprice Classic 17.0  3.840
+   Cylinders Horsepower Country
+1          4         90    U.S.
+2          4         75    U.S.
+3          6         85    U.S.
+4          4         69   Italy
+5          6        133  France
+6          4         71 Germany
+7          4         70    U.S.
+8          4         65   Japan
+9          8        155    U.S.
+10         5        103 Germany
+11         8        125    U.S.
+12         6        110    U.S.
+13         4         78 Germany
+14         4         88    U.S.
+15         4         80   Japan
+16         6         97   Japan
+17         4         71 Germany
+18         6        115    U.S.
+19         6        115    U.S.
+20         8        150    U.S.
+21         4         97   Japan
+22         6        120    U.S.
+23         6        105    U.S.
+24         4        115  Sweden
+25         4         65   Japan
+26         8        129    U.S.
+27         6        125  Sweden
+28         8        135    U.S.
+29         4         95   Japan
+30         4         68    U.S.
+31         6        109    U.S.
+32         4         80    U.S.
+33         8        142    U.S.
+34         4        110 Germany
+35         4         90    U.S.
+36         4         68   Japan
+37         8        138    U.S.
+38         8        130    U.S.
+> cars[3,4]
+[1] 6
+> names(cars)
+[1] "Car"        "MPG"        "Weight"    
+[4] "Cylinders"  "Horsepower" "Country"   
+> cars[3,]
+             Car  MPG Weight Cylinders
+3 Mercury Zephyr 20.8   3.07         6
+  Horsepower Country
+3         85    U.S.
+> cars[c(3,5),]
+             Car  MPG Weight Cylinders
+3 Mercury Zephyr 20.8   3.07         6
+5 Peugeot 694 SL 16.2   3.41         6
+  Horsepower Country
+3         85    U.S.
+5        133  France
+> cars[,4]
+ [1] 4 4 6 4 6 4 4 4 8 5 8 6 4 4 4 6 4 6 6 8
+[21] 4 6 6 4 4 8 6 8 4 4 6 4 8 4 4 4 8 8
+> Cylinders
+ [1] 4 4 6 4 6 4 4 4 8 5 8 6 4 4 4 6 4 6 6 8
+[21] 4 6 6 4 4 8 6 8 4 4 6 4 8 4 4 4 8 8
+> Cylinders==8
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE
+ [7] FALSE FALSE  TRUE FALSE  TRUE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE
+[19] FALSE  TRUE FALSE FALSE FALSE FALSE
+[25] FALSE  TRUE FALSE  TRUE FALSE FALSE
+[31] FALSE FALSE  TRUE FALSE FALSE FALSE
+[37]  TRUE  TRUE
+> cars[3,4]
+[1] 6
+> Cylinders
+ [1] 4 4 6 4 6 4 4 4 8 5 8 6 4 4 4 6 4 6 6 8
+[21] 4 6 6 4 4 8 6 8 4 4 6 4 8 4 4 4 8 8
+> Cylinders[10]
+[1] 5
+> cars[Cylinders==8,]
+                         Car  MPG Weight
+9         Buick Estate Wagon 16.9  4.360
+11        Chevy Malibu Wagon 19.2  3.605
+20    Chrysler LeBaron Wagon 18.5  3.940
+26                  Ford LTD 17.6  3.725
+28            Dodge St Regis 18.2  3.830
+33 Ford Country Squire Wagon 15.5  4.054
+37     Mercury Grand Marquis 16.5  3.955
+38     Chevy Caprice Classic 17.0  3.840
+   Cylinders Horsepower Country
+9          8        155    U.S.
+11         8        125    U.S.
+20         8        150    U.S.
+26         8        129    U.S.
+28         8        135    U.S.
+33         8        142    U.S.
+37         8        138    U.S.
+38         8        130    U.S.
+> cars[MPG>30,]
+                Car  MPG Weight Cylinders
+2        Dodge Omni 30.9  2.230         4
+4       Fiat Strada 37.3  2.130         4
+6         VW Rabbit 31.9  1.925         4
+7  Plymouth Horizon 34.2  2.200         4
+8         Mazda GLC 34.1  1.975         4
+13        VW Dasher 30.5  2.190         4
+15       Dodge Colt 35.1  1.915         4
+17      VW Scirocco 31.5  1.990         4
+25       Datsun 210 31.8  2.020         4
+35  Pontiac Phoenix 33.5  2.556         4
+   Horsepower Country
+2          75    U.S.
+4          69   Italy
+6          71 Germany
+7          70    U.S.
+8          65   Japan
+13         78 Germany
+15         80   Japan
+17         71 Germany
+25         65   Japan
+35         90    U.S.
+> mean(MPG)
+[1] 24.76053
+> sd(MPG)
+[1] 6.547314
+> ?tapply
+> tapply(cars,Cylinders,mean)
+Error in tapply(cars, Cylinders, mean) : arguments must have same length
+> tapply(MPG,Cylinders,mean)
+       4        5        6        8 
+30.02105 20.30000 21.08000 17.42500 
+> tapply(MPG,Country,mean)
+  France  Germany    Italy    Japan   Sweden 
+16.20000 27.14000 37.30000 29.60000 19.30000 
+    U.S. 
+22.99545 
+> tapply(MPG,Country,sd\)
+Error: unexpected input in "tapply(MPG,Country,sd\"
+> tapply(MPG,Country,sd)
+  France  Germany    Italy    Japan   Sweden 
+      NA 5.734806       NA 4.532843 3.252691 
+    U.S. 
+6.054237 
+> tapply(MPG,Country,length)
+ France Germany   Italy   Japan  Sweden 
+      1       5       1       7       2 
+   U.S. 
+     22 
+> ?t.test
+> MPG
+ [1] 28.4 30.9 20.8 37.3 16.2 31.9 34.2 34.1
+ [9] 16.9 20.3 19.2 18.6 30.5 26.5 35.1 22.0
+[17] 31.5 28.8 26.8 18.5 27.2 18.1 20.6 21.6
+[25] 31.8 17.6 17.0 18.2 27.5 30.0 21.9 27.4
+[33] 15.5 21.5 33.5 29.5 16.5 17.0
+> mean(MPG)
+[1] 24.76053
+> t.test(MPG,mu=20)
+
+  One Sample t-test
+
+data:  MPG 
+t = 4.4821, df = 37, p-value =
+6.895e-05
+alternative hypothesis: true mean is not equal to 20 
+95 percent confidence interval:
+ 22.60848 26.91257 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> t.test(MPG,mu=20,alternative="greater")
+
+	One Sample t-test
+
+data:  MPG 
+t = 4.4821, df = 37, p-value =
+3.448e-05
+alternative hypothesis: true mean is greater than 20 
+95 percent confidence interval:
+ 22.96864      Inf 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> t.test(MPG,mu=20,alternative="less")
+
+	One Sample t-test
+
+data:  MPG 
+t = 4.4821, df = 37, p-value = 1
+alternative hypothesis: true mean is less than 20 
+95 percent confidence interval:
+     -Inf 26.55241 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> 
+> t.test(MPG,mu=20,alternative="g")
+
+	One Sample t-test
+
+data:  MPG 
+t = 4.4821, df = 37, p-value =
+3.448e-05
+alternative hypothesis: true mean is greater than 20 
+95 percent confidence interval:
+ 22.96864      Inf 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> t.test(MPG)
+
+	One Sample t-test
+
+data:  MPG 
+t = 23.3125, df = 37, p-value < 2.2e-16
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+ 22.60848 26.91257 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> t.test(MPG,conf.level=0.90)
+
+	One Sample t-test
+
+data:  MPG 
+t = 23.3125, df = 37, p-value < 2.2e-16
+alternative hypothesis: true mean is not equal to 0 
+90 percent confidence interval:
+ 22.96864 26.55241 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> t.test(MPG,conf.level=0.73)
+
+	One Sample t-test
+
+data:  MPG 
+t = 23.3125, df = 37, p-value < 2.2e-16
+alternative hypothesis: true mean is not equal to 0 
+73 percent confidence interval:
+ 23.57113 25.94992 
+sample estimates:
+mean of x 
+ 24.76053 
+
+> is.american=(Country=="U.S.")
+> is.american
+ [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE
+ [7]  TRUE FALSE  TRUE FALSE  TRUE  TRUE
+[13] FALSE  TRUE FALSE FALSE FALSE  TRUE
+[19]  TRUE  TRUE FALSE  TRUE  TRUE FALSE
+[25] FALSE  TRUE FALSE  TRUE FALSE  TRUE
+[31]  TRUE  TRUE  TRUE FALSE  TRUE FALSE
+[37]  TRUE  TRUE
+> t.test(MPG~is.american)
+
+	Welch Two Sample t-test
+
+data:  MPG by is.american 
+t = 2.0009, df = 30.748, p-value =
+0.0543
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ -0.08229979  8.46639070 
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           27.18750            22.99545 
+
+> t.test(MPG~is.american,conf.level=0.90)
+
+	Welch Two Sample t-test
+
+data:  MPG by is.american 
+t = 2.0009, df = 30.748, p-value =
+0.0543
+alternative hypothesis: true difference in means is not equal to 0 
+90 percent confidence interval:
+ 0.6389167 7.7451742 
+sample estimates:
+mean in group FALSE  mean in group TRUE 
+           27.18750            22.99545 
+
+> plot(Weight,MPG)
+> lines(lowess(Weight,MPG))
+> cor(Weight,MPG)
+[1] -0.9030708
+> lm(MPG~Weight)
+
+Call:
+lm(formula = MPG ~ Weight)
+
+Coefficients:
+(Intercept)       Weight  
+     48.707       -8.365  
+
+> fit=lm(MPG~Weight)
+> summary(fit)
+
+Call:
+lm(formula = MPG ~ Weight)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.4595 -1.9004  0.1686  1.4032  6.4091 
+
+Coefficients:
+            Estimate Std. Error t value
+(Intercept)   48.708      1.954   24.93
+Weight        -8.365      0.663  -12.62
+            Pr(>|t|)    
+(Intercept)  < 2e-16 ***
+Weight      8.89e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 2.851 on 36 degrees of freedom
+Multiple R-squared: 0.8155,	Adjusted R-squared: 0.8104 
+F-statistic: 159.2 on 1 and 36 DF,  p-value: 8.889e-15 
+
+> fit2=lm(MPG~Weight+HP)
+Error in eval(expr, envir, enclos) : object 'HP' not found
+> fit2=lm(MPG~Weight+Horsepower)
+> summary(fit2)
+
+Call:
+lm(formula = MPG ~ Weight + Horsepower)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5754 -1.7809 -0.0461  1.5237  6.0916 
+
+Coefficients:
+            Estimate Std. Error t value
+(Intercept) 48.94199    1.92398  25.438
+Weight      -6.06455    1.63381  -3.712
+Horsepower  -0.06703    0.04367  -1.535
+            Pr(>|t|)    
+(Intercept)  < 2e-16 ***
+Weight      0.000712 ***
+Horsepower  0.133815    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 2.799 on 35 degrees of freedom
+Multiple R-squared: 0.8272,	Adjusted R-squared: 0.8173 
+F-statistic: 83.76 on 2 and 35 DF,  p-value: 4.554e-14 
+
+> names(cars)
+[1] "Car"        "MPG"        "Weight"    
+[4] "Cylinders"  "Horsepower" "Country"   
+> fit3=lm(MPG~Weight+Horsepower+Weight+Cylinders)
+> summary(fit3)
+
+Call:
+lm(formula = MPG ~ Weight + Horsepower + Weight + Cylinders)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.4522 -1.5929 -0.3554  1.1088  6.6481 
+
+Coefficients:
+            Estimate Std. Error t value
+(Intercept)  49.3802     1.9690  25.078
+Weight       -7.3898     2.0797  -3.553
+Horsepower   -0.0736     0.0441  -1.669
+Cylinders     0.7459     0.7252   1.029
+            Pr(>|t|)    
+(Intercept)  < 2e-16 ***
+Weight       0.00114 ** 
+Horsepower   0.10433    
+Cylinders    0.31097    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 2.796 on 34 degrees of freedom
+Multiple R-squared: 0.8324,	Adjusted R-squared: 0.8176 
+F-statistic: 56.28 on 3 and 34 DF,  p-value: 2.838e-13 
+
+> x1=1:6
+> x2=2*x1+rnorm(6,0,0.5)
+> cbind(x1,x2)
+     x1        x2
+[1,]  1  2.214949
+[2,]  2  3.503032
+[3,]  3  6.311999
+[4,]  4  7.738998
+[5,]  5  9.835347
+[6,]  6 12.274688
+> cor(x1,x2)
+[1] 0.9961643
+> y=c(10,11,14,15,17,19)
+> xyfit=lm(y~x1+x2)
+> summary(xyfit)
+
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+       1        2        3        4        5 
+-0.08915 -0.08164  0.19007  0.03903  0.12406 
+       6 
+-0.18237 
+
+Coefficients:
+            Estimate Std. Error t value
+(Intercept)   8.0388     0.1723  46.667
+x1           -0.4776     0.5010  -0.953
+x2            1.1413     0.2470   4.621
+            Pr(>|t|)    
+(Intercept) 2.17e-05 ***
+x1            0.4108    
+x2            0.0191 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.1834 on 3 degrees of freedom
+Multiple R-squared: 0.9983,	Adjusted R-squared: 0.9972 
+F-statistic: 880.4 on 2 and 3 DF,  p-value: 7.014e-05 
+
+> xyfit2=lm(y~x2)
+> summary(xyfit2)
+
+Call:
+lm(formula = y ~ x2)
+
+Residuals:
+       1        2        3        4        5 
+-0.01276 -0.18073  0.27223 -0.02171  0.07742 
+       6 
+-0.13446 
+
+Coefficients:
+            Estimate Std. Error t value
+(Intercept)  8.00434    0.16649   48.08
+x2           0.90675    0.02137   42.44
+            Pr(>|t|)    
+(Intercept) 1.12e-06 ***
+x2          1.84e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.1813 on 4 degrees of freedom
+Multiple R-squared: 0.9978,	Adjusted R-squared: 0.9972 
+F-statistic:  1801 on 1 and 4 DF,  p-value: 1.843e-06 
+
+> fit1
+Error: object 'fit1' not found
+> fit
+
+Call:
+lm(formula = MPG ~ Weight)
+
+Coefficients:
+(Intercept)       Weight  
+     48.707       -8.365  
+
+> summary(fit)
+
+Call:
+lm(formula = MPG ~ Weight)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.4595 -1.9004  0.1686  1.4032  6.4091 
+
+Coefficients:
+            Estimate Std. Error t value
+(Intercept)   48.708      1.954   24.93
+Weight        -8.365      0.663  -12.62
+            Pr(>|t|)    
+(Intercept)  < 2e-16 ***
+Weight      8.89e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 2.851 on 36 degrees of freedom
+Multiple R-squared: 0.8155,	Adjusted R-squared: 0.8104 
+F-statistic: 159.2 on 1 and 36 DF,  p-value: 8.889e-15 
+
+> plot(fit)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> gpm=1/MPG
+> plot(Weight,gpm)
+> lines(lowess(Weight,gpm))
+> fit7=lm(gpm~Weight)
+> plot(fit7)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> summary(fit7)
+
+Call:
+lm(formula = gpm ~ Weight)
+
+Residuals:
+       Min         1Q     Median 
+-0.0088064 -0.0029074  0.0000633 
+        3Q        Max 
+ 0.0019049  0.0113197 
+
+Coefficients:
+              Estimate Std. Error
+(Intercept) -0.0000623  0.0030266
+Weight       0.0151485  0.0010271
+            t value Pr(>|t|)    
+(Intercept)  -0.021    0.984    
+Weight       14.748   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.004416 on 36 degrees of freedom
+Multiple R-squared: 0.858,	Adjusted R-squared: 0.854 
+F-statistic: 217.5 on 1 and 36 DF,  p-value: < 2.2e-16 
+
+> summary(fit7)
+
+Call:
+lm(formula = gpm ~ Weight)
+
+Residuals:
+       Min         1Q     Median         3Q 
+-0.0088064 -0.0029074  0.0000633  0.0019049 
+       Max 
+ 0.0113197 
+
+Coefficients:
+              Estimate Std. Error t value
+(Intercept) -0.0000623  0.0030266  -0.021
+Weight       0.0151485  0.0010271  14.748
+            Pr(>|t|)    
+(Intercept)    0.984    
+Weight        <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.004416 on 36 degrees of freedom
+Multiple R-squared: 0.858,	Adjusted R-squared: 0.854 
+F-statistic: 217.5 on 1 and 36 DF,  p-value: < 2.2e-16 
+
+> library(MASS)
+> install.packages("MASS")
+Error in install.packages : Updating loaded packages
+> library(MASS)
+> boxcox(MPG~weight)
+Error in eval(expr, envir, enclos) : object 'weight' not found
+> boxcox(MPG~Weight)
+> logmpg=log(MPG)
+> plot(Weight,logmpg)
+> lines(lowess(Weight,logmpg))
+> sq=MPG^2
+> sq=MPG**2
+> sqrt(MPG)
+ [1] 5.329165 5.558777 4.560702
+ [4] 6.107373 4.024922 5.648008
+ [7] 5.848077 5.839521 4.110961
+[10] 4.505552 4.381780 4.312772
+[13] 5.522681 5.147815 5.924525
+[16] 4.690416 5.612486 5.366563
+[19] 5.176872 4.301163 5.215362
+[22] 4.254409 4.538722 4.647580
+[25] 5.639149 4.195235 4.123106
+[28] 4.266146 5.244044 5.477226
+[31] 4.679744 5.234501 3.937004
+[34] 4.636809 5.787918 5.431390
+[37] 4.062019 4.123106
+> MPG^0.5
+ [1] 5.329165 5.558777 4.560702
+ [4] 6.107373 4.024922 5.648008
+ [7] 5.848077 5.839521 4.110961
+[10] 4.505552 4.381780 4.312772
+[13] 5.522681 5.147815 5.924525
+[16] 4.690416 5.612486 5.366563
+[19] 5.176872 4.301163 5.215362
+[22] 4.254409 4.538722 4.647580
+[25] 5.639149 4.195235 4.123106
+[28] 4.266146 5.244044 5.477226
+[31] 4.679744 5.234501 3.937004
+[34] 4.636809 5.787918 5.431390
+[37] 4.062019 4.123106

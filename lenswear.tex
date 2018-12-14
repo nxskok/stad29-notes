@@ -1,0 +1,125 @@
+\documentclass{article}
+\title{The lenswear data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+female contacts 121
+female glasses 32
+female none 129
+male contacts 42
+male glasses 37
+male none 85
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data lens;
+infile "lenswear.dat";
+input sex $ lenswear $ frequency;
+
+proc catmod;
+weight frequency;
+model sex*lenswear=_response_;
+loglin sex lenswear sex*lenswear;
+
+proc catmod;
+  weight frequency;
+  model sex*lenswear=_response_;
+  loglin sex lenswear;
+
+
+
+
+
+
+
+
+
+\end{Winput}
+\begin{Woutput}
+The CATMOD Procedure
+                      Data Summary
+Response           sex*lenswear     Response Levels    6
+Weight Variable    frequency        Populations        1
+Data Set           LENS             Total Frequency  446
+Frequency Missing  0                Observations       6
+
+ Population Profiles
+Sample    Sample Size
+---------------------
+    1             446
+
+      Response Profiles
+Response    sex       lenswear
+------------------------------
+    1       female    contacts
+    2       female    glasses
+    3       female    none
+    4       male      contacts
+    5       male      glasses
+    6       male      none
+
+                   Maximum Likelihood Analysis
+           Maximum likelihood computations converged.
+
+     Maximum Likelihood Analysis of Variance
+Source               DF   Chi-Square    Pr > ChiSq
+--------------------------------------------------
+sex                   1        16.10        <.0001
+lenswear              2        64.63        <.0001
+sex*lenswear          2        17.16        0.0002
+Likelihood Ratio      0          .           .
+
+                  Analysis of Maximum Likelihood Estimates
+                                           Standard        Chi-
+Parameter                       Estimate      Error      Square    Pr > ChiSq
+-----------------------------------------------------------------------------
+sex          female               0.2217     0.0552       16.10        <.0001
+lenswear     contacts             0.1146     0.0757        2.30        0.1298
+             glasses             -0.6138     0.0889       47.64        <.0001
+sex*lenswear female contacts      0.3074     0.0757       16.50        <.0001
+             female glasses      -0.2943     0.0889       10.95        0.0009
+
+The CATMOD Procedure
+                      Data Summary
+Response           sex*lenswear     Response Levels    6
+Weight Variable    frequency        Populations        1
+Data Set           LENS             Total Frequency  446
+Frequency Missing  0                Observations       6
+
+ Population Profiles
+Sample    Sample Size
+---------------------
+    1             446
+
+      Response Profiles
+Response    sex       lenswear
+------------------------------
+    1       female    contacts
+    2       female    glasses
+    3       female    none
+    4       male      contacts
+    5       male      glasses
+    6       male      none
+
+                   Maximum Likelihood Analysis
+           Maximum likelihood computations converged.
+
+     Maximum Likelihood Analysis of Variance
+Source               DF   Chi-Square    Pr > ChiSq
+--------------------------------------------------
+sex                   1        30.47        <.0001
+lenswear              2        66.85        <.0001
+Likelihood Ratio      2        17.83        0.0001
+
+             Analysis of Maximum Likelihood Estimates
+                                 Standard        Chi-
+Parameter             Estimate      Error      Square    Pr > ChiSq
+-------------------------------------------------------------------
+sex       female        0.2710     0.0491       30.47        <.0001
+lenswear  contacts      0.1958     0.0697        7.90        0.0050
+          glasses      -0.6638     0.0874       57.67        <.0001
+\end{Woutput}
+\end{document}

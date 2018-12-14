@@ -1,0 +1,286 @@
+\section{Review of statistical inference; 2-sample t}
+\frame{\sectionpage}
+
+
+<<setup1,echo=F>>=
+library(knitr)
+opts_chunk$set(dev = 'pdf')
+opts_chunk$set(comment=NA, fig.width=5, fig.height=3.5)
+options(width=45)
+suppressMessages(library(tidyverse))
+@ %def 
+
+
+\begin{frame}{The statistical world}
+  \begin{itemize}
+  \item 
+  Consists of:
+
+  \begin{itemize}
+  \item objects or people of interest to us ({\em individuals})
+  \item things measured or counted on those individuals ({\em variables})
+  \end{itemize}
+
+\pause
+
+\item About the individuals:
+
+\begin{itemize}
+\item which ones do we care about? All of them, the {\em population}.
+\item which ones do we know about? The ones we happened to look at, the {\em sample}.
+\end{itemize}
+
+\pause
+
+\item Sample is (or should be) randomly chosen from population, with no favoritism.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sample to population: confidence interval}
+  
+  \begin{itemize}
+  \item 
+Want to know about population (parameter), but don't. Only have sample (statistic). Eg.\ population mean, only have sample mean.
+\item Logic:
+  \begin{itemize}
+  \item {\em If} we knew about population, could figure out kinds of samples that might appear (math).
+  \item In particular, can figure how far apart sample statistic and population parameter might be.
+  \item Use this to construct {\em confidence interval} for population parameter: says eg.\ ``based on my sample, I think population mean between $a$ and $b$''. 
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Example of confidence interval}
+  
+  \begin{itemize}
+  \item Take a sample of $n=10$ observations. Obtain sample mean of
+    $\bar{x}=15$, and sample SD of $s=2.5$. Want 95\% confidence
+    interval for population mean.
+  \item For population mean \emph{with population SD unknown}: use $t$
+    distribution with $n-1=9$ degrees of freedom.
+  \item Obtain $t^*$ from $t$-table or as
+<<>>=
+t.star=qt(1-0.05/2,9) ; t.star
+@     
+\item and thus 95\% CI for mean is this: $m=t^* s / \sqrt{n}$, then
+  $\bar{x} \pm m$:
+<<>>=
+m=t.star*2.5/sqrt(10) ; m
+c(15-m,15+m)
+@   
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Test of significance}
+\begin{itemize}
+\item Or: 
+  \begin{itemize}
+  \item 
+might have theory leading to {\em null hypothesis} (eg.\ population mean is 20) and {\em alternative hypothesis} (eg.\ population mean not 20).
+\item This leads to {\em test of significance} (hypothesis test): ``based on my sample, I think pop.\ mean is (is not) 20''
+\item Done by choosing $\alpha$ (eg.\ 0.05), calculating {\em test statistic} and {\em P-value}. If P-value $< \alpha$, {\em reject null}: have evidence in favour of alternative.
+  \end{itemize}
+\item Math producing inference procedures can be difficult, but calculations (with software) and interpretations need not be.
+  \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Example of test of significance}
+  
+  
+  \begin{itemize}
+  \item   Let's suppose we are trying to prove that a population mean is not
+  equal to 17 (alternative hypothesis), against a null that the mean
+  is 17 after all. Use $\alpha=0.05$.
+\item Use same data as before: $n=10, \bar{x}=15, s=2.5$.
+\item Calculate test statistic $t=(\bar{x}-\mu_0)/(s/\sqrt{n})$, where
+  $\mu_0$ is the population mean given by the null hypothesis:
+<<>>=
+t.stat=(15-17)/(2.5/sqrt(10)) ; t.stat
+@
+\item Get P-value by looking along 9 df row of $t$-table, and seeing
+  where \texttt{t.tstat}, or its absolute value, comes. Or get P-value
+  directly from R. \emph{left} tail here, since
+  \texttt{t.stat} $<0$; also $\times 2$ for
+  two-sided test:
+<<>>=
+2*pt(t.stat,9)
+@   
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusion}
+  
+  \begin{itemize}
+  \item $\alpha=0.05$, P-value was 0.032.
+  \item P-value less than $\alpha$, so \emph{reject} null hypothesis
+    in favour of alternative: that is, population mean \emph{not} equal to 17.
+  \item If had $\alpha=0.01$, would not have been able to reject
+    null. So evidence against a mean of 17 is strong but not
+    \emph{that} strong.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Doing it in R}
+  
+<<echo=F>>=
+data=rnorm(10)
+data=(data-mean(data))/sd(data)
+mydata=15+2.5*data
+@   
+
+\begin{itemize}
+\item These data have right mean and SD:
+<<>>=
+mydata
+@   
+\item One step with R (note everything as before):
+  {\small
+<<>>=
+t.test(mydata,mu=17)
+@   
+}
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Exploratory data analysis}
+  \begin{itemize}
+  \item Sometimes don't have theory (yet), just want to see what data
+    tell us.
+  \item Use graphs, simple descriptive statistics, some of methods we learn.
+  \item Idea: generate ideas (``hypotheses'') for future study.
+  \item Cannot make clear conclusions about populations.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{The Degree of Reading Power data}
+
+  \begin{itemize}
+  \item Have new method for teaching reading.
+  \item Want to see if better than ``standard'' method (``research hypothesis'').
+  \item Design: randomly allocate available children to ``treatment''
+    (new method) or ``control'' (standard).
+  \item Measure score for all children on standard reading test.
+  \item Analysis: is observed difference between treatment/control score
+    means big enough to be real not chance? Do 2-sample $t$-test.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Some of the data}
+
+\begin{verbatim}
+t 43
+t 53
+t 57
+t 49
+t 56
+t 33
+c 42
+c 33
+c 46
+c 37
+c 43
+\end{verbatim}
+
+  \begin{itemize}
+  \item 1st column label (``t'' for treatment, ``c'' for control).
+  \item 2nd column response (score on reading test).
+  \item Data in plain text file \verb-drp.txt-.
+
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Reading and examining data}
+  
+ 
+<<readtable>>=
+drp=read.table("drp.txt",header=T)
+head(drp)
+@ %def 
+
+\begin{itemize}
+\item \texttt{read.table} gets data from ``space-delimited'' text
+  file. \texttt{header=T} reads top line as variable names.
+\item Resulting R data structure called \texttt{data.frame}, basic
+  arrangement for data in R.
+\item \texttt{head} looks at first few lines (default 6) of data frame.
+\end{itemize}
+
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Visual comparison of groups}
+  
+  \begin{itemize}
+  \item My favourite tool: \textbf{boxplot}:
+    
+<<fig.height=3.5,size="small">>=
+ggplot(drp,aes(x=group,y=score))+geom_boxplot() 
+@     
+    
+
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Comments and setup}
+  
+  \begin{itemize}
+  \item Mean reading score for treatment group is higher
+  \item but a lot of variability.
+  \item Is that difference real/reproducible?
+  \item Do \emph{two-sample $t$-test}.
+  \item \textbf{P-value} tells you whether difference in samples
+    likely to persist in population
+  \item Small P-value (less than 0.05) means ``yes, it's real''
+  \item Confidence interval says how far apart means might be.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two-sample $t$}
+
+{\small
+
+ 
+<<ttest>>=
+with(drp,t.test(score~group))
+@ %def 
+
+}
+
+\begin{itemize}
+\item P-value 0.026 says means really are different
+\item CI says difference between 1 and 19 points in favour of new
+  reading program.
+\item R puts groups in alphabetical order (\texttt{c} before \texttt{t}).
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Comments}
+
+  \begin{itemize}
+  \item New reading program really helps!
+  \item 2 possible $t$ procedures:
+    \begin{itemize}
+    \item Pooled: assumes 2 population variances/SDs are same
+    \item Welch/Satterthwaite: does not, but only approximation.
+    \end{itemize}
+  \item R does Welch by default. If willing to assume equal variances,
+    add \texttt{var.equal=T} to \texttt{t.test}.
+  \end{itemize}
+  
+\end{frame}

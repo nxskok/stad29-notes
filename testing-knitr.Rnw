@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\begin{document}
+
+some random sftuff
+
+<<>>=
+z=rnorm(50)
+z
+@
+
+hiostotgram
+
+<<fig=T>>=
+hist(z)
+@
+
+normal quantile plot
+
+<<>>=
+qqnorm(z)
+qqline(z)
+@
+
+
+
+\end{document}

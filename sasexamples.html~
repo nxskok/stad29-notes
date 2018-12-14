@@ -1,0 +1,122 @@
+<html>
+  <head>
+<title>SAS examples from class</title>
+</head>
+<body>
+<h1>SAS examples from class</h1>
+
+Here are the complete examples from class: the data, the SAS code that
+was run, and the output produced. (It is organized so that if you run
+the code as shown, and the data files are in the right place, you'll
+get the output as shown.) If some other format suits you better, let
+me know. <br>
+
+<table border>
+  <tr><th>Subject matter<th>Data</tr>
+  <tr><td>Intro and 2-sample t<td><a href="drp.pdf">Degree of Reading
+  Power</a></tr>
+  <tr><td>Regression<td><a href="sleep.pdf">Sleep data part 1</a></tr>
+  <tr><td>Regression<td><a href="sleep2.pdf">Sleep data part 2
+  (residual plot)</a></tr>
+  <tr><td>Regression<td><a href="curvy.pdf">Curved trend part 1</a> </tr>
+  <tr><td>Regression<td><a href="curvy2.pdf">Curved trend part
+	2</a></tr>
+  <tr><td>Multiple regression<td><a href="regressx1.pdf">Doctor
+  visits part 1</a></tr>
+  <tr>><td>Multiple regression<td><a href="regressx2.pdf">Doctor
+  visits part 2</a></tr>
+  <tr><td>Logistic regression<td><a href="rat.pdf">The rats, simple case</a></tr>
+  <tr><td>Logistic regression<td><a href="rat2.pdf">The rats, more
+  realistic case</a></tr>
+  <tr><td>Logistic regression (test of
+  fit)<td><a href="sero.pdf">Seropositivity data</a></tr>
+  <tr><td>Logistic regression (test of
+  fit)<td><a href="sero2.pdf">Seropositivity data part 2</a></tr>
+  <tr><td>Ordinal logistic
+  regression<td><a href="miners.pdf">Miners</a></tr>
+  <tr><td>Nominal-response logistic
+  regression<td><a href="mlogit.pdf">Brand preferences part 1</a></tr>
+  <tr><td>Nominal-response logistic
+  regression<td><a href="mlogit2.pdf">Brand preferences part
+  2</a></tr>
+  <tr><td>Survival analysis<td><a href="survival1.pdf">Dancers basic
+  analysis</a></tr>
+  <tr><td>Survival
+  analysis<td><a href="survival2.pdf">Dancers <tt>baseline</tt> and
+  plot</a></tr>
+  <tr><td>One-way ANOVA<td><a href="jumping.pdf">Jumping rats</a></tr>
+  <tr><td>2-way ANOVA with
+  interaction<td><a href="scaffold.pdf">Scaffold data part 1</a></tr>  
+<tr><td>2-way ANOVA without
+  interaction<td><a href="scaffold2.pdf">Scaffold data part 2</a></tr>
+<tr><td>Analysis of covariance<td><a href="ancova.pdf">2 treatments,
+      before and after</a></tr>
+<tr><td>Multivariate ANOVA<td><a href="manova1.pdf">Effect of
+      fertilizer amount on seed yield and weight</a></tr>
+<tr><td>Repeated measures<td><a href="rm1.pdf">Fake data 1</a> </tr>
+<tr><td>Repeated measures<td><a href="rm2.pdf">Fake data 2</a> </tr>
+<tr><td>Repeated measures<td><a href="rm3.pdf">Fake data 3</a> </tr>
+<tr><td>Repeated measures<td><a href="rm4.pdf">Fake data 4</a> </tr>
+<tr><td>Repeated measures<td><a href="profile.pdf">Jobs and leisure
+activities</a></tr>
+<tr><td>Repeated measures<td><a href="dogs2">Dogs histamine over time</a></tr>
+
+<tr><td>Multivariate regression<td><a href="Rohwer.pdf">Influence of
+      paired association tests on aptitude test results</a>
+<tr>
+  <td>Discriminant analysis 
+  <td><a href="manova2.pdf">Seed yield and weight</a>
+</tr>
+<tr>
+<td>Discriminant analysis
+<td><a href="profile2.pdf">Jobs and leisure activities</a>
+</tr>
+<tr>
+<td>Discriminant analysis
+<td><a href="mixup.pdf">Mixed-up data</a>
+</tr>
+
+<tr>
+  <td>Discriminant analysis
+  <td><a href="remote-sensing.pdf">Remote sensing of crops</a>
+</tr>
+
+<tr>
+  <td>Cluster analysis
+  <td><a href="one-ten.pdf">One to ten in various languages</a>
+</tr>
+
+<tr>
+  <td>Cluster analysis
+  <td><a href="birthrate.pdf">Birth, death and infant mortality rates</a>
+</tr>
+
+<tr>
+<td>Cluster analysis
+<td><a href="ontario-road-distances.pdf">Ontario hockey league</a>
+</tr>
+
+<tr>
+<td>Multidimensional scaling
+<td><a href="europe.pdf">European cities</a>
+</tr>
+
+<tr>
+<td>Multidimensional scaling (non-metric)
+<td><a href="one-ten-mds.pdf">One to ten</a>
+</tr>
+
+<tr>
+<td>Multidimensional scaling
+<td><a href="cube.pdf">A cube</a>
+</tr>
+
+
+</table>
+
+
+
+
+
+</body>
+</html>

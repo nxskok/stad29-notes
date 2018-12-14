@@ -1,0 +1,42 @@
+\documentclass{article}
+\title{The cube data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+a   0   .   .   .   .   . . .
+b   1   0   .   .   .   . . .
+c   1   1   0   .   .   . . .
+d 1.4   1   1   0   .   . . .
+e   1 1.4 1.4 1.7   0   . . .
+f 1.4   1 1.7 1.4   1   0 . .
+g 1.4 1.7   1 1.4   1 1.4 0 .
+h 1.7 1.4 1.4   1 1.4   1 1 0
+
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+options linesize=70 pagesize=25;
+
+data cube(type=distance);
+  infile "cube.dat";
+  input corner $ a b c d e f g h;
+
+proc mds level=absolute out=coords outres=res;
+
+proc print data=res;
+
+proc plot data=coords;
+  plot dim2*dim1 $ _label_;
+
+proc mds data=cube dim=3 level=absolute outres=res;
+
+proc print data=res;
+
+
+\end{SAScode}
+\end{document}

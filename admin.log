@@ -1,0 +1,109 @@
+1                                                          The SAS System                               11:36 Monday, March 19, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-39-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.12 seconds
+      cpu time            0.04 seconds
+      
+1          options ls=70;
+2          
+3          data admin;
+4              infile "admin.dat";
+5              input x @@;
+6              y=(x<8); /* for sign test */
+7          
+
+NOTE: The infile "admin.dat" is:
+      Filename=/home/ken/teaching/d29/notes/admin.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rw-r--r--,
+      Last Modified=Mon Mar 19 11:20:32 2012,
+      File Size (bytes)=81
+
+NOTE: 1 record was read from the infile "admin.dat".
+      The minimum record length was 80.
+      The maximum record length was 80.
+NOTE: SAS went to a new line when INPUT statement reached past the 
+      end of a line.
+NOTE: The data set WORK.ADMIN has 18 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.02 seconds
+      
+
+2                           The SAS System
+                                          11:36 Monday, March 19, 2012
+
+8          proc rank;
+9              var x;
+10             ranks rx;
+11         
+
+NOTE: The data set WORK.DATA1 has 18 observations and 3 variables.
+NOTE: PROCEDURE RANK used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+12         proc print;
+13         
+
+NOTE: There were 18 observations read from the data set WORK.DATA1.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+      
+
+14         proc ttest H0=6;
+15             var rx;
+16         
+
+NOTE: The PROCEDURE TTEST printed page 2.
+NOTE: PROCEDURE TTEST used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.02 seconds
+      
+
+17         proc ttest H0=8;
+18             var x;
+19         
+20         
+NOTE: The PROCEDURE TTEST printed page 3.
+NOTE: PROCEDURE TTEST used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.02 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           0.25 seconds
+      cpu time            0.17 seconds
+      

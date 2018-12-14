@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\begin{document}
+
+\section{Prelims}
+
+some random stuff
+
+<<>>=
+set.seed(457299)
+zz=rnorm(50)
+zz
+@
+
+\section{Plots}
+
+histogram
+
+<<>>=
+hist(zz)
+@
+
+normal quantile plot
+
+<<>>=
+qqnorm(zz)
+qqline(zz)
+@
+
+\section{More experimentation}
+
+Some more data:
+
+<<>>=
+x=1:7
+y=c(10,11,10,13,14,16,19)
+@
+
+Scatterplot, with lowess
+
+<<>>=
+plot(y~x)
+lines(lowess(y~x))
+@
+
+Regression:
+
+<<>>=
+y.1=lm(y~x)
+summary(y.1)
+par(mfrow=c(2,2))
+plot(y.1)
+@
+
+There's a hint of curvature there. Does adding $x^2$ help?
+
+<<>>=
+y.2=lm(y~poly(x,2))
+summary(y.2)
+par(mfrow=c(2,2))
+plot(y.2)
+@
+
+I think it does. Scatterplot of original data with linear and quadratic trends?
+
+<<>>=
+plot(y~x)
+lines(x,fitted(y.1),col="red")
+lines(spline(x,fitted(y.2)),col="blue")
+@
+
+It looks as if the blue curve describes the data better than the red line.
+\end{document}

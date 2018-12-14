@@ -1,0 +1,16 @@
+data xy;
+    input x y;
+    cards;
+    1 4
+    2 17
+    3 6
+    4 8
+        ;
+
+proc reg;
+    model y=x;
+    output out=z p=p r=r;
+
+proc print data=z;
+
+    

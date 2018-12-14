@@ -1,0 +1,21 @@
+                                 The SAS System                                1
+                                                 22:06 Monday, December 26, 2011
+
+                                    Obs    x
+
+                                     1     1
+                                     2     2
+                                     3     3
+                                     4     5
+                                     5     7
+                                 The SAS System                                2
+                                                 22:06 Monday, December 26, 2011
+
+                              The MEANS Procedure
+
+                             Analysis Variable : x 
+ 
+       N            Mean         Std Dev         Minimum         Maximum
+       -----------------------------------------------------------------
+       5       3.6000000       2.4083189       1.0000000       7.0000000
+       -----------------------------------------------------------------

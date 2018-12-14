@@ -1,0 +1,59 @@
+library(rgl)
+ontario=read.csv("ontario-road-distances.csv")
+head(ontario)
+library(dplyr)
+# need to select on row.name
+ontario %>% 
+  mutate(cityname=row.names(ontario)) %>% 
+  filter(!(cityname %in% c("ThunderBay","SaultSteMarie"))) %>% 
+  select(-c(ThunderBay,SaultSteMarie,cityname)) -> ontario2
+
+# or 
+ontario.2=ontario[c(-17,-19),c(-17,-19)]
+
+ontario.2.2=cmdscale(ontario.2)
+ontario.2.2=cbind(ontario.2.2,1)
+ontario.2.2
+
+plot3d(ontario.2.2,zlim=c(-100,100))
+text3d(ontario.2.2,text=cities)
+
+cities=colnames(ontario2)
+ontario2.d=as.dist(ontario2)
+ontario2.scale.3=cmdscale(ontario2.d,3)
+head(ontario2.scale.3)
+plot3d(ontario2.scale.3)
+text3d(ontario2.scale.3,text=cities,adj=c(0,0))
+
+cube=read.table("cube.txt",header=T)
+cube
+cube.d=as.dist(cube)
+cube.d
+
+cube.3=cmdscale(cube.d,3)
+cube.3
+point.names=row.names(cube)
+point.names
+plot3d(cube.3,col=rainbow(8))
+text3d(cube.3,text=point.names)
+
+number.d=read.table("languages.txt",header=T)
+number.d
+d=as.dist(number.d)
+d
+langs=names(number.d)
+library(MASS)
+number.1=isoMDS(d,k=3)
+number.1
+plot3d(number.1$points)
+text3d(number.1$points,text=langs)
+
+# or plot a two-dimensional one in 3d!
+
+library(dplyr)
+number.1=isoMDS(d,k=2)
+number.1
+number.2=cbind(number.1$points,1)
+number.2
+plot3d(cbind(number.2),zlim=c(-5,5))
+text3d(number.2,text=langs,adj=c(0,0))

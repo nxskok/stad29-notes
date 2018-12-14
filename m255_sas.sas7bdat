@@ -1,0 +1,906 @@
+<html>
+ <head>
+
+<title>SAS Annotated Output: Factor Analysis</title>
+<link HREF="/stat/ats_style.css" TYPE="text/css" REL="stylesheet">
+</HEAD>
+<BODY>
+
+
+
+<!--
+ 
+Revision history:
+
+
+
+-->
+
+
+
+<link href="/stat/idre/css/body.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/header.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/breadcrumb.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/footerTop.css" rel="stylesheet" type="text/css">
+<link href="/stat/idre/css/footerBottom.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="/stat/idre/js/webfont.js"></script>
+
+
+
+
+<!-- tag opened in header.htm, closed in footer.htm -->  
+<div id="bodyWrap">
+<div id="header">
+  <div id="logo">
+    <h1 class="page_h1" title="Welcome to Institute for Digital Research and Education">Welcome to the Institute for Digital Research and Education</h1>
+    <a class="logoSprite" title="Institute for Digital Research and Education Home" href="https://idre.ucla.edu">Institute for Digital Research and Education Home</a> </div>
+
+<div id="searchBox">
+    <div class="btnContainer">
+        <span class="btnLabel">Help the Stat Consulting Group by</span> <a href="https://giving.ucla.edu/Standard/NetDonate.aspx?SiteNum=371" class='idreBtn'>giving a gift</a>
+    </div>
+    <!-- Google Provided Code Starts Here -->
+<script type="text/javascript">
+  (function() {
+    var cx = '017078209654322335373:o5ngkv1vghw';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- Place this tag where you want the search box to render -->
+<gcse:searchbox-only></gcse:searchbox-only>
+<!-- Google Provided Code Ends Here -->
+</div>
+
+</div>
+
+<script type="text/javascript" src="/stat/apps/tree.js"></script>
+<script>
+function stuff(dir) {
+
+  var x = document.getElementById("bc" + dir);
+
+  if ( !x.stuffed){
+
+    var inner = "<ul>";
+
+    var listing = tree[dir];
+
+    for(var d in listing) {
+        var subdir = listing[d];
+        var base = subdir.replace("^.*\/", "");
+      inner = inner + "<li><a href='" + subdir +"'><span>" + base + "</span></a></li>";
+    }
+
+
+
+
+
+    inner = inner + "</ul>";
+
+    x.innerHTML = x.innerHTML + inner;
+    x.stuffed = true;
+  }
+
+
+}
+</script>
+
+<style>
+#cssmenu ul,
+#cssmenu li,
+#cssmenu span,
+#cssmenu a {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#cssmenu {
+/*  height: 49px;
+  border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  background: #fefefe;
+  background: -moz-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #eee9f0));
+  background: -webkit-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: -o-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: -ms-linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  background: linear-gradient(top, #fefefe 0%, #eee9f0 100%);
+  border-bottom: 2px solid #db000b;
+  width: auto; */
+}
+#cssmenu:after,
+#cssmenu ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#cssmenu a {
+/*  background: #fefefe;
+  background: -moz-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #ececec));
+  background: -webkit-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: -o-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: -ms-linear-gradient(top, #fefefe 0%, #ececec 100%);
+  background: linear-gradient(top, #fefefe 0%, #ececec 100%);
+  color: #000; 
+  display: inline-block;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 49px;*/
+  padding: 0 20px;
+  text-decoration: none;
+}
+#cssmenu ul {
+  list-style: none;
+}
+#cssmenu > ul {
+  float: left;
+}
+#cssmenu > ul > li {
+  float: left;
+}
+#cssmenu > ul > li > a {
+  color: #000;
+  font-size: 12px;
+}
+#cssmenu > ul > li:hover:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #db000b;
+  margin-left: -10px;
+}
+#cssmenu > ul > li:first-child > a {
+  border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+}
+#cssmenu > ul > li.active:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #db000b;
+  margin-left: -10px;
+}
+#cssmenu > ul > li.active > a {
+  -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  background: #ececec;
+  background: -moz-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #ffeeff ef));
+  background: -webkit-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -o-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -ms-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+}
+#cssmenu > ul > li:hover > a {
+/*  background: #ececec;
+  background: -moz-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ececec), color-stop(100%, #ffeeff ef));
+  background: -webkit-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -o-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: -ms-linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  background: linear-gradient(top, #ececec 0%, #ffeeff ef 100%);
+  -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);*/
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+}
+#cssmenu .has-sub {
+  z-index: 1;
+}
+#cssmenu .has-sub:hover > ul {
+  display: block;
+}
+#cssmenu .has-sub ul {
+  display: none;
+  position: absolute;
+  width: 200px;
+/*  top: 100%;*/
+  left: 0;
+}
+#cssmenu .has-sub ul li {
+  *margin-bottom: -1px;
+}
+#cssmenu .has-sub ul li a {
+  background: #db000b;
+  border-bottom: 1px dotted #ff0f1b;
+  filter: none;
+  font-size: 11px;
+  display: block;
+  line-height: 120%;
+  padding: 10px;
+  color: #ffffff;
+}
+#cssmenu .has-sub ul li:hover a {
+  background: #a80008;
+}
+#cssmenu .has-sub .has-sub:hover > ul {
+  display: block;
+}
+#cssmenu .has-sub .has-sub ul {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+#cssmenu .has-sub .has-sub ul li a {
+  background: #a80008;
+  border-bottom: 1px dotted #ff0f1b;
+}
+#cssmenu .has-sub .has-sub ul li a:hover {
+  background: #8f0007;
+}
+
+
+</style>
+
+
+
+<div id="infobar">
+
+      <div id="breadcrumbBox"><div class="breadcrumb" id='cssmenu'>
+<ul>      
+<li id='bc/stat' onmouseover="stuff('/stat')" class='has-sub'><a href='/stat'>stat</a> &gt; </li><li id='bc/stat/sas' onmouseover="stuff('/stat/sas')" class='has-sub'><a href='/stat/sas'>sas</a> &gt; </li><li id='bc/stat/sas/output' onmouseover="stuff('/stat/sas/output')" class='has-sub'><a href='/stat/sas/output'>output</a> &gt; </li><li id='bc/stat/sas/output/factor.htm' onmouseover="stuff('/stat/sas/output/factor.htm')" class='has-sub'><a href='/stat/sas/output/factor.htm'>factor.htm</a></li> &gt; m255_sas.sas7bdat
+</ul>
+</div></div></div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12327299-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- MathJax Provided Code Starts Here -->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/2.1-beta/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- MathJax Provided Code Ends Here -->
+
+<!-- tag opened in header.htm, closed in footer.htm -->  
+<div id="bodyContainer">
+
+
+
+
+
+
+
+
+
+<h3>SAS Annotated Output <br>
+Factor Analysis</h3>
+<p>This page shows an example of a factor analysis with footnotes 
+explaining the output.&nbsp; The data used in this example were collected by 
+Professor James Sidanius, who has generously shared them with us.&nbsp; You can 
+download the data set <a href="m255_sas.sas7bdat">here</a>. </p>
+<p>Overview:&nbsp; The &quot;what&quot; and &quot;why&quot; of factor analysis</p>
+<p>Factor analysis is a method of data reduction.&nbsp; It does this by seeking 
+underlying unobservable (latent) variables that are reflected in the observed 
+variables (manifest variables).&nbsp; There are many different methods that can be 
+used to conduct a factor analysis (such as principal axis factor, maximum 
+likelihood, generalized least squares, unweighted least squares), There are also 
+many different types of rotations that can be done after the initial extraction 
+of factors, including orthogonal rotations, such as varimax and equimax, which 
+impose the restriction that the factors cannot be correlated, and oblique 
+rotations, such as promax, which allow the factors to be correlated with one 
+another.&nbsp; You also need to determine the number of factors that you want to 
+extract.&nbsp; Given the number of factor analytic techniques and options, it is not 
+surprising that different analysts could reach very different results analyzing 
+the same data set.&nbsp; However, all analysts are looking for simple structure.&nbsp; 
+Simple structure is pattern of results such that each variable loads highly onto 
+one and only one factor.&nbsp; </p>
+<p>Factor analysis is a technique that requires a large sample size.&nbsp; 
+Factor analysis is based on the correlation matrix of the variables involved, 
+and correlations usually need a large sample size before they stabilize.&nbsp; 
+Tabachnick and Fidell (2001, page 588) cite Comrey and Lee's (1992) advise 
+regarding sample size: 50 cases is very poor, 100 is poor, 200 is fair, 300 is 
+good, 500 is very good, and 1000 or more is excellent.&nbsp; As a rule of thumb, 
+a bare minimum of 10 observations per variable is necessary to avoid 
+computational difficulties.</p>
+<p>For the example below, we are going to do a rather &quot;plain vanilla&quot; factor 
+analysis.&nbsp; We will use iterated principal axis factor with three factors as our 
+method of extraction, a varimax rotation, and for comparison, we will also show 
+the promax oblique solution.&nbsp; The determination of the number of factors to 
+extract should be guided by theory, but also informed by running the analysis 
+extracting different numbers of factors and seeing which number of factors 
+yields the most interpretable results.&nbsp; We have used the <b>priors = smc</b> 
+option on the <b>proc factor</b> statement so that the squared multiple 
+correlation is used on the diagonal of the correlation matrix.&nbsp; (If this 
+option is not used, 1's are on the diagonal, and you will do a principal 
+components analysis instead of a principal axis factor analysis.)</p>
+<p>In this example we have included many options, including the original 
+correlation matrix, the scree plot and the eigenvectors.&nbsp; While you may not 
+wish to use all of these options, we have included them here to aid in the 
+explanation of the analysis.&nbsp; We have also created a page of annotated 
+output for a principal components analysis that parallels this analysis.&nbsp; 
+For general information regarding the similarities and differences between 
+principal components analysis and factor analysis, see Tabachnick and Fidell, 
+for example.</p>
+<pre><b>proc factor data = &quot;d:\m255_sas&quot; nfactors = 3 corr scree ev rotate = varimax method = prinit priors = smc;
+var item13 item14 item15 item16 item17 item18 item19 item20 item21 item22 item23 item24 ;
+run;</b></pre>
+
+</BODY>
+<pre>The FACTOR Procedure
+
+                                           Correlations
+
+                                                                  ITEM13       ITEM14       ITEM15
+
+ITEM13   INSTRUC WELL PREPARED                                   1.00000      0.66146      0.59999
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.66146      1.00000      0.63460
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.59999      0.63460      1.00000
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.56626      0.50003      0.50535
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.57687      0.55150      0.58664
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.40898      0.43311      0.45707
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.28632      0.32041      0.35869
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.30418      0.31481      0.35568
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.47553      0.44896      0.50904
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.33255      0.33313      0.36884
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.56399      0.56461      0.58233
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.45360      0.44281      0.43481
+
+                                           Correlations
+
+                                                                  ITEM16       ITEM17       ITEM18
+
+ITEM13   INSTRUC WELL PREPARED                                   0.56626      0.57687      0.40898
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.50003      0.55150      0.43311
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.50535      0.58664      0.45707
+ITEM16   INSTRUCTOR FOCUS LECTURES                               1.00000      0.58649      0.40479
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.58649      1.00000      0.55474
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.40479      0.55474      1.00000
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.33540      0.44930      0.62660
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.31676      0.41682      0.52055
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.45245      0.59526      0.55417
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.36255      0.44976      0.53609
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.45880      0.61302      0.56950
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.42967      0.52058      0.47382
+
+                                           Correlations
+
+                                                                  ITEM19       ITEM20       ITEM21
+
+ITEM13   INSTRUC WELL PREPARED                                   0.28632      0.30418      0.47553
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.32041      0.31481      0.44896
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.35869      0.35568      0.50904
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.33540      0.31676      0.45245
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.44930      0.41682      0.59526
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.62660      0.52055      0.55417
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   1.00000      0.44647      0.49921
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.44647      1.00000      0.42479
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.49921      0.42479      1.00000
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.48404      0.38297      0.50651
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.44401      0.40962      0.59751
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.37383      0.35722      0.49977
+
+                                           Correlations
+
+                                                                  ITEM22       ITEM23       ITEM24
+
+ITEM13   INSTRUC WELL PREPARED                                   0.33255      0.56399      0.45360
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.33313      0.56461      0.44281
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.36884      0.58233      0.43481
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.36255      0.45880      0.42967
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.44976      0.61302      0.52058
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.53609      0.56950      0.47382
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.48404      0.44401      0.37383
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.38297      0.40962      0.35722
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.50651      0.59751      0.49977
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      1.00000      0.49317      0.44440
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.49317      1.00000      0.70464
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.44440      0.70464      1.00000</pre>
+<p>The table above was included in the output because we included the <b>corr</b> 
+option on the <b>proc factor</b> statement.&nbsp; This table gives the correlations 
+between the original variables (which are specified on the <b>var</b> 
+statement).&nbsp; Before conducting a principal components analysis, you want to 
+check the correlations between the variables.&nbsp; If any of the correlations are 
+too high (say above .9), you may need to remove one of the variables from the 
+analysis, as the two variables seem to be measuring the same thing.&nbsp; Another 
+alternative would be to combine the variables in some way (perhaps by taking the 
+average).&nbsp; If the correlations are too low, say below .1, then one or more of 
+the variables might load only onto one factor (in other words, make its own 
+factor).&nbsp; This is not helpful, as the whole point of the analysis is to reduce 
+the number of items (variables).</p>
+<pre>Initial Factor Method: Iterated Principal Factor Analysis
+
+                           Prior Communality Estimates: SMC<sup><b><font size="3">a</font></b></sup>
+
+    ITEM13          ITEM14          ITEM15          ITEM16          ITEM17          ITEM18
+
+0.56418325      0.55109842      0.53781427      0.44669710      0.58542518      0.57168198
+
+    ITEM19          ITEM20          ITEM21          ITEM22          ITEM23          ITEM24
+
+0.45593942      0.32641074      0.51564224      0.39697338      0.66171378      0.52583313
+
+Preliminary Eigenvalues: Total = 6.13941289  Average = 0.51161774</pre>
+<pre>        Eigenvalue<sup><b><font size="3">b</font></b></sup>   Difference<sup><b><font size="3">c</font></b></sup>   Proportion<sup><b><font size="3">d</font></b></sup>   Cumulative<b><sup><font size="3">e</font></sup></b>
+
+   1    5.77616022    5.05422468        0.9408        0.9408
+   2    0.72193554    0.46721447        0.1176        1.0584
+   3    0.25472107    0.17543468        0.0415        1.0999
+   4    0.07928639    0.08287783        0.0129        1.1128
+   5    -.00359143    0.02084644       -0.0006        1.1122
+   6    -.02443788    0.04141429       -0.0040        1.1083
+   7    -.06585217    0.00923826       -0.0107        1.0975
+   8    -.07509043    0.02834695       -0.0122        1.0853
+   9    -.10343738    0.01757618       -0.0168        1.0685
+  10    -.12101355    0.02261532       -0.0197        1.0487
+  11    -.14362888    0.01200974       -0.0234        1.0254
+  12    -.15563862                     -0.0254        1.0000</pre>
+<p>a.&nbsp; <b>Prior Communality Estimates:&nbsp; SMC</b> - This gives the 
+communality estimates prior to the rotation.&nbsp; The communalities (also known 
+as h<sup>2</sup>) are the estimates of the variance of the factors, as opposed 
+to the variance of the variable which includes measurement error.</p>
+<p>b.&nbsp; <b>Eigenvalue</b> - This is the initial eigenvalue.&nbsp; An eigenvalue is 
+the variance of the factor.&nbsp; Because this is an unrotated solution, the 
+first factor will account for the most variance, the second will account for the 
+second highest amount of variance, and so on.&nbsp; Some of the eigenvalues are 
+negative because the matrix is not of full rank.&nbsp; This means that there are 
+probably only four dimensions (corresponding to the four factors whose 
+eigenvalues are greater than zero).&nbsp; Although it is strange to have a 
+negative variance, this happens because the factor analysis is only analyzing 
+the common variance, which is less than the total variance.&nbsp; If we were 
+doing a principal components analysis, we would have had 1's on the diagonal, 
+which means that all of the variance is being analyzed (which is another way of 
+saying that we are assuming that we have no measurement error), and we would not 
+have negative eigenvalues.&nbsp; In general, it is not uncommon to have negative 
+eigenvalues.</p>
+<p>c.&nbsp; <b>Difference</b> - This column gives the difference between the 
+eigenvalues.&nbsp; For example, 5.05 = 5.77 - 0.72.&nbsp; This column allows you 
+to see how quickly the eigenvalues are decreasing.</p>
+<p>d.&nbsp; <b>Proportion</b> - This is the proportion of the total variance that each 
+factor accounts for.&nbsp; For example, 0.9408 = 5.77/6.139.</p>
+<p>e.&nbsp; <b>Cumulative</b> - This is the sum of the proportion column.&nbsp; For 
+example, 1.0584 = 0.9408 + 0.1176.</p>
+<hr>
+<pre>3 factors will be retained by the NFACTOR criterion.
+
+Initial Factor Method: Iterated Principal Factor Analysis
+
+Scree Plot of Eigenvalues
+     |
+   6 +
+     |          1
+     |
+     |
+     |
+     |
+   5 +
+     |
+     |
+     |
+     |
+     |
+   4 +
+     |
+     |
+E    |
+i    |
+g    |
+e  3 +
+n    |
+v    |
+a    |
+l    |
+u    |
+e  2 +
+s    |
+     |
+     |
+     |
+     |
+   1 +
+     |
+     |                 2
+     |
+     |                        3
+     |
+   0 +                               4      5      6      7      8
+     |                                                                  9      0      1      2
+     |
+     |
+     |
+     |
+  -1 +
+     ----+------+------+------+------+------+------+------+------+------+------+------+------+----
+         0      1      2      3      4      5      6      7      8      9     10     11     12
+
+                                                 Number</pre>
+<p>The scree plot graphs the eigenvalue against the factor number.&nbsp; You can see 
+these values in the first two columns of the table immediately above.&nbsp; From the 
+third factor on, you can see that the line is almost flat, meaning the each 
+successive factor is accounting for smaller and smaller amounts of the total 
+variance.&nbsp; </p>
+<hr>
+<pre>Initial Factor Method: Iterated Principal Factor Analysis
+
+Iteration<b><sup><font size="3">f</font></sup></b> Change<sup><font size="3"><b>g</b></font></sup>                                  Communalities<sup><font size="3"><b>h</b></font></sup>
+
+    1      0.0722  0.63235  0.60163  0.58315  0.47076  0.62245  0.64391  0.52673  0.36802  0.55072
+                   0.44262  0.73027  0.58020
+    2      0.0314  0.65638  0.61511  0.59176  0.47107  0.62531  0.66684  0.55310  0.37241  0.55236
+                   0.44807  0.76168  0.60660
+    3      0.0152  0.66649  0.61878  0.59279  0.46942  0.62437  0.67484  0.56471  0.37121  0.55092
+                   0.44706  0.77683  0.61976
+    4      0.0075  0.67126  0.61963  0.59244  0.46846  0.62365  0.67765  0.57040  0.36997  0.54996
+                   0.44578  0.78429  0.62641
+    5      0.0037  0.67367  0.61966  0.59202  0.46805  0.62329  0.67856  0.57338  0.36925  0.54949
+                   0.44498  0.78797  0.62979
+    6      0.0018  0.67494  0.61950  0.59174  0.46789  0.62314  0.67877  0.57500  0.36887  0.54927
+                   0.44456  0.78979  0.63153
+    7      0.0009  0.67562  0.61934  0.59156  0.46783  0.62308  0.67875  0.57591  0.36868  0.54917
+                   0.44434  0.79068  0.63243
+
+Convergence criterion satisfied.</pre>
+<p>f.&nbsp; <b>Iteration</b> - This column lists the number of the iteration.&nbsp; In 
+this analysis, seven iterations were required before the criteria was met.</p>
+<p>g.&nbsp; <b>Change</b> - When the change becomes smaller than the criterion, 
+the iterating process stops.&nbsp; The numbers in this column are the largest absolute 
+difference between iterations.&nbsp; For example, the difference between the 
+first and the second iteration for item23 is 0.0314 = 0.73027 - 0.76168.&nbsp; The difference given for the first iteration is the difference 
+between the values at the first iteration and the squared multiple correlations 
+(sometimes called iteration 0).</p>
+<p>h.&nbsp; <b>Communalities</b> - These are the communality estimates at each 
+iteration.&nbsp; For each iteration, the communality for each variable is 
+listed.&nbsp; For example, 0.63235 is the communality for the first variable.</p>
+<pre>Eigenvalues of the Reduced Correlation Matrix: Total = 7.01500876  Average = 0.58458406
+
+        Eigenvalue<sup><b><font size="3">i</font></b></sup>   Difference<sup><b><font size="3">j</font></b></sup>   Proportion<sup><b><font size="3">k</font></b></sup>   Cumulative<sup><b><font size="3">l</font></b></sup>
+
+   1    5.85107872    5.04474488        0.8341        0.8341
+   2    0.80633384    0.44633935        0.1149        0.9490
+   3    0.35999449    0.22853697        0.0513        1.0003
+   4    0.13145752    0.07654351        0.0187        1.0191
+   5    0.05491400    0.02332205        0.0078        1.0269
+   6    0.03159195    0.03030953        0.0045        1.0314
+   7    0.00128242    0.00617263        0.0002        1.0316
+   8    -.00489021    0.01439730       -0.0007        1.0309
+   9    -.01928750    0.02693109       -0.0027        1.0281
+  10    -.04621859    0.01408519       -0.0066        1.0216
+  11    -.06030378    0.03064032       -0.0086        1.0130
+  12    -.09094410                     -0.0130        1.0000
+
+Initial Factor Method: Iterated Principal Factor Analysis
+
+                                           Eigenvectors<sup><b><font size="3">m</font></b></sup>
+
+                                                                       1            2            3
+
+ITEM13   INSTRUC WELL PREPARED                                   0.29486     -0.44338      0.15269
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.29074     -0.37797      0.16283
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.29819     -0.27308      0.17609
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.26782     -0.21061      0.18546
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.32375     -0.08174      0.11086
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.30573      0.38422      0.18861
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.25481      0.46205      0.25759
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.22744      0.26655      0.15574
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.30252      0.13020      0.00062
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.25337      0.29080     -0.03839
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.33865     -0.02903     -0.57488
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.28729      0.02042     -0.64369</pre>
+<p>i.&nbsp; <b>Eigenvalue</b> - This is the eigenvalue obtained after the 
+principal axis factoring but before the varimax rotation.&nbsp; An eigenvalue is 
+the variance of the factor.&nbsp; Because this is an unrotated solution, the 
+first factor will account for the most variance, the second will account for the 
+second highest amount of variance, and so on.&nbsp; Some of the eigenvalues are 
+negative because the matrix is not of full rank.&nbsp; This means that there are 
+probably only four dimensions (corresponding to the four factors whose 
+eigenvalues are greater than zero).&nbsp; Although it is strange to have a 
+negative variance, this happens because the factor analysis is only analyzing 
+the common variance, which is less than the total variance.&nbsp; If we were 
+doing a principal components analysis, we would have had 1's on the diagonal, 
+which means that all of the variance is being analyzed (which is another way of 
+saying that we are assuming that we have no measurement error), and we would not 
+have negative eigenvalues.&nbsp; In general, it is not uncommon to have negative 
+eigenvalues.</p>
+<p>j.&nbsp; <b>Difference</b> - This column gives the difference between the 
+eigenvalues.&nbsp; For example, 5.0447 = 5.85107 - 0.8633.&nbsp; This column 
+allows you to see how quickly the eigenvalues are decreasing.</p>
+<p>k.&nbsp; <b>Proportion</b> - This is the proportion of the total variance 
+that each factor accounts for.&nbsp; For example, 0.8341 = 5.85107/7.015.</p>
+<p>l.&nbsp; <b>Cumulative</b> - This is the sum of the proportion column.&nbsp; 
+For example, 0.9490 = 0.8341 + 0.1149.</p>
+<p>m.&nbsp; <b>Eigenvectors</b> - Eigenvectors are linear combinations of the 
+original variables.&nbsp; They tell you about the strength of the relationship 
+between the original variables and the (latent) factors.</p>
+<pre>                                          Factor Pattern<sup><b><font size="3">n</font></b></sup>
+
+                                                                 Factor1      Factor2      Factor3
+
+ITEM13   INSTRUC WELL PREPARED                                   0.71324     -0.39814      0.09162
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.70328     -0.33941      0.09770
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.72130     -0.24522      0.10565
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.64783     -0.18912      0.11128
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.78311     -0.07340      0.06652
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.73953      0.34501      0.11316
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.61635      0.41490      0.15455
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.55015      0.23935      0.09344
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.73178      0.11691      0.00037
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.61288      0.26113     -0.02304
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.81916     -0.02607     -0.34493
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.69493      0.01834     -0.38621</pre>
+<p>n.&nbsp; <b>Factor Pattern</b> - This table contains the unrotated factor 
+loadings, which are the correlations between the variable and the factor.&nbsp; 
+Because these are correlations, possible values range from -1 to +1.</p>
+<pre>     Variance Explained by Each Factor
+
+   Factor1         Factor2         Factor3
+
+ 5.8510787       0.8063338       0.3599945
+
+                       Final Communality Estimates<sup><b><font size="3">o</font></b></sup>: Total = 7.017407<sup><b><font size="3">p</font></b></sup>
+
+    ITEM13          ITEM14          ITEM15          ITEM16          ITEM17          ITEM18
+
+0.67562309      0.61934326      0.59156382      0.46783384      0.62307645      0.67874757
+
+    ITEM19          ITEM20          ITEM21          ITEM22          ITEM23          ITEM24
+
+0.57591368      0.36868496      0.54916770      0.44434233      0.79068338      0.63242696</pre>
+<p>o.&nbsp; <b>Final Communality Estimates</b> - This is the proportion of each 
+variable's variance that can be explained by the factors (e.g., the underlying 
+latent continua).&nbsp; The values here indicate the proportion of each 
+variable's variance that can be explained by the retained factors prior to the 
+rotation.&nbsp; Variables with high values are well represented in the common factor 
+space, while variables with low values are not well represented.&nbsp; (In this 
+example, we don't have any particularly low values.)&nbsp; They are the reproduced 
+variances from the factors that you have extracted.&nbsp; You can find these values 
+on the diagonal of the reproduced correlation matrix.</p>
+<p>p.&nbsp; <b>Total</b> -&nbsp;&nbsp; 7.017407 = 5.8510787 + 0.8063338 + 
+0.3599945</p>
+<pre>Rotation Method: Varimax
+
+            Orthogonal Transformation Matrix<sup><b><font size="3">q</font></b></sup>
+
+                       1               2               3
+
+       1         0.65843         0.61225         0.43773
+       2        -0.68417         0.72927         0.00910
+       3         0.31366         0.30547        -0.89906</pre>
+<p>q.&nbsp; <b>Orthogonal Transformation Matrix</b> - This is the matrix by 
+which you multiply the unrotated factor matrix to get the rotated factor matrix</p>
+<pre>                                      Rotated Factor Pattern<sup><b><font size="3">r</font></b></sup>
+
+                                                                 Factor1<sup><b><font size="3">s</font></b></sup>     Factor2<sup><b><font size="3">s</font></b></sup>     Factor3<sup><b><font size="3">s</font></b></sup>
+
+ITEM13   INSTRUC WELL PREPARED                                   0.77075      0.17432      0.22622
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.72592      0.21291      0.21693
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.67583      0.29506      0.21852
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.59084      0.29271      0.18181
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.58671      0.44625      0.28233
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.28638      0.73896      0.22512
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.17044      0.72715      0.13462
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.22779      0.53993      0.15899
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.40195      0.53341      0.32106
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.21766      0.55864      0.29137
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.44901      0.37716      0.66845
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.32388      0.32087      0.65159</pre>
+<p>r.&nbsp; <b>Rotated Factor Pattern</b> - This table contains the rotated 
+factor loadings, which are the correlations between the variable and the 
+factor.&nbsp; Because these are correlations, possible values range from -1 to +1.&nbsp;
+</p>
+<p>s.&nbsp; <b>Factor</b> - These columns are the rotated factors that have been 
+extracted.&nbsp; These are the factors that analysts are most interested in and try 
+to name.&nbsp; For example, the first factor might be called &quot;instructor competence&quot; 
+because items like &quot;instructor well prepare&quot; and &quot;instructor competence&quot; load 
+highly on it.&nbsp; The second factor might be called &quot;relating to students&quot; because 
+items like &quot;instructor is sensitive to students&quot; and &quot;instructor allows me to 
+ask questions&quot; load highly on it.&nbsp; The third factor has to do with comparisons 
+to other instructors and courses.</p>
+<pre>     Variance Explained by Each Factor
+
+   Factor1         Factor2         Factor3
+
+ 2.9494952       2.6557251       1.4121868
+
+                       Final Communality Estimates<b><sup><font size="3">t</font></sup></b>: Total = 7.017407<sup><font size="3"><b>u</b></font></sup>
+
+    ITEM13          ITEM14          ITEM15          ITEM16          ITEM17          ITEM18
+
+0.67562309      0.61934326      0.59156382      0.46783384      0.62307645      0.67874757
+
+    ITEM19          ITEM20          ITEM21          ITEM22          ITEM23          ITEM24
+
+0.57591368      0.36868496      0.54916770      0.44434233      0.79068338      0.63242696</pre>
+<p>t.&nbsp; <b>Final Communality Estimates</b> - This is the proportion of each 
+variable's variance that can be explained by the factors (e.g., the underlying 
+latent continua).&nbsp; The values here indicate the proportion of each 
+variable's variance that can be explained by the retained factors after the 
+rotation.&nbsp; Variables with high values are well represented in the common 
+factor space, while variables with low values are not well represented.&nbsp; 
+(In this example, we don't have any particularly low values.)&nbsp; They are the 
+reproduced variances from the factors that you have extracted.&nbsp; You can 
+find these values on the diagonal of the reproduced correlation matrix.</p>
+<p>u.&nbsp; <b>Total</b> -&nbsp;&nbsp;&nbsp;&nbsp; 7.017407 = 2.9494952 + 2.6557251 
++ 1.4121868</p><hr>
+
+<p>The partial output below shows the solution using a promax rotation.&nbsp; As you can see with an oblique rotation, such as a promax 
+rotation, the factors are permitted to be correlated with one another.&nbsp; 
+With an orthogonal rotation, such as the varimax shown above, the factors are 
+not permitted to be correlated (they are orthogonal to one another).  Oblique rotations, such as
+promax, produce both factor pattern and factor structure matrices.  The factor pattern matrix
+gives the linear combination of the variables that make up the factors.
+The factor structure matrix presents the correlations between the variables and the factors.  To 
+completely interpret an oblique rotation one needs to take into account both the factor pattern and
+the factor structure matrices and the correlations among the factors.
+
+<p>Please note that with orthogonal rotations the factor
+pattern and the factor structure matrices are the equal.</p>
+<pre>               Inter-Factor Correlations
+
+                Factor1         Factor2         Factor3
+
+Factor1         1.00000         0.59249         0.68096
+Factor2         0.59249         1.00000         0.64863
+Factor3         0.68096         0.64863         1.00000
+
+Rotation Method: Promax (power = 3)
+
+                  Rotated Factor Pattern (Standardized Regression Coefficients)
+
+                                                                 Factor1      Factor2      Factor3
+
+ITEM13   INSTRUC WELL PREPARED                                   0.85071     -0.09207      0.03379
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.78599     -0.02646      0.02406
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.69724      0.09144      0.01977
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.60443      0.12786     -0.00552
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.50870      0.28245      0.09868
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.06335      0.76328      0.03145
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                  -0.04152      0.81872     -0.05898
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.07314      0.55467      0.00917
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.22482      0.42982      0.18931
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION     -0.00866      0.52669      0.19811
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.16276      0.07474      0.71794
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.02282      0.04596      0.7487
+
+
+                  Rotated Factor Structure (Correlations)
+
+                                                                 Factor1      Factor2      Factor3
+
+ITEM13   INSTRUC WELL PREPARED                                   0.81917      0.43388      0.55337
+ITEM14   INSTRUC SCHOLARLY GRASP                                 0.78670      0.45484      0.54213
+ITEM15   INSTRUCTOR CONFIDENCE                                   0.76488      0.51738      0.55388
+ITEM16   INSTRUCTOR FOCUS LECTURES                               0.67643      0.48240      0.48901
+ITEM17   INSTRUCTOR USES CLEAR RELEVANT EXAMPLES                 0.74325      0.64786      0.62829
+ITEM18   INSTRUCTOR SENSITIVE TO STUDENTS                        0.53700      0.82121      0.56968
+ITEM19   INSTRUCTOR ALLOWS ME TO ASK QUESTIONS                   0.40340      0.75586      0.44379
+ITEM20   INSTRUCTOR IS ACCESSIBLE TO STUDENTS OUTSIDE CLASS      0.40803      0.60396      0.41876
+ITEM21   INSTRUCTOR AWARE OF STUDENTS UNDERSTANDING              0.60841      0.68582      0.62121
+ITEM22   I AM SATISFIED WITH STUDENT PERFORMANCE EVALUATION      0.43831      0.65006      0.53384
+ITEM23   COMPARED TO OTHER INSTRUCTORS, THIS INSTRUCTOR IS       0.69593      0.63685      0.87725
+ITEM24   COMPARED TO OTHER COURSES THIS COURSE WAS               0.55993      0.54515      0.79411</pre>
+
+
+
+<div style="clear:both;">
+<p style = "float:left;">
+<a href="/stat/mult_pkg/faq/general/citingats.htm">How to cite this page</a></p>
+<p style = "float:right;">
+<a href="/stat/apps/codetrack/errdirect.php">
+Report an error on this page or leave a comment</a>
+</p>
+</div>
+
+<div style="clear:both">
+<p>The content of this web site should not be construed as an endorsement
+of any particular web site, book, or software product by the
+University of California.</p>
+</div>
+
+<!-- closes bodycontainer from header -->
+</div>
+
+<div id="footerTop">
+  <div id="pageFooterBoxTop">
+    <div id="footerProjectsDetail">
+      <h2 class="footerProjectsDetailTitle">IDRE Research Technology Group</h2>
+      <div class="projectDetailBox">
+        <div class="projectIcon"></div>
+        <div class="projectDetail">
+          <h2><a href="https://idre.ucla.edu/hpc">High Performance Computing</a></h2>
+        </div>
+      </div>
+      <div class="projectDetailBox">
+        <div class="projectIcon"></div>
+        <div class="projectDetail">
+          <h2><a href="https://idre.ucla.edu/stats">Statistical Computing</a></h2>
+        </div>
+      </div>
+      <div class="projectDetailBox">
+        <div class="projectIcon"></div>
+        <div class="projectDetail">
+          <h2><a href="https://idre.ucla.edu/gis-visualization">GIS and Visualization</a></h2>
+        </div>
+      </div>
+    </div>
+    <div id="footerProjects">
+      <div class="projectMenu">
+<ul class="menu"><li class="leaf first menu-mlid-4445"><a href="https://idre.ucla.edu/hpc" title="High Performance Computing" id="custom_breadcrumbs_menu-4445">High Performance Computing</a></li>
+<li class="leaf menu-mlid-7191"><a href="https://idre.ucla.edu/gis" title="" id="custom_breadcrumbs_menu-7191">GIS</a></li>
+<li class="leaf menu-mlid-4447"><a href="https://idre.ucla.edu/stats" title="Statistical Computing" id="custom_breadcrumbs_menu-4447">Statistical Computing</a></li>
+<li class="leaf menu-mlid-4449"><a href="https://idre.ucla.edu/hoffman2" title="Hoffman2 Cluster" id="custom_breadcrumbs_menu-4449">Hoffman2 Cluster</a></li>
+<li class="leaf menu-mlid-4466"><a href="https://idre.ucla.edu/mapshare" title="" id="custom_breadcrumbs_menu-4466">Mapshare</a></li>
+<li class="leaf menu-mlid-7197"><a href="https://idre.ucla.edu/events/classes" title="" id="custom_breadcrumbs_menu-7197">Classes</a></li>
+<li class="leaf menu-mlid-7626"><a href="https://idre.ucla.edu/hoffman2/getting-started" title="" id="custom_breadcrumbs_menu-7626">Hoffman2 Account Application</a></li>
+<li class="leaf menu-mlid-4471"><a href="https://idre.ucla.edu/visualization" title="" id="custom_breadcrumbs_menu-4471">Visualization</a></li>
+<li class="leaf menu-mlid-7198"><a href="https://idre.ucla.edu/events/conferences" title="" id="custom_breadcrumbs_menu-7198">Conferences</a></li>
+<li class="leaf menu-mlid-7627"><a href="https://idre.ucla.edu/hoffman2/cluster-statistics" title="" id="custom_breadcrumbs_menu-7627">Hoffman2 Usage Statistics</a></li>
+<li class="leaf menu-mlid-4465"><a href="https://idre.ucla.edu/3d-modeling" title="" id="custom_breadcrumbs_menu-4465">3D Modeling</a></li>
+<li class="leaf menu-mlid-7192"><a href="https://idre.ucla.edu/reading-materials" title="" id="custom_breadcrumbs_menu-7192">Reading Materials</a></li>
+<li class="leaf menu-mlid-4472"><a href="http://portal.ucgrid.org/" title="" id="custom_breadcrumbs_menu-4472">UC Grid Portal</a></li>
+<li class="leaf menu-mlid-4467"><a href="https://idre.ucla.edu/technology-sandbox" title="" id="custom_breadcrumbs_menu-4467">Technology Sandbox</a></li>
+<li class="leaf menu-mlid-7713"><a href="http://lists.ucla.edu/cgi-bin/mailman/listinfo/idremailinglist" title="" id="custom_breadcrumbs_menu-7713">IDRE Listserv</a></li>
+<li class="leaf menu-mlid-4473"><a href="http://grid.ucla.edu/" title="" id="custom_breadcrumbs_menu-4473">UCLA Grid Portal</a></li>
+<li class="leaf menu-mlid-7671"><a href="https://idre.ucla.edu/gis-visualization/sandbox-access" title="" id="custom_breadcrumbs_menu-7671">Tech Sandbox Access</a></li>
+<li class="leaf menu-mlid-7773"><a href="https://idre.ucla.edu/resources" title="" id="custom_breadcrumbs_menu-7773">IDRE Resources</a></li>
+<li class="leaf menu-mlid-7630"><a href="https://idre.ucla.edu/hpc/shared-cluster-program" title="" id="custom_breadcrumbs_menu-7630">Shared Cluster &amp; Storage</a></li>
+<li class="leaf menu-mlid-7280"><a href="https://idre.ucla.edu/data-centers" title="Data Centers" id="custom_breadcrumbs_menu-7280">Data Centers</a></li>
+<li class="leaf menu-mlid-8026"><a href="http://dataarchives.ss.ucla.edu/" title="Social Sciences Data Archive" id="custom_breadcrumbs_menu-8026">Social Sciences Data Archive</a></li>
+<li class="leaf last menu-mlid-8013"><a href="https://idre.ucla.edu/about" title="" id="custom_breadcrumbs_menu-8013">About IDRE</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div><div id="footerBottom">
+  <div id="pageFooterBoxBtm">
+    <div id="footerLeft">
+      <div id="uclaSprite"> <a href="http://www.ucla.edu" title="University of California, Los Angeles Home"></a> </div>
+      <div id="footerMenu">
+        <ul class="footerMenu_List" title="Site Links">
+          <li> <a href="https://idre.ucla.edu/about">About</a> </li>
+          <li> <a href="https://idre.ucla.edu/contact">Contact</a> </li>
+          <li> <a href="https://idre.ucla.edu/news">News</a> </li>
+          <li> <a href="https://idre.ucla.edu/events">Events</a> </li>
+          <li> <a href="https://idre.ucla.edu/experts">Our Experts</a> </li>
+        </ul>
+        <div id="footerCopyright">
+          <ul class="footerTOS_List">
+             <li>&#169; 2016 UC Regents</li>
+          <li><a href="http://www.ucla.edu/terms-of-use/" target="_blank" title="UCLA Terms of Use">Terms of Use &amp; Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="footerRight">
+      <div id="oitSprite"> <a id="oitLink" title="Office of Information Technology" href="http://oit.ucla.edu/"></a> </div>
+      <div id="footerTOS"> </div>
+    </div>
+  </div>
+</div>
+
+<!-- closes bodywrap from header -->
+</div>
+
+<p>&nbsp; <!--webbot bot="PurpleText" PREVIEW="Don't change anything below this line." --> </body>
+</html>

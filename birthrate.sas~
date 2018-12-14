@@ -1,0 +1,9 @@
+data birthrate;
+  infile "birthrate.dat";
+  input birth death infant country $ @@;
+
+proc cluster method=average ccc standard;
+  id country;
+
+
+run;

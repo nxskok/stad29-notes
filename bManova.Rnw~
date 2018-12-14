@@ -1,0 +1,265 @@
+\section{Multivariate ANOVA}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Multivariate analysis of variance}
+
+  \begin{itemize}
+  \item Standard ANOVA has just one response variable.
+  \item What if you have more than one response?
+  \item Try an ANOVA on each response separately.
+  \item But might miss some kinds of interesting dependence between the responses that distinguish the groups.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+<<>>=
+library(car)
+library(tidyverse)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Small example}
+
+  \begin{itemize}
+  \item Measure yield and seed weight of plants grown under 2 conditions: low and high amounts of fertilizer.
+  \item Data (fertilizer, yield, seed weight):
+
+ 
+<<>>=
+hilo=read_delim("manova1.txt"," ")
+@ %def 
+
+  \item 2 responses, yield and seed weight.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<>>=
+hilo
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Boxplot for yield for each fertilizer group}
+
+ 
+<<ferto,size="small",fig.height=3>>=
+ggplot(hilo,aes(x=fertilizer,y=yield))+geom_boxplot()
+@ %def 
+  
+Yields overlap for fertilizer groups.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Boxplot for weight for each fertilizer group}
+
+ 
+<<casteldisangro,size="small",fig.height=3>>=
+ggplot(hilo,aes(x=fertilizer,y=weight))+geom_boxplot()
+@ %def 
+
+Weights overlap for fertilizer groups.
+  
+\end{frame}
+
+\begin{frame}[fragile]{ANOVAs for yield and weight}
+
+{\small
+ 
+<<>>=
+hilo.y=aov(yield~fertilizer,data=hilo)
+summary(hilo.y)
+hilo.w=aov(weight~fertilizer,data=hilo)
+summary(hilo.w)
+@ %def 
+}
+
+Neither response depends significantly on fertilizer. But\ldots
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting both responses at once}
+
+Have two response variables (not more), so can plot the
+response variables against \emph{each other}, labelling points by
+which fertilizer group they're from.
+
+<<>>=
+g=ggplot(hilo,aes(x=yield,y=weight,
+    colour=fertilizer))+geom_point()
+@ 
+
+Want line through points $(31,14)$ and $(38,10)$ (why? Later):
+
+<<size="footnotesize">>=
+d=tribble(
+    ~line_x, ~line_y,
+    31, 14,
+    38, 10)
+g=g+geom_line(data=d,aes(x=line_x,y=line_y,
+  colour=NULL))
+@ 
+
+\begin{small}
+Fitting regression line through points in \texttt{d}. 
+Adding to previous \texttt{ggplot}, so \texttt{geom\_smooth} 
+inherits \texttt{colour} from first one. This data frame has
+no \texttt{fertilizer} (previous \texttt{colour}), so have to unset.
+  
+\end{small}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+ 
+<<charlecombe,fig.height=3.5>>=
+g
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{MANOVA}
+  
+<<fig.height=2.5>>=
+g
+@   
+
+\begin{small}
+  \begin{itemize}
+  \item High-fertilizer plants have both yield and weight high.
+  \item True even though no sig difference in yield or weight individually.
+  \item Drew line separating highs from lows on plot.
+  \end{itemize}
+  
+\end{small}
+
+ 
+
+\end{frame}
+
+\begin{frame}[fragile]{MANOVA finds multivariate differences}
+  
+  \begin{itemize}
+  \item Is difference found by diagonal line significant? MANOVA finds out.
+
+
+<<size="footnotesize">>=
+response=with(hilo,cbind(yield,weight))
+hilo.1=manova(response~fertilizer,data=hilo)
+summary(hilo.1)
+@ %def 
+    
+
+\item Yes! Difference between groups is \emph{diagonally}, not just up/down
+(weight) or left-right (yield). The \emph{yield-weight combination} matters.
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Strategy}
+
+\begin{itemize}
+\item Create new response variable by gluing together columns of
+  responses, using \texttt{cbind}.
+\item Use \texttt{manova} with new response, looks like \texttt{lm} otherwise.
+\item With more than 2 responses, cannot draw graph. What then?
+\item If MANOVA test significant, cannot use Tukey. What then?
+\item Use {\em discriminant analysis} (of which more later).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Another way to do MANOVA}
+
+  
+Install (once) and load package \texttt{car}:
+  
+<<eval=F>>=
+library(car)
+@ %def 
+
+
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Another way\ldots}
+
+<<size="footnotesize">>=
+hilo.2.lm=lm(response~fertilizer,data=hilo)
+hilo.2=Manova(hilo.2.lm)
+hilo.2
+@   
+
+    \begin{itemize}
+\item Same result as small-m \texttt{manova}.
+\item \texttt{Manova} will also do \emph{repeated measures}, coming up
+  later.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Another example: peanuts}
+
+  \begin{itemize}
+  \item  Three different varieties
+of peanuts (mysteriously, 5, 6 and 8) planted in two different
+locations.
+\item Three response variables: \texttt{y}, \texttt{smk} and
+\texttt{w}.
+  \end{itemize}
+
+ 
+<<message=F,size="footnotesize">>=
+(peanuts.orig=read_delim("peanuts.txt"," "))
+@ %def 
+    
+    
+\end{frame}
+
+\begin{frame}[fragile]{Setup for analysis}
+
+<<>>=
+peanuts = peanuts.orig %>%
+  mutate(location=factor(location),
+         variety=factor(variety)) 
+response=with(peanuts,cbind(y,smk,w))
+head(response)
+@ %def 
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Analysis (using \texttt{Manova})}
+
+<<size="scriptsize">>=
+peanuts.1=lm(response~location*variety,data=peanuts)
+peanuts.2=Manova(peanuts.1)
+peanuts.2
+@ %def 
+
+\begin{itemize}
+\item Interaction not quite significant, but main effects are.
+\item Combined response variable \texttt{(y,smk,w)} definitely depends
+  on location and on variety
+\item Weak dependence of \texttt{(y,smk,w)} on the location-variety \emph{combination.}
+\item Understanding that dependence beyond our scope right now.
+\end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+
+  
+\end{frame}

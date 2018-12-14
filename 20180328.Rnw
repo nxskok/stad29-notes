@@ -1,0 +1,1693 @@
+\section{Multidimensional scaling}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Multidimensional Scaling}
+
+  \begin{itemize}
+  \item Have distances between individuals.
+  \item Want to draw a picture (map) in 2 dimensions showing
+    individuals so that distances (or order of distances) as close
+    together as possible. (Or maybe 3 with \texttt{rgl}.)
+  \item If want to preserve actual distances, called {\em metric
+      multidimensional scaling} (in R, \texttt{cmdscale}).
+  \item If only want to preserve order of distances, called {\em
+      non-metric multidimensional scaling} (in R, \texttt{isoMDS} in
+    package \texttt{MASS}).
+  \item Metric scaling has solution that can be worked out exactly.
+  \item Non-metric only has iterative solution.
+  \item Assess quality of fit, see whether use of resulting map is
+    reasonable. (Try something obviously 3-dimensional and assess its
+    failure.)
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+  The usual, plus a new one:
+  
+<<size="footnotesize", message=F>>=
+library(MASS)
+library(tidyverse)
+library(ggrepel)
+library(ggmap)
+library(shapes)
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Metric scaling: European cities}
+
+CSV file \verb-europe.csv- contains road distances (in km) between 16 European cities. Can we reproduce a map of Europe from these distances?
+
+Read in data:
+
+<<include=F>>=
+options(width=65)
+@ 
+
+<<size="scriptsize">>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/europe.csv"
+europe=read_csv(my_url)
+@ 
+
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<size="scriptsize">>=
+europe
+@   
+\end{frame}
+
+
+\begin{frame}[fragile]{Multidimensional scaling}
+
+  \begin{itemize}
+  \item Create distance object first using all but first column of
+\texttt{europe}. \texttt{europe} has distances in it already, so make
+into \texttt{dist} with \texttt{as.dist}.
+\item Then run multidimensional scaling and look at result:
+  
+<<>>=
+europe.d = europe %>% select(-1) %>% as.dist()
+europe.scale=cmdscale(europe.d)
+head(europe.scale)
+@   
+
+\item This is a \texttt{matrix} of $x$ and $y$ coordinates.
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{As a data frame; make picture}
+  
+We know how to plot data frames, so make one first.  
+  
+<<size="scriptsize">>=
+europe_coord = europe.scale %>% as_tibble() %>%
+    mutate(city=europe$City) %>% print(n=12)
+g = ggplot(europe_coord, aes(x=V1,y=V2,label=city))+
+    geom_point() + geom_text_repel() 
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The map}
+  
+<<fig.height=3.6>>=
+g
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a function}
+  
+  \begin{itemize}
+  \item Idea: given input distance matrix (as stored in a CSV file),
+    output a map (like the one on the previous page).
+    
+<<size="footnotesize">>=
+mds_map=function(filename) {
+    x=read_csv(filename)
+    dist = x %>% select_if(is.numeric) %>% 
+        as.dist()
+    x.scale=cmdscale(dist) # this is a matrix
+    x_coord = x.scale %>% 
+        as_tibble() %>%
+        mutate(place=row.names(x.scale))
+    ggplot(x_coord, aes(x=V1,y=V2,label=place))+
+        geom_point()+geom_text_repel()+
+        coord_fixed()
+}
+@     
+
+\item Use \texttt{select\_if} to pick out all the numerical columns
+  (no text), whichever they are.
+\item \texttt{x.scale} is matrix with no column headers. Turn into
+  data frame, acquires headers \texttt{V1} and \texttt{V2}.
+\item Get place names from \texttt{cmdscale} output.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Does it work?}
+  
+<<fig.height=4, message=F>>=
+mds_map("europe.csv")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{A square}
+  
+  \begin{multicols}{2}
+  \begin{itemize}
+  \item The data, in \texttt{square.csv}:
+    
+\begin{small}
+\begin{verbatim}
+x,A  ,B  ,C  ,D
+A,0  ,1  ,1  ,1.4
+B,1  ,0  ,1.4,1
+C,1  ,1.4,0  ,1
+D,1.4,1  ,1  ,0
+\end{verbatim}
+\end{small}
+    
+    \item The map (on right):
+      
+<<message=F,fig.height=3,fig.width=3>>=
+mds_map("square.csv")
+@       
+  \end{itemize}
+    
+  \end{multicols}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Drawing a map of the real Europe}
+  
+  \begin{itemize}
+  \item Works with package \texttt{ggmap}.
+    
+  \item First find latitudes and longitudes of our cities, called
+    \emph{geocoding}:
+    
+<<cache=T,size="small",message=F, eval=F>>=
+latlong = geocode(europe$City)
+latlong = bind_cols(city=europe$City, latlong)
+latlong %>% print(n=6)
+@     
+%$ %$ %$
+
+<<echo=F,size="small">>=
+latlong = readRDS("euro_latlong.rds")
+latlong %>% print(n=6)
+@ 
+
+\item Just so you know, there is a limit
+  of 2500 queries per day (it queries Google Maps).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making the map}
+  
+  \begin{itemize}
+  \item Get a map of Europe from Google Maps (specify what you want a
+    map of any way you can in Google Maps). This one centres the map
+    on the city shown and zooms it so all the cities appear (I had to
+    experiment):
+<<eval=F>>=
+map=get_map("Memmingen DE",zoom=5)
+@     
+
+<<echo=F>>=
+map=readRDS("memmingen.rds")
+@ 
+\item Plot the map with \texttt{ggmap}. This is \texttt{ggplot},
+  so add anything to it that you would
+  add to a \texttt{ggplot}, such as cities we want to show:
+  
+<<>>=
+g2=ggmap(map)+
+  geom_point(data=latlong,aes(x=lon,y=lat),
+  shape=3,colour="red")
+@   
+
+\item We don't have a default data frame or \texttt{aes} for our
+  \texttt{geom\_point}, so have to specify one.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The real Europe with our cities}
+  
+<<fig.height=3.6>>=
+g2
+@   
+\end{frame}
+
+\begin{frame}[fragile]{Compare our scaling map}
+  
+<<fig.height=4,echo=F>>=
+g
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item North-south not quite right: Edinburgh and Copenhagen on same
+    latitude, also Amsterdam and Berlin; Athens should be south of Rome.
+  \item Rotating clockwise by about 45 degrees should fix that.
+  \item General point: MDS only uses distances, so answer can be
+    ``off'' by rotation (as here) or reflection (flipping over, say
+    exchanging west and east while leaving north and south same). 
+  \end{itemize} 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Exploring the map by plotting in 3 dimensions}
+  
+  \begin{itemize}
+  \item Package \texttt{rgl} makes 3D plots.
+  \item We have to fake up a 3rd dimension (by setting all its values
+    to 1).
+  \item Try this code:
+<<eval=F>>=
+library(rgl)
+es.2=cbind(europe.scale,1)
+plot3d(es.2,zlim=c(-1000,1000))
+text3d(es.2,text=d$city)
+@     
+\item Opens a graphics window with the cities plotted and named.
+\item Click and hold left mouse button to rotate plot. ``Rotate away''
+  3rd dimension to get a possible map (that preserves distances). 
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Ontario, the same way}
+
+  \ldots using our function:
+
+<<message=F,fig.height=4>>=
+g=mds_map("ontario-road-distances.csv") ; g
+@   
+
+Thunder Bay and Sault Ste Marie dominate the picture since they are
+so far away from everywhere else.
+
+% <<ontario>>=
+% ontario=read.csv("ontario-road-distances.csv",header=T)
+% ontario.d=as.dist(ontario)
+% ontario.scale=cmdscale(ontario.d)
+% d=data.frame(ontario.scale,city=colnames(ontario))
+% g=ggplot(d,aes(x=X1,y=X2,label=city))+
+%   geom_point()+coord_fixed()+
+%   geom_text_repel()
+% @ 
+% 
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Removing points}
+  
+  \begin{itemize}
+  \item Messy: have to find which rows and columns contain
+    those cities, then remove just those rows and columns.
+  \item Better: 
+    \begin{itemize}
+    \item "tidy" the distance matrix
+    \item then remove rows we don't need
+    \item then "untidy" it again
+    \item save into .csv file
+    \end{itemize}
+
+  \item Illustrate with square data first (easier to see).
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Square data}
+  
+<<message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/square.csv"
+square=read_csv(my_url)
+square
+@   
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Make tidy}
+  
+<<size="footnotesize">>=
+square %>% gather(point,distance,-1)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove all references to point C}
+  
+  In column \texttt{x} or \texttt{point}:
+  
+<<>>=
+square %>% gather(point,distance,-1) %>%
+  filter(x != "C", point != "C")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Put back as distance matrix}
+  
+and save as .csv when we are happy:
+  
+<<>>=
+noc = square %>% gather(point,distance,-1) %>%
+  filter(x != "C", point != "C") %>%
+  spread(point, distance)
+noc
+noc %>% write_csv("no-c.csv")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Make map of square-without-C}
+  
+<<message=F,fig.height=4>>=
+mds_map("no-c.csv")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Back to Ontario}
+  
+<<fig.height=4>>=
+g
+@   
+
+Get rid of Thunder Bay and Sault Ste Marie.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidy, remove, untidy}
+  
+<<message=F,size="footnotesize">>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario2 = read_csv(my_url) %>%
+    gather(place,distance,-1) %>%
+    filter(x != "Thunder Bay", 
+           place != "Thunder Bay",
+           x != "Sault Ste Marie", 
+           place != "Sault Ste Marie") %>%
+    spread(place, distance) %>%
+    write_csv("southern-ontario.csv")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Map of Southern Ontario}
+  
+<<fig.height=4, message=F>>=
+g = mds_map("southern-ontario.csv") ; g
+@   
+
+Came out geographically about right.
+  
+\end{frame}
+
+\begin{frame}[fragile]{What about that cluster of points?}
+
+  \begin{itemize}
+  \item Plot looks generally good, but what about that cluster of points?
+  \item ``Zoom in'' on area between $-150$ and $-100$ on $x$ axis, $-50$ to 0 on
+$y$ axis.
+\item Code below overrides the \texttt{coord\_fixed} we had before.
+  \end{itemize}
+
+
+<<zoom, size="small">>=
+g2 = g + coord_fixed(xlim=c(-150,-100),ylim=c(-50,0))
+@ 
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Zoomed-in plot}
+ 
+Ignore the arrows to points off the map:
+
+
+<<spal,fig.height=3.5>>=
+g2
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Does that make sense?}
+  
+  \begin{itemize}
+  \item Get a Google map of the area, with the points labelled.
+  \item First geocode the cities of interest:
+    
+<<message=F, size="footnotesize",cache=T, eval=F>>=
+cities=c("Kitchener ON", "Hamilton ON", 
+         "Niagara Falls ON",
+         "St Catharines ON", "Brantford ON")
+latlong=geocode(cities)
+latlong = bind_cols(city=cities,latlong) %>% print()
+@     
+
+<<echo=F>>=
+latlong=readRDS("ontario_trouble.rds")
+latlong %>% print()
+@ 
+
+\item Get a Google map of the area (experiment with zoom):
+  
+<<message=F>>=
+map=get_map("Hamilton ON", zoom=8)
+@   
+
+\item Plot map with cities marked.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making the Google map}
+  
+  Plot the map, plus the cities, plus labels for the cities:
+  
+<<fig.height=4>>=
+gmap = ggmap(map)+
+       geom_point(data=latlong,
+                  aes(x=lon,y=lat),
+                  shape=3,colour="red")+
+       geom_text_repel(data=latlong,
+                       aes(label=city))
+@   
+  
+\end{frame}
+
+\begin{frame}[frame]{The \texttt{mds} map and Google map}
+  
+  \begin{multicols}{2}
+    
+<<fig.height=5.5>>=
+g2
+@     
+
+<<fig.height=5.5>>=
+gmap
+@ 
+
+    
+  \end{multicols}
+
+  St Catharines and Niagara Falls should be the \emph{other} side of
+Hamilton! 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Quality of fit}
+  
+  \begin{itemize}
+  \item Read in ``southern Ontario'' data set from file:
+    
+<<message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"
+ontario2=read_csv(my_url)
+@     
+  
+  \item Calling \texttt{cmdscale} with \texttt{eig=T} gives more info:
+
+<<size="footnotesize">>=
+ontario2.2 = ontario2 %>% select_if(is.numeric) %>% 
+    cmdscale(eig=T)
+names(ontario2.2)
+ontario2.2$GOF
+ontario2.3 = ontario2 %>% select_if(is.numeric) %>% 
+    cmdscale(3,eig=T)
+ontario2.3$GOF
+@   
+
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+\item Coordinates now in \texttt{points}.
+\item \texttt{GOF} is R-squared-like measure saying how well map
+  distances match real ones. Higher is better.
+\item For Ontario road distances, \texttt{GOF} better for 3 dimensions
+  than 2, presumably to accommodate St Catharines and Niagara Falls?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{3-dimensional coordinates, cities attached}
+  
+<<size="scriptsize">>=
+ontario2.3$points %>% as_tibble() %>%
+    mutate(city=ontario2$x)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{RGL code for 3 dimensions}
+  
+<<eval=F>>=
+library(rgl)
+plot3d(ontario.3)
+text3d(ontario.3,text=d2$city)
+@ 
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Comparing MDS solution with ``reality'':
+    Procrustes rotation}
+  
+  \begin{itemize}
+  \item How to tell that an MDS map makes a good correspondence with ``what
+    should be''?
+  \item Problem: MDS map might be rotated/scaled/reflected from reality.
+  \item How to find rotation/scaling/reflection that best matches reality?
+  \item Answer: \textbf{Procrustes rotation}.
+  \item In R: \texttt{procOPA} in package \texttt{shapes}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{``True'' coordinates}
+
+  \begin{itemize}
+  \item Get latitudes and longitudes of cities by geocoding, as
+    before. Glue ``ON'' onto city names to make sure we get right ones:
+    
+    
+<<size="footnotesize", message=F, cache=T, eval=F>>=
+lookup=str_c(ontario2$x," ON")
+latlong=geocode(lookup)
+latlong = bind_cols(city=ontario2$x,latlong) %>% print(n=4)
+@     
+
+<<echo=F, size="footnotesize">>=
+latlong=readRDS("ontario_all.rds")
+latlong %>% print(n=4)
+@ 
+
+  \item Not $(x,y)$ coordinates: one degree of latitude is always
+    110.25 km, but one degree of longitude is only that at the equator
+    (less than that as you move further north, down to 0 km at north
+    pole).
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{``True'' coordinates part 2}
+  
+  \begin{itemize}
+  \item Make coordinates by multiplying by cosine of ``typical'' latitude.
+  \item Find mean latitude:
+<<>>=
+m=mean(latlong$lat); m
+@     
+
+\item Turn into radians and find its cosine:
+  
+<<>>=
+mult=cos(m*pi/180); mult
+@   
+
+\item Create ``true'' coords by multiplying the longitudes by
+  that. This needs to be R \texttt{matrix}, not data frame:
+  
+<<size="footnotesize">>=
+truecoord=with(latlong,cbind(V1=lon*mult,V2=lat))
+@   
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Using \texttt{procOPA}}
+
+  \begin{itemize}
+  \item Feed 2 things into \texttt{procOPA}: first, ``true''
+    coordinates, second MDS coordinates.
+  \item Get out: 
+    \begin{itemize}
+    \item     (centred and scaled) first set of coordinates \texttt{Ahat}
+    \item (centred and scaled) second set of coordinates \texttt{Bhat}
+    \item sum of squared differences between two sets of coordinates \texttt{OSS}
+      \item Rotation matrix \texttt{R}
+    \end{itemize}
+    
+  \item \texttt{Ahat} and \texttt{Bhat} coordinates supposed to
+    match as well as possible.
+    
+<<message=F,size="footnotesize">>=
+ontario.pro=procOPA(truecoord,
+                    ontario2.2$points)
+names(ontario.pro)
+@     
+
+
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Make data frames of output, glue together}
+  
+  \begin{itemize}
+    \item Two sets of coordinates, \texttt{Ahat} are actual,
+      \texttt{Bhat} are from MDS.
+<<size="scriptsize">>=
+A = ontario.pro$Ahat %>% as_tibble() %>% 
+    mutate(which="actual", city=ontario2$x)
+B = ontario.pro$Bhat %>% as_tibble() %>% 
+    mutate(which="MDS", city=ontario2$x)
+dp=bind_rows(A,B)
+dp %>% sample_n(6)
+@       
+  \end{itemize}
+  
+\end{frame}
+
+% \begin{frame}[fragile]{\texttt{procOPA}, part 2: plotting}
+% 
+%   \begin{itemize}
+%     \item Make data frames of each, glue together:
+% <<size="small",warning=F>>=
+% A=with(ontario.pro,data.frame(x=Ahat[,1],
+%   y=Ahat[,2],which="actual",city=ontario2$x)) 
+% B=with(ontario.pro,data.frame(x=Bhat[,1],
+%   y=Bhat[,2],which="MDS",city=ontario2$x))
+% dp=bind_rows(A,B)
+% dp %>% sample_n(6)
+% @   
+% 
+%   \end{itemize}
+% \end{frame}
+
+\begin{frame}[fragile]{Procrustes rotation plot}
+  
+  \begin{itemize}
+  \item Strategy: plot all the locations, and colour them by whether
+    they were the true location (red) or the MDS one (blue), which is
+    in \texttt{which}. Label each location with the city name in the
+    appropriate colour.
+  \item I realized it
+    was actually easy to join the two instances of a city by a line
+    (in green, here, 3rd line) by setting \texttt{group=city}:
+    
+<<size="footnotesize">>=
+g_opa = ggplot(dp,aes(x=V1,y=V2,colour=which,
+                      label=city))+geom_point()+
+    geom_line(aes(group=city),colour="green")+
+    geom_text_repel(size=2)
+@     
+\item On plot, look to see whether points that are same city are
+  joined by a short green line (good) or a long one (bad).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The maps}
+ 
+<<prosesto,echo=F,fig.height=4>>=
+g_opa
+@ 
+  
+  
+%  \includegraphics[height=\textheight]{bMDS-ont-proc}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item True locations red, MDS locations blue
+  \item Most things in roughly right place (esp.\ relative to other things)
+  \item Extreme cities off by a bit, but OK relative to neighbours.
+  \item St Catharines, Niagara Falls off by most.
+    
+  \item Sarnia, Windsor also off noticeably.
+  \item These four cities had largest ``third dimension'' in 3D
+    representation  \texttt{ontario2.3}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Rotation matrix}
+  
+  Shows how MDS map needs to be rotated to get best match with actual coordinates:
+  
+<<>>=
+ontario.pro$R
+@   
+
+Rotation angle $\theta$ such that $\cos\theta=0.885$,
+$\sin\theta=0.466$: $\theta=23$ degrees (counterclockwise). 
+%$ %$ %$
+  
+\end{frame}
+
+\begin{frame}[fragile]{Is that right? Look at MDS map again}
+  
+<<fig.height=4>>=
+g
+@   
+
+23 degrees counterclockwise seems about right.
+  
+\end{frame}
+
+\begin{frame}[fragile]{A cube}
+  
+  
+\begin{verbatim}
+  a-----b
+  |\    |\
+  | c---- d
+  | |   | |
+  e-|---f |
+   \|    \|
+    g-----h
+\end{verbatim}
+
+Cube has side length 1, so distance across diagonal on same face is $\sqrt{2}\simeq 1.4$ and ``long'' diagonal of cube is $\sqrt{3}\simeq 1.7$. 
+  
+\vspace{3ex}
+
+Try MDS on this obviously 3-dimensional data.
+
+\end{frame}
+
+\begin{frame}[fragile]{Cube data as distances}
+ 
+<<f, message=F, size="footnotesize">>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/cube.txt"
+cube=read_delim(my_url," ")
+cube
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making \texttt{dist} object}
+  
+<<cuby>>=
+cube.d=cube %>% select(-1) %>% as.dist()
+cube.d
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{MDS and plotting commands}
+
+  \begin{itemize}
+  \item   By default in 2 dimensions; save the extra stuff for later:
+
+<<>>=
+cube.2 = cube.d %>% cmdscale(eig=T)
+@   
+
+\item Make data frame to plot, remembering the points to plot are in
+  \texttt{points} now:
+  
+<<>>=
+d = cube.2$points %>% as_tibble() %>%
+    mutate(corners=cube$x) 
+@   
+\item Plot points labelled by our names for the corners:
+  
+<<>>=
+g=ggplot(d,aes(x=V1,y=V2,label=corners))+
+  geom_point()+geom_text_repel()
+@   
+  \end{itemize}
+  
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The ``cube''}
+ 
+<<bianconeri,echo=F,fig.height=4>>=
+g
+@ 
+
+Not good.
+  
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{2 and 3 dimensions}
+  
+<<>>=
+cube.3 = cube.d %>% cmdscale(3,eig=T)
+cube.2$GOF
+cube.3$GOF
+@   
+
+\begin{itemize}
+\item Really need 3rd dimension to represent cube.
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Non-metric scaling}
+  
+  \begin{itemize}
+  \item Sometimes distances not meaningful \emph{as distances}
+  \item Only order matters: closest should be closest, farthest
+    farthest on map, but how much further doesn't matter.
+  \item Non-metric scaling, aims to minimize \textbf{stress}, measure
+    of lack of fit.
+  \item Example: languages. Make map based on ``similarity'' of number
+    names, without requiring that 1 is ``eight times better'' than 8.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The languages}
+
+  \begin{itemize}
+  \item Recall language data (from cluster analysis): 1--10, measure dissimilarity between two languages by how many number names {\em differ} in first letter:
+
+<<include=F>>=
+options(width=55)
+@     
+    
+<<message=F, size="scriptsize">>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
+number.d=read_table(my_url)
+number.d
+@ 
+
+
+
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Non-metric scaling}
+  
+  \begin{itemize}
+\item Turn language dissimilarities into \texttt{dist} object
+\item Run through \texttt{isoMDS} from \texttt{MASS} package; works
+  like \texttt{cmdscale}.
+\item Map only reproduces {\em relative} closeness of languages.
+  
+<<size="small">>=
+d = number.d %>% select_if(is.numeric) %>% 
+    as.dist()
+number.nm = d %>% isoMDS()
+names(number.nm)
+@   
+
+\item \texttt{points} for plotting, \texttt{stress} measure of fit
+  (lower better).
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Results}
+  
+  
+  \begin{itemize}
+  \item Stress is very low (5\%, good):
+    
+<<>>=
+number.nm$stress
+@     
+%$ %$ %$
+
+\item Familiar process: make a data frame to plot. Use name
+  \texttt{dd} for data frame this time since used \texttt{d} for
+  distance object:
+  
+<<>>=
+dd = number.nm$points %>% as_tibble() %>%
+    mutate(lang=number.d$la) 
+@   
+
+\item Make plot:
+  
+<<>>=
+g=ggplot(dd,aes(x=V1,y=V2,label=lang))+
+  geom_point()+geom_text_repel()
+@   
+
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{The languages map}
+
+<<padova,echo=F,fig.height=4>>=
+g
+@ 
+  
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Tight clusters: Italian-Spanish-French, English-Danish-Norwegian.
+  \item Dutch and German close to English group.
+  \item Polish close to French group.
+  \item Hungarian, Finnish distant from everything else and each other!
+  \item Similar conclusions as from the cluster analysis.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Shepard diagram}
+  
+  \begin{itemize}
+  \item Stress for languages data was 5.3\%, very low.
+  \item How do observed dissimilarities and map distances correspond?
+  \item For low stress, expect larger dissimilarity to go with larger
+    map distance, almost all the time.
+  \item Not necessarily a linear trend since non-metric MDS works with
+    \emph{order} of values.
+  \item Actual dissimilarity on $x$-axis; map distances on $y$-axis.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Shepard diagram for languages}
+  
+<<parma,fig.height=3.5>>=
+Shepard(d,number.nm$points) %>% as_tibble() %>%
+  ggplot(aes(x=x,y=y))+geom_point()
+@ 
+
+Actual dissimilarity $x$ between higher: mapped distance $y$ from
+MDS higher too. (MDS working well.)
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Cube, revisited}
+  
+<<size="small">>=
+cube.d = cube %>% select(-x) %>% as.dist(cube)
+cube.2=isoMDS(cube.d,trace=F) ; cube.2$stress
+cube.3=isoMDS(cube.d,k=3,trace=F) ; cube.3$stress
+@   
+
+\begin{itemize}
+\item Stress is 18\% for 2 dimensions, basically 0\% for 3.
+\item Three dimensions correct, two dimensions bad.
+\item Shepard diagrams for these:
+  
+<<size="footnotesize">>=
+cube2.sh=Shepard(cube.d,cube.2$points)
+g2=ggplot(as.data.frame(cube2.sh),aes(x=x,y=y))+
+  geom_point()
+cube3.sh=Shepard(cube.d,cube.3$points)
+g3=ggplot(as.data.frame(cube3.sh),aes(x=x,y=y))+
+  geom_point()
+@   
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Shepard diagram for 2-dimensional cube}
+
+<<fig.height=3.5>>=
+g2
+@   
+
+Poor correspondence (not much trend).
+\end{frame}
+
+\begin{frame}[fragile]{Shepard diagram for 3-dimensional cube}
+  
+<<fig.height=3.5>>=
+g3
+@ 
+  
+Almost perfect: all actual $x=1$ go with smallest mapped distances; almost
+all $x=1.7$ go with  largest.
+\end{frame}
+
+\begin{frame}[fragile]{Guidelines for stress values, in \%}
+
+Smaller is better:
+
+
+\begin{tabular}{lp{3in}}
+  Stress value & Interpretation \\
+  \hline
+  Less than 5 & Excellent: no prospect of misinterpretation (rarely achieved)\\
+  5--10 & Good: most distances reproduced well, small prospect of false inferences\\
+10--20 & Fair: usable, but some distances misleading.\\
+More than 20 & Poor: may be dangerous to interpret\\
+\hline
+\end{tabular}
+
+\begin{itemize}
+\item Languages: stress in ``good'' range.
+\item Cube: 
+  \begin{itemize}
+  \item   2 dimensions ``fair'', almost ``poor'';
+  \item 3 dimensions, ``excellent''.
+  \end{itemize}
+\end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+
+\end{frame}
+
+\section{Principal components}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Principal Components}
+  \begin{itemize}
+  \item Have measurements on (possibly large) number of variables on some individuals.
+  \item Question: can we describe data using fewer variables (because original variables correlated in some way)?
+  \item Look for direction (linear combination of original variables) in which values {\em most spread out}. This is {\em first principal component}.
+  \item Second principal component then direction uncorrelated with this in which values then most spread out. And so on.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Principal components}
+  
+  \begin{itemize}
+  \item See whether small number of principal components captures most of variation in data.
+  \item Might try to interpret principal components.
+  \item If 2 components good, can make plot of data.
+  \item (Like discriminant analysis, but no groups.)
+  \item ``What are important ways that these data vary?''
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+  
+<<size="scriptsize",echo=F,message=F>>=
+library(plyr) # for annoying technical reasons (here)
+library(ggbiplot)
+library(tidyverse)
+library(ggrepel)
+@   
+
+You might not have installed the first of these. See over for
+instructions. 
+
+<<eval=F>>=
+library(ggbiplot) # see over
+library(tidyverse)
+library(ggrepel)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Installing \texttt{ggbiplot}}
+  
+  \begin{itemize}
+  \item \texttt{ggbiplot} not on CRAN, so usual
+    \texttt{install.packages} will not work.
+  \item Install package \texttt{devtools} first (once):
+    
+<<eval=F>>=
+install.packages("devtools")
+@     
+  \item Then install \texttt{ggbiplot} (once):
+<<eval=F>>=
+library(devtools)
+install_github("vqv/ggbiplot")
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Small example: 2 test scores for 8 people}
+
+<<testt,message=F,size="small">>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/test12.txt"
+test12=read_table2(my_url)
+test12
+@
+
+<<ff1>>=
+g=ggplot(test12,aes(x=first,y=second,label=id))+
+  geom_point()+geom_text_repel()
+@ 
+    
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+
+<<ff2,fig.height=4>>=
+g+geom_smooth(method="lm",se=F)
+@ 
+  
+%\includegraphics[height=\textheight]{bPrincomp-testt}  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Principal component analysis}
+  
+  \begin{itemize}
+  \item Grab just the numeric columns:
+    
+<<size="small">>=
+test12_numbers = test12 %>% select_if(is.numeric)
+@     
+
+\item Strongly correlated, so data nearly 1-dimensional:
+
+<<size="small">>=
+cor(test12_numbers)
+@ 
+
+\item Make a score summarizing this one dimension. Like this:
+
+<<plot12,size="small">>=
+test12.pc = test12_numbers %>% princomp(cor=T)
+summary(test12.pc)
+@ 
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+\begin{itemize}
+\item ``Standard deviation'' shows relative importance of components
+  (as for LDs in discriminant analysis)
+\item Here, first one explains almost all (99.4\%) of variability.
+\item That is, look only at first component and ignore second.
+\item \texttt{cor=T} standardizes all variables first. Usually wanted,
+  because variables measured on different scales. (Only omit if
+  variables measured on same scale and expect similar variability.)
+\end{itemize}
+  
+\end{frame}
+
+
+  
+
+\begin{frame}[fragile]{Scree plot}
+  
+<<fig.height=3.5>>=
+ggscreeplot(test12.pc)
+@   
+
+Imagine scree plot continues at zero, so 2 components is a \emph{big}
+elbow (take one component).
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Component loadings}
+  
+  explain how each principal component depends on (standardized)
+  original variables (test scores):
+  
+<<>>=
+test12.pc$loadings
+@   
+
+First component basically negative sum of (standardized) test
+scores. That is, person tends to score similarly on two tests, and a
+composite score would summarize performance.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Component scores}
+
+<<>>=
+d=data.frame(test12,test12.pc$scores) ; d
+@   
+%$
+
+\begin{itemize}
+\item Person A is a low scorer, high positive \texttt{comp.1} score.
+\item Person D is high scorer, high negative \texttt{comp.1} score.
+\item Person E average scorer, near-zero \texttt{comp.1} score.
+\item \texttt{comp.2} says basically nothing.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plot of scores}
+
+<<score-plot,fig.height=3.5,>>=
+ggplot(d,aes(x=Comp.1,y=Comp.2,label=id))+
+  geom_point()+geom_text_repel()
+@ 
+
+  
+%  \includegraphics[height=\textheight]{bPrincomp-score-plot}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Vertical scale exaggerates importance of \texttt{comp.2}.
+    \item Fix up to get axes on same scale:
+<<eqsc>>=
+g=ggplot(d,aes(x=Comp.1,y=Comp.2,label=id))+
+  geom_point()+geom_text_repel()+
+  coord_fixed()
+@
+\item Shows how exam scores really spread out along one dimension:
+
+<<eqsc2,fig.height=2>>=
+g
+@
+  
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The biplot}
+  
+  \begin{itemize}
+  \item Plotting variables and individuals on one plot.
+  \item Shows how components and original variables related.
+  \item Shows how individuals score on each component, and therefore
+    suggests how they score on each variable.
+  \item Add \texttt{labels} option to identify individuals:
+    
+<<>>=
+g=ggbiplot(test12.pc,labels=test12$id)
+@     
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The biplot}
+  
+<<ff3,fig.height=4,echo=F>>=
+g
+@
+  
+  
+%  \includegraphics[height=\textheight]{bPrincomp-test-biplot}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Variables point almost same direction (left). Thus very
+    negative value on \texttt{comp.1} goes with high scores on both
+    tests, and test scores highly correlated.
+  \item Position of individuals on plot according to scores on
+    principal components, implies values on original variables. Eg.:
+    \begin{itemize}
+    \item D very negative on \texttt{comp.1}, high scorer on both tests.
+    \item A and F very positive on \texttt{comp.1}, poor scorers on
+      both tests.
+    \item C positive on \texttt{comp.2}, high score on first
+      test relative to second.
+    \item A negative on \texttt{comp.2}, high score on second test
+      relative to first.
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Track running data}
+
+(1984) track running records for distances 100m to marathon, arranged
+by country. Countries labelled by (mostly) Internet domain names (ISO
+2-letter codes):
+
+<<echo=F>>=
+w=getOption("width")
+options(width=w+10)
+@ 
+
+<<size="scriptsize",message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
+track=read_table2(my_url)
+track %>% sample_n(12)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Country names}
+  
+Also read in a table to look country names up in later:
+
+<<message=F, size="small">>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/isocodes.csv"
+iso=read_csv(my_url)
+iso
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Data and aims}
+
+  \begin{itemize}
+  \item 
+Times in seconds 100m--400m, in minutes for rest (800m up).
+\item This taken care of by standardization.
+\item 8 variables; can we summarize by fewer and gain some insight?
+\item In particular, if 2 components tell most of story, what do we see in a plot?
+
+  \end{itemize}
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Fit and examine principal components}
+ 
+<<echo=FALSE>>=
+options(width=50)
+@   
+  
+<<scree-a,size="footnotesize">>=
+track_num = track %>% select_if(is.numeric)
+track.pc=princomp(track_num,cor=T)
+summary(track.pc)
+@ 
+
+\end{frame}
+
+
+
+  
+  
+
+
+\begin{frame}[fragile]{Scree plot}
+
+<<scree-b,fig.height=3.5,>>=
+ggscreeplot(track.pc)
+@ 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{How many components?}
+  
+  \begin{itemize}
+  \item As for discriminant analysis, look for ``elbow'' in scree plot.
+  \item See one here at 3 components; everything 3 and beyond is ``scree''.
+  \item So take 2 components.
+  \item Note difference from discriminant analysis: want ``large''
+    rather than ``small'', so go 1 step left of elbow.
+  \item Another criterion: any component with eigenvalue bigger than
+    about 1 is worth including. 2nd one here has eigenvalue just less
+    than 1.
+  \item Refer back to \texttt{summary}: cumulative proportion of
+    variance explained for 2 components is 93.7\%, pleasantly high. 2
+    components tell almost whole story.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How do components depend on original variables?}
+  
+  Loadings:
+
+<<size="footnotesize",echo=2>>=
+options(width=60)
+track.pc$loadings
+@   
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item \texttt{comp.1} loads about equally (has equal weight) on
+    times over all distances.
+  \item \texttt{comp.2} has large positive loading for long
+    distances, large negative for short ones.
+  \item \texttt{comp.3}: large negative for middle distance, large
+    positive especially for short distances.
+  \item Country overall good at running will have lower than average record
+    times at all distances, so \texttt{comp.1}
+    \emph{large}. Conversely, for countries bad at running,
+    \texttt{comp.1} very negative.
+  \item Countries relatively better at sprinting (low times) will be
+    \emph{positive} on \texttt{comp.2}; countries relatively better at
+    distance running \emph{negative} on \texttt{comp.2}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Commands for plots}
+  
+  \begin{itemize}
+  \item Principal component scores (first two). Also need country names.
+    
+<<pc-plot>>=
+d=data.frame(track.pc$scores,
+  country=track$country)
+names(d)
+g1=ggplot(d,aes(x=Comp.1,y=Comp.2,
+  label=country))+
+  geom_point()+geom_text_repel()+
+    coord_fixed()
+@     
+
+\item Biplot:
+  
+<<biplot>>=
+g2=ggbiplot(track.pc,labels=track$country)
+@   
+    
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Principal components plot}
+
+<<lecce,fig.height=3.9>>=
+g1
+@     
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on principal components plot}
+  
+  \begin{itemize}
+  \item Good running countries at right of plot: US, UK, Italy,
+    Russia, East and West Germany.
+  \item Bad running countries at left: Western Samoa, Cook Islands.
+  \item Better sprinting countries at top: US, Italy, Russia,
+    Brazil, Greece. \texttt{do} is Dominican Republic, where sprinting
+    records relatively good, distance records very bad.
+  \item Better distance-running countries at bottom: Portugal, Norway,
+    Turkey, Ireland, New Zealand, Mexico. \texttt{ke} is Kenya.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Biplot}
+
+<<biplot2,fig.height=3.5>>=
+g2
+@   
+
+%  \includegraphics[height=\textheight]{bPrincomp-biplot}
+  
+\end{frame}
+
+\begin{frame}{Comments on biplot}
+  
+  \begin{itemize}
+  \item Had to do some pre-work to interpret PC plot. Biplot more self-contained.
+  \item All variable arrows point left; countries on left have large
+    (bad) record times overall, countries on right good overall.
+  \item Variable arrows extend negatively as well. Top left = bad at
+    distance running, bottom right = good at distance running.
+  \item Bottom left = bad at sprinting, top right = good at
+    sprinting.
+  \item Doesn't require so much pre-interpretation of components.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How do I know which country is which?}
+  
+  Need to look up two-letter abbreviations in ISO table, eg.\ for best
+  8 running countries:
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(desc(Comp.1)) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,country,Country) %>%
+    slice(1:8)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Worst 8 running countries}
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(Comp.1) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,country,Country) %>%
+    slice(1:8)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Better at sprinting}
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(desc(Comp.2)) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.2,country,Country) %>%
+    slice(1:8)
+@   
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Better at distance running}
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(Comp.2) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.2,country,Country) %>%
+    slice(1:10)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plot with country names}
+  
+<<>>=
+g = d %>% left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,Comp.2,Country) %>%
+    ggplot(aes(x=Comp.1,y=Comp.2,label=Country))+
+      geom_point()+geom_text_repel(size=1)+
+      coord_fixed()
+
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+
+<<fig.height=5.5, warning=F>>=
+g
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Principal components from correlation matrix}
+  
+  Create data file like this:
+
+  
+  \verbatiminput{cov.txt}
+  
+  and read in like this:
+  
+<<message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/cov.txt"
+mat=read_table(my_url,col_names=F)
+mat
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Pre-processing}
+  
+  A little pre-processing required:
+  
+  \begin{itemize}
+  \item Turn into matrix (from data frame)
+  \item Feed into \texttt{princomp} as \texttt{covmat=}
+  \end{itemize}
+  
+<<pc-cov,fig.height=4,>>=
+mat.pc = mat %>% as.matrix() %>%
+    princomp(covmat=.)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot: one component fine}
+
+<<palermo,fig.height=3.5>>=
+ggscreeplot(mat.pc)
+@   
+%  \includegraphics[height=\textheight]{bPrincomp-pc-cov}    
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Component loadings}
+  
+  
+  \begin{minipage}[t]{0.6\linewidth}
+  Compare correlation matrix:
+
+<<size="scriptsize">>=
+mat
+@  
+
+with component loadings
+
+<<size="scriptsize">>=
+mat.pc$loadings
+@
+
+%$
+  \end{minipage}
+  \begin{minipage}[t]{0.37\linewidth}
+    \begin{itemize}
+    \item When X1 large, X2 also large, X3 small.
+    \item Then \texttt{comp.1} \emph{negative}.
+    \item When X1 small, X2 small, X3 large.
+    \item Then \texttt{comp.1} \emph{positive}.
+      
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{No scores}
+  
+  \begin{itemize}
+  \item With correlation matrix rather than data, no component scores
+  \item So no principal component plot
+  \item and no biplot. 
+  \end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+  
+\end{frame}

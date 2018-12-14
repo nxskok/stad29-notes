@@ -1,0 +1,37 @@
+\documentclass{article}
+\title{The test12 data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+ 2  9
+16 40
+ 8 17
+18 43
+10 25
+ 4 10
+10 27
+12 30
+
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}{fig}
+
+options linesize=70;
+
+data test;
+    infile "test12.dat";
+    input score1 score2;
+
+proc gplot;
+    plot score1*score2;
+    
+proc princomp out=fred;
+
+proc print;
+\end{SAScode}
+\end{document}

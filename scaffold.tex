@@ -1,0 +1,228 @@
+\documentclass{article}
+\title{The scaffold data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+ecm1 2 70
+ecm1 2 75
+ecm1 2 65
+ecm1 4 55
+ecm1 4 70
+ecm1 4 70
+ecm1 8 60
+ecm1 8 65
+ecm1 8 65
+ecm2 2 60
+ecm2 2 65
+ecm2 2 70
+ecm2 4 60
+ecm2 4 65
+ecm2 4 65
+ecm2 8 60
+ecm2 8 70
+ecm2 8 60
+ecm3 2 80
+ecm3 2 60
+ecm3 2 75
+ecm3 4 75
+ecm3 4 70
+ecm3 4 75
+ecm3 8 70
+ecm3 8 80
+ecm3 8 70
+mat1 2 50
+mat1 2 45
+mat1 2 50
+mat1 4 20
+mat1 4 25
+mat1 4 25
+mat1 8 15
+mat1 8 25
+mat1 8 25
+mat2 2 5
+mat2 2 10
+mat2 2 15
+mat2 4 5
+mat2 4 10
+mat2 4 5
+mat2 8 10
+mat2 8 5
+mat2 8 5
+mat3 2 30
+mat3 2 25
+mat3 2 25
+mat3 4 10
+mat3 4 15
+mat3 4 10
+mat3 8 5
+mat3 8 15
+mat3 8 10
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data scaffold;
+  infile "scaffold.dat";
+  input material $ weeks gpi;
+
+proc glm;
+  class material weeks;
+  model gpi=material|weeks;
+  lsmeans material*weeks / adjust=tukey lines;
+  
+run;
+\end{Winput}
+\begin{Woutput}
+The GLM Procedure
+               Class Level Information
+Class         Levels    Values
+material           6    ecm1 ecm2 ecm3 mat1 mat2 mat3
+weeks              3    2 4 8
+
+Number of Observations Read          54
+Number of Observations Used          54
+
+The GLM Procedure
+Dependent Variable: gpi
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                       17     37609.25926      2212.30937      86.88    <.0001
+Error                       36       916.66667        25.46296
+Corrected Total             53     38525.92593
+
+R-Square     Coeff Var      Root MSE      gpi Mean
+0.976206      11.74520      5.046084      42.96296
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+material                     5     35659.25926      7131.85185     280.09    <.0001
+weeks                        2       867.59259       433.79630      17.04    <.0001
+material*weeks              10      1082.40741       108.24074       4.25    0.0006
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+material                     5     35659.25926      7131.85185     280.09    <.0001
+weeks                        2       867.59259       433.79630      17.04    <.0001
+material*weeks              10      1082.40741       108.24074       4.25    0.0006
+
+The GLM Procedure
+Least Squares Means
+Adjustment for Multiple Comparisons: Tukey
+                                       LSMEAN
+material    weeks      gpi LSMEAN      Number
+ecm1        2          70.0000000           1
+ecm1        4          65.0000000           2
+ecm1        8          63.3333333           3
+ecm2        2          65.0000000           4
+ecm2        4          63.3333333           5
+ecm2        8          63.3333333           6
+ecm3        2          71.6666667           7
+ecm3        4          73.3333333           8
+ecm3        8          73.3333333           9
+mat1        2          48.3333333          10
+mat1        4          23.3333333          11
+mat1        8          21.6666667          12
+mat2        2          10.0000000          13
+mat2        4           6.6666667          14
+mat2        8           6.6666667          15
+mat3        2          26.6666667          16
+mat3        4          11.6666667          17
+mat3        8          10.0000000          18
+
+                        Least Squares Means for effect material*weeks
+                             Pr > |t| for H0: LSMean(i)=LSMean(j)
+                                   Dependent Variable: gpi
+i/j          1         2         3         4         5         6         7         8         9
+   1              0.9984    0.9700    0.9984    0.9700    0.9700    1.0000    1.0000    1.0000
+   2    0.9984              1.0000    1.0000    1.0000    1.0000    0.9700    0.8395    0.8395
+   3    0.9700    1.0000              1.0000    1.0000    1.0000    0.8395    0.5937    0.5937
+   4    0.9984    1.0000    1.0000              1.0000    1.0000    0.9700    0.8395    0.8395
+   5    0.9700    1.0000    1.0000    1.0000              1.0000    0.8395    0.5937    0.5937
+   6    0.9700    1.0000    1.0000    1.0000    1.0000              0.8395    0.5937    0.5937
+   7    1.0000    0.9700    0.8395    0.9700    0.8395    0.8395              1.0000    1.0000
+   8    1.0000    0.8395    0.5937    0.8395    0.5937    0.5937    1.0000              1.0000
+   9    1.0000    0.8395    0.5937    0.8395    0.5937    0.5937    1.0000    1.0000
+  10    0.0008    0.0238    0.0650    0.0238    0.0650    0.0650    0.0002    <.0001    <.0001
+  11    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  12    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  13    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  14    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  15    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  16    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  17    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  18    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+
+The GLM Procedure
+Least Squares Means
+Adjustment for Multiple Comparisons: Tukey
+                        Least Squares Means for effect material*weeks
+                             Pr > |t| for H0: LSMean(i)=LSMean(j)
+                                   Dependent Variable: gpi
+i/j         10        11        12        13        14        15        16        17        18
+   1    0.0008    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   2    0.0238    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   3    0.0650    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   4    0.0238    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   5    0.0650    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   6    0.0650    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   7    0.0002    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   8    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+   9    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001    <.0001
+  10              <.0001    <.0001    <.0001    <.0001    <.0001    0.0008    <.0001    <.0001
+  11    <.0001              1.0000    0.1594    0.0238    0.0238    1.0000    0.3378    0.1594
+  12    <.0001    1.0000              0.3378    0.0650    0.0650    0.9984    0.5937    0.3378
+  13    <.0001    0.1594    0.3378              1.0000    1.0000    0.0238    1.0000    1.0000
+  14    <.0001    0.0238    0.0650    1.0000              1.0000    0.0026    0.9984    1.0000
+  15    <.0001    0.0238    0.0650    1.0000    1.0000              0.0026    0.9984    1.0000
+  16    0.0008    1.0000    0.9984    0.0238    0.0026    0.0026              0.0650    0.0238
+  17    <.0001    0.3378    0.5937    1.0000    0.9984    0.9984    0.0650              1.0000
+  18    <.0001    0.1594    0.3378    1.0000    1.0000    1.0000    0.0238    1.0000
+
+Tukey Comparison Lines for Least Squares Means of material*weeks
+LS-means with the same letter are not significantly different.
+                                                  LSMEAN
+               gpi LSMEAN    material    weeks    Number
+     A          73.333333    ecm3        8             9
+     A
+     A          73.333333    ecm3        4             8
+     A
+     A          71.666667    ecm3        2             7
+     A
+     A          70.000000    ecm1        2             1
+     A
+     A          65.000000    ecm2        2             4
+     A
+     A          65.000000    ecm1        4             2
+     A
+B    A          63.333333    ecm2        8             6
+B    A
+B    A          63.333333    ecm2        4             5
+B    A
+B    A          63.333333    ecm1        8             3
+B
+B               48.333333    mat1        2            10
+     C          26.666667    mat3        2            16
+     C
+
+The GLM Procedure
+Least Squares Means
+Adjustment for Multiple Comparisons: Tukey
+Tukey Comparison Lines for Least Squares Means of material*weeks
+LS-means with the same letter are not significantly different.
+                                                  LSMEAN
+               gpi LSMEAN    material    weeks    Number
+D    C          23.333333    mat1        4            11
+D    C
+D    C    E     21.666667    mat1        8            12
+D    C    E
+D    C    E     11.666667    mat3        4            17
+D         E
+D         E     10.000000    mat3        8            18
+D         E
+D         E     10.000000    mat2        2            13
+          E
+          E      6.666667    mat2        8            15
+          E
+          E      6.666667    mat2        4            14
+\end{Woutput}
+\end{document}

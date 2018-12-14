@@ -1,0 +1,68 @@
+%\mode<presentation>{
+%\usetheme[secheader]{Boadilla}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+
+
+\title[STAD29/STA1007]{STAD29 / STA 1007\\Statistics for the Life and Social Sciences}
+\author[Ken Butler]{Instructor: Ken Butler}
+\institute{butler@utsc.utoronto.ca}
+%\date{\today}
+
+    \usenavigationsymbolstemplate{} 
+    \setbeamertemplate{footline}[frame number]
+    \beamersetleftmargin{.2in}
+    \beamersetrightmargin{.2in}
+
+%\includeonly{bRegression}
+%\includeonly{bMultivRegression}
+%\includeonly{bSurvival}
+%\includeonly{bKriging}
+%\includeonly{bDiscrim}
+%\includeonly{bFactor}
+
+\begin{document}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Where we are going}
+       \tableofcontents[currentsection]
+   \end{frame}
+}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\include{bOutline}
+
+\begin{frame}{What we (might) cover}
+  \tableofcontents
+\end{frame}
+
+
+\include{bInference}
+\include{bRegression}
+\include{bLogistic}
+\include{bSurvival}
+\include{bAnova}
+\include{bAncova}
+\include{bManova}
+\include{bProfile}
+\include{bMultivRegression}
+\include{bDiscrim}
+\include{bCluster}
+\include{bMDS}
+\include{bPrincomp}
+\include{bFactor}
+\include{bKriging}
+\include{bMultiway}
+%\section{Time series}
+%\section{Nonparametric statistics}
+
+%\include{bSummary}
+
+\end{document}

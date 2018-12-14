@@ -1,0 +1,344 @@
+\section{Analysis of covariance}
+\frame{\sectionpage}
+
+
+
+\begin{frame}[fragile]{Analysis of covariance}
+
+  \begin{itemize}
+  \item ANOVA: explanatory variables categorical (divide data into groups)
+  \item traditionally, analysis of covariance has categorical $x$'s plus one numerical $x$ (``covariate'') to be adjusted for.
+  \item \texttt{lm} handles this too.
+  \item Simple example: two treatments (drugs) (\verb-a- and \verb-b-), with before and after scores. 
+    \begin{itemize}
+    \item 
+Does knowing before score and/or treatment help to predict after score?
+\item Is after score different by treatment/before score?
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Data}
+
+Treatment, before, after:
+
+\begin{multicols}{2}
+
+\begin{verbatim}
+a 5 20
+a 10 23
+a 12 30
+a 9 25
+a 23 34
+a 21 40
+a 14 27
+a 18 38
+a 6 24
+a 13 31
+b 7 19
+b 12 26
+b 27 33
+b 24 35
+b 18 30
+b 22 31
+b 26 34
+b 21 28
+b 14 23
+b 9 22
+\end{verbatim}
+
+  
+\end{multicols}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+  \texttt{tidyverse} and \texttt{broom}:
+  
+<<>>=
+library(tidyverse)
+library(broom)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot}
+
+ 
+<<size="small">>=
+prepost=read_delim("ancova.txt"," ")
+glimpse(prepost)
+g=ggplot(prepost,aes(x=before,y=after,colour=drug))+
+  geom_point()
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}{The plot}
+
+ 
+<<spizzo,fig.height=3.5>>=
+g
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+<<fig.height=2.5>>=
+g
+@   
+
+\begin{itemize}
+\item As before score goes up, after score goes up.
+\item Red points (drug A) generally above blue points (drug B), for
+  comparable before score.
+\item Suggests before score effect \emph{and} drug effect.
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{The means}
+
+ 
+<<>>=
+prepost %>% group_by(drug) %>%
+  summarize(before_mean=mean(before), 
+            after_mean=mean(after) 
+	   )
+@ %def 
+  
+
+\begin{itemize}
+\item Mean ``after'' score slightly higher for treatment A.
+\item Mean ``before'' score much higher for treatment B.
+\item Greater {\em improvement} on treatment A. 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Testing for interaction}
+
+ 
+<<>>=
+prepost.1=lm(after~before*drug,data=prepost)
+anova(prepost.1)
+@ %def 
+
+
+\begin{itemize}
+\item Interaction not significant. Will remove later.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Predictions, with interaction included}
+
+
+  
+  \begin{multicols}{2}
+    
+
+  
+  Make combinations of before score and drug:
+  
+<<>>=
+new=crossing( 
+      before=c(5,15,25),
+      drug=c("a","b"))
+new
+@   
+
+Do predictions:
+
+<<size="small">>=
+pred=predict(prepost.1,new)
+preds=bind_cols(new,pred=pred)
+preds
+@ 
+  
+  \end{multicols}
+
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot with lines for each \texttt{drug}}
+
+ 
+<<AJHSA>>=
+g=ggplot(prepost,
+  aes(x=before,y=after,colour=drug))+
+  geom_point()+
+  geom_line(data=preds,aes(y=pred))
+@ %def 
+
+
+\begin{itemize}
+\item Last line could (more easily) be 
+
+<<eval=F>>=
+geom_smooth(method="lm",se=F)
+@ 
+
+which would work here, but not for later plot.
+\item Here, final line:
+  \begin{itemize}
+  \item   joins points by lines \emph{for different data
+    set} (\texttt{preds} rather than \texttt{prepost}),
+\item   \emph{different $y$} (\texttt{pred} rather than \texttt{after}),
+  
+\item but same $x$ (\texttt{x=before} inherited from first \texttt{aes}).
+
+  \end{itemize}
+  
+\end{itemize}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+ 
+  
+<<nachwazzo,fig.height=3.5>>=
+g
+@ %def 
+   
+   
+ 
+ \begin{itemize}
+ \item Lines almost parallel, but not quite.
+ \item Non-parallelism (interaction) not significant.
+ \end{itemize}
+   
+\end{frame}
+ 
+
+\begin{frame}[fragile]{Taking out interaction}
+
+
+{\small
+  
+ 
+<<>>=
+prepost.2=update(prepost.1,.~.-before:drug)
+anova(prepost.2)
+@ %def 
+}
+  
+  \begin{itemize}
+  \item Take out non-significant interaction.
+  \item \texttt{before} and \texttt{drug} strongly significant.
+  \item Do predictions again and plot them.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predicted values again (no-interaction model)}
+
+   
+<<>>=
+pred=predict(prepost.2,new)
+preds=bind_cols(new,pred=pred)
+preds
+@ 
+ 
+
+Each increase of 10 in before score results in 8.3 in predicted after
+score, \emph{the same for both drugs}.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot, again}
+
+ 
+<<>>=
+g=ggplot(prepost,
+  aes(x=before,y=after,colour=drug))+
+  geom_point()+
+  geom_line(data=preds,aes(y=pred))
+@ %def 
+ 
+
+Exactly same as before, but using new predictions.
+  
+\end{frame}
+
+\begin{frame}{The no-interaction plot of predicted values}
+  
+ 
+<<cabazzo,fig.height=3>>=
+g
+@ %def 
+
+
+Lines now \emph{parallel}. No-interaction model forces them
+to have the same slope. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Different look at model output}
+  
+  \begin{itemize}
+  \item \texttt{anova(prepost.2)} tests for significant effect of
+    before score and of drug, but doesn't help with interpretation.
+  \item \texttt{summary(prepost.2)} views as regression with slopes:
+    
+    \begin{scriptsize}
+<<>>=
+summary(prepost.2)
+@       
+    \end{scriptsize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding those slopes}
+  
+<<size="footnotesize">>=
+tidy(prepost.2)
+@     
+
+\begin{itemize}
+\item \texttt{before} ordinary numerical variable; \texttt{drug}
+  categorical. 
+\item \texttt{lm} uses first category \texttt{druga} as baseline.
+\item Intercept is prediction of after score for before score 0 and
+  \emph{drug A}.
+\item \texttt{before} slope is predicted change in after score when
+  before score increases by 1 (usual slope)
+\item Slope for \texttt{drugb} is \emph{change} in predicted after
+  score for being on drug B rather than drug A. Same for \emph{any}
+  before score (no interaction).
+\item In \texttt{summary(prepost.1)}, \texttt{before:drugb} would be change in
+  \emph{slope} for being on drug B rather than A.
+  
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Summary}
+
+  \begin{itemize}
+  \item ANCOVA model: fits different regression line for each group,
+    predicting response from covariate.
+  \item ANCOVA model with interaction between factor and covariate
+    allows different slopes for each line.
+  \item Sometimes those lines can cross over!
+  \item If interaction not significant, take out. Lines then parallel.
+  \item With parallel lines, groups have consistent effect regardless
+    of value of covariate.
+  \end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+  
+\end{frame}

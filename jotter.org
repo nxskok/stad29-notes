@@ -1,0 +1,5 @@
+- midterm is Feb 13 (Sat) 1700-1900
+  - easy q1 which is eg regression
+  - q2 a more challenging logistic regression (prediction eg, like
+    the practice problems)
+  - tidyr, dplyr

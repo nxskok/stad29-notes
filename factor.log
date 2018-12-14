@@ -1,0 +1,142 @@
+1                                                          The SAS System                            11:48 Wednesday, March 14, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-39-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           1.16 seconds
+      cpu time            0.07 seconds
+      
+1          libname sasdata '.';
+NOTE: Libref SASDATA was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: /home/ken/teaching/d29/notes
+1        !                     
+2          
+3          data factor;
+4            set sasdata.factor;
+NOTE: Data file SASDATA.FACTOR.DATA is in a format that is native to another host, or the file encoding does not match the session 
+      encoding. Cross Environment Data Access will be used, which might require additional CPU resources and might reduce 
+      performance.
+5          
+6          ods html;
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Writing HTML Body file: sashtml.htm
+7          ods graphics on;
+8          
+
+NOTE: There were 369 observations read from the data set SASDATA.FACTOR.
+NOTE: The data set WORK.FACTOR has 369 observations and 46 variables.
+NOTE: DATA statement used (Total process time):
+      real time           1.41 seconds
+      cpu time            0.26 seconds
+      
+
+2                                                          The SAS System                            11:48 Wednesday, March 14, 2012
+
+9          proc factor method=prinit scree;
+10           
+
+NOTE: 12 factors will be retained by the MINEIGEN criterion.
+NOTE: Convergence criterion satisfied.
+NOTE: The PROCEDURE FACTOR printed pages 1-10.
+NOTE: PROCEDURE FACTOR used (Total process time):
+      real time           0.54 seconds
+      cpu time            0.36 seconds
+      
+
+11         proc factor method=prinit nfactor=5 rotate=varimax out=fred;
+12         
+13         symbol1 pointlabel=('#subno');
+14                 
+
+NOTE: 5 factors will be retained by the NFACTOR criterion.
+NOTE: Convergence criterion satisfied.
+NOTE: The data set WORK.FRED has 369 observations and 51 variables.
+NOTE: The PROCEDURE FACTOR printed pages 11-20.
+NOTE: PROCEDURE FACTOR used (Total process time):
+      real time           0.30 seconds
+      cpu time            0.22 seconds
+      
+
+15         proc gplot data=fred;
+16           plot Factor2*Factor1;
+17         
+
+NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
+NOTE: At least one pointlabel has overwritten a boundary.  This resulted in the affected pointlabel(s) being repositioned.
+NOTE: At least one pointlabel has collided with another pointlabel.  This resulted in the affected pointlabel(s) being removed. 
+      Specify the nodropcollisions option to keep pointlabels from being removed.
+NOTE: At least one pointlabel has overwritten a boundary.  This resulted in the affected pointlabel(s) being repositioned.
+NOTE: At least one pointlabel has collided with another pointlabel.  This resulted in the affected pointlabel(s) being removed. 
+      Specify the nodropcollisions option to keep pointlabels from being removed.
+WARNING: The specified value of 11.9802 inches for HSIZE= is larger than 8.1948 inches which is the maximum for the device Xcolor. 
+         HSIZE is ignored.
+WARNING: The specified value of 7.5248 inches for VSIZE= is larger than 4.6986 inches which is the maximum for the device Xcolor. 
+         VSIZE is ignored.
+NOTE: 7 records written to /home/ken/teaching/d29/notes/gplot.png.
+NOTE: There were 369 observations read from the data set WORK.FRED.
+NOTE: PROCEDURE GPLOT used (Total process time):
+      real time           15.13 seconds
+      cpu time            1.51 seconds
+      
+
+18         data fred2;
+19             set fred;
+20             if subno=474 or subno=457 or subno=528;
+21         
+
+NOTE: There were 369 observations read from the data set WORK.FRED.
+NOTE: The data set WORK.FRED2 has 3 observations and 51 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+3                                                          The SAS System                            11:48 Wednesday, March 14, 2012
+
+
+22         proc print;
+23         
+24             
+25         run;
+
+NOTE: There were 3 observations read from the data set WORK.FRED2.
+NOTE: The PROCEDURE PRINT printed page 21.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.02 seconds
+      
+
+25       !     
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           18.79 seconds
+      cpu time            2.48 seconds
+      

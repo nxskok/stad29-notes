@@ -1,0 +1,371 @@
+\section{Repeated measures by profile analysis}
+
+\begin{frame}[fragile]{Repeated measures by profile analysis}
+
+  \begin{itemize}
+  \item More than one response {\em measurement} for each subject. Might be
+    \begin{itemize}
+    \item measurements of the same thing at different times
+    \item measurements of different but related things
+    \end{itemize}
+  \item Variation: each subject does several different treatments at different times (called {\em crossover design}).
+  \item Expect measurements on same subject to be correlated, so
+    assumptions of independence will fail.
+  \item Called {\em repeated measures}. Different approaches, but {\em
+      profile analysis} uses \texttt{Manova} (set up right way).
+  \item Another approach uses \emph{mixed models} (random effects).
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Example}
+
+  \begin{itemize}
+  \item Do subjects from different professions differ in what they think about different leisure activities?
+  \item 3 occupational groups, bellydancers, politicians and administrators; 5 subjects from each group.
+  \item Each subject participates in 4 activities, reading, dancing, TV-watching, skiing; rates satisfaction with each on 10-point scale.
+  \item Data like this. (Scores on activities as listed.)
+{\scriptsize
+\begin{verbatim}
+bellydancer 7 10 6 5
+bellydancer 8  9 5 7
+bellydancer 5 10 5 8
+politician  4  4 4 4
+politician  6  4 5 3
+politician  5  5 5 6
+admin       3  1 1 2
+admin       5  3 1 5
+admin       4  2 2 5
+\end{verbatim}
+}
+\item Profession group plays role of treatment, activity plays role of time.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Some means}
+
+  \begin{tabular}{|l|rrrr|r|}
+    \hline
+    Group & Reading & Dancing & TV & Skiing & Activities\\
+    \hline
+    Bellydancers & 6.6 & 9.4 & 5.8 & 7.4 & 7.3\\
+    Politicians & 5.0 & 4.8 & 5.2 & 5.3 & 5.0\\
+    Administrators & 5.0 & 2.0 & 1.8 & 3.8 & 3.2\\
+    \hline
+    Groups & 5.3 & 5.4 & 4.3 & 5.4 & 5.2\\
+    \hline
+  \end{tabular}
+  
+
+  \begin{itemize}
+  \item Mean scores for each activity overall quite similar.
+  \item Mean scores for each profession group very different.
+  \item Bellydancers like dancing; administrators hate everything but
+    reading.
+  \item Are any of these differences significant?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Repeated measures code}
+
+Need to:
+  \begin{itemize}
+  \item create response variable by gluing together columns of responses
+  \item run \texttt{lm} with multivariate response
+  \item tell R that the four responses are all scores on \texttt{activity}
+  \item run \texttt{Manova}:
+
+\begin{verbatim}
+response=cbind(reading,dance,tv,ski)
+active.1=lm(response~job)
+activity=colnames(response)
+activity.df=data.frame(activity)
+active.2=Manova(active.1,idata=activity.df,
+      idesign=~activity)
+\end{verbatim}
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusion}
+
+{\footnotesize
+\begin{verbatim}
+> active.2
+
+Type II Repeated Measures MANOVA Tests: Pillai test statistic
+             Df test stat approx F num Df den Df    Pr(>F)    
+(Intercept)   1   0.98545   812.60      1     12 2.156e-12 ***
+job           2   0.88035    44.14      2     12 2.935e-06 ***
+activity      1   0.72086     8.61      3     10  0.004017 ** 
+job:activity  2   1.43341     9.28      6     22 4.035e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Definitely significant interaction between \texttt{job} and
+  \texttt{activity}: that is, pattern of scores over activities is
+  different for each job. 
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Another example: histamine in dogs}
+  
+  \begin{itemize}
+  \item 8 dogs take part in experiment.
+  \item Dogs randomized to one of 2 different drugs.
+  \item Response: log of blood concentration of histamine 0, 1, 3 and 5 minutes after taking drug. (Repeated measures.)
+  \item Data in dogs.txt.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Setting things up}
+
+{\small
+\begin{verbatim}
+> dogs=read.table("dogs.txt",header=T)
+> dogs
+          drug x   lh0   lh1   lh3   lh5
+1     Morphine N -3.22 -1.61 -2.30 -2.53
+2     Morphine N -3.91 -2.81 -3.91 -3.91
+3     Morphine N -2.66  0.34 -0.73 -1.43
+4     Morphine N -1.77 -0.56 -1.05 -1.43
+5 Trimethaphan N -3.51 -0.48 -1.17 -1.51
+6 Trimethaphan N -3.51  0.05 -0.31 -0.51
+7 Trimethaphan N -2.66 -0.19  0.07 -0.22
+8 Trimethaphan N -2.41  1.14  0.72  0.21
+> attach(dogs)
+> response=cbind(lh0,lh1,lh3,lh5)
+> dogs.lm=lm(response~drug)
+\end{verbatim}
+}
+    
+\end{frame}
+
+\begin{frame}[fragile]{The repeated measures MANOVA}
+
+Get list of response variable names; we call them \texttt{times}. Save
+in data frame.
+
+{\small
+\begin{verbatim}
+> times=colnames(response)
+> times.df=data.frame(times)
+> dogs.manova=Manova(dogs.lm,idata=times.df,
+       idesign=~times)
+> dogs.manova
+
+Type II Repeated Measures MANOVA Tests: Pillai test statistic
+            Df test stat approx F num Df den Df   Pr(>F)   
+(Intercept)  1   0.76347  19.3664      1      6 0.004565 **
+drug         1   0.34263   3.1272      1      6 0.127406   
+times        1   0.94988  25.2690      3      4 0.004631 **
+drug:times   1   0.89476  11.3362      3      4 0.020023 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+\end{verbatim}
+}
+
+Interaction significant again. Pattern of response over time different
+for the two drugs.
+\end{frame}
+
+\begin{frame}[fragile]{Wide and long format}
+
+  \begin{itemize}
+  \item Want to investigate interaction.
+  \item But data frame has several observations per line (``wide format'').
+  \item \texttt{interaction.plot} works with data in ``long format'':
+    one response per line.
+  \item The responses are log-histamine at different times. Call them
+    all \texttt{lh} and put them in one column, with the time they
+    belong to labelled. 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{reshape}}
+
+  \begin{itemize}
+  \item Converts between wide and long format.
+  \item Need to tell R what our repeated-measures responses are.
+  \item Convenient variable naming: all responses are \texttt{lh}
+    followed by a number representing time.
+  \item Like this:
+  \end{itemize}
+
+{\small
+\begin{verbatim}
+> detach(dogs)
+> times
+[1] "lh0" "lh1" "lh3" "lh5"
+> d2=reshape(dogs,varying=times,sep="",direction="long")
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Long data frame}
+
+{\small
+\begin{verbatim}
+> head(d2,n=12)
+            drug x time    lh id
+1.0     Morphine N    0 -3.22  1
+2.0     Morphine N    0 -3.91  2
+3.0     Morphine N    0 -2.66  3
+4.0     Morphine N    0 -1.77  4
+5.0 Trimethaphan N    0 -3.51  5
+6.0 Trimethaphan N    0 -3.51  6
+7.0 Trimethaphan N    0 -2.66  7
+8.0 Trimethaphan N    0 -2.41  8
+1.1     Morphine N    1 -1.61  1
+2.1     Morphine N    1 -2.81  2
+3.1     Morphine N    1  0.34  3
+4.1     Morphine N    1 -0.56  4
+\end{verbatim}
+}
+
+\texttt{id}  labels dog, \texttt{time} labels time. Perfect for
+interaction plot.
+  
+\end{frame}
+
+\begin{frame}[fragile]{The interaction plot}
+
+{\small
+\begin{verbatim}
+> attach(d2)
+> interaction.plot(time,drug,lh)
+\end{verbatim}
+}
+\includegraphics[width=0.7\textwidth]{dogs-interaction}
+
+\texttt{lh} same at time 0, but increases faster for Trimethaphan and
+stays higher. Hence significant interaction.
+
+\end{frame}
+
+\begin{frame}[fragile]{Take out time zero}
+
+Lines on interaction plot would be parallel, and so interaction should
+no longer be significant.
+
+{\small
+\begin{verbatim}
+> attach(dogs)
+> response=cbind(lh1,lh3,lh5)
+> dogs.lm=lm(response~drug)
+> times=colnames(response)
+> times.df=data.frame(times)
+> dogs.manova=Manova(dogs.lm,idata=times.df,
+                     idesign=~times)
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Results and comments}
+
+{\small
+\begin{verbatim}
+> dogs.manova
+
+Type II Repeated Measures MANOVA Tests: Pillai test statistic
+            Df test stat approx F num Df den Df   Pr(>F)   
+(Intercept)  1   0.54582   7.2106      1      6 0.036281 * 
+drug         1   0.44551   4.8207      1      6 0.070527 . 
+times        1   0.85429  14.6569      2      5 0.008105 **
+drug:times   1   0.43553   1.9289      2      5 0.239390   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Correct: interaction no longer significant.
+\item Significant effect of time.
+\item Drug effect not quite significant (much variety among dogs
+  within drug).
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Getting interaction plot for jobs-activities
+    data}
+
+{\small
+\begin{verbatim}
+> head(active,n=4)
+          job reading dance tv ski
+1 bellydancer       7    10  6   5
+2 bellydancer       8     9  5   7
+3 bellydancer       5    10  5   8
+4 bellydancer       6    10  6   8
+5 bellydancer       7     8  7   9
+6  politician       4     4  4   4
+> activity.list=c("reading","dance","tv","ski")
+> active.long=reshape(active,varying=activity.list,
++ v.names="score",timevar="activity",
++ direction="long")
+\end{verbatim}
+}
+
+\begin{itemize}
+\item What are names of repeated responses? (\texttt{varying=activity.list})
+\item What are they all instances of? (\texttt{v.names=score})
+\item What do we call responses collectively? (\texttt{timevar="activity"})
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Results}
+
+{\small
+\begin{verbatim}
+> active.long[c(1:7,12:18),]
+             job activity score id
+1.1  bellydancer        1     7  1
+2.1  bellydancer        1     8  2
+3.1  bellydancer        1     5  3
+4.1  bellydancer        1     6  4
+5.1  bellydancer        1     7  5
+6.1   politician        1     4  6
+7.1   politician        1     6  7
+12.1       admin        1     5 12
+13.1       admin        1     4 13
+14.1       admin        1     7 14
+15.1       admin        1     6 15
+1.2  bellydancer        2    10  1
+2.2  bellydancer        2     9  2
+3.2  bellydancer        2    10  3
+> dim(active.long)
+[1] 60  4
+> attach(active.long)
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Interaction plot}
+
+{\small
+\begin{verbatim}
+> af=factor(activity,labels=activity.list)
+> interaction.plot(af,job,score)
+\end{verbatim}
+}
+
+\includegraphics[width=0.7\textwidth]{activity-interaction}
+  
+Not parallel!
+
+\end{frame}

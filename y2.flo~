@@ -1,0 +1,55 @@
+Down
+Choice . . Y N
+  Response 
+  variable?
+Tag
+Right
+Choice . . Cont Cat
+  Type of 
+  response?
+Tag
+Right
+Choice . . 1 $>1$
+  Number of 
+  responses?
+Tag
+Right
+Choice Cont . .	Else
+  Explanatory 
+  variables?
+Tag
+Up
+Box
+  Regression 
+  (PROC REG)
+ToTag
+Down
+Box
+  ANOVA or
+  ANCOVA
+  (PROC GLM)
+ToTag
+Down 1.8
+Choice . Y N .
+  Repeated
+  Measures?
+Tag
+Left
+Box
+  Profile
+  (PROC GLM/
+  REPEATED)
+ToTag
+Right
+Box 
+  MANOVA
+  (PROC GLM/
+  MANOVA)
+ToTag
+Down
+Box
+  Page 2
+ToTag
+Down
+Box
+  Page 2

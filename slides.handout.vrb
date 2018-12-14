@@ -1,0 +1,9 @@
+\frametitle {General procedure}\par \begin{itemize}
+\item Start with ``complete model'' including all possible interactions.
+\item Look at highest-order interaction(s) remaining, remove if non-significant.
+\item If an interaction significant, keep also everything contained within that interaction. Eg.\ A*B interaction significant, keep A and B main effects.
+\item Continue until everything either significant or must be kept.
+\item Then look at maximum likelihood estimates (can fill in those not shown) and interpret according to whether $+$ or $-$.
+  \item Main effects not usually very interesting.
+\item Interactions with ``response'' usually of most interest: show association with response.
+\end{itemize}

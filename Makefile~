@@ -1,0 +1,73 @@
+all: slides-sw.pdf
+
+show: slides-sw.pdf
+	evince slides-sw.pdf &
+
+
+
+CHAPTERS = slides-sw bOutline bRIntro bInference bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim bCluster bMDS bPrincomp bFactor bTimeSeries bMultiway bggplot
+
+TEX = $(CHAPTERS:=.tex)
+
+RNW = $(CHAPTERS:=.Rnw)
+
+slides-sw.pdf: slides-sw.tex
+	pdflatex -interaction nonstopmode slides-sw
+
+slides-sw.tex: $(RNW)
+	Rscript -e "knitr::knit(\"slides-sw.Rnw\")"
+
+%.R: %.Rnw
+	Rscript -e "knitr::purl(\"$^\")"
+
+force:
+	touch slides-sw.Rnw
+	make
+
+## old 
+
+#makefile .SUFFIXES: .tex .pdf .Rnw .R
+#
+#MAIN = slides-sw
+#
+#RNWINCLUDES = bOutline bRIntro bInference bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bMultivRegression bDiscrim bCluster bMDS bPrincomp bFactor bTimeSeries bKriging bMultiway bggplot
+#TEX = $(RNWINCLUDES:=.tex)
+#RFILES = $(RNWINCLUDES:=.R)
+#RNWFILES = $(INCLUDES:=.Rnw)
+#
+#all: $(MAIN).pdf
+#
+#$(MAIN).pdf: $(TEX) $(MAIN).tex
+#
+#R: $(RFILES)
+#
+#show: all
+#	evince $(MAIN).pdf &
+#
+#edit: $(MAIN).tex
+#	emacsclient -c $(MAIN).tex &
+#
+#.Rnw.R:
+#	R CMD Stangle --encoding=utf-8 $<
+#
+#.Rnw.tex:
+##	R CMD Sweave --encoding=utf8 $<
+#	Rscript -e "library(knitr); knit(\"$<\")"
+#
+#.tex.pdf:
+#	pdflatex $<
+##	bibtex $*
+#	pdflatex $<
+##	pdflatex $<
+#
+#clean:
+#	rm -fv $(MAIN).pdf $(MAIN).tex $(TEX) $(RFILES)
+#	rm -fv *.aux *.dvi *.log *.toc *.bak *~ *.blg *.bbl *.lot *.lof
+#	rm -fv *.nav *.snm *.out *.pyc \#*\# _region_* _tmp.* *.vrb
+#	rm -fv Rplots.pdf *.RData
+#
+#gflr.pdf: gflr.tex
+#	pdflatex gflr.tex
+#
+#gflr.tex: gflr.Rnw
+#	Rscript -e "knitr::knit(\"gflr.Rnw\")"

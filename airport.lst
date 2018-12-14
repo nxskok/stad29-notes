@@ -1,0 +1,94 @@
+                                 The SAS System                                1
+                                                  14:54 Wednesday, April 4, 2012
+
+                              The CATMOD Procedure
+
+                                  Data Summary
+
+      Response           airport*airline*status     Response Levels     20
+      Weight Variable    freq                       Populations          1
+      Data Set           AIRLINE                    Total Frequency  11000
+      Frequency Missing  0                          Observations        20
+
+
+                              Population Profiles
+ 
+                             Sample    Sample Size
+                             ---------------------
+                                 1           11000
+
+
+                               Response Profiles
+ 
+                   Response    airport     airline    status
+                   ------------------------------------------
+                       1       losangel    alaska     delayed
+                       2       losangel    alaska     ontime 
+                       3       losangel    aw         delayed
+                       4       losangel    aw         ontime 
+                       5       phoenix     alaska     delayed
+                       6       phoenix     alaska     ontime 
+                       7       phoenix     aw         delayed
+                       8       phoenix     aw         ontime 
+                       9       sandiego    alaska     delayed
+                      10       sandiego    alaska     ontime 
+                      11       sandiego    aw         delayed
+                      12       sandiego    aw         ontime 
+                      13       sanfran     alaska     delayed
+                      14       sanfran     alaska     ontime 
+                      15       sanfran     aw         delayed
+                      16       sanfran     aw         ontime 
+                      17       seattle     alaska     delayed
+                      18       seattle     alaska     ontime 
+                      19       seattle     aw         delayed
+                      20       seattle     aw         ontime 
+
+
+                           Maximum Likelihood Analysis
+
+                   Maximum likelihood computations converged.           
+
+
+                    Maximum Likelihood Analysis of Variance
+ 
+               Source               DF   Chi-Square    Pr > ChiSq
+               --------------------------------------------------
+               airport               4       231.19        <.0001
+               airline               1       163.72        <.0001
+               airport*airline       4      3225.58        <.0001
+               status                1      2700.13        <.0001
+               airport*status        4       246.27        <.0001
+                                 The SAS System                                2
+                                                  14:54 Wednesday, April 4, 2012
+
+                              The CATMOD Procedure
+
+                    Maximum Likelihood Analysis of Variance
+ 
+               Source               DF   Chi-Square    Pr > ChiSq
+               --------------------------------------------------
+               airline*status        1        41.74        <.0001
+
+               Likelihood Ratio      4         3.22        0.5223
+
+
+                    Analysis of Maximum Likelihood Estimates
+ 
+                                               Standard       Chi-
+ Parameter                          Estimate      Error     Square   Pr > ChiSq
+ ------------------------------------------------------------------------------
+ airport         losangel             0.0670     0.0373       3.23       0.0723
+                 phoenix              0.2551     0.0388      43.29       <.0001
+                 sandiego            -0.7019     0.0508     191.26       <.0001
+                 sanfran              0.0474     0.0352       1.82       0.1779
+ airline         alaska              -0.2722     0.0213     163.72       <.0001
+ airport*airline losangel alaska     -0.0164     0.0261       0.39       0.5303
+                 phoenix alaska      -1.4049     0.0302    2165.96       <.0001
+                 sandiego alaska     -0.1618     0.0348      21.57       <.0001
+                 sanfran alaska       0.3461     0.0287     145.07       <.0001
+ status          delayed             -0.9521     0.0183    2700.13       <.0001
+ airport*status  losangel delayed    -0.0335     0.0360       0.87       0.3520
+                 phoenix delayed     -0.4110     0.0305     181.94       <.0001
+                 sandiego delayed    -0.0762     0.0487       2.44       0.1180
+                 sanfran delayed      0.3268     0.0343      90.68       <.0001
+ airline*status  alaska delayed      -0.1361     0.0211      41.74       <.0001

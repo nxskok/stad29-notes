@@ -1,0 +1,57 @@
+                                                           The SAS System                         13:55 Wednesday, March 2, 2011   1
+
+                                                        The TTEST Procedure
+ 
+                                                        Difference:  x1 - x2
+
+                                    N        Mean     Std Dev     Std Err     Minimum     Maximum
+
+                                    5     -2.6000      1.5166      0.6782     -4.0000           0
+
+                                       Mean       95% CL Mean        Std Dev      95% CL Std Dev
+
+                                    -2.6000     -4.4831  -0.7169      1.5166      0.9086   4.3580
+
+                                                       DF    t Value    Pr > |t|
+
+                                                        4      -3.83      0.0186
+                                                           The SAS System                         13:55 Wednesday, March 2, 2011   2
+
+                                                         The GLM Procedure
+
+                                              Number of Observations Read           5
+                                              Number of Observations Used           5
+                                                           The SAS System                         13:55 Wednesday, March 2, 2011   3
+
+                                                         The GLM Procedure
+                                               Repeated Measures Analysis of Variance
+
+                                                Repeated Measures Level Information
+ 
+                                              Dependent Variable          x1       x2
+
+                                                   Level of time           1        2
+
+
+                          MANOVA Test Criteria and Exact F Statistics for the Hypothesis of no time Effect
+                                                 H = Type III SSCP Matrix for time
+                                                       E = Error SSCP Matrix
+                                                                  
+                                                        S=1    M=-0.5    N=1
+ 
+                          Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+                          Wilks' Lambda               0.21395349      14.70         1         4    0.0186
+                          Pillai's Trace              0.78604651      14.70         1         4    0.0186
+                          Hotelling-Lawley Trace      3.67391304      14.70         1         4    0.0186
+                          Roy's Greatest Root         3.67391304      14.70         1         4    0.0186
+                                                           The SAS System                         13:55 Wednesday, March 2, 2011   4
+
+                                                         The GLM Procedure
+                                               Repeated Measures Analysis of Variance
+                                     Univariate Tests of Hypotheses for Within Subject Effects
+
+                        Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+
+                        time                         1     16.90000000     16.90000000      14.70    0.0186
+                        Error(time)                  4      4.60000000      1.15000000                     

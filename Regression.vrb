@@ -1,0 +1,24 @@
+\frametitle {Regression results}\par {\scriptsize
+  \begin{verbatim}
+> summary(punting.2)
+
+Call:
+lm(formula = punt ~ right)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-15.7576 -11.0611   0.3656   7.8890  19.0423
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  -3.6930    25.2649  -0.146    0.886
+right         1.0427     0.1692   6.162 7.09e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 13.36 on 11 degrees of freedom
+Multiple R-squared: 0.7754, Adjusted R-squared: 0.7549
+F-statistic: 37.97 on 1 and 11 DF,  p-value: 7.088e-05
+
+  \end{verbatim}
+}

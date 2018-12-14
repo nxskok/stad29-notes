@@ -1,0 +1,138 @@
+\documentclass[pdf]{prosper}
+\usepackage[Lakar]{HA-prosper}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{slide}{Analysis of variance}
+
+  \begin{itemize}
+  \item Analysis of variance used with:
+    \begin{itemize}
+    \item counted/measured response
+    \item categorical explanatory variable(s)
+    \item that is, data divided into groups, and see if response significantly different among groups
+    \item or, see whether knowing group membership helps to predict response.
+    \end{itemize}
+  \item Typically two stages:
+    \begin{itemize}
+    \item $F$-test to detect {\em any} differences among/due to groups
+    \item if $F$-test significant, do {\em multiple comparisons} to see which groups significantly different from which.
+    \item Need special multiple comparisons method because just doing (say) two-sample $t$-tests on each pair of groups gives too big a chance of finding ``signficant'' differences by accident.
+    \end{itemize}
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Example: jumping rats}
+
+  \begin{itemize}
+  \item Link between exercise and healthy bones: exercise stresses bones and helps them grow stronger.
+  \item Study assessed effect of jumping on bone density of rats. Rats randomly assigned to one of 3 treatment groups:
+    \begin{itemize}
+    \item no jumping (control)
+    \item low-jump (30 cm)
+    \item high-jump (60 cm)
+    \end{itemize}
+  \item 8 jumps/day, 5 days/week, measure bone density (response) at end.
+  \item PROC GLM to analyze (or PROC ANOVA, only works for balanced designs).
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{The data}
+
+  \begin{itemize}
+  \item Some of the data (10 rats in each group). Data separated by tabs.
+\begin{verbatim}
+Control      1            603
+Control      1            569
+...
+Lowjump      2            635
+Lowjump      2            605
+...
+Highjump     3            643
+Highjump     3            650
+\end{verbatim}
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Code}
+\begin{itemize}
+  \item Code below. Note format for reading tab-separated data.
+\begin{verbatim}
+options linesize=70;
+
+data jumping;
+  infile "jumping.dat" delimiter='09'x;
+  input group $ g density;
+
+proc means;
+  var density;
+  class group;
+
+proc glm;
+  class group;
+  model density=group;
+  means group / tukey;
+  means group / bon;
+
+\end{verbatim}
+
+
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Comments}
+
+  \begin{itemize}
+  \item ``Straightforward'' one-way ANOVA.
+  \item Tukey's method asks: ``how far apart might lowest and highest sample group means be, if population means all same?''. Anything larger than that declared significantly different.
+  \item Bonferroni's method allows for number of paired comparisons, in general for $n$ groups is $n(n-1)/2$, here 3: divide $\alpha$ by 3 for each test (eg.\ $0.05/3=0.0167$). More ``conservative'' than Tukey.
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output part 1}
+
+{\scriptsize
+\begin{verbatim}
+                          Class Level Information
+ 
+             Class         Levels    Values
+
+             group              3    Control Highjump Lowjump 
+
+                  Number of Observations Read          30
+                  Number of Observations Used          30
+
+                             The GLM Procedure
+ 
+Dependent Variable: density   
+
+                                     Sum of
+ Source                    DF       Squares   Mean Square  F Value  Pr > F
+ Model                      2    7433.86667    3716.93333     7.98  0.0019
+ Error                     27   12579.50000     465.90741                 
+ Corrected Total           29   20013.36667                               
+
+ Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+ group                      2   7433.866667   3716.933333     7.98  0.0019
+
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+ group                      2   7433.866667   3716.933333     7.98  0.0019
+
+\end{verbatim}
+}
+
+$F$-tests for model as a whole and for groups (same) significant: there is effect of jumping on bone density. Use multiple comparisons to see what.
+  
+\end{slide}
+
+
+
+\end{document}
+
+%%%%%%%%%% junk

@@ -1,0 +1,164 @@
+1                                                          The SAS System                            12:15 Monday, February 27, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-38-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           1.30 seconds
+      cpu time            0.07 seconds
+      
+1          data manova1;
+2            infile "manova1.dat";
+3            input fertilizer $ yield weight;
+4            sum=yield+weight;
+5          
+
+NOTE: The infile "manova1.dat" is:
+      Filename=/home/ken/teaching/d29/notes/manova1.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rw-r--r--,
+      Last Modified=Tue Mar  8 12:55:25 2011,
+      File Size (bytes)=92
+
+NOTE: 8 records were read from the infile "manova1.dat".
+      The minimum record length was 10.
+      The maximum record length was 11.
+NOTE: The data set WORK.MANOVA1 has 8 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.24 seconds
+      cpu time            0.01 seconds
+      
+
+6          proc means;
+7            var yield weight;
+8            class fertilizer;
+9          
+2                                                          The SAS System                            12:15 Monday, February 27, 2012
+
+
+NOTE: There were 8 observations read from the data set WORK.MANOVA1.
+NOTE: The PROCEDURE MEANS printed page 1.
+NOTE: PROCEDURE MEANS used (Total process time):
+      real time           0.60 seconds
+      cpu time            0.10 seconds
+      
+
+10         proc glm;
+11           class fertilizer;
+12           model yield=fertilizer;
+13         
+
+NOTE: The PROCEDURE GLM printed pages 2-3.
+NOTE: PROCEDURE GLM used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.03 seconds
+      
+
+14         proc glm;
+15           class fertilizer;
+16           model weight=fertilizer;
+17         
+
+NOTE: The PROCEDURE GLM printed pages 4-5.
+NOTE: PROCEDURE GLM used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.02 seconds
+      
+
+18         proc gplot;
+19           plot yield*weight=fertilizer;
+20         
+
+NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
+WARNING: The specified value of 11.9802 inches for HSIZE= is larger than 8.1948 inches which is the maximum for the device Xcolor. 
+         HSIZE is ignored.
+WARNING: The specified value of 7.5248 inches for VSIZE= is larger than 4.6986 inches which is the maximum for the device Xcolor. 
+         VSIZE is ignored.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: There were 8 observations read from the data set WORK.MANOVA1.
+NOTE: PROCEDURE GPLOT used (Total process time):
+      real time           5.01 seconds
+      cpu time            0.38 seconds
+      
+
+21         proc glm;
+22           class fertilizer;
+23           model yield weight=fertilizer;
+24           manova h=_all_;
+25         
+
+NOTE: The PROCEDURE GLM printed pages 6-9.
+NOTE: PROCEDURE GLM used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.04 seconds
+      
+3                                                          The SAS System                            12:15 Monday, February 27, 2012
+
+
+26         proc discrim can out=fred;
+27           class fertilizer;
+28           var yield weight;
+29         
+
+NOTE: There were 8 observations read from the data set WORK.MANOVA1.
+NOTE: The data set WORK.FRED has 8 observations and 9 variables.
+NOTE: The PROCEDURE DISCRIM printed pages 10-16.
+NOTE: PROCEDURE DISCRIM used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.02 seconds
+      
+
+30         proc print data=fred;
+31         
+
+NOTE: There were 8 observations read from the data set WORK.FRED.
+NOTE: The PROCEDURE PRINT printed page 17.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+
+32         proc glm;
+33           class fertilizer;
+34           model sum=fertilizer;
+35             
+36         run;
+
+36       !     
+NOTE: The PROCEDURE GLM printed pages 18-19.
+NOTE: PROCEDURE GLM used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.02 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           7.75 seconds
+      cpu time            0.76 seconds
+      

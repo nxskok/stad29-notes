@@ -1,0 +1,603 @@
+\section{Survival analysis}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Survival analysis}
+
+  \begin{itemize}
+  \item So far, have seen:
+    \begin{itemize}
+    \item response variable counted or measured (regression)
+    \item response variable categorized (logistic regression)
+    \end{itemize}
+    and have predicted response from explanatory variables.
+  \item But what if response is time until event (eg.\ time of
+    survival after surgery)?
+  \item Additional complication: event might not have happened at end of study (eg.\ patient still alive). But knowing that patient has ``not died yet'' presumably informative. Such data called {\em censored}. 
+  \item Enter {\em survival analysis}, in particular the ``Cox proportional hazards model''. 
+  \item Explanatory variables in this context often called {\em covariates}.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example: still dancing?}
+
+  \begin{itemize}
+  \item 12 women who have just started taking dancing lessons are
+    followed for up to a year, to see whether they are still taking
+    dancing lessons, or have quit. The ``event'' here is ``quit''.
+  \item This might depend on:
+    \begin{itemize}
+    \item a treatment (visit to a dance competition)
+    \item woman's age (at start of study).
+    \end{itemize}
+  \item Data:
+
+{\scriptsize
+\begin{verbatim}
+Months  Quit   Treatment Age
+   1      1        0      16
+   2      1        0      24
+   2      1        0      18
+   3      0        0      27
+   4      1        0      25
+   7      1        1      26
+   8      1        1      36
+  10      1        1      38
+  10      0        1      45
+  12      1        1      47
+\end{verbatim}
+}
+
+  \end{itemize}
+  
+\end{frame}
+ 
+\begin{frame}[fragile]{About the data}
+
+  \begin{itemize}
+  \item \verb-months- and \verb-quit- are kind of combined response:
+    \begin{itemize}
+    \item  \verb-Months- is number of months a woman was actually observed dancing
+    \item \verb-quit- is 1 if woman quit, 0 if still dancing at end of study.
+    \end{itemize}
+  \item Treatment is 1 if woman went to dance competition, 0 otherwise.
+  \item Fit model and see whether \texttt{Age} or \texttt{Treatment}
+    have effect on survival.
+  \item Want to do predictions for probabilities of still dancing as
+    they depend on whatever is significant, and draw plot.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{The code}
+
+  \begin{itemize}
+  \item Install packages \texttt{survival} and \texttt{survminer} if not done. 
+  \item Load \texttt{survival}, \texttt{survminer},
+    \texttt{broom} and \texttt{tidyverse}
+    packages, read data (column-aligned):
+ 
+
+<<message=F>>=
+library(tidyverse)
+library(survival)
+library(survminer)
+library(broom)
+my_url="http://www.utsc.utoronto.ca/~butler/d29/dancing.txt"
+dance=read_table(my_url)
+@ %def 
+
+    
+
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<size="small">>=
+dance
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Examine response and fit model}
+  
+  \begin{itemize}
+  \item Response variable (has to be outside data frame):
+
+<<size="footnotesize">>=
+mth=with(dance,Surv(Months,Quit))
+mth
+@  
+
+  \item Then fit model, predicting \texttt{mth} from explanatories:
+
+ 
+<<>>=
+dance.1=coxph(mth~Treatment+Age,data=dance)
+@ %def 
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output looks a lot like regression}
+
+ 
+<<size="scriptsize">>=
+summary(dance.1)
+@ %def 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+
+  \begin{itemize}
+  \item Use $\alpha=0.10$ here since not much data.
+  \item Three tests at bottom like global F-test. Consensus that
+    something predicts survival time (whether or not dancer quit and how
+    long it took).
+  \item \texttt{Age} (definitely), \texttt{Treatment} (marginally) both
+    predict survival time.
+  \end{itemize}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model checking}
+  
+  \begin{itemize}
+  \item With regression, usually plot residuals against fitted values.
+  \item Not quite same here (nonlinear model), but ``martingale
+    residuals'' should have no pattern vs.\ ``linear predictor''.
+  \item \texttt{ggcoxdiagnostics} from package \texttt{survminer}
+    makes plot, to which we add smooth. If smooth trend more or less
+    straight across, model OK. 
+  \item Martingale residuals can go very negative, so won't always
+    look normal.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Martingale residual plot for dance data}
+  
+<<fig.height=3>>=
+ggcoxdiagnostics(dance.1)+geom_smooth(se=F)
+@   
+
+This looks good (with only 12 points).
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predicted survival probs}
+
+The function we use is called
+\texttt{survfit}, though actually works rather like
+\texttt{predict}. 
+
+First create a data frame of values to predict from. We'll do all
+combos of ages 20 and 40, treatment and not, using
+\texttt{crossing} to get all the combos:
+
+ 
+<<size="small">>=
+treatments=c(0,1)
+ages=c(20,40)
+dance.new=crossing(Treatment=treatments,Age=ages)
+dance.new
+@ %def 
+
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{The predictions}
+
+One prediction \emph{for each time} for each combo of age and treatment:
+
+<<echo=F>>=
+options(width=80)
+@ 
+ 
+<<size="footnotesize">>=
+s=survfit(dance.1,newdata=dance.new,data=dance)
+summary(s)
+@ %def 
+
+\begin{multicols}{2}
+<<size="scriptsize">>=
+t(dance.new)
+@ 
+
+\texttt{dance.new} transposed (flipped around) shows which combo the
+four lists of survival probabilities belong to.
+  
+\end{multicols}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions from predicted probs}
+
+  \begin{itemize}
+  \item Older women more likely to be still dancing than younger women
+    (compare ``profiles'' for same treatment group).
+  \item Effect of treatment seems to be to increase prob of still
+    dancing (compare ``profiles'' for same age for treatment group
+    vs.\ not)
+  \item Would be nice to see this on a graph. This is \texttt{ggsurvplot} from package \texttt{survminer}:
+<<>>=
+g=ggsurvplot(s,conf.int=F)
+@     
+    
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting survival probabilities}
+  
+<<fig.height=2.5>>=
+g
+@   
+
+\begin{small}
+\begin{tabular}{rrr}
+  Stratum& Age& Treatment \\
+  \hline
+  1 & 20 & no\\
+  2 & 20 & yes\\
+  3 & 40 & no\\
+  4 & 40 & yes\\
+  \hline
+\end{tabular}  
+\end{small}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Discussion}
+%  \includegraphics[width=2in]{dance-2}
+
+  
+  \begin{itemize}
+  \item Survivor curve farther to the right is better (better chance
+    of surviving longer).
+  \item Best is age 40 with treatment, worst age 20 without.
+  \item Appears to be:
+    \begin{itemize}
+    \item age effect (40 better than 20)
+    \item treatment effect (treatment better than not)
+    \end{itemize}
+  \item In analysis, treatment effect only marginally significant.
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{A more realistic example: lung cancer}
+
+
+\begin{itemize}
+\item When you
+load in an R package, get data sets to illustrate 
+functions in the package. 
+\item One such is \texttt{lung}. Data
+set measuring survival in patients with advanced lung cancer. 
+\item Along with survival time, number of ``performance scores''
+  included, measuring how well patients can perform daily
+  activities.
+\item Sometimes high good, but sometimes bad!
+\item Variables below,
+  from the help file data set (\texttt{?lung}).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{The variables}
+
+\includegraphics[width=\textwidth]{lung-cancer-data}  
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Uh oh, missing values}
+  
+<<size="tiny">>=
+lung %>% slice(1:16)
+@       
+  
+\end{frame}
+
+\begin{frame}[fragile]{A closer look}
+
+<<echo=F>>=
+options(width=90)
+@ 
+<<size="tiny">>=
+summary(lung)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove any obs with any missing values}
+  
+  
+<<size="small">>=
+cc=complete.cases(lung)
+lung %>% filter(cc) -> lung.complete
+lung.complete %>% 
+  select(meal.cal:wt.loss) %>% head(10)
+@   
+
+Missing values seem to be gone.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Check!}
+  
+<<size="tiny">>=
+summary(lung.complete)
+@   
+
+No missing values left.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model 1: use everything except \texttt{inst}}
+
+ 
+<<size="footnotesize">>=
+str(lung.complete)
+@ %def 
+
+
+<<>>=
+resp=with(lung.complete,Surv(time,status==2))
+lung.1=coxph(resp~.-inst-time-status,
+  data=lung.complete)
+@ %def 
+
+``Dot'' means ``all the other variables''.
+
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{summary} of model 1: too tiny to see!}
+
+ 
+<<size="tiny">>=
+summary(lung.1)
+@ %def 
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Overall significance}
+ 
+
+The three tests of overall significance:
+
+ 
+<<size="small">>=
+glance(lung.1)[c(4,6,8)]
+@ %def 
+
+All strongly significant. \emph{Something} predicts survival.  
+
+\end{frame}
+
+\begin{frame}[fragile]{Coefficients for model 1}
+  
+ 
+<<>>=
+tidy(lung.1) %>% select(term, p.value) %>% arrange(p.value)
+@ %def 
+
+
+  \begin{itemize}
+  \item Model as a whole significant (strongly)
+  \item \texttt{sex} and
+\texttt{ph.ecog} definitely significant
+\item \texttt{age}, \texttt{pat.karno} and
+\texttt{meal.cal} definitely not
+\item  others in
+between
+\item Take out the three variables that are definitely not
+significant, and try again.
+  \end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Model 2}
+
+ 
+<<size="footnotesize">>=
+lung.2=update(lung.1,.~.-age-pat.karno-meal.cal)
+tidy(lung.2) %>% select(term,p.value)
+@ %def 
+
+  \begin{itemize}
+    
+    \item Compare with first model:
+      
+<<size="footnotesize">>=
+anova(lung.2,lung.1)
+@       
+\item No harm in taking out those variables.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model 3, and last}
+
+
+Take out \texttt{ph.karno} and \texttt{wt.loss} as well.
+
+ 
+<<size="footnotesize">>=
+lung.3=update(lung.2,.~.-ph.karno-wt.loss)
+tidy(lung.3) %>% select(term,estimate,p.value)
+anova(lung.3, lung.2)
+@ %def 
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Commentary}
+  
+\begin{itemize}
+  \item OK (just) to take out those two covariates.
+\item Both remaining variables strongly significant.
+\item Effect on survival time:
+  \begin{itemize}
+  \item Higher value of \texttt{sex} (female) has \emph{negative} effect
+    on event (death).
+  \item Higher value of \texttt{ph.ecog} has \emph{positive} effect on death.
+  \item i.\ e.\ being female or having lower \texttt{ph.ecog} score has
+    positive effect on survival.
+  \end{itemize}
+\item Picture?
+\end{itemize}
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Plotting survival probabilities}
+
+  \begin{itemize}
+  \item Create new data frame of values to predict for, then predict:
+  \end{itemize}
+
+  
+ 
+<<size="footnotesize">>=
+sexes=c(1,2)
+ph.ecogs=0:3
+lung.new=crossing(sex=sexes,ph.ecog=ph.ecogs)
+lung.new
+s=survfit(lung.3,data=lung.complete,newdata=lung.new)
+@ %def 
+  
+ 
+\end{frame}
+
+
+\begin{frame}[fragile]{The plot}
+
+ 
+<<fig.height=4>>=
+ggsurvplot(s,conf.int=F)
+@ %def 
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Discussion of survival curves}
+
+  \begin{itemize}
+  \item Best survival is teal-blue curve, stratum 5, females with
+    (\texttt{ph.ecog}) score 0.
+    \item Next best: blue, stratum 6, females with score 1, and
+      red, stratum 1, males score 0.
+    \item Worst: green, stratum 4, males score 3.
+      \item For any given \texttt{ph.ecog} score, females have better
+        predicted survival than males.
+      \item For both genders, a lower score associated with better
+        survival.
+  \item \texttt{sex} coeff in model 3 negative, so being higher
+    \texttt{sex} value (female) goes with \emph{less} hazard of dying.
+  \item \texttt{ph.ecog} coeff in model 3 positive, so higher
+    \texttt{ph.ecog} score goes with \emph{more} hazard of dying
+  \item Two coeffs about same size, so being male rather than female
+    corresponds to 1-point increase in \texttt{ph.ecog} score. Note
+    how survival curves come in 3 pairs plus 2 odd.
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Martingale residuals for this model}
+  
+<<fig.height=2.25>>=
+ggcoxdiagnostics(lung.3)+geom_smooth(se=F)
+@   
+
+No problems here.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{When the Cox model fails}
+  \begin{itemize}
+  \item Invent some data where survival is best at middling age, and
+    worse at high \emph{and} low age:
+
+<<>>=
+age=seq(20,60,5)
+survtime=c(10,12,11,21,15,20,8,9,11)
+stat=c(1,1,1,1,0,1,1,1,1)
+d=tibble(age,survtime,stat)
+y=with(d,Surv(survtime,stat))
+@     
+
+\item Small survival time 15 in middle was actually censored, so would
+  have been longer if observed.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fit Cox model}
+  
+  \begin{footnotesize}
+<<>>=
+y.1=coxph(y~age,data=d)
+summary(y.1)
+@   
+    
+  \end{footnotesize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Martingale residuals}
+
+<<fig.height=2.25>>=
+ggcoxdiagnostics(y.1)+geom_smooth(se=F)
+@   
+
+Down-and-up indicates incorrect relationship between age and
+survival. Add age-squared term.
+\end{frame}
+
+\begin{frame}[fragile]{Attempt 2}
+  
+<<size="scriptsize">>=
+y.2=coxph(y~age+I(age^2),data=d)
+summary(y.2)
+@       
+  
+\end{frame}
+
+\begin{frame}[fragile]{Martingale residuals this time}
+  
+<<fig.height=2.5>>=
+ggcoxdiagnostics(y.2)+geom_smooth(se=F)
+@   
+
+Not great, but less problematic than before.
+
+% <<echo=F>>=
+% pkgs = names(sessionInfo()$otherPkgs) 
+% pkgs=paste('package:', pkgs, sep = "")
+% x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+% @   
+
+
+\end{frame}
+

@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Statweave}{}
+
+%%% Statweave.sty - LaTeX package for formatting Statweave chunks
+%%% Adapted by Russ Lenth from Sweave.sty, by F. Leisch
+
+\RequirePackage{ifthen}
+
+%%% Options: 
+%     tOne|notOne   -- use|don't use T1-encoded fonts
+%     ae|noae       -- load|don't load the ae package
+%
+\newboolean{Statweave@tOne}
+\setboolean{Statweave@tOne}{true}
+\newboolean{Statweave@ae}
+\setboolean{Statweave@ae}{false}
+
+\DeclareOption{tOne}{\setboolean{Statweave@tOne}{true}}
+\DeclareOption{notOne}{\setboolean{Statweave@tOne}{false}}
+\DeclareOption{ae}{\setboolean{Statweave@ae}{true}}
+\DeclareOption{noae}{\setboolean{Statweave@ae}{false}}
+\ProcessOptions
+
+\RequirePackage{graphicx,fancyvrb}
+
+\ifthenelse{\boolean{Statweave@tOne}}{\RequirePackage[T1]{fontenc}}{} 
+\ifthenelse{\boolean{Statweave@ae}}{\RequirePackage{ae}}{} 
+
+\IfFileExists{upquote.sty}{\RequirePackage{upquote}}{}
+
+\DefineVerbatimEnvironment{Winput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Woutput}{Verbatim}{}
+
+%%% Convenience in case you want to directly run LaTeX on a Statweave source
+%%% (Identical to Statinput)
+\DefineVerbatimEnvironment{Statcode}{Verbatim}{fontsize=\small,fontshape=sl}

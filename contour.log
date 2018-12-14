@@ -1,0 +1,111 @@
+1                                                          The SAS System                            16:35 Friday, February 11, 2011
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-28-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.12 seconds
+      cpu time            0.04 seconds
+      
+1          data xyz;
+2              do y=-2 to 2 by 0.1;
+3                  do x=-0.5 to 3 by 0.1;
+4                      z=(1-y)**2+100*(x-y**2)**2;
+5                      output;
+6                      end;
+7                  end;
+8          
+
+NOTE: The data set WORK.XYZ has 1476 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+9          proc print;
+10         
+
+NOTE: There were 1476 observations read from the data set WORK.XYZ.
+NOTE: The PROCEDURE PRINT printed pages 1-27.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.08 seconds
+      
+
+11         proc g3d;
+2                                                          The SAS System                            16:35 Friday, February 11, 2011
+
+12             plot y*x=z;
+13         
+
+NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
+WARNING: The specified value of 12.6042 inches for HSIZE= is larger than 8.7309 inches which is the maximum for the device Xcolor. 
+         HSIZE is ignored.
+WARNING: The specified value of 10.0938 inches for VSIZE= is larger than 4.9309 inches which is the maximum for the device Xcolor. 
+         VSIZE is ignored.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: PROCEDURE G3D used (Total process time):
+      real time           1.26 seconds
+      cpu time            0.34 seconds
+      
+
+14         proc gcontour;
+15             plot y*x=z / autolabel levels=0, 20, 50, 100, 200, 400, 800;
+16         
+17         
+18         run;
+
+NOTE: The contour level 0 is less than the lowest value of the variable z, which is 2.087523E-28.
+NOTE: Some labeling attempts for contour level 20 failed.
+NOTE: Some labeling attempts for contour level 50 failed.
+NOTE: Some labeling attempts for contour level 100 failed.
+NOTE: Some labeling attempts for contour level 200 failed.
+NOTE: Some labeling attempts for contour level 400 failed.
+NOTE: Some labeling attempts for contour level 800 failed.
+NOTE: More labels may be produced by reducing potential label collisions and by increasing the proportion of usable contours. 
+      Collisions may be reduced by decreasing the label size via the H= symbol statement option or by softening label collision 
+      checking with AUTOLABEL=(CHECK=), or setting it to NONE. More contour curves can be qualified for labeling attempts by 
+      increasing the AUTOLABEL=(TOLANGLE=) angle as well.
+WARNING: The specified value of 12.6042 inches for HSIZE= is larger than 8.7309 inches which is the maximum for the device Xcolor. 
+         HSIZE is ignored.
+WARNING: The specified value of 10.0938 inches for VSIZE= is larger than 4.9309 inches which is the maximum for the device Xcolor. 
+         VSIZE is ignored.
+NOTE: There were 1476 observations read from the data set WORK.XYZ.
+NOTE: PROCEDURE GCONTOUR used (Total process time):
+      real time           40.66 seconds
+      cpu time            0.16 seconds
+      
+
+19         
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           42.16 seconds
+      cpu time            0.65 seconds
+      

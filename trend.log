@@ -1,0 +1,108 @@
+1                                                          The SAS System                              16:03 Tuesday, March 27, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-40-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.11 seconds
+      cpu time            0.05 seconds
+      
+1          data ts;
+2            infile "trend.dat" termstr=crlf;
+3            input x; 	
+4          
+
+NOTE: The infile "trend.dat" is:
+      Filename=/home/ken/teaching/d29/notes/trend.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rwxr-xr-x,
+      Last Modified=Mon Mar 26 15:30:57 2012,
+      File Size (bytes)=797
+
+NOTE: 99 records were read from the infile "trend.dat".
+      The minimum record length was 6.
+      The maximum record length was 7.
+NOTE: The data set WORK.TS has 99 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.02 seconds
+      
+
+5          proc arima;
+6            identify var=x scan esacf stationarity=(adf=(0,1,2));
+7          
+
+NOTE: The PROCEDURE ARIMA printed pages 1-4.
+2                                                          The SAS System                              16:03 Tuesday, March 27, 2012
+
+NOTE: PROCEDURE ARIMA used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.10 seconds
+      
+
+8          proc arima;
+9            identify var=x(1) scan esacf stationarity=(adf=(0,1,2));
+10         
+
+NOTE: The PROCEDURE ARIMA printed pages 5-8.
+NOTE: PROCEDURE ARIMA used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+11         proc arima;
+12           identify var=x(1);
+13           estimate p=0 q=2;
+14           forecast;
+15         
+
+NOTE: The PROCEDURE ARIMA printed pages 9-12.
+NOTE: PROCEDURE ARIMA used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+16         proc arima;
+17           identify var=x(1);
+18           estimate p=2 q=2;
+19           forecast;
+20         
+21         run;
+
+21       !     
+NOTE: The PROCEDURE ARIMA printed pages 13-16.
+NOTE: PROCEDURE ARIMA used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           0.26 seconds
+      cpu time            0.19 seconds
+      

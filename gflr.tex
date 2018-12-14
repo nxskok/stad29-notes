@@ -1,0 +1,562 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+\title{\texttt{gather}, factors and logistic regression}
+\author{Ken Butler}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+\maketitle
+
+\section{\texttt{gather}}
+
+\texttt{gather} is a handy tool from the \texttt{tidyr} package that
+is used for gathering up columns of a data frame that are not
+variables in themselves but levels of a factor. This is an example:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d}\hlkwb{=}\hlkwd{data.frame}\hlstd{(}\hlkwc{x}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,}\hlkwc{early}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,}\hlnum{11}\hlstd{,}\hlnum{11}\hlstd{,}\hlnum{13}\hlstd{,}\hlnum{15}\hlstd{),}\hlkwc{late}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{12}\hlstd{,}\hlnum{12}\hlstd{,}\hlnum{11}\hlstd{,}\hlnum{14}\hlstd{,}\hlnum{16}\hlstd{))}
+\hlstd{d}
+\end{alltt}
+\begin{verbatim}
+##   x early late
+## 1 1    10   12
+## 2 2    11   12
+## 3 3    11   11
+## 4 4    13   14
+## 5 5    15   16
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Suppose \texttt{early} and \texttt{late} are a response
+variable \texttt{y} that is measured early and late in the course of
+the experiment. Then it would be better to have all the values in one
+column \texttt{y} with a label \texttt{timepoint} that says whether
+they were measured early or late. This is done with \texttt{gather}
+like this:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(tidyr)}
+\hlstd{d2}\hlkwb{=}\hlkwd{gather}\hlstd{(d,timepoint,y,early}\hlopt{:}\hlstd{late)}
+\hlstd{d2}
+\end{alltt}
+\begin{verbatim}
+##    x timepoint  y
+## 1  1     early 10
+## 2  2     early 11
+## 3  3     early 11
+## 4  4     early 13
+## 5  5     early 15
+## 6  1      late 12
+## 7  2      late 12
+## 8  3      late 11
+## 9  4      late 14
+## 10 5      late 16
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+This is all fine and well. We'd expect \texttt{timepoint} to be a
+factor since it is a categorical variable that distinguishes the
+timepoints in the experiment where the measurements were taken. Is it?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{str}\hlstd{(d2)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	10 obs. of  3 variables:
+##  $ x        : int  1 2 3 4 5 1 2 3 4 5
+##  $ timepoint: chr  "early" "early" "early" "early" ...
+##  $ y        : num  10 11 11 13 15 12 12 11 14 16
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+No, it is \texttt{chr} or ``text''. I find this odd, but I know that
+Hadley Wickham, who wrote \texttt{tidyr}, has a thing about factors
+and likes things to be text.\footnote{To be fairer to his point of
+  view, I think he prefers that we should \emph{deliberately create}
+  factors when we need them, and not have factors pop out of functions
+unexpectedly.} \emph{I} like factors to be
+factors. Sometimes it matters what kind of variable you have and
+sometimes it doesn't. For example, what if we want the mean value of
+\texttt{y} at each timepoint?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{aggregate}\hlstd{(y}\hlopt{~}\hlstd{timepoint,d2,mean)}
+\end{alltt}
+\begin{verbatim}
+##   timepoint  y
+## 1     early 12
+## 2      late 13
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+That works. 
+
+\section{Logistic regression}
+
+What about if we do a (stupid\footnote{We might have been asking a
+  different question: what is it about $x$ and $y$ that makes the
+  timepoints different? This is what discriminant analysis does, which
+we see later.}) logistic regression to
+predict timepoint from \texttt{x} and \texttt{y}?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{timepoint.1}\hlkwb{=}\hlkwd{glm}\hlstd{(timepoint}\hlopt{~}\hlstd{x}\hlopt{+}\hlstd{y,d2,}\hlkwc{family}\hlstd{=}\hlstr{"binomial"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): y values must be 0 <= y <= 1}}\end{kframe}
+\end{knitrout}
+That doesn't seem to work (and gives an arcane error). What R means by
+\texttt{y} is the response variable (the help for \texttt{glm} calls
+that \texttt{y}); it's trying to infer what we meant, and the best it
+can do is to guess that we were trying to have a numeric response
+variable where 1 is success and 0 is failure. That this wasn't what we
+were trying to do isn't R's fault, really.
+
+Fortunately, we can make \texttt{gather} produce a factor instead. I
+just discovered this today. Here's how it's done:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d2}\hlkwb{=}\hlkwd{gather}\hlstd{(d,timepoint,y,early}\hlopt{:}\hlstd{late,}\hlkwc{factor_key}\hlstd{=T)}
+\hlkwd{str}\hlstd{(d2)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	10 obs. of  3 variables:
+##  $ x        : int  1 2 3 4 5 1 2 3 4 5
+##  $ timepoint: Factor w/ 2 levels "early","late": 1 1 1 1 1 2 2 2 2 2
+##  $ y        : num  10 11 11 13 15 12 12 11 14 16
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Indeed, \texttt{timepoint} is now a factor. Does a logistic regression
+now work?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{timepoint.1}\hlkwb{=}\hlkwd{glm}\hlstd{(timepoint}\hlopt{~}\hlstd{x}\hlopt{+}\hlstd{y,d2,}\hlkwc{family}\hlstd{=}\hlstr{"binomial"}\hlstd{)}
+\hlkwd{summary}\hlstd{(timepoint.1)}
+\end{alltt}
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = timepoint ~ x + y, family = "binomial", data = d2)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -1.30584  -0.96714  -0.03815   0.81619   1.97498  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(>|z|)
+## (Intercept) -10.9416     7.9504  -1.376    0.169
+## x            -1.3547     1.1369  -1.192    0.233
+## y             1.2008     0.8655   1.387    0.165
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 13.863  on 9  degrees of freedom
+## Residual deviance: 11.184  on 7  degrees of freedom
+## AIC: 17.184
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+This now works, showing that \texttt{glm} (with
+\texttt{family="binomial"}) needs a genuine factor for a response variable.
+
+\section{Ordinal logistic regression}
+
+Let's do one like the coal-miners example from class. I'll make up
+some data in similar format, with explanatory variable
+\texttt{exposure} and a three-category response \texttt{low},
+\texttt{medium}, \texttt{high} and frequencies in the cells:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ord.wide}\hlkwb{=}\hlkwd{data.frame}\hlstd{(}\hlkwc{exposure}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,}\hlkwc{low}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,}\hlnum{9}\hlstd{,}\hlnum{7}\hlstd{,}\hlnum{5}\hlstd{),}\hlkwc{med}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{),}
+  \hlkwc{high}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{3}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{6}\hlstd{,}\hlnum{8}\hlstd{))}
+\hlstd{ord.wide}
+\end{alltt}
+\begin{verbatim}
+##   exposure low med high
+## 1        1  10   0    3
+## 2        2   9   1    4
+## 3        3   7   1    6
+## 4        4   5   2    8
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+This is also untidy since we need all the frequencies in one column
+(``low'', ``med'', ``high'' are not variable names but levels of a
+factor with a name like ``severity''). The remedy is as above:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ord}\hlkwb{=}\hlkwd{gather}\hlstd{(ord.wide,severity,frequency,low}\hlopt{:}\hlstd{high)}
+\hlstd{ord}
+\end{alltt}
+\begin{verbatim}
+##    exposure severity frequency
+## 1         1      low        10
+## 2         2      low         9
+## 3         3      low         7
+## 4         4      low         5
+## 5         1      med         0
+## 6         2      med         1
+## 7         3      med         1
+## 8         4      med         2
+## 9         1     high         3
+## 10        2     high         4
+## 11        3     high         6
+## 12        4     high         8
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+That variable \texttt{severity} is text, not a factor:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{str}\hlstd{(ord)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	12 obs. of  3 variables:
+##  $ exposure : int  1 2 3 4 1 2 3 4 1 2 ...
+##  $ severity : chr  "low" "low" "low" "low" ...
+##  $ frequency: num  10 9 7 5 0 1 1 2 3 4 ...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Does that matter, when we come to predict severity from exposure?
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(MASS)}
+\hlstd{severity.1}\hlkwb{=}\hlkwd{polr}\hlstd{(severity}\hlopt{~}\hlstd{exposure,}\hlkwc{data}\hlstd{=ord,}\hlkwc{weights}\hlstd{=frequency)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in polr(severity \textasciitilde{} exposure, data = ord, weights = frequency): response must be a factor}}\end{kframe}
+\end{knitrout}
+
+Yes, it does matter, and this time, we got a nice clear error message
+telling us so. So we'll use the variant of \texttt{gather} that
+we saw just now:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ord}\hlkwb{=}\hlkwd{gather}\hlstd{(ord.wide,severity,frequency,low}\hlopt{:}\hlstd{high,}\hlkwc{factor_key}\hlstd{=T)}
+\hlkwd{str}\hlstd{(ord)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	12 obs. of  3 variables:
+##  $ exposure : int  1 2 3 4 1 2 3 4 1 2 ...
+##  $ severity : Factor w/ 3 levels "low","med","high": 1 1 1 1 2 2 2 2 3 3 ...
+##  $ frequency: num  10 9 7 5 0 1 1 2 3 4 ...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Look carefully at the levels listed for \texttt{severity}: they are
+low, medium, high \emph{in that order}. That is the order we want,
+and not the alphabetical order that we might have gotten. What
+\texttt{gather} does, when run this way, is to create a factor
+\emph{whose levels are in the order that they appear in the data
+  frame}. So if that's what you want, as it is here, this is the way
+to make it happen.
+
+So now the ordinal logistic regression should run with no problems:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{severity.1}\hlkwb{=}\hlkwd{polr}\hlstd{(severity}\hlopt{~}\hlstd{exposure,}\hlkwc{data}\hlstd{=ord,}\hlkwc{weights}\hlstd{=frequency)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+and we can test for an effect of exposure thus, with the first line
+saying ``take \texttt{exposure} out of the previous model'':
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{severity.0}\hlkwb{=}\hlkwd{update}\hlstd{(severity.1,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{exposure)}
+\hlkwd{anova}\hlstd{(severity.0,severity.1)}
+\end{alltt}
+\begin{verbatim}
+## Likelihood ratio tests of ordinal regression models
+## 
+## Response: severity
+##      Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
+## 1        1        54   98.97189                                 
+## 2 exposure        53   93.65444 1 vs 2     1 5.317443 0.02111297
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Exposure has a significant but not strongly significant  effect,
+probably because there wasn't all that much (made-up) data.
+
+\section{Multinomial logistic regression}
+
+Our model for this one is the alligator question on the
+assignment. Let's think about favourite foods by age (presumably of
+humans), with made-up data like this, and the extra columns being
+frequencies again:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{food}\hlkwb{=}\hlkwd{data.frame}\hlstd{(}\hlkwc{age}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{12}\hlstd{,}\hlnum{14}\hlstd{,}\hlnum{16}\hlstd{,}\hlnum{21}\hlstd{,}\hlnum{22}\hlstd{),}\hlkwc{meat}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{4}\hlstd{,}\hlnum{5}\hlstd{),}
+  \hlkwc{fish}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{),}\hlkwc{ketchup}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{20}\hlstd{,}\hlnum{12}\hlstd{,}\hlnum{5}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{),}
+  \hlkwc{chicken.nuggets}\hlstd{=}\hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,}\hlnum{8}\hlstd{,}\hlnum{2}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
+\hlstd{food}
+\end{alltt}
+\begin{verbatim}
+##   age meat fish ketchup chicken.nuggets
+## 1  12    1    0      20              10
+## 2  14    2    0      12               8
+## 3  16    4    1       5               2
+## 4  21    4    1       2               1
+## 5  22    5    1       1               1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+The last four columns are favourite foods and frequency of each, so
+we'll do the same \texttt{gather} thing that we did last time:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{food2}\hlkwb{=}\hlkwd{gather}\hlstd{(food,favourite,frequency,meat}\hlopt{:}\hlstd{chicken.nuggets)}
+\hlstd{food2}
+\end{alltt}
+\begin{verbatim}
+##    age       favourite frequency
+## 1   12            meat         1
+## 2   14            meat         2
+## 3   16            meat         4
+## 4   21            meat         4
+## 5   22            meat         5
+## 6   12            fish         0
+## 7   14            fish         0
+## 8   16            fish         1
+## 9   21            fish         1
+## 10  22            fish         1
+## 11  12         ketchup        20
+## 12  14         ketchup        12
+## 13  16         ketchup         5
+## 14  21         ketchup         2
+## 15  22         ketchup         1
+## 16  12 chicken.nuggets        10
+## 17  14 chicken.nuggets         8
+## 18  16 chicken.nuggets         2
+## 19  21 chicken.nuggets         1
+## 20  22 chicken.nuggets         1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Since we didn't say anything about \verb-factor_key-,
+\texttt{favourite} is presumably text:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{str}\hlstd{(food2)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	20 obs. of  3 variables:
+##  $ age      : num  12 14 16 21 22 12 14 16 21 22 ...
+##  $ favourite: chr  "meat" "meat" "meat" "meat" ...
+##  $ frequency: num  1 2 4 4 5 0 0 1 1 1 ...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Does that matter, as far as \texttt{multinom} is concerned? Let's see:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(nnet)}
+\hlstd{favourite.1}\hlkwb{=}\hlkwd{multinom}\hlstd{(favourite}\hlopt{~}\hlstd{age,}\hlkwc{data}\hlstd{=food2,}\hlkwc{weight}\hlstd{=frequency)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  12 (6 variable)
+## initial  value 112.289843 
+## iter  10 value 79.096874
+## iter  20 value 78.929272
+## iter  20 value 78.929272
+## iter  20 value 78.929272
+## final  value 78.929272 
+## converged
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+That seems to have worked, this time. Let's see if some predictions
+look reasonable:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ages}\hlkwb{=}\hlkwd{c}\hlstd{(}\hlnum{12}\hlstd{,}\hlnum{15}\hlstd{,}\hlnum{18}\hlstd{,}\hlnum{21}\hlstd{)}
+\hlstd{ages}
+\end{alltt}
+\begin{verbatim}
+## [1] 12 15 18 21
+\end{verbatim}
+\begin{alltt}
+\hlstd{new}\hlkwb{=}\hlkwd{expand.grid}\hlstd{(}\hlkwc{age}\hlstd{=ages)}
+\hlstd{new}
+\end{alltt}
+\begin{verbatim}
+##   age
+## 1  12
+## 2  15
+## 3  18
+## 4  21
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+%$ %$
+
+I didn't really need to use \texttt{expand.grid} this time, since you
+can't really get ``all combinations'' of only one variable, but the
+advantage of doing it like this is that I can go my standard way
+without thinking too much. Then:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{pp}\hlkwb{=}\hlkwd{predict}\hlstd{(favourite.1,new,}\hlkwc{type}\hlstd{=}\hlstr{"p"}\hlstd{)}
+\hlkwd{cbind}\hlstd{(new,pp)}
+\end{alltt}
+\begin{verbatim}
+##   age chicken.nuggets        fish   ketchup       meat
+## 1  12       0.3247425 0.005267543 0.6183078 0.05168222
+## 2  15       0.3003234 0.019592473 0.5311357 0.14894845
+## 3  18       0.2246841 0.058952666 0.3690960 0.34726731
+## 4  21       0.1190804 0.125661533 0.1817012 0.57355690
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+You see that the probability of favourite food being chicken nuggets
+or ketchup decreases sharply with age, while that of fish or meat goes
+up with age. (I made up the data to illustrate precisely this point,
+so it wasn't exactly a surprise to me.)
+
+\section{Conclusions}
+
+I think there are two major conclusions to come from this:
+
+\begin{enumerate}
+\item \texttt{gather}, when it gathers up columns, creates a ``key''
+  column, saying which original column each observation came from. By
+  default, \emph{that column is text, not a factor}. But you can make
+  it be a factor by adding \verb-factor_key=T- to your
+  \texttt{gather}. In the examples we have seen here, it is
+  \emph{always safe} to do this, but sometimes
+  unnecessary.\footnote{In my opinion, the default output of
+    \texttt{gather} should be a factor, but that's not the way it is,
+    so we have to live with it.}
+  
+\item Both the \texttt{glm} and \texttt{polr} versions of logistic
+  regression \emph{require} a factor response variable. For
+  \texttt{multinom}, the response variable can be a \texttt{chr}
+  (text) variable, but it could be a factor as well.
+\end{enumerate}
+
+My advice in these situations is currently this (but subject to change
+as I learn more): when you do a \texttt{gather}, think about what
+you are going to use the new data frame for. Typically, you are going
+to be doing some kind of modelling. If you are likely to need the
+``what makes them different'' column to be a factor, rather than just
+text, put the \verb-factor_key=T- in your \texttt{gather}. That would
+apply in all three cases here: we're going to use it as a
+response\footnote{The same applies if it's going to be a factor
+  explanatory variable in a regression. A text variable won't work
+  here either.}
+variable, so we can play it safe and make it into a
+factor.\footnote{And thus ignoring the fact that \texttt{multinom}
+  doesn't need a factor to work properly, for the sake of a uniform treatment.}
+
+\end{document}

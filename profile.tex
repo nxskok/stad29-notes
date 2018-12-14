@@ -1,0 +1,121 @@
+\documentclass{article}
+\title{The profile data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+bellydancer 7 10 6 5 
+bellydancer 8 9 5 7 
+bellydancer 5 10 5 8 
+bellydancer 6 10 6 8 
+bellydancer 7 8 7 9 
+politician  4 4 4 4 
+politician 6 4 5 3 
+politician 5 5 5 6  
+politician 6 6 6 7  
+politician 4 5 6 5 
+admin 3 1 1 2 
+admin 5 3 1 5 
+admin 4 2 2 5 
+admin 7 1 2 4 
+admin 6 3 3 3 
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+options linesize=80;
+
+data profile;
+  infile "profile.dat";
+  input group $ read dance tv ski;
+
+proc means;
+
+proc glm;
+  class group;
+  model read dance tv ski = group / nouni;
+  repeated activity 4 profile;
+  lsmeans group;
+
+run;
+\end{Winput}
+\begin{Woutput}
+The MEANS Procedure
+Variable     N            Mean         Std Dev         Minimum         Maximum
+------------------------------------------------------------------------------
+read        15       5.5333333       1.4074631       3.0000000       8.0000000
+dance       15       5.4000000       3.2689011       1.0000000      10.0000000
+tv          15       4.2666667       1.9808608       1.0000000       7.0000000
+ski         15       5.4000000       2.0632845       2.0000000       9.0000000
+------------------------------------------------------------------------------
+
+The GLM Procedure
+            Class Level Information
+Class         Levels    Values
+group              3    admin bellydan politici
+
+Number of Observations Read          15
+Number of Observations Used          15
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+           Repeated Measures Level Information
+Dependent Variable        read    dance       tv      ski
+ Level of activity           1        2        3        4
+
+                  MANOVA Test Criteria and Exact F Statistics
+                    for the Hypothesis of no activity Effect
+                     H = Type III SSCP Matrix for activity
+                             E = Error SSCP Matrix
+                              S=1    M=0.5    N=4
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.27913735       8.61         3        10    0.0040
+Pillai's Trace              0.72086265       8.61         3        10    0.0040
+Hotelling-Lawley Trace      2.58246571       8.61         3        10    0.0040
+Roy's Greatest Root         2.58246571       8.61         3        10    0.0040
+
+                 MANOVA Test Criteria and F Approximations for
+                   the Hypothesis of no activity*group Effect
+                  H = Type III SSCP Matrix for activity*group
+                             E = Error SSCP Matrix
+                               S=2    M=0    N=4
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.07627855       8.74         6        20    <.0001
+Pillai's Trace              1.43341443       9.28         6        22    <.0001
+Hotelling-Lawley Trace      5.42784967       8.73         6    11.714    0.0009
+Roy's Greatest Root         3.54059987      12.98         3        11    0.0006
+         NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+                 NOTE: F Statistic for Wilks' Lambda is exact.
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+Tests of Hypotheses for Between Subjects Effects
+Source                     DF    Type III SS    Mean Square   F Value   Pr > F
+group                       2    172.9000000     86.4500000     44.14   <.0001
+Error                      12     23.5000000      1.9583333
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+Univariate Tests of Hypotheses for Within Subject Effects
+Source                     DF    Type III SS    Mean Square   F Value   Pr > F
+activity                    3    15.78333333     5.26111111      4.72   0.0070
+activity*group              6    55.36666667     9.22777778      8.28   <.0001
+Error(activity)            36    40.10000000     1.11388889
+                          Adj Pr > F
+Source                  G - G     H-F-L
+activity               0.0126    0.0070
+activity*group         <.0001    <.0001
+Error(activity)
+
+Greenhouse-Geisser Epsilon      0.7986
+Huynh-Feldt-Lecoutre Epsilon    1.0115
+
+The GLM Procedure
+Least Squares Means
+group        read LSMEAN    dance LSMEAN       tv LSMEAN      ski LSMEAN
+admin         5.00000000      2.00000000      1.80000000      3.80000000
+bellydan      6.60000000      9.40000000      5.80000000      7.40000000
+politici      5.00000000      4.80000000      5.20000000      5.00000000
+\end{Woutput}
+\end{document}

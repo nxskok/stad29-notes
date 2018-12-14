@@ -1,0 +1,336 @@
+\section{Introduction to R}
+\frame{\sectionpage}
+
+\begin{frame}{Getting and installing R}
+  
+  \begin{itemize}
+  \item Available for Windows, Mac, Linux.
+  \item Get R from \url{www.r-project.org}, install (standard way).
+  \item Get R Studio from \url{www.rstudio.org}, install.
+  \item R Studio is nicer-looking ``front end'' to R.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Introduction to R}
+  
+  \begin{itemize}
+  \item Start up R Studio.
+  \item Look for Console Window (bottom left) with \texttt{>} prompt,
+    click on window.
+  \item Type R commands there, see output (\emph{not} point and
+    click!). Eg:
+
+<<setup,echo=F>>=
+#opts_chunk$set(dev = 'pdf')
+#opts_chunk$set(comment=NA, fig.width=5, fig.height=4)
+options(width=40)
+suppressMessages(library(tidyverse))
+@ %def 
+
+    
+<<>>=
+x=c(10,11,13,14,17,18,22,24,27,41)
+@ %def 
+\item ``Glue those numbers into a ``list'' and save it in
+  \texttt{x}'', \texttt{x} called a \textbf{variable}. To see what's
+  in a variable, type its name:
+  
+  
+ 
+<<>>=
+x
+@ %def 
+
+\item Another variable and its value, ``5 through 37'':
+
+{\small  
+ 
+<<>>=
+z=5:37
+z
+@ %def 
+}  
+  
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Statistics on variables}
+  
+  \begin{itemize}
+  \item A ``summary'' of \texttt{x}:
+ 
+<<>>=
+summary(x)
+@ %def 
+
+\begin{multicols}{2}
+
+\item Or: mean:
+<<>>=
+mean(x)
+@ %def 
+
+\item median:
+  
+ 
+<<>>=
+median(x)
+@ %def 
+  
+\item standard deviation:
+  
+ 
+<<>>=
+sd(x)
+@ %def 
+
+\item inter-quartile range (note UPPERCASE):
+  
+ 
+<<>>=
+IQR(x)
+@ %def 
+  
+\end{multicols}
+  
+  
+
+    
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Histogram}
+  
+<<histo,fig.height=4>>=
+hist(x)
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Better histogram}
+
+  See \texttt{ggplot} section.
+  
+<<binsg,fig.height=3.5>>=
+d=data.frame(x)
+ggplot(d,aes(x))+geom_histogram(bins=7) 
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Boxplot (comments next page)}
+  
+ 
+<<aslkhrliuf,fig.height=4>>=
+boxplot(x)
+@ %def 
+   
+  
+\end{frame}
+
+\begin{frame}[fragile]{About the boxplot}
+  
+  \begin{itemize}
+  \item Like histogram, shows centre, shape and spread of distribution.
+  \item Based on median and quartiles.
+  \item Middle of box is \textbf{median}.
+  \item Top and bottom of  box are \textbf{quartiles}.
+  \item Any values more than 1.5 times IQR below Q1 or above Q3
+    considered \emph{outliers}, plotted separately.
+  \item ``Whiskers'' join quartiles to most extreme data values.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reading data from text files}
+  
+  \begin{itemize}
+  \item Text file like this, values separated by \emph{whitespace}:
+\begin{verbatim}
+xx yy   group
+1  10   red
+2   9   green
+3  11   red
+4  12   green
+5  11   red
+\end{verbatim}
+  \item Saved in file \texttt{mydata.txt}. Read in via
+    \texttt{read.table} and save in variable:
+ 
+<<>>=
+my.data=read.table("mydata.txt",header=T)
+my.data
+@ %def 
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Getting the right folder}
+  
+  \begin{itemize}
+  \item Sometimes R cannot find a data file.
+  \item Set R's ``working directory'' to folder where data file is:
+    \begin{itemize}
+    \item In R Studio, select Session Menu, Set Working Directory,
+      Choose Working Directory.
+    \item Browse to folder where your data file is.
+    \item Initially shows you what folder R is ``in''.
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Data frame}
+  
+  \begin{itemize}
+  \item \texttt{my.data} example of \textbf{data frame}: rows are
+    observations, columns variables.
+  \item \texttt{read.table} automatically creates data frame from text file.
+  \item Columns by name:
+ 
+<<>>=
+my.data$xx
+my.data$group
+@ %def 
+
+\item Or, to save the \texttt{\$} stuff:
+  
+ 
+<<>>=
+attach(my.data)
+group
+@ %def 
+  
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Rows and columns by number}
+  \begin{multicols}{2}
+  \begin{itemize}
+
+    
+  \item \texttt{my.data}:
+ 
+<<>>=
+my.data
+@ %def 
+    
+  \item The value in 3rd row and 2nd column:
+ 
+<<>>=
+my.data[3,2]
+@ %def 
+
+\item Whole 3rd row:
+ 
+<<>>=
+my.data[3,]
+@ %def 
+
+\item Whole 2nd column:
+  
+ 
+<<>>=
+my.data[,2]
+@ %def 
+
+  
+    
+  \end{itemize}
+    
+  \end{multicols}
+  
+\end{frame}
+
+\begin{frame}[fragile]{More selection}
+  
+  \begin{multicols}{2}
+  \begin{itemize}
+\item All the columns \emph{except} the second:
+  
+ 
+<<>>=
+my.data[,-2]
+@ %def 
+
+\item First through third rows:
+  
+ 
+<<>>=
+my.data[1:3,]
+@ %def 
+
+\item Third and fifth rows:
+  
+ 
+<<>>=
+my.data[c(3,5),]
+@ %def 
+  
+
+\end{itemize}
+    
+  \end{multicols}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Variable types}
+  
+  \begin{itemize}
+  \item This:
+ 
+<<>>=
+a=2
+a
+@ %def 
+is a \textbf{scalar} (one value). 
+
+\item This:
+ 
+<<>>=
+x
+@ %def 
+is a \textbf{vector} (several values).
+\item This:
+ 
+<<>>=
+group
+@ %def 
+is a \textbf{factor} (categorical/grouping variable).  
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Spreadsheet data}
+  
+  \includegraphics[width=4.5in]{myspread}
+   
+\end{frame}
+
+\begin{frame}[fragile]{Reading into R}
+  
+  \begin{itemize}
+  \item Save as \texttt{.csv} file (Text/CSV).
+  \item Read in using \texttt{read.csv} (like \texttt{read.table}):
+    
+ 
+<<>>=
+tbl=read.csv("myspread.csv",header=T)
+tbl
+@ %def 
+
+\item Then use like any other data frame.
+  \end{itemize}
+  
+\end{frame}

@@ -1,0 +1,252 @@
+\documentclass{article}
+\title{The cancer data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+early radical no no 10
+early radical no yes 41
+early radical yes no 17
+early radical yes yes 64
+early limited no no 1
+early limited no yes 13
+early limited yes no 3
+early limited yes yes 9
+advanced radical no no 38
+advanced radical no yes 6
+advanced radical yes no 64
+advanced radical yes yes 11
+advanced limited no no 3
+advanced limited no yes 1
+advanced limited yes no 13
+advanced limited yes yes 5
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+	data cancer;
+	  infile "cancer.dat";
+	  input stage $ operation $ xray $ survival $ count;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage|operation|xray|survival;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage|operation|xray|survival @ 2;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage operation xray survival stage*survival;
+
+run;
+\end{Winput}
+\begin{Woutput}
+The CATMOD Procedure
+                            Data Summary
+Response           stage*operat*xray*surviv     Response Levels   16
+Weight Variable    count                        Populations        1
+Data Set           CANCER                       Total Frequency  299
+Frequency Missing  0                            Observations      16
+
+ Population Profiles
+Sample    Sample Size
+---------------------
+    1             299
+
+                  Response Profiles
+Response    stage       operation    xray    survival
+-----------------------------------------------------
+    1       advanced    limited      no      no
+    2       advanced    limited      no      yes
+    3       advanced    limited      yes     no
+    4       advanced    limited      yes     yes
+    5       advanced    radical      no      no
+    6       advanced    radical      no      yes
+    7       advanced    radical      yes     no
+    8       advanced    radical      yes     yes
+    9       early       limited      no      no
+   10       early       limited      no      yes
+   11       early       limited      yes     no
+   12       early       limited      yes     yes
+   13       early       radical      no      no
+   14       early       radical      no      yes
+   15       early       radical      yes     no
+   16       early       radical      yes     yes
+
+                   Maximum Likelihood Analysis
+           Maximum likelihood computations converged.
+
+         Maximum Likelihood Analysis of Variance
+Source                       DF   Chi-Square    Pr > ChiSq
+----------------------------------------------------------
+stage                         1         0.71        0.3980
+operation                     1        52.95        <.0001
+stage*operation               1         0.05        0.8196
+xray                          1         9.63        0.0019
+stage*xray                    1         1.72        0.1900
+operation*xray                1         0.80        0.3712
+stage*operation*xray          1         1.33        0.2495
+survival                      1         0.15        0.6979
+stage*survival                1        40.09        <.0001
+operation*survival            1         1.69        0.1930
+stage*operation*survival      1         0.11        0.7425
+xray*survival                 1         0.48        0.4871
+
+The CATMOD Procedure
+         Maximum Likelihood Analysis of Variance
+Source                       DF   Chi-Square    Pr > ChiSq
+----------------------------------------------------------
+stage*xray*survival           1         0.87        0.3502
+operation*xray*survival       1         0.48        0.4874
+stage*operat*xray*surviv      1         0.57        0.4499
+Likelihood Ratio              0          .           .
+
+                            Analysis of Maximum Likelihood Estimates
+                                                              Standard        Chi-
+Parameter                                          Estimate      Error      Square    Pr > ChiSq
+------------------------------------------------------------------------------------------------
+stage                    advanced                   -0.1006     0.1190        0.71        0.3980
+operation                limited                    -0.8663     0.1190       52.95        <.0001
+stage*operation          advanced limited            0.0271     0.1190        0.05        0.8196
+xray                     no                         -0.3694     0.1190        9.63        0.0019
+stage*xray               advanced no                -0.1560     0.1190        1.72        0.1900
+operation*xray           limited no                 -0.1065     0.1190        0.80        0.3712
+stage*operation*xray     advanced limited no        -0.1371     0.1190        1.33        0.2495
+survival                 no                         -0.0462     0.1190        0.15        0.6979
+stage*survival           advanced no                 0.7538     0.1190       40.09        <.0001
+operation*survival       limited no                 -0.1550     0.1190        1.69        0.1930
+stage*operation*survival advanced limited no        -0.0391     0.1190        0.11        0.7425
+xray*survival            no no                      -0.0827     0.1190        0.48        0.4871
+stage*xray*survival      advanced no no              0.1112     0.1190        0.87        0.3502
+operation*xray*survival  limited no no              -0.0827     0.1190        0.48        0.4874
+stage*operat*xray*surviv advanced limited no no      0.0900     0.1190        0.57        0.4499
+
+The CATMOD Procedure
+                            Data Summary
+Response           stage*operat*xray*surviv     Response Levels   16
+Weight Variable    count                        Populations        1
+Data Set           CANCER                       Total Frequency  299
+Frequency Missing  0                            Observations      16
+
+ Population Profiles
+Sample    Sample Size
+---------------------
+    1             299
+
+                  Response Profiles
+Response    stage       operation    xray    survival
+-----------------------------------------------------
+    1       advanced    limited      no      no
+    2       advanced    limited      no      yes
+    3       advanced    limited      yes     no
+    4       advanced    limited      yes     yes
+    5       advanced    radical      no      no
+    6       advanced    radical      no      yes
+    7       advanced    radical      yes     no
+    8       advanced    radical      yes     yes
+    9       early       limited      no      no
+   10       early       limited      no      yes
+   11       early       limited      yes     no
+   12       early       limited      yes     yes
+   13       early       radical      no      no
+   14       early       radical      no      yes
+   15       early       radical      yes     no
+   16       early       radical      yes     yes
+
+                   Maximum Likelihood Analysis
+           Maximum likelihood computations converged.
+
+      Maximum Likelihood Analysis of Variance
+Source                 DF   Chi-Square    Pr > ChiSq
+----------------------------------------------------
+stage                   1         0.27        0.6033
+operation               1       102.15        <.0001
+stage*operation         1         0.59        0.4415
+xray                    1        10.01        0.0016
+stage*xray              1         0.62        0.4324
+operation*xray          1         0.01        0.9326
+survival                1         0.23        0.6294
+stage*survival          1        99.45        <.0001
+operation*survival      1         2.06        0.1511
+xray*survival           1         0.09        0.7696
+Likelihood Ratio        5         7.17        0.2084
+
+The CATMOD Procedure
+                      Analysis of Maximum Likelihood Estimates
+                                                  Standard        Chi-
+Parameter                              Estimate      Error      Square    Pr > ChiSq
+------------------------------------------------------------------------------------
+stage              advanced             -0.0544     0.1047        0.27        0.6033
+operation          limited              -0.8339     0.0825      102.15        <.0001
+stage*operation    advanced limited      0.0800     0.1039        0.59        0.4415
+xray               no                   -0.2589     0.0818       10.01        0.0016
+stage*xray         advanced no          -0.0612     0.0780        0.62        0.4324
+operation*xray     limited no          -0.00692     0.0818        0.01        0.9326
+survival           no                   -0.0509     0.1055        0.23        0.6294
+stage*survival     advanced no           0.7665     0.0769       99.45        <.0001
+operation*survival limited no           -0.1500     0.1045        2.06        0.1511
+xray*survival      no no                -0.0228     0.0779        0.09        0.7696
+
+The CATMOD Procedure
+                            Data Summary
+Response           stage*operat*xray*surviv     Response Levels   16
+Weight Variable    count                        Populations        1
+Data Set           CANCER                       Total Frequency  299
+Frequency Missing  0                            Observations      16
+
+ Population Profiles
+Sample    Sample Size
+---------------------
+    1             299
+
+                  Response Profiles
+Response    stage       operation    xray    survival
+-----------------------------------------------------
+    1       advanced    limited      no      no
+    2       advanced    limited      no      yes
+    3       advanced    limited      yes     no
+    4       advanced    limited      yes     yes
+    5       advanced    radical      no      no
+    6       advanced    radical      no      yes
+    7       advanced    radical      yes     no
+    8       advanced    radical      yes     yes
+    9       early       limited      no      no
+   10       early       limited      no      yes
+   11       early       limited      yes     no
+   12       early       limited      yes     yes
+   13       early       radical      no      no
+   14       early       radical      no      yes
+   15       early       radical      yes     no
+   16       early       radical      yes     yes
+
+                   Maximum Likelihood Analysis
+           Maximum likelihood computations converged.
+
+     Maximum Likelihood Analysis of Variance
+Source               DF   Chi-Square    Pr > ChiSq
+--------------------------------------------------
+stage                 1         1.50        0.2202
+operation             1       110.28        <.0001
+xray                  1        17.46        <.0001
+survival              1         0.55        0.4584
+stage*survival        1       100.74        <.0001
+Likelihood Ratio     10        10.99        0.3583
+
+The CATMOD Procedure
+                 Analysis of Maximum Likelihood Estimates
+                                         Standard        Chi-
+Parameter                     Estimate      Error      Square    Pr > ChiSq
+---------------------------------------------------------------------------
+stage          advanced        -0.0930     0.0759        1.50        0.2202
+operation      limited         -0.8271     0.0788      110.28        <.0001
+xray           no              -0.2492     0.0596       17.46        <.0001
+survival       no               0.0562     0.0759        0.55        0.4584
+stage*survival advanced no      0.7613     0.0759      100.74        <.0001
+\end{Woutput}
+\end{document}

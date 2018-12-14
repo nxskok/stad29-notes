@@ -1,0 +1,150 @@
+                                                           The SAS System                         08:46 Wednesday, April 6, 2011   1
+
+                                                         The FREQ Procedure
+
+                                                      Table of sex by lenswear
+
+                                            sex       lenswear
+
+                                            Frequency|
+                                            Percent  |
+                                            Row Pct  |
+                                            Col Pct  |contacts|glasses |none    |  Total
+                                            ---------+--------+--------+--------+
+                                            female   |    121 |     32 |    129 |    282
+                                                     |  27.13 |   7.17 |  28.92 |  63.23
+                                                     |  42.91 |  11.35 |  45.74 |
+                                                     |  74.23 |  46.38 |  60.28 |
+                                            ---------+--------+--------+--------+
+                                            male     |     42 |     37 |     85 |    164
+                                                     |   9.42 |   8.30 |  19.06 |  36.77
+                                                     |  25.61 |  22.56 |  51.83 |
+                                                     |  25.77 |  53.62 |  39.72 |
+                                            ---------+--------+--------+--------+
+                                            Total         163       69      214      446
+                                                        36.55    15.47    47.98   100.00
+
+
+                                              Statistics for Table of sex by lenswear
+
+                                       Statistic                     DF       Value      Prob
+                                       ------------------------------------------------------
+                                       Chi-Square                     2     17.7179    0.0001
+                                       Likelihood Ratio Chi-Square    2     17.8286    0.0001
+                                       Mantel-Haenszel Chi-Square     1      6.7973    0.0091
+                                       Phi Coefficient                       0.1993          
+                                       Contingency Coefficient               0.1955          
+                                       Cramer's V                            0.1993          
+
+                                                         Sample Size = 446
+                                                           The SAS System                         08:46 Wednesday, April 6, 2011   2
+
+                                                        The CATMOD Procedure
+
+                                                            Data Summary
+
+                                      Response           sex*lenswear     Response Levels    6
+                                      Weight Variable    frequency        Populations        1
+                                      Data Set           LENS             Total Frequency  446
+                                      Frequency Missing  0                Observations       6
+
+
+                                                        Population Profiles
+ 
+                                                       Sample    Sample Size
+                                                       ---------------------
+                                                           1             446
+
+
+                                                         Response Profiles
+ 
+                                                   Response    sex       lenswear
+                                                   ------------------------------
+                                                       1       female    contacts
+                                                       2       female    glasses 
+                                                       3       female    none    
+                                                       4       male      contacts
+                                                       5       male      glasses 
+                                                       6       male      none    
+
+
+                                                     Maximum Likelihood Analysis
+
+                                             Maximum likelihood computations converged.           
+
+
+                                              Maximum Likelihood Analysis of Variance
+ 
+                                         Source               DF   Chi-Square    Pr > ChiSq
+                                         --------------------------------------------------
+                                         sex                   1        16.10        <.0001
+                                         lenswear              2        64.63        <.0001
+                                         sex*lenswear          2        17.16        0.0002
+
+                                         Likelihood Ratio      0          .           .    
+
+
+                                             Analysis of Maximum Likelihood Estimates
+ 
+                                                                      Standard        Chi-
+                           Parameter                       Estimate      Error      Square    Pr > ChiSq
+                           -----------------------------------------------------------------------------
+                           sex          female               0.2217     0.0552       16.10        <.0001
+                           lenswear     contacts             0.1146     0.0757        2.30        0.1298
+                                        glasses             -0.6138     0.0889       47.64        <.0001
+                           sex*lenswear female contacts      0.3074     0.0757       16.50        <.0001
+                                        female glasses      -0.2943     0.0889       10.95        0.0009
+                                                           The SAS System                         08:46 Wednesday, April 6, 2011   3
+
+                                                        The CATMOD Procedure
+
+                                                            Data Summary
+
+                                      Response           sex*lenswear     Response Levels    6
+                                      Weight Variable    frequency        Populations        1
+                                      Data Set           LENS             Total Frequency  446
+                                      Frequency Missing  0                Observations       6
+
+
+                                                        Population Profiles
+ 
+                                                       Sample    Sample Size
+                                                       ---------------------
+                                                           1             446
+
+
+                                                         Response Profiles
+ 
+                                                   Response    sex       lenswear
+                                                   ------------------------------
+                                                       1       female    contacts
+                                                       2       female    glasses 
+                                                       3       female    none    
+                                                       4       male      contacts
+                                                       5       male      glasses 
+                                                       6       male      none    
+
+
+                                                     Maximum Likelihood Analysis
+
+                                             Maximum likelihood computations converged.           
+
+
+                                              Maximum Likelihood Analysis of Variance
+ 
+                                         Source               DF   Chi-Square    Pr > ChiSq
+                                         --------------------------------------------------
+                                         sex                   1        30.47        <.0001
+                                         lenswear              2        66.85        <.0001
+
+                                         Likelihood Ratio      2        17.83        0.0001
+
+
+                                             Analysis of Maximum Likelihood Estimates
+ 
+                                                                 Standard        Chi-
+                                Parameter             Estimate      Error      Square    Pr > ChiSq
+                                -------------------------------------------------------------------
+                                sex       female        0.2710     0.0491       30.47        <.0001
+                                lenswear  contacts      0.1958     0.0697        7.90        0.0050
+                                          glasses      -0.6638     0.0874       57.67        <.0001

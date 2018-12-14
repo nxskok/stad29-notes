@@ -1,0 +1,758 @@
+\section{Multiway frequency tables}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Packages}
+  
+<<size="footnotesize">>=
+library(tidyverse)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Multi-way frequency analysis}
+
+  \begin{itemize}
+  \item A study of gender and eyewear-wearing finds the following frequencies:
+
+    \begin{tabular}{lrrr}
+      \hline
+      Gender & Contacts & Glasses & None \\
+      \hline
+      Female & 121 & 32 & 129 \\
+      Male & 42 & 37 & 85\\
+      \hline
+    \end{tabular}
+
+
+  \item Is there association between eyewear and gender?
+  \item Normally answer this with chisquare test (based on observed and expected frequencies from null hypothesis of no association).
+  \item Two categorical variables and a frequency.
+  \item We assess in way that generalizes to more categorical variables.
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The data file}
+  
+\begin{verbatim}
+gender contacts glasses none
+female 121      32      129
+male   42       37      85
+\end{verbatim}
+  
+  \begin{itemize}
+  \item This is \emph{not tidy!}
+  \item Two variables are gender and \emph{eyewear}, and those numbers
+    all frequencies.
+  \end{itemize}
+
+<<message=F>>=
+eyewear=read_delim("eyewear.txt"," ")
+eyewear
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidying the data}
+  
+<<size="footnotesize">>=
+eyes = eyewear %>% 
+    gather(eyewear,frequency,contacts:none) 
+eyes
+xt=xtabs(frequency~gender+eyewear,data=eyes)
+xt
+@   
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Modelling}
+
+  \begin{itemize}
+  \item Last table on previous page is ``reconstituted'' contingency table, for checking.
+  \item Predict frequency from other factors and combos. \texttt{glm}
+    with \texttt{poisson} family.
+
+<<>>=
+eyes.1=glm(frequency~gender*eyewear,data=eyes,
+    family="poisson")
+@ %def
+
+\item Called \textbf{log-linear model}.
+    
+
+  \end{itemize}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{What can we get rid of?}
+
+{\small    
+ 
+<<>>=
+drop1(eyes.1,test="Chisq")
+@ %def 
+}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+
+  \begin{itemize}
+  \item \texttt{drop1} says what we can remove at this
+    step. Significant = must stay.
+  \item Cannot remove anything.
+  \item Frequency depends on \texttt{gender-wear}
+    \emph{combination}, cannot be simplified further.
+  \item Gender and eyewear are \emph{associated}.
+  \item Stop here.
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{\texttt{prop.table}}
+  
+Original table:
+
+{\footnotesize
+<<>>=
+xt
+@ 
+}
+    
+Calculate eg.\ row proportions like this:
+
+{\small
+<<>>=
+prop.table(xt,margin=1)
+@ 
+}
+
+\begin{itemize}
+\item \texttt{margin} says what to make add to 1.
+\item More females wear contacts and more males wear glasses.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{No association}
+
+  \begin{itemize}
+  \item Suppose table had been as shown below:
+
+<<size="scriptsize", message=F>>=
+eyewear2=read_table("eyewear2.txt")
+eyes2 = eyewear2 %>% gather(eyewear,frequency,contacts:none)
+xt2=xtabs(frequency~gender+eyewear,data=eyes2)
+xt2
+prop.table(xt2,margin=1)
+@   
+
+\item Females and males wear contacts and glasses in same proportions
+  (though more females and more contact-wearers). No
+  \emph{association} between gender and eyewear.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Analysis for revised data}
+  
+<<size="footnotesize">>=
+eyes.2=glm(frequency~gender*eyewear,data=eyes2,
+  family="poisson")
+drop1(eyes.2,test="Chisq")
+@   
+
+No longer any association. Take out interaction.
+  
+\end{frame}
+
+\begin{frame}[fragile]{No interaction}
+  
+  {\small
+<<>>=
+eyes.3=update(eyes.2,.~.-gender:eyewear)
+drop1(eyes.3,test="Chisq")
+@   
+}
+\begin{itemize}
+\item More females (gender effect)
+\item more contact-wearers (eyewear
+  effect)
+\item no association (no interaction). 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Chest pain, being overweight and being a smoker}
+  
+  \begin{itemize}
+  \item In a hospital emergency department, 176 subjects who attended
+    for acute chest pain took part in a study.
+  \item Each subject had a
+    normal or abnormal electrocardiogram reading (ECG), were
+    overweight (as judged by BMI) or not, and were a smoker or
+    not.
+  \item How are these three variables related, or not?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+  In modelling-friendly format:
+  
+\begin{verbatim}
+ecg bmi smoke count
+abnormal overweight yes 47
+abnormal overweight no 10
+abnormal normalweight yes 8 
+abnormal normalweight no 6
+normal overweight yes 25 
+normal overweight no 15 
+normal normalweight yes 35
+normal normalweight no 30
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{First step}
+  
+<<size="small", message=F>>=
+chest=read_delim("ecg.txt"," ")
+chest.1=glm(count~ecg*bmi*smoke,data=chest,
+            family="poisson")
+drop1(chest.1,test="Chisq")
+@   
+
+That 3-way interaction comes out.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Removing the 3-way interaction}
+  
+<<size="small">>=
+chest.2=update(chest.1,.~.-ecg:bmi:smoke)
+drop1(chest.2,test="Chisq")
+@   
+
+At $\alpha=0.05$, \texttt{bmi:smoke} comes out.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Removing \texttt{bmi:smoke}}
+  
+<<size="small">>=
+chest.3=update(chest.2,.~.-bmi:smoke)
+drop1(chest.3,test="Chisq")
+@   
+
+\texttt{ecg:smoke} has become significant. So we have to stop.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the final model}
+  
+  \begin{itemize}
+  \item Thinking of \texttt{ecg} as ``response'' that might depend on
+    anything else.
+  \item What is associated with \texttt{ecg}? Both \texttt{bmi} on its
+    own and \texttt{smoke} on its own, but \emph{not} the combination
+    of both.
+  \item \texttt{ecg:bmi} table:
+<<>>=
+xtabs(count~ecg+bmi,data=chest)
+@     
+
+\item Most normal weight people have a normal ECG, but a
+  majority of overweight people have an \emph{abnormal} ECG. That is,
+  knowing about BMI says something about likely ECG.
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{ecg:smoke}}
+  
+  \begin{itemize}
+\item \texttt{ecg:smoke} table:
+  
+  
+  
+<<>>=
+xtabs(count~ecg+smoke,data=chest)
+@   
+
+\item Most nonsmokers have a normal ECG, but smokers are about 50--50
+  normal and abnormal ECG.
+  
+  \item Don't look at \texttt{smoke:bmi} table since not significant. 
+  
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Simpson's paradox: the airlines example}
+
+  \begin{tabular}{|l|rr|rr|}
+    \hline
+    & \multicolumn{2}{|c|}{Alaska Airlines} & 
+    \multicolumn{2}{|c|}{America West}\\
+    Airport & On time & Delayed & On time & Delayed\\
+    \hline
+    Los Angeles & 497 & 62 & 694 & 117\\
+    Phoenix & 221 & 12 & 4840 & 415\\
+    San Diego & 212 & 20 & 383 & 65\\
+    San Francisco & 503 & 102 & 320 & 129 \\
+    Seattle & 1841 & 305 & 201 & 61\\
+    \hline
+    Total & 3274 & 501 & 6438 & 787\\
+    \hline
+  \end{tabular}
+  
+  \vspace{2ex}
+  
+  Use \texttt{status} as variable name for ``on time/delayed''.
+
+   \begin{itemize}
+   \item Alaska: 13.3\% flights delayed ($501/(3274+501)$).
+   \item America West: 10.9\% ($787/(6438+787)$).
+   \item America West more punctual, right?
+   \end{itemize}
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Arranging the data}
+  
+  \begin{itemize}
+  \item Can only have single thing in columns, so we have to construct
+    column names like this:
+
+    \begin{small}
+\begin{verbatim}
+airport    aa_ontime aa_delayed aw_ontime aw_delayed
+LosAngeles   497          62       694        117
+Phoenix      221          12      4840        415
+SanDiego     212          20       383         65
+SanFrancisco 503         102       320        129
+Seattle     1841         305       201         61
+\end{verbatim}
+      
+    \end{small}
+  \item Some tidying gets us the right layout, with frequencies all in
+    one column and the airline and delayed/on time status separated out:
+    
+<<message=F, size="small">>=
+airlines=read_table2("airlines.txt")
+punctual = airlines %>% 
+    gather(line.status,freq, contains("_")) %>%
+    separate(line.status,c("airline","status"))
+@     
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{The data frame \texttt{punctual}}
+
+<<echo=F, size="scriptsize">>=
+punctual
+@   
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Proportions delayed by airline}
+  
+  \begin{itemize}
+  \item Two-step process: get appropriate subtable:
+    
+<<>>=
+xt=xtabs(freq~airline+status,data=punctual)
+xt
+@     
+
+\item and then calculate appropriate proportions:
+  
+<<>>=
+prop.table(xt,margin=1)
+@
+\item More of Alaska Airlines' flights delayed (13.3\% vs.\ 10.9\%).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Proportion delayed by airport, for each airline}
+  
+<<size="footnotesize">>=
+xt=xtabs(freq~airline+status+airport,data=punctual)
+xp=prop.table(xt,margin=c(1,3))
+ftable(xp,row.vars=c("airport","airline"),
+col.vars="status")
+@   
+
+
+\end{frame}
+
+
+\begin{frame}{Simpson's Paradox}
+
+\begin{tabular}{|l|rr|}
+  \hline
+  Airport & Alaska & America West\\
+  \hline
+  Los Angeles & 11.4 & 14.4\\
+  Phoenix & 5.2 & 7.9\\
+  San Diego & 8.6 & 14.5\\
+  San Francisco & 16.9 & 28.7\\
+  Seattle & 14.2 & 23.2 \\
+  \hline
+  Total & 13.3 & 10.9 \\
+  \hline
+  
+\end{tabular}
+
+  \begin{itemize}
+  \item America West more punctual overall,
+  \item but worse at \emph{every single} airport!
+  \item How is that possible?
+  \item Log-linear analysis sheds some light.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Model 1 and output}
+
+   
+<<size="footnotesize">>=
+punctual.1=glm(freq~airport*airline*status,
+    data=punctual,family="poisson")
+drop1(punctual.1,test="Chisq")
+@ %def 
+
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove 3-way interaction}
+
+<<size="footnotesize">>=
+punctual.2=update(punctual.1,~.-airport:airline:status)
+drop1(punctual.2,test="Chisq")
+@ %def 
+
+Stop here.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the significance}
+  
+  \begin{itemize}
+  \item \texttt{airline:status}:
+
+<<>>=
+xt=xtabs(freq~airline+status,data=punctual)
+prop.table(xt, margin=1)
+@     
+
+\item More of Alaska Airlines' flights delayed overall.
+\item Saw this before.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the significance (2)}
+  
+  \begin{itemize}
+  \item \texttt{airport:status}:
+<<>>=
+xt=xtabs(freq~airport+status,data=punctual)
+prop.table(xt,margin=1)
+@
+\item Flights into San Francisco (and maybe Seattle) are often late, and
+  flights into Phoenix are usually on time.
+\item Considerable variation among airports.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding the significance (3)}
+  
+  \begin{itemize}
+  \item \texttt{airport:airline}:
+    
+<<>>=
+xt=xtabs(freq~airport+airline,data=punctual)
+prop.table(xt,margin=2)
+@
+\item What fraction of each airline's flights are to each airport.
+\item Most of Alaska Airlines' flights to Seattle and San Francisco.
+\item Most of America West's flights to Phoenix.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The resolution}
+  
+  \begin{itemize}
+  \item Most of America West's flights to Phoenix, where it is easy to
+    be on time.
+  \item Most of Alaska Airlines' flights to San Francisco and Seattle,
+    where it is difficult to be on time.
+  \item Overall comparison looks bad for Alaska because of this.
+  \item But, \emph{comparing like with like}, if you compare each
+    airline's performance \emph{to the same airport}, Alaska does better.
+  \item Aggregating over the very different airports was a (big)
+    mistake: that was the cause of the Simpson's paradox.
+  \item Alaska Airlines is \emph{more} punctual when you do the proper comparison.
+  \end{itemize}
+  
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Ovarian cancer: a four-way table}
+
+  \begin{itemize}
+  \item Retrospective study of ovarian cancer done in 1973.
+  \item Information about 299 women operated on for ovarian cancer 10 years previously.
+  \item Recorded:
+    \begin{itemize}
+    \item stage of cancer (early or advanced)
+    \item type of operation (radical or limited)
+    \item X-ray treatment received (yes or no)
+    \item 10-year survival (yes or no)
+    \end{itemize}
+  \item Survival looks like response (suggests logistic
+    regression).
+
+  \item Log-linear model finds any associations at all.
+  \end{itemize}
+  
+\end{frame}
+
+ 
+\begin{frame}[fragile]{The data}
+
+after tidying:
+
+{\scriptsize
+\begin{verbatim}
+stage operation xray survival freq
+early radical no no 10
+early radical no yes 41
+early radical yes no 17
+early radical yes yes 64
+early limited no no 1
+early limited no yes 13
+early limited yes no 3
+early limited yes yes 9
+advanced radical no no 38
+advanced radical no yes 6
+advanced radical yes no 64
+advanced radical yes yes 11
+advanced limited no no 3
+advanced limited no yes 1
+advanced limited yes no 13
+advanced limited yes yes 5
+
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Stage 1}
+
+hopefully looking familiar by now:
+
+ 
+<<message=F>>=
+cancer=read_delim("cancer.txt"," ")
+cancer %>% print(n=6)
+cancer.1=glm(freq~stage*operation*xray*survival,
+    data=cancer,family="poisson")
+@ %def 
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Output 1}
+
+See what we can remove:
+
+<<size="scriptsize">>=
+drop1(cancer.1,test="Chisq")
+@ %def 
+
+Non-significant interaction can come out.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Stage 2}
+  
+<<size="scriptsize">>=
+cancer.2=update(cancer.1,~.
+-stage:operation:xray:survival)
+drop1(cancer.2,test="Chisq")
+@ %def 
+
+Least significant term is \texttt{stage:xray:survival}: remove.
+
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Take out \texttt{stage:xray:survival}}
+    
+<<size="scriptsize">>=
+cancer.3=update(cancer.2,.~.-stage:xray:survival)
+drop1(cancer.3,test="Chisq")
+@   
+
+\texttt{operation:xray:survival} comes out next.
+   
+\end{frame}
+
+\begin{frame}[fragile]{Remove \texttt{operation:xray:survival}}
+  
+<<size="scriptsize">>=
+cancer.4=update(cancer.3,.~.-operation:xray:survival)
+drop1(cancer.4,test="Chisq")
+@   
+   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item \texttt{stage:operation:xray} has now become significant, so
+    won't remove that.
+  \item Shows value of removing terms one at a time.
+  \item There are no higher-order interactions containing both
+    \texttt{xray} and \texttt{survival}, so now we get to test (and
+    remove) \texttt{xray:survival}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove \texttt{xray:survival}}
+  
+<<size="scriptsize">>=
+cancer.5=update(cancer.4,.~.-xray:survival)
+drop1(cancer.5,test="Chisq")
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Remove \texttt{stage:operation:survival}}
+  
+<<size="scriptsize">>=
+cancer.6=update(cancer.5,.~.-stage:operation:survival)
+drop1(cancer.6,test="Chisq")
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Last step?}
+  
+Remove \texttt{operation:survival}.  
+  
+<<size="footnotesize">>=
+cancer.7=update(cancer.6,.~.-operation:survival)
+drop1(cancer.7,test="Chisq")
+@   
+  
+Finally done!
+  
+\end{frame}
+
+\begin{frame}[fragile]{Conclusions}
+  
+  \begin{itemize}
+  \item What matters is things associated with survival (survival is
+    ``response'').
+  \item Only significant such term is \texttt{stage:survival}:
+<<>>=
+xt=xtabs(freq~stage+survival,data=cancer)
+prop.table(xt,margin=1)
+@     
+\item Most people in early stage of cancer survived, and most people
+  in advanced stage did not survive.
+\item This true \emph{regardless} of type of operation or whether or
+  not X-ray treatment was received. These things have no impact on
+  survival. 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{What about that other interaction?}
+  
+<<>>=
+xt=xtabs(freq~operation+xray+stage,data=cancer)
+ftable(prop.table(xt,margin=3))
+@   
+
+\begin{itemize}
+\item Out of the people at each stage of cancer (since
+  \texttt{margin=3} and \texttt{stage} was listed 3rd).
+\item The association is between \texttt{stage} and \texttt{xray}
+  \emph{only for those who had the limited operation}.
+\item For those who
+  had the radical operation, there was no association between
+  \texttt{stage} and \texttt{xray}.
+\item This is of less interest than associations with
+  \texttt{survival}. 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{General procedure}
+
+\begin{itemize}
+\item Start with ``complete model'' including all possible interactions.
+\item \texttt{drop1} gives highest-order interaction(s) remaining, remove least non-significant.
+\item Repeat as necessary until everything significant.
+\item Look at subtables of significant interactions.
+  \item Main effects not usually very interesting.
+\item Interactions with ``response'' usually of most interest: show association with response.
+\end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+
+\end{frame}
+

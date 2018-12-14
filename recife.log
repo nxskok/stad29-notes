@@ -1,0 +1,82 @@
+1                                                          The SAS System                            15:42 Wednesday, March 28, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-40-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.10 seconds
+      cpu time            0.06 seconds
+      
+1          options ls=70;
+2          
+3          data recife;
+4            infile "recife.dat" termstr=crlf;
+5            input x @@;
+6          
+
+NOTE: The infile "recife.dat" is:
+      Filename=/home/ken/teaching/d29/notes/recife.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rwxr-xr-x,
+      Last Modified=Mon Mar 26 17:34:42 2012,
+      File Size (bytes)=610
+
+NOTE: 10 records were read from the infile "recife.dat".
+      The minimum record length was 59.
+      The maximum record length was 59.
+NOTE: SAS went to a new line when INPUT statement reached past the 
+      end of a line.
+NOTE: The data set WORK.RECIFE has 120 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+7          proc arima;
+2                           The SAS System
+                                       15:42 Wednesday, March 28, 2012
+
+8            identify var=x(12);
+9            estimate q=(1 12);
+10           forecast printall;
+11         
+12         run;
+
+12       !     
+13         
+NOTE: The PROCEDURE ARIMA printed pages 1-9.
+NOTE: PROCEDURE ARIMA used (Total process time):
+      real time           0.10 seconds
+      cpu time            0.11 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           0.23 seconds
+      cpu time            0.18 seconds
+      

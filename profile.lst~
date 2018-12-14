@@ -1,0 +1,224 @@
+                              The SAS System                              1
+                                            09:27 Tuesday, February 2, 2010
+
+                            The MEANS Procedure
+
+ Variable    N           Mean        Std Dev        Minimum        Maximum
+ -------------------------------------------------------------------------
+ read       17      5.2941176      1.4901638      3.0000000      8.0000000
+ dance      17      5.4117647      3.1036032      1.0000000     10.0000000
+ tv         17      4.1764706      1.8786729      1.0000000      7.0000000
+ ski        17      5.5882353      2.0018374      2.0000000      9.0000000
+ -------------------------------------------------------------------------
+
+                              The SAS System                              2
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+
+                         Class Level Information
+ 
+             Class         Levels    Values
+
+             group              3    admin bellydan politici 
+
+
+                  Number of Observations Read          17
+                  Number of Observations Used          15
+
+                              The SAS System                              3
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+
+                    Repeated Measures Level Information
+ 
+         Dependent Variable        read    dance       tv      ski
+
+          Level of activity           1        2        3        4
+
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no activity Effect
+                   H = Type III SSCP Matrix for activity
+                           E = Error SSCP Matrix
+                                      
+                            S=1    M=0.5    N=4
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.27913735      8.61        3       10   0.0040
+Pillai's Trace             0.72086265      8.61        3       10   0.0040
+Hotelling-Lawley Trace     2.58246571      8.61        3       10   0.0040
+Roy's Greatest Root        2.58246571      8.61        3       10   0.0040
+
+
+               MANOVA Test Criteria and F Approximations for
+                the Hypothesis of no activity*group Effect
+                H = Type III SSCP Matrix for activity*group
+                           E = Error SSCP Matrix
+                                      
+                             S=2    M=0    N=4
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.07627855      8.74        6       20   <.0001
+Pillai's Trace             1.43341443      9.28        6       22   <.0001
+Hotelling-Lawley Trace     5.42784967      8.73        6   11.714   0.0009
+Roy's Greatest Root        3.54059987     12.98        3       11   0.0006
+
+       NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+              NOTE: F Statistic for Wilks' Lambda is exact.
+
+                              The SAS System                              4
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+             Tests of Hypotheses for Between Subjects Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ group                      2   172.9000000    86.4500000    44.14  <.0001
+ Error                     12    23.5000000     1.9583333                 
+
+                              The SAS System                              5
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+         Univariate Tests of Hypotheses for Within Subject Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ activity                   3   15.78333333    5.26111111     4.72  0.0070
+ activity*group             6   55.36666667    9.22777778     8.28  <.0001
+ Error(activity)           36   40.10000000    1.11388889                 
+
+                                           Adj Pr > F
+                  Source                 G - G     H - F
+
+                  activity              0.0126    0.0070
+                  activity*group        <.0001    <.0001
+                  Error(activity)                       
+
+
+                   Greenhouse-Geisser Epsilon    0.7986
+                   Huynh-Feldt Epsilon           1.1778
+
+                              The SAS System                              6
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+ 
+               Tukey's Studentized Range (HSD) Test for read
+
+  NOTE: This test controls the Type I experimentwise error rate, but it 
+           generally has a higher Type II error rate than REGWQ.
+
+
+               Alpha                                   0.05
+               Error Degrees of Freedom                  12
+               Error Mean Square                        1.6
+               Critical Value of Studentized Range  3.77278
+               Minimum Significant Difference        2.1342
+
+
+        Means with the same letter are not significantly different.
+ 
+ 
+       Tukey Grouping          Mean      N    group
+
+                    A        6.6000      5    bellydan
+                    A                                 
+                    A        5.0000      5    admin   
+                    A                                 
+                    A        5.0000      5    politici
+
+                              The SAS System                              7
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+ 
+              Tukey's Studentized Range (HSD) Test for dance
+
+  NOTE: This test controls the Type I experimentwise error rate, but it 
+           generally has a higher Type II error rate than REGWQ.
+
+
+               Alpha                                   0.05
+               Error Degrees of Freedom                  12
+               Error Mean Square                   0.833333
+               Critical Value of Studentized Range  3.77278
+               Minimum Significant Difference        1.5402
+
+
+        Means with the same letter are not significantly different.
+ 
+ 
+       Tukey Grouping          Mean      N    group
+
+                    A        9.4000      5    bellydan
+                                                      
+                    B        4.8000      5    politici
+                                                      
+                    C        2.0000      5    admin   
+
+                              The SAS System                              8
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+ 
+                Tukey's Studentized Range (HSD) Test for tv
+
+  NOTE: This test controls the Type I experimentwise error rate, but it 
+           generally has a higher Type II error rate than REGWQ.
+
+
+               Alpha                                   0.05
+               Error Degrees of Freedom                  12
+               Error Mean Square                        0.7
+               Critical Value of Studentized Range  3.77278
+               Minimum Significant Difference        1.4116
+
+
+        Means with the same letter are not significantly different.
+ 
+ 
+       Tukey Grouping          Mean      N    group
+
+                    A        5.8000      5    bellydan
+                    A                                 
+                    A        5.2000      5    politici
+                                                      
+                    B        1.8000      5    admin   
+
+                              The SAS System                              9
+                                            09:27 Tuesday, February 2, 2010
+
+                             The GLM Procedure
+ 
+               Tukey's Studentized Range (HSD) Test for ski
+
+  NOTE: This test controls the Type I experimentwise error rate, but it 
+           generally has a higher Type II error rate than REGWQ.
+
+
+               Alpha                                   0.05
+               Error Degrees of Freedom                  12
+               Error Mean Square                   2.166667
+               Critical Value of Studentized Range  3.77278
+               Minimum Significant Difference        2.4835
+
+
+        Means with the same letter are not significantly different.
+ 
+ 
+          Tukey Grouping          Mean      N    group
+
+                       A        7.4000      5    bellydan
+                       A                                 
+                  B    A        5.0000      5    politici
+                  B                                      
+ 

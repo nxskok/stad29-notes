@@ -1,0 +1,51 @@
+\documentclass{article}
+\title{The cancer data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+early radical no no 10
+early radical no yes 41
+early radical yes no 17
+early radical yes yes 64
+early limited no no 1
+early limited no yes 13
+early limited yes no 3
+early limited yes yes 9
+advanced radical no no 38
+advanced radical no yes 6
+advanced radical yes no 64
+advanced radical yes yes 11
+advanced limited no no 3
+advanced limited no yes 1
+advanced limited yes no 13
+advanced limited yes yes 5
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+	data cancer;
+	  infile "cancer.dat";
+	  input stage $ operation $ xray $ survival $ count;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage|operation|xray|survival;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage|operation|xray|survival @ 2;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage operation xray survival stage*survival;
+
+run;
+\end{SAScode}
+\end{document}

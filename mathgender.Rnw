@@ -1,0 +1,210 @@
+% !Rnw master=a5.Rnw
+
+\question An observational study was carried out to investigate the
+relationship between scores on the ACT Math Usage test and the
+explanatory variables gender and level of math coursework taken
+(denoted \texttt{courses} in the data set). The data can be found in
+\url{http://www.utsc.utoronto.ca/~butler/d29/mathgender.txt}. The
+variable \texttt{courses} takes three values: \texttt{alg} denotes
+that the student took algebra only; \texttt{alg+geom} denotes that the
+student took algebra and geometry, and \texttt{calc} that the student
+took calculus. The students involved in the study were 861 US high school
+seniors. 
+
+\begin{parts}
+  \part Read in the data, and check the first few lines of your
+  data frame to convince yourself that you have the right thing.
+  
+  \begin{select} \begin{solution}
+<<>>=
+math=read.table("mathgender.txt",header=T)
+head(math)
+@     
+
+This seems to be the right thing.
+
+Originally, the data came to me with numbers for the categories,\endnote{In a
+file I called \texttt{math1.txt}.} so I
+changed them to actual factors with mnemonic levels, with some code like this:
+
+<<eval=F>>=
+math=read.table("math1.txt",header=T)
+library(dplyr)
+math %>% mutate(gdr=factor(gender,labels=c("Female","Male"))) %>%
+    mutate(crss=factor(courses,labels=c("alg","alg+geom","calc"))) %>%
+    select(c(score,gdr,crss)) -> 
+    math2
+
+write.table(math2,"mathgender.txt")
+@ 
+
+I then went into \texttt{mathgender.txt} and changed the names of the
+columns to what you see.
+  \end{solution} \end{select}
+  
+  \part\label{part:intero} Make an interaction plot. 
+  
+  \begin{select} \begin{solution}
+    \texttt{interaction.plot} needs the two factors first, followed by
+    the response variable. It doesn't matter which order you put the
+    factors. Thus, first this:
+    
+<<>>=
+attach(math)
+@     
+    
+    and then either this:
+    
+<<plympton,fig.width=6,fig.height=6>>=
+interaction.plot(gender,courses,score)
+@     
+
+or this:
+
+<<torpoint,fig.width=6,fig.height=6>>=
+interaction.plot(courses,gender,score)
+@ 
+
+On both of those plots, I would say that the lines are basically
+parallel, so there is not much evidence of an interaction. That is to
+say, the effect of course level on mean score is the same for males
+and females.
+  \end{solution} \end{select}
+  
+  \part\label{part:courses} In your interaction plot, does there
+  seem to be an effect on test score of level of courses taken? How
+  can you tell?
+  
+  \begin{select} \begin{solution}
+    There appears to be a substantial effect of level of courses
+    taken. The mean score for those students who have taken calculus
+    is \emph{much} higher than for the other students.\endnote{and this effect
+    seems to be true for both males and females}.
+    
+    On my first plot, the line for calculus is much higher than the
+    lines for the other levels, directly supporting my statement. On
+    my second plot, the lines for males and females \emph{both} go
+    dramatically up when the level is calculus.
+  \end{solution} \end{select}
+  
+  \part\label{part:gender} In your interaction plot, does there
+  seem to be an effect of gender on test score? How can you tell?
+  
+  \begin{select} \begin{solution}
+    The effect of gender is (as I see it) small, but with males
+    scoring slightly higher than females on average. (Either ``males
+    slightly higher'' or ``not much difference'' is a good answer.)
+    
+    On my first interaction plot, I see this because the three lines
+    are more or less level (sloping slightly upwards from female to
+    male). On the second one, the male and female lines are very close
+    together, with the male one being slightly higher. 
+  \end{solution} \end{select}
+  
+  \part Obtain an analysis of variance with interaction term. Is
+  the interaction term significant? Does that surprise you,
+  considering your answer to (\ref{part:intero})?
+  
+  \begin{select} \begin{solution}
+<<>>=
+math.1=aov(score~gender*courses)
+summary(math.1)
+@     
+
+The interaction is nowhere near significant (P-value 0.46). This is
+not a surprise to me, since the lines on my interaction plots were
+parallel, more or less.
+  \end{solution} \end{select}
+  
+  \part Justify removing the interaction term, and fit a model
+  without it.
+  
+  \begin{select} \begin{solution}
+    The interaction term wasn't significant, so getting rid of it is a
+    smart thing to do. The model without it looks like this:
+    
+<<>>=
+math.2=aov(score~gender+courses)
+summary(math.2)
+@     
+
+The \texttt{*} in \texttt{math.1} has changed to a \texttt{+} in
+\texttt{math.2} since we are now assuming that the effects of courses
+and gender are ``additive'': that is, they act independently of each other.
+  \end{solution} \end{select}
+  
+  \part In the model you just fit, is there a significant effect of
+  \texttt{courses}? Does this surprise you, looking back at (\ref{part:courses})?
+  
+  \begin{select} \begin{solution}
+    The P-value for \texttt{courses} is tiny, less than $2 \times
+    10^{-16}$, which is R shorthand for ``really very tiny''. Our
+    interaction plot showed that the average scores were very
+    different for students with the different levels of courses, with
+    calculus being the highest, so this is not a surprise at all.
+  \end{solution} \end{select}
+  
+  \part In the model you fit a moment ago, is there a significant
+  effect of \texttt{gender}? Does this surprise you, looking back at (\ref{part:gender})?
+  
+  \begin{select} \begin{solution}
+    The P-value of \texttt{gender}, $5.2\times 10^{-14}$, is also very
+    small, so there \emph{is} a significant effect of gender. This, to
+    be honest, surprises me, since the interaction plot showed only a
+    small effect of gender, if any.\endnote{I think I know why this happened,
+    but I will defer my hypothesis until later.}
+  \end{solution} \end{select}
+  
+  \part Run Tukey's method for both \texttt{gender} and
+  \texttt{courses} (one run of \texttt{TukeyHSD} will get
+  both). Observe that all the differences are strongly significant.
+  
+  \begin{select} \begin{solution}
+<<>>=
+TukeyHSD(math.2)
+@     
+
+All four of the P-values are zero, to this accuracy.
+  \end{solution} \end{select}
+  
+  \part Take a look at the confidence intervals in the Tukey
+  output. Comment briefly on the \emph{size} of the effects of
+  \texttt{gender} and \texttt{courses}, bearing in mind that scores on
+  this test vary from 0 to 36.
+  
+  \begin{select} \begin{solution}
+    Let's start with \texttt{gender}, since that's what came out of
+    Tukey first. Yes, there is a strongly significant difference
+    between males and females (with males scoring higher on average),
+    but the size of the difference, according to the confidence
+    interval, is between 2.0 and 3.3 points: not very big, on a scale
+    of 0 to 36. We have concluded that the difference is real (that's
+    the significance part), but that it isn't very big (looking at the
+    confidence interval).
+    
+    The effect of \texttt{courses} is much bigger. The biggest
+    difference is between calculus and algebra-only: this is between
+    13.2 and 16.1 points, almost half the entire range of scores on
+    the test. In fact, all three of the differences between level of
+    courses are bigger than the gender difference, so it is fair to
+    say that \texttt{courses} has the bigger effect on
+    \texttt{score}. 
+    
+    The reason this happened is that we have a \emph{ton} of data:
+    scores from 861 students. This means that we can estimate
+    differences in means very accurately (note the shortness of the
+    confidence intervals in the Tukey), but it has the side-effect
+    that significant differences can be very small.\endnote{This is the
+    statistical-significance and practical-importance thing that
+    you'll remember from your first course.} Is a 3-point effect on
+    this test score worth getting excited about? Probably not,
+    especially given that this is an observational study rather than a
+    controlled experiment.
+    
+    Oh, and:
+<<>>=
+detach(math)
+@     
+  \end{solution} \end{select}
+\end{parts}
+

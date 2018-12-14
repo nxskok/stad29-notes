@@ -1,0 +1,500 @@
+\section{Multidimensional scaling}
+
+
+\begin{frame}[fragile]{Multidimensional Scaling}
+
+  \begin{itemize}
+  \item Have distances between individuals.
+  \item Want to draw a picture (map) in 2 dimensions showing individuals so that distances (or order of distances) as close together as possible.
+  \item If want to preserve actual distances, called {\em metric multidimensional scaling} (in SAS, \verb-level=absolute-)
+  \item If only want to preserve order of distances, called {\em non-metric multidimensional scaling} (in SAS, \verb-level=ordinal-).
+  \item Metric scaling has solution that can be worked out exactly.
+  \item Non-metric only has iterative solution.
+  \item Assess quality of fit via quantity ``stress'', whether use of resulting map is reasonable. (Try something obviously 3-dimensional and assess its failure.) Stress has min 0 and max 1.
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Metric scaling: European cities}
+
+The file \verb-europe.dat- contains road distances (in km) between 16 European cities. Can we reproduce a map of Europe from these distances?
+
+\vspace{3ex}
+
+First, reading in the data (as TYPE=DISTANCE):
+
+\begin{verbatim}
+data euro(type=distance);
+  infile "europe.dat" delimiter=",";
+  input city $ Amsterdam Athens Barcelona Berlin 
+    Cologne Copenhagen Edinburgh Geneva London 
+    Madrid Marseille Munich Paris Prague Rome Vienna;
+\end{verbatim}
+
+\begin{itemize}
+\item Values in spreadsheet.
+\item Save as .csv.
+\item Take out quotes.
+\item Values separated by commas, suitable for reading by SAS.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The code, using PROC MDS}
+
+\begin{verbatim}
+proc mds level=absolute out=y outres=z;
+proc print data=y;
+proc sort data=z;
+  by residual;
+proc print data=z;
+  var _row_ _col_ residual;
+proc plot data=y;
+  plot dim1 * dim2 $ _label_;
+\end{verbatim}
+
+  \begin{itemize}
+  \item Run PROC MDS using \verb-level=absolute- to reproduce the exact distances (to scale).
+  \item Two output data sets: one containing the coordinates for our map, and one containing the observed and predicted (from map) distances and residuals.
+  \item Print coordinates.
+  \item Sort residuals and print them (with the cities they belong to).
+  \item Plot coordinates, labelling each point by its city.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The coordinates}
+
+In Dim1 and Dim2:
+{\scriptsize
+\begin{verbatim}
+             _TYPE_      _LABEL_      _NAME_           Dim1       Dim2
+ 
+ 1   2   .   CRITERION                                 0.07        .  
+ 2   2   .   CONFIG      Amsterdam    Amsterdam     -300.71     558.62
+ 3   2   .   CONFIG      Athens       Athens        2599.74    -375.74
+ 4   2   .   CONFIG      Barcelona    Barcelona     -704.34   -1012.29
+ 5   2   .   CONFIG      Berlin       Berlin         402.29     619.72
+ 6   2   .   CONFIG      Cologne      Cologne        -83.70     396.98
+ 7   2   .   CONFIG      Copenhagen   Copenhagen      97.17    1241.96
+ 8   2   .   CONFIG      Edinburgh    Edinburgh    -1232.60     906.77
+ 9   2   .   CONFIG      Geneva       Geneva        -185.99    -342.22
+10   2   .   CONFIG      London       London        -574.43     406.08
+11   2   .   CONFIG      Madrid       Madrid       -1341.37   -1088.16
+12   2   .   CONFIG      Marseille    Marseille     -319.76    -750.10
+13   2   .   CONFIG      Munich       Munich         326.13     -25.17
+14   2   .   CONFIG      Paris        Paris         -525.60      49.92
+15   2   .   CONFIG      Prague       Prague         541.20     285.90
+16   2   .   CONFIG      Rome         Rome           541.38   -1031.08
+17   2   .   CONFIG      Vienna       Vienna         760.58     158.80
+\end{verbatim}
+}
+Stress 0.07 is small.
+  
+\end{frame}
+
+\begin{frame}[fragile]{The sorted residuals (edited)}
+
+{\scriptsize
+\begin{verbatim}
+             Obs    _ROW_         _COL_         RESIDUAL
+
+               1    Vienna        London        -445.723
+               2    Edinburgh     Athens        -273.247
+               3    Cologne       Athens        -230.477
+               4    London        Edinburgh     -170.966
+               5    Madrid        Cologne       -170.119
+               6    London        Athens        -170.038
+...
+             115    Rome          Madrid         215.393
+             116    Rome          Barcelona      225.139
+             117    Madrid        Edinburgh      374.108
+             118    Rome          Athens         390.827
+             119    Copenhagen    Athens         434.100
+             120    Edinburgh     Copenhagen     492.631
+\end{verbatim}
+}
+Edinburgh and Athens feature in a lot of the large residuals.
+  
+\end{frame}
+
+\begin{frame}[fragile]{The map}
+
+{\scriptsize
+\begin{verbatim}
+        Plot of Dim1*Dim2$_LABEL_.  Symbol points to label.
+
+   4000 +
+        |
+        |
+        |
+D       |                      > Athens
+i       |
+m  2000 +
+e       |
+n       |
+s       |
+i       |         > Rome           Vienna <  > Prague
+o       |                             > Munich     > Berlin Copenhagen
+n     0 +                                      > Cologne        ^
+        |     Marseille <       > Geneva          > Amsterdam
+1       |          > Barcelona    Paris <      > London
+        |
+        |        > Madrid                                > Edinburgh
+        |
+  -2000 +
+        -+---------+---------+---------+---------+---------+---------+
+       -1500     -1000     -500        0        500      1000     1500
+
+                                  Dimension 2
+
+\end{verbatim}
+}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on map}
+
+  \begin{itemize}
+  \item The map looks upside down!
+  \item MDS doesn't know about directions, only distances, so map could come out reflected (vertically or horizontally) or rotated.
+  \item Given all that, cities look in about right relative places.
+  \item City pairs with largest positive residuals have large bodies of water between them (affecting road distance considerably):
+    \begin{itemize}
+    \item Edinburgh--Copenhagen (North Sea)
+    \item Rome--Athens (Adriatic) 
+    \end{itemize}
+  \item As it happens, plotting \verb-Dim2*Dim1- produces almost reasonable map:
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Map 2}
+
+  {\scriptsize
+\begin{verbatim}
+         Plot of Dim2*Dim1$_LABEL_.  Symbol points to label.
+
+        |
+   2000 +
+        |
+        |
+D       |                         > Copenhagen
+i  1000 +         > Edinburgh
+m       |                   Cologne Berlin
+e       |          London <  v  ^     ^Prague
+n       |                Amsterdam     ^  > Vienna
+s     0 +                  > Paris   > Munich
+i       |                      > Geneva
+o       |                                                Athens <
+n       |                    > Marseille
+  -1000 + Madrid <       > Barcelona   > Rome
+2       |
+        |
+        |
+  -2000 +
+        |
+        -+-----------+-----------+-----------+-----------+-----------+
+       -2000       -1000         0         1000        2000       3000
+
+                                  Dimension 1
+
+\end{verbatim}
+}
+\end{frame}
+
+
+\begin{frame}[fragile]{Non-metric scaling: languages}
+
+  \begin{itemize}
+  \item Recall language data (from cluster analysis): 1--10, measure dissimilarity between two languages by how many number names {\em differ} in first letter. Data:
+
+\begin{verbatim}
+en 0 2 2  7 6  6   6  6  7  9 9
+no 2 0 1  5 4  6   6  6  7  8 9
+dk 2 1 0  6 5  6   5  5  6  8 9
+nl 7 5 6  0 5  9   9  9 10  8 9
+de 6 4 5  5 0  7   7  7  8  9 9
+fr 6 6 6  9 7  0   2  1  5 10 9
+es 6 6 5  9 7  2   0  1  3 10 9
+it 6 6 5  9 7  1   1  0  4 10 8
+pl 7 7 6 10 8  5   3  4  0 10 9
+hu 9 8 8  8 9  10 10 10 10  0 8
+sf 9 9 9  9 9  9   9  8  9  8 0
+
+\end{verbatim}
+
+\item Only want to reproduce {\em order} of dissimilarities; actual numbers don't matter. (Map only reproduces {\em relative} closeness of languages.)
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Code}
+
+  \begin{itemize}
+  \item Read data as distances, use \verb-level=ordinal-. Print coordinates and residuals, plot map (labelled by language):
+
+\begin{verbatim}
+data lang(type=distance);
+  infile "one-ten.dat";
+  input lang $ en no dk nl de fr es it pl hu sf;
+
+proc mds level=ordinal out=coords outres=dist;
+  id lang;
+
+proc print data=dist;
+  var _row_ _col_ data distance residual;
+
+proc print data=coords;
+
+proc plot data=coords;
+  plot dim2 * dim1 = '*' $ lang;
+
+\end{verbatim}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output from PROC MDS}
+
+{\scriptsize
+\begin{verbatim}
+         Multidimensional Scaling:  Data=WORK.LANG.DATA
+          Shape=TRIANGLE Condition=MATRIX Level=ORDINAL
+            Coef=IDENTITY Dimension=2 Formula=1 Fit=1
+  Mconverge=0.01 Gconverge=0.01 Maxiter=100 Over=2 Ridge=0.0001
+                       Badness-             Convergence Measures
+                         of-Fit  Change in  --------------------
+ Iteration  Type      Criterion  Criterion   Monotone   Gradient
+       0    Initial      0.2009          .          .          .
+       1    Monotone     0.1478     0.0531     0.1358     0.6781
+       2    Gau-New      0.1126     0.0352          .          .
+       3    Monotone     0.1020     0.0105     0.0483     0.3363
+       4    Gau-New      0.0997   0.002376          .          .
+       5    Monotone     0.0928   0.006869     0.0374     0.2226
+       6    Gau-New      0.0923   0.000483          .          .
+       7    Monotone     0.0915   0.000823     0.0138     0.2190
+       8    Gau-New      0.0914  0.0000983          .          .
+       9    Monotone     0.0910   0.000349   0.009497     0.2341
+      10    Gau-New      0.0888   0.002191          .     0.0533
+      11    Gau-New      0.0887   0.000106          .     0.0169
+      12    Gau-New      0.0887  0.0000126          .   0.006850
+\end{verbatim}
+}
+Iterative procedure converges (stress stops getting smaller at 0.0887, which is small). 
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{The residuals (selected)}
+
+Shown: pair of languages, dissimilarity, distance on map, residual (based on ordered data). Large residual means data and distance on map don't match.
+{\scriptsize
+\begin{verbatim}
+      Obs    _ROW_    _COL_    DATA    DISTANCE    RESIDUAL
+
+        7     de       en        6      0.81928     0.49528
+       55     sf       hu        8      2.00452     0.35904
+       49     sf       nl        9      3.15422    -0.34249
+       40     hu       nl        8      2.02361     0.33995
+       48     sf       dk        9      2.48611     0.32562
+       31     pl       dk        6      1.62422    -0.30966
+        6     nl       dk        6      1.61869    -0.30413
+       50     sf       de        9      3.10815    -0.29643
+        5     nl       no        5      1.31502    -0.27280
+       32     pl       nl       10      3.23354     0.24178
+       54     sf       pl        9      2.54350     0.26823
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Positive residual: actual dissimilarity greater than expected (compared to map)
+\item Negative residual: actual dissimilarity less than expected from map.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The coordinates}
+
+{\scriptsize
+\begin{verbatim}
+  Obs _DIMENS_ _MATRIX_ _TYPE_    lang _NAME_   Dim1     Dim2
+
+    1     2        .    CRITERION              0.08872   .
+    2     2        .    CONFIG     en    en    0.30099  0.65225
+    3     2        .    CONFIG     no    no   -0.11417  0.58068
+    4     2        .    CONFIG     dk    dk    0.08220  0.30450
+    5     2        .    CONFIG     nl    nl   -1.30472  1.13912
+    6     2        .    CONFIG     de    de   -0.39587  1.08307
+    7     2        .    CONFIG     fr    fr    1.22529  0.07596
+    8     2        .    CONFIG     es    es    1.12900 -0.15541
+    9     2        .    CONFIG     it    it    0.96244 -0.35587
+   10     2        .    CONFIG     pl    pl    1.33098 -0.73409
+   11     2        .    CONFIG     hu    hu   -2.33345 -0.60349
+   12     2        .    CONFIG     sf    sf   -0.88268 -1.98673
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item 1st row: stress value (max 1, min 0).
+\item CONFIG lines: Dim1 and Dim2 have coordinates.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The map}
+
+{\scriptsize
+\begin{verbatim}
+           Plot of Dim2*Dim1$lang.  Symbol points to label.
+
+     |
+D  2 +
+i    |
+m    |
+e    |                     > nl       > de
+n    |                                    > no > en
+s    |                                      > dk
+i  0 +                                                es <> fr
+o    |                                                 > it
+n    |         > hu                                        > pl
+     |
+2    |
+     |
+  -2 +                          > sf
+     --+-----------+-----------+-----------+-----------+-----------+--
+      -3          -2          -1           0           1           2
+
+                                Dimension 1
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on map}
+
+  \begin{itemize}
+  \item See how distant Hungarian and Finnish are from each other, and the rest.
+  \item See tight grouping of Italian, French and Spanish (Polish nearby).
+  \item See looser grouping of Germanic languages at top (English, German, Dutch, Norwegian, Danish). 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Guidelines for stress values}
+
+Smaller is better:
+
+\begin{tabular}{lp{3in}}
+  Stress value & Interpretation \\
+  \hline
+  Less than 0.05 & Excellent: no prospect of misinterpretation (rarely achieved)\\
+  0.05--0.10 & Good: most distances reproduced well, small prospect of false inferences\\
+0.10--0.20 & Fair: usable, but some distances misleading.\\
+More than 0.20 & Poor: may be dangerous to interpret\\
+\hline
+\end{tabular}
+
+\begin{itemize}
+\item Cities and languages examples both had stress in ``good'' range.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{A cube}
+
+\begin{verbatim}
+  a-----b
+  |\    |\
+  | c---- d
+  | |   | |
+  e-|---f |
+   \|    \|
+    g-----h
+\end{verbatim}
+
+Cube has side length 1, so distance across diagonal on same face is $\sqrt{2}\simeq 1.4$ and ``long'' diagonal of cube is $\sqrt{3}\simeq 1.7$. 
+  
+\vspace{3ex}
+
+Try MDS on this obviously 3-dimensional data.
+
+\end{frame}
+
+\begin{frame}[fragile]{Converges OK}
+
+{\scriptsize
+\begin{verbatim}
+                            Badness-
+                                of-Fit    Change in    Convergence
+    Iteration    Type        Criterion    Criterion        Measure
+    --------------------------------------------------------------
+          0      Initial        0.2987            .         0.6106
+          1      Lev-Mar        0.2275       0.0711         0.1308
+          2      Gau-New        0.2251     0.002446         0.0409
+          3      Gau-New        0.2248     0.000263         0.0164
+          4      Gau-New        0.2248    0.0000426       0.006667
+\end{verbatim}
+}
+
+but stress, at 0.2248, in ``poor'' range. Map probably won't reproduce cube very well.
+  
+\end{frame}
+
+\begin{frame}[fragile]{``Map'' of cube}
+
+{\scriptsize
+\begin{verbatim}
+         Plot of Dim2*Dim1$_LABEL_.  Symbol points to label.
+
+          |
+     D  1 +
+     i    |
+     m    |                    > b         > c
+     e    |       > d                                   > a
+     n    |
+     s    |
+     i  0 +
+     o    |
+     n    |       > h                                   > e
+          |
+     2    |                  > f             > g
+          |
+       -1 +
+          ---+-----------+-----------+-----------+-----------+--
+           -1.0        -0.5         0.0         0.5         1.0
+
+                                Dimension 1
+
+\end{verbatim}
+}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+  \begin{itemize}
+  \item Map doesn't resemble cube.
+  \item Some of the residuals are large: eg.\ \verb-g- and \verb-f-: actual distance is 1.4, map distance 0.7.
+  \item Might have guessed this with stress in ``poor'' range.
+  \item SAS lets you choose dimension of map. Use this PROC MDS line:
+ 
+\begin{verbatim}
+proc mds dim=3 level=absolute outres=res2;
+\end{verbatim}
+
+(no point saving coordinates since we cannot plot them.)
+\item Resulting stress is 0.0342, ``excellent''.
+\item Largest residual (in size) is $-0.1$, most much smaller.
+\item Can't ``squeeze'' 3-D data into 2 dimensions!
+  \end{itemize}
+  
+\end{frame}
+
+

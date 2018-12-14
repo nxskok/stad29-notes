@@ -1,0 +1,8 @@
+chapter = bFactor
+
+slides-new.pdf: $(chapter).tex
+	pdflatex slides-new
+$(chapter).tex: $(chapter).Rnw
+	R CMD Sweave $(chapter).Rnw
+
+

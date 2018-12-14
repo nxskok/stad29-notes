@@ -1,0 +1,14 @@
+\documentclass{article}
+\title{The xxx data}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+\end{SAScode}
+\end{document}

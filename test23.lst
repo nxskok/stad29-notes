@@ -1,0 +1,55 @@
+                            The SAS System                           1
+                                        13:46 Wednesday, April 4, 2012
+
+                        The PRINCOMP Procedure
+
+                       Observations           8
+                       Variables              2
+
+
+                          Simple Statistics
+ 
+                               score2            score3
+
+               Mean       25.12500000       21.37500000
+               StD        12.66533514       14.56941513
+
+
+
+                          Correlation Matrix
+ 
+                                score2      score3
+
+                    score2      1.0000      -.8318
+                    score3      -.8318      1.0000
+
+
+
+                 Eigenvalues of the Correlation Matrix
+ 
+             Eigenvalue    Difference    Proportion    Cumulative
+
+        1    1.83176195    1.66352390        0.9159        0.9159
+        2    0.16823805                      0.0841        1.0000
+
+
+                             Eigenvectors
+ 
+                                 Prin1         Prin2
+
+                  score2      0.707107      0.707107
+                  score3      -.707107      0.707107
+
+                            The SAS System                           2
+                                        13:46 Wednesday, April 4, 2012
+
+      Obs    score1    score2    score3      Prin1       Prin2
+
+       1        2         9        31      -1.36740    -0.43312
+       2       16        40         7       1.52814     0.13280
+       3        8        17        48      -1.74583     0.83859
+       4       18        43         4       1.84123     0.15469
+       5       10        25        15       0.30242    -0.31638
+       6        4        10        31      -1.31157    -0.37729
+       7       10        27        20       0.17142     0.03795
+       8       12        30        15       0.58157    -0.03723

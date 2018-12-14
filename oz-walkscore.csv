@@ -1,0 +1,118 @@
+City,State,Walk Score,Population
+Sydney,AU-NSW,62.6,3908642
+Melbourne,AU-VIC,57,3707530
+Adelaide,AU-SA,53.6,1103979
+Geelong,AU-VIC,53.3,143921
+Brisbane,AU-QLD,51.2,1874427
+Perth,AU-WA,50.2,1627576
+Ballina,AU-NSW,49.2,15963
+Newcastle,AU-NSW,49.1,308308
+Wollongong,AU-NSW,48,245942
+Gold Coast,AU-QLD,47.8,478107
+Armidale,AU-NSW,47.8,19818
+Lismore,AU-NSW,47,27474
+Toowoomba,AU-QLD,46.2,96567
+Parkes,AU-NSW,46.2,10026
+Nelson Bay - Corlette,AU-NSW,46.1,11060
+Port Macquarie,AU-NSW,45.7,41491
+Nambour,AU-QLD,45.6,16250
+Dubbo,AU-NSW,44.9,32327
+Sunshine Coast,AU-QLD,44.5,209263
+Hobart,AU-TAS,44.5,170975
+Darwin,AU-NT,44.5,103016
+Devonport,AU-TAS,44.4,22770
+Broken Hill,AU-NSW,44.3,18430
+Morwell,AU-VIC,44,13691
+Bongaree - Woorim,AU-QLD,43.9,17041
+Mount Gambier,AU-SA,43.8,25199
+Whyalla,AU-SA,43.3,21736
+Ocean Grove - Barwon Heads,AU-VIC,43.2,16093
+Launceston,AU-TAS,43.1,74085
+Rockhampton,AU-QLD,43.1,61724
+Lithgow,AU-NSW,43.1,11143
+Queanbeyan,AU-NSW,42.9,35878
+Muswellbrook,AU-NSW,42.7,11042
+Kiama,AU-NSW,42.5,12817
+Albury,AU-NSW,42.3,45627
+Colac,AU-VIC,42,11415
+Mildura,AU-VIC,41.6,31361
+Kalgoorlie - Boulder,AU-WA,41.4,30841
+Coffs Harbour,AU-NSW,41.2,45580
+Mount Isa,AU-QLD,41.2,20570
+Ballarat,AU-VIC,41.1,85935
+Central Coast,AU-NSW,41,297713
+Cairns,AU-QLD,40.9,133893
+Warrnambool,AU-VIC,40.7,29284
+Singleton,AU-NSW,40.6,13961
+Forster - Tuncurry,AU-NSW,40.5,18904
+Horsham,AU-VIC,40.5,15262
+Pakenham,AU-VIC,40.4,32911
+Wodonga,AU-VIC,40.1,31605
+Gympie,AU-QLD,40.1,17285
+Kurri Kurri - Weston,AU-NSW,40.1,13057
+Dalby,AU-QLD,40.1,10861
+Townsville,AU-QLD,40,157748
+Wagga Wagga,AU-NSW,40,46913
+Burnie - Somerset,AU-TAS,40,19819
+Canberra,AU-ACT,39.9,355596
+Goulburn,AU-NSW,39.7,21484
+Griffith,AU-NSW,39.7,17616
+Broome,AU-WA,39.7,12766
+Torquay - Jan Juc,AU-VIC,39.5,13339
+Bathurst,AU-NSW,39.4,31294
+Orange,AU-NSW,39.3,34992
+Cessnock,AU-NSW,39.3,20013
+Blue Mountains,AU-NSW,39.2,28769
+Tweed Heads,AU-NSW,39.1,55553
+Warragul,AU-VIC,38.8,13081
+Bendigo,AU-VIC,38.7,82794
+Traralgon,AU-VIC,38.7,24590
+Mount Barker,AU-SA,38.7,14452
+Gladstone,AU-QLD,38.2,32073
+Port Pirie,AU-SA,38.1,13819
+Emerald,AU-QLD,38.1,12895
+Sale,AU-VIC,38,12766
+Lara,AU-VIC,37.3,11192
+Tamworth,AU-NSW,37.2,36131
+Grafton,AU-NSW,37.2,16598
+Ulladulla,AU-NSW,37.1,12137
+Bowral - Mittagong,AU-NSW,36.9,19726
+Wangaratta,AU-VIC,36.8,17377
+Nowra - Bomaderry,AU-NSW,36.6,27988
+Moe - Newborough,AU-VIC,36.6,15292
+Mackay,AU-QLD,36.2,74219
+Gawler,AU-SA,36.1,23957
+Maitland,AU-NSW,36,67132
+Port Augusta,AU-SA,35.8,13504
+Maryborough,AU-QLD,35.6,21777
+Bundaberg,AU-QLD,35.4,49750
+Murray Bridge,AU-SA,35.3,15967
+Ellenbrook,AU-WA,35.2,25571
+Echuca,AU-VIC,35.2,12613
+Shepparton - Mooroopna,AU-VIC,34.6,42741
+Raymond Terrace,AU-NSW,34.6,13217
+Port Lincoln,AU-SA,34.5,14088
+Yeppoon,AU-QLD,34.2,15141
+Batemans Bay,AU-NSW,34.2,11334
+Alice Springs,AU-NT,34,24208
+Port Hedland,AU-WA,34,13772
+Warwick,AU-QLD,33.5,13376
+Hervey Bay,AU-QLD,33.4,48680
+Geraldton,AU-WA,33.2,31349
+Bairnsdale,AU-VIC,33,11820
+Victor Harbor - Goolwa,AU-SA,32.9,23485
+Ulverstone,AU-TAS,32.9,12110
+Sunbury,AU-VIC,32.7,33062
+Crafers - Bridgewater,AU-SA,32.7,14617
+Melton,AU-VIC,32.6,45624
+Taree,AU-NSW,32.3,17820
+Drysdale - Clifton Springs,AU-VIC,31.1,10927
+Bunbury,AU-WA,29.6,64385
+Albany,AU-WA,29.3,26643
+Bacchus Marsh,AU-VIC,29.2,14913
+Kempsey,AU-NSW,28.5,10374
+Bargara - Innes Park,AU-QLD,27.8,10052
+Morisset - Cooranbong,AU-NSW,25.9,16918
+Busselton,AU-WA,24.2,21407
+Karratha,AU-WA,23.8,16475
+Baldivis,AU-WA,22.7,13537

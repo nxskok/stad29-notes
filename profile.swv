@@ -1,0 +1,45 @@
+\documentclass{article}
+\title{The profile data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+bellydancer 7 10 6 5 
+bellydancer 8 9 5 7 
+bellydancer 5 10 5 8 
+bellydancer 6 10 6 8 
+bellydancer 7 8 7 9 
+politician  4 4 4 4 
+politician 6 4 5 3 
+politician 5 5 5 6  
+politician 6 6 6 7  
+politician 4 5 6 5 
+admin 3 1 1 2 
+admin 5 3 1 5 
+admin 4 2 2 5 
+admin 7 1 2 4 
+admin 6 3 3 3 
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+options linesize=80;
+
+data profile;
+  infile "profile.dat";
+  input group $ read dance tv ski;
+
+proc means;
+
+proc glm;
+  class group;
+  model read dance tv ski = group / nouni;
+  repeated activity 4 profile;
+  lsmeans group;
+
+run;
+\end{SAScode}
+\end{document}

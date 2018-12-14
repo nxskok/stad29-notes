@@ -1,0 +1,116 @@
+\documentclass{article}
+\title{The ancova data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+a 5 20
+a 10 23
+a 12 30
+a 9 25
+a 23 34
+a 21 40
+a 14 27
+a 18 38
+a 6 24
+a 13 31
+b 7 19
+b 12 26
+b 27 33
+b 24 35
+b 18 30
+b 22 31
+b 26 34
+b 21 28
+b 14 23
+b 9 22
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data drugs;
+  infile "ancova.dat";
+  input drug $ before after;
+  diff=after-before;
+
+proc means;
+  class drug;
+
+proc glm;
+  class drug;
+  model after=drug before;
+  lsmeans drug;
+
+proc ttest;
+  class drug;
+  var diff;
+
+run;
+
+\end{Winput}
+\begin{Woutput}
+The MEANS Procedure
+              N
+drug        Obs    Variable     N            Mean         Std Dev         Minimum         Maximum
+-------------------------------------------------------------------------------------------------
+a            10    before      10      13.1000000       6.0452001       5.0000000      23.0000000
+                   after       10      29.2000000       6.6131183      20.0000000      40.0000000
+                   diff        10      16.1000000       2.9981476      11.0000000      20.0000000
+b            10    before      10      18.0000000       7.1492035       7.0000000      27.0000000
+                   after       10      28.1000000       5.4660569      19.0000000      35.0000000
+                   diff        10      10.1000000       2.6853512       6.0000000      14.0000000
+-------------------------------------------------------------------------------------------------
+
+The GLM Procedure
+   Class Level Information
+Class         Levels    Values
+drug               2    a b
+
+Number of Observations Read          20
+Number of Observations Used          20
+
+The GLM Procedure
+Dependent Variable: after
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        2     546.2297947     273.1148973      37.96    <.0001
+Error                       17     122.3202053       7.1953062
+Corrected Total             19     668.5500000
+
+R-Square     Coeff Var      Root MSE    after Mean
+0.817037      9.362676      2.682407      28.65000
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+drug                         1       6.0500000       6.0500000       0.84    0.3720
+before                       1     540.1797947     540.1797947      75.07    <.0001
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+drug                         1     115.3059567     115.3059567      16.03    0.0009
+before                       1     540.1797947     540.1797947      75.07    <.0001
+
+The GLM Procedure
+Least Squares Means
+drug    after LSMEAN
+a         31.2273292
+b         26.0726708
+
+The TTEST Procedure
+Variable:  diff
+drug            N        Mean     Std Dev     Std Err     Minimum     Maximum
+a              10     16.1000      2.9981      0.9481     11.0000     20.0000
+b              10     10.1000      2.6854      0.8492      6.0000     14.0000
+Diff (1-2)             6.0000      2.8460      1.2728
+drug          Method               Mean       95% CL Mean        Std Dev      95% CL Std Dev
+a                               16.1000     13.9553  18.2447      2.9981      2.0622   5.4734
+b                               10.1000      8.1790  12.0210      2.6854      1.8471   4.9024
+Diff (1-2)    Pooled             6.0000      3.3260   8.6740      2.8460      2.1505   4.2088
+Diff (1-2)    Satterthwaite      6.0000      3.3237   8.6763
+Method           Variances        DF    t Value    Pr > |t|
+Pooled           Equal            18       4.71      0.0002
+Satterthwaite    Unequal      17.786       4.71      0.0002
+              Equality of Variances
+Method      Num DF    Den DF    F Value    Pr > F
+Folded F         9         9       1.25    0.7481
+\end{Woutput}
+\end{document}

@@ -1,0 +1,71 @@
+                              The SAS System                              1
+                                             14:37 Wednesday, April 4, 2012
+
+                           The CATMOD Procedure
+
+                               Data Summary
+
+    Response           profession*sex*readtype     Response Levels   12
+    Weight Variable    freq                        Populations        1
+    Data Set           SMALL                       Total Frequency  155
+    Frequency Missing  0                           Observations      12
+
+
+                            Population Profiles
+ 
+                           Sample    Sample Size
+                           ---------------------
+                               1             155
+
+
+                            Response Profiles
+ 
+               Response    profession    sex       readtype
+               --------------------------------------------
+                   1       administ      female    scifi   
+                   2       administ      female    spy     
+                   3       administ      male      scifi   
+                   4       administ      male      spy     
+                   5       bellydan      female    scifi   
+                   6       bellydan      female    spy     
+                   7       bellydan      male      scifi   
+                   8       bellydan      male      spy     
+                   9       politici      female    scifi   
+                  10       politici      female    spy     
+                  11       politici      male      scifi   
+                  12       politici      male      spy     
+
+
+                        Maximum Likelihood Analysis
+
+                Maximum likelihood computations converged.           
+
+
+                 Maximum Likelihood Analysis of Variance
+ 
+            Source               DF   Chi-Square    Pr > ChiSq
+            --------------------------------------------------
+            profession            2         2.90        0.2348
+            sex                   1         0.03        0.8686
+            readtype              1        12.68        0.0004
+            profession*sex        2        22.79        <.0001
+
+            Likelihood Ratio      5         6.56        0.2557
+
+
+                              The SAS System                              2
+                                             14:37 Wednesday, April 4, 2012
+
+                           The CATMOD Procedure
+
+                 Analysis of Maximum Likelihood Estimates
+ 
+                                            Standard      Chi-
+ Parameter                       Estimate      Error    Square  Pr > ChiSq
+ -------------------------------------------------------------------------
+ profession     administ           0.0526     0.1257      0.18      0.6753
+                bellydan          -0.2169     0.1374      2.49      0.1144
+ sex            female             0.0149     0.0903      0.03      0.8686
+ readtype       scifi             -0.2989     0.0839     12.68      0.0004
+ profession*sex administ female   -0.5053     0.1257     16.17      <.0001
+                bellydan female    0.6114     0.1374     19.82      <.0001

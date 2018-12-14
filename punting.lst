@@ -1,0 +1,88 @@
+                            The SAS System                           1
+                                     14:53 Wednesday, January 25, 2012
+
+                          The REG Procedure
+                            Model: MODEL1
+                      Dependent Variable: punt 
+
+               Number of Observations Read          13
+               Number of Observations Used          13
+
+
+                         Analysis of Variance
+ 
+                                 Sum of         Mean
+ Source                 DF      Squares       Square  F Value  Pr > F
+
+ Model                   3   6798.13109   2266.04370    10.52  0.0027
+ Error                   9   1938.25388    215.36154                 
+ Corrected Total        12   8736.38497                              
+
+
+         Root MSE             14.67520    R-Square     0.7781
+         Dependent Mean      150.30154    Adj R-Sq     0.7042
+         Coeff Var             9.76384                       
+
+
+                         Parameter Estimates
+ 
+                      Parameter       Standard
+ Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+ Intercept     1       -4.68554       29.11722      -0.16      0.8757
+ left          1        0.26787        2.11110       0.13      0.9018
+ right         1        1.05241        2.14771       0.49      0.6358
+ fred          1       -0.26724        4.22661      -0.06      0.9510
+
+                         Parameter Estimates
+ 
+                                          Variance
+                    Variable     DF      Inflation
+
+                    Intercept     1              0
+                    left          1      130.53235
+                    right         1      133.45186
+                    fred          1      482.24616
+                            The SAS System                           2
+                                     14:53 Wednesday, January 25, 2012
+
+                          The REG Procedure
+                            Model: MODEL1
+                      Dependent Variable: punt 
+
+               Number of Observations Read          13
+               Number of Observations Used          13
+
+
+                         Analysis of Variance
+ 
+                                 Sum of         Mean
+ Source                 DF      Squares       Square  F Value  Pr > F
+
+ Model                   2   6797.27010   3398.63505    17.53  0.0005
+ Error                  10   1939.11487    193.91149                 
+ Corrected Total        12   8736.38497                              
+
+
+         Root MSE             13.92521    R-Square     0.7780
+         Dependent Mean      150.30154    Adj R-Sq     0.7336
+         Coeff Var             9.26485                       
+
+
+                         Parameter Estimates
+ 
+                      Parameter       Standard
+ Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+ Intercept     1       -5.16447       26.67795      -0.19      0.8504
+ left          1        0.13700        0.39435       0.35      0.7355
+ right         1        0.91921        0.39678       2.32      0.0430
+
+                         Parameter Estimates
+ 
+                                          Variance
+                    Variable     DF      Inflation
+
+                    Intercept     1              0
+                    left          1        5.05864
+                    right         1        5.05864

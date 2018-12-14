@@ -1,0 +1,505 @@
+\section{Brief review of analysis of variance}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Analysis of variance}
+
+  \begin{itemize}
+  \item Analysis of variance used with:
+    \begin{itemize}
+    \item counted/measured response
+    \item categorical explanatory variable(s)
+    \item that is, data divided into groups, and see if response significantly different among groups
+    \item or, see whether knowing group membership helps to predict response.
+    \end{itemize}
+  \item Typically two stages:
+    \begin{itemize}
+    \item $F$-test to detect {\em any} differences among/due to groups
+    \item if $F$-test significant, do {\em multiple comparisons} to see which groups significantly different from which.
+    \item Need special multiple comparisons method because just doing (say) two-sample $t$-tests on each pair of groups gives too big a chance of finding ``significant'' differences by accident.
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Example: jumping rats}
+
+  \begin{itemize}
+  \item Link between exercise and healthy bones: exercise stresses bones and helps them grow stronger.
+  \item Study assessed effect of jumping on bone density of rats. Rats randomly assigned to one of 3 treatment groups:
+    \begin{itemize}
+    \item no jumping (control)
+    \item low-jump (30 cm)
+    \item high-jump (60 cm)
+    \end{itemize}
+  \item 8 jumps/day, 5 days/week, measure bone density (response) at end.
+  \item use \texttt{aov} (or \texttt{lm}).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+
+  \begin{itemize}
+  \item Some of the data (10 rats in each group). Data separated by tabs.
+\begin{verbatim}
+Control      1            603
+Control      1            569
+...
+Lowjump      2            635
+Lowjump      2            605
+...
+Highjump     3            643
+Highjump     3            650
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Reading data, preliminary investigation}
+\begin{itemize}
+  \item Nothing special for reading tab-delimited data:
+
+@ 
+<<>>=
+jumping=read.table("jumping.txt",header=T)
+head(jumping)
+@ %def 
+
+
+    
+    \begin{multicols}{2}
+{\footnotesize
+@ 
+<<>>=
+aggregate(density~group,
+          jumping,mean)
+aggregate(density~group,
+          jumping,sd)
+@ %def 
+}
+      
+    \end{multicols}
+
+
+
+  \end{itemize}
+   
+\end{frame} 
+
+\begin{frame}[fragile]{Boxplot}
+  
+@ 
+<<fig=T>>=
+boxplot(density~group,data=jumping)
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+  \begin{itemize}
+  \item ``Straightforward'' one-way ANOVA.
+  \item Tables of group means and SDs. 
+    \begin{itemize}
+    \item Mean for \texttt{highjump} noticeably higher than mean
+      for other groups: significant?
+    \item Assumption: population SD in each group the same, so sample
+      SDs should be ``not too different''.
+    \item Boxplot says that control group has outliers, which inflates
+      that SD.
+    \item Going to act as if population SDs same.
+    \item If effect of treatment is purely on mean, random assignment
+      of rats to groups should imply population SDs same.
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Testing equality of SDs}
+
+Can use \textbf{Bartlett's test}:
+
+<<>>=
+bartlett.test(density~group,data=jumping)
+@
+
+No significant differences among SDs.
+
+\end{frame}
+
+\begin{frame}[fragile]{Analysis}
+
+{\small
+@ 
+<<>>=
+attach(jumping)
+jumping.1=aov(density~group)
+summary(jumping.1)
+@ %def 
+}
+
+  \begin{itemize}
+  \item Definitely a difference in bone density among groups.
+  \item But which groups different from which?
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Multiple comparisons}
+
+  \begin{itemize}
+  \item Which groups differ from which? Multiple
+    comparisons method. Lots.
+  \item Problem: by comparing all the groups with each other, doing
+    many tests, have large chance to (possibly incorrectly) reject
+    $H_0:$ groups have equal means.
+  \item 3 groups: 3 comparisons (1 vs 2, 1 vs 3, 2 vs 3). 5 groups: 10
+    comparisons. Thus 3 (or 10) chances to make mistake.
+\item Get ``familywise error rate'' of 0.05 (whatever), no
+matter how many comparisons you’re doing.
+\item My favourite: Tukey, or ``honestly
+  significant differences'': how far apart might largest, smallest
+  group means be (if actually no differences). Group means more
+  different: significantly different.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Tukey}
+
+  \begin{itemize}
+  \item \texttt{TukeyHSD:}
+
+{\small
+@ 
+<<>>=
+jumping.t=TukeyHSD(jumping.1)
+jumping.t
+@ %def 
+}
+
+%$
+  \item No significant difference between \texttt{Lowjump} and
+    \texttt{Control} (P-value large, CI overlaps zero
+  \item Two \texttt{Highjump} differences both significant (CIs
+    \emph{don't} contain zero), so mean bone density for
+    \texttt{HighJump} group sig.\ different from both other groups.
+
+
+  \end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Plotting Tukey}
+
+Can also plot \texttt{TukeyHSD} object:
+
+@ 
+<<fig=T,height=5.3>>=
+plot(jumping.t)
+@ %def 
+
+
+Lines that \emph{do not} cross 0 (dotted) indicate significant
+differences. 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Some other multiple-comparison methods}
+
+  \begin{itemize}
+  \item P-values 0.005, 0.015, 0.03, 0.06 (4 tests all done at once)
+Use $\alpha=0.05$.
+
+\item Bonferroni: 
+  \begin{itemize}
+  \item 
+Multiply all P-values by 4 (4 tests).
+\item 
+Reject only 1st null.
+  \end{itemize}
+
+\item Holm: 
+  \begin{itemize}
+  \item 
+Times smallest P-value by 4: $0.005*4=0.020<0.05$, reject.
+\item 
+Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
+\item Times next smallest by 2: $0.03*2=0.06>0.05$, do not reject. Stop.
+  \end{itemize}
+
+\item False discovery rate:
+  \begin{itemize}
+  \item 
+Times smallest P-value by 4: $0.005*4=0.02<0.05$: reject.
+\item Times second smallest by $4/2$: $0.015*4/2=0.03<0.05$, reject.
+\item Times third smallest by $4/3$: $0.03*4/3=0.04<0.05$, reject.
+\item Times fourth smallest by $4/4$: 0.06*4/4=0.06>0.05, do not reject. Stop.
+  \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Other methods in R}
+
+Bonferroni, Holm, False Discovery Rate: output edited
+
+{\footnotesize
+\begin{verbatim}
+> pairwise.t.test(density,group,p.adj="bon")
+> pairwise.t.test(density,group,p.adj="holm")
+> pairwise.t.test(density,group,p.adj="fdr")
+> pairwise.t.test(density,group,p.adj="none")
+
+bon      Control Highjump   holm     Control Highjump
+Highjump 0.0018  -          Highjump 0.0018  -       
+Lowjump  0.7437  0.0343     Lowjump  0.2479  0.0229  
+
+fdr      Control Highjump   none     Control Highjump       
+Highjump 0.0018  -          Highjump 0.00058 -              
+Lowjump  0.2479  0.0171     Lowjump  0.24791 0.01143        
+\end{verbatim}
+}
+
+\begin{itemize}
+\item P-values all adjusted upwards from ``none''
+\item Multiplied by 3, 2, 1, $3/2$ as appropriate.
+\item Bonferroni adjustment biggest: ``conservative'' (use Holm or FDR
+  instead). 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Another example: scaffolds}
+
+  \begin{itemize}
+  \item Repair serious wounds by inserting material as ``scaffold'' for body's repair cells to use as template for new tissue.
+  \item Scaffolds made from extracellular material (ECMs) promising (made from biological material).
+  \item Study: use mice to compare effects of 6 types of material.
+  \item Response: \% glucose phosphated isomerase (GPI) cells in region of wound: higher better.
+  \item GPI measured 2, 4, 8 weeks after tissue repair.
+  \item 3 mice for each combo of material (6) and weeks (3): 54 total.
+  \item Data: material, weeks, GPI.
+  \item See whether GPI depends on either/both of material and weeks or their interaction.
+  \end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Data (some)}
+
+@ 
+<<>>=
+scaffold=read.table("scaffold.txt",header=T)
+scaffold[c(1:7,51:54),]
+@ %def 
+  
+\end{frame}
+
+\begin{frame}[fragile]{ANOVA}
+
+{\small
+@ 
+<<>>=
+attach(scaffold)
+scaffold$days=factor(days)
+scaffold.1=aov(gpi~material*days)
+summary(scaffold.1)
+@ %def 
+
+}
+
+  \begin{itemize}
+  \item 
+Declare ``days'' as a categorical variable too (look for any
+differences among days), then fit model saying GPI depends on both and interaction too.
+\item The \verb-*- between material and weeks means ``fit interaction as well as main effects''.
+
+\item (Look to see whether interaction significant first, then decide what to do next.)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Investigate significant interaction first}
+
+GPI depends on days in different way according to materials.
+
+@ 
+<<fig=T,height=4.5,width=7>>=
+interaction.plot(days,material,gpi)
+@ %def 
+
+
+\begin{itemize}
+\item Lines not parallel
+\item GPI constant over time for ECMs, decays over time for MATs (and
+  GPI always less).
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Doing Tukey for interactions}
+
+  \begin{itemize}
+  \item 
+R does the job, but there's a lot of output! 6 materials, 3 days, 18
+combos of materials by days, $18(17)/2=153$ pairs to compare!
+
+{\scriptsize
+\begin{verbatim}
+> scaffold.t=TukeyHSD(scaffold.1)
+> scaffold.t
+<...>
+$`material:days`
+                       diff         lwr         upr     p adj
+ecm2:2-ecm1:2 -5.000000e+00 -20.4518621  10.4518621 0.9984366
+ecm3:2-ecm1:2  1.666667e+00 -13.7851954  17.1185287 1.0000000
+mat1:2-ecm1:2 -2.166667e+01 -37.1185287  -6.2148046 0.0007995
+mat2:2-ecm1:2 -6.000000e+01 -75.4518621 -44.5481379 0.0000000
+...
+mat3:8-ecm3:8 -6.333333e+01 -78.7851954 -47.8814713 0.0000000
+mat2:8-mat1:8 -1.500000e+01 -30.4518621   0.4518621 0.0650455
+mat3:8-mat1:8 -1.166667e+01 -27.1185287   3.7851954 0.3377716
+mat3:8-mat2:8  3.333333e+00 -12.1185287  18.7851954 0.9999922
+\end{verbatim}
+}
+
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}{Plot doesn't work!}
+  \includegraphics[width=\textwidth]{scaffold1-tukey}
+\end{frame}
+
+\begin{frame}[fragile]{More sensible approach}
+
+Get table of combo means first:
+
+{\small
+@ 
+<<>>=
+tapply(gpi,list(days,material),mean)
+@ %def 
+}
+
+\begin{itemize}
+\item Investigation of Tukey output: means differing by more than about 15
+  significantly different.
+\item Only \texttt{mat1} competes with \texttt{ecm} at their worst.
+\item No sig.\ differences among \texttt{ecm}.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Next}
+
+  \begin{itemize}
+  \item No sig.\ differences among ECMs.
+  \item ECMs all better than MATs except mat1 at 2 weeks.
+  \item Next step should be: MAT materials no good, so do another experiment on just ECMs.
+  \item We cheat --- extract data for just ECMs!
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Just the ECMs}
+
+@ 
+<<>>=
+detach(scaffold)
+rows=grep("ecm",scaffold$material)
+rows
+ecms=scaffold[rows,]
+tail(ecms)
+attach(ecms)
+@ %def 
+  
+  
+\begin{verbatim}
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Test interaction first}
+
+{\small
+
+@ 
+<<>>=
+ecms.1=aov(gpi~material*days)
+summary(ecms.1)
+@ %def 
+}
+
+No significant interaction, so take it out. Do Tukey.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interaction plot}
+
+@ 
+<<echo=F>>=
+material=factor(material,levels=c("ecm1","ecm2","ecm3"))
+@ %def 
+  
+  
+@ 
+<<fig=T,height=4,width=7>>=
+interaction.plot(days,material,gpi)
+@ %def 
+
+Not so parallel, but look at vertical scale. Changes over days
+\emph{all} small. No \emph{real} interaction.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Try 2}
+
+{\footnotesize
+
+@ 
+<<>>=
+ecms.2=aov(gpi~material+days)
+summary(ecms.2)
+ecms.2.t=TukeyHSD(ecms.2,which="material")
+ecms.2.t
+@ %def 
+
+}
+
+%$
+  
+\end{frame}
+
+\begin{frame}{Conclusions}
+\begin{itemize}
+\item \texttt{ecm3} has higher mean \texttt{gpi} than others.
+\item No sig.\ difference between \texttt{ecm1} and \texttt{ecm2}.
+\item 1--3 difference on borderline of significance.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tukey plot}
+
+@ 
+<<fig=T>>=
+plot(ecms.2.t)
+@ %def 
+  
+\end{frame}
+  
+
+
+
+
+
+
+
+

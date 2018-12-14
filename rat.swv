@@ -1,0 +1,34 @@
+\documentclass{article}
+\title{The rat data}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+0 lived
+1 died
+2 lived
+3 lived
+4 died
+5 died
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data rat;
+  infile "rat.dat";
+  input dose survival $;
+
+proc print;
+
+proc logistic;
+  class survival;
+  model survival = dose;
+  output out=rat2 pred=pred;
+
+proc print data=rat2;
+
+run;
+\end{SAScode}
+\end{document}

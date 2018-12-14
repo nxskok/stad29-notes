@@ -1,0 +1,312 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.8.30)  18 MAR 2011 10:40
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**europe
+(./europe.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (./Statweave.sty
+Package: Statweave 
+
+(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count88
+\FV@InFile=\read1
+\FV@TabBox=\box26
+\c@FancyVerbLine=\count89
+\FV@StepNumber=\count90
+\FV@OutFile=\write3
+) (/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+(/usr/share/texmf/tex/latex/R/tex/latex/upquote.sty
+Package: upquote 2003/08/11 v1.1 Covington's upright-quote modification to verb
+atim and verb
+
+(/usr/share/texmf-texlive/tex/latex/base/textcomp.sty
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+(/usr/share/texmf-texlive/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 311.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 312.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 313.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 314.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 315.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 316.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 317.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 318.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 319.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 320.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 321.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 322.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
+))) (./europe.aux)
+\openout1 = `europe.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 5.
+
+(/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 5.
+
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count91
+\scratchdimen=\dimen105
+\scratchbox=\box27
+\nofMPsegments=\count92
+\nofMParguments=\count93
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count94
+\MPscratchDim=\dimen106
+\MPnumerator=\count95
+\everyMPtoPDFconversion=\toks16
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 6.
+
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 8.
+(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Overfull \hbox (69.64874pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Amsterdam,0,3082,1639,649,280,904,1180,1014,494,1782,1323,875
+,515,973,1835,1196[] 
+ []
+
+
+Overfull \hbox (90.64362pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Athens,3082,0,3312,2552,2562,3414,3768,2692,3099,3940,2997,22
+10,3140,2198,2551,1886[] 
+ []
+
+
+Overfull \hbox (90.64362pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Barcelona,1639,3312,0,1899,1539,2230,2181,758,1512,628,515,13
+49,1125,1679,1471,1989[] 
+ []
+
+
+Overfull \hbox (59.1513pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Berlin,649,2552,1899,0,575,743,1727,1141,1059,2527,1584,604,1
+094,354,1573,666[] 
+ []
+
+
+Overfull \hbox (48.65387pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Cologne,280,2562,1539,575,0,730,1206,765,538,1776,1208,592,50
+8,659,1586,915[] 
+ []
+
+
+Overfull \hbox (95.89233pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Copenhagen,904,3414,2230,743,730,0,1864,1531,1196,2597,1914,1
+204,1329,1033,2352,1345[] 
+ []
+
+
+Overfull \hbox (101.14105pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Edinburgh,1180,3768,2181,1727,1206,1864,0,1536,656,2372,1860,
+1743,1082,1872,2467,2098[] 
+ []
+
+
+Overfull \hbox (53.90259pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Geneva,1014,2692,758,1141,765,1531,1536,0,867,1386,443,591,54
+6,954,1093,1055[] 
+ []
+
+
+Overfull \hbox (59.1513pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 London,494,3099,1512,1059,538,1196,656,867,0,1704,1192,1075,4
+14,1204,1799,912[] 
+ []
+
+
+Overfull \hbox (85.3949pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Madrid,1782,3940,628,2527,1776,2597,2372,1386,1704,0,1143,187
+7,1268,2307,2099,2617[] 
+ []
+
+
+Overfull \hbox (85.3949pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Marseille,1323,2997,515,1584,1208,1914,1860,443,1192,1143,0,1
+034,809,1397,856,1414[] 
+ []
+
+
+Overfull \hbox (48.65387pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Munich,875,2210,1349,604,592,1204,1743,591,1075,1877,1034,0,8
+27,363,969,458[] 
+ []
+
+
+Overfull \hbox (53.90259pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Paris,515,3140,1125,1094,508,1329,1082,546,414,1268,809,827,0
+,1094,1531,1285[] 
+ []
+
+
+Overfull \hbox (59.1513pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Prague,973,2198,1679,354,659,1033,1872,954,1204,2307,1397,363
+,1094,0,1370,312[] 
+ []
+
+
+Overfull \hbox (69.64874pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Rome,1835,2551,1471,1573,1586,2352,2467,1093,1799,2099,856,96
+9,1531,1370,0,1168[] 
+ []
+
+
+Overfull \hbox (64.40002pt too wide) in paragraph at lines 25--25
+[]\T1/cmtt/m/n/10 Vienna,1196,1886,1989,666,915,1345,2098,1055,912,2617,1414,45
+8,1285,312,1168,0[] 
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+[7] (./europe.aux) ) 
+Here is how much of TeX's memory you used:
+ 2025 strings out of 495061
+ 26993 string characters out of 1182621
+ 75022 words of memory out of 3000000
+ 5218 multiletter control sequences out of 15000+50000
+ 9299 words of font info for 28 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 31i,6n,21p,201b,273s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/ken/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecst1000
+.600pk> </home/ken/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </hom
+e/ken/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ken/.texmf-
+var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/ken/.texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecrm1728.600pk>
+Output written on europe.pdf (7 pages, 60867 bytes).
+PDF statistics:
+ 201 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

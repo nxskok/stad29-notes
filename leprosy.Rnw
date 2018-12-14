@@ -1,0 +1,345 @@
+% !Rnw master=a5.Rnw
+
+
+\question Two drugs are being tested in the treatment of
+leprosy. These are labelled A and D. There is also a control drug,
+labelled F. The response variable is a post-treatment score of leprosy
+bacilli (measured at six different sites on each patient). A lower
+score is better.
+
+Thus far, we have a standard one-way analysis of variance. But the
+researchers wanted greater precision in assessing the effects (if any)
+of the drugs, so they also measured a pre-treatment score of leprosy
+bacilli. The data are in the file
+\url{http://www.utsc.utoronto.ca/~butler/d29/leprosy.txt}. The
+pre-treatment and post-treatment scores are labelled \texttt{pre} and
+\texttt{post} respectively.
+
+\begin{parts}
+  \part Read in the data and check that you have apparently the
+  right thing.
+<<>>=
+@   
+  \begin{select} \begin{solution}
+    \texttt{read.table}, as ever:
+<<>>=
+lepro=read.table("leprosy.txt",header=T)
+head(lepro)
+@ 
+That looks good, with variables of the right names.
+
+  \end{solution} \end{select}
+ 
+  \part\label{part:lepro-scatter} Make a scatterplot of post-treatment score against
+  pre-treatment score, with the points for each drug drawn in a
+  different colour. If you can, add a legend that indicates which
+  colour goes with which drug (using, for example, \texttt{fill=}).
+  
+  \begin{select} \begin{solution}
+    \texttt{col}. For the legend, you need to make a list of
+    drugs. The input to \texttt{fill} has to be \emph{numbers}, so
+    supply the values 1 through 3 (since those are the colours that
+    distinguished the drugs on the scatterplot).
+    
+<<salcombe>>=
+attach(lepro)
+plot(post~pre,col=drug)
+drugs=levels(drug)
+legend("bottomright",drugs,fill=1:3)
+@     
+
+
+  \end{solution} \end{select}
+  
+  \part Does it appear that including the pre-treatment score was a
+  good idea? Explain briefly.
+  
+  \begin{select} \begin{solution}
+    The overall trend on the scatterplot is that a higher \texttt{pre}
+    tends to go with a higher \texttt{post}, regardless of drug, so
+    including this information appears to be informative.
+    
+    I personally suspect that there's some fan-out happening on the
+    pre-post relationship, but I'm not planning to make you explore that.
+  \end{solution} \end{select}
+  
+  \part What about this dataset suggests that analysis of
+  covariance is a method worth trying?
+  
+  \begin{select} \begin{solution}
+    The key is a mixture of categorical and quantitative explanatory
+    variables. Here we have a categorical variable \texttt{drug} and a
+    quantitative one \texttt{pre}. 
+    
+    If we had only one type of explanatory variable, we could do a
+    regression or an ANOVA as appropriate. But we don't. In some ways,
+    it's not worth making a fuss about the distinction, because
+    regressions and ANOVAs are all linear models anyway. But you may
+    see the term ``analysis of covariance'', so it's worth your while
+    to know what it's about. 
+  \end{solution} \end{select}
+  
+  \part Fit an analysis of covariance model to predict
+  post-treatment score. Include an interaction between your
+  explanatory variables. (You don't need to look at the output from
+  the model.)
+  
+  \begin{select} \begin{solution}
+    This is what you'd guess. \texttt{lm} handles the interaction
+    properly, even though \texttt{pre} is a  quantitative variable.
+<<>>=
+lepro.1=lm(post~pre*drug)
+@     
+
+I wanted to take a look, so I did:
+
+<<>>=
+summary(lepro.1)
+@ 
+
+For testing the interaction, there are \emph{two} slope coefficients
+that should be zero if there is no interaction. So we have to test
+this with \texttt{anova}, which is next.
+  \end{solution} \end{select}
+  
+  \part Pass your fitted model of the last part into
+  \texttt{anova}. This gives you an overall test for each effect. Is
+  the interaction term significant?
+
+  \begin{select}
+    \begin{solution}
+      Just this:
+<<>>=
+anova(lepro.1)
+@       
+
+The P-value for the interaction is very large (0.5606) so it is
+nowhere near significant. We can drop the interaction.
+    \end{solution}
+  \end{select}
+  
+  \part Fit a model without the interaction. Is this a sensible thing to
+  do (in addition, that is, to the fact that I just asked you to do it)?
+  
+  \begin{select} \begin{solution}
+    Change the \texttt{*} to a \texttt{+}:
+<<>>=
+lepro.2=lm(post~pre+drug)
+@     
+
+We just said that the interaction could come out, since it wasn't
+significant, so this is exactly the model that we should be fitting.
+  \end{solution} \end{select}
+  
+  \part Take a look at the \texttt{summary} of your preferred
+  model. Is there a significant effect of pre-treatment score?
+  Describe the effects of the different drugs on the post-treatment
+  score. (Don't do any tests for \texttt{drug}.) Does your comparison
+  of drugs make sense?
+  
+  \begin{select} \begin{solution}
+    Mine was the no-interaction model \texttt{lepro.2}:
+<<>>=
+summary(lepro.2)
+@     
+
+The pre-treatment term is definitely significant, with a P-value of
+0.0000025. So pre-treatment score definitely has an impact on
+post-treatment score.
+
+I didn't ask you to test for significance of drugs. I just wanted you
+to assess their slope coefficients. Drug A is being used as the
+baseline, so its slope is zero. Drug D has a slightly positive slope
+(0.109) so its average bacilli score is slightly higher (for any
+pre-treatment score) than for drug A. Drug F, which was the placebo,
+has a slope of 3.446, so its average bacilli score is a fair bit
+higher than for either of the other drugs. This makes sense because a
+higher score is worse, and the two ``real'' drugs are both better than
+the fake one. 
+
+Whether there is a real drug difference, I didn't ask you to assess,
+but you could do it by \texttt{anova} again, this way:
+
+
+<<>>=
+anova(lepro.2)
+@ 
+
+This is actually not significant.\endnote{This is why I didn't ask you to
+test this, since it would have confused the story.}
+
+  \end{solution} \end{select}
+  
+  \part Obtain predicted values for \texttt{post} for each of the
+  three drugs at \texttt{pre} scores 5, 12 and 20. To do this, obtain
+  a new data frame that has all 9 combinations of drugs and
+  \texttt{pre} scores, and then feed this into \texttt{predict} using
+  your preferred model.\endnote{Analysis of covariance is just a linear
+  model, so \texttt{predict} works the same here as in regression.}
+  
+  \begin{select} \begin{solution}
+    First, make the new data frame for predicting from, using
+    \texttt{expand.grid}. I'm doing this in small steps for clarity:
+    first, I define all the drugs and \texttt{pre} values, and then I
+    feed them into \texttt{expand.grid}:
+    
+<<>>=
+drugs=c("A","D","F")
+pres=c(5,12,20)
+lepro.new=expand.grid(drug=drugs,pre=pres)
+lepro.new
+@     
+
+The names of the columns in the new data frame have to be
+\emph{exactly} \texttt{drug} and \texttt{pre}. Anything else, and
+\texttt{predict} won't work.
+
+Now I obtain the predictions, from my best model \texttt{lepro.2}. I
+don't need intervals or anything like that:
+
+<<>>=
+preds=predict(lepro.2,lepro.new)
+preds
+@ 
+
+only it would be easier to see the predictions side by side with the
+values they are predictions for:
+
+<<>>=
+allpreds=cbind(lepro.new,preds)
+allpreds
+@ 
+
+I gave this a name in case I feel like using it again later.
+  \end{solution} \end{select}
+  
+  \part Now, plot the data with the fitted lines on. To do this,
+  repeat your scatterplot of part (\ref{part:lepro-scatter}). To this,
+  add three lines, one for each drug and in colours 1, 2 and 3 for
+  drugs A, D and F, using the appropriate entries from your new data
+  frame and your predictions. Or, if you like, do it with
+  \texttt{ggplot}, which might be easier if you can get your head
+  around it. (The tricky part is realizing that the lines use a
+  \emph{different} data frame than the points, so you put a different
+  data frame and \texttt{aes} \emph{inside} \verb-geom_line-. Use the
+  ideas of the example in class.)
+  
+  \begin{select} \begin{solution}
+    Start with the scatterplot, exactly as in
+    (\ref{part:lepro-scatter}). Then, drug A is entries 1, 4 and 7 in
+    \texttt{lepro.new}, so we need to pick them out and draw the line
+    with colour 1 (black). Likewise, drug D is entries 2, 5 and 8 (in
+    colour 2), and drug F is entries 3, 6 and 9 (colour 3).
+<<beer,fig.width=5,fig.height=5>>=
+plot(post~pre,col=drug)
+drugs=levels(drug)
+legend("bottomright",drugs,fill=1:3)
+druga=c(1,4,7)
+drugd=c(2,5,8)
+drugf=c(3,6,9)
+lines(lepro.new$pre[druga],preds[druga],col=1)
+lines(lepro.new$pre[drugd],preds[drugd],col=2)
+lines(lepro.new$pre[drugf],preds[drugf],col=3)
+@     
+%$ %$ %$
+
+There are other ways to do this. The \texttt{pre} values are in column
+2 of \texttt{lepro.new}, so eg.\
+
+<<eval=F>>=
+lines(lepro.new[druga,2],preds[druga],col=1)
+@ 
+would have worked. Or even this:
+
+<<eval=F>>=
+lines(c(5,12,20),preds[c(1,4,7)],col=1)
+@ 
+
+and so on, since the three \texttt{pre} values are always the same 5,
+12 and 20.
+
+This kind of graph often comes out nicely with \texttt{ggplot}. The
+tricky part is to note that the points come from one data frame and
+the lines come \emph{from another}. I ran into this issue in class also.
+
+<<>>=
+ggplot(lepro,aes(x=pre,y=post,colour=drug))+geom_point()+
+  geom_line(data=allpreds,aes(x=pre,y=preds,colour=drug,linetype=drug))
+@ 
+
+I'm using a different data frame inside \verb-geom_line-, so I have to
+specify everything again (since the \texttt{pre} and the \texttt{drug}
+are actually a \emph{different} \texttt{pre} and
+\texttt{drug}. Right?\endnote{This is also why I saved the
+  predictions.}  \verb-geom_line- has
+the \texttt{aes} as its default first argument, so I have to specify
+\texttt{data=} by name.
+
+The \texttt{linetype=} is really overkill, but I just wanted to show
+you that you can distinguish the drugs by line type as
+well.\endnote{The line types show up in the legend too, though they're
+not so easy to see.}
+
+  \end{solution} \end{select}
+  
+  \part Are the lines on your plot parallel, with the same slopes? Is this what you would
+  expect? Explain briefly.
+  
+  \begin{select} \begin{solution}
+    My lines are parallel. This is exactly what I would expect, since
+    my best model has no interaction, and the interaction is what
+    would make the lines \emph{not} be parallel. 
+    
+    If your best model
+    \emph{did} have the interaction term still in it, your predictions
+    would have been these:
+    
+<<>>=
+preds=predict(lepro.1,lepro.new)
+preds
+@     
+
+and then your plot would have been this, with \texttt{preds} coming
+from the with-interaction model
+
+<<tiki-taka,fig.width=5,fig.height=5>>=
+plot(post~pre,col=drug)
+drugs=levels(drug)
+legend("bottomright",drugs,fill=1:3)
+druga=c(1,4,7)
+drugd=c(2,5,8)
+drugf=c(3,6,9)
+lines(lepro.new$pre[druga],preds[druga],col=1)
+lines(lepro.new$pre[drugd],preds[drugd],col=2)
+lines(lepro.new$pre[drugf],preds[drugf],col=3)
+@ 
+%$
+
+This time, the slope for drug A is definitely less, so that the three
+lines are not all parallel. The best drug (lowest \texttt{post}) is
+drug D for a \texttt{pre} score up to about 9, and drug A
+otherwise. But these slopes, different though they look, are not
+significantly different.
+
+The \texttt{ggplot} in this case is actually a lot easier than the
+other \texttt{ggplot}, because the lines are now just the regression lines for each
+group (not constrained to have the same slope or anything like that).
+So \verb-geom_smooth- will get them:
+
+<<>>=
+ggplot(lepro,aes(x=pre,y=post,colour=drug))+
+  geom_point()+geom_smooth(method="lm")
+@ 
+
+The grey intervals are a bit confusing.\endnote{You can get rid of them
+by saying \texttt{se=F} inside the \verb-geom_smooth-.} They are
+confidence intervals for the mean \texttt{post} score (as we did for regression
+early on in the course). But I left them there to show that they
+overlap substantially and thus that those slopes are not ``really
+different''. That's the lack of interaction. There is, as you see, a
+substantial scatter in the points that would make it very difficult to
+prove that those three slopes are really different. 
+
+  \end{solution} \end{select}
+\end{parts}
+

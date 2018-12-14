@@ -1,0 +1,342 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.5)  27 DEC 2011 16:49
+entering extended mode
+ %&-line parsing enabled.
+**sas12
+(./sas12.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (./sas12.aux)
+\openout1 = `sas12.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count88
+\scratchdimen=\dimen105
+\scratchbox=\box26
+\nofMPsegments=\count89
+\nofMParguments=\count90
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count91
+\MPscratchDim=\dimen106
+\MPnumerator=\count92
+\everyMPtoPDFconversion=\toks16
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 10.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (7.91652pt too wide) in paragraph at lines 72--77
+[]\OT1/cmr/m/n/10.95 Then you need a pro-gram called []\OT1/cmtt/m/n/10.95 putt
+y\OT1/cmr/m/n/10.95 , which you can get from []\OT1/cmtt/m/n/10.95 putty.org\OT
+1/cmr/m/n/10.95 .
+ []
+
+[2]
+Overfull \hbox (5.3012pt too wide) in paragraph at lines 117--121
+[]\OT1/cmr/m/n/10.95 On Win-dows, start up Xming, then run Putty, load-ing your
+ saved []\OT1/cmtt/m/n/10.95 mathlab
+ []
+
+[3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 173.
+
+ (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 173.
+ [4]
+Overfull \hbox (19.41339pt too wide) in paragraph at lines 240--240
+[]\OT1/cmtt/m/n/10.95 NOTE: The data set WORK.MYDATA has 5 observations and 1 v
+ariables.[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 240--240
+[]\OT1/cmtt/m/n/10.95 NOTE: There were 5 observations read from the data set WO
+RK.MYDATA.[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 240--240
+[]\OT1/cmtt/m/n/10.95 NOTE: There were 5 observations read from the data set WO
+RK.MYDATA.[] 
+ []
+
+
+Overfull \hbox (398.82678pt too wide) in paragraph at lines 240--240
+[]\OT1/cmtt/m/n/10.95 2                                                        
+  The SAS System                            21:35 Monday, December 26, 2011[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 240--240
+[]\OT1/cmtt/m/n/10.95 NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 
+27513-2414[] 
+ []
+
+[5]
+Overfull \hbox (30.91077pt too wide) in paragraph at lines 283--283
+[]\OT1/cmtt/m/n/10.95 NOTE: The SAS System stopped processing this step because
+ of errors.[] 
+ []
+
+[6] [7]
+Overfull \hbox (112.4945pt too wide) in paragraph at lines 320--320
+[]                                           \OT1/cmtt/m/n/9 The SAS System    
+     09:57 Monday, January 10, 2011   2[] 
+ []
+
+
+Overfull \hbox (112.4945pt too wide) in paragraph at lines 339--339
+[]                                           \OT1/cmtt/m/n/9 The SAS System    
+     09:57 Monday, January 10, 2011   3[] 
+ []
+
+
+Overfull \hbox (27.4455pt too wide) in paragraph at lines 339--339
+[]                 \OT1/cmtt/m/n/9 N            Mean         Std Dev         Mi
+nimum         Maximum[] 
+ []
+
+
+Overfull \hbox (27.4455pt too wide) in paragraph at lines 339--339
+[]                 \OT1/cmtt/m/n/9 --------------------------------------------
+---------------------[] 
+ []
+
+
+Overfull \hbox (27.4455pt too wide) in paragraph at lines 339--339
+[]                 \OT1/cmtt/m/n/9 5       3.6000000       2.4083189       1.00
+00000       7.0000000[] 
+ []
+
+
+Overfull \hbox (27.4455pt too wide) in paragraph at lines 339--339
+[]                 \OT1/cmtt/m/n/9 --------------------------------------------
+---------------------[] 
+ []
+
+
+Overfull \hbox (13.63446pt too wide) in paragraph at lines 343--345
+[][]\OT1/cmtt/m/n/10.95 proc print \OT1/cmr/m/n/10.95 con-firms that the data w
+ere read in cor-rectly, while []\OT1/cmtt/m/n/10.95 proc means
+ []
+
+[8]
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 374--374
+[]                                 \OT1/cmtt/m/n/10 The SAS System             
+                   5[] 
+ []
+
+
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 374--374
+[]                                                  \OT1/cmtt/m/n/10 09:57 Mond
+ay, January 10, 2011[] 
+ []
+
+
+Overfull \hbox (17.9967pt too wide) in paragraph at lines 374--374
+[]       \OT1/cmtt/m/n/10 N            Mean         Std Dev         Minimum    
+     Maximum[] 
+ []
+
+
+Overfull \hbox (17.9967pt too wide) in paragraph at lines 374--374
+[]       \OT1/cmtt/m/n/10 -----------------------------------------------------
+------------[] 
+ []
+
+
+Overfull \hbox (17.9967pt too wide) in paragraph at lines 374--374
+[]       \OT1/cmtt/m/n/10 5       3.6000000       2.4083189       1.0000000    
+   7.0000000[] 
+ []
+
+
+Overfull \hbox (17.9967pt too wide) in paragraph at lines 374--374
+[]       \OT1/cmtt/m/n/10 -----------------------------------------------------
+------------[] 
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 388.
+[9]
+Overfull \hbox (26.28769pt too wide) in paragraph at lines 407--411
+[]\OT1/cmr/m/n/10.95 You can type these, into a new file in \OT1/cmtt/m/n/10.95
+ kwrite\OT1/cmr/m/n/10.95 , then save it as []\OT1/cmtt/m/n/10.95 threegroups.d
+at\OT1/cmr/m/n/10.95 .
+ []
+
+
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 456--456
+[]                                 \OT1/cmtt/m/n/10 The SAS System             
+                   6[] 
+ []
+
+
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 456--456
+[]                                                  \OT1/cmtt/m/n/10 09:57 Mond
+ay, January 10, 2011[] 
+ []
+
+[10]
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 482--482
+[]                                 \OT1/cmtt/m/n/10 The SAS System             
+                   7[] 
+ []
+
+
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 482--482
+[]                                                  \OT1/cmtt/m/n/10 09:57 Mond
+ay, January 10, 2011[] 
+ []
+
+
+Overfull \hbox (54.74638pt too wide) in paragraph at lines 482--482
+[]\OT1/cmtt/m/n/10 group      Obs    N           Mean        Std Dev        Min
+imum        Maximum[] 
+ []
+
+
+Overfull \hbox (54.74638pt too wide) in paragraph at lines 482--482
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-------------------[] 
+ []
+
+
+Overfull \hbox (54.74638pt too wide) in paragraph at lines 482--482
+[]\OT1/cmtt/m/n/10 a            3    3     19.0000000      2.6457513     16.000
+0000     21.0000000[] 
+ []
+
+
+Overfull \hbox (54.74638pt too wide) in paragraph at lines 482--482
+[]\OT1/cmtt/m/n/10 b            4    4     14.2500000      2.5000000     11.000
+0000     17.0000000[] 
+ []
+
+
+Overfull \hbox (54.74638pt too wide) in paragraph at lines 482--482
+[]\OT1/cmtt/m/n/10 c            4    4     11.7500000      1.8929694      9.000
+0000     13.0000000[] 
+ []
+
+
+Overfull \hbox (54.74638pt too wide) in paragraph at lines 482--482
+[]\OT1/cmtt/m/n/10 ------------------------------------------------------------
+-------------------[] 
+ []
+
+[11] [12] <plot1.png, id=47, 842.14626pt x 504.88625pt>
+File: plot1.png Graphic file (type png)
+ <use plot1.png>
+[13 <./plot1.png (PNG copy)>] [14]
+Overfull \hbox (13.27066pt too wide) in paragraph at lines 656--656
+[] \OT1/cmtt/m/n/9 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (13.27066pt too wide) in paragraph at lines 656--656
+[] \OT1/cmtt/m/n/9 Model                     1       19.60000       19.60000   
+    5.25    0.1058[] 
+ []
+
+[15] <s-data.png, id=58, 294.09875pt x 139.52126pt>
+File: s-data.png Graphic file (type png)
+ <use s-data.png> [16]
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 735--735
+[]                                 \OT1/cmtt/m/n/10 The SAS System             
+                  10[] 
+ []
+
+
+Overfull \hbox (59.99634pt too wide) in paragraph at lines 735--735
+[]                                                  \OT1/cmtt/m/n/10 09:57 Mond
+ay, January 10, 2011[] 
+ []
+
+[17 <./s-data.png (PNG copy)>] (./sas12.aux) ) 
+Here is how much of TeX's memory you used:
+ 948 strings out of 495061
+ 11799 string characters out of 1182622
+ 70329 words of memory out of 3000000
+ 4165 multiletter control sequences out of 15000+50000
+ 9344 words of font info for 34 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 25i,5n,19p,178b,285s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmtt9.pfb>
+Output written on sas12.pdf (17 pages, 157347 bytes).
+PDF statistics:
+ 91 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+

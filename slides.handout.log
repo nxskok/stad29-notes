@@ -1,0 +1,3541 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.5)  10 JAN 2012 20:41
+entering extended mode
+ %&-line parsing enabled.
+**slides.handout
+(./slides.handout.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf/tex/latex/beamer/base/beamer.cls
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasercs.sty
+Package: beamerbasercs 2007/01/28 (rcs-revision 1.4)
+)
+Document Class: beamer 2007/03/11 cvs version 3.07 A class for typesetting pres
+entations (rcs-revision 1.70)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasemodes.sty
+Package: beamerbasemodes 2007/01/28 (rcs-revision 1.22)
+\beamer@tempbox=\box26
+\beamer@tempcount=\count79
+\c@beamerpauses=\count80
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasedecode.sty
+Package: beamerbasedecode 2007/01/28 (rcs-revision 1.20)
+\beamer@slideinframe=\count81
+\beamer@minimum=\count82
+)
+\beamer@commentbox=\box27
+\beamer@modecount=\count83
+)
+\headheight=\dimen102
+\headdp=\dimen103
+\footheight=\dimen104
+\sidebarheight=\dimen105
+\beamer@tempdim=\dimen106
+\beamer@finalheight=\dimen107
+\beamer@animht=\dimen108
+\beamer@animdp=\dimen109
+\beamer@animwd=\dimen110
+\beamer@leftmargin=\dimen111
+\beamer@rightmargin=\dimen112
+\beamer@leftsidebar=\dimen113
+\beamer@rightsidebar=\dimen114
+\beamer@boxsize=\dimen115
+\beamer@vboxoffset=\dimen116
+\beamer@descdefault=\dimen117
+\beamer@descriptionwidth=\dimen118
+\beamer@lastskip=\skip41
+\beamer@areabox=\box28
+\beamer@animcurrent=\box29
+\beamer@animshowbox=\box30
+\beamer@sectionbox=\box31
+\beamer@logobox=\box32
+\beamer@linebox=\box33
+\beamer@sectioncount=\count84
+\beamer@subsubsectionmax=\count85
+\beamer@subsectionmax=\count86
+\beamer@sectionmax=\count87
+\beamer@totalheads=\count88
+\beamer@headcounter=\count89
+\beamer@partstartpage=\count90
+\beamer@sectionstartpage=\count91
+\beamer@subsectionstartpage=\count92
+\beamer@animationtempa=\count93
+\beamer@animationtempb=\count94
+\beamer@xpos=\count95
+\beamer@ypos=\count96
+\beamer@showpartnumber=\count97
+\beamer@currentsubsection=\count98
+\beamer@coveringdepth=\count99
+\beamer@sectionadjust=\count100
+\beamer@tocsectionnumber=\count101
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseoptions.sty
+Package: beamerbaseoptions 2007/01/28 (rcs-revision 1.8)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+))
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count102
+))
+\Gin@req@height=\dimen119
+\Gin@req@width=\dimen120
+)
+(/usr/share/texmf/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks15
+)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def)
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2008/02/20 v2.00 (rcs-revision 1.21)
+))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2008/02/07 v2.00 (rcs-revision 1.31)
+
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks16
+\pgfkeys@temptoks=\toks17
+)
+\pgf@x=\dimen121
+\pgf@y=\dimen122
+\pgf@xa=\dimen123
+\pgf@ya=\dimen124
+\pgf@xb=\dimen125
+\pgf@yb=\dimen126
+\pgf@xc=\dimen127
+\pgf@yc=\dimen128
+\c@pgf@counta=\count103
+\c@pgf@countb=\count104
+\c@pgf@countc=\count105
+\c@pgf@countd=\count106
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/01/13  (rcs-revision 1.6)
+)
+Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 885.
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2007/12/20  (rcs-revision 1.20)
+
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2007/12/17  (rcs-revision 1.8)
+)))
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2008/01/23  (rcs-revision 1.6)
+\pgfsyssoftpath@smallbuffer@items=\count107
+\pgfsyssoftpath@bigbuffer@items=\count108
+)
+(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2008/01/15 v2.00 (rcs-revision 1.6)
+
+(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathutil.code.tex
+\pgfmath@box=\box34
+)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@stack=\toks18
+\c@pgfmath@parsecounta=\count109
+\c@pgfmath@parsecountb=\count110
+\c@pgfmath@parsecountc=\count111
+\pgfmath@parsex=\dimen129
+)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathoperations.code.tex
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathtrig.code.tex)
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathrnd.code.tex))
+(/usr/share/texmf/tex/generic/pgf/math/pgfmathbase.code.tex)))
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2008/02/03  (rcs-revision 1.13)
+\pgf@picminx=\dimen130
+\pgf@picmaxx=\dimen131
+\pgf@picminy=\dimen132
+\pgf@picmaxy=\dimen133
+\pgf@pathminx=\dimen134
+\pgf@pathmaxx=\dimen135
+\pgf@pathminy=\dimen136
+\pgf@pathmaxy=\dimen137
+\pgf@xx=\dimen138
+\pgf@xy=\dimen139
+\pgf@yx=\dimen140
+\pgf@yy=\dimen141
+\pgf@zx=\dimen142
+\pgf@zy=\dimen143
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2008/02/13  (rcs-revision 1.14)
+\pgf@path@lastx=\dimen144
+\pgf@path@lasty=\dimen145
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2008/01/23  (rcs-revision 1.11)
+\pgf@shorten@end@additional=\dimen146
+\pgf@shorten@start@additional=\dimen147
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2008/01/15  (rcs-revision 1.26)
+\pgfpic=\box35
+\pgf@hbox=\box36
+\pgf@layerbox@main=\box37
+\pgf@picture@serial@count=\count112
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2007/12/12  (rcs-revision 1.8)
+\pgflinewidth=\dimen148
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2008/02/04  (rcs-revision 1.10)
+\pgf@pt@x=\dimen149
+\pgf@pt@y=\dimen150
+\pgf@pt@temp=\dimen151
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2008/01/23  (rcs-revision 1.7)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2007/06/07  (rcs-revision 1.8)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2007/12/10  (rcs-revision 1.9)
+\pgf@max=\dimen152
+\pgf@sys@shading@range@num=\count113
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2008/01/15  (rcs-revision 1.1)
+\pgfexternal@startupbox=\box38
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2008/01/15  (rcs-revision 1.1)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2008/01/15  (rcs-revision 1.1)
+)))
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgfbaseimage.sty
+
+Package pgf Warning: This package is obsolete and no longer needed on input lin
+e 13.
+
+) (/usr/share/texmf/tex/latex/pgf/utilities/xxcolor.sty
+Package: xxcolor 2003/10/24 ver 0.1
+\XC@nummixins=\count114
+\XC@countmixins=\count115
+)
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2009/06/22 v3.00
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks19
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+))
+(/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2008/12/21 v4.2 Page Geometry
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count116
+\Gm@cntv=\count117
+\c@Gm@tempcnt=\count118
+\Gm@bindingoffset=\dimen153
+\Gm@wd@mp=\dimen154
+\Gm@odd@mp=\dimen155
+\Gm@even@mp=\dimen156
+\Gm@dimlist=\toks20
+)
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen157
+\Hy@linkcounter=\count119
+\Hy@pagecounter=\count120
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)
+(/etc/texmf/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+))
+Package hyperref Info: Option `bookmarks' set `true' on input line 2864.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 2864.
+Package hyperref Info: Option `implicit' set `false' on input line 2864.
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing OFF on input line 2995.
+
+Implicit mode OFF; no redefinition of LaTeX internals
+Package hyperref Info: Bookmarks ON on input line 3191.
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3428.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)))
+\Fld@menulength=\count121
+\Field@Width=\dimen158
+\Fld@charsize=\dimen159
+\Field@toks=\toks21
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing OFF on input line 4392.
+Package hyperref Info: Link coloring OFF on input line 4397.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+
+Package hyperref Warning: Option `pdfpagelabels' is turned off
+(hyperref)                because \thepage is undefined.
+
+Hyperref stopped early
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
+\Fld@listcount=\count122
+)
+(/usr/share/texmf-texlive/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasecompatibility.sty
+Package: beamerbasecompatibility 2007/01/28  (rcs-revision 1.63)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasefont.sty
+Package: beamerbasefont 2007/01/28  (rcs-revision 1.16)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasemisc.sty
+Package: beamerbasemisc 2007/01/28  (rcs-revision 1.24)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetwoscreens.sty
+Package: beamerbasetwoscreens 2007/01/28  (rcs-revision 1.7)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseoverlay.sty
+Package: beamerbaseoverlay 2007/01/28  (rcs-revision 1.50)
+\beamer@argscount=\count123
+\beamer@lastskipcover=\skip42
+\beamer@trivlistdepth=\count124
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetitle.sty
+Package: beamerbasetitle 2007/01/28  (rcs-revision 1.25)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasesection.sty
+Package: beamerbasesection 2007/01/28  (rcs-revision 1.21)
+\c@lecture=\count125
+\c@part=\count126
+\c@section=\count127
+\c@subsection=\count128
+\c@subsubsection=\count129
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseframe.sty
+Package: beamerbaseframe 2007/01/28  (rcs-revision 1.60)
+\beamer@framebox=\box39
+\beamer@frametitlebox=\box40
+\beamer@zoombox=\box41
+\beamer@zoomcount=\count130
+\beamer@zoomframecount=\count131
+\beamer@frametextheight=\dimen160
+\c@subsectionslide=\count132
+\beamer@frametopskip=\skip43
+\beamer@framebottomskip=\skip44
+\beamer@frametopskipautobreak=\skip45
+\beamer@framebottomskipautobreak=\skip46
+\beamer@envbody=\toks22
+\c@framenumber=\count133
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseverbatim.sty
+Package: beamerbaseverbatim 2007/01/28  (rcs-revision 1.8)
+\beamer@verbatimfileout=\write3
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseframesize.sty
+Package: beamerbaseframesize 2007/01/28  (rcs-revision 1.18)
+\beamer@splitbox=\box42
+\beamer@autobreakcount=\count134
+\beamer@autobreaklastheight=\dimen161
+\beamer@frametitletoks=\toks23
+\beamer@framesubtitletoks=\toks24
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseframecomponents.sty
+Package: beamerbaseframecomponents 2007/01/28  (rcs-revision 1.41)
+\beamer@footins=\box43
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasecolor.sty
+Package: beamerbasecolor 2007/01/28  (rcs-revision 1.42)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasenotes.sty
+Package: beamerbasenotes 2007/01/28  (rcs-revision 1.23)
+\beamer@frameboxcopy=\box44
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetoc.sty
+Package: beamerbasetoc 2007/01/28  (rcs-revision 1.21)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetemplates.sty
+Package: beamerbasetemplates 2007/01/28  (rcs-revision 1.51)
+\beamer@sbttoks=\toks25
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseauxtemplates.sty
+Package: beamerbaseauxtemplates 2007/01/28  (rcs-revision 1.28)
+
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaseboxes.sty
+Package: beamerbaseboxes 2007/03/11  (rcs-revision 1.32)
+\bmb@box=\box45
+\bmb@colorbox=\box46
+\bmb@boxshadow=\box47
+\bmb@boxshadowball=\box48
+\bmb@boxshadowballlarge=\box49
+\bmb@temp=\dimen162
+\bmb@dima=\dimen163
+\bmb@dimb=\dimen164
+\bmb@prevheight=\dimen165
+)
+\beamer@blockheadheight=\dimen166
+))
+(/usr/share/texmf/tex/latex/beamer/base/beamerbaselocalstructure.sty
+Package: beamerbaselocalstructure 2007/01/28  (rcs-revision 1.53)
+
+(/usr/share/texmf-texlive/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks26
+)
+\c@figure=\count135
+\c@table=\count136
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasenavigation.sty
+Package: beamerbasenavigation 2007/01/28  (rcs-revision 1.36)
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasetheorems.sty
+Package: beamerbasetheorems 2007/01/28  (rcs-revision 1.10)
+
+(/usr/share/texmf-texlive/tex/latex/translator/translator.sty
+Package: translator 2007/03/11 ver 1.00
+
+(/usr/share/texmf-texlive/tex/latex/translator/translator-language-mappings.tex
+)) (/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks27
+\ex@=\dimen167
+))
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen168
+)
+(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count137
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count138
+\leftroot@=\count139
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count140
+\DOTSCASE@=\count141
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box50
+\strutbox@=\box51
+\big@size=\dimen169
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count142
+\c@MaxMatrixCols=\count143
+\dotsspace@=\muskip11
+\c@parentequation=\count144
+\dspbrk@lvl=\count145
+\tag@help=\toks28
+\row@=\count146
+\column@=\count147
+\maxfields@=\count148
+\andhelp@=\toks29
+\eqnshift@=\dimen170
+\alignsep@=\dimen171
+\tagshift@=\dimen172
+\tagwidth@=\dimen173
+\totwidth@=\dimen174
+\lineht@=\dimen175
+\@envbody=\toks30
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks31
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks32
+\thm@bodyfont=\toks33
+\thm@headfont=\toks34
+\thm@notefont=\toks35
+\thm@headpunct=\toks36
+\thm@preskip=\skip52
+\thm@postskip=\skip53
+\thm@headsep=\skip54
+\dth@everypar=\toks37
+)
+\c@theorem=\count149
+)
+(/usr/share/texmf/tex/latex/beamer/base/beamerbasethemes.sty
+Package: beamerbasethemes 2007/01/28  (rcs-revision 1.10)
+)
+(/usr/share/texmf/tex/latex/beamer/themes/theme/beamerthemedefault.sty
+Package: beamerthemedefault 2007/01/28  (rcs-revision 1.7)
+
+(/usr/share/texmf/tex/latex/beamer/themes/font/beamerfontthemedefault.sty
+Package: beamerfontthemedefault 2007/01/28  (rcs-revision 1.13)
+)
+(/usr/share/texmf/tex/latex/beamer/themes/color/beamercolorthemedefault.sty
+Package: beamercolorthemedefault 2007/01/28  (rcs-revision 1.28)
+)
+(/usr/share/texmf/tex/latex/beamer/themes/inner/beamerinnerthemedefault.sty
+Package: beamerinnerthemedefault 2007/01/28  (rcs-revision 1.20)
+\beamer@dima=\dimen176
+\beamer@dimb=\dimen177
+)
+(/usr/share/texmf/tex/latex/beamer/themes/outer/beamerouterthemedefault.sty
+Package: beamerouterthemedefault 2007/01/28  (rcs-revision 1.14)
+)))
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfpages.sty
+Package: pgfpages 2004/11/05 ver 0.01
+
+(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count150
+\calc@Bcount=\count151
+\calc@Adimen=\dimen178
+\calc@Bdimen=\dimen179
+\calc@Askip=\skip55
+\calc@Bskip=\skip56
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count152
+\calc@Cskip=\skip57
+)
+\pgf@logicalpages=\count153
+\pgf@firstshipout=\count154
+\pgf@lastshipout=\count155
+\pgf@currentshipout=\count156
+\pgf@cpn=\count157
+\pgf@shipoutnextto=\count158
+\pgfphysicalheight=\dimen180
+\pgfphysicalwidth=\dimen181
+\pgfpages@shipoutbox=\box52
+)
+\pgfpages@box@1=\box53
+\pgfpages@box@2=\box54
+\pgfpages@box@3=\box55
+\pgfpages@box@4=\box56
+ (./slides.tex
+(/usr/share/texmf/tex/latex/beamer/themes/theme/beamerthemeBoadilla.sty
+Package: beamerthemeBoadilla 2007/01/28  (rcs-revision 1.2)
+
+(/usr/share/texmf/tex/latex/beamer/themes/color/beamercolorthemerose.sty
+Package: beamercolorthemerose 2007/01/28  (rcs-revision 1.3)
+)
+(/usr/share/texmf/tex/latex/beamer/themes/inner/beamerinnerthemerounded.sty
+Package: beamerinnerthemerounded 2007/01/28  (rcs-revision 1.5)
+)
+(/usr/share/texmf/tex/latex/beamer/themes/color/beamercolorthemedolphin.sty
+Package: beamercolorthemedolphin 2007/01/28  (rcs-revision 1.2)
+)
+(/usr/share/texmf/tex/latex/beamer/themes/outer/beamerouterthemeinfolines.sty
+Package: beamerouterthemeinfolines 2007/01/28  (rcs-revision 1.9)
+)) (./slides.handout.aux (./bOutline.aux) (./bInference.aux) (./bRegression.aux
+)
+(./bLogistic.aux) (./bSurvival.aux) (./bAnova.aux) (./bAncova.aux)
+(./bManova.aux) (./bProfile.aux) (./bMultivRegression.aux) (./bDiscrim.aux)
+(./bCluster.aux) (./bMDS.aux) (./bPrincomp.aux) (./bFactor.aux) (./bKriging.aux
+) (./bMultiway.aux))
+\openout1 = `slides.handout.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+ (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count159
+\scratchdimen=\dimen182
+\scratchbox=\box57
+\nofMPsegments=\count160
+\nofMParguments=\count161
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count162
+\MPscratchDim=\dimen183
+\MPnumerator=\count163
+\everyMPtoPDFconversion=\toks39
+)
+*geometry auto-detecting driver*
+*geometry detected driver: pdftex*
+-------------------- Geometry parameters
+paper: user defined
+landscape: --
+twocolumn: --
+twoside: --
+asymmetric: --
+h-parts: 14.45377pt, 335.28783pt, 14.45377pt
+v-parts: 0.0pt, 273.14662pt, 0.0pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: true
+includefoot: true
+includemp: --
+driver: pdftex
+-------------------- Page layout dimensions and switches
+\paperwidth  364.19536pt
+\paperheight 273.14662pt
+\textwidth  335.28783pt
+\textheight 244.6939pt
+\oddsidemargin  -57.81622pt
+\evensidemargin -57.81622pt
+\topmargin  -72.26999pt
+\headheight 14.22636pt
+\headsep    0.0pt
+\footskip   14.22636pt
+\marginparwidth 4.0pt
+\marginparsep   10.0pt
+\columnsep  10.0pt
+\skip\footins  10.0pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+Package hyperref Info: Link coloring OFF on input line 24.
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count164
+)
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+
+(./slides.handout.out) (./slides.handout.out)
+\@outlinefile=\write4
+\openout4 = `slides.handout.out'.
+
+\AtBeginShipoutBox=\box58
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 24.
+\symnumbers=\mathgroup6
+\sympureletters=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 24.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 24.
+
+(/usr/share/texmf-texlive/tex/latex/translator/translator-theorem-dictionary-En
+glish.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+) (./slides.handout.nav)
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+(Font)              size <5> substituted on input line 37.
+
+\openout2 = `bOutline.aux'.
+
+(./bOutline.tex
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)) (./slides.handout.toc)
+[5
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+
+\@writefile{nav}{\headcommand {\sectionentry {1}{Course Outline}{2}{Course Outl
+ine}{0}}}
+\@writefile{nav}{\headcommand {\beamer@sectionpages {1}{1}}}
+\@writefile{nav}{\headcommand {\beamer@subsectionpages {1}{1}}}
+\@writefile{nav}{\headcommand {\slideentry {1}{0}{2}{2/2}{}{0}}}
+\@writefile{nav}{\headcommand {\beamer@framepages {2}{2}}}
+
+\@writefile{nav}{\headcommand {\slideentry {1}{0}{3}{3/3}{}{0}}}
+\@writefile{nav}{\headcommand {\beamer@framepages {3}{3}}}
+
+\@writefile{nav}{\headcommand {\slideentry {1}{0}{4}{4/4}{}{0}}}
+\@writefile{nav}{\headcommand {\beamer@framepages {4}{4}}}
+]
+\openout2 = `bInference.aux'.
+
+ (./bInference.tex (./slides.handout.toc) [9
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [13
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb
+Overfull \hbox (0.70924pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/10 NOTE: The data set WORK.DRP has 44 observations and 2 variab
+les.[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [17
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb))
+\openout2 = `bRegression.aux'.
+
+ (./bRegression.tex
+(./slides.handout.toc) [21
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (10.39351pt too high) detected at line 83
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb <regress-gplot.png, id=221, 828.09375pt x 442.65375pt>
+File: regress-gplot.png Graphic file (type png)
+
+<use regress-gplot.png>) [25
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [29
+
+
+
+
+ <./regress-gplot.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (8.51433pt too high) detected at line 272
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb <sleep-resid.png, id=246, 822.07124pt x 442.65375pt>
+File: sleep-resid.png Graphic file (type png)
+
+<use sleep-resid.png>) [33
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+<sleep3.png, id=258, 982.67125pt x 416.55624pt>
+File: sleep3.png Graphic file (type png)
+ <use sleep3.png>
+<sleep4.png, id=259, 988.69376pt x 402.50375pt>
+File: sleep4.png Graphic file (type png)
+ <use sleep4.png>
+Overfull \vbox (12.6145pt too high) detected at line 310
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb <curvy-scatter.png, id=260, 828.09375pt x 442.65375pt>
+File: curvy-scatter.png Graphic file (type png)
+
+<use curvy-scatter.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [37
+
+
+
+
+ <./sleep-resid.png (PNG copy)> <./sleep3.png (PNG copy)> <./sleep4.png (PNG co
+py)> <./curvy-scatter.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<curvy-residual.png, id=272, 825.0825pt x 433.62pt>
+File: curvy-residual.png Graphic file (type png)
+ <use curvy-residual.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [41
+
+
+
+
+ <./curvy-residual.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+<curvy-resid2.png, id=284, 832.10875pt x 437.635pt>
+File: curvy-resid2.png Graphic file (type png)
+ <use curvy-resid2.png>
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [45
+
+
+
+
+ <./curvy-resid2.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [49
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<regressx1.png, id=307, 986.68625pt x 435.6275pt>
+File: regressx1.png Graphic file (type png)
+ <use regressx1.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [53
+
+
+
+
+ <./regressx1.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [57
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb <regressx2.png, id=332, 994.71625pt x 415.5525pt>
+File: regressx2.png Graphic file (type png)
+
+<use regressx2.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (14.28743pt too wide) in paragraph at lines 14--14
+ []    \OT1/cmtt/m/n/10.95 model boxcox (tp) = identity(phyheal menheal stress)
+;[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (70.82918pt too wide) in paragraph at lines 30--30
+[]                         \OT1/cmtt/m/n/8 The SAS System                      
+ 17[] 
+ []
+
+
+Overfull \hbox (70.82918pt too wide) in paragraph at lines 30--30
+[]                               \OT1/cmtt/m/n/8 09:00 Wednesday, January 12, 2
+011[] 
+ []
+
+
+Overfull \hbox (24.0785pt too wide) in paragraph at lines 30--30
+[]            \OT1/cmtt/m/n/8 Box-Cox Transformation Information for tp[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                \OT1/cmtt/m/n/8 Lambda      R-Square    Log Like[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                 \OT1/cmtt/m/n/8 -3.00          0.10    -2053.25[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                 \OT1/cmtt/m/n/8 -2.75          0.11    -1892.35[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                 \OT1/cmtt/m/n/8 -0.50          0.33     -725.30[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                 \OT1/cmtt/m/n/8 -0.25          0.36     -677.02[] 
+ []
+
+
+Overfull \hbox (11.32832pt too wide) in paragraph at lines 30--30
+[]                  \OT1/cmtt/m/n/8 0.00 +        0.37     -667.59 <[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                  \OT1/cmtt/m/n/8 0.25          0.36     -703.08[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                  \OT1/cmtt/m/n/8 0.50          0.32     -783.77[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                  \OT1/cmtt/m/n/8 1.00          0.22    -1056.94[] 
+ []
+
+
+Overfull \hbox (2.8282pt too wide) in paragraph at lines 30--30
+[]                  \OT1/cmtt/m/n/8 3.00          0.05    -2841.16[] 
+ []
+
+)
+Overfull \vbox (8.39351pt too high) detected at line 841
+ []
+
+[61
+
+
+
+
+ <./regressx2.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [65
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [69
+
+
+
+
+])
+\openout2 = `bLogistic.aux'.
+
+ (./bLogistic.tex
+(./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 83
+ []
+
+[73
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+[77
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [81
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [85
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [89
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [93
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (7.09361pt too high) detected at line 673
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [97
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [101
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [105
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [109
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb))
+\openout2 = `bSurvival.aux'.
+
+ (./bSurvival.tex (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [113
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [117
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [121
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) <splota.png, id=543, 833.1125pt x 476.78125pt>
+File: splota.png Graphic file (type png)
+
+<use splota.png> [125
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<splotb.png, id=556, 833.1125pt x 476.78125pt>
+File: splotb.png Graphic file (type png)
+ <use splotb.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb
+Overfull \hbox (16.3141pt too wide) in paragraph at lines 17--17
+[]  \OT1/cmtt/m/n/10.95 agetrt=cat(age,"-",treatment);[] 
+ []
+
+
+Overfull \hbox (4.81673pt too wide) in paragraph at lines 17--17
+[]\OT1/cmtt/m/n/10.95 symbol1 c=blue v=triangle i=l;[] 
+ []
+
+) <splotd.png, id=557, 833.1125pt x 476.78125pt>
+File: splotd.png Graphic file (type png)
+ <use splotd.png>
+File: splotd.png Graphic file (type png)
+
+<use splotd.png> [129
+
+
+
+
+ <./splota.png (PNG copy)> <./splotb.png (PNG copy)> <./splotd.png (PNG copy)>]
+)
+\openout2 = `bAnova.aux'.
+
+ (./bAnova.tex (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [133
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (7.09361pt too high) detected at line 81
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 124
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [137
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [141
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (7.7311pt too high) detected at line 276
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+Overfull \vbox (3.69353pt too high) detected at line 306
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [145
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (29.39351pt too high) detected at line 357
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (2.33101pt too high) detected at line 418
+ []
+
+[149
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [153
+
+
+
+
+])
+\openout2 = `bAncova.aux'.
+
+ (./bAncova.tex (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [157
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 132
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [161
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb))
+\openout2 = `bManova.aux'.
+
+ (./bManova.tex
+(./slides.handout.toc) [165
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [169
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (19.89351pt too high) detected at line 148
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [173
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb))
+\openout2 = `bProfile.aux'.
+
+ (./bProfile.tex (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [177
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [181
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [185
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (1.3227pt too high) detected at line 241
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [189
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [193
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [197
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (27.19362pt too high) detected at line 520
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [201
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb))
+\openout2 = `bMultivRegression.aux'.
+
+ (./bMultivRegression.tex
+(./slides.handout.toc) [205
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb
+Overfull \hbox (0.467pt too wide) in paragraph at lines 19--19
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 19--19
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.34316907       2.54        15  
+  80.458    0.0039[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 19--19
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.82528864       2.35        15  
+      93    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 19--19
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      1.44875712       2.72        15  
+  49.769    0.0042[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 19--19
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         1.05511542       6.54         5  
+      31    0.0003[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [209
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.96164244       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.03835756       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.03988755       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.03988755       0.39         3  
+      29    0.7642[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.77477885       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.22522115       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.29069088       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.29069088       2.81         3  
+      29    0.0570[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.73254211       3.53         3  
+      29    0.0271[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.26745789       3.53         3  
+      29    0.0271[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.36510923       3.53         3  
+      29    0.0271[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 23--23
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.36510923       3.53         3  
+      29    0.0271[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.86310909       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.13689091       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.15860209       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.15860209       1.69         3  
+      32    0.1884[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.68623559       4.88         3  
+      32    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.31376441       4.88         3  
+      32    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.45722550       4.88         3  
+      32    0.0066[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 21--21
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.45722550       4.88         3  
+      32    0.0066[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [213
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (0.467pt too wide) in paragraph at lines 15--15
+[]\OT1/cmtt/m/n/8 Statistic                        Value    F Value    Num DF  
+  Den DF    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 15--15
+[]\OT1/cmtt/m/n/8 Wilks' Lambda               0.53681650       9.49         3  
+      33    0.0001[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 15--15
+[]\OT1/cmtt/m/n/8 Pillai's Trace              0.46318350       9.49         3  
+      33    0.0001[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 15--15
+[]\OT1/cmtt/m/n/8 Hotelling-Lawley Trace      0.86283396       9.49         3  
+      33    0.0001[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 15--15
+[]\OT1/cmtt/m/n/8 Roy's Greatest Root         0.86283396       9.49         3  
+      33    0.0001[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (0.467pt too wide) in paragraph at lines 24--24
+[] \OT1/cmtt/m/n/8 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 24--24
+[] \OT1/cmtt/m/n/8 Model                     1     1204.38021     1204.38021   
+    2.57    0.1176[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 24--24
+[] \OT1/cmtt/m/n/8 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 24--24
+[] \OT1/cmtt/m/n/8 Model                     1     2550.78211     2550.78211   
+   28.82    <.0001[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (0.467pt too wide) in paragraph at lines 14--14
+[] \OT1/cmtt/m/n/8 Source                   DF        Squares         Square   
+ F Value    Pr > F[] 
+ []
+
+
+Overfull \hbox (0.467pt too wide) in paragraph at lines 14--14
+[] \OT1/cmtt/m/n/8 Model                     1       39.63250       39.63250   
+    4.55    0.0401[] 
+ []
+
+))
+\openout2 = `bDiscrim.aux'.
+
+ (./bDiscrim.tex (./slides.handout.toc)
+Overfull \hbox (20.86586pt too wide) in paragraph at lines 1--1
+[]\OT1/cmss/m/n/10.95 bg[][][][][][]    [][][]  
+ []
+
+[217
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<fertilizer.png, id=911, 833.1125pt x 476.78125pt>
+File: fertilizer.png Graphic file (type png)
+ <use fertilizer.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [221
+
+
+
+
+
+
+ <./fertilizer.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [225
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 216
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (2.12277pt too high) detected at line 290
+ []
+
+[229
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [233
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [237
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<jobs-canplot.png, id=968, 833.1125pt x 476.78125pt>
+File: jobs-canplot.png Graphic file (type png)
+ <use jobs-canplot.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<mixup1.png, id=969, 833.1125pt x 476.78125pt>
+File: mixup1.png Graphic file (type png)
+ <use mixup1.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [241
+
+
+
+
+ <./jobs-canplot.png (PNG copy)> <./mixup1.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (1.42265pt too high) detected at line 626
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (1.72269pt too high) detected at line 690
+ []
+
+[245
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<mixup2.png, id=993, 833.1125pt x 476.78125pt>
+File: mixup2.png Graphic file (type png)
+ <use mixup2.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [249
+
+
+
+
+ <./mixup2.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [253
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 920
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [257
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (1.72269pt too high) detected at line 1041
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<remote-sensing-canplot.png, id=1027, 833.1125pt x 476.78125pt>
+File: remote-sensing-canplot.png Graphic file (type png)
+
+<use remote-sensing-canplot.png>) [261
+
+
+
+
+])
+\openout2 = `bCluster.aux'.
+
+ (./bCluster.tex (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [265
+
+
+
+
+
+
+ <./remote-sensing-canplot.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<single-linkage.png, id=1066, 344.28625pt x 379.4175pt>
+File: single-linkage.png Graphic file (type png)
+
+<use single-linkage.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<complete-linkage.png, id=1067, 396.48125pt x 380.42125pt>
+File: complete-linkage.png Graphic file (type png)
+
+<use complete-linkage.png>) [269
+
+
+
+
+ <./single-linkage.png>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (3.59355pt too high) detected at line 169
+ []
+
+[273
+
+
+
+
+ <./complete-linkage.png>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<one-ten-tree-single.png, id=1091, 833.1125pt x 476.78125pt>
+File: one-ten-tree-single.png Graphic file (type png)
+
+<use one-ten-tree-single.png>) [277
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb
+<one-ten-tree-ward.png, id=1103, 833.1125pt x 476.78125pt>
+File: one-ten-tree-ward.png Graphic file (type png)
+
+<use one-ten-tree-ward.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+[281
+
+
+
+
+ <./one-ten-tree-single.png (PNG copy)> <./one-ten-tree-ward.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [285
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 22--22
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=1 -----------------------
+---------------------[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 25--25
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=2 -----------------------
+---------------------[] 
+ []
+
+)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 26--26
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=3 -----------------------
+---------------------[] 
+ []
+
+
+Overfull \hbox (13.21718pt too wide) in paragraph at lines 26--26
+[]\OT1/cmtt/m/n/8 --------------------------- Cluster=4 -----------------------
+---------------------[] 
+ []
+
+)
+Overfull \vbox (0.89351pt too high) detected at line 510
+ []
+
+[289
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (6.39351pt too high) detected at line 551
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (7.09361pt too high) detected at line 623
+ []
+
+[293
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 656
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [297
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb <map1.png, id=1160, 1084.05pt x 722.7pt>
+File: map1.png Graphic file (type png)
+ <use map1.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (15.72278pt too high) detected at line 752
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+Overfull \vbox (10.39351pt too high) detected at line 785
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb <hockey-tree.png, id=1161, 833.1125pt x 476.78125pt>
+File: hockey-tree.png Graphic file (type png)
+
+<use hockey-tree.png>) [301
+
+
+
+
+ <./map1.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<map2.png, id=1173, 1084.05pt x 722.7pt>
+File: map2.png Graphic file (type png)
+ <use map2.png>))
+\openout2 = `bMDS.aux'.
+
+ (./bMDS.tex
+(./slides.handout.toc) [305
+
+
+
+
+ <./hockey-tree.png (PNG copy)> <./map2.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (20.72278pt too high) detected at line 66
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [309
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<europe1.png, id=1212, 833.1125pt x 476.78125pt>
+File: europe1.png Graphic file (type png)
+ <use europe1.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<europe2.png, id=1213, 833.1125pt x 476.78125pt>
+File: europe2.png Graphic file (type png)
+ <use europe2.png>) [313
+
+
+
+
+ <./europe1.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (14.3311pt too high) detected at line 177
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+Overfull \vbox (22.69362pt too high) detected at line 204
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+Overfull \vbox (2.33101pt too high) detected at line 235
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [317
+
+
+
+
+ <./europe2.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb <lang-map.png, id=1237, 833.1125pt x 476.78125pt>
+File: lang-map.png Graphic file (type png)
+
+<use lang-map.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+Underfull \hbox (badness 1270) in paragraph at lines 6--7
+[]\OT1/cmss/m/n/10.95 Excellent: no prospect of mis-in-ter-pre-ta-tion
+ []
+
+) [321
+
+
+
+
+ <./lang-map.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<cube.png, id=1249, 833.1125pt x 476.78125pt>
+File: cube.png Graphic file (type png)
+ <use cube.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [325
+
+
+
+
+ <./cube.png (PNG copy)>])
+\openout2 = `bPrincomp.aux'.
+
+ (./bPrincomp.tex
+(./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<test12.png, id=1278, 856.19875pt x 498.86375pt>
+File: test12.png Graphic file (type png)
+ <use test12.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [329
+
+
+
+
+
+
+ <./test12.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [333
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (2.42694pt too high) detected at line 184
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [337
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<track-field-pc.png, id=1311, 833.1125pt x 474.77374pt>
+File: track-field-pc.png Graphic file (type png)
+
+<use track-field-pc.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [341
+
+
+
+
+ <./track-field-pc.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (13.12274pt too high) detected at line 350
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [345
+
+
+
+
+])
+\openout2 = `bFactor.aux'.
+
+
+(./bFactor.tex (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (8.73804pt too high) detected at line 51
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [349
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [353
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [357
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb <bem.png, id=1384, 624.3325pt x 411.5375pt>
+File: bem.png Graphic file (type png)
+
+<use bem.png>)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [361
+
+
+
+
+ <./bem.png>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 385
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [365
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (0.89351pt too high) detected at line 547
+ []
+
+[369
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<factor-scores.png, id=1419, 833.1125pt x 476.78125pt>
+File: factor-scores.png Graphic file (type png)
+ <use factor-scores.png>)
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (10.39351pt too high) detected at line 632
+ []
+
+[373
+
+
+
+
+ <./factor-scores.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) (./slides.handout.toc)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [377
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (2.12277pt too high) detected at line 778
+ []
+
+[381
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [385
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (42.16237pt too high) detected at line 920
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [389
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [393
+
+
+
+
+])
+\openout2 = `bKriging.aux'.
+
+ (./bKriging.tex (./slides.handout.toc)
+<banana1.png, id=1520, 833.1125pt x 476.78125pt>
+File: banana1.png Graphic file (type png)
+ <use banana1.png>
+<banana2.png, id=1521, 833.1125pt x 476.78125pt>
+File: banana2.png Graphic file (type png)
+ <use banana2.png> [397
+
+
+
+
+
+
+ <./banana1.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+<thick1.png, id=1532, 833.1125pt x 476.78125pt>
+File: thick1.png Graphic file (type png)
+ <use thick1.png>)
+Overfull \vbox (3.22899pt too high) detected at line 93
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb
+Overfull \hbox (4.71706pt too wide) in paragraph at lines 26--26
+[]      \OT1/cmtt/m/n/8 --+-------------+-------------+-------------+----------
+---+-------------+-[] 
+ []
+
+
+Overfull \hbox (4.71706pt too wide) in paragraph at lines 26--26
+[]        \OT1/cmtt/m/n/8 0            20            40            60          
+  80            100[] 
+ []
+
+)
+Overfull \vbox (0.89351pt too high) detected at line 125
+ []
+
+[401
+
+
+
+
+ <./banana2.png (PNG copy)> <./thick1.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (1.3227pt too high) detected at line 193
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [405
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [409
+
+
+
+
+]
+<variog1.png, id=1566, 833.1125pt x 476.78125pt>
+File: variog1.png Graphic file (type png)
+ <use variog1.png>
+<spherical-model.png, id=1567, 1084.05pt x 977.6525pt>
+File: spherical-model.png Graphic file (type png)
+
+<use spherical-model.png>
+<exponential-model.png, id=1568, 1084.05pt x 977.6525pt>
+File: exponential-model.png Graphic file (type png)
+
+<use exponential-model.png>
+Overfull \vbox (9.84973pt too high) detected at line 373
+ []
+
+<gaussian-model.png, id=1569, 1084.05pt x 977.6525pt>
+File: gaussian-model.png Graphic file (type png)
+ <use gaussian-model.png>
+Overfull \vbox (9.84973pt too high) detected at line 384
+ []
+
+[413
+
+
+
+
+ <./variog1.png (PNG copy)> <./spherical-model.png (PNG copy)> <./exponential-m
+odel.png (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb
+File: variog1.png Graphic file (type png)
+ <use variog1.png>)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [417
+
+
+
+
+ <./gaussian-model.png (PNG copy)>] <krige3d.png, id=1593, 833.1125pt x 476.781
+25pt>
+File: krige3d.png Graphic file (type png)
+
+<use krige3d.png> <krigecontour.png, id=1594, 833.1125pt x 476.78125pt>
+File: krigecontour.png Graphic file (type png)
+
+<use krigecontour.png> <krigesecontour.png, id=1595, 833.1125pt x 476.78125pt>
+File: krigesecontour.png Graphic file (type png)
+
+<use krigesecontour.png>)
+\openout2 = `bMultiway.aux'.
+
+ (./bMultiway.tex (./slides.handout.toc) [421
+
+
+
+
+ <./krige3d.png (PNG copy)> <./krigecontour.png (PNG copy)> <./krigesecontour.p
+ng (PNG copy)>]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [425
+
+
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [429
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (6.92688pt too high) detected at line 254
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [433
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (3.4227pt too high) detected at line 386
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb) [437
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (16.02695pt too high) detected at line 461
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+Overfull \vbox (41.29362pt too high) detected at line 513
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb)
+Overfull \vbox (9.73103pt too high) detected at line 548
+ []
+
+[441
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb
+Overfull \hbox (4.71706pt too wide) in paragraph at lines 13--13
+[] \OT1/cmtt/m/n/8 Parameter                           Estimate      Error     
+ Square  Pr > ChiSq[] 
+ []
+
+) [445
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb) [449
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+
+(./slides.handout.vrb)
+Overfull \vbox (10.79353pt too high) detected at line 830
+ []
+
+\openout3 = `slides.handout.vrb'.
+
+(./slides.handout.vrb) [453
+
+
+
+
+]
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb)
+\openout3 = `slides.handout.vrb'.
+
+ (./slides.handout.vrb))
+\tf@nav=\write5
+\openout5 = `slides.handout.nav'.
+
+\tf@toc=\write6
+\openout6 = `slides.handout.toc'.
+
+\tf@snm=\write7
+\openout7 = `slides.handout.snm'.
+
+
+[456
+
+
+\@writefile{nav}{\headcommand {\slideentry {18}{0}{453}{453/453}{}{0}}}
+\@writefile{nav}{\headcommand {\beamer@framepages {453}{453}}}
+
+\@writefile{nav}{\headcommand {\slideentry {18}{0}{454}{454/454}{}{0}}}
+\@writefile{nav}{\headcommand {\beamer@framepages {454}{454}}}
+
+\@writefile{nav}{\headcommand {\slideentry {18}{0}{455}{455/455}{}{0}}}
+\@writefile{nav}{\headcommand {\beamer@framepages {455}{455}}}
+] (./slides.handout.aux (./bOutline.aux) (./bInference.aux) (./bRegression.aux)
+(./bLogistic.aux) (./bSurvival.aux) (./bAnova.aux) (./bAncova.aux)
+(./bManova.aux) (./bProfile.aux) (./bMultivRegression.aux) (./bDiscrim.aux)
+(./bCluster.aux) (./bMDS.aux) (./bPrincomp.aux) (./bFactor.aux) (./bKriging.aux
+) (./bMultiway.aux))
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
+ ) ) 
+Here is how much of TeX's memory you used:
+ 16089 strings out of 495061
+ 273135 string characters out of 1182622
+ 426817 words of memory out of 3000000
+ 16985 multiletter control sequences out of 15000+50000
+ 17422 words of font info for 67 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 49i,16n,66p,419b,717s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texmf-
+texlive/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmss9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmssi
+10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmssi12.pfb></u
+sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type
+1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmtt9.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symbol
+s/msam7.pfb>
+Output written on slides.handout.pdf (114 pages, 2477037 bytes).
+PDF statistics:
+ 1958 PDF objects out of 2073 (max. 8388607)
+ 929 named destinations out of 1000 (max. 500000)
+ 405 words of extra memory for PDF output out of 10000 (max. 10000000)
+

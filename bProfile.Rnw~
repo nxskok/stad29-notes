@@ -1,0 +1,570 @@
+\section{Repeated measures by profile analysis}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Repeated measures by profile analysis}
+
+  \begin{itemize}
+  \item More than one response {\em measurement} for each subject. Might be
+    \begin{itemize}
+    \item measurements of the same thing at different times
+    \item measurements of different but related things
+    \end{itemize}
+  \item Generalization of matched pairs (``matched triples'', etc.).
+  \item Variation: each subject does several different treatments at different times (called {\em crossover design}).
+  \item Expect measurements on same subject to be correlated, so
+    assumptions of independence will fail.
+  \item Called {\em repeated measures}. Different approaches, but {\em
+      profile analysis} uses \texttt{Manova} (set up right way).
+  \item Another approach uses \emph{mixed models} (random effects).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+<<>>=
+library(car)
+library(tidyverse)
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Example: histamine in dogs}
+  
+  \begin{itemize}
+  \item 8 dogs take part in experiment.
+  \item Dogs randomized to one of 2 different drugs.
+  \item Response: log of blood concentration of histamine 0, 1, 3 and 5 minutes after taking drug. (Repeated measures.)
+  \item Data in \texttt{dogs.txt}, column-aligned.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Read in data}
+  
+<<>>=
+dogs=read_table("dogs.txt")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Setting things up}
+
+ 
+<<size="small">>=
+dogs
+response=with(dogs,cbind(lh0,lh1,lh3,lh5))
+dogs.lm=lm(response~drug,data=dogs)
+@ %def 
+  
+    
+\end{frame}
+
+\begin{frame}[fragile]{The repeated measures MANOVA}
+
+Get list of response variable names; we call them \texttt{times}. Save
+in data frame.
+
+{\footnotesize
+ 
+<<>>=
+times=colnames(response)
+times.df=data.frame(times)
+dogs.manova=Manova(dogs.lm,idata=times.df,
+     idesign=~times)
+dogs.manova
+@ %def 
+}
+
+Interaction significant. Pattern of response over time different
+for the two drugs.
+\end{frame}
+
+\begin{frame}[fragile]{Wide and long format}
+
+  \begin{itemize}
+  \item Want to investigate interaction.
+  \item But data frame has several observations per line (``wide format''):
+ 
+<<size="scriptsize">>=
+dogs %>% print(n=5)
+@ %def 
+    
+  \item Plotting works with data in ``long format'':
+    one response per line.
+  \item The responses are log-histamine at different times, labelled
+    \texttt{lh}-something. Call them all \texttt{lh} and put them in
+    one column, with the time they belong to labelled.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Running \texttt{gather}, try 1}
+  
+
+<<size="footnotesize">>=
+dogs %>% gather(time,lh,lh0:lh5) %>% print(n=12) 
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Getting the times}
+  
+Not quite right: for the times, we want just the numbers, not the
+letters \texttt{lh} every time. Want new variable
+containing just number in \texttt{time}:
+\texttt{parse\_number}. 
+
+<<size="footnotesize">>=
+dogs %>% gather(timex,lh,lh0:lh5) %>% 
+    mutate(time=parse_number(timex)) %>% print(n=10)
+
+@ 
+
+\end{frame}
+
+\begin{frame}[fragile]{What I did differently}
+  
+  \begin{itemize}
+  \item I realized that \texttt{gather} was going to produce something
+    like \texttt{lh1}, which I needed to do something further with, so
+    this time I gave it a temporary name \texttt{timex}.
+  \item This enabled me to use the name \texttt{time} for the actual
+    numeric time.
+  \item This works now, so next save into a new data frame \texttt{dogs.long}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Saving the chained results}
+  
+
+<<>>=
+dogs.long = dogs %>% gather(timex,lh,lh0:lh5) %>% 
+    mutate(time=parse_number(timex))
+@ 
+
+This says:
+
+\begin{itemize}
+\item Take data frame dogs, and then:
+\item Combine the columns \texttt{lh0} through \texttt{lh5} into one
+  column called \texttt{lh}, with the column that each \texttt{lh}
+  value originally came from labelled by \texttt{timex}, and then:
+\item Pull out numeric values in \texttt{timex}, saving in \texttt{time} and then:
+\item save the result in a data frame \texttt{dogs.long}.
+\end{itemize}
+  
+\end{frame}
+
+%
+%\begin{frame}[fragile]{\texttt{reshape}}
+%
+%  \begin{itemize}
+%  \item Converts between wide and long format.
+%  \item Need to tell R what our repeated-measures responses are.
+%  \item Convenient variable naming: all responses are \texttt{lh}
+%    followed by a number representing time.
+%  \item Like this:
+%  \end{itemize}
+%
+% 
+%<<>>=
+%detach(dogs)
+%d2=reshape(dogs,varying=3:6,sep="",
+%    direction="long")
+%@ %def 
+%
+%\end{frame}
+%
+%\begin{frame}[fragile]{Long data frame, top 12 lines}
+%
+% 
+%<<>>=
+%head(d2,n=12)
+%@ %def 
+%  
+%
+%\texttt{id}  labels dog, \texttt{time} labels time. Perfect for
+%interaction plot.
+%  
+%\end{frame}
+%
+
+\begin{frame}[fragile]{Interaction plot}
+  
+<<fig.height=4,size="small">>=
+ggplot(dogs.long,aes(x=time,y=lh,
+                     colour=drug,group=drug))+
+  stat_summary(fun.y=mean,geom="point")+
+  stat_summary(fun.y=mean,geom="line")
+@   
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Comments}
+  
+
+\begin{itemize}
+\item Plot mean \texttt{lh} value at each time, joining points on same
+  drug by lines.
+\item drugs same at time 0
+\item after that, Trimethaphan higher than Morphine.
+\item Effect of drug not consistent over time: significant interaction.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Take out time zero}
+
+  \begin{itemize}
+  \item Lines on interaction plot would then be parallel, and so interaction should
+no longer be significant.
+\item Go back to original ``wide'' \texttt{dogs} data frame.
+  \end{itemize}
+  
+
+ 
+<<size="footnotesize">>=
+response=with(dogs,cbind(lh1,lh3,lh5)) # excluding time zero
+dogs.lm=lm(response~drug,data=dogs)
+times=colnames(response)
+times.df=data.frame(times)
+dogs.manova=Manova(dogs.lm,idata=times.df,
+                   idesign=~times)
+@ %def 
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Results and comments}
+
+ 
+<<size="footnotesize">>=
+dogs.manova
+@ %def 
+
+\begin{itemize}
+\item Correct: interaction no longer significant.
+\item Significant effect of time.
+\item Drug effect not quite significant (some variety among dogs
+  within drug).
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Is the non-significant drug effect reasonable?}
+  
+  \begin{itemize}
+  \item Plot \emph{actual data}: \texttt{lh} against \texttt{days},
+    labelling observations by drug: ``spaghetti plot''.
+  \item Uses long data frame (confusing, yes I know):
+ 
+
+\item Plot (time,lh) points coloured  by drug
+\item and connecting measurements for each \emph{dog} by lines.
+
+  
+\item This time, we want \texttt{group=dog} (want the measurements for each
+\emph{dog} joined by lines), but \texttt{colour=drug}:
+  
+<<platanias>>=
+g=ggplot(dogs.long,aes(x=time,y=lh,
+    colour=drug,group=dog)) +
+  geom_point()+geom_line()
+@   
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The spaghetti plot}
+  
+<<hoverla,fig.height=3.5>>=
+g
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item For each dog over time, there is a strong increase and gradual
+    decrease in log-histamine. This
+    explains the significant time effect.
+  \item The pattern is more or less the same for each dog, regardless
+    of drug. This explains the non-significant interaction.
+  \item Most of the trimethaphan dogs (blue) have higher log-histamine
+    throughout (time 1 and after), and some of the morphine dogs have
+    lower.
+  \item \emph{But} two of the morphine dogs have log-histamine
+    profiles like the trimethaphan dogs. This ambiguity is probably
+    why the \texttt{drug} effect is not quite significant.
+  \end{itemize}
+  
+\end{frame}
+
+ 
+\begin{frame}[fragile]{The exercise data}
+  
+  \begin{itemize}
+  \item 30 people took part in an exercise study.
+  \item Each subject was
+    randomly assigned to one of two diets (``low fat'' or ``non-low
+    fat'') and to one of three exercise programs (``at rest'',
+    ``walking'', ``running'').
+  \item There are $2\times3 = 6$ experimental treatments, and thus
+    each one is replicated $30/6=5$ times.
+  \item Nothing unusual so far.
+  \item However, each subject had their pulse rate measured at three
+    different times (1, 15 and 30 minutes after starting their
+    exercise), so have repeated measures.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reading the data}
+  
+  Separated by \emph{tabs}:  
+  
+<<>>=
+exercise.long=read_tsv("exercise.txt")
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+
+<<size="small">>=
+exercise.long %>% print(n=8)
+@   
+
+\begin{itemize}
+\item This is ``long format'', which is usually what we want.
+\item But for repeated measures analysis, we want \emph{wide} format!
+\item ``undo'' gather: \texttt{spread}.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making wide format}
+  
+  \begin{itemize}
+  \item Spread needs three things: a data frame, a column that is
+    going to be split, and the column to make the values out of:
+    
+<<size="footnotesize">>=
+exercise.wide=spread(exercise.long,time,pulse)
+exercise.wide %>% print(n=6)
+@
+\item See how we would normally \texttt{gather} \texttt{min01, min15,
+    min30} into one column called \texttt{pulse} labelled by the
+  number of minutes? But \texttt{Manova} needs it the other way.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Setting up the repeated-measures analysis}
+  
+  \begin{itemize}
+  \item Make a response variable consisting of \texttt{min01, min15, min30}:
+<<>>=
+response=with(exercise.wide,
+           cbind(min01, min15, min30))
+@
+\item Predict that from \texttt{diet} and \texttt{exertype} and
+  interaction using \texttt{lm}:
+<<>>=
+exercise.1=lm(response~diet*exertype,
+  data=exercise.wide)
+@   
+
+\item Run this through \texttt{Manova}:
+<<>>=
+times=colnames(response)
+times.df=data.frame(times)
+exercise.2=Manova(exercise.1,idata=times.df,
+                  idesign=~times)
+@   
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Results}
+  
+  
+  \begin{scriptsize}
+<<>>=
+exercise.2
+@       
+  \end{scriptsize}
+
+\begin{itemize}
+\item Three-way interaction significant, so cannot remove anything.
+\item Pulse rate depends on diet and exercise type \emph{combination},
+  and \emph{that} is different for each time.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making some graphs}
+  
+  \begin{itemize}
+  \item Three-way  interactions are difficult to understand. To make
+    an attempt, look at some graphs.
+  \item Plot time trace of pulse rates for each individual, joined by
+    lines, and make \emph{separate} plots for each
+    \texttt{diet-exertype} combo.
+  \item \texttt{ggplot} again. Using \emph{long} data frame:
+
+<<>>=
+g=ggplot(exercise.long,aes(x=time,y=pulse,
+  group=id))+geom_point()+geom_line()+
+  facet_grid(diet~exertype)
+@ 
+
+\item \verb=facet_grid(diet~exertype)=: do a separate plot for each
+  combination of diet and exercise type, with diets going down the
+  page and exercise types going across. (Graphs are usually landscape,
+  so have the factor \texttt{exertype} with more levels going across.)
+
+\end{itemize}
+  
+\end{frame}
+
+ 
+\begin{frame}[fragile]{The graph(s)}
+  
+<<fig.height=3.5>>=
+g
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on graphs}
+  
+  \begin{itemize}
+  \item For subjects who were at rest, no change in pulse rate over
+    time, for both diet groups.
+  \item For walking subjects, not much change in pulse rates over
+    time. Maybe a small increase on average between 1 and 15 minutes.
+  \item For both running groups, an overall increase in pulse rate
+    over time, but the increase is stronger for the \texttt{lowfat}
+    group.
+  \item No consistent effect of diet over all exercise groups.
+  \item No consistent effect of exercise type over both diet groups.
+  \item No consistent effect of time over all diet-exercise type combos.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{``Simple effects'' of diet for the subjects who ran}
+  
+  \begin{itemize}
+  \item Looks as if there is only any substantial time effect for the
+    runners. For them, does diet have an effect?
+  \item Pull out only the runners from the wide data:
+<<>>=
+runners.wide = exercise.wide %>%
+  filter(exertype=="running")
+@     
+\item Create response variable and do MANOVA. Some of this looks like
+  before, but I have different data now:
+  
+<<size="footnotesize">>=
+response=with(runners.wide,cbind(min01,min15,min30))
+runners.1=lm(response~diet,data=runners.wide)
+times=colnames(response)
+times.df=data.frame(times)
+runners.2=Manova(runners.1,idata=times.df,
+                 idesign=~times)
+@   
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Results}
+  
+  {\footnotesize
+<<>>=
+runners.2
+@   
+  }
+  
+  \begin{itemize}
+  \item The \texttt{diet} by \texttt{time} interaction is still
+    significant (at $\alpha=0.05$): the effect of time on pulse rates is different for
+    the two diets.
+  \item At $\alpha=0.01$, the interaction is not significant, and then
+    we have only two (very) significant main effects of \texttt{diet}
+    and \texttt{time}. 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How is the effect of diet different over time?}
+  
+  \begin{itemize}
+  \item Table of means. Only I need long data for this, so make it (in
+    a pipe):
+    
+<<>>=
+summ = runners.wide %>%
+  gather(time,pulse,min01:min30) %>%
+  group_by(time,diet) %>%
+  summarize(mean=mean(pulse), 
+    sd=sd(pulse)) 
+@ 
+
+\item Result of \texttt{summarize} is data frame, so can save it (and
+  do more with it if needed).
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Understanding diet-time interaction}
+
+  \begin{itemize}
+    \item The summary:
+<<size="small">>=
+summ
+@   
+  \item Pulse rates at any given time higher for \texttt{lowfat} (diet
+  effect), 
+  \item Pulse rates increase over time of exercise (time effect),
+    
+  \item but the \emph{amount by which pulse rate higher} for a diet depends on
+  time: \texttt{diet} by \texttt{time} interaction.
+
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Interaction plot}
+\begin{itemize}
+\item We went to trouble of finding means by group, so making
+  interaction plot is now mainly easy:
+  
+<<fig.height=2.5>>=
+ggplot(summ,aes(x=time,y=mean,colour=diet,
+  group=diet))+geom_point()+geom_line()
+@   
+
+\item The lines are not parallel, so there is interaction between diet
+  and time.
+\end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+
+\end{frame}

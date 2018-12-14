@@ -1,0 +1,625 @@
+\section{Principal components}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Principal Components}
+  \begin{itemize}
+  \item Have measurements on (possibly large) number of variables on some individuals.
+  \item Question: can we describe data using fewer variables (because original variables correlated in some way)?
+  \item Look for direction (linear combination of original variables) in which values {\em most spread out}. This is {\em first principal component}.
+  \item Second principal component then direction uncorrelated with this in which values then most spread out. And so on.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Principal components}
+  
+  \begin{itemize}
+  \item See whether small number of principal components captures most of variation in data.
+  \item Might try to interpret principal components.
+  \item If 2 components good, can make plot of data.
+  \item (Like discriminant analysis, but no groups.)
+  \item ``What are important ways that these data vary?''
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+  
+<<size="scriptsize",echo=F,message=F>>=
+library(plyr) # for annoying technical reasons (here)
+library(ggbiplot)
+library(tidyverse)
+library(ggrepel)
+@   
+
+You might not have installed the first of these. See over for
+instructions. 
+
+<<eval=F>>=
+library(ggbiplot) # see over
+library(tidyverse)
+library(ggrepel)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Installing \texttt{ggbiplot}}
+  
+  \begin{itemize}
+  \item \texttt{ggbiplot} not on CRAN, so usual
+    \texttt{install.packages} will not work.
+  \item Install package \texttt{devtools} first (once):
+    
+<<eval=F>>=
+install.packages("devtools")
+@     
+  \item Then install \texttt{ggbiplot} (once):
+<<eval=F>>=
+library(devtools)
+install_github("vqv/ggbiplot")
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Small example: 2 test scores for 8 people}
+
+<<testt,message=F,size="small">>=
+test12=read_table2("test12.txt")
+test12
+@
+
+<<ff1>>=
+g=ggplot(test12,aes(x=first,y=second,label=id))+
+  geom_point()+geom_text_repel()
+@ 
+    
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+
+<<ff2,fig.height=4>>=
+g+geom_smooth(method="lm",se=F)
+@ 
+  
+%\includegraphics[height=\textheight]{bPrincomp-testt}  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Principal component analysis}
+  
+  \begin{itemize}
+  \item Grab just the numeric columns:
+    
+<<size="small">>=
+test12_numbers = test12 %>% select_if(is.numeric)
+@     
+
+\item Strongly correlated, so data nearly 1-dimensional:
+
+<<size="small">>=
+cor(test12_numbers)
+@ 
+
+\item Make a score summarizing this one dimension. Like this:
+
+<<plot12,size="small">>=
+test12.pc = test12_numbers %>% princomp(cor=T)
+summary(test12.pc)
+@ 
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+\begin{itemize}
+\item ``Standard deviation'' shows relative importance of components
+  (as for LDs in discriminant analysis)
+\item Here, first one explains almost all (99.4\%) of variability.
+\item That is, look only at first component and ignore second.
+\item \texttt{cor=T} standardizes all variables first. Usually wanted,
+  because variables measured on different scales. (Only omit if
+  variables measured on same scale and expect similar variability.)
+\end{itemize}
+  
+\end{frame}
+
+
+  
+
+\begin{frame}[fragile]{Scree plot}
+  
+<<fig.height=3.5>>=
+ggscreeplot(test12.pc)
+@   
+
+Imagine scree plot continues at zero, so 2 components is a \emph{big}
+elbow (take one component).
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Component loadings}
+  
+  explain how each principal component depends on (standardized)
+  original variables (test scores):
+  
+<<>>=
+test12.pc$loadings
+@   
+
+First component basically negative sum of (standardized) test
+scores. That is, person tends to score similarly on two tests, and a
+composite score would summarize performance.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Component scores}
+
+<<>>=
+d=data.frame(test12,test12.pc$scores) ; d
+@   
+%$
+
+\begin{itemize}
+\item Person A is a low scorer, high positive \texttt{comp.1} score.
+\item Person D is high scorer, high negative \texttt{comp.1} score.
+\item Person E average scorer, near-zero \texttt{comp.1} score.
+\item \texttt{comp.2} says basically nothing.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plot of scores}
+
+<<score-plot,fig.height=3.5,>>=
+ggplot(d,aes(x=Comp.1,y=Comp.2,label=id))+
+  geom_point()+geom_text_repel()
+@ 
+
+  
+%  \includegraphics[height=\textheight]{bPrincomp-score-plot}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Vertical scale exaggerates importance of \texttt{comp.2}.
+    \item Fix up to get axes on same scale:
+<<eqsc>>=
+g=ggplot(d,aes(x=Comp.1,y=Comp.2,label=id))+
+  geom_point()+geom_text_repel()+
+  coord_fixed()
+@
+\item Shows how exam scores really spread out along one dimension:
+
+<<eqsc2,fig.height=2>>=
+g
+@
+  
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The biplot}
+  
+  \begin{itemize}
+  \item Plotting variables and individuals on one plot.
+  \item Shows how components and original variables related.
+  \item Shows how individuals score on each component, and therefore
+    suggests how they score on each variable.
+  \item Add \texttt{labels} option to identify individuals:
+    
+<<>>=
+g=ggbiplot(test12.pc,labels=test12$id)
+@     
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The biplot}
+  
+<<ff3,fig.height=4,echo=F>>=
+g
+@
+  
+  
+%  \includegraphics[height=\textheight]{bPrincomp-test-biplot}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Variables point almost same direction (left). Thus very
+    negative value on \texttt{comp.1} goes with high scores on both
+    tests, and test scores highly correlated.
+  \item Position of individuals on plot according to scores on
+    principal components, implies values on original variables. Eg.:
+    \begin{itemize}
+    \item D very negative on \texttt{comp.1}, high scorer on both tests.
+    \item A and F very positive on \texttt{comp.1}, poor scorers on
+      both tests.
+    \item C positive on \texttt{comp.2}, high score on first
+      test relative to second.
+    \item A negative on \texttt{comp.2}, high score on second test
+      relative to first.
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Track running data}
+
+(1984) track running records for distances 100m to marathon, arranged
+by country. Countries labelled by (mostly) Internet domain names (ISO
+2-letter codes):
+
+<<echo=F>>=
+w=getOption("width")
+options(width=w+10)
+@ 
+
+<<size="scriptsize",message=F>>=
+track=read_table2("men_track_field.txt")
+track %>% sample_n(12)
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Country names}
+  
+Also read in a table to look country names up in later:
+
+<<message=F, size="small">>=
+iso=read_csv("isocodes.csv")
+iso
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Data and aims}
+
+  \begin{itemize}
+  \item 
+Times in seconds 100m--400m, in minutes for rest (800m up).
+\item This taken care of by standardization.
+\item 8 variables; can we summarize by fewer and gain some insight?
+\item In particular, if 2 components tell most of story, what do we see in a plot?
+
+  \end{itemize}
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Fit and examine principal components}
+ 
+<<echo=FALSE>>=
+options(width=50)
+@   
+  
+<<scree-a,size="footnotesize">>=
+track_num = track %>% select_if(is.numeric)
+track.pc=princomp(track_num,cor=T)
+summary(track.pc)
+@ 
+
+\end{frame}
+
+
+
+  
+  
+
+
+\begin{frame}[fragile]{Scree plot}
+
+<<scree-b,fig.height=3.5,>>=
+ggscreeplot(track.pc)
+@ 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{How many components?}
+  
+  \begin{itemize}
+  \item As for discriminant analysis, look for ``elbow'' in scree plot.
+  \item See one here at 3 components; everything 3 and beyond is ``scree''.
+  \item So take 2 components.
+  \item Note difference from discriminant analysis: want ``large''
+    rather than ``small'', so go 1 step left of elbow.
+  \item Another criterion: any component with eigenvalue bigger than
+    about 1 is worth including. 2nd one here has eigenvalue just less
+    than 1.
+  \item Refer back to \texttt{summary}: cumulative proportion of
+    variance explained for 2 components is 93.7\%, pleasantly high. 2
+    components tell almost whole story.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How do components depend on original variables?}
+  
+  Loadings:
+
+<<size="footnotesize",echo=2>>=
+options(width=60)
+track.pc$loadings
+@   
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item \texttt{comp.1} loads about equally (has equal weight) on
+    times over all distances.
+  \item \texttt{comp.2} has large positive loading for long
+    distances, large negative for short ones.
+  \item \texttt{comp.3}: large negative for middle distance, large
+    positive especially for short distances.
+  \item Country overall good at running will have lower than average record
+    times at all distances, so \texttt{comp.1}
+    \emph{large}. Conversely, for countries bad at running,
+    \texttt{comp.1} very negative.
+  \item Countries relatively better at sprinting (low times) will be
+    \emph{positive} on \texttt{comp.2}; countries relatively better at
+    distance running \emph{negative} on \texttt{comp.2}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Commands for plots}
+  
+  \begin{itemize}
+  \item Principal component scores (first two). Also need country names.
+    
+<<pc-plot>>=
+d=data.frame(track.pc$scores,
+  country=track$country)
+names(d)
+g1=ggplot(d,aes(x=Comp.1,y=Comp.2,
+  label=country))+
+  geom_point()+geom_text_repel()+
+    coord_fixed()
+@     
+
+\item Biplot:
+  
+<<biplot>>=
+g2=ggbiplot(track.pc,labels=track$country)
+@   
+    
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Principal components plot}
+
+<<lecce,fig.height=3.9>>=
+g1
+@     
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on principal components plot}
+  
+  \begin{itemize}
+  \item Good running countries at right of plot: US, UK, Italy,
+    Russia, East and West Germany.
+  \item Bad running countries at left: Western Samoa, Cook Islands.
+  \item Better sprinting countries at top: US, Italy, Russia,
+    Brazil, Greece. \texttt{do} is Dominican Republic, where sprinting
+    records relatively good, distance records very bad.
+  \item Better distance-running countries at bottom: Portugal, Norway,
+    Turkey, Ireland, New Zealand, Mexico. \texttt{ke} is Kenya.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Biplot}
+
+<<biplot2,fig.height=3.5>>=
+g2
+@   
+
+%  \includegraphics[height=\textheight]{bPrincomp-biplot}
+  
+\end{frame}
+
+\begin{frame}{Comments on biplot}
+  
+  \begin{itemize}
+  \item Had to do some pre-work to interpret PC plot. Biplot more self-contained.
+  \item All variable arrows point left; countries on left have large
+    (bad) record times overall, countries on right good overall.
+  \item Variable arrows extend negatively as well. Top left = bad at
+    distance running, bottom right = good at distance running.
+  \item Bottom left = bad at sprinting, top right = good at
+    sprinting.
+  \item Doesn't require so much pre-interpretation of components.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How do I know which country is which?}
+  
+  Need to look up two-letter abbreviations in ISO table, eg.\ for best
+  8 running countries:
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(desc(Comp.1)) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,country,Country) %>%
+    slice(1:8)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Best 8 running countries}
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(Comp.1) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,country,Country) %>%
+    slice(1:8)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Worst 8 running countries}
+  
+<<"footnotesize", warning=F>>=
+d %>% arrange(desc(Comp.1)) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,country,Country) %>%
+    slice(1:8)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Better at distance running}
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(desc(Comp.2)) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.2,country,Country) %>%
+    slice(1:8)
+@   
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Better at sprinting}
+  
+<<size="footnotesize",warning=F>>=
+d %>% arrange(Comp.2) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.2,country,Country) %>%
+    slice(1:10)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plot with country names}
+  
+<<>>=
+g = d %>% left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,Comp.2,Country) %>%
+    ggplot(aes(x=Comp.1,y=Comp.2,label=Country))+
+      geom_point()+geom_text_repel(size=1)+
+      coord_fixed()
+
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+
+<<fig.height=5.5, warning=F>>=
+g
+@   
+
+\end{frame}
+
+\begin{frame}[fragile]{Principal components from correlation matrix}
+  
+  Create data file like this:
+
+  
+  \verbatiminput{cov.txt}
+  
+  and read in like this:
+  
+<<message=F>>=
+mat=read_table("cov.txt",col_names=F)
+mat
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Pre-processing}
+  
+  A little pre-processing required:
+  
+  \begin{itemize}
+  \item Turn into matrix (from data frame)
+  \item Feed into \texttt{princomp} as \texttt{covmat=}
+  \end{itemize}
+  
+<<pc-cov,fig.height=4,>>=
+mat.pc = mat %>% as.matrix() %>%
+    princomp(covmat=.)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot: one component fine}
+
+<<palermo,fig.height=3.5>>=
+ggscreeplot(mat.pc)
+@   
+%  \includegraphics[height=\textheight]{bPrincomp-pc-cov}    
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Component loadings}
+  
+  
+  \begin{minipage}[t]{0.6\linewidth}
+  Compare correlation matrix:
+
+<<size="scriptsize">>=
+mat
+@  
+
+with component loadings
+
+<<size="scriptsize">>=
+mat.pc$loadings
+@
+
+%$
+  \end{minipage}
+  \begin{minipage}[t]{0.37\linewidth}
+    \begin{itemize}
+    \item When X1 large, X2 also large, X3 small.
+    \item Then \texttt{comp.1} \emph{negative}.
+    \item When X1 small, X2 small, X3 large.
+    \item Then \texttt{comp.1} \emph{positive}.
+      
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{No scores}
+  
+  \begin{itemize}
+  \item With correlation matrix rather than data, no component scores
+  \item So no principal component plot
+  \item and no biplot. 
+  \end{itemize}
+
+<<echo=F, warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@   
+  
+\end{frame}

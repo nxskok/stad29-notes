@@ -1,0 +1,7 @@
+gender eyewear freq
+female contacts 121
+female glasses 32
+female none 129
+male contacts 42
+male glasses 37
+male none 85

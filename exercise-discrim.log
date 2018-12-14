@@ -1,0 +1,188 @@
+1                                                          The SAS System                         13:43 Wednesday, February 29, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-38-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           1.15 seconds
+      cpu time            0.07 seconds
+      
+1          options ls=70;
+2          
+3          /* ods html;
+4             ods graphics on;
+5          */
+6          
+7          data ex;
+8            infile "exercise.dat";
+9            input exercise $ pulse1 pulse2 pulse3 diet $;
+10           gp=cat(diet,"-",exercise);
+11           one=pulse1/pulse1;
+12         
+
+NOTE: The infile "exercise.dat" is:
+      Filename=/home/ken/teaching/d29/notes/exercise.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rw-r--r--,
+      Last Modified=Wed Feb 15 11:57:37 2012,
+      File Size (bytes)=1054
+
+NOTE: 19 records were read from the infile "exercise.dat".
+      The minimum record length was 0.
+      The maximum record length was 61.
+NOTE: SAS went to a new line when INPUT statement reached past the 
+      end of a line.
+NOTE: The data set WORK.EX has 18 observations and 7 variables.
+2                           The SAS System
+                                    13:43 Wednesday, February 29, 2012
+
+NOTE: DATA statement used (Total process time):
+      real time           0.35 seconds
+      cpu time            0.03 seconds
+      
+
+13         proc discrim can list out=fred;
+14           class gp;
+15           var pulse1--pulse3;
+16         
+
+NOTE: There were 18 observations read from the data set WORK.EX.
+NOTE: The data set WORK.FRED has 18 observations and 17 variables.
+NOTE: The PROCEDURE DISCRIM printed pages 1-10.
+NOTE: PROCEDURE DISCRIM used (Total process time):
+      real time           0.86 seconds
+      cpu time            0.13 seconds
+      
+
+17         proc print;
+18             var gp pulse1 pulse2 pulse3 can1 _into_;
+19         
+
+NOTE: There were 18 observations read from the data set WORK.FRED.
+NOTE: The PROCEDURE PRINT printed page 11.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.00 seconds
+      
+
+20         proc print;
+21             var gp meat_____racquetb meat_____stairs
+21       ! meat_____weights
+22                    veg______racquetb veg______stairs
+22       ! veg______weights;
+23         
+24         goptions reset=all;
+25         symbol1 c=red v=x;
+26         symbol2 c=blue v=o;
+27         symbol3 c=green v=triangle;
+28         symbol4 c=black v=diamond;
+29         symbol5 c=purple v=plus;
+30         symbol6 c=cyan v=square;
+31         
+
+NOTE: There were 18 observations read from the data set WORK.FRED.
+NOTE: The PROCEDURE PRINT printed page 12.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.01 seconds
+      
+
+32         proc gplot;
+33             plot can2*can1=gp;
+34         
+
+NOTE: This SAS session is using a registry in WORK.  All changes will 
+      be lost at the end of this session.
+3                           The SAS System
+                                    13:43 Wednesday, February 29, 2012
+
+WARNING: The specified value of 11.9802 inches for HSIZE= is larger 
+         than 8.1948 inches which is the maximum for the device 
+         Xcolor. HSIZE is ignored.
+WARNING: The specified value of 7.5248 inches for VSIZE= is larger 
+         than 4.6986 inches which is the maximum for the device 
+         Xcolor. VSIZE is ignored.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened 
+instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: There were 18 observations read from the data set WORK.FRED.
+NOTE: PROCEDURE GPLOT used (Total process time):
+      real time           6.06 seconds
+      cpu time            0.40 seconds
+      
+
+35         proc discrim data=ex can out=ginger;
+36             class diet;
+37             var pulse1--pulse3;
+38         
+
+NOTE: There were 18 observations read from the data set WORK.EX.
+NOTE: The data set WORK.GINGER has 18 observations and 13 variables.
+NOTE: The PROCEDURE DISCRIM printed pages 13-19.
+NOTE: PROCEDURE DISCRIM used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+      
+
+39         proc print;
+40             var diet pulse1 pulse2 pulse3 can1 meat veg _into_;
+41         
+
+NOTE: There were 18 observations read from the data set WORK.GINGER.
+NOTE: The PROCEDURE PRINT printed page 20.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+42         proc gplot;
+43             plot one*can1=diet;
+44         
+45         run;
+
+WARNING: The specified value of 11.9802 inches for HSIZE= is larger 
+         than 8.1948 inches which is the maximum for the device 
+         Xcolor. HSIZE is ignored.
+WARNING: The specified value of 7.5248 inches for VSIZE= is larger 
+         than 4.6986 inches which is the maximum for the device 
+         Xcolor. VSIZE is ignored.
+46         
+NOTE: There were 18 observations read from the data set WORK.GINGER.
+NOTE: PROCEDURE GPLOT used (Total process time):
+      real time           2.78 seconds
+      cpu time            0.12 seconds
+      
+
+4                           The SAS System
+                                    13:43 Wednesday, February 29, 2012
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           11.58 seconds
+      cpu time            0.82 seconds
+      

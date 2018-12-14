@@ -1,0 +1,19 @@
+options linesize=70;
+
+data track;
+    infile "men_track_field.dat";
+    input m100 m200 m400 m800 m1500 m5000 m10000 marathon
+        country $;
+    
+proc princomp out=PC;
+    
+proc print data=PC;
+    var country Prin1 Prin2;
+    
+proc gplot data=PC;
+    plot Prin2*Prin1=country;
+
+proc plot data=PC;
+    plot Prin2 * Prin1$country;    
+    
+run;

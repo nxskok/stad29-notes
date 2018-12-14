@@ -1,0 +1,289 @@
+\section{Multivariate regression}
+
+\begin{frame}{Multivariate regression}
+  
+  \begin{itemize}
+  \item Ordinary regression has \emph{one} response variable and one
+    or more explanatory.
+  \item Multivariate regression has \emph{more than one} response
+    variable and one or more explanatory.
+  \item Can do regressions of each response separately for all
+    explanatory,
+  \item but ignores interdependence among responses.
+  \item Strategy:
+    \begin{itemize}
+    \item use multivariate regression tests to determine what (if
+      anything) happening
+    \item use individual regressions to understand results of
+      multivariate tests.
+    \end{itemize}
+  \item Strategy: cbind responses together, use anova(lm). (Verify
+    results from SAS.)
+
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Example}
+
+  \begin{itemize}
+  \item Psychologist wanted to see whether performance on a set of
+    ``paired-associate'' tests predicted scores on achievement/aptitude
+    tests.
+  \item Paired associate test:
+    students learn to associate
+    two unrelated words and recall the other when one is given, like
+    ``cat'' and ``ladder''.
+  \item 5 PA tests, called \texttt{n}, \texttt{s}, \texttt{ns},
+    \texttt{na}, \texttt{ss}.
+  \item 3 responses, SAT (Student Achievement Test), PPVT (picture
+    vocabulary test), Raven (progressive matrices test).
+  \item Also recorded: socio-economic status (SES), Lo/Hi, only look at Lo.
+  \item Data in \texttt{Rohwer.dat}, first line variable names.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{SAS code}
+
+Select only \texttt{SES='Lo'}, and skip first line. Run multivariate
+regression, test whether any of the PA tests predict any of responses:
+
+\begin{verbatim}
+data rohwer;
+    infile "Rohwer.dat" firstobs=2;
+    input group SES $ SAT PPVT Raven n s ns na ss;
+    if SES='Lo';
+
+proc reg;
+    model SAT PPVT Raven = n s ns na ss;
+    mtest;
+\end{verbatim}
+
+Output includes univariate regressions of each response on all
+explanatory; only PPVT appears predictable from any PA test scores.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Multivariate test of any association}
+
+  {\scriptsize
+\begin{verbatim}
+                               The REG Procedure
+                                 Model: MODEL1
+                              Multivariate Test 1
+
+                 Multivariate Statistics and F Approximations
+ 
+                            S=3    M=0.5    N=13.5
+ 
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+Wilks' Lambda               0.34316907       2.54        15    80.458    0.0039
+Pillai's Trace              0.82528864       2.35        15        93    0.0066
+Hotelling-Lawley Trace      1.44875712       2.72        15    49.769    0.0042
+Roy's Greatest Root         1.05511542       6.54         5        31    0.0003
+
+         NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+\end{verbatim}
+}
+
+These strongly significant, more than would guess from individual
+regressions.
+
+\end{frame}
+
+\begin{frame}[fragile]{Are \texttt{x}'s associated with any
+    \texttt{y}'s?}
+
+Add more \texttt{mtest} lines; can label to make easier to find in
+output:
+
+\begin{verbatim}
+proc reg;
+    model SAT PPVT Raven = n s ns na ss;
+    mtest;
+    n: mtest n;
+    s: mtest s;
+    ns: mtest ns;
+    na: mtest na;
+    ss: mtest ss;
+\end{verbatim}
+
+Each test asks whether the $x$ tested is associated with \emph{any} of
+the $y$'s.
+
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Output (selected)}
+
+{\scriptsize
+\begin{verbatim}
+                              Multivariate Test: n
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.96164244       0.39         3        29    0.7642
+Pillai's Trace              0.03835756       0.39         3        29    0.7642
+Hotelling-Lawley Trace      0.03988755       0.39         3        29    0.7642
+Roy's Greatest Root         0.03988755       0.39         3        29    0.7642
+
+                             Multivariate Test: ns
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.77477885       2.81         3        29    0.0570
+Pillai's Trace              0.22522115       2.81         3        29    0.0570
+Hotelling-Lawley Trace      0.29069088       2.81         3        29    0.0570
+Roy's Greatest Root         0.29069088       2.81         3        29    0.0570
+
+                             Multivariate Test: na
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.73254211       3.53         3        29    0.0271
+Pillai's Trace              0.26745789       3.53         3        29    0.0271
+Hotelling-Lawley Trace      0.36510923       3.53         3        29    0.0271
+Roy's Greatest Root         0.36510923       3.53         3        29    0.0271
+\end{verbatim}
+}
+
+\texttt{s} and \texttt{ss} not significant either.
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Leave only \texttt{ns} and \texttt{na}}
+
+and test them individually:
+
+\begin{verbatim}
+proc reg;
+    model SAT PPVT Raven = ns na;
+    mtest;
+    ns2: mtest ns;
+    na2: mtest na;
+\end{verbatim}
+
+Overall \texttt{mtest} strongly significant, and:
+
+\end{frame}
+
+\begin{frame}[fragile]{\ldots and}
+
+{\scriptsize
+\begin{verbatim}
+                             Multivariate Test: ns2
+
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+Wilks' Lambda               0.86310909       1.69         3        32    0.1884
+Pillai's Trace              0.13689091       1.69         3        32    0.1884
+Hotelling-Lawley Trace      0.15860209       1.69         3        32    0.1884
+Roy's Greatest Root         0.15860209       1.69         3        32    0.1884
+
+                             Multivariate Test: na2
+
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+Wilks' Lambda               0.68623559       4.88         3        32    0.0066
+Pillai's Trace              0.31376441       4.88         3        32    0.0066
+Hotelling-Lawley Trace      0.45722550       4.88         3        32    0.0066
+Roy's Greatest Root         0.45722550       4.88         3        32    0.0066
+
+\end{verbatim}
+}
+
+So \texttt{ns} not worth keeping after all. Use only \texttt{na}:
+  
+\end{frame}
+
+\begin{frame}[fragile]{The last stage}
+
+\begin{verbatim}
+proc reg;
+    model SAT PPVT Raven = na;
+    na3: mtest;
+\end{verbatim}
+
+Since only one \texttt{x}, \texttt{mtest} tests its significance with
+any \texttt{y}.
+  
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{mtest} output}
+
+{\scriptsize
+\begin{verbatim}
+                              Multivariate Test 1
+
+                Multivariate Statistics and Exact F Statistics
+ 
+                            S=1    M=0.5    N=15.5
+ 
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+Wilks' Lambda               0.53681650       9.49         3        33    0.0001
+Pillai's Trace              0.46318350       9.49         3        33    0.0001
+Hotelling-Lawley Trace      0.86283396       9.49         3        33    0.0001
+Roy's Greatest Root         0.86283396       9.49         3        33    0.0001
+\end{verbatim}
+}
+
+Which \texttt{y}'s are predicted by \texttt{na}? Look now at
+individual regressions:
+  
+\end{frame}
+
+\begin{frame}[fragile]{The regressions (edited)}
+
+{\scriptsize
+\begin{verbatim}
+                            Dependent Variable: SAT 
+
+                              Analysis of Variance
+ 
+                                     Sum of           Mean
+ Source                   DF        Squares         Square    F Value    Pr > F
+
+ Model                     1     1204.38021     1204.38021       2.57    0.1176
+ Error                    35          16379      467.96906                     
+ Corrected Total          36          17583                                    
+
+                           Dependent Variable: PPVT 
+
+                              Analysis of Variance
+ 
+                                     Sum of           Mean
+ Source                   DF        Squares         Square    F Value    Pr > F
+
+ Model                     1     2550.78211     2550.78211      28.82    <.0001
+ Error                    35     3097.65032       88.50429                     
+ Corrected Total          36     5648.43243                                    
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Raven}
+
+{\scriptsize
+\begin{verbatim}
+
+                           Dependent Variable: Raven 
+
+                              Analysis of Variance
+ 
+                                     Sum of           Mean
+ Source                   DF        Squares         Square    F Value    Pr > F
+
+ Model                     1       39.63250       39.63250       4.55    0.0401
+ Error                    35      305.17831        8.71938                     
+ Corrected Total          36      344.81081                                    
+\end{verbatim}
+}
+
+\texttt{SAT} cannot be predicted from \texttt{na}, but \texttt{PPVT}
+and \texttt{Raven} \emph{both} can. 
+
+Might have missed \texttt{na}-\texttt{Raven} relationship otherwise.
+  
+\end{frame}

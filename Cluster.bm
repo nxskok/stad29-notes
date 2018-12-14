@@ -1,0 +1,43 @@
+\HAPbookmark{}{section.0.1}{Cluster Analysis}{1}{section.0}
+\HAPbookmark{}{section.0.2}{One to ten in 11 languages}{2}{section.0}
+\HAPbookmark{}{section.0.3}{One to ten}{3}{section.0}
+\HAPbookmark{}{section.0.4}{Dissimilarities and languages example}{4}{section.0}
+\HAPbookmark{}{section.0.5}{Two kinds of cluster analysis}{5}{section.0}
+\HAPbookmark{}{section.0.6}{Hierarchical cluster analysis: joining rules}{6}{section.0}
+\HAPbookmark{}{section.0.7}{Complete linkage}{7}{section.0}
+\HAPbookmark{}{section.0.8}{Ward's method example}{8}{section.0}
+\HAPbookmark{}{section.0.9}{\dots  continued}{9}{section.0}
+\HAPbookmark{}{section.0.10}{Ward's method in general}{10}{section.0}
+\HAPbookmark{}{section.0.11}{Dissimilarity data in SAS}{11}{section.0}
+\HAPbookmark{}{section.0.12}{Doing a hierarchical cluster analysis}{12}{section.0}
+\HAPbookmark{}{section.0.13}{Output: cluster history}{13}{section.0}
+\HAPbookmark{}{section.0.14}{Summary of clustering history}{14}{section.0}
+\HAPbookmark{}{section.0.15}{Output from PROC TREE (read from {\em  right})}{15}{section.0}
+\HAPbookmark{}{section.0.16}{Checking our intuition about languages}{16}{section.0}
+\HAPbookmark{}{section.0.17}{Tree from Ward's method}{17}{section.0}
+\HAPbookmark{}{section.0.18}{Comparing single-linkage and Ward}{18}{section.0}
+\HAPbookmark{}{section.0.19}{Another example}{19}{section.0}
+\HAPbookmark{}{section.0.20}{SAS code and issues}{20}{section.0}
+\HAPbookmark{}{section.0.21}{Clustering history (a little)}{21}{section.0}
+\HAPbookmark{}{section.0.22}{The 6 best clusters}{22}{section.0}
+\HAPbookmark{}{section.0.23}{Code}{23}{section.0}
+\HAPbookmark{}{section.0.24}{Cluster means and SDs}{24}{section.0}
+\HAPbookmark{}{section.0.25}{Cluster membership}{25}{section.0}
+\HAPbookmark{}{section.0.26}{Cluster 2}{26}{section.0}
+\HAPbookmark{}{section.0.27}{Cluster 3 and 4}{27}{section.0}
+\HAPbookmark{}{section.0.28}{Cluster 5}{28}{section.0}
+\HAPbookmark{}{section.0.29}{Cluster 6}{29}{section.0}
+\HAPbookmark{}{section.0.30}{Summary of clusters}{30}{section.0}
+\HAPbookmark{}{section.0.31}{Using PROC DISCRIM on clusters}{31}{section.0}
+\HAPbookmark{}{section.0.32}{Output from discriminant analysis}{32}{section.0}
+\HAPbookmark{}{section.0.33}{The canonical variables}{33}{section.0}
+\HAPbookmark{}{section.0.34}{The clusters}{34}{section.0}
+\HAPbookmark{}{section.0.35}{Final example: a hockey league}{35}{section.0}
+\HAPbookmark{}{section.0.36}{A map}{36}{section.0}
+\HAPbookmark{}{section.0.37}{My code}{37}{section.0}
+\HAPbookmark{}{section.0.38}{Clustering history}{38}{section.0}
+\HAPbookmark{}{section.0.39}{The tree}{39}{section.0}
+\HAPbookmark{}{section.0.40}{The rest}{40}{section.0}
+\HAPbookmark{}{section.0.41}{Splitting into divisions, 1st try}{41}{section.0}
+\HAPbookmark{}{section.0.42}{2nd try}{42}{section.0}
+\HAPbookmark{}{section.0.43}{Another map}{43}{section.0}

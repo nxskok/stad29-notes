@@ -1,0 +1,15 @@
+options linesize=80;
+
+data profile;
+  infile "profile.dat";
+  input group $ read dance tv ski;
+
+proc discrim can list out=fred;
+  class group;
+
+proc print;
+
+proc gplot;
+  plot Can1*Can2=group;
+
+run;

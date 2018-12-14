@@ -1,0 +1,98 @@
+\documentclass[pdf]{prosper}
+
+\usepackage[lakar]{HA-prosper}
+
+\usepackage{graphicx}
+
+% compile with latex and then dvips -t letter
+
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{30pt}
+
+%\setlength{\textwidth}{5in}
+%\setlength{\textheight}{5in}
+
+%\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\begin{slide}{Outline part 1}
+\begin{itemize}
+    \item  Lecture: Wednesday 14:00-16:00 in AA 204.
+    \item  Instructor: Ken Butler
+    \item  Office: H417 (but don't expect to find the instructor there other than on lecture days). 
+    \item  E-mail: \verb-butler@utsc.utoronto.ca-
+    \item  Office hours: before or after class. E-mail will reach me at any time if you need to get in touch.
+    \item I am intending to use Blackboard as my information system this time. If you want to see what to expect, last year's course website is at $$\verb-www.utsc.utoronto.ca/~butler/d29-$$ (I took out last year's assignments.)
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Outline part 2}
+\begin{itemize}
+    \item {\bf No official text} for this course. One that shares my philosophy:
+      \begin{itemize}
+      \item ``Using Multivariate Statistics'' by Barbara G.\ Tabachnick and Linda S.\ Fidell, publ.\ Allyn and Bacon, ISBN 0205459382. There is a 5th edition around, but the 4th should be fine.
+      \end{itemize}
+
+    \item Prerequisites: for undergrads STAB22 - STAB27
+      (or STA220-STA221). For grad students,
+      a first course, and some training in
+      regression and ANOVA.
+    \item  Exclusions: this course not for Statistics majors. For students in other fields who wish to learn some more advanced statistical methods. The exclusions in the Calendar reflect this.
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Topics}
+
+{\small
+      \begin{itemize}
+          \item  review of statistical inference; two-sample t-test
+          \item  review of multiple regression
+          \item  logistic regression, including ordinal and nominal response
+          \item survival analysis
+          \item a brief review of analysis of variance
+          \item analysis of covariance; multivariate analysis of variance
+          \item repeated measures (by profile analysis)
+          \item  discriminant analysis; cluster analysis
+          \item multidimensional scaling
+          \item  principal components
+          \item  factor analysis (exploratory and confirmatory)
+          \item time series analysis (an introduction)
+          \item nonparametric statistics
+          \item frequency tables
+          \end{itemize}
+}
+
+
+\end{slide}
+
+\begin{slide}{Computing and assessment}
+\begin{itemize}
+\item Computing: big part of the course, {\bf not}
+  optional. Demonstrate that you can use 
+  SAS to analyze data, and to
+  critically interpret the output. {\em No} prior knowledge of SAS is assumed.
+\item Grading: short (2 hour) final exam, but no midterm. There will
+  be assignments most weeks. 
+  Graduate students also required to
+  complete a project using one or more of the techniques learned in
+  class, on a dataset from their field of study.  For 
+\item Undergrads:
+  final exam 30\% and assignments (equally weighted)
+  70\%; grad students: the final exam also 30\%, the
+  assignments 35\% and project 35\%.
+  Projects due at the
+  last class of the semester.
+    \item Plagiarism: don't do it!
+\end{itemize}
+\end{slide}
+
+
+\end{document}
+
+
+
+
+
+

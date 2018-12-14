@@ -1,0 +1,1165 @@
+%\usepackage[utf8]{inputenc}
+
+\section{Review of (multiple) regression}
+\frame{\sectionpage}
+
+% <<setup2,echo=F>>=
+% library(knitr)
+% opts_chunk$set(dev = 'pdf')
+% opts_chunk$set(comment=NA, fig.width=5, fig.height=3.5)
+% options(width=45)
+% #suppressMessages(library(tidyverse))
+% @ %def 
+
+
+\begin{frame}{Regression}
+
+  \begin{itemize}
+  \item Use regression when one variable is an outcome ({\em response}, $y$).
+  \item See if/how response depends on other variable(s), {\em explanatory}, $x_1, x_2,\ldots$.
+  \item Can have {\em one} or {\em more than one} explanatory variable, but always one response.
+  \item Assumes a {\em straight-line} relationship between response and explanatory.
+  \item Ask: 
+    \begin{itemize}
+    \item {\em is there} a relationship between $y$ and $x$'s, and if so, which ones?
+    \item what does the relationship look like?
+    \end{itemize}
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+<<>>=
+library(MASS) # for Box-Cox, later
+library(tidyverse)
+library(broom)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{A regression with one $x$}
+
+13 children, measure average total sleep time (ATST, mins) and age (years) for each. See if ATST depends on age. Data in \verb-sleep.txt-, ATST then age. Read in data:
+
+ 
+<<>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/sleep.txt"
+sleep=read_delim(my_url," ")
+@ %def 
+
+
+ 
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Check data}
+  
+<<size="footnotesize">>=
+sleep
+@   
+
+and make scatter plot of ATST (response) vs.\ age (explanatory) using
+code overleaf:
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{The scatterplot}
+   
+<<suggo, fig.height=4>>=
+ggplot(sleep,aes(x=age,y=atst))+geom_point()
+@ %def 
+  
+  
+%\includegraphics[width=\textwidth]{sleep-times}
+
+\end{frame}
+
+\begin{frame}[fragile]{Correlation}
+  
+  \begin{itemize}
+  \item Measures how well a straight line fits the data:
+ 
+<<>>=
+with(sleep,cor(atst,age))
+@ %def 
+
+\item $1$ is perfect upward trend, $-1$ is perfect downward trend, 0
+  is no trend.
+\item This one close to perfect downward trend.
+\item Can do correlations of whole data frame:
+ 
+<<>>=
+cor(sleep)
+@ %def 
+\item Correlations of all possible pairs of variables.  
+    
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Lowess curve}
+  
+  \begin{itemize}
+  \item Sometimes nice to guide the eye: is the trend straight, or not?
+
+  \item Idea: \emph{lowess curve}. ``Locally weighted least squares'',
+    not affected by outliers, not constrained to be linear.
+  \item Lowess is a \emph{guide}: even if straight line appropriate,
+    may wiggle/bend a little. Looking for \emph{serious} problems with
+    linearity. 
+  \item Add lowess curve to plot using \texttt{geom\_smooth}:
+ 
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plot with lowess curve}
+  
+
+<<icko,fig.height=3>>=
+ggplot(sleep,aes(x=age,y=atst))+geom_point()+
+  geom_smooth()
+@ %def 
+
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{The regression}
+
+Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can run the regression:
+
+{\scriptsize
+ 
+<<echo=-1>>=
+options(width=60)
+sleep.1=lm(atst~age,data=sleep) ; summary(sleep.1)
+@ %def 
+}
+
+
+\end{frame}
+
+\begin{frame}{Conclusions}
+
+    \begin{itemize}
+  \item The relationship appears to be a straight line, with a downward trend.
+  \item $F$-tests for model as a whole and $t$-test for slope (same)
+    both confirm this (P-value $5.7\times 10^{-7}=0.00000057$).
+  \item Slope is $-14$, so a 1-year increase in age goes with a 14-minute decrease in ATST on average.
+  \item R-squared is correlation squared (when one $x$ anyway),
+    between 0 and 1 (1 good, 0 bad).
+  \item Here R-squared is 0.9054, pleasantly high.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Doing things with the regression output}
+  
+  \begin{itemize}
+  \item Output from regression (and eg.\ $t$-test) is all right to
+    look at, but hard to extract and re-use information from.
+  \item Package \texttt{broom} extracts info from model output in way
+    that can be used in pipe (later):
+    
+<<size="footnotesize">>=
+tidy(sleep.1)
+glance(sleep.1)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Broom part 2}
+  
+<<size="footnotesize",warning=F>>=
+augment(sleep.1) %>% slice(1:8)
+@   
+  
+Useful for plotting residuals against an $x$-variable.
+\end{frame}
+
+% for week 2:
+% 
+% regression and multiple regression
+% 
+% including univariate + tests
+% ci, pi and influential points
+% multiple, re-interpretation of tests, correlated x's
+% residuals and plotting
+% 
+
+% next: ci and pi with children aged 10 and 3
+% then: maybe diagnostics
+
+\begin{frame}{CI for mean response and prediction intervals}
+
+Once useful regression exists, use it for prediction:
+
+
+\begin{itemize}
+\item To get a single number for prediction at a given $x$, substitute into regression equation, eg.\ age 10: predicted ATST is $646.48-14.04(10)=506$ minutes.
+\item To express uncertainty of this prediction:
+  \begin{itemize}
+  \item {\em CI for mean response} expresses uncertainty about mean ATST for all children aged 10, based on data.
+  \item {\em Prediction interval} expresses uncertainty about predicted ATST for a new child aged 10 whose ATST not known. More uncertain.
+  \end{itemize}
+\item Also do above for a child aged 5.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Intervals}
+\begin{itemize}
+\item Make new data frame with these values for \texttt{age}
+  
+<<>>=
+my.age=c(10,5)
+ages.new=tibble(age=my.age)
+ages.new
+@   
+
+\item Feed into \texttt{predict}:
+  
+ 
+<<>>=
+pc=predict(sleep.1,ages.new,interval="c")
+pp=predict(sleep.1,ages.new,interval="p")
+@ %def 
+
+  
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The intervals}
+  
+Confidence intervals for mean response:
+
+ 
+<<>>=
+cbind(ages.new,pc)
+@ %def 
+
+Prediction intervals for new response:
+
+ 
+<<>>=
+cbind(ages.new,pp)
+@ %def 
+
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Comments}
+
+\begin{itemize}
+\item Age 10 closer to centre of data, so intervals are both narrower than those for age 5.
+\item Prediction intervals bigger than CI for mean (additional uncertainty).
+\item Technical note: output from \texttt{predict} is R
+  \texttt{matrix}, not data frame, so Tidyverse \texttt{bind\_cols}
+  does not work. Use base R \texttt{cbind}.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{That grey envelope}
+  
+<<fig.height=2.8>>=
+ggplot(sleep,aes(x=age,y=atst))+geom_point()+
+  geom_smooth(method="lm")+
+  scale_y_continuous(breaks=seq(420,600,20)) 
+@   
+
+Marks confidence interval for mean for all $x$.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Diagnostics}
+How to tell whether a straight-line regression is appropriate?
+
+\vspace{3ex}
+
+\begin{itemize}
+\item Before: check scatterplot for straight trend.
+\item After: plot {\em residuals} (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
+\end{itemize}
+
+\vspace{3ex}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Output}
+
+ 
+<<akjhkadjfhjahnkkk,fig.height=3.5>>=
+ggplot(sleep.1,aes(x=.fitted,y=.resid))+geom_point()
+@ %def 
+  
+%\includegraphics[width=4in]{sleep-resid}
+
+Not much pattern here (is residual predictable from predicted? No). Good, indicating regression appropriate.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{An inappropriate regression}
+
+Different data:  
+  
+ 
+<<curvy>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/curvy.txt"
+curvy=read_delim(my_url," ")
+@ %def 
+  
+
+%\includegraphics[width=4in]{curvy-scatter}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Scatterplot}
+  
+<<fig.height=4>>=
+ggplot(curvy,aes(x=xx,y=yy))+geom_point()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Regression line, anyway}
+
+{\footnotesize
+ 
+<<>>=
+curvy.1=lm(yy~xx,data=curvy) ; summary(curvy.1)
+@ %def 
+}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Residual plot}
+
+ 
+<<altoadige,fig.height=4>>=
+ggplot(curvy.1,aes(x=.fitted,y=.resid))+geom_point()
+@ %def 
+  
+  
+%\includegraphics[width=4in]{curvy-residual}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{No good: fixing it up}
+
+  \begin{itemize}
+  \item Residual plot has {\em curve}: middle residuals positive, high and low ones negative. Bad.
+  \item Fitting a curve would be better. Try this:
+  
+
+
+
+<<>>=
+curvy.2=lm(yy~xx+I(xx^2),data=curvy)
+@ %def 
+
+\item Adding \texttt{xx}-squared term, to allow for curve.
+  
+  
+\item Another way to do same thing: specify how model \emph{changes}:
+  
+<<>>=
+curvy.2a=update(curvy.1,.~.+I(xx^2))
+@ 
+  
+  \end{itemize}
+
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Regression 2}
+  
+{\scriptsize
+ 
+<<>>=
+summary(curvy.2)
+@ %def 
+  }
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item \texttt{xx}-squared term definitely significant (P-value
+    0.000182), so need this curve to describe relationship.
+  \item Adding squared term has made R-squared go up from 0.5848 to
+    0.9502: great improvement.
+  \item This is a definite curve!
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{The residual plot now}
+
+  
+ 
+<<size="small", fig.height=3>>=
+ggplot(curvy.2,aes(x=.fitted,y=.resid))+geom_point()
+@ %def 
+
+%\includegraphics[width=4in]{curvy-resid2}
+
+No problems any more.  
+
+\end{frame}
+
+\begin{frame}[fragile]{Another way to handle curves}
+  
+  \begin{itemize}
+  \item Above, saw that changing $x$ (adding $x^2$) was a way of
+    handling curved relationships.
+  \item Another way: change $y$ (transformation).
+  \item Can guess how to change $y$, or might be theory:
+    \begin{itemize}
+    \item example: relationship $y=ae^{bx}$ (exponential growth): 
+
+    \item take
+      logs to get $\ln y=\ln a + bx$.
+    \item Taking logs has made relationship linear ($\ln y$ as response).
+    \end{itemize}
+  \item Or, \emph{estimate} transformation, using Box-Cox method. 
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Box-Cox}
+  
+  \begin{itemize}
+  \item Install package \texttt{MASS} via
+    \texttt{install.packages("MASS")} (only need to do \emph{once})
+  \item Every R session you want to use something in \texttt{MASS}, type
+    \texttt{library(MASS)}
+    
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Some made-up data}
+  
+ 
+<<message=F>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/madeup.csv"
+madeup=read_csv(my_url)
+madeup
+@ %def 
+  
+Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
+
+ 
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{The scatterplot: faster than linear growth}
+
+  
+ 
+<<dsljhsdjlhf,fig.height=2.75>>=
+ggplot(madeup,aes(x=x,y=y))+geom_point()+
+  geom_smooth()
+@ %def 
+
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Running Box-Cox}
+  
+  \begin{itemize}
+  \item \texttt{library(MASS)} first.
+  \item Feed \texttt{boxcox} a model formula with a squiggle in it,
+    such as you would use for \texttt{lm}.
+  \item Output: a graph (next page):
+ 
+<<eval=F>>=
+boxcox(y~x,data=madeup)
+@ %def 
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The Box-Cox output}
+  
+ 
+<<trento,echo=F, fig.height=4>>=
+boxcox(y~x,data=madeup)
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  \begin{itemize}
+  \item $\lambda$ (lambda) is the power by which you should transform
+    $y$ to get the relationship straight (straighter). Power 0 is
+    ``take logs''
+  \item Middle dotted line marks best single value of $\lambda$ (here
+    about 0.1).
+  \item Outer dotted lines mark 95\% CI for $\lambda$, here $-0.3$ to
+    0.7, approx. (Rather uncertain about best transformation.)
+  \item Any power transformation within the CI supported by data. In
+    this case, log ($\lambda=0$) and square root ($\lambda=0.5$) good,
+    but no transformation ($\lambda=1$)  not.
+  \item Pick a ``round-number'' value of $\lambda$ like
+    $2,1,0.5,0,-0.5,-1$. Here 0 and 0.5 good values to pick. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Did transformation straighten things?}
+  
+  \begin{itemize}
+  \item Calculate transformed $y$ and plot against $x$. Here try log:
+ 
+ 
+<<fig.height=2.8>>=
+log.y=log(madeup$y) 
+ggplot(madeup,aes(x=x,y=log.y))+geom_point()+
+  geom_smooth()
+@ %def 
+
+    
+  \end{itemize}
+  
+  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Multiple regression}
+
+  \begin{itemize}
+  \item What if more than one $x$? Extra issues: % regression ex from before
+    \begin{itemize}
+    \item Now one intercept and a slope for each $x$: how to interpret?
+    \item Which $x$-variables actually help to predict $y$?
+
+    \item Different interpretations of ``global'' $F$-test and individual $t$-tests.
+    \item R-squared no longer correlation squared, but still
+      interpreted as ``higher better''.
+    \end{itemize}
+  \item In \verb-lm- line, add extra $x$s after \verb-~-.
+  \item Interpretation not so easy (and other problems that can occur).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Multiple regression example}
+
+Study of women and visits to health professionals, and how the number of visits might be related to other variables:
+
+\begin{description}
+\item[timedrs:] number of visits to health professionals (over course of study)
+\item[phyheal:] number of physical health problems
+\item[menheal:] number of mental health problems
+\item[stress:] result of questionnaire about number and type of life changes
+\end{description}
+
+\verb-timedrs- response, others explanatory.
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+
+ 
+<<>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
+visits=read_delim(my_url," ")
+@ %def 
+  
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Check data, fit multiple regression}
+  
+<<size="small">>=
+visits
+visits.1=lm(timedrs~phyheal+menheal+stress,
+  data=visits)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{The regression}
+
+{\scriptsize
+ 
+<<>>=
+summary(visits.1)
+@ %def 
+}  
+  
+
+\end{frame}
+
+
+\begin{frame}[fragile]{The slopes}
+
+Model as a whole strongly significant even though R-sq not very big (lots of data). At least one of the $x$'s predicts \verb-timedrs-.
+
+\begin{footnotesize}
+<<>>=
+tidy(visits.1)
+@ %def 
+  
+\end{footnotesize}
+
+The physical health and stress variables definitely help to predict the number of visits, but {\em with those in the model} we don't need \verb-menheal-.
+
+
+However, look at prediction of \verb-timedrs- from \verb-menheal- by itself:
+  
+\end{frame}
+
+\begin{frame}[fragile]{Just \texttt{menheal}}
+
+{\footnotesize 
+ 
+<<>>=
+visits.2=lm(timedrs~menheal,data=visits) ; summary(visits.2)
+@ %def 
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{menheal} by itself}
+
+  \begin{itemize}
+  \item \verb-menheal- by itself {\em does} significantly help to predict \verb-timedrs-.
+  \item But the R-sq is much less (6.5\% vs.\ 22\%).
+  \item So other two variables do a better job of prediction.
+  \item With those variables in the regression (\texttt{phyheal} and
+    \texttt{stress}), don't need \texttt{menheal} \emph{as well}.
+
+  \end{itemize}
+  
+
+
+  
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{Investigating via correlation}
+  
+Leave out first column (\texttt{subjno}):
+  
+ 
+<<>>=
+visits %>% select(-subjno) %>% cor()
+@ %def 
+  
+\begin{itemize}
+\item \texttt{phyheal} most strongly correlated with \texttt{timedrs}.
+\item Not much to choose between other two.
+\item But \texttt{menheal} has higher correlation with \texttt{phyheal},
+  so not as much to \emph{add} to prediction as \texttt{stress}.
+\item Goes to show things more complicated in multiple regression.
+
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Residual plot (from \texttt{timedrs} on all)}
+ 
+<<iffy8,fig.height=3,size="small">>=
+ggplot(visits.1,aes(x=.fitted,y=.resid))+geom_point()
+@ %def 
+
+Apparently random. But\ldots
+
+%\includegraphics[width=4in]{regressx1}
+
+\end{frame}
+
+\begin{frame}[fragile]{Normal quantile plot of residuals}
+  
+<<fig.height=3.5>>=
+ggplot(visits.1, aes(sample=.resid))+stat_qq()+stat_qq_line()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Absolute residuals}
+  
+Is there trend in \emph{size} of residuals (fan-out)? Plot
+\emph{absolute value} of residual against fitted value:
+
+<<fig.height=2.5>>=
+ggplot(visits.1,aes(x=.fitted,y=abs(.resid)))+
+  geom_point()+geom_smooth()
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item On the normal quantile plot:
+    \begin{itemize}
+    \item highest (most positive) residuals are \emph{way} too high
+    \item distribution of residuals skewed to right (not normal at all)
+    \end{itemize}
+    
+    
+  \item On plot of absolute residuals:
+    \begin{itemize}
+    \item size of residuals getting bigger as fitted values increase
+    \item predictions getting more variable as fitted values increase
+    \item that is, predictions getting \emph{less accurate} as fitted
+      values increase, but predictions should be equally accurate all
+      way along.
+    \end{itemize}
+  \item Both indicate problems with regression, of kind that
+    transformation of response often fixes: that is, predict
+    \emph{function} of response \texttt{timedrs} instead of
+    \texttt{timedrs} itself.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Fixing the problems}
+
+  \begin{itemize}
+  \item Residuals not normal (skewed right), increase in size with
+    fitted value.
+  \item Sometimes residuals are {\em very} positive: observed a {\em lot} larger than predicted.
+  \item Try {\em  transforming} response: use log or square root of response. (Note that response is {\em count}, often skewed to right.)
+  \item Try regression again, with transformed response instead of
+    original one.
+  \item Then check residual plot to see that it is OK now.
+
+ 
+<<>>=
+lgtime=with(visits,log(timedrs+1))
+visits.3=lm(lgtime~phyheal+menheal+stress,
+  data=visits)
+@ %def 
+    
+\item \texttt{timedrs+1}  because some \texttt{timedrs} values 0,
+  can't take log of 0.
+\item Won't usually need to worry about this, but when response could
+  be zero/negative, fix that before transformation.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Output}
+
+{\scriptsize
+ 
+<<>>=
+summary(visits.3)
+@ %def 
+}
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+  \begin{itemize}
+  \item Model as a whole strongly significant again 
+  \item R-sq higher than before (37\% vs.\ 22\%) suggesting things more linear now
+  \item Same conclusion re \verb-menheal-: can take out of regression.
+  \item Should look at residual plots (next pages). Have we fixed problems?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Residuals against fitted values}
+  
+<<fig.height=3.5>>=
+ggplot(visits.3,aes(x=.fitted,y=.resid))+
+  geom_point()
+@   
+\end{frame}
+
+\begin{frame}[fragile]{Normal quantile plot of residuals}
+  
+<<fig.height=4>>=
+ggplot(visits.3, aes(sample=.resid))+stat_qq()+stat_qq_line()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Absolute residuals against fitted}
+  
+<<fig.height=3>>=
+ggplot(visits.3,aes(x=.fitted,y=abs(.resid)))+
+  geom_point()+geom_smooth()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Residuals vs.\ fitted looks a lot more random.
+  \item Normal quantile plot looks a lot more normal (though still a
+    little right-skewness)
+  \item Absolute residuals: not so much trend (though still some).
+  \item Not perfect, but much improved.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Box-Cox transformations}
+
+
+  \begin{itemize}
+  \item Taking log of \verb-timedrs- and having it work: lucky
+    guess. How to find good transformation?
+  \item Box-Cox again.
+  \item Extra problem: some of \verb-timedrs- values are 0, but
+    Box-Cox expects all +. Note response for \texttt{boxcox}:
+
+ 
+<<eval=F>>=
+boxcox(timedrs+1~phyheal+menheal+stress,data=visitsp)
+@ %def 
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Try 1}
+
+ 
+<<echo=F,fig.height=4.5>>=
+visits %>% mutate(tp=timedrs+1) %>% 
+  boxcox(timedrs+1~phyheal+menheal+stress,data=.)
+@ %def 
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments on try 1}
+
+  \begin{itemize}
+\item Best: $\lambda$ just less than zero.
+\item Hard to see scale. 
+\item Focus on $\lambda$ in $(-0.3,0.1)$:
+{\small    
+ 
+<<size="footnotesize">>=
+my.lambda=seq(-0.3,0.1,0.01)
+my.lambda
+@ %def 
+}
+
+
+\end{itemize}
+
+  
+  
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Try 2}
+
+ 
+<<fig.height=3.5>>=
+boxcox(timedrs+1~phyheal+menheal+stress,lambda=my.lambda,
+  data=visits)
+@ %def 
+
+  
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+\begin{itemize}
+\item Best: $\lambda$ just about $-0.07$.
+\item CI for $\lambda$ about $(-0.14,0.01)$.
+\item Only nearby round number: $\lambda=0$, log transformation.
+\item So we made lucky guess with log before!
+\end{itemize}
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Testing more than one $x$ at once}
+
+The $t$-tests test only whether one variable could be taken out of the
+regression you're looking at. To test significance of more than one
+variable at once, fit model with and without variables and use
+\texttt{anova} to compare fit of models:
+
+
+{\small
+<<>>=
+visits.5=lm(lgtime~phyheal+menheal+stress,data=visits)
+visits.6=lm(lgtime~stress,data=visits)
+anova(visits.6,visits.5)
+@ %def 
+}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Results of tests}
+
+
+\begin{itemize}
+
+\item Models don't fit equally well, so big one fits better.
+\item Or ``taking both variables out makes the fit worse, so don't do it''.
+\item   Taking out those $x$'s
+  is a mistake. Or putting them in is a good idea.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The punting data}
+
+  Data set \verb-punting.txt- contains 4 variables for 13 right-footed
+  football kickers (punters): left leg and right leg strength (lbs),
+  distance punted (ft), another variable called ``fred''. Predict
+  punting distance from other variables:
+
+  \begin{scriptsize}
+\begin{verbatim}
+left                right               punt         fred
+   170               170                162.50       171 
+   130               140                144.0        136   
+   170               180                174.50       174 
+   160               160                163.50       161 
+   150               170                192.0        159 
+   150               150                171.75       151 
+   180               170                162.0        174 
+   110               110                104.83       111 
+   110               120                105.67       114 
+   120               130                117.58       126 
+   140               120                140.25       129  
+   130               140                150.17       136 
+   150               160                165.17       154 
+\end{verbatim}
+    
+  \end{scriptsize}
+  
+  
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reading in}
+  
+  \begin{itemize}
+  \item Separated by \emph{multiple spaces} with \emph{columns lined up}:
+    
+<<>>=
+my_url="http://www.utsc.utoronto.ca/~butler/d29/punting.txt"
+punting=read_table(my_url)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+  
+<<size="small">>=
+punting
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Regression and output}
+
+ 
+<<size="footnotesize">>=
+punting.1=lm(punt~left+right+fred,data=punting)
+summary(punting.1)
+@ %def 
+
+
+\end{frame}
+
+
+\begin{frame}{Comments}
+
+  \begin{itemize}
+  \item Overall regression strongly significant, R-sq high.
+  \item None of the $x$'s significant! Why?
+  \item $t$-tests only say that you could take any one of the $x$'s out without damaging the fit; doesn't matter which one.
+  \item Explanation: look at {\em correlations}. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{The correlations}  
+
+ 
+<<>>=
+cor(punting)
+@ %def 
+  
+
+\begin{itemize}
+\item {\em All} correlations are high: $x$'s with \verb-punt- (good) and
+with each other (bad, at least confusing).
+\item What to do? Probably do just as well to pick one variable, say
+\texttt{right} since kickers are right-footed.
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Just \texttt{right}}
+
+  {\small
+ 
+<<>>=
+punting.2=lm(punt~right,data=punting)
+anova(punting.2,punting.1)
+@ %def 
+}
+  
+
+No significant loss by dropping other two variables.
+
+\end{frame}
+
+\begin{frame}[fragile]{Comparing R-squareds}
+
+
+{\small
+<<>>=
+summary(punting.1)$r.squared
+summary(punting.2)$r.squared
+@ %def 
+}
+
+Basically no difference. In regression (over), \texttt{right} significant:
+  
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Regression results}
+
+{\footnotesize
+ 
+<<>>=
+summary(punting.2)
+@ %def 
+}
+ 
+\end{frame}
+
+
+\begin{frame}[fragile]{But\ldots}
+  
+  \begin{itemize}
+  \item Maybe we got the \emph{form} of the relationship with
+    \texttt{left} wrong.
+  \item Check: plot \emph{residuals} from previous regression (without
+    \texttt{left}) against \texttt{left}.
+  \item Residuals here are ``punting distance adjusted for right
+    leg strength''.
+  \item If there is some kind of relationship with \texttt{left}, we
+    should include in model.
+  \item Plot of residuals against original variable: \texttt{augment}
+    from \texttt{broom}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Augmenting \texttt{punting.2}}
+  
+<<size="footnotesize">>=
+punting.2 %>% augment(punting) -> punting.2.aug
+punting.2.aug %>% slice(1:8)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Residuals against \texttt{left}}
+  
+<<basingstoke,fig.height=3.5>>=
+ggplot(punting.2.aug,aes(x=left,y=.resid))+
+  geom_point()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item There is a \emph{curved} relationship with \texttt{left}.
+  \item We should add \texttt{left}-squared to the regression (and
+    therefore put \texttt{left} back in when we do that):
+    
+<<>>=
+punting.3=lm(punt~left+I(left^2)+right,
+  data=punting)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Regression with \texttt{left}-squared}
+  
+<<size="scriptsize">>=
+summary(punting.3)
+@   
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+\begin{itemize}
+\item This was definitely a good idea (R-squared has clearly increased).
+\item We would never have seen it without plotting residuals from
+  \texttt{punting.2} (without \texttt{left}) against \texttt{left}.
+\item Negative slope for \texttt{leftsq} means that increased left-leg
+  strength only increases punting distance up to a point: beyond that,
+  it decreases again.
+\end{itemize}
+  
+<<echo=F,warning=F>>=
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+@ 
+  
+\end{frame}

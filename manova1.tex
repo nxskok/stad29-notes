@@ -1,0 +1,310 @@
+\documentclass{article}
+\title{The manova1 data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+low 34 10 
+low 29 14 
+low 35 11 
+low 32 13 
+high 33 14 
+high 38 12 
+high 34 13 
+high 35 14 
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+data manova1;
+  infile "manova1.dat";
+  input fertilizer $ yield weight;
+
+proc means;
+  var yield weight;
+  class fertilizer;
+
+proc glm;
+  class fertilizer;
+  model yield=fertilizer;
+
+proc glm;
+  class fertilizer;
+  model weight=fertilizer;
+
+proc gplot;
+  plot yield*weight=fertilizer;
+
+proc glm;
+  class fertilizer;
+  model yield weight=fertilizer;
+  manova h=_all_;
+
+proc discrim can out=fred;
+  class fertilizer;
+  var yield weight;
+
+proc print data=fred;
+
+run;
+\end{Winput}
+\begin{Woutput}
+The MEANS Procedure
+                N
+fertilizer    Obs    Variable    N            Mean         Std Dev         Minimum         Maximum
+--------------------------------------------------------------------------------------------------
+high            4    yield       4      35.0000000       2.1602469      33.0000000      38.0000000
+                     weight      4      13.2500000       0.9574271      12.0000000      14.0000000
+low             4    yield       4      32.5000000       2.6457513      29.0000000      35.0000000
+                     weight      4      12.0000000       1.8257419      10.0000000      14.0000000
+--------------------------------------------------------------------------------------------------
+
+The GLM Procedure
+      Class Level Information
+Class           Levels    Values
+fertilizer           2    high low
+
+Number of Observations Read           8
+Number of Observations Used           8
+
+The GLM Procedure
+Dependent Variable: yield
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        1     12.50000000     12.50000000       2.14    0.1936
+Error                        6     35.00000000      5.83333333
+Corrected Total              7     47.50000000
+
+R-Square     Coeff Var      Root MSE    yield Mean
+0.263158      7.156235      2.415229      33.75000
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+fertilizer                   1     12.50000000     12.50000000       2.14    0.1936
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+fertilizer                   1     12.50000000     12.50000000       2.14    0.1936
+
+The GLM Procedure
+      Class Level Information
+Class           Levels    Values
+fertilizer           2    high low
+
+Number of Observations Read           8
+Number of Observations Used           8
+
+The GLM Procedure
+Dependent Variable: weight
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        1      3.12500000      3.12500000       1.47    0.2708
+Error                        6     12.75000000      2.12500000
+Corrected Total              7     15.87500000
+
+R-Square     Coeff Var      Root MSE    weight Mean
+0.196850      11.54644      1.457738       12.62500
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+fertilizer                   1      3.12500000      3.12500000       1.47    0.2708
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+fertilizer                   1      3.12500000      3.12500000       1.47    0.2708
+
+The GLM Procedure
+      Class Level Information
+Class           Levels    Values
+fertilizer           2    high low
+
+Number of Observations Read           8
+Number of Observations Used           8
+
+The GLM Procedure
+Dependent Variable: yield
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        1     12.50000000     12.50000000       2.14    0.1936
+Error                        6     35.00000000      5.83333333
+Corrected Total              7     47.50000000
+
+R-Square     Coeff Var      Root MSE    yield Mean
+0.263158      7.156235      2.415229      33.75000
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+fertilizer                   1     12.50000000     12.50000000       2.14    0.1936
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+fertilizer                   1     12.50000000     12.50000000       2.14    0.1936
+
+The GLM Procedure
+Dependent Variable: weight
+                                        Sum of
+Source                      DF         Squares     Mean Square    F Value    Pr > F
+Model                        1      3.12500000      3.12500000       1.47    0.2708
+Error                        6     12.75000000      2.12500000
+Corrected Total              7     15.87500000
+
+R-Square     Coeff Var      Root MSE    weight Mean
+0.196850      11.54644      1.457738       12.62500
+
+Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+fertilizer                   1      3.12500000      3.12500000       1.47    0.2708
+
+Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+fertilizer                   1      3.12500000      3.12500000       1.47    0.2708
+
+The GLM Procedure
+Multivariate Analysis of Variance
+Characteristic Roots and Vectors of: E Inverse * H, where
+         H = Type III SSCP Matrix for fertilizer
+                  E = Error SSCP Matrix
+Characteristic               Characteristic Vector  V'EV=1
+          Root    Percent           yield          weight
+    4.03885481     100.00      0.31299419      0.51086408
+    0.00000000       0.00      0.07955573     -0.15911146
+
+MANOVA Test Criteria and Exact F Statistics for the Hypothesis of No Overall fertilizer Effect
+                           H = Type III SSCP Matrix for fertilizer
+                                    E = Error SSCP Matrix
+                                     S=1    M=0    N=1.5
+Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+Wilks' Lambda               0.19845779      10.10         2         5    0.0175
+Pillai's Trace              0.80154221      10.10         2         5    0.0175
+Hotelling-Lawley Trace      4.03885481      10.10         2         5    0.0175
+Roy's Greatest Root         4.03885481      10.10         2         5    0.0175
+
+The DISCRIM Procedure
+Total Sample Size        8          DF Total                 7
+Variables                2          DF Within Classes        6
+Classes                  2          DF Between Classes       1
+
+Number of Observations Read              8
+Number of Observations Used              8
+
+                           Class Level Information
+              Variable                                                  Prior
+fertilizer    Name        Frequency       Weight    Proportion    Probability
+high          high                4       4.0000      0.500000       0.500000
+low           low                 4       4.0000      0.500000       0.500000
+
+Pooled Covariance Matrix Information
+               Natural Log of the
+ Covariance    Determinant of the
+Matrix Rank     Covariance Matrix
+          2               1.22255
+
+The DISCRIM Procedure
+Pairwise Generalized Squared Distances Between Groups
+ 2         _   _       -1  _   _
+D (i|j) = (X - X )' COV   (X - X )
+            i   j           i   j
+
+Generalized Squared Distance to fertilizer
+From
+fertilizer          high           low
+high                   0      12.11656
+low             12.11656             0
+
+The DISCRIM Procedure
+Canonical Discriminant Analysis
+                           Adjusted    Approximate        Squared
+           Canonical      Canonical       Standard      Canonical
+         Correlation    Correlation          Error    Correlation
+       1    0.895289       0.892147       0.075010       0.801542
+                                                      Test of H0: The canonical correlations in the
+                   Eigenvalues of Inv(E)*H               current row and all that follow are zero
+                     = CanRsq/(1-CanRsq)
+                                                     Likelihood Approximate
+         Eigenvalue Difference Proportion Cumulative      Ratio     F Value Num DF Den DF Pr > F
+       1     4.0389                1.0000     1.0000 0.19845779       10.10      2      5 0.0175
+NOTE: The F statistic is exact.
+
+The DISCRIM Procedure
+Canonical Discriminant Analysis
+Total Canonical Structure
+Variable              Can1
+yield             0.572987
+weight            0.495570
+
+Between Canonical Structure
+Variable              Can1
+yield             1.000000
+weight            1.000000
+
+Pooled Within Canonical Structure
+Variable              Can1
+yield             0.297366
+weight            0.246343
+
+The DISCRIM Procedure
+Canonical Discriminant Analysis
+Total-Sample Standardized Canonical Coefficients
+Variable              Can1
+yield          1.997145424
+weight         1.884468331
+
+Pooled Within-Class Standardized Canonical Coefficients
+Variable              Can1
+yield          1.851698615
+weight         1.824149648
+
+Raw Canonical Coefficients
+Variable              Can1
+yield          0.766676064
+weight         1.251356335
+
+Class Means on Canonical Variables
+fertilizer              Can1
+high             1.740442790
+low             -1.740442790
+
+The DISCRIM Procedure
+Linear Discriminant Function
+               _     -1 _                              -1 _
+Constant = -.5 X' COV   X      Coefficient Vector = COV   X
+                j        j                                 j
+
+Linear Discriminant Function for fertilizer
+Variable          high           low
+Constant    -943.76534    -798.70399
+yield         33.60736      30.93865
+weight        53.68098      49.32515
+
+The DISCRIM Procedure
+Classification Summary for Calibration Data: WORK.MANOVA1
+Resubstitution Summary using Linear Discriminant Function
+Generalized Squared Distance Function
+ 2         _       -1   _
+D (X) = (X-X )' COV  (X-X )
+ j          j            j
+Posterior Probability of Membership in Each fertilizer
+                   2                    2
+Pr(j|X) = exp(-.5 D (X)) / SUM exp(-.5 D (X))
+                   j        k           k
+
+Number of Observations and Percent Classified into fertilizer
+From
+fertilizer         high          low        Total
+high                  4            0            4
+                 100.00         0.00       100.00
+low                   0            4            4
+                   0.00       100.00       100.00
+Total                 4            4            8
+                  50.00        50.00       100.00
+Priors              0.5          0.5
+
+      Error Count Estimates for fertilizer
+                    high         low       Total
+Rate              0.0000      0.0000      0.0000
+Priors            0.5000      0.5000
+
+Obs    fertilizer    yield    weight      Can1      Can2      high       low      _INTO_
+ 1        low          34       10      -3.09314      .     0.00002    0.99998     low
+ 2        low          29       14      -1.92110      .     0.00125    0.99875     low
+ 3        low          35       11      -1.07511      .     0.02315    0.97685     low
+ 4        low          32       13      -0.87242      .     0.04579    0.95421     low
+ 5        high         33       14       1.14561      .     0.98180    0.01820     high
+ 6        high         38       12       2.47628      .     0.99982    0.00018     high
+ 7        high         34       13       0.66093      .     0.90893    0.09107     high
+ 8        high         35       14       2.67896      .     0.99991    0.00009     high
+\end{Woutput}
+\end{document}

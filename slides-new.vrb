@@ -1,0 +1,39 @@
+\frametitle{Example of confidence interval}
+
+  \begin{itemize}
+  \item Take a sample of $n=10$ observations. Obtain sample mean of
+    $\bar{x}=15$, and sample SD of $s=2.5$. Want 95\% confidence
+    interval for population mean.
+  \item For population mean \emph{with population SD unknown}: use $t$
+    distribution with $n-1=9$ degrees of freedom.
+  \item Obtain $t^*$ from $t$-table or as
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{t.star}\hlkwb{=}\hlkwd{qt}\hlstd{(}\hlnum{1}\hlopt{-}\hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,}\hlnum{9}\hlstd{) ; t.star}
+\end{alltt}
+\begin{verbatim}
+[1] 2.262
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item and thus 95\% CI for mean is this: $m=t^* s / \sqrt{n}$, then
+  $\bar{x} \pm m$:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{m}\hlkwb{=}\hlstd{t.star}\hlopt{*}\hlnum{2.5}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlnum{10}\hlstd{) ; m}
+\end{alltt}
+\begin{verbatim}
+[1] 1.788
+\end{verbatim}
+\begin{alltt}
+\hlkwd{c}\hlstd{(}\hlnum{15}\hlopt{-}\hlstd{m,}\hlnum{15}\hlopt{+}\hlstd{m)}
+\end{alltt}
+\begin{verbatim}
+[1] 13.21 16.79
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \end{itemize}
+

@@ -1,0 +1,286 @@
+\documentclass{article}
+\title{The europe data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+Amsterdam,0,3082,1639,649,280,904,1180,1014,494,1782,1323,875,515,973,1835,1196
+Athens,3082,0,3312,2552,2562,3414,3768,2692,3099,3940,2997,2210,3140,2198,2551,1886
+Barcelona,1639,3312,0,1899,1539,2230,2181,758,1512,628,515,1349,1125,1679,1471,1989
+Berlin,649,2552,1899,0,575,743,1727,1141,1059,2527,1584,604,1094,354,1573,666
+Cologne,280,2562,1539,575,0,730,1206,765,538,1776,1208,592,508,659,1586,915
+Copenhagen,904,3414,2230,743,730,0,1864,1531,1196,2597,1914,1204,1329,1033,2352,1345
+Edinburgh,1180,3768,2181,1727,1206,1864,0,1536,656,2372,1860,1743,1082,1872,2467,2098
+Geneva,1014,2692,758,1141,765,1531,1536,0,867,1386,443,591,546,954,1093,1055
+London,494,3099,1512,1059,538,1196,656,867,0,1704,1192,1075,414,1204,1799,912
+Madrid,1782,3940,628,2527,1776,2597,2372,1386,1704,0,1143,1877,1268,2307,2099,2617
+Marseille,1323,2997,515,1584,1208,1914,1860,443,1192,1143,0,1034,809,1397,856,1414
+Munich,875,2210,1349,604,592,1204,1743,591,1075,1877,1034,0,827,363,969,458
+Paris,515,3140,1125,1094,508,1329,1082,546,414,1268,809,827,0,1094,1531,1285
+Prague,973,2198,1679,354,659,1033,1872,954,1204,2307,1397,363,1094,0,1370,312
+Rome,1835,2551,1471,1573,1586,2352,2467,1093,1799,2099,856,969,1531,1370,0,1168
+Vienna,1196,1886,1989,666,915,1345,2098,1055,912,2617,1414,458,1285,312,1168,0
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+options linesize=70 pagesize=30;
+
+data euro(type=distance);
+  infile "europe.dat" delimiter=",";
+  input city $ Amsterdam Athens 
+    Barcelona Berlin Cologne Copenhagen Edinburgh Geneva London 
+    Madrid Marseille Munich Paris Prague Rome Vienna;
+
+proc mds level=absolute out=y outres=z;
+
+proc print data=y;
+
+proc sort data=z;
+  by residual;
+
+proc print data=z;
+  var _row_ _col_ residual;
+
+proc plot data=y;
+  plot dim1 * dim2 $ _label_;
+
+proc plot data=y;
+  plot dim2*dim1 $ _label_;
+
+
+
+
+\end{Winput}
+\begin{Woutput}
+Multidimensional Scaling:  Data=WORK.EURO.DATA
+Shape=TRIANGLE Condition=MATRIX Level=ABSOLUTE
+Coef=IDENTITY Dimension=2 Formula=1 Fit=1
+ Gconverge=0.01 Maxiter=100 Over=1 Ridge=0.0001
+
+                          Badness-
+                            of-Fit    Change in    Convergence
+Iteration    Type        Criterion    Criterion        Measure
+--------------------------------------------------------------
+      0      Initial        0.1096            .         0.7201
+      1      Lev-Mar        0.0754       0.0342         0.1298
+      2      Gau-New        0.0747     0.000655       0.008470
+
+Convergence criterion is satisfied.
+
+     _   _
+     D   M               _
+     I   A       _       L            _
+     M   T       T       A            N
+     E   R       Y       B            A                   D       D
+ O   N   I       P       E            M                   i       i
+ b   S   X       E       L            E                   m       m
+ s   _   _       _       _            _                   1       2
+ 1   2   .   CRITERION                                 0.07        .
+ 2   2   .   CONFIG      Amsterdam    Amsterdam     -300.71     558.62
+ 3   2   .   CONFIG      Athens       Athens        2599.74    -375.74
+ 4   2   .   CONFIG      Barcelona    Barcelona     -704.34   -1012.29
+ 5   2   .   CONFIG      Berlin       Berlin         402.29     619.72
+ 6   2   .   CONFIG      Cologne      Cologne        -83.70     396.98
+ 7   2   .   CONFIG      Copenhagen   Copenhagen      97.17    1241.96
+ 8   2   .   CONFIG      Edinburgh    Edinburgh    -1232.60     906.77
+ 9   2   .   CONFIG      Geneva       Geneva        -185.99    -342.22
+10   2   .   CONFIG      London       London        -574.43     406.08
+11   2   .   CONFIG      Madrid       Madrid       -1341.37   -1088.16
+12   2   .   CONFIG      Marseille    Marseille     -319.76    -750.10
+13   2   .   CONFIG      Munich       Munich         326.13     -25.17
+14   2   .   CONFIG      Paris        Paris         -525.60      49.92
+15   2   .   CONFIG      Prague       Prague         541.20     285.90
+16   2   .   CONFIG      Rome         Rome           541.38   -1031.08
+17   2   .   CONFIG      Vienna       Vienna         760.58     158.80
+
+Obs    _ROW_         _COL_         RESIDUAL
+  1    Vienna        London        -445.723
+  2    Edinburgh     Athens        -273.247
+  3    Cologne       Athens        -230.477
+  4    London        Edinburgh     -170.966
+  5    Madrid        Cologne       -170.119
+  6    London        Athens        -170.038
+  7    Madrid        Amsterdam     -166.039
+  8    Copenhagen    Barcelona     -162.500
+  9    Rome          Edinburgh     -160.213
+ 10    Madrid        Copenhagen    -141.406
+ 11    Copenhagen    Cologne       -134.123
+ 12    Paris         Madrid        -132.258
+ 13    Marseille     Copenhagen    -121.224
+ 14    Prague        Barcelona     -120.074
+ 15    Munich        Madrid        -100.500
+ 16    Geneva        Athens         -93.936
+ 17    Geneva        Edinburgh      -93.524
+ 18    Munich        Athens         -90.479
+ 19    Geneva        Barcelona      -89.162
+ 20    Rome          Berlin         -83.651
+ 21    Munich        Copenhagen     -83.648
+ 22    Geneva        Copenhagen     -78.284
+ 23    Munich        Barcelona      -77.984
+ 24    Munich        Edinburgh      -73.081
+ 25    Berlin        Barcelona      -72.825
+ 26    Madrid        Athens         -64.983
+ 27    Rome          Munich         -59.684
+ 28    Berlin        Amsterdam      -56.654
+
+Obs    _ROW_        _COL_         RESIDUAL
+ 29    Paris        Cologne       -53.8914
+ 30    Barcelona    Athens        -52.8446
+ 31    Edinburgh    Cologne       -50.9288
+ 32    Rome         Marseille     -49.8122
+ 33    Munich       Berlin        -45.3708
+ 34    Vienna       Rome          -41.9072
+ 35    Paris        Amsterdam     -41.1876
+ 36    Marseille    Edinburgh     -31.6925
+ 37    Vienna       Edinburgh     -30.9065
+ 38    Vienna       Athens        -29.2629
+ 39    Paris        Edinburgh     -28.8729
+ 40    Paris        Munich        -28.0300
+ 41    Prague       Madrid        -23.6872
+ 42    Prague       Copenhagen    -21.1409
+ 43    Rome         London        -20.4691
+ 44    Paris        Marseille     -17.0810
+ 45    Vienna       Geneva        -15.9936
+ 46    Paris        Copenhagen    -15.9127
+ 47    Prague       Munich        -15.1767
+ 48    Paris        Athens        -14.1908
+ 49    Vienna       Munich        -13.7999
+ 50    Madrid       Barcelona     -13.5256
+ 51    Munich       Geneva        -11.3201
+ 52    Prague       Berlin         -7.5690
+ 53    Prague       Edinburgh      -7.3210
+ 54    Prague       Geneva         -6.9042
+ 55    Vienna       Paris          -5.7802
+ 56    Cologne      Barcelona      -0.8805
+
+Obs    _ROW_        _COL_         RESIDUAL
+ 57    Prague       Paris           1.4177
+ 58    Vienna       Marseille       2.1783
+ 59    Munich       Cologne         3.6420
+ 60    Paris        Berlin          5.1273
+ 61    Marseille    London          8.0969
+ 62    Cologne      Amsterdam       9.4006
+ 63    Madrid       Geneva         10.7449
+ 64    Rome         Paris          12.1198
+ 65    Geneva       Berlin         13.4360
+ 66    Marseille    Geneva         13.7411
+ 67    Marseille    Amsterdam      14.1403
+ 68    Barcelona    Amsterdam      17.0667
+ 69    Munich       Amsterdam      18.4138
+ 70    Geneva       Cologne        18.7615
+ 71    London       Geneva         23.8879
+ 72    Prague       Cologne        24.3091
+ 73    Madrid       London         24.4256
+ 74    Rome         Cologne        27.1331
+ 75    Paris        Geneva         27.2483
+ 76    Athens       Amsterdam      34.7629
+ 77    Marseille    Berlin         35.5280
+ 78    Prague       Athens         35.7420
+ 79    Rome         Copenhagen     35.9616
+ 80    Rome         Amsterdam      36.0394
+ 81    Marseille    Cologne        36.8831
+ 82    Vienna       Cologne        37.7675
+ 83    Cologne      Berlin         40.3989
+ 84    London       Cologne        47.1817
+
+Obs    _ROW_         _COL_         RESIDUAL
+ 85    Paris         Barcelona       47.854
+ 86    Marseille     Barcelona       49.544
+ 87    Prague        Marseille       49.951
+ 88    Copenhagen    Berlin          49.978
+ 89    Rome          Prague          53.019
+ 90    Marseille     Athens          53.598
+ 91    Paris         London          54.506
+ 92    Vienna        Prague          58.458
+ 93    London        Berlin          59.188
+ 94    Vienna        Amsterdam       61.891
+ 95    Munich        Marseille       63.074
+ 96    Marseille     Madrid          66.908
+ 97    Edinburgh     Berlin          67.099
+ 98    Vienna        Copenhagen      74.824
+ 99    Munich        London          76.507
+100    Prague        London          81.916
+101    Vienna        Berlin          82.202
+102    Madrid        Berlin          86.260
+103    London        Barcelona       87.690
+104    Prague        Amsterdam       88.019
+105    Rome          Geneva          91.202
+106    Geneva        Amsterdam      105.889
+107    Copenhagen    Amsterdam      113.263
+108    Vienna        Barcelona      113.509
+109    London        Copenhagen     123.743
+110    Berlin        Athens         139.590
+111    Vienna        Madrid         173.003
+112    London        Amsterdam      180.650
+
+Obs    _ROW_         _COL_         RESIDUAL
+113    Edinburgh     Amsterdam      185.201
+114    Edinburgh     Barcelona      190.567
+115    Rome          Madrid         215.393
+116    Rome          Barcelona      225.139
+117    Madrid        Edinburgh      374.108
+118    Rome          Athens         390.827
+119    Copenhagen    Athens         434.100
+120    Edinburgh     Copenhagen     492.631
+
+         Plot of Dim1*Dim2$_LABEL_.  Symbol points to label.
+        |
+   3000 +
+        |
+        |                      > Athens
+        |
+D  2000 +
+i       |
+m       |
+e       |
+n  1000 +
+s       |                                 > Vienna
+i       |         > Rome              Prague <     > Berlin
+o       |                             > Munich              Copenhagen
+n     0 +                                      > Cologne        ^
+        |     Marseille <       > Geneva          > Amsterdam
+1       |                         Paris <      > London
+        |          > Barcelona
+  -1000 +
+        |        > Madrid                                > Edinburgh
+        |
+        |
+  -2000 +
+        -+---------+---------+---------+---------+---------+---------+
+       -1500     -1000     -500        0        500      1000     1500
+                                  Dimension 2
+NOTE: 1 obs had missing values.
+\end{Woutput}
+\newpage
+\begin{Woutput}
+         Plot of Dim2*Dim1$_LABEL_.  Symbol points to label.
+        |
+   2000 +
+        |
+        |
+        |
+D       |                         > Copenhagen
+i  1000 +         > Edinburgh
+m       |
+e       |          Amsterdam <        > Berlin
+n       |          London <     > Cologne
+s       |                       Prague <  > Vienna
+i     0 +                  > Paris   > Munich
+o       |
+n       |                      > Geneva                  Athens <
+        |
+2       |                    > Marseille
+  -1000 + Madrid <       > Barcelona   > Rome
+        |
+        |
+        |
+        |
+  -2000 +
+        -+-----------+-----------+-----------+-----------+-----------+
+       -2000       -1000         0         1000        2000       3000
+                                  Dimension 1
+NOTE: 1 obs had missing values.
+\end{Woutput}
+\end{document}

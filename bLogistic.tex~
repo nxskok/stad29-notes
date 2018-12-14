@@ -1,0 +1,897 @@
+\section{Logistic regression (ordinal/nominal response)}
+
+
+\begin{frame}{Logistic regression}
+
+  \begin{itemize}
+  \item When response variable is measured/counted, regression can work well.
+  \item But what if response is yes/no, lived/died, success/failure?
+  \item Model {\em probability} of success.
+  \item Probability must be between 0 and 1; need method that ensures this.
+  \item {\em Logistic regression} does this; PROC LOGISTIC in SAS.
+  \item Begin with simplest case.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The rats, part 1}
+
+Rats given dose of some poison; either live or die:
+
+{\scriptsize
+\begin{verbatim}
+0 lived
+1 died
+2 lived
+3 lived
+4 died
+5 died
+\end{verbatim}
+}
+
+Basic logistic regression analysis:
+
+{\scriptsize
+\begin{verbatim}
+rats=read.table("rat.txt",header=T)
+rats
+attach(rats)
+rats.1=glm(status~dose,family="binomial")
+summary(rats.1)
+p=predict(rats.1,type="response")
+cbind(rats,p)
+\end{verbatim}
+}  
+
+\end{frame}
+
+\begin{frame}[fragile]{Output}
+
+{\scriptsize
+\begin{verbatim}
+> summary(rats.1)
+
+Call:
+glm(formula = status ~ dose, family = "binomial")
+
+Deviance Residuals: 
+      1        2        3        4        5        6  
+ 0.5835  -1.6254   1.0381   1.3234  -0.7880  -0.5835  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)   1.6841     1.7979   0.937    0.349
+dose         -0.6736     0.6140  -1.097    0.273
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 8.3178  on 5  degrees of freedom
+Residual deviance: 6.7728  on 4  degrees of freedom
+AIC: 10.773
+
+Number of Fisher Scoring iterations: 4
+\end{verbatim}
+}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output part 2: the predictions}
+
+{\scriptsize
+\begin{verbatim}
+> p=predict(rats.1,type="response")
+> cbind(rats,p)
+  dose status         p
+1    0  lived 0.8434490
+2    1   died 0.7331122
+3    2  lived 0.5834187
+4    3  lived 0.4165813
+5    4   died 0.2668878
+6    5   died 0.1565510
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}{Interpreting the output}
+  \begin{itemize}
+  \item Like (multiple) regression, get
+   tests of significance of individual $x$'s
+  \item     Here not significant (only 6 observations).
+  \item ``Slope'' for dose is negative, meaning that as dose increases, probability of event modelled (survival) decreases.
+
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{The rats, part 2}
+
+  \begin{itemize}
+  \item More realistic: more rats at each dose (say 10).
+  \item Listing each rat on one line makes a big data file.
+  \item Use format below: dose, number of survivals, number of deaths.
+\begin{verbatim}
+dose lived died
+0 10 0
+1 7 3 
+2 6 4 
+3 4 6 
+4 2 8 
+5 1 9  
+\end{verbatim}
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Code for this logistic regression}
+
+\begin{verbatim}
+rat2=read.table("rat2.txt",header=T)
+rat2
+attach(rat2)
+response=cbind(lived,died)
+rat2.1=glm(response~dose,family="binomial")
+summary(rat2.1)
+p=predict(rat2.1,type="response")
+cbind(rat2,p)
+
+\end{verbatim}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output}
+
+{\scriptsize
+\begin{verbatim}
+> summary(rat2.1)
+
+Call:
+glm(formula = response ~ dose, family = "binomial")
+
+Deviance Residuals: 
+      1        2        3        4        5        6  
+ 1.3421  -0.7916  -0.1034   0.1034   0.0389   0.1529  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   2.3619     0.6719   3.515 0.000439 ***
+dose         -0.9448     0.2351  -4.018 5.87e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 27.530  on 5  degrees of freedom
+Residual deviance:  2.474  on 4  degrees of freedom
+AIC: 18.94
+
+Number of Fisher Scoring iterations: 4
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Predicted survival probs}
+
+\begin{semiverbatim}
+    
+> p=predict(rat2.1,type="response")
+> cbind(rat2,p)
+  dose lived died         p
+1    0    10    0 0.9138762
+2    1     7    3 0.8048905
+3    2     6    4 0.6159474
+4    3     4    6 0.3840526
+5    4     2    8 0.1951095
+6    5     1    9 0.0861238
+\end{semiverbatim}
+
+6 lines of data correspond to 60 actual rats.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+\begin{itemize}
+\item Significant effect of dose. 
+\item Effect of larger dose is to decrease survival probability
+  (``slope'' negative).
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}{Multiple logistic regression}
+
+  \begin{itemize}
+  \item With more than one $x$, works much like multiple regression.
+  \item Example: study of patients with blood poisoning severe enough to warrant surgery. Relate survival to other potential risk factors.
+  \item Variables, 1=present, 0=absent:
+    \begin{itemize}
+    \item survival (death from sepsis=1), response
+    \item shock
+    \item malnutrition
+    \item alcoholism
+    \item age (as numerical variable)
+    \item bowel infarction
+    \end{itemize}
+  \item See what relates to death.
+  \end{itemize}
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Some code}
+
+\begin{verbatim}
+sepsis=read.table("sepsis.txt",header=T)
+head(sepsis)
+attach(sepsis)
+sepsis.1=glm(death~shock+malnut+alcohol+age+
+              bowelinf,family="binomial")
+summary(sepsis.1)
+sepsis.2=glm(death~shock+alcohol+age+
+              bowelinf,family="binomial")
+summary(sepsis.2)
+sepsis.pred=predict(sepsis.2,type="response")
+myrows=c(4,1,2,11,32)
+cbind(sepsis[myrows,],p=sepsis.pred[myrows])
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Output part 1}
+
+{\scriptsize
+\begin{verbatim}
+> summary(sepsis.1)
+
+Call:
+glm(formula = death ~ shock + malnut + alcohol + age + bowelinf, 
+    family = "binomial")
+<...>
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -9.75391    2.54170  -3.838 0.000124 ***
+shock        3.67387    1.16481   3.154 0.001610 ** 
+malnut       1.21658    0.72822   1.671 0.094798 .  
+alcohol      3.35488    0.98210   3.416 0.000635 ***
+age          0.09215    0.03032   3.039 0.002374 ** 
+bowelinf     2.79759    1.16397   2.403 0.016240 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 105.528  on 105  degrees of freedom
+Residual deviance:  53.122  on 100  degrees of freedom
+AIC: 65.122
+
+Number of Fisher Scoring iterations: 7
+\end{verbatim}
+}
+
+Most of the $x$'s help predict death (actually modelling
+P(survival)). Only \texttt{malnut} seems not to add anything.
+
+\end{frame}
+
+\begin{frame}[fragile]{Removing \texttt{malnut}}
+
+{\scriptsize
+\begin{verbatim}
+> summary(sepsis.2)
+
+Call:
+glm(formula = death ~ shock + alcohol + age + bowelinf, family = "binomial")
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-1.26192  -0.50391  -0.10690  -0.04112   3.06000  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -8.89459    2.31689  -3.839 0.000124 ***
+shock        3.70119    1.10353   3.354 0.000797 ***
+alcohol      3.18590    0.91725   3.473 0.000514 ***
+age          0.08983    0.02922   3.075 0.002106 ** 
+bowelinf     2.38647    1.07227   2.226 0.026039 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 105.528  on 105  degrees of freedom
+Residual deviance:  56.073  on 101  degrees of freedom
+AIC: 66.073
+
+Number of Fisher Scoring iterations: 7
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Everything remaining is significant (though \texttt{bowelinf}
+  actually became \emph{less} signficant).
+\item All coefficients are \emph{positive}, so having any of the risk
+  factors (or being older)
+  \emph{incrreases} risk of death.  
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predictions from model without ``malnut''}
+
+  \begin{itemize}
+  \item A few chosen at random. (I cheated and looked at them all first!)
+{\scriptsize
+\begin{verbatim}
+> sepsis.pred=predict(sepsis.2,type="response")
+> myrows=c(4,1,2,11,32)
+> cbind(sepsis[myrows,],p=sepsis.pred[myrows])
+   death shock malnut alcohol age bowelinf           p
+4      0     0      0       0  26        0 0.001415347
+1      0     0      0       0  56        0 0.020552383
+2      0     0      0       0  80        0 0.153416834
+
+11     1     0      0       1  66        1 0.931290137
+
+32     1     0      0       1  49        0 0.213000997
+\end{verbatim}
+}
+\item Survival chances pretty good if no risk factors, though decreasing with age.
+\item Having more than one risk factor reduces survival chances dramatically.
+\item Usually model does a good job of predicting survival, but occasionally someone dies who was predicted to survive.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Assessing proportionality of odds for age}
+  \begin{itemize}
+  \item An assumption we made is that log-odds of survival depends
+    linearly on age. This is hard to get your head around, but the
+    basic idea is that survival chances go continuously up (or down)
+    with age, instead of (for example) going up and then down.
+  \item In this case, seems reasonable, but should check:
+\begin{semiverbatim}
+plot(sepsis$age,residuals(sepsis.lr2))      
+\end{semiverbatim}
+%$
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Residuals vs.\ age}
+
+\includegraphics[width=0.8\textwidth]{sepsis-age}
+
+\begin{itemize}
+\item No apparent problems overall.
+\item Confusing ``line'' across is people with no risk factors who
+  survived. 
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Multiplying the odds}
+
+  \begin{itemize}
+  \item Can interpret slopes by taking ``exp'' of them. The numbers
+    come out in scientific notation, so the \texttt{format} is to get
+    around that. I ignore intercept.
+\begin{semiverbatim}
+> cc=exp(coef(sepsis.2)[-1])
+> format(cc,digits=3,scientific=F)
+   shock  alcohol      age bowelinf 
+ "40.50"  "24.19"  " 1.09"  "10.88" 
+\end{semiverbatim}
+  \item These say ``how much do you \emph{multiply} odds of death by
+    for increase of 1 in corresponding risk factor?
+  \item Eg.\ being alcoholic vs.\ not increases odds of death by 24 times
+  \item One year older multiplies odds by about 1.1 times. Over 40 years,
+    about  $1.1^{40}=35$ times. 
+
+  \end{itemize}
+  
+\end{frame}
+
+
+
+\begin{frame}{More than 2 response categories}
+
+  \begin{itemize}
+  \item With 2 response categories, model the probability of one, and prob of other is one minus that. So doesn't matter which category you model.
+  \item With more than 2 categories, have to think more carefully about the categories: are they
+    \begin{itemize}
+    \item {\em ordered}: you can put them in a natural order (like low, medium, high)
+    \item {\em nominal}: ordering the categories doesn't make sense (like red, green, blue).
+    \end{itemize}
+  \item R handles both kinds of response; learn how.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ordinal response: the miners}
+
+
+  \begin{itemize}
+  \item 
+Model probability of being in given category {\em or lower}.
+\item Example: coal-miners often suffer disease pneumoconiosis. Likelihood of disease believed to be greater 
+among miners who have worked longer. 
+\item Severity of disease measured on categorical scale: 1 = none, 2
+= moderate, 3 = severe.
+\item Data are frequencies:
+\begin{verbatim}
+Exposure None Moderate Severe
+   5.8    98      0       0
+  15.0    51      2       1
+  21.5    34      6       3
+  27.5    35      5       8
+  33.5    32      10      9
+  39.5    23      7       8
+  46.0    12      6      10
+  51.5     4      2       5
+\end{verbatim}
+  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Reading the data}
+
+\begin{verbatim}
+> freqs=read.table("miners-tab.txt",header=T)
+> freqs
+  Exposure None Moderate Severe
+1      5.8   98        0      0
+2     15.0   51        2      1
+3     21.5   34        6      3
+4     27.5   35        5      8
+5     33.5   32       10      9
+6     39.5   23        7      8
+7     46.0   12        6     10
+8     51.5    4        2      5
+\end{verbatim}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Aim: make plot (need row proportions)}
+
+First \textbf{row totals}, then divide rows by row totals to get row
+proportions, skipping 1st column of \texttt{freqs} (not frequency):
+
+\begin{semiverbatim}
+> total=apply(freqs[,-1],1,sum)
+> obsprop=freqs[,-1]/total    
+> obsprop
+       None   Moderate     Severe
+1 1.0000000 0.00000000 0.00000000
+2 0.9444444 0.03703704 0.01851852
+3 0.7906977 0.13953488 0.06976744
+4 0.7291667 0.10416667 0.16666667
+5 0.6274510 0.19607843 0.17647059
+6 0.6052632 0.18421053 0.21052632
+7 0.4285714 0.21428571 0.35714286
+8 0.3636364 0.18181818 0.45454545
+\end{semiverbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+Then plot observed proportions against exposure.
+First plot nothing, then add lines for each disease category, using
+different colour and plotting symbol for each:
+
+  
+\begin{semiverbatim}
+> ex=freqs[,1] # exposures
+> sev=c("None","Moderate","Severe") # severities
+\pause
+> plot(ex,obsprop[,1],type="n",xlab="Exposure",
++      ylab="Observed proportion", ylim=c(0,1))
+\pause
+> lines(ex,obsprop[,1],type="b",col=1,pch=1)
+\pause
+> lines(ex,obsprop[,2],type="b",col=2,pch=2)
+\pause
+> lines(ex,obsprop[,3],type="b",col=3,pch=3)
+\pause
+> legend("topright",sev,col=1:3,pch=1:3)  
+\end{semiverbatim}
+
+\end{frame}
+
+\begin{frame}{The plot of observed proportions by exposure}
+  
+\includegraphics[width=\textwidth]{miners-data}
+
+\end{frame}
+
+\begin{frame}[fragile]{Reminder of data setup}
+
+\begin{verbatim}
+> freqs
+  Exposure None Moderate Severe
+1      5.8   98        0      0
+2     15.0   51        2      1
+3     21.5   34        6      3
+4     27.5   35        5      8
+5     33.5   32       10      9
+6     39.5   23        7      8
+7     46.0   12        6     10
+8     51.5    4        2      5
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Data setup for modelling}
+
+  \begin{itemize}
+
+    \item To fit logistic model, want \emph{one} frequency per line: exposure, response category, frequency.
+    \item Hard problem. Use function \texttt{melt} from package
+      \texttt{reshape}:
+{\scriptsize
+\begin{verbatim}
+> library(reshape)
+> miners=melt(freqs,1,2:4,"severity")
+> miners
+   Exposure severity value
+1       5.8     None    98
+2      15.0     None    51
+3      21.5     None    34
+4      27.5     None    35
+<...>
+21     33.5   Severe     9
+22     39.5   Severe     8
+23     46.0   Severe    10
+24     51.5   Severe     5
+\end{verbatim}
+}
+      \item First: frequency table to be reformatted
+      \item second: column \emph{not} containing frequencies
+      \item third: columns that \emph{do} contain frequencies
+      \item fourth: collective name for frequency columns
+
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fitting ordered logistic model}
+
+Use function \texttt{polr} from package \texttt{MASS}. Like \texttt{glm}.
+
+{\footnotesize
+\begin{verbatim}
+> miners.lr=polr(severity~Exposure,weights=value,data=miners)
+\end{verbatim}
+}
+
+Does \texttt{Exposure} have an effect? Fit model without, and compare
+using \texttt{anova}. Note \texttt{1} for model with just intercept.
+
+{\footnotesize
+\begin{verbatim}
+> miners.0=polr(severity~1,weights=value,data=miners)
+> anova(miners.0,miners.lr)
+Likelihood ratio tests of ordinal regression models
+
+Response: severity
+     Model Resid. df Resid. Dev   Test    Df LR stat. Pr(Chi)
+1        1       369   505.1621                              
+2 Exposure       368   416.9188 1 vs 2     1 88.24324       0
+\end{verbatim}
+}
+
+Exposure definitely has effect on severity of disease. (No surprise at
+all.) 
+
+
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predicted probabilities}
+
+Make new data frame out of all the exposure values, and predict from that:
+
+{\footnotesize
+\begin{verbatim}
+> miners.new=data.frame(Exposure=ex)
+> p=predict(miners.lr,miners.new,type="p")
+> cbind(miners.new,p)
+  Exposure      None   Moderate     Severe
+1      5.8 0.9676920 0.01908912 0.01321885
+2     15.0 0.9253445 0.04329931 0.03135614
+3     21.5 0.8692003 0.07385858 0.05694115
+4     27.5 0.7889290 0.11413004 0.09694093
+5     33.5 0.6776641 0.16207145 0.16026444
+6     39.5 0.5418105 0.20484198 0.25334756
+7     46.0 0.3879962 0.22441555 0.38758828
+8     51.5 0.2722543 0.21025011 0.51749563
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plotting observed and fitted proportions}
+
+{\footnotesize
+\begin{semiverbatim}
+> plot(ex,obsprop[,1],type="n",ylim=c(0,1),
+       xlab="Exposure",ylab="Probability")
+\pause
+> points(ex,obsprop[,1],col=1,pch=1)
+> points(ex,obsprop[,2],col=2,pch=2)
+> points(ex,obsprop[,3],col=3,pch=3)
+\pause
+> lines(ex,p[,1],col=1,pch=1)
+> lines(ex,p[,2],col=2,pch=2)
+> lines(ex,p[,3],col=3,pch=3)
+\pause
+> legend("topright",sev,col=1:3,pch=1:3)
+\end{semiverbatim}
+}
+  
+\end{frame}
+
+\begin{frame}{The plot}
+
+\includegraphics[width=0.8\textwidth]{miner-fit}
+  
+\begin{itemize}
+\item Data conform to fitted relationship pretty well.
+\end{itemize}
+
+\end{frame}
+
+
+% mlogit.pdf
+
+\begin{frame}[fragile]{Unordered responses}
+
+  \begin{itemize}
+  \item With unordered (nominal) responses, can use {\em generalized logit}.
+  \item Example: 735 people, record age and sex (male 0, female 1), which of 3 brands of some product preferred.
+  \item Data in \verb-mlogit.txt- separated by commas (so
+    \texttt{read.csv} will work):
+
+{\footnotesize
+\begin{verbatim}
+> brandpref=read.csv("mlogit.csv")
+> head(brandpref)
+  brand sex age
+1     1   0  24
+2     1   0  26
+3     1   0  26
+4     1   1  27
+5     1   1  27
+6     3   1  27
+\end{verbatim}
+}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Bashing into shape}
+
+  \begin{itemize}
+  \item \texttt{sex} and \texttt{brand} not meaningful as numbers, so
+    turn into factors
+  \item We use \texttt{multinom} from package \texttt{nnet}. Works
+    like \texttt{polr}.
+  \end{itemize}
+
+{\footnotesize
+\begin{verbatim}
+> brandpref$sex=factor(brandpref$sex)
+> brandpref$brand=factor(brandpref$brand)
+> library(nnet)
+> brands.both=multinom(brand~age+sex,data=brandpref)
+# weights:  12 (6 variable)
+initial  value 807.480032 
+iter  10 value 702.976983
+final  value 702.970704 
+converged
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Do age/sex help predict brand?}
+
+Fit models without and compare using \texttt{anova} (edited):
+
+{\scriptsize
+\begin{verbatim}
+> brands.age=multinom(brand~age,data=brandpref)
+converged
+> brands.sex=multinom(brand~sex,data=brandpref)
+converged
+> anova(brands.age,brands.both)
+      Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
+1       age      1466   1413.593           NA       NA         NA
+2 age + sex      1464   1405.941 1 vs 2     2 7.651236 0.02180495
+> anova(brands.sex,brands.both)
+      Model Resid. df Resid. Dev   Test    Df LR stat. Pr(Chi)
+1       sex      1466   1583.723           NA       NA      NA
+2 age + sex      1464   1405.941 1 vs 2     2 177.7811       0
+\end{verbatim}
+}
+
+\begin{itemize}
+\item \texttt{age} definitely significant (second \texttt{anova})
+\item \texttt{sex} seems significant also (first \texttt{anova}), but
+  P-value 0.02 not \emph{very} small
+\item Keep both.
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Predictions}
+
+Create data frame with combinations of age and sex.
+
+{\scriptsize
+\begin{verbatim}
+> new=expand.grid(age=c(24,28,32,35,38),sex=factor(0:1))
+> p=predict(brands.both,brands.newdata,type="probs")
+> cbind(new,p)
+   age sex          1          2           3
+1   24   0 0.94795822 0.05022928 0.001812497
+2   28   0 0.79313204 0.18329690 0.023571058
+3   32   0 0.40487271 0.40810321 0.187024082
+4   35   0 0.13057819 0.39724053 0.472181272
+5   38   0 0.02598163 0.23855071 0.735467663
+6   24   1 0.91532076 0.08189042 0.002788820
+7   28   1 0.69561789 0.27143910 0.032943012
+8   32   1 0.29086347 0.49503135 0.214105181
+9   35   1 0.08404134 0.43168592 0.484272746
+10  38   1 0.01623089 0.25162197 0.732147148
+\end{verbatim}
+}
+
+\begin{itemize}
+\item For young males (\texttt{sex=0}), strong preference for brand 1, going
+over to preference for brand 3 for older males,
+\item Similar picture for females, but they like brand 1 less and
+  brand 2 more.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Making a plot of these}
+
+Idea: plot predicted probabilities against age, using different
+colours for females (red) and males (blue). 
+Plot brands as numbers.
+
+{\scriptsize
+\begin{verbatim}
+> plot(new$age,p[,1],type="n",xlab="age",ylab="predicted probability")
+> mycol=ifelse(new$sex==1,"red","blue")
+> for (i in 1:3)
++ {
++   text(new$age,p[,i],i,col=mycol)
++ }
+> legend("topright",legend=levels(new$sex),fill=c("blue","red"))
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}{The plot}
+  
+\includegraphics[width=\textwidth]{brands}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Alternative data format}
+
+Summarize all people of same brand preference, same sex, same age on one line of data file with frequency on end:
+
+{\scriptsize
+\begin{verbatim}
+1 0 24 1
+1 0 26 2
+1 0 27 4
+1 0 28 4
+1 0 29 7
+1 0 30 3
+...
+\end{verbatim}
+}
+
+Whole data set in 65 lines not 735! But how?
+  
+\end{frame}
+
+\begin{frame}[fragile]{Getting alternative data format}
+
+Secret is \texttt{aggregate}:
+
+{\small
+\begin{verbatim}
+> attach(brandpref)
+> b=aggregate(brandpref,list(brand,age,sex),length)
+> head(b)
+  Group.1 Group.2 Group.3 brand sex age
+1       1      24       0     1   1   1
+2       1      26       0     2   2   2
+3       1      27       0     4   4   4
+4       1      28       0     4   4   4
+5       3      28       0     2   2   2
+6       1      29       0     7   7   7
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Feed in: data frame, things to aggregate over (in a
+  \texttt{list} if more than one), thing to calculate for each combo
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Fixing it up}
+
+  \begin{itemize}
+  \item Column names all messed up.
+  \item First three columns are variables aggregated over (in same
+    order as in \texttt{list})
+  \item Last three are frequencies, all the same.
+  \item Reset column names of \texttt{b}.
+  \end{itemize}
+
+\begin{verbatim}
+> dimnames(b)[[2]]=c("brand","age","sex","freq",
+                     "junk1","junk2")
+> head(b)
+  brand age sex freq junk1 junk2
+1     1  24   0    1     1     1
+2     1  26   0    2     2     2
+3     1  27   0    4     4     4
+4     1  28   0    4     4     4
+5     3  28   0    2     2     2
+6     1  29   0    7     7     7
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Fitting models, almost the same}
+
+Just have to remember \texttt{weights} to incorporate frequencies:
+
+{\footnotesize
+\begin{verbatim}
+> b$sex=factor(b$sex)
+> b$brand=factor(b$brand)
+> b.both=multinom(brand~age+sex,data=b,weights=freq)
+converged
+> b.age=multinom(brand~age,data=b,weights=freq)
+converged
+> anova(b.age,b.both)
+      Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
+1       age       126   1413.593           NA       NA         NA
+2 age + sex       124   1405.941 1 vs 2     2 7.651236 0.02180495
+\end{verbatim}
+}
+
+P-value for significance of \texttt{sex} identical.
+
+  
+\end{frame}

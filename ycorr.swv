@@ -1,0 +1,28 @@
+\documentclass{article}
+\title{The ycorr data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+1 0.9705 -0.9600
+. 1      -0.9980
+. .       1
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+options linesize=70;
+
+data yc(type=corr);
+  infile "ycorr.dat";
+  input x1 x2 x3;
+
+proc print;
+
+proc princomp;
+
+\end{SAScode}
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass{article}
+\title{The scaffold2 data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+ecm1 2 70
+ecm1 2 75
+ecm1 2 65
+ecm1 4 55
+ecm1 4 70
+ecm1 4 70
+ecm1 8 60
+ecm1 8 65
+ecm1 8 65
+ecm2 2 60
+ecm2 2 65
+ecm2 2 70
+ecm2 4 60
+ecm2 4 65
+ecm2 4 65
+ecm2 8 60
+ecm2 8 70
+ecm2 8 60
+ecm3 2 80
+ecm3 2 60
+ecm3 2 75
+ecm3 4 75
+ecm3 4 70
+ecm3 4 75
+ecm3 8 70
+ecm3 8 80
+ecm3 8 70
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data scaffold;
+  infile "scaffold2.dat";
+  input material $ weeks gpi;
+
+proc print;
+
+proc glm;
+  class material weeks;
+  model gpi=weeks|material;
+
+proc glm;
+  class material weeks;
+  model gpi=weeks material;
+  lsmeans material weeks / adjust=tukey lines;
+  
+run;
+\end{SAScode}
+\end{document}

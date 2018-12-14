@@ -1,0 +1,23 @@
+options linesize=75;
+
+data dist(type=distance);
+  infile "ontario-road-distances.dat" delimiter=",";
+  input team $ Barrie Belleville Brantford Brockville Cornwall 
+    Hamilton Huntsville Kingston Kitchener London NiagaraFalls NorthBay 
+    Ottawa OwenSound Peterborough Sarnia SaultSteMarie StCatharines 
+    ThunderBay Toronto Windsor;
+
+proc print;
+  
+proc cluster method=average outtree=tree;
+  id team;
+
+proc tree horizontal;
+  id team;
+
+run;
+
+
+
+
+

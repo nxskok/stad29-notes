@@ -1,0 +1,116 @@
+                                           The SAS System        10:39 Tuesday, January 19, 2010   1
+
+                                        The PHREG Procedure
+
+                                         Model Information
+
+                               Data Set                 WORK.DANCERS
+                               Dependent Variable       months      
+                               Censoring Variable       dancing     
+                               Censoring Value(s)       0           
+                               Ties Handling            BRESLOW     
+
+
+                              Number of Observations Read          12
+                              Number of Observations Used          12
+
+
+                         Summary of the Number of Event and Censored Values
+ 
+                                                                 Percent
+                               Total       Event    Censored    Censored
+
+                                  12          10           2       16.67
+
+
+                                         Convergence Status
+
+                           Convergence criterion (GCONV=1E-8) satisfied.          
+
+
+                                       Model Fit Statistics
+ 
+                                               Without           With
+                              Criterion     Covariates     Covariates
+
+                              -2 LOG L          33.573         12.572
+                              AIC               33.573         16.572
+                              SBC               33.573         17.177
+
+
+                              Testing Global Null Hypothesis: BETA=0
+ 
+                      Test                 Chi-Square       DF     Pr > ChiSq
+
+                      Likelihood Ratio        21.0016        2         <.0001
+                      Score                   14.2093        2         0.0008
+                      Wald                     5.5556        2         0.0622
+
+
+                             Analysis of Maximum Likelihood Estimates
+ 
+                            Parameter      Standard                                  Hazard
+        Variable     DF      Estimate         Error    Chi-Square    Pr > ChiSq       Ratio
+
+        age           1      -0.35284       0.14973        5.5532        0.0184       0.703
+        treatment     1      -4.28283       2.54084        2.8412        0.0919       0.014
+                                           The SAS System        10:39 Tuesday, January 19, 2010   2
+
+                          Plot of s*months$label.  Symbol points to label.
+
+     s |450451  251    251           451    251
+   1.0 +  4 250  3 450  3 450     251 3 450  3 450         > 451
+       | 251  451> 250 451                  451                   > 451
+       |
+       |                                                                        > 451
+       |                > 250                              > 450
+       |
+       |
+       |                              > 250
+       |
+   0.5 +
+       |
+       |                                                                               > 451
+       |
+       |
+       |
+       |                                     > 250
+       |
+       |                                                       251> 450        251    450  451250
+   0.0 +                                               251 2 250  2 250     450 3 250  3 251  4
+       ---+------+------+------+------+------+------+------+------+------+------+------+------+--
+          0      1      2      3      4      5      6      7      8      9     10     11     12
+
+                                                 months
+
+NOTE: 3 label characters hidden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+\documentclass{article}
+
+\title{\texttt{gather}, factors and logistic regression}
+\author{Ken Butler}
+
+\begin{document}
+
+\maketitle
+
+\section{\texttt{gather}}
+
+\texttt{gather} is a handy tool from the \texttt{tidyr} package that
+is used for gathering up columns of a data frame that are not
+variables in themselves but levels of a factor. This is an example:
+
+<<>>=
+d=data.frame(x=1:5,early=c(10,11,11,13,15),late=c(12,12,11,14,16))
+d
+@ 
+
+Suppose \texttt{early} and \texttt{late} are a response
+variable \texttt{y} that is measured early and late in the course of
+the experiment. Then it would be better to have all the values in one
+column \texttt{y} with a label \texttt{timepoint} that says whether
+they were measured early or late. This is done with \texttt{gather}
+like this:
+
+<<>>=
+d2=gather(d,timepoint,y,early:late)
+d2
+@ 
+
+\end{document}

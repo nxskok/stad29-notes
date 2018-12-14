@@ -1,0 +1,5290 @@
+This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2018.10.16)  14 DEC 2018 17:19
+ restricted system commands enabled.
+**slides-sw
+(./slides-sw.tex
+LaTeX2e <2017-04-15>
+Lua module: luaotfload-main 2017/01/29 2.80001 OpenType layout system.
+Lua module: lualibs 2017-02-01 2.5 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2017-02-01 2.5 ConTeXt Lua libraries -- extended co
+llection.(using write cache: /home/ken/.texlive2017/texmf-var/luatex-cache/gener
+ic)(using read cache: /var/lib/texmf/luatex-cache/generic /home/ken/.texlive2017
+/texmf-var/luatex-cache/generic)
+luaotfload | conf : Root cache directory is /home/ken/.texlive2017/texmf-var/lua
+tex-cache/generic/names.
+luaotfload | init : Loading fontloader “fontloader-2017-02-11.lua” from kpse
+-resolved path “/usr/share/texlive/texmf-dist/tex/luatex/luaotfload/fontloader
+-2017-02-11.lua”.
+Lua-only attribute luaotfload@state = 1
+Lua-only attribute luaotfload@noligature = 2
+Lua-only attribute luaotfload@syllabe = 3
+luaotfload | init : Context OpenType loader version “3.027”
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 4
+luaotfload | conf : Root cache directory is /home/ken/.texlive2017/texmf-var/lua
+tex-cache/generic/names.
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
+.
+luaotfload | main : initialization completed in 0.293 seconds
+Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
+Document Class: beamer 2018/02/20 v3.50 A class for typesetting presentations
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count79
+)
+\beamer@tempbox=\box26
+\beamer@tempcount=\count80
+\c@beamerpauses=\count81
+
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasedecode.sty
+\beamer@slideinframe=\count82
+\beamer@minimum=\count83
+)
+\beamer@commentbox=\box27
+\beamer@modecount=\count84
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+\headdp=\dimen102
+\footheight=\dimen103
+\sidebarheight=\dimen104
+\beamer@tempdim=\dimen105
+\beamer@finalheight=\dimen106
+\beamer@animht=\dimen107
+\beamer@animdp=\dimen108
+\beamer@animwd=\dimen109
+\beamer@leftmargin=\dimen110
+\beamer@rightmargin=\dimen111
+\beamer@leftsidebar=\dimen112
+\beamer@rightsidebar=\dimen113
+\beamer@boxsize=\dimen114
+\beamer@vboxoffset=\dimen115
+\beamer@descdefault=\dimen116
+\beamer@descriptionwidth=\dimen117
+\beamer@lastskip=\skip41
+\beamer@areabox=\box28
+\beamer@animcurrent=\box29
+\beamer@animshowbox=\box30
+\beamer@sectionbox=\box31
+\beamer@logobox=\box32
+\beamer@linebox=\box33
+\beamer@sectioncount=\count85
+\beamer@subsubsectionmax=\count86
+\beamer@subsectionmax=\count87
+\beamer@sectionmax=\count88
+\beamer@totalheads=\count89
+\beamer@headcounter=\count90
+\beamer@partstartpage=\count91
+\beamer@sectionstartpage=\count92
+\beamer@subsectionstartpage=\count93
+\beamer@animationtempa=\count94
+\beamer@animationtempb=\count95
+\beamer@xpos=\count96
+\beamer@ypos=\count97
+\beamer@ypos@offset=\count98
+\beamer@showpartnumber=\count99
+\beamer@currentsubsection=\count100
+\beamer@coveringdepth=\count101
+\beamer@sectionadjust=\count102
+\beamer@tocsectionnumber=\count103
+
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseoptions.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+))
+\beamer@paperwidth=\skip42
+\beamer@paperheight=\skip43
+
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count104
+\Gm@cntv=\count105
+\c@Gm@tempcnt=\count106
+\Gm@bindingoffset=\dimen118
+\Gm@wd@mp=\dimen119
+\Gm@odd@mp=\dimen120
+\Gm@even@mp=\dimen121
+\Gm@layoutwidth=\dimen122
+\Gm@layoutheight=\dimen123
+\Gm@layouthoffset=\dimen124
+\Gm@layoutvoffset=\dimen125
+\Gm@dimlist=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /home/ken/.texlive2017/texmf-v
+ar/luatex-cache/generic/names/luaotfload-names.luc(load luc: /home/ken/.texlive2
+017/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-regular.luc))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 99.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2018/01/08 v1.0l Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen126
+\Gin@req@width=\dimen127
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks16
+\pgfutil@tempdima=\dimen128
+\pgfutil@tempdimb=\dimen129
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box34
+(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks19
+))
+\pgf@x=\dimen130
+\pgf@y=\dimen131
+\pgf@xa=\dimen132
+\pgf@ya=\dimen133
+\pgf@xb=\dimen134
+\pgf@yb=\dimen135
+\pgf@xc=\dimen136
+\pgf@yc=\dimen137
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count107
+\c@pgf@countb=\count108
+\c@pgf@countc=\count109
+\c@pgf@countd=\count110
+\t@pgf@toka=\toks20
+\t@pgf@tokb=\toks21
+\t@pgf@tokc=\toks22
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+File: pgfsys-luatex.def 2014/10/11  (rcs-revision 1.35)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count111
+\pgfsyssoftpath@bigbuffer@items=\count112
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen138
+\pgfmath@count=\count113
+\pgfmath@box=\box35
+\pgfmath@toks=\toks23
+\pgfmath@stack@operand=\toks24
+\pgfmath@stack@operation=\toks25
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count114
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen139
+\pgf@picmaxx=\dimen140
+\pgf@picminy=\dimen141
+\pgf@picmaxy=\dimen142
+\pgf@pathminx=\dimen143
+\pgf@pathmaxx=\dimen144
+\pgf@pathminy=\dimen145
+\pgf@pathmaxy=\dimen146
+\pgf@xx=\dimen147
+\pgf@xy=\dimen148
+\pgf@yx=\dimen149
+\pgf@yy=\dimen150
+\pgf@zx=\dimen151
+\pgf@zy=\dimen152
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen153
+\pgf@path@lasty=\dimen154
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen155
+\pgf@shorten@start@additional=\dimen156
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box36
+\pgf@hbox=\box37
+\pgf@layerbox@main=\box38
+\pgf@picture@serial@count=\count115
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen157
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen158
+\pgf@pt@y=\dimen159
+\pgf@pt@temp=\dimen160
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen161
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen162
+\pgf@sys@shading@range@num=\count116
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box39
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+))) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty
+Package: xxcolor 2003/10/24 ver 0.1
+\XC@nummixins=\count117
+\XC@countmixins=\count118
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX detected.
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: luatex-loader 2016/05/16 v0.6 Lua module loader (HO)
+
+(/usr/share/texlive/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua)
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO)
+
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks26
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO)
+
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen163
+\Hy@linkcounter=\count119
+\Hy@pagecounter=\count120
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count121
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4383.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4383.
+Package hyperref Info: Option `implicit' set `false' on input line 4383.
+Package hyperref Info: Hyper figures OFF on input line 4509.
+Package hyperref Info: Link nesting OFF on input line 4514.
+Package hyperref Info: Hyper index ON on input line 4517.
+Package hyperref Info: Plain pages OFF on input line 4524.
+Package hyperref Info: Backreferencing OFF on input line 4529.
+Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
+Package hyperref Info: Bookmarks ON on input line 4762.
+\c@Hy@tempcnt=\count122
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5115.
+\XeTeXLinkMargin=\dimen164
+\Fld@menulength=\count123
+\Field@Width=\dimen165
+\Fld@charsize=\dimen166
+Package hyperref Info: Hyper figures OFF on input line 6369.
+Package hyperref Info: Link nesting OFF on input line 6374.
+Package hyperref Info: Hyper index ON on input line 6377.
+Package hyperref Info: backreferencing OFF on input line 6384.
+Package hyperref Info: Link coloring OFF on input line 6389.
+Package hyperref Info: Link coloring with OCG OFF on input line 6394.
+Package hyperref Info: PDF/A mode OFF on input line 6399.
+LaTeX Info: Redefining \ref on input line 6439.
+LaTeX Info: Redefining \pageref on input line 6443.
+\Hy@abspage=\count124
+
+
+Package hyperref Message: Stopped early.
+
+)
+Package hyperref Info: Driver (autodetected): hluatex.
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2018/02/06 v6.86b Hyperref driver for luaTeX
+\Fld@listcount=\count125
+\c@bookmark@seq@number=\count126
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
+2.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaserequires.sty
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasecompatibility.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasefont.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks27
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/sansmathaccent.sty
+Package: sansmathaccent 2013/03/28
+
+(/usr/share/texlive/texmf-dist/tex/latex/filehook/filehook.sty
+Package: filehook 2011/10/12 v0.5d Hooks for input files
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2018/01/04 v1.12 Easy translation of strings in LaTeX
+))
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasemisc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+\beamer@argscount=\count127
+\beamer@lastskipcover=\skip44
+\beamer@trivlistdepth=\count128
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetitle.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasesection.sty
+\c@lecture=\count129
+\c@part=\count130
+\c@section=\count131
+\c@subsection=\count132
+\c@subsubsection=\count133
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseframe.sty
+\beamer@framebox=\box40
+\beamer@frametitlebox=\box41
+\beamer@zoombox=\box42
+\beamer@zoomcount=\count134
+\beamer@zoomframecount=\count135
+\beamer@frametextheight=\dimen167
+\c@subsectionslide=\count136
+\beamer@frametopskip=\skip45
+\beamer@framebottomskip=\skip46
+\beamer@frametopskipautobreak=\skip47
+\beamer@framebottomskipautobreak=\skip48
+\beamer@envbody=\toks28
+\framewidth=\dimen168
+\c@framenumber=\count137
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseverbatim.sty
+\beamer@verbatimfileout=\write4
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseframesize.sty
+\beamer@splitbox=\box43
+\beamer@autobreakcount=\count138
+\beamer@autobreaklastheight=\dimen169
+\beamer@frametitletoks=\toks29
+\beamer@framesubtitletoks=\toks30
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseframecomponents.sty
+\beamer@footins=\box44
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasecolor.sty
+\beamer@bg@ht=\dimen170
+\beamer@bg@wd=\dimen171
+\beamer@bg@dp=\dimen172
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasenotes.sty
+\beamer@frameboxcopy=\box45
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetoc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetemplates.sty
+\beamer@sbttoks=\toks31
+
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseauxtemplates.sty
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseboxes.sty
+\bmb@box=\box46
+\bmb@colorbox=\box47
+\bmb@boxshadow=\box48
+\bmb@boxshadowball=\box49
+\bmb@boxshadowballlarge=\box50
+\bmb@temp=\dimen173
+\bmb@dima=\dimen174
+\bmb@dimb=\dimen175
+\bmb@prevheight=\dimen176
+)
+\beamer@blockheadheight=\dimen177
+))
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaselocalstructure.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks32
+)
+\c@figure=\count139
+\c@table=\count140
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasenavigation.sty
+\beamer@section@min@dim=\dimen178
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetheorems.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks33
+\ex@=\dimen179
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen180
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count141
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count142
+\leftroot@=\count143
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count144
+\DOTSCASE@=\count145
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box51
+\strutbox@=\box52
+\big@size=\dimen181
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count146
+\c@MaxMatrixCols=\count147
+\dotsspace@=\muskip11
+\c@parentequation=\count148
+\dspbrk@lvl=\count149
+\tag@help=\toks34
+\row@=\count150
+\column@=\count151
+\maxfields@=\count152
+\andhelp@=\toks35
+\eqnshift@=\dimen182
+\alignsep@=\dimen183
+\tagshift@=\dimen184
+\tagwidth@=\dimen185
+\totwidth@=\dimen186
+\lineht@=\dimen187
+\@envbody=\toks36
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks37
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks38
+\thm@bodyfont=\toks39
+\thm@headfont=\toks40
+\thm@notefont=\toks41
+\thm@headpunct=\toks42
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks43
+)
+\c@theorem=\count153
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasethemes.sty))(load luc:
+ /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsans10-regula
+r.luc) (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerthemedefault.sty (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
+\beamer@dima=\dimen188
+\beamer@dimb=\dimen189
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip57
+\fb@frw=\dimen190
+\fb@frh=\dimen191
+\FrameRule=\dimen192
+\FrameSep=\dimen193
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks44
+\inpenc@posthook=\toks45
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
+\c@tracingmulticols=\count154
+\mult@box=\box53
+\multicol@leftmargin=\dimen194
+\c@unbalance=\count155
+\c@collectmore=\count156
+\doublecol@number=\count157
+\multicoltolerance=\count158
+\multicolpretolerance=\count159
+\full@width=\dimen195
+\page@free=\dimen196
+\premulticols=\dimen197
+\postmulticols=\dimen198
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
+\partial@page=\box54
+\last@line=\box55
+\maxbalancingoverflow=\dimen199
+\mult@rightbox=\box56
+\mult@grightbox=\box57
+\mult@gfirstbox=\box58
+\mult@firstbox=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\c@columnbadness=\count160
+\c@finalcolumnbadness=\count161
+\last@try=\dimen256
+\multicolovershoot=\dimen257
+\multicolundershoot=\dimen258
+\mult@nat@firstbox=\box77
+\colbreak@box=\box78
+\mc@col@check@num=\count162
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pbox/pbox.sty
+Package: pbox 2011/12/07 v1.2 Dynamic parboxes
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count163
+\calc@Bcount=\count164
+\calc@Adimen=\dimen259
+\calc@Bdimen=\dimen260
+\calc@Askip=\skip60
+\calc@Bskip=\skip61
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count165
+\calc@Cskip=\skip62
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\pb@xlen=\skip63
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks46
+\verbatim@line=\toks47
+\verbatim@in@stream=\read2
+)
+(/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
+im
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)) (./slides-sw.aux)
+\openout1 = slides-sw.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 81.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 81.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(10.95pt, 342.29536pt, 10.95pt)
+* v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
+* \paperwidth=364.19536pt
+* \paperheight=273.14662pt
+* \textwidth=342.29536pt
+* \textheight=244.6939pt
+* \oddsidemargin=-61.31999pt
+* \evensidemargin=-61.31999pt
+* \topmargin=-72.26999pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=11.0pt
+* \footskip=14.22636pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count166
+\scratchdimen=\dimen261
+\scratchbox=\box79
+\nofMPsegments=\count167
+\nofMParguments=\count168
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count169
+\MPscratchDim=\dimen262
+\MPnumerator=\count170
+\makeMPintoPDFobject=\count171
+\everyMPtoPDFconversion=\toks49
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 43
+8.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG
+,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+
+))
+ABD: EveryShipout initializing macros
+\AtBeginShipoutBox=\box80
+Package hyperref Info: Link coloring OFF on input line 81.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count172
+)
+LaTeX Info: Redefining \ref on input line 81.
+LaTeX Info: Redefining \pageref on input line 81.
+LaTeX Info: Redefining \nameref on input line 81.
+
+(./slides-sw.out) (./slides-sw.out)
+\@outlinefile=\write5
+
+\openout5 = slides-sw.out
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 81.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 81.
+\symnumbers=\mathgroup6
+\sympureletters=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmr/m/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmss/bx/n on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/lmss/bx/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/m/n on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmss/m/it on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/lmss/m/it on input line 81.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 81.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  TU/lmss/m/n --> TU/lmss/bx/n on input line 81.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  TU/lmss/m/it --> TU/lmss/bx/it on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmr/bx/n on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  TU/lmss/bx/n --> TU/lmss/bx/n on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  TU/lmss/m/n --> TU/lmss/bx/n on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  TU/lmss/m/it --> TU/lmss/bx/it on input line 81.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  TU/lmtt/m/n --> TU/lmtt/bx/n on input line 81.
+
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary
+-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator-bibliography-dic
+tionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator-environment-dict
+ionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator-months-dictionar
+y-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator-numbers-dictiona
+ry-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/translator/translator-theorem-dictiona
+ry-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+) (./slides-sw.nav)(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/gene
+ric/fonts/otl/lmsans8-regular.luc)(load luc: /home/ken/.texlive2017/texmf-var/lu
+atex-cache/generic/fonts/otl/lmsans12-regular.luc) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+LaTeX Font Info:    Try loading font information for U+msa on input line 3.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 3.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 3.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsan
+s10-oblique.luc)
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 3.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsan
+s8-oblique.luc)
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 3.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmmon
+o10-regular.luc)) [3
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 8.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 8.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 8.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsan
+s10-bold.luc)) [4
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [5
+
+]
+Overfull \vbox (5.03555pt too high) detected at line 174
+ []
+
+[6
+
+] [7
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [8
+
+] (./slides-sw.toc) [9
+
+] (./slides-sw.toc) [10
+
+]
+[11
+
+] [12
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 6.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmmon
+olt10-bold.luc)(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/
+fonts/otl/lmmono10-italic.luc)) [13
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 306.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsan
+s12-oblique.luc) [14
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/gener
+ic/fonts/otl/lmsans9-regular.luc)(load luc: /home/ken/.texlive2017/texmf-var/lua
+tex-cache/generic/fonts/otl/lmmono9-regular.luc)) [15
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/suggo-1.pdf, id=205, 505.89pt x 289.08pt>
+File: figure/suggo-1.pdf Graphic file (type pdf)
+<use figure/suggo-1.pdf>
+Package luatex.def Info: figure/suggo-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [16
+
+<./figure/suggo-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[17
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [18
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/icko-1.pdf, id=229, 505.89pt x 216.81pt>
+File: figure/icko-1.pdf Graphic file (type pdf)
+<use figure/icko-1.pdf>
+Package luatex.def Info: figure/icko-1.pdf  used on input line 13.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [19
+
+<./figure/icko-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic
+/fonts/otl/lmmono8-regular.luc)
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <8> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10.
+) [20
+
+] [21
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 12.
+) [22
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [23
+
+] [24
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [25
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [26
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [27
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-13-1.pdf, id=289, 505.89pt x 201.75375pt>
+File: figure/unnamed-chunk-13-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-13-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-13-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 136.51346pt.
+) [28
+
+<./figure/unnamed-chunk-13-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [29
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/akjhkadjfhjahnkkk-1.pdf, id=311, 505.89pt x 252.945pt>
+File: figure/akjhkadjfhjahnkkk-1.pdf Graphic file (type pdf)
+<use figure/akjhkadjfhjahnkkk-1.pdf>
+Package luatex.def Info: figure/akjhkadjfhjahnkkk-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [30
+
+<./figure/akjhkadjfhjahnkkk-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [31
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-14-1.pdf, id=330, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-14-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-14-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-14-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [32
+
+<./figure/unnamed-chunk-14-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [33
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/altoadige-1.pdf, id=348, 505.89pt x 289.08pt>
+File: figure/altoadige-1.pdf Graphic file (type pdf)
+<use figure/altoadige-1.pdf>
+Package luatex.def Info: figure/altoadige-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [34
+
+<./figure/altoadige-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [35
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [36
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [37
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8.
+<figure/unnamed-chunk-19-1.pdf, id=376, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-19-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-19-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [38
+
+<./figure/unnamed-chunk-19-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[39
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [40
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [41
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/dsljhsdjlhf-1.pdf, id=406, 505.89pt x 198.7425pt>
+File: figure/dsljhsdjlhf-1.pdf Graphic file (type pdf)
+<use figure/dsljhsdjlhf-1.pdf>
+Package luatex.def Info: figure/dsljhsdjlhf-1.pdf  used on input line 14.
+(luatex.def)             Requested size: 342.29536pt x 134.47594pt.
+) [42
+
+<./figure/dsljhsdjlhf-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [43
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/trento-1.pdf, id=427, 505.89pt x 289.08pt>
+File: figure/trento-1.pdf Graphic file (type pdf)
+<use figure/trento-1.pdf>
+Package luatex.def Info: figure/trento-1.pdf  used on input line 6.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [44
+
+<./figure/trento-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [45
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-22-1.pdf, id=446, 505.89pt x 201.75375pt>
+File: figure/unnamed-chunk-22-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-22-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-22-1.pdf  used on input line 17.
+(luatex.def)             Requested size: 320.39537pt x 127.77972pt.
+) [46
+
+<./figure/unnamed-chunk-22-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [47
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [48
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (8.37831pt too wide) in paragraph at lines 7--7
+[][]\TU/lmtt/m/n/10.95 my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/
+regressx.txt"[][] 
+ []
+
+) [49
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [50
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [51
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [52
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generi
+c/fonts/otl/lmmono12-regular.luc) [53
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [54
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [55
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/iffy8-1.pdf, id=509, 505.89pt x 216.81pt>
+File: figure/iffy8-1.pdf Graphic file (type pdf)
+<use figure/iffy8-1.pdf>
+Package luatex.def Info: figure/iffy8-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [56
+
+<./figure/iffy8-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (8.37831pt too wide) in paragraph at lines 6--6
+[][]\TU/lmtt/b/n/10.95 ggplot[][]\TU/lmtt/m/n/10.95 (visits.1,[] []\TU/lmtt/b/n
+/10.95 aes[][]\TU/lmtt/m/n/10.95 ([][]sample[][]=.resid))[][]+[][]\TU/lmtt/b/n/
+10.95 stat_qq[][]\TU/lmtt/m/n/10.95 ()[][]+[][]\TU/lmtt/b/n/10.95 stat_qq_line[
+][]\TU/lmtt/m/n/10.95 ()[][] 
+ []
+
+<figure/unnamed-chunk-29-1.pdf, id=522, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-29-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-29-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-29-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [57
+
+<./figure/unnamed-chunk-29-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-30-1.pdf, id=535, 505.89pt x 180.675pt>
+File: figure/unnamed-chunk-30-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-30-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-30-1.pdf  used on input line 15.
+(luatex.def)             Requested size: 342.29536pt x 122.25085pt.
+) [58
+
+<./figure/unnamed-chunk-30-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [59
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (4.17444pt too high) detected at line 1439
+ []
+
+[60
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [61
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [62
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-33-1.pdf, id=573, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-33-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-33-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-33-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [63
+
+<./figure/unnamed-chunk-33-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (8.37831pt too wide) in paragraph at lines 6--6
+[][]\TU/lmtt/b/n/10.95 ggplot[][]\TU/lmtt/m/n/10.95 (visits.3,[] []\TU/lmtt/b/n
+/10.95 aes[][]\TU/lmtt/m/n/10.95 ([][]sample[][]=.resid))[][]+[][]\TU/lmtt/b/n/
+10.95 stat_qq[][]\TU/lmtt/m/n/10.95 ()[][]+[][]\TU/lmtt/b/n/10.95 stat_qq_line[
+][]\TU/lmtt/m/n/10.95 ()[][] 
+ []
+
+<figure/unnamed-chunk-34-1.pdf, id=586, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-34-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-34-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [64
+
+<./figure/unnamed-chunk-34-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-35-1.pdf, id=599, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-35-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-35-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-35-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [65
+
+<./figure/unnamed-chunk-35-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [66
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [67
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-37-1.pdf, id=625, 505.89pt x 325.215pt>
+File: figure/unnamed-chunk-37-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-37-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-37-1.pdf  used on input line 6.
+(luatex.def)             Requested size: 342.29536pt x 220.05154pt.
+) [68
+
+<./figure/unnamed-chunk-37-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [69
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-39-1.pdf, id=643, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-39-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-39-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-39-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [70
+
+<./figure/unnamed-chunk-39-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [71
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [72
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [73
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [74
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (24.52956pt too wide) in paragraph at lines 9--9
+[][]\TU/lmtt/m/n/10.95 my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/
+punting.txt"[][] 
+ []
+
+) [75
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [76
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [77
+
+] [78
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[79
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [80
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [81
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [82
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [83
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [84
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/basingstoke-1.pdf, id=729, 505.89pt x 252.945pt>
+File: figure/basingstoke-1.pdf Graphic file (type pdf)
+<use figure/basingstoke-1.pdf>
+Package luatex.def Info: figure/basingstoke-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [85
+
+<./figure/basingstoke-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [86
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [87
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [88
+
+] [89
+
+] [90
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [91
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[92
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [93
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [94
+
+] [95
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[96
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [97
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (103.28464pt too high) detected at line 2347
+ []
+
+[98
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [99
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [100
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [101
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [102
+
+] [103
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (113.58363pt too high) detected at line 2494
+ []
+
+[104
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [105
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [106
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[107
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [108
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [109
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[110
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [111
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/virtusentella-1.pdf, id=877, 505.89pt x 244.915pt>
+File: figure/virtusentella-1.pdf Graphic file (type pdf)
+<use figure/virtusentella-1.pdf>
+Package luatex.def Info: figure/virtusentella-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 165.71782pt.
+)
+Overfull \vbox (8.75433pt too high) detected at line 2678
+ []
+
+[112
+
+<./figure/virtusentella-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [113
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[114
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [115
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [116
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[117
+
+] [118
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (6.66019pt too high) detected at line 2876
+ []
+
+[119
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (19.87581pt too wide) in paragraph at lines 8--8
+[][]\TU/lmtt/m/n/10.95 my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/
+miners-tab.txt"[][] 
+ []
+
+) [120
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [121
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [122
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[123
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-79-1.pdf, id=946, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-79-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-79-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-79-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [124
+
+<./figure/unnamed-chunk-79-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [125
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [126
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [127
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (7.40474pt too high) detected at line 3106
+ []
+
+[128
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-85-1.pdf, id=980, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-85-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-85-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-85-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [129
+
+<./figure/unnamed-chunk-85-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [130
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (14.70464pt too wide) in paragraph at lines 12--12
+[]\remove@tlig ## polr(formula = sev_ord ~ Exposure, data = miners, weights = F
+req)[] 
+ []
+
+) [131
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [132
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [133
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[134
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [135
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [136
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[137
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-96-1.pdf, id=1034, 505.89pt x 259.97125pt>
+File: figure/unnamed-chunk-96-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-96-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-96-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 175.9054pt.
+) [138
+
+<./figure/unnamed-chunk-96-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (18.7808pt too wide) in paragraph at lines 13--13
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/mlogit
+.csv"[][] 
+ []
+
+) [139
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [140
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [141
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[142
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [143
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [144
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[145
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (13.03206pt too wide) in paragraph at lines 15--15
+[]\remove@tlig ## multinom(formula = brand ~ age + sex, data = brandpref)[] 
+ []
+
+) [146
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [147
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [148
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[149
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (14.25949pt too high) detected at line 3707
+ []
+
+[150
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-109-1.pdf, id=1109, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-109-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-109-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-109-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [151
+
+<./figure/unnamed-chunk-109-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [152
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [153
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [154
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [155
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [156
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [157
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [158
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [159
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [160
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/unnamed-chunk-116-1.pdf, id=1168, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-116-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-116-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-116-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [161
+
+<./figure/unnamed-chunk-116-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[162
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-118-1.pdf, id=1187, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-118-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-118-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-118-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [163
+
+<./figure/unnamed-chunk-118-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [164
+
+] [165
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [166
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[167
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [168
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (24.52956pt too wide) in paragraph at lines 17--17
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/dancin
+g.txt"[][] 
+ []
+
+) [169
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [170
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [171
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[172
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [173
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [174
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-126-1.pdf, id=1258, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-126-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-126-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-126-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+)
+[175
+
+<./figure/unnamed-chunk-126-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [176
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)
+Overfull \vbox (16.76065pt too high) detected at line 4405
+ []
+
+[177
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [178
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-132-1.pdf, id=1289, 505.89pt x 180.675pt>
+File: figure/unnamed-chunk-132-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-132-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-132-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 122.25085pt.
+) [179
+
+<./figure/unnamed-chunk-132-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [180
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [181
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<lung-cancer-data.png, id=1312, 526.96875pt x 280.04625pt>
+File: lung-cancer-data.png Graphic file (type png)
+<use lung-cancer-data.png>
+Package luatex.def Info: lung-cancer-data.png  used on input line 3.
+(luatex.def)             Requested size: 342.29536pt x 181.91252pt.
+)
+[182
+
+<./lung-cancer-data.png>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <6> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 6.
+) [183
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[184
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [185
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [186
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[187
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [188
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [189
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (36.9152pt too high) detected at line 4770
+ []
+
+[190
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (274.9554pt too wide) in paragraph at lines 35--35
+[]\remove@tlig ##  Model 2: ~ (inst + time + status + age + sex + ph.ecog + ph.
+karno + pat.karno + meal.cal + wt.loss) - inst - time - status[] 
+ []
+
+)
+Overfull \vbox (11.28535pt too high) detected at line 4817
+ []
+
+[191
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [192
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [193
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[194
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-147-1.pdf, id=1381, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-147-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-147-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-147-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [195
+
+<./figure/unnamed-chunk-147-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)
+Overfull \vbox (15.46404pt too high) detected at line 4956
+ []
+
+[196
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-148-1.pdf, id=1398, 505.89pt x 162.6075pt>
+File: figure/unnamed-chunk-148-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-148-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-148-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 110.02577pt.
+) [197
+
+<./figure/unnamed-chunk-148-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [198
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [199
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-151-1.pdf, id=1424, 505.89pt x 162.6075pt>
+File: figure/unnamed-chunk-151-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-151-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-151-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 110.02577pt.
+) [200
+
+<./figure/unnamed-chunk-151-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [201
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-153-1.pdf, id=1446, 505.89pt x 180.675pt>
+File: figure/unnamed-chunk-153-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-153-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-153-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 122.25085pt.
+) [202
+
+<./figure/unnamed-chunk-153-1.pdf>] [203
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [204
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[205
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [206
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [207
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (4.16194pt too high) detected at line 5229
+ []
+
+[208
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/tartuffo-1.pdf, id=1494, 505.89pt x 252.945pt>
+File: figure/tartuffo-1.pdf Graphic file (type pdf)
+<use figure/tartuffo-1.pdf>
+Package luatex.def Info: figure/tartuffo-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [209
+
+<./figure/tartuffo-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[210
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (5.10463pt too wide) in paragraph at lines 15--15
+[]\remove@tlig ## Levene's Test for Homogeneity of Variance (center = median)[]
+ 
+ []
+
+) [211
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [212
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [213
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[214
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [215
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [216
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (28.47968pt too high) detected at line 5449
+ []
+
+[217
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (2.71057pt too wide) in paragraph at lines 13--13
+[]\remove@tlig ##  Pairwise comparisons using t tests with pooled SD[] 
+ []
+
+
+Overfull \hbox (2.71057pt too wide) in paragraph at lines 29--29
+[]\remove@tlig ##  Pairwise comparisons using t tests with pooled SD[] 
+ []
+
+
+Overfull \hbox (2.71057pt too wide) in paragraph at lines 50--50
+[]\remove@tlig ##  Pairwise comparisons using t tests with pooled SD[] 
+ []
+
+
+Overfull \hbox (2.71057pt too wide) in paragraph at lines 66--66
+[]\remove@tlig ##  Pairwise comparisons using t tests with pooled SD[] 
+ []
+
+) [218
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [219
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (30.2783pt too wide) in paragraph at lines 20--20
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/vitami
+nb.txt"[][] 
+ []
+
+)
+Overfull \vbox (64.63695pt too high) detected at line 5576
+ []
+
+[220
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [221
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-163-1.pdf, id=1569, 505.89pt x 234.8775pt>
+File: figure/unnamed-chunk-163-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-163-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-163-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 158.92612pt.
+) [222
+
+<./figure/unnamed-chunk-163-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (0.77994pt too high) detected at line 5651
+ []
+
+[223
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (31.3733pt too wide) in paragraph at lines 17--17
+[]\remove@tlig ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 
+1[] 
+ []
+
+) [224
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [225
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-167-1.pdf, id=1598, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-167-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-167-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-167-1.pdf  used on input line 8.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [226
+
+<./figure/unnamed-chunk-167-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [227
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (14.12706pt too wide) in paragraph at lines 14--14
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/c32/autono
+ise.txt"[][] 
+ []
+
+) [228
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [229
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [230
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-172-1.pdf, id=1631, 505.89pt x 194.7275pt>
+File: figure/unnamed-chunk-172-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-172-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-172-1.pdf  used on input line 8.
+(luatex.def)             Requested size: 342.29536pt x 131.75925pt.
+)
+[231
+
+<./figure/unnamed-chunk-172-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [232
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [233
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [234
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-176-1.pdf, id=1660, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-176-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-176-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-176-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [235
+
+<./figure/unnamed-chunk-176-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [236
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [237
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [238
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [239
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [240
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [241
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [242
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [243
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [244
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [245
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [246
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [247
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [248
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [249
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [250
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [251
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [252
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [253
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [254
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [255
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 10.
+
+) [256
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [257
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [258
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (4.18538pt too high) detected at line 6538
+ []
+
+[259
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [260
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [261
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[262
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [263
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [264
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[265
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [266
+
+] [267
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [268
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[269
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.96992pt too high) detected at line 6780
+ []
+
+[270
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [271
+
+]
+<figure/spizzo-1.pdf, id=1865, 505.89pt x 252.945pt>
+File: figure/spizzo-1.pdf Graphic file (type pdf)
+<use figure/spizzo-1.pdf>
+Package luatex.def Info: figure/spizzo-1.pdf  used on input line 6824.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+ [272
+
+<./figure/spizzo-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-211-1.pdf, id=1878, 505.89pt x 180.675pt>
+File: figure/unnamed-chunk-211-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-211-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-211-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 122.25085pt.
+)
+[273
+
+<./figure/unnamed-chunk-211-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [274
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [275
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 51--51
+[]\remove@tlig ##    Exposure Severity probability[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 52--52
+[]\remove@tlig ## 1       5.8     None  0.96769203[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 53--53
+[]\remove@tlig ## 2      15.0     None  0.92534455[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 54--54
+[]\remove@tlig ## 3      21.5     None  0.86920028[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 55--55
+[]\remove@tlig ## 4      27.5     None  0.78892903[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 56--56
+[]\remove@tlig ## 5      33.5     None  0.67766411[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 57--57
+[]\remove@tlig ## 6      39.5     None  0.54181046[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 58--58
+[]\remove@tlig ## 7      46.0     None  0.38799618[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 59--59
+[]\remove@tlig ## 8      51.5     None  0.27225426[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 60--60
+[]\remove@tlig ## 9       5.8 Moderate  0.01908912[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 61--61
+[]\remove@tlig ## 10     15.0 Moderate  0.04329931[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 62--62
+[]\remove@tlig ## 11     21.5 Moderate  0.07385858[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 63--63
+[]\remove@tlig ## 12     27.5 Moderate  0.11413004[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 64--64
+[]\remove@tlig ## 13     33.5 Moderate  0.16207145[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 65--65
+[]\remove@tlig ## 14     39.5 Moderate  0.20484198[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 66--66
+[]\remove@tlig ## 15     46.0 Moderate  0.22441555[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 67--67
+[]\remove@tlig ## 16     51.5 Moderate  0.21025011[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 68--68
+[]\remove@tlig ## 17      5.8   Severe  0.01321885[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 69--69
+[]\remove@tlig ## 18     15.0   Severe  0.03135614[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 70--70
+[]\remove@tlig ## 19     21.5   Severe  0.05694115[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 71--71
+[]\remove@tlig ## 20     27.5   Severe  0.09694093[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 72--72
+[]\remove@tlig ## 21     33.5   Severe  0.16026444[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 73--73
+[]\remove@tlig ## 22     39.5   Severe  0.25334756[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 74--74
+[]\remove@tlig ## 23     46.0   Severe  0.38758828[] 
+ []
+
+
+Overfull \hbox (17.60233pt too wide) in paragraph at lines 75--75
+[]\remove@tlig ## 24     51.5   Severe  0.51749563[] 
+ []
+
+)
+Overfull \vbox (211.98378pt too high) detected at line 6980
+ []
+
+[276
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [277
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/nachwazzo-1.pdf, id=1911, 505.89pt x 252.945pt>
+File: figure/nachwazzo-1.pdf Graphic file (type pdf)
+<use figure/nachwazzo-1.pdf>
+Package luatex.def Info: figure/nachwazzo-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [278
+
+<./figure/nachwazzo-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [279
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (254.5153pt too high) detected at line 7131
+ []
+
+[280
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [281
+
+]
+<figure/cabazzo-1.pdf, id=1940, 505.89pt x 216.81pt>
+File: figure/cabazzo-1.pdf Graphic file (type pdf)
+<use figure/cabazzo-1.pdf>
+Package luatex.def Info: figure/cabazzo-1.pdf  used on input line 7171.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+ [282
+
+<./figure/cabazzo-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[283
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [284
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [285
+
+] [286
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[287
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (30.16994pt too high) detected at line 7280
+ []
+
+[288
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (24.52956pt too wide) in paragraph at lines 11--11
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/manova
+1.txt"[][] 
+ []
+
+) [289
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [290
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/ferto-1.pdf, id=1995, 505.89pt x 216.81pt>
+File: figure/ferto-1.pdf Graphic file (type pdf)
+<use figure/ferto-1.pdf>
+Package luatex.def Info: figure/ferto-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [291
+
+<./figure/ferto-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/casteldisangro-1.pdf, id=2008, 505.89pt x 216.81pt>
+File: figure/casteldisangro-1.pdf Graphic file (type pdf)
+<use figure/casteldisangro-1.pdf>
+Package luatex.def Info: figure/casteldisangro-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [292
+
+<./figure/casteldisangro-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[293
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [294
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/charlecombe-1.pdf, id=2030, 505.89pt x 252.945pt>
+File: figure/charlecombe-1.pdf Graphic file (type pdf)
+<use figure/charlecombe-1.pdf>
+Package luatex.def Info: figure/charlecombe-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [295
+
+<./figure/charlecombe-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-229-1.pdf, id=2043, 505.89pt x 180.675pt>
+File: figure/unnamed-chunk-229-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-229-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-229-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 122.25085pt.
+) [296
+
+<./figure/unnamed-chunk-229-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[297
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [298
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [299
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[300
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (9.48465pt too high) detected at line 7605
+ []
+
+[301
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [302
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [303
+
+] [304
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[305
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (30.16994pt too high) detected at line 7711
+ []
+
+[306
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [307
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [308
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[309
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [310
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [311
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[312
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [313
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [314
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[315
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-245-1.pdf, id=2155, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-245-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-245-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-245-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (15.57098pt too high) detected at line 7993
+ []
+
+[316
+
+<./figure/unnamed-chunk-245-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [317
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [318
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [319
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [320
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/hoverla-1.pdf, id=2188, 505.89pt x 252.945pt>
+File: figure/hoverla-1.pdf Graphic file (type pdf)
+<use figure/hoverla-1.pdf>
+Package luatex.def Info: figure/hoverla-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [321
+
+<./figure/hoverla-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [322
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [323
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (8.37831pt too wide) in paragraph at lines 8--8
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/exerci
+se.txt"[][] 
+ []
+
+) [324
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [325
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [326
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[327
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [328
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [329
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-256-1.pdf, id=2243, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-256-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-256-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-256-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+)
+[330
+
+<./figure/unnamed-chunk-256-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [331
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [332
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [333
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [334
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [335
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-262-1.pdf, id=2282, 505.89pt x 180.675pt>
+File: figure/unnamed-chunk-262-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-262-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-262-1.pdf  used on input line 13.
+(luatex.def)             Requested size: 320.39537pt x 114.4296pt.
+) [336
+
+<./figure/unnamed-chunk-262-1.pdf>] [337
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [338
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (119.70464pt too wide) in paragraph at lines 24--25
+\TU/lmtt/m/it/10 --------------------------------------------------------------
+--------------------------[]  
+ []
+
+
+Overfull \hbox (119.70464pt too wide) in paragraph at lines 28--29
+\TU/lmtt/m/it/10 --------------------------------------------------------------
+--------------------------[]  
+ []
+
+)
+Overfull \vbox (459.08014pt too high) detected at line 8586
+ []
+
+[339
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [340
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/berzani-1.pdf, id=2316, 505.89pt x 289.08pt>
+File: figure/berzani-1.pdf Graphic file (type pdf)
+<use figure/berzani-1.pdf>
+Package luatex.def Info: figure/berzani-1.pdf  used on input line 22.
+(luatex.def)             Requested size: 205.3793pt x 117.35905pt.
+) [341
+
+<./figure/berzani-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [342
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [343
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [344
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [345
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [346
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-270-1.pdf, id=2355, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-270-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-270-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-270-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [347
+
+<./figure/unnamed-chunk-270-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (17.57037pt too high) detected at line 8826
+ []
+
+[348
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [349
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [350
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[351
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [352
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.82214pt too high) detected at line 9004
+ []
+
+[353
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [354
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (4.03397pt too high) detected at line 9073
+ []
+
+[355
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [356
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [357
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[358
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [359
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [360
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[361
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [362
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [363
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-286-1.pdf, id=2450, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-286-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-286-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-286-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+)
+[364
+
+<./figure/unnamed-chunk-286-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-287-1.pdf, id=2463, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-287-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-287-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-287-1.pdf  used on input line 21.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [365
+
+<./figure/unnamed-chunk-287-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [366
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [367
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [368
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/graziani-1.pdf, id=2492, 505.89pt x 252.945pt>
+File: figure/graziani-1.pdf Graphic file (type pdf)
+<use figure/graziani-1.pdf>
+Package luatex.def Info: figure/graziani-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [369
+
+<./figure/graziani-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [370
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [371
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (22.39545pt too high) detected at line 9522
+ []
+
+[372
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 6--6
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/profil
+e.txt"[][] 
+ []
+
+) [373
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [374
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-294-1.pdf, id=2531, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-294-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-294-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-294-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [375
+
+<./figure/unnamed-chunk-294-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-295-1.pdf, id=2544, 505.89pt x 325.215pt>
+File: figure/unnamed-chunk-295-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-295-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-295-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 220.05154pt.
+)
+Overfull \vbox (6.49803pt too high) detected at line 9612
+ []
+
+[376
+
+<./figure/unnamed-chunk-295-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [377
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/unnamed-chunk-296-1.pdf, id=2562, 505.89pt x 201.75375pt>
+File: figure/unnamed-chunk-296-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-296-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-296-1.pdf  used on input line 13.
+(luatex.def)             Requested size: 342.29536pt x 136.51346pt.
+) [378
+
+<./figure/unnamed-chunk-296-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[379
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [380
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [381
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/nesta-1.pdf, id=2591, 505.89pt x 325.215pt>
+File: figure/nesta-1.pdf Graphic file (type pdf)
+<use figure/nesta-1.pdf>
+Package luatex.def Info: figure/nesta-1.pdf  used on input line 6.
+(luatex.def)             Requested size: 239.6057pt x 154.0321pt.
+)
+[382
+
+<./figure/nesta-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [383
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (42.8708pt too wide) in paragraph at lines 6--6
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/remote
+-sensing.txt"[][] 
+ []
+
+) [384
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [385
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [386
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[387
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [388
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/piacentini-1.pdf, id=2635, 505.89pt x 223.83624pt>
+File: figure/piacentini-1.pdf Graphic file (type pdf)
+<use figure/piacentini-1.pdf>
+Package luatex.def Info: figure/piacentini-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 151.45522pt.
+) [389
+
+<./figure/piacentini-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-306-1.pdf, id=2648, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-306-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-306-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-306-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [390
+
+<./figure/unnamed-chunk-306-1.pdf>]
+Package keyval Info: figure undefined on input line 9942.
+ [391
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [392
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [393
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/nedved-1.pdf, id=2677, 505.89pt x 223.83624pt>
+File: figure/nedved-1.pdf Graphic file (type pdf)
+<use figure/nedved-1.pdf>
+Package luatex.def Info: figure/nedved-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.29536pt x 151.45522pt.
+) [394
+
+<./figure/nedved-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-310-1.pdf, id=2690, 505.89pt x 259.97125pt>
+File: figure/unnamed-chunk-310-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-310-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-310-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 175.9054pt.
+) [395
+
+<./figure/unnamed-chunk-310-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [396
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [397
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [398
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [399
+
+] [400
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [401
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[402
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [403
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [404
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[405
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [406
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-317-1.pdf, id=2761, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-317-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-317-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-317-1.pdf  used on input line 5.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [407
+
+<./figure/unnamed-chunk-317-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [408
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [409
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-320-1.pdf, id=2784, 505.89pt x 230.8625pt>
+File: figure/unnamed-chunk-320-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-320-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-320-1.pdf  used on input line 7.
+(luatex.def)             Requested size: 342.29536pt x 156.20943pt.
+)
+[410
+
+<./figure/unnamed-chunk-320-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-321-1.pdf, id=2800, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-321-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-321-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-321-1.pdf  used on input line 8.
+(luatex.def)             Requested size: 342.29536pt x 146.70102pt.
+) [411
+
+<./figure/unnamed-chunk-321-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [412
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [413
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [414
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [415
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-325-1.pdf, id=2838, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-325-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-325-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-325-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [416
+
+<./figure/unnamed-chunk-325-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [417
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [418
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/unnamed-chunk-328-1.pdf, id=2861, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-328-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-328-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-328-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [419
+
+<./figure/unnamed-chunk-328-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/wardo-1.pdf, id=2875, 505.89pt x 289.08pt>
+File: figure/wardo-1.pdf Graphic file (type pdf)
+<use figure/wardo-1.pdf>
+Package luatex.def Info: figure/wardo-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+[420
+
+<./figure/wardo-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [421
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/asfsagd-1.pdf, id=2894, 505.89pt x 289.08pt>
+File: figure/asfsagd-1.pdf Graphic file (type pdf)
+<use figure/asfsagd-1.pdf>
+Package luatex.def Info: figure/asfsagd-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [422
+
+<./figure/asfsagd-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [423
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (10.75711pt too high) detected at line 10661
+ []
+
+[424
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [425
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [426
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[427
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [428
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [429
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[430
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (27.46465pt too high) detected at line 10899
+ []
+
+[431
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [432
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [433
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[434
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (14.12706pt too wide) in paragraph at lines 7--7
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/birthr
+ate.txt"[][] 
+ []
+
+) [435
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [436
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [437
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[438
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [439
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [440
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[441
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [442
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [443
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[444
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.71967pt too high) detected at line 11310
+ []
+
+[445
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [446
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [447
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.68465pt too high) detected at line 11379
+ []
+
+[448
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/favalli-1.pdf, id=3040, 505.89pt x 237.88875pt>
+File: figure/favalli-1.pdf Graphic file (type pdf)
+<use figure/favalli-1.pdf>
+Package luatex.def Info: figure/favalli-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 160.96362pt.
+) [449
+
+<./figure/favalli-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[450
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [451
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [452
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[453
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [454
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [455
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[456
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [457
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [458
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[459
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (0.2344pt too high) detected at line 11652
+ []
+
+[460
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [461
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (13.63965pt too high) detected at line 11731
+ []
+
+[462
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-377-1.pdf, id=3120, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-377-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-377-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-377-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [463
+
+<./figure/unnamed-chunk-377-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [464
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<map1.pdf, id=3139, 896.34875pt x 628.3475pt>
+File: map1.pdf Graphic file (type pdf)
+<use map1.pdf>
+Package luatex.def Info: map1.pdf  used on input line 3.
+(luatex.def)             Requested size: 325.215pt x 227.97867pt.
+) [465
+
+<./map1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (8.37831pt too wide) in paragraph at lines 6--6
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/ontari
+o-road-
+ []
+
+) [466
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-379-1.pdf, id=3157, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-379-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-379-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-379-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [467
+
+<./figure/unnamed-chunk-379-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [468
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-380-1.pdf, id=3175, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-380-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-380-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-380-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [469
+
+<./figure/unnamed-chunk-380-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [470
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<map2.pdf, id=3193, 1077.02374pt x 642.4pt>
+File: map2.pdf Graphic file (type pdf)
+<use map2.pdf>
+Package luatex.def Info: map2.pdf  used on input line 3.
+(luatex.def)             Requested size: 325.215pt x 193.97617pt.
+) [471
+
+<./map2.pdf>] [472
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [473
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [474
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (47.64766pt too high) detected at line 11917
+ []
+
+[475
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [476
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [477
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[478
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-388-1.pdf, id=3243, 505.89pt x 259.97125pt>
+File: figure/unnamed-chunk-388-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-388-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-388-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 175.9054pt.
+) [479
+
+<./figure/unnamed-chunk-388-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)
+Overfull \vbox (18.45697pt too high) detected at line 12059
+ []
+
+[480
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-390-1.pdf, id=3262, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-390-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-390-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-390-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [481
+
+<./figure/unnamed-chunk-390-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/unnamed-chunk-391-1.pdf, id=3276, 216.81pt x 216.81pt>
+File: figure/unnamed-chunk-391-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-391-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-391-1.pdf  used on input line 25.
+(luatex.def)             Requested size: 144.24768pt x 144.25291pt.
+) [482
+
+<./figure/unnamed-chunk-391-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (4.04715pt too high) detected at line 12150
+ []
+
+[483
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [484
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-397-1.pdf, id=3299, 505.89pt x 259.97125pt>
+File: figure/unnamed-chunk-397-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-397-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-397-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 175.9054pt.
+) [485
+
+<./figure/unnamed-chunk-397-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-398-1.pdf, id=3312, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-398-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-398-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-398-1.pdf  used on input line 5.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [486
+
+<./figure/unnamed-chunk-398-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [487
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [488
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-400-1.pdf, id=3335, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-400-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-400-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-400-1.pdf  used on input line 11.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (38.69263pt too high) detected at line 12278
+ []
+
+[489
+
+<./figure/unnamed-chunk-400-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [490
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [491
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [492
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [493
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [494
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-405-1.pdf, id=3374, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-405-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-405-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-405-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [495
+
+<./figure/unnamed-chunk-405-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-406-1.pdf, id=3387, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-406-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-406-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-406-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (1.93321pt too high) detected at line 12442
+ []
+
+[496
+
+<./figure/unnamed-chunk-406-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (12.0801pt too wide) in paragraph at lines 6--6
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/ontari
+o-road-distances.csv"[][] 
+ []
+
+)
+Overfull \vbox (244.80063pt too high) detected at line 12468
+ []
+
+[497
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-408-1.pdf, id=3406, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-408-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-408-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-408-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (4.70357pt too high) detected at line 12484
+ []
+
+[498
+
+<./figure/unnamed-chunk-408-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [499
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/spal-1.pdf, id=3424, 505.89pt x 252.945pt>
+File: figure/spal-1.pdf Graphic file (type pdf)
+<use figure/spal-1.pdf>
+Package luatex.def Info: figure/spal-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [500
+
+<./figure/spal-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (30.34547pt too high) detected at line 12575
+ []
+
+[501
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [502
+
+]
+Package keyval Info: frame undefined on input line 12626.
+<figure/unnamed-chunk-414-1.pdf, id=3448, 505.89pt x 397.485pt>
+File: figure/unnamed-chunk-414-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-414-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-414-1.pdf  used on input line 1262
+6.
+(luatex.def)             Requested size: 166.14767pt x 130.54575pt.
+<figure/unnamed-chunk-415-1.pdf, id=3449, 505.89pt x 397.485pt>
+File: figure/unnamed-chunk-415-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-415-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-415-1.pdf  used on input line 1262
+6.
+(luatex.def)             Requested size: 166.14767pt x 130.54575pt.
+ [503
+
+<./figure/unnamed-chunk-414-1.pdf><./figure/unnamed-chunk-415-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides
+-sw.vrb
+Overfull \hbox (7.28331pt too wide) in paragraph at lines 9--9
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/southe
+rn-
+ []
+
+) [504
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [505
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [506
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[507
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [508
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [509
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[510
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [511
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [512
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[513
+
+]
+<figure/prosesto-1.pdf, id=3520, 505.89pt x 289.08pt>
+File: figure/prosesto-1.pdf Graphic file (type pdf)
+<use figure/prosesto-1.pdf>
+Package luatex.def Info: figure/prosesto-1.pdf  used on input line 12960.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+ [514
+
+<./figure/prosesto-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [515
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[516
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-429-1.pdf, id=3544, 505.89pt x 289.08pt>
+File: figure/unnamed-chunk-429-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-429-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-429-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (1.94417pt too high) detected at line 13014
+ []
+
+[517
+
+<./figure/unnamed-chunk-429-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [518
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)
+Overfull \vbox (269.43665pt too high) detected at line 13074
+ []
+
+[519
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [520
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [521
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/bianconeri-1.pdf, id=3578, 505.89pt x 289.08pt>
+File: figure/bianconeri-1.pdf Graphic file (type pdf)
+<use figure/bianconeri-1.pdf>
+Package luatex.def Info: figure/bianconeri-1.pdf  used on input line 8.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (4.605pt too high) detected at line 13154
+ []
+
+[522
+
+<./figure/bianconeri-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [523
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[524
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [525
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [526
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[527
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/padova-1.pdf, id=3613, 505.89pt x 289.08pt>
+File: figure/padova-1.pdf Graphic file (type pdf)
+<use figure/padova-1.pdf>
+Package luatex.def Info: figure/padova-1.pdf  used on input line 5.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [528
+
+<./figure/padova-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [529
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [530
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/parma-1.pdf, id=3636, 505.89pt x 252.945pt>
+File: figure/parma-1.pdf Graphic file (type pdf)
+<use figure/parma-1.pdf>
+Package luatex.def Info: figure/parma-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+)
+Overfull \vbox (7.92426pt too high) detected at line 13380
+ []
+
+[531
+
+<./figure/parma-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (158.7437pt too high) detected at line 13442
+ []
+
+[532
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-442-1.pdf, id=3655, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-442-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-442-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-442-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [533
+
+<./figure/unnamed-chunk-442-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [534
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Underfull \hbox (badness 1281) in paragraph at lines 9--10
+[]\TU/lmss/m/n/10.95 Ex-cel-lent: no prospect of mis-in-ter-pre-ta-tion
+ []
+
+) [535
+
+] [536
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [537
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [538
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [539
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [540
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [541
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/ff2-1.pdf, id=3711, 505.89pt x 289.08pt>
+File: figure/ff2-1.pdf Graphic file (type pdf)
+<use figure/ff2-1.pdf>
+Package luatex.def Info: figure/ff2-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+[542
+
+<./figure/ff2-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [543
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [544
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/unnamed-chunk-450-1.pdf, id=3734, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-450-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-450-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-450-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [545
+
+<./figure/unnamed-chunk-450-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.78378pt too high) detected at line 13746
+ []
+
+[546
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [547
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/score-plot-1.pdf, id=3757, 505.89pt x 252.945pt>
+File: figure/score-plot-1.pdf Graphic file (type pdf)
+<use figure/score-plot-1.pdf>
+Package luatex.def Info: figure/score-plot-1.pdf  used on input line 10.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [548
+
+<./figure/score-plot-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/eqsc2-1.pdf, id=3770, 505.89pt x 144.54pt>
+File: figure/eqsc2-1.pdf Graphic file (type pdf)
+<use figure/eqsc2-1.pdf>
+Package luatex.def Info: figure/eqsc2-1.pdf  used on input line 23.
+(luatex.def)             Requested size: 320.39537pt x 91.54367pt.
+) [549
+
+<./figure/eqsc2-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [550
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/ff3-1.pdf, id=3789, 505.89pt x 289.08pt>
+File: figure/ff3-1.pdf Graphic file (type pdf)
+<use figure/ff3-1.pdf>
+Package luatex.def Info: figure/ff3-1.pdf  used on input line 5.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [551
+
+<./figure/ff3-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [552
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [553
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [554
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [555
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [556
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [557
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [558
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [559
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [560
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (25.91028pt too high) detected at line 14092
+ []
+
+[561
+
+]
+<figure/lecce-1.pdf, id=3853, 505.89pt x 281.05pt>
+File: figure/lecce-1.pdf Graphic file (type pdf)
+<use figure/lecce-1.pdf>
+Package luatex.def Info: figure/lecce-1.pdf  used on input line 14109.
+(luatex.def)             Requested size: 342.29536pt x 190.168pt.
+ [562
+
+<./figure/lecce-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [563
+
+]
+<figure/biplot2-1.pdf, id=3868, 505.89pt x 252.945pt>
+File: figure/biplot2-1.pdf Graphic file (type pdf)
+<use figure/biplot2-1.pdf>
+Package luatex.def Info: figure/biplot2-1.pdf  used on input line 14140.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+ [564
+
+<./figure/biplot2-1.pdf>] [565
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [566
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [567
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [568
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [569
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [570
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[571
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-464-1.pdf, id=3918, 505.89pt x 397.485pt>
+File: figure/unnamed-chunk-464-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-464-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-464-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 268.95189pt.
+)
+Overfull \vbox (52.63898pt too high) detected at line 14279
+ []
+
+[572
+
+<./figure/unnamed-chunk-464-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+File: cov.txt  (verbatim)
+) [573
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [574
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/palermo-1.pdf, id=3940, 505.89pt x 252.945pt>
+File: figure/palermo-1.pdf Graphic file (type pdf)
+<use figure/palermo-1.pdf>
+Package luatex.def Info: figure/palermo-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [575
+
+<./figure/palermo-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [576
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [577
+
+] [578
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[579
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [580
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [581
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.90424pt too high) detected at line 14509
+ []
+
+[582
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-470-1.pdf, id=3990, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-470-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-470-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-470-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [583
+
+<./figure/unnamed-chunk-470-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb)
+Overfull \vbox (19.40897pt too high) detected at line 14563
+ []
+
+[584
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [585
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [586
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[587
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [588
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [589
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[590
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/unnamed-chunk-477-1.pdf, id=4038, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-477-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-477-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-477-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [591
+
+<./figure/unnamed-chunk-477-1.pdf>] [592
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [593
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [594
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [595
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [596
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [597
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [598
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [599
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [600
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<bem.png, id=4098, 624.3325pt x 411.5375pt>
+File: bem.png Graphic file (type png)
+<use bem.png>
+Package luatex.def Info: bem.png  used on input line 3.
+(luatex.def)             Requested size: 325.215pt x 214.37123pt.
+) [601
+
+<./bem.png>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (44.61563pt too high) detected at line 14951
+ []
+
+[602
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [603
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/genoa-1.pdf, id=4115, 505.89pt x 252.945pt>
+File: figure/genoa-1.pdf Graphic file (type pdf)
+<use figure/genoa-1.pdf>
+Package luatex.def Info: figure/genoa-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [604
+
+<./figure/genoa-1.pdf>]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/bem-scree-two-1.pdf, id=4128, 505.89pt x 252.945pt>
+File: figure/bem-scree-two-1.pdf Graphic file (type pdf)
+<use figure/bem-scree-two-1.pdf>
+Package luatex.def Info: figure/bem-scree-two-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [605
+
+<./figure/bem-scree-two-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (358.06763pt too high) detected at line 15079
+ []
+
+[606
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [607
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/bem-biplot-1.pdf, id=4151, 505.89pt x 252.945pt>
+File: figure/bem-biplot-1.pdf Graphic file (type pdf)
+<use figure/bem-biplot-1.pdf>
+Package luatex.def Info: figure/bem-biplot-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [608
+
+<./figure/bem-biplot-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [609
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (5.91641pt too high) detected at line 15169
+ []
+
+[610
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (270.87163pt too high) detected at line 15237
+ []
+
+[611
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [612
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [613
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[614
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [615
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/biplot-two-ag-1.pdf, id=4204, 505.89pt x 289.08pt>
+File: figure/biplot-two-ag-1.pdf Graphic file (type pdf)
+<use figure/biplot-two-ag-1.pdf>
+Package luatex.def Info: figure/biplot-two-ag-1.pdf  used on input line 7.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+) [616
+
+<./figure/biplot-two-ag-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [617
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (127.87163pt too high) detected at line 15447
+ []
+
+[618
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [619
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [620
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[621
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (5.29337pt too high) detected at line 15573
+ []
+
+[622
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (0.7294pt too high) detected at line 15607
+ []
+
+[623
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [624
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [625
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[626
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [627
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [628
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[629
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [630
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [631
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[632
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [633
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [634
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[635
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [636
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [637
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[638
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [639
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [640
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[641
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [642
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [643
+
+] [644
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[645
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [646
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [647
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (9.24428pt too high) detected at line 16294
+ []
+
+[648
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [649
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [650
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[651
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [652
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [653
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[654
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [655
+
+] [656
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [657
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[658
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 18--18
+[][]\remove@tlig my_url[][]=[][]"http://www.utsc.utoronto.ca/~butler/d29/eyewea
+r.txt"[][] 
+ []
+
+) [659
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [660
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [661
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[662
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [663
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [664
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[665
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [666
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [667
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[668
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [669
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [670
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[671
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [672
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [673
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[674
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [675
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [676
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[677
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [678
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [679
+
+] [680
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[681
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (2.63008pt too wide) in paragraph at lines 13--13
+[]\remove@tlig ## freq ~ airport + airline + status + airport:airline + airport
+:status +[] 
+ []
+
+) [682
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [683
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [684
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[685
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [686
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [687
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[688
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (3.03563pt too high) detected at line 17515
+ []
+
+[689
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [690
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (1.01518pt too high) detected at line 17582
+ []
+
+[691
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [692
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [693
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[694
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [695
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [696
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+Overfull \hbox (7.35509pt too wide) in paragraph at lines 16--16
+[]\remove@tlig ##     stage:xray + operation:xray + stage:survival + stage:oper
+ation:xray[] 
+ []
+
+)
+Overfull \vbox (9.1294pt too high) detected at line 17769
+ []
+
+[697
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [698
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (3.15608pt too high) detected at line 17831
+ []
+
+[699
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [700
+
+]
+\tf@nav=\write6
+
+\openout6 = slides-sw.nav
+\tf@toc=\write7
+
+\openout7 = slides-sw.toc
+\tf@snm=\write8
+
+\openout8 = slides-sw.snm
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 17850.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 17850.
+ (./slides-sw.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 17850.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 17850.
+
+Package rerunfilecheck Info: File `slides-sw.out' has not changed.
+(rerunfilecheck)             Checksum: 1192300DCFA48361368744328E32343B;907.
+)
+
+Here is how much of LuaTeX's memory you used:
+ 28932 strings out of 494480
+ 100000,1144653 words of node,token memory allocated
+ 5843 words of node memory still in use:
+   49 hlist, 9 vlist, 4 rule, 53 disc, 8 local_par, 12 math, 138 glue, 21 kern, 
+30 penalty, 420 glyph, 86 attribute, 64 glue_spec, 86 attribute_list, 3 write, 2
+ pdf_action, 36 pdf_colorstack nodes
+   avail lists: 1:2,2:663,3:1996,4:450,5:497,6:5154,7:2236,8:102,9:638,10:20,11:
+172
+ 23604 multiletter control sequences out of 65536+600000
+ 89 fonts using 7591135 bytes
+ 56i,11n,55p,2075b,1461s stack positions out of 5000i,500n,10000p,200000b,100000s
+</usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texm
+f/fonts/opentype/public/lm/lmsans8-oblique.otf></usr/share/texmf/fonts/opentype/
+public/lm/lmmono8-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono9
+-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans12-oblique.otf></u
+sr/share/texmf/fonts/opentype/public/lm/lmmono10-italic.otf></usr/share/texmf/fo
+nts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texmf/fonts/opentype/publ
+ic/lm/lmsans10-oblique.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans10-b
+old.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono10-regular.otf></usr/sh
+are/texmf/fonts/opentype/public/lm/lmsans8-regular.otf></usr/share/texmf/fonts/o
+pentype/public/lm/lmsans10-regular.otf></usr/share/texmf/fonts/opentype/public/l
+m/lmsans12-regular.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on slides-sw.pdf (700 pages, 6751396 bytes).
+
+PDF statistics: 4804 PDF objects out of 5155 (max. 8388607)
+ 3791 compressed objects within 38 object streams
+ 1417 named destinations out of 1440 (max. 131072)
+ 136 words of extra memory for PDF output out of 10000 (max. 100000000)
+

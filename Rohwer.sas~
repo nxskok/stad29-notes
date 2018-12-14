@@ -1,0 +1,10 @@
+data rohwer firstobs=2;
+    infile "Rohwer.dat";
+    input group SES SAT PPVT Raven n s ns na ss;
+
+proc print;
+
+
+run;
+
+   

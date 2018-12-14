@@ -1,0 +1,34 @@
+\documentclass{article}
+\title{The xcorr data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+ 3  7 20
+ 4 10 16
+ 6 15 11
+ 9 18  8
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+options linesize=70;
+
+data xc;
+  infile "xcorr.dat";
+  input x1 x2 x3;
+
+proc princomp out=fredd;
+
+proc print;
+
+proc corr data=xc out=fred;
+
+proc print;
+
+
+\end{SAScode}
+\end{document}

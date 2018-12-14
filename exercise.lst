@@ -1,0 +1,191 @@
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   1
+
+                                                         The GLM Procedure
+
+                                                      Class Level Information
+ 
+                                                   Class         Levels    Values
+
+                                                   exercise           3    1 2 3 
+
+                                                   diet               2    1 2   
+
+
+                                              Number of Observations Read          18
+                                              Number of Observations Used          18
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   2
+
+                                                         The GLM Procedure
+ 
+Dependent Variable: pulse1   
+
+                                                                Sum of
+                        Source                      DF         Squares     Mean Square    F Value    Pr > F
+
+                        Model                        3     2306.833333      768.944444       4.39    0.0224
+
+                        Error                       14     2451.666667      175.119048                     
+
+                        Corrected Total             17     4758.500000                                     
+
+
+                                        R-Square     Coeff Var      Root MSE    pulse1 Mean
+
+                                        0.484782      15.12372      13.23326       87.50000
+
+
+                        Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      566.333333      283.166667       1.62    0.2335
+                        diet                         1     1740.500000     1740.500000       9.94    0.0071
+
+
+                        Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      566.333333      283.166667       1.62    0.2335
+                        diet                         1     1740.500000     1740.500000       9.94    0.0071
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   3
+
+                                                         The GLM Procedure
+ 
+Dependent Variable: pulse2   
+
+                                                                Sum of
+                        Source                      DF         Squares     Mean Square    F Value    Pr > F
+
+                        Model                        3     3181.666667     1060.555556       3.06    0.0634
+
+                        Error                       14     4860.111111      347.150794                     
+
+                        Corrected Total             17     8041.777778                                     
+
+
+                                        R-Square     Coeff Var      Root MSE    pulse2 Mean
+
+                                        0.395642      13.89295      18.63198       134.1111
+
+
+                        Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      394.111111      197.055556       0.57    0.5794
+                        diet                         1     2787.555556     2787.555556       8.03    0.0133
+
+
+                        Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      394.111111      197.055556       0.57    0.5794
+                        diet                         1     2787.555556     2787.555556       8.03    0.0133
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   4
+
+                                                         The GLM Procedure
+ 
+Dependent Variable: pulse3   
+
+                                                                Sum of
+                        Source                      DF         Squares     Mean Square    F Value    Pr > F
+
+                        Model                        3      5288.44444      1762.81481       3.16    0.0579
+
+                        Error                       14      7802.00000       557.28571                     
+
+                        Corrected Total             17     13090.44444                                     
+
+
+                                        R-Square     Coeff Var      Root MSE    pulse3 Mean
+
+                                        0.403993      12.45382      23.60690       189.5556
+
+
+                        Source                      DF       Type I SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      680.444444      340.222222       0.61    0.5569
+                        diet                         1     4608.000000     4608.000000       8.27    0.0122
+
+
+                        Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      680.444444      340.222222       0.61    0.5569
+                        diet                         1     4608.000000     4608.000000       8.27    0.0122
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   5
+
+                                                         The GLM Procedure
+                                               Repeated Measures Analysis of Variance
+
+                                                 Repeated Measures Level Information
+ 
+                                          Dependent Variable      pulse1   pulse2   pulse3
+
+                                          Level of intensity           1        2        3
+
+
+                       MANOVA Test Criteria and Exact F Statistics for the Hypothesis of no intensity Effect
+                                              H = Type III SSCP Matrix for intensity
+                                                       E = Error SSCP Matrix
+                                                                  
+                                                        S=1    M=0    N=5.5
+ 
+                          Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+                          Wilks' Lambda               0.01887228     337.92         2        13    <.0001
+                          Pillai's Trace              0.98112772     337.92         2        13    <.0001
+                          Hotelling-Lawley Trace     51.98775855     337.92         2        13    <.0001
+                          Roy's Greatest Root        51.98775855     337.92         2        13    <.0001
+
+
+                    MANOVA Test Criteria and F Approximations for the Hypothesis of no intensity*exercise Effect
+                                          H = Type III SSCP Matrix for intensity*exercise
+                                                       E = Error SSCP Matrix
+                                                                  
+                                                       S=2    M=-0.5    N=5.5
+ 
+                          Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+                          Wilks' Lambda               0.82127571       0.67         4        26    0.6170
+                          Pillai's Trace              0.17909400       0.69         4        28    0.6060
+                          Hotelling-Lawley Trace      0.21716773       0.69         4    14.623    0.6093
+                          Roy's Greatest Root         0.21507468       1.51         2        14    0.2557
+
+                                   NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+                                           NOTE: F Statistic for Wilks' Lambda is exact.
+
+
+                     MANOVA Test Criteria and Exact F Statistics for the Hypothesis of no intensity*diet Effect
+                                            H = Type III SSCP Matrix for intensity*diet
+                                                       E = Error SSCP Matrix
+                                                                  
+                                                        S=1    M=0    N=5.5
+ 
+                          Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+                          Wilks' Lambda               0.83595530       1.28         2        13    0.3120
+                          Pillai's Trace              0.16404470       1.28         2        13    0.3120
+                          Hotelling-Lawley Trace      0.19623621       1.28         2        13    0.3120
+                          Roy's Greatest Root         0.19623621       1.28         2        13    0.3120
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   6
+
+                                                         The GLM Procedure
+                                               Repeated Measures Analysis of Variance
+                                          Tests of Hypotheses for Between Subjects Effects
+
+                        Source                      DF     Type III SS     Mean Square    F Value    Pr > F
+
+                        exercise                     2      1560.33333       780.16667       0.84    0.4527
+                        diet                         1      8791.12963      8791.12963       9.45    0.0082
+                        Error                       14     13017.37037       929.81217                     
+                                                           The SAS System                       12:15 Tuesday, February 14, 2012   7
+
+                                                         The GLM Procedure
+                                               Repeated Measures Analysis of Variance
+                                     Univariate Tests of Hypotheses for Within Subject Effects
+
+                                                                                                        Adj Pr > F
+              Source                      DF     Type III SS     Mean Square    F Value    Pr > F     G - G     H-F-L
+
+              intensity                    2     93972.11111     46986.05556     627.55    <.0001    <.0001    <.0001
+              intensity*exercise           4        80.55556        20.13889       0.27    0.8954    0.8182    0.8289
+              intensity*diet               2       344.92593       172.46296       2.30    0.1185    0.1421    0.1396
+              Error(intensity)            28      2096.40741        74.87169                                         
+
+
+                                               Greenhouse-Geisser Epsilon      0.6430
+                                               Huynh-Feldt-Lecoutre Epsilon    0.6800

@@ -1,0 +1,31 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+
+\usetheme[secheader]{Boadilla}
+
+\title[STAD29/STA1007]{STAD29 / STA 1007\\Statistics for the Life and Social Sciences}
+\author[Ken Butler]{Instructor: Ken Butler}
+\institute{butler@utsc.utoronto.ca}
+%\date{\today}
+
+    \usenavigationsymbolstemplate{} 
+%    \setbeamertemplate{footline}[frame number]
+    \beamersetleftmargin{.2in}
+    \beamersetrightmargin{.2in}
+
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\include{bOutline}
+
+
+\end{document}
+
+
+
+
+

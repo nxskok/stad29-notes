@@ -1,0 +1,54 @@
+\documentclass{article}
+\title{The manova1 data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+low 34 10 
+low 29 14 
+low 35 11 
+low 32 13 
+high 33 14 
+high 38 12 
+high 34 13 
+high 35 14 
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data manova1;
+  infile "manova1.dat";
+  input fertilizer $ yield weight;
+
+proc means;
+  var yield weight;
+  class fertilizer;
+
+proc glm;
+  class fertilizer;
+  model yield=fertilizer;
+
+proc glm;
+  class fertilizer;
+  model weight=fertilizer;
+
+proc gplot;
+  plot yield*weight=fertilizer;
+
+proc glm;
+  class fertilizer;
+  model yield weight=fertilizer;
+  manova h=_all_;
+
+proc discrim can out=fred;
+  class fertilizer;
+  var yield weight;
+
+proc print data=fred;
+
+run;
+\end{SAScode}
+\end{document}

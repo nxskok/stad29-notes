@@ -1,0 +1,2 @@
+curl -T $1 -u butler:elmroad23 ftp://banks.utsc.utoronto.ca/public_html/d29/
+

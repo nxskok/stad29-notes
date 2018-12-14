@@ -1,0 +1,35 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+Let me create some random data:
+
+<<fig=T>>=
+set.seed(457299)
+x=rnorm(100,10,3)
+boxplot(x)
+@
+
+This is normal data, so we're not expecting any serious outliers. The boxplot reveals two small outliers, one at each end. A summary of \texttt{x} looks like this:
+
+<<>>=
+summary(x)
+@
+
+These data were generated from a normal distribution, but how normal do they look? One answer is to get a histogram:
+
+<<fig=TRUE>>=
+hist(x)
+@
+
+and another is a normal quantile plot:
+
+<<fig=TRUE>>=
+qqnorm(x)
+qqline(x)
+@
+
+These both look pretty normal, so the suggestion is that those outliers on the boxplot are not to be taken seriously.
+
+\end{document}

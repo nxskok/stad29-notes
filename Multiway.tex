@@ -1,0 +1,904 @@
+\documentclass[pdf]{prosper}
+\usepackage[Lakar]{HA-prosper}
+\usepackage{graphicx}
+
+
+\begin{document}
+
+\begin{slide}{Multi-way frequency analysis}
+
+  \begin{itemize}
+  \item A study of gender and eyewear-wearing finds the following frequencies:
+
+    \begin{tabular}{lrrr}
+      \hline
+      Gender & Contacts & Glasses & None \\
+      \hline
+      Female & 121 & 32 & 129 \\
+      Male & 42 & 37 & 85\\
+      \hline
+    \end{tabular}
+
+
+  \item Is there association between eyewear and gender?
+  \item Normally answer this with chisquare test (based on observed and expected frequencies from null hypothesis of no association).
+  \item Two categorical variables and a frequency.
+  \item We assess in way that generalizes to more categorical variables.
+
+  \end{itemize}
+
+\end{slide}
+
+\begin{slide}{Data format}
+
+Data file like this:
+
+\begin{verbatim}
+female contacts 121
+female glasses   32
+female none     129
+male   contacts  42
+male   glasses   37
+male   none      85
+\end{verbatim}
+
+as the two categorical variables (gender, type of eyewear) and frequency (number of observations in that category combination).
+  
+\end{slide}
+
+\begin{slide}{Some code, using PROC CATMOD}
+
+\begin{verbatim}
+data lens;
+  infile "lenswear.dat";
+  input sex $ lenswear $ frequency;
+
+proc catmod; 
+  weight frequency;
+  model sex*lenswear=_response_;
+  loglin sex lenswear sex*lenswear;
+\end{verbatim}
+
+\vspace{3ex}
+
+In PROC CATMOD, specify frequency, then SAS black magic to get right thing, then model (on LOGLIN line!).
+
+  
+\end{slide}
+
+\begin{slide}{Maximum likelihood analysis}
+
+{\scriptsize
+\begin{verbatim}
+                      Maximum Likelihood Analysis
+
+              Maximum likelihood computations converged.           
+
+               Maximum Likelihood Analysis of Variance
+ 
+          Source               DF   Chi-Square    Pr > ChiSq
+          --------------------------------------------------
+          sex                   1        16.10        <.0001
+          lenswear              2        64.63        <.0001
+          sex*lenswear          2        17.16        0.0002
+
+          Likelihood Ratio      0          .           .    
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Conclude from \verb-sex*lenswear- line that interaction is significant.
+\item That is, frequency depends on the sex-lenswear {\em combination} (not just on either variable singly).
+\item Or, there is association between sex and lenswear (as usual chisquare test concludes).
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Understanding the association}
+
+{\scriptsize
+\begin{verbatim}
+              Analysis of Maximum Likelihood Estimates
+ 
+                                                    Standard
+         Parameter                       Estimate      Error
+         ---------------------------------------------------
+         sex          female               0.2217     0.0552
+         lenswear     contacts             0.1146     0.0757
+                      glasses             -0.6138     0.0889
+         sex*lenswear female contacts      0.3074     0.0757
+                      female glasses      -0.2943     0.0889
+
+\end{verbatim}
+}
+
+Estimates over each variable sum to 0, so complete table as over.
+  
+\end{slide}
+
+\begin{slide}{All the estimates}
+
+{\scriptsize
+\begin{verbatim}
+         Parameter                       Estimate      Error
+         ---------------------------------------------------
+         sex          female               0.2217     0.0552
+                      male                -0.2217
+         lenswear     contacts             0.1146     0.0757
+                      glasses             -0.6138     0.0889
+                      none                 0.4992
+         sex*lenswear female contacts      0.3074     0.0757
+                      female glasses      -0.2943     0.0889
+                      female none         -0.0131
+                      male contacts       -0.3074
+                      male glasses         0.2943
+                      male none            0.0131
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Look for large (plus or minus) estimates.
+\item Females more likely to wear contacts and males glasses than expected (if no association).
+\item Overall, more females in study, and people less likely to wear glasses than other types of eyewear (and most likely to wear none).
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Another example: reading, gender and occupation}
+
+  \begin{tabular}{|l|l|rr|r|}
+    \hline
+    && \multicolumn{2}{|c|}{Preferred reading} &\\
+    Profession & Sex & Scifi & Spy & Total \\
+    \hline
+    Politician & Male & 15 & 15 & 30\\
+    & Female & 10 & 15 & 25\\
+    \hline
+    & Total & 25 & 30 & 55\\
+    \hline \hline
+    Administrator & Male & 10 & 30 & 40\\
+    & Female & 5 & 10 & 15\\
+    \hline
+    & Total & 15 & 40 & 55\\
+    \hline \hline
+    Bellydancer & Male & 5 & 5 & 10\\
+    & Female & 10 & 25 & 35 \\
+    \hline
+    & Total & 15 & 30 & 45\\
+    \hline
+    \hline
+  \end{tabular}
+
+  Altogether 80 males and 75 females.
+  
+\end{slide}
+
+\begin{slide}{Data into SAS}
+
+  This time there are 3 categorical variables (profession, sex,
+  preferred reading) and a frequency. Arrange with one frequency on
+  each line (without totals):
+
+\begin{verbatim}
+politician male scifi 15
+politician male spy 15
+politician female scifi 10
+politician female spy 15
+administrator male scifi 10
+administrator male spy 30
+administrator female scifi 5
+administrator female spy 10
+bellydancer male scifi 5
+bellydancer male spy 5
+bellydancer female scifi 10
+bellydancer female spy 25
+\end{verbatim}
+  
+\end{slide}
+
+\begin{slide}{The code}
+
+\begin{verbatim}
+data small;
+  infile "multiway.dat";
+  input profession $ sex $ readtype $ freq;
+
+proc catmod;
+  weight freq;
+  model profession*sex*readtype=_response_;
+  loglin profession sex readtype profession*sex 
+    profession*readtype sex*readtype 
+    profession*sex*readtype;
+\end{verbatim}
+
+\vspace{3ex}
+
+  Loglin line could have been written \verb-profession|sex|readtype-
+  (include main effects and all interactions between variables), but
+  done this way for a reason.
+  
+\end{slide}
+
+\begin{slide}{Assessing what to take out}
+
+From the ``maximum likelihood analysis of variance'':
+
+{\scriptsize
+\begin{verbatim}
+           Maximum Likelihood Analysis of Variance
+
+  Source                      DF   Chi-Square    Pr > ChiSq
+
+  profession                   2         3.46        0.1777
+  sex                          1         0.01        0.9256
+  readtype                     1         7.61        0.0058
+  profession*sex               2        17.58        0.0002
+  profession*readtype          2         2.62        0.2691
+  sex*readtype                 1         0.66        0.4168
+  profession*sex*readtype      2         1.89        0.3894
+
+  Likelihood Ratio             0          .           .
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Model fits perfectly (see Likelihood Ratio line)
+\item As ANOVA, remove 3-way interaction.
+\item Change \verb-loglin- line to this:
+
+\begin{verbatim}
+  loglin profession sex readtype profession*sex 
+    profession*readtype sex*readtype;
+\end{verbatim}
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output from this}
+
+{\scriptsize
+\begin{verbatim}
+          Maximum Likelihood Analysis of Variance
+
+   Source                  DF   Chi-Square    Pr > ChiSq
+
+   profession               2         3.58        0.1674
+   sex                      1         0.00        0.9453
+   readtype                 1        13.02        0.0003
+   profession*sex           2        23.00        <.0001
+   profession*readtype      2         4.32        0.1155
+   sex*readtype             1         0.62        0.4321
+
+   Likelihood Ratio         2         1.85        0.3969
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Bottom line: ``is there evidence of lack of fit?'' Answer no: model fits OK.
+\item Now look at two-way interactions and take out non-significant ones.
+\item Code for that:
+
+\begin{verbatim}
+  loglin profession sex readtype profession*sex;
+\end{verbatim}
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output}
+
+{\scriptsize
+\begin{verbatim}
+        Maximum Likelihood Analysis of Variance
+
+    Source               DF   Chi-Square    Pr > ChiSq
+
+    profession            2         2.90        0.2348
+    sex                   1         0.03        0.8686
+    readtype              1        12.68        0.0004
+    profession*sex        2        22.79        <.0001
+
+    Likelihood Ratio      5         6.56        0.2557
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Model still fits OK (last line).
+\item Two-way interaction significant: stays.
+\item Main effects involving profession and sex have to stay.
+\item Main effect involving reading type significant, so stays.
+\item Done. Now interpret the estimates.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{The maximum likelihood estimates}
+
+with missing ones filled in:
+
+{\scriptsize
+\begin{verbatim}
+                                              Standard    Chi-
+ Parameter                         Estimate      Error  Square Pr > ChiSq
+
+ profession     administ             0.0526     0.1257    0.18     0.6753
+                bellydan            -0.2169     0.1374    2.49     0.1144
+ sex            female               0.0149     0.0903    0.03     0.8686
+ readtype       scifi               -0.2989     0.0839   12.68     0.0004
+                spy                  0.2989
+ profession*sex administ female     -0.5053     0.1257   16.17     <.0001
+                bellydan female      0.6114     0.1374   19.82     <.0001
+                politician female   -0.1061
+                administ male        0.5053
+                bellydan male       -0.6114
+                politician male      0.1061
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Readtype: people overall prefer spy novels
+\item Interaction: bellydancers tend to be female and administrators male (more so than even split of males/females would suggest).
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{A different way to read the data}
+
+  \begin{itemize}
+  \item Entering the words into the data file is repetitive. Start with data as laid out in table (in \verb-freq.dat-):
+
+{\scriptsize
+\begin{verbatim}
+15 15
+10 15
+10 30
+5 10
+5 5
+10 25
+\end{verbatim}
+}
+
+
+\item Then use ``loops'' to associate with variables:
+
+{\scriptsize
+\begin{verbatim}
+data myfreq;
+  infile "freq.dat";
+  do profession="politician   ","administrator","bellydancer";
+    do sex="male  ","female";
+      do readtype="scifi","spy";
+        input freq @@;
+        output;
+      end;
+    end;
+  end;
+
+\end{verbatim}
+}
+
+\item Resulting data set and PROC CATMOD as before.
+    
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Simpson's paradox: the airlines example}
+
+  \begin{tabular}{|l|rr|rr|}
+    \hline
+    & \multicolumn{2}{|c|}{Alaska Airlines} & 
+    \multicolumn{2}{|c|}{America West}\\
+    Airport & On time & Delayed & On time & Delayed\\
+    \hline
+    Los Angeles & 497 & 62 & 694 & 117\\
+    Phoenix & 221 & 12 & 4840 & 415\\
+    San Diego & 212 & 20 & 383 & 65\\
+    San Francisco & 503 & 102 & 320 & 129 \\
+    Seattle & 1841 & 305 & 201 & 61\\
+    \hline
+    Total & 3274 & 501 & 6438 & 787\\
+    \hline
+  \end{tabular}
+
+  \begin{itemize}
+  \item Alaska: 13.3\% flights delayed ($501/(3274+501)$).
+  \item America West: 10.9\% ($787/(6438+787)$).
+  \item America West more punctual, right?
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Percentage delayed by airport}
+
+  \begin{tabular}{|l|rr|}
+    \hline
+    Airport & Alaska & America West\\
+    \hline
+    Los Angeles & 11.4 & 14.4\\
+    Phoenix & 5.2 & 7.9\\
+    San Diego & 8.6 & 14.5\\
+    San Francisco & 16.9 & 28.7\\
+    Seattle & 14.2 & 23.2 \\
+    \hline
+    Total & 13.3 & 10.9 \\
+    \hline
+    
+  \end{tabular}
+
+  \begin{itemize}
+  \item America West better overall, yet {\em worse at every single airport}!
+  \item Can PROC CATMOD explain?
+  \item 3 categorical variables (airline, airport, on time/delayed), frequency.
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Data for SAS}
+
+\begin{verbatim}
+losangeles alaska ontime 497
+losangeles alaska delayed 62
+losangeles aw ontime 694
+losangeles aw delayed 117
+phoenix alaska ontime 221
+phoenix alaska delayed 12
+phoenix aw ontime 4840
+phoenix aw delayed 415
+...
+sanfran alaska ontime 503
+sanfran alaska delayed 102
+sanfran aw ontime 320
+sanfran aw delayed 129
+seattle alaska ontime 1841
+seattle alaska delayed 305
+seattle aw ontime 201
+seattle aw delayed 61
+\end{verbatim}
+  
+\end{slide}
+
+\begin{slide}{Code}
+
+\begin{verbatim}
+data airline;
+  infile "airport.dat";
+  input airport $ airline $ status $ freq;
+
+proc catmod;
+  weight freq;
+  model airport*airline*status=_response_;
+  loglin airport|airline|status;
+
+\end{verbatim}
+
+Or write out all the effects on the \verb-loglin- line.
+  
+\end{slide}
+
+\begin{slide}{Alternative form for data}
+
+  \begin{itemize}
+  \item Data file:
+
+\begin{verbatim}
+497 62 694 117
+221 12 4840 415
+212 20 383 65
+503 102 320 129
+1841 305 201 61
+\end{verbatim}
+
+
+  \item Code to read this:
+
+\begin{verbatim}
+data myfreq;
+  infile "freq2.dat";
+  do airport="losangeles  ","phoenix","sandiego",
+    "sanfrancisco","seattle";
+    do airline="alaska     ","americawest";
+      do status="ontime ","delayed";
+        input freq @@;
+        output;
+      end;
+    end;
+  end;
+
+\end{verbatim}
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output}
+
+{\scriptsize
+\begin{verbatim}
+           Maximum Likelihood Analysis of Variance
+
+   Source                     DF   Chi-Square    Pr > ChiSq
+
+   airport                     4       185.99        <.0001
+   airline                     1       118.66        <.0001
+   airport*airline             4      1138.97        <.0001
+   status                      1      1487.23        <.0001
+   airport*status              4        99.56        <.0001
+   airline*status              1        29.09        <.0001
+   airport*airline*status      4         3.26        0.5156
+
+   Likelihood Ratio            0          .           .
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Complicated model fits perfectly (not interesting)
+\item 3-way interaction non-significant: remove.
+\item Change loglin line to:
+
+\begin{verbatim}
+  loglin airport|airline|status @ 2;
+
+\end{verbatim}
+(include all interactions $\le$ 2-way).
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output now}
+
+{\scriptsize
+\begin{verbatim}
+        Maximum Likelihood Analysis of Variance
+
+   Source               DF   Chi-Square    Pr > ChiSq
+
+   airport               4       231.19        <.0001
+   airline               1       163.72        <.0001
+   airport*airline       4      3225.58        <.0001
+   status                1      2700.13        <.0001
+   airport*status        4       246.27        <.0001
+   airline*status        1        41.74        <.0001
+
+   Likelihood Ratio      4         3.22        0.5223
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Model fits OK (no evidence of lack of fit).
+\item All 2-way interactions significant: stop here.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Airline by status, adding missing ones}
+
+{\scriptsize
+\begin{verbatim}
+                     Analysis of Maximum Likelihood Estimates
+
+                                                Standard        Chi-  Prob >
+ Parameter                           Estimate      Error      Square   ChiSq
+
+....
+ airline*status  alaska delayed       -0.1361     0.0211       41.74  <.0001
+                 alaska ontime         0.1361
+                 aw delayed            0.1361
+                 aw ontime            -0.1361         
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Alaska {\em more} likely to be on time and America West {\em more} likely to be delayed, allowing for effects of other variables.
+\item This in contrast to overall \%'s.
+\item Other interactions shed some light.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Airport by airline}
+
+{\scriptsize
+\begin{verbatim}
+                     Analysis of Maximum Likelihood Estimates
+
+                                                Standard        Chi-  Prob >
+ Parameter                           Estimate      Error      Square   ChiSq
+ ....
+ airport*airline losangel alaska      -0.0164     0.0261        0.39  0.5303
+                 phoenix alaska       -1.4049     0.0302     2165.96  <.0001
+                 sandiego alaska      -0.1618     0.0348       21.57  <.0001
+                 sanfran alaska        0.3461     0.0287      145.07  <.0001
+                 seattle alaska        1.2539
+\end{verbatim}
+}
+
+\begin{itemize}
+\item America West figures negatives of Alaska figures.
+\item Frequency less than expected for AA into Phoenix (AA flies less often into Phoenix).
+\item Frequency more than expected for AA into San Francisco and Seattle (AA flies more often into San Francisco and Seattle).
+\item Conversely, America West flies more into Phoenix and less into San Francisco and Seattle.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Airport by status}
+
+{\scriptsize
+\begin{verbatim}
+                     Analysis of Maximum Likelihood Estimates
+
+                                                Standard        Chi-
+ Parameter                           Estimate      Error      Square  Pr > ChiSq
+
+ airport*status  losangel delayed     -0.0335     0.0360        0.87  0.3520
+                 phoenix delayed      -0.4110     0.0305      181.94  <.0001
+                 sandiego delayed     -0.0762     0.0487        2.44  0.1180
+                 sanfran delayed       0.3268     0.0343       90.68  <.0001
+                 seattle delayed       0.1929
+\end{verbatim}
+}
+
+\begin{itemize}
+\item On-time estimates negatives of delayed figures.
+\item Fewer flights to Phoenix are delayed (than to other places).
+\item More flights to San Francisco and Seattle delayed.
+\end{itemize}
+
+  
+\end{slide}
+
+\begin{slide}{Resolution of this Simpson's paradox}
+
+  \begin{itemize}
+  \item Alaska Airlines flies mostly into San Francisco and Seattle, while America West flies mostly into Phoenix (airport by airline)
+  \item Flights into Phoenix are more likely to be on time, while flights into San Francisco and Seattle are more likely to be delayed.
+  \item In ``overall \% late'', AA gets penalized for flying into airports where hard to be on time.
+  \item When you allow for who flies where, AA comes out more punctual (as seen in airport-by-airport statistics).
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Ovarian cancer: a four-way table}
+
+  \begin{itemize}
+  \item Retrospective study of ovarian cancer done in 1973.
+  \item Information about 299 women operated on for ovarian cancer 10 years previously.
+  \item Recorded:
+    \begin{itemize}
+    \item stage of cancer (early or advanced)
+    \item type of operation (radical or limited)
+    \item X-ray treatment received (yes or no)
+    \item 10-year survival (yes or no)
+    \end{itemize}
+  \item Survival looks like response (suggests logistic regression). PROC CATMOD finds any associations at all.
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{The data}
+
+for SAS purposes:
+
+{\scriptsize
+\begin{verbatim}
+early radical no no 10
+early radical no yes 41
+early radical yes no 17
+early radical yes yes 64
+early limited no no 1
+early limited no yes 13
+early limited yes no 3
+early limited yes yes 9
+advanced radical no no 38
+advanced radical no yes 6
+advanced radical yes no 64
+advanced radical yes yes 11
+advanced limited no no 3
+advanced limited no yes 1
+advanced limited yes no 13
+advanced limited yes yes 5
+
+\end{verbatim}
+}
+
+Stage, type, x-ray, survival, frequency.
+  
+\end{slide}
+
+\begin{slide}{The code}
+
+hopefully looking familiar by now:
+
+\begin{verbatim}
+data cancer;
+  infile "cancer.dat";
+  input stage $ operation $ xray $ survival $ count;
+
+proc catmod;
+  weight count;
+  model stage*operation*xray*survival=_response_;
+  loglin stage|operation|xray|survival;
+
+\end{verbatim}
+  
+\end{slide}
+
+\begin{slide}{Alternative data entry}
+
+  \begin{itemize}
+  \item Data like this:
+\begin{verbatim}
+10 41 17 64 1 13 3 9
+38 6 64 11 3 1 13 5
+\end{verbatim}
+  \item All values for each stage first. Within each stage, all values for kind of operation; within these, all values for X-ray, then all values for survival:
+
+{\scriptsize
+\begin{verbatim}
+data freq;
+  infile "freq3.dat";
+  do stage="early    ","advanced";
+    do operation="radical","limited";
+      do xray="no ","yes";
+        do survival="no ","yes";
+          input count @@;
+          output;
+        end;
+      end;
+    end;
+  end;       
+\end{verbatim}
+}
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output \#1}
+
+{\scriptsize
+\begin{verbatim}
+            Maximum Likelihood Analysis of Variance
+   Source                       DF   Chi-Square    Pr > ChiSq
+   operation*xray                1         0.80        0.3712
+   stage*operation*xray          1         1.33        0.2495
+   survival                      1         0.15        0.6979
+   stage*survival                1        40.09        <.0001
+   operation*survival            1         1.69        0.1930
+   stage*operation*survival      1         0.11        0.7425
+   xray*survival                 1         0.48        0.4871
+   stage*xray*survival           1         0.87        0.3502
+   operation*xray*survival       1         0.48        0.4874
+   stage*operat*xray*surviv      1         0.57        0.4499
+
+   Likelihood Ratio              0          .           .
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Four-way interaction and all 3-way interactions not significant: remove all, and check resulting model for fit.
+\item Change loglin line to this:
+
+\begin{verbatim}
+loglin stage|operation|xray|survival @ 2;
+\end{verbatim}
+
+that is, keep main effects and interactions up to 2-way.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output \#2}
+
+{\scriptsize
+\begin{verbatim}
+        Maximum Likelihood Analysis of Variance
+  Source                 DF   Chi-Square    Pr > ChiSq
+  stage                   1         0.27        0.6033
+  operation               1       102.15        <.0001
+  stage*operation         1         0.59        0.4415
+  xray                    1        10.01        0.0016
+  stage*xray              1         0.62        0.4324
+  operation*xray          1         0.01        0.9326
+  survival                1         0.23        0.6294
+  stage*survival          1        99.45        <.0001
+  operation*survival      1         2.06        0.1511
+  xray*survival           1         0.09        0.7696
+
+  Likelihood Ratio        5         7.17        0.2084
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Model still fits all right.
+\item Only significant 2-way interaction is stage by survival.
+\item Take out others and check fit again.
+\item Change loglin line to
+
+{\small
+\begin{verbatim}
+loglin stage operation xray survival stage*survival;
+
+\end{verbatim}
+}
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output \#3}
+
+{\scriptsize
+\begin{verbatim}
+
+        Maximum Likelihood Analysis of Variance
+
+   Source               DF   Chi-Square    Pr > ChiSq
+
+   stage                 1         1.50        0.2202
+   operation             1       110.28        <.0001
+   xray                  1        17.46        <.0001
+   survival              1         0.55        0.4584
+   stage*survival        1       100.74        <.0001
+
+   Likelihood Ratio     10        10.99        0.3583
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Model fit still OK (no evidence of lack of fit)
+\item Stage and survival main effects have to stay.
+\item Operation and X-ray main effects are significant, so they stay.
+\item Done. Interpret maximum likelihood estimates.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Maximum likelihood estimates}
+  {\scriptsize
+\begin{verbatim}
+
+                  Analysis of Maximum Likelihood Estimates
+                                          Standard        Chi-
+ Parameter                     Estimate      Error      Square Pr > ChiSq
+ stage          advanced        -0.0930     0.0759        1.50    0.2202
+ operation      limited         -0.8271     0.0788      110.28    <.0001
+ xray           no              -0.2492     0.0596       17.46    <.0001
+ survival       no               0.0562     0.0759        0.55    0.4584
+ stage*survival advanced no      0.7613     0.0759      100.74    <.0001
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Stage by survival interaction: stage of cancer and survival
+  associated. Higher frequency with being in
+  advanced stage and not surviving: advanced stage associated
+  with non-survival.
+\item Fewer women had the limited operation (more had the radical one)
+\item Fewer woman had no X-ray treatment (more did have X-ray treatment).
+\item Interaction with ``response'' (survival) usually of most interest.
+\end{itemize}
+
+\end{slide}
+
+\begin{slide}{General procedure}
+\begin{itemize}
+\item Start with ``complete model'' including all possible interactions.
+\item Look at highest-order interaction(s) remaining, remove if non-significant.
+\item If an interaction significant, keep also everything contained within that interaction. Eg.\ A*B interaction significant, keep A and B main effects.
+\item Continue until everything either significant or must be kept.
+\item Then look at maximum likelihood estimates (can fill in those not shown) and interpret according to whether $+$ or $-$.
+  \item Main effects not usually very interesting.
+\item Interactions with ``response'' usually of most interest: show association with response.
+\end{itemize}
+\end{slide}
+
+\end{document}

@@ -1,0 +1,282 @@
+\section{Introduction to \texttt{ggplot}}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Base graphics and \texttt{ggplot}}
+  
+  \begin{itemize}
+  \item When R began life (in 1993), graphics terminals were new, and
+    was a big rush to use them to display statistical plots.
+  \item Since then, graphics have been ``bolted on'' with no clear
+    overarching plan.
+  \item This means that each kind of graph uses different ideas.
+  \item Hadley Wickham used idea of ``grammar of graphics'' to develop
+    \texttt{ggplot}, a set of graphing tools with consistent ideas.
+  \item See
+    \url{http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf}.
+  \item In package \texttt{ggplot2}, thus first:
+<<>>=
+library(tidyverse)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ideas behind \texttt{ggplot}}
+  
+  \begin{itemize}
+  \item Separates \emph{what to plot} from \emph{how to plot it}.
+  \item What to plot, for example:
+    \begin{description}
+    \item[x] variable to put on the $x$-axis
+    \item[y] variable to put on the $y$-axis
+    \item[colour] colour to make the points (eg.\ colouring by a
+      categorical variable)
+    \item[group] group points together (eg.\ which ones to join  by lines)
+    \end{description}
+  \item How to plot, such as:
+    \begin{description}[geom\_histogram]
+    \item[geom\_histogram] histogram
+    \item[geom\_boxplot] boxplot
+    \item[geom\_point] (scatter plot of) points
+    \item[geom\_line] join (possibly grouped) points by lines.
+    \item[facet\_grid] draw separate graphs of subsets of data and put
+      them side by side.
+    \end{description}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Degree of Reading Power data}
+  
+  \begin{itemize}
+  \item Some children were randomly assigned to learn to read via a
+    new method (labelled \texttt{t} for ``treatment'') or via the
+    standard method (labelled \texttt{c} for ``control''). Each child
+    was given a reading test at the end. How do the test scores
+    compare for the two groups?
+    
+
+  \item Read in and show some of the data:
+    
+<<>>=
+drp=read.table("drp.txt",header=T)
+head(drp)
+@     
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Histogram of all reading scores}
+  
+Histogram has only an $x$-scale (reading score), so do this:
+
+<<fig.height=3.5>>=
+ggplot(drp,aes(x=score))+
+  geom_histogram() 
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Better histogram}
+  
+  Set number of bins to 10:
+  
+<<fig.height=4.5>>=
+ggplot(drp,aes(x=score))+geom_histogram(bins=10)
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Histograms by group, side by side}
+  
+  Add a \texttt{facet\_grid}, thus:
+
+<<fig.height=4.4>>=
+ggplot(drp,aes(x=score))+geom_histogram(bins=10)+
+  facet_grid(group~.)
+@   
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Control group scores (top) more spread out (they go higher
+    and lower).
+  \item Not sure how means/medians compare.
+  \item Above/below histograms make for easier comparison.
+  \item In \texttt{facet\_grid}, variable before squiggle denotes
+    up/down, variable after squiggle denotes left/right (like
+    \verb=y~x= in usual model formula).
+  \item If nothing to go before or after squiggle, use \texttt{.}
+    \begin{itemize}
+    \item Here, no left-right graphs, so right side of squiggle is \texttt{.}
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Boxplot of reading scores by group}
+
+  Boxplot has $y$ scale (measured variable) \emph{and} $x$ scale
+  (groups), so specify both:
+  
+<<fig.height=4>>=
+ggplot(drp,aes(x=group,y=score))+geom_boxplot()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Boxplot of a single group}
+  
+  To get a boxplot of all the reading scores together, specify a
+  ``dummy'' group for \texttt{x}:
+  
+<<cateloupe,fig.height=4>>=
+ggplot(drp,aes(x=factor(1),y=score))+geom_boxplot()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Scatterplot}
+  
+For this, use analysis of covariance data from later:
+
+<<>>=
+prepost=read.table("ancova.txt",header=T)
+str(prepost)
+@ 
+
+\begin{itemize}
+\item 
+20 subjects were randomized to one of two drugs \texttt{a} and
+\texttt{b}.
+\item Each subject had their before and after scores measured on
+some test.
+\item Want a scatterplot of after score against before score
+labelled by drug.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Basic scatterplot}
+  
+<<fig.height=5>>=
+ggplot(prepost,aes(x=before,y=after))+geom_point() 
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Coloured by \texttt{drug}}
+  
+Add \texttt{colour=} to the \emph{aesthetic}:
+
+<<fig.height=4.3>>=
+ggplot(prepost,aes(x=before,y=after,colour=drug))+
+  geom_point()
+@ 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Adding a smooth trend}
+  
+<<fig.height=4.5>>=
+ggplot(prepost,aes(x=before,y=after))+
+  geom_point()+geom_smooth()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{A smooth trend for each drug}
+  
+<<fig.height=3.5>>=
+ggplot(prepost,aes(x=before,y=after,colour=drug))+
+  geom_point()+geom_smooth()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{A regression line}
+
+<<fig.height=4.5>>=
+ggplot(prepost,aes(x=before,y=after))+
+  geom_point()+geom_smooth(method="lm")
+@   
+  
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{A regression line for each drug}
+
+<<kalloni,fig.height=4.5>>=
+ggplot(prepost,aes(x=before,y=after,colour=drug))+
+  geom_point()+geom_smooth(method="lm")
+@   
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Think of before-after data as repeated measures}
+  
+  Reorganize:
+  
+<<>>=
+prepost %>% mutate(subject=row_number()) %>%
+  gather(time,score,before:after,
+  factor_key=T) -> prepost.long
+prepost.long %>% sample_n(8) # 8 random rows
+@   
+
+\emph{One} column of scores, with column \texttt{time} saying whether
+was before or after.
+  
+\end{frame}
+
+\begin{frame}[fragile]{A ``spaghetti plot''}
+  
+<<fig.height=4.5>>=
+ggplot(prepost.long,aes(x=time,y=score,colour=drug,
+  group=subject))+geom_point()+geom_line()
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Exponential growth data}
+  
+  \begin{itemize}
+  \item I made up these data:
+<<>>=
+x=0:5
+y=c(2.0,4.1,8.2,15.8,31.6,65.0)
+grow=data.frame(x,y)
+grow
+@   
+
+\item Each $y$-value is approximately twice as big as the previous:
+  exponential growth.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Scatter plot with line (bad)}
+  
+<<fig.height=4.5>>=
+ggplot(grow,aes(x=x,y=y))+
+  geom_point()+geom_smooth(method="lm")
+@   
+  
+\end{frame}
+
+\begin{frame}[fragile]{Use log scale for $y$-axis}
+
+<<fig.height=4>>=
+ggplot(grow,aes(x=x,y=y))+
+  geom_point()+coord_trans(y="log10")
+@   
+
+On this plot, trend is straight.
+
+\end{frame}

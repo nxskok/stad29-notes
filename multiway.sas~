@@ -1,0 +1,12 @@
+data small;
+  infile "multiway.dat";
+  input profession $ sex $ readtype $ freq;
+
+proc catmod;
+  weight freq;
+  model profession*sex*readtype=_response_;
+  loglin profession sex readtype profession*sex profession*readtype sex*readtype profession*sex*readtype;
+
+
+run;
+

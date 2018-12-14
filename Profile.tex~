@@ -1,0 +1,481 @@
+\documentclass[pdf]{prosper}
+\usepackage[Lakar]{HA-prosper}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{slide}{Repeated measures by profile analysis}
+
+  \begin{itemize}
+  \item More than one response {\em measurement} for each subject. Might be
+    \begin{itemize}
+    \item measurements of the same thing at different times
+    \item measurements of different (but related) things
+    \end{itemize}
+  \item Variation: each subject does several different treatments at different times (called {\em crossover design}).
+  \item Expect measurements on same subject to be correlated, so
+    assumptions of independence will fail.
+  \item Called {\em repeated measures}. Different approaches, but {\em profile analysis} uses PROC GLM and looks like MANOVA.
+  \end{itemize}
+\end{slide}
+
+  \begin{slide}{Some fake data}
+
+    \begin{itemize}
+    \item Here are some data I made up:
+
+\begin{verbatim}
+a 10 10 9 10
+a 11 9 10 11
+a 10 11 10 9
+b 9 10 12 10
+b 11 10 10 8
+b 11 10 8 9
+\end{verbatim}
+
+
+    \item 6 subjects; 2 treatments A and B, 4 (repeated) measurements of some response (at 4 different times).
+    \item Nothing much happening:
+      \begin{itemize}
+      \item no difference between the treatments (no treatment effect)
+      \item no trend over time (values just ``jumping about randomly'' for each subject).
+      \end{itemize}
+    \item Expect to see no significant test results.
+    \item Imagine plotting mean response ($y$-axis) vs.\ time ($x$-axis), labelling response by treatment --- ``profile''.
+
+
+    \end{itemize}
+    
+  \end{slide}
+
+  \begin{slide}{Doing a repeated measures analysis}
+
+\begin{verbatim}
+data rm;
+  infile "rm1.dat";
+  input trt $ y1 y2 y3 y4;
+
+proc glm;
+  class trt;
+  model y1 y2 y3 y4 = trt / nouni;
+  repeated time;
+
+\end{verbatim}
+
+    \begin{itemize}
+    \item In ``model'', put the multiple responses to left of =, like MANOVA.
+    \item \verb-nouni- suppresses univariate ANOVAs (not valid/helpful anyway).
+    \item specify that the 4 responses are measurements at different times.
+    \item Output contains 2 MANOVAs and a univariate ANOVA.
+    \end{itemize}
+    
+  \end{slide}
+
+  \begin{slide}{Output for the first analysis}
+    {\scriptsize
+\begin{verbatim}
+                    Repeated Measures Level Information
+ 
+         Dependent Variable          y1       y2       y3       y4
+              Level of time           1        2        3        4
+
+                MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no time Effect
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.60922541      0.43        3        2   0.7557
+Pillai's Trace             0.39077459      0.43        3        2   0.7557
+Hotelling-Lawley Trace     0.64142857      0.43        3        2   0.7557
+Roy's Greatest Root        0.64142857      0.43        3        2   0.7557
+\end{verbatim}
+}
+
+\begin{itemize}
+\item No trend over time for either treatment. (No evidence that mean responses at different times are different.)
+\item Next test time by treatment interaction, also
+  non-significant: no overall difference in response over times, so
+  that non-pattern must be same for both treatment groups.
+\end{itemize}
+    
+  \end{slide}
+
+  \begin{slide}{Last ANOVA for first data set}
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+             Tests of Hypotheses for Between Subjects Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ trt                        1    0.16666667    0.16666667     0.40  0.5614
+ Error                      4    1.66666667    0.41666667                 
+
+\end{verbatim}
+}
+
+This tests whether there is a treatment effect, by comparing mean of
+the 4 response variables for the treatment groups (so is ordinary
+ANOVA). Not significant either.
+
+\vspace{3ex}
+
+Next, change the data to produce a treatment effect but still no time trend:
+    
+  \end{slide}
+
+  \begin{slide}{Data set 2}
+
+\begin{verbatim}
+a 10 10 9 10
+a 11 9 10 11
+a 10 11 10 9
+b 11 10 13 11
+b 14 12 12 11
+b 15 13 9 11
+\end{verbatim}
+
+    \begin{itemize}
+    \item Now treatment B looks to have a slightly higher mean, so we might find a significant treatment effect.
+    \item Still no apparent differences between times, same for each treatment.
+    \item Run same code on this data set (changing only name of data file).
+    \end{itemize}
+
+
+  \end{slide}
+
+  \begin{slide}{MANOVAs for data set 2}
+
+{\scriptsize
+\begin{verbatim}
+                MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no time Effect
+
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.17789982      3.08        3        2   0.2546
+Pillai's Trace             0.82210018      3.08        3        2   0.2546
+Hotelling-Lawley Trace     4.62114125      3.08        3        2   0.2546
+Roy's Greatest Root        4.62114125      3.08        3        2   0.2546
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no time*trt Effect
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.23153563      2.21        3        2   0.3263
+Pillai's Trace             0.76846437      2.21        3        2   0.3263
+Hotelling-Lawley Trace     3.31898971      2.21        3        2   0.3263
+Roy's Greatest Root        3.31898971      2.21        3        2   0.3263
+
+\end{verbatim}
+}
+
+No significant difference between times (or difference in pattern of responses over time for the treatments. As we guessed.
+    
+  \end{slide}
+
+  \begin{slide}{Between-subjects analysis for data set 2}
+
+{\scriptsize
+\begin{verbatim}
+                            The GLM Procedure
+                  Repeated Measures Analysis of Variance
+             Tests of Hypotheses for Between Subjects Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ trt                        1   20.16666667   20.16666667    30.25  0.0053
+ Error                      4    2.66666667    0.66666667                 
+
+\end{verbatim}
+}
+
+Treatment effect we introduced is indeed significant.
+
+\vspace{1ex}
+
+\end{slide}
+
+\begin{slide}{Introducing a time effect}
+
+Now make another change to data:
+
+\begin{verbatim}
+a 10 10 11 13
+a 11 9 12 14
+a 10 11 12 12
+b 11 10 15 15
+b 10 12 14 14
+b 12 13 13 15
+\end{verbatim}
+
+This time responses at times 3 and 4 seem higher, so expect a time effect now. But pattern of responses over time still same for both treatments, so don't expect a treatment-by-time interaction.
+
+\vspace{3ex}
+
+Run the same code again.
+    
+  \end{slide}
+
+  \begin{slide}{MANOVAs for data set 3}
+
+{\scriptsize
+\begin{verbatim}
+                MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no time Effect
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.01516477     43.29        3        2   0.0227
+Pillai's Trace             0.98483523     43.29        3        2   0.0227
+Hotelling-Lawley Trace    64.94230769     43.29        3        2   0.0227
+Roy's Greatest Root       64.94230769     43.29        3        2   0.0227
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no time*trt Effect
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.31515152      1.45        3        2   0.4332
+Pillai's Trace             0.68484848      1.45        3        2   0.4332
+Hotelling-Lawley Trace     2.17307692      1.45        3        2   0.4332
+Roy's Greatest Root        2.17307692      1.45        3        2   0.4332
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Now a significant time effect.
+\item Time by treatment interaction still not significant because pattern of change over time same for each treatment.
+\end{itemize}
+    
+  \end{slide}
+
+  \begin{slide}{Still a significant treatment effect}
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+             Tests of Hypotheses for Between Subjects Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+ trt                        1   15.04166667   15.04166667    36.10  0.0039
+ Error                      4    1.66666667    0.41666667                 
+
+\end{verbatim}
+}
+
+because Treatment B numbers still bigger than Treatment A.
+
+\end{slide}
+
+\begin{slide}{Finally\ldots}
+
+Make one more change to data:
+
+\begin{verbatim}
+a 10 10 14 13
+a 11 9 12 14
+a 10 11 13 13
+b 15 15 11 10 
+b 14 14 10 12
+b 13 15 10 11 
+
+\end{verbatim}
+
+\begin{itemize}
+\item Now the time 3 and 4 numbers are bigger for treatment A and
+  smaller for treatment B. 
+\item Effect of time, but 
+  different for each treatment. 
+\item So now time by treatment
+  interaction should be significant.
+
+\end{itemize}
+
+    
+  \end{slide}
+
+  \begin{slide}{MANOVAs for data set 4}
+
+{\scriptsize
+\begin{verbatim}
+               MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no time Effect
+ Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.44926108      0.82        3        2   0.5913
+Pillai's Trace             0.55073892      0.82        3        2   0.5913
+Hotelling-Lawley Trace     1.22587719      0.82        3        2   0.5913
+Roy's Greatest Root        1.22587719      0.82        3        2   0.5913
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no time*trt Effect
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.01797044     36.43        3        2   0.0268
+Pillai's Trace             0.98202956     36.43        3        2   0.0268
+Hotelling-Lawley Trace    54.64692982     36.43        3        2   0.0268
+Roy's Greatest Root       54.64692982     36.43        3        2   0.0268
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Interaction indeed significant: pattern of change over time depends on treatment.
+\item Main effect not significant because mean scores for each time (over all the data) aren't very different.
+\end{itemize}
+    
+  \end{slide}
+
+
+  \begin{slide}{There is still a treatment effect}
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+             Tests of Hypotheses for Between Subjects Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ trt                        1    4.16666667    4.16666667    25.00  0.0075
+ Error                      4    0.66666667    0.16666667                 
+
+\end{verbatim}
+}
+
+\end{slide}
+
+\begin{slide}{In summary}
+
+  \begin{itemize}
+  \item 
+Hard to understand what all the tests are showing, so manipulated data
+to produce results we could guess (for easier understanding).
+\item Test of time effect called test for ``flatness'' of profiles.
+\item Test of time by treatment(s) interaction called test of ``parallelism'' of profiles.
+\item Test of treatment effects called test of ``levels''.
+  \end{itemize}
+    
+  \end{slide}
+
+
+\begin{slide}{A more realistic example}
+
+  \begin{itemize}
+  \item Do subjects from different professions differ in what they think about different leisure activities?
+  \item 3 occupational groups, bellydancers, politicians and administrators; 5 subjects from each group.
+  \item Each subject participates in 4 activities, reading, dancing, TV-watching, skiing; rates satisfaction with each on 10-point scale.
+  \item Data like this. (Scores on activities as listed.)
+{\scriptsize
+\begin{verbatim}
+bellydancer 7 10 6 5
+bellydancer 8  9 5 7
+bellydancer 5 10 5 8
+...
+politician  4  4 4 4
+politician  6  4 5 3
+politician  5  5 5 6
+...
+admin       3  1 1 2
+admin       5  3 1 5
+admin       4  2 2 5
+\end{verbatim}
+}
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Some means}
+
+  \begin{tabular}{|l|rrrr|r|}
+    \hline
+    Group & Reading & Dancing & TV & Skiing & Activities\\
+    \hline
+    Bellydancers & 6.6 & 9.4 & 5.8 & 7.4 & 7.3\\
+    Politicians & 5.0 & 4.8 & 5.2 & 5.3 & 5.0\\
+    Administrators & 5.0 & 2.0 & 1.8 & 3.8 & 3.2\\
+    \hline
+    Groups & 5.3 & 5.4 & 4.3 & 5.4 & 5.2\\
+    \hline
+  \end{tabular}
+  
+  \vspace{3ex}
+
+  \begin{itemize}
+  \item Mean scores for each activity overall very similar.
+  \item Mean scores for each profession group quite different.
+  \item Bellydancers like dancing; administrators hate everything but reading.
+  \item Bellydancers have highest mean on each activity, administrators have lowest; this is consistent pattern with means.
+  \item Are any of these differences significant?
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Repeated measures}
+
+  \begin{itemize}
+  \item The four activity scores are four scores for {\em same} person
+    (not 4 independent scores for 4 different people).
+  \item Code:
+
+\begin{verbatim}
+options linesize=75;
+data profile;
+  infile "profile.dat";
+  input group $ read dance tv ski;
+proc glm;
+  class group;
+  model read dance tv ski = group / nouni;
+  repeated activity;
+
+\end{verbatim}
+  \item ``repeated'' line says that the responses are all ``activities''.
+  \item ``Nouni'': omit separate 1-way analyses by activity.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Output (edited): test of flatness}
+
+{\scriptsize
+\begin{verbatim}
+                  Repeated Measures Analysis of Variance
+
+                    Repeated Measures Level Information
+ 
+         Dependent Variable        read    dance       tv      ski
+
+          Level of activity           1        2        3        4
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no activity Effect
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.27913735      8.61        3       10   0.0040
+Pillai's Trace             0.72086265      8.61        3       10   0.0040
+Hotelling-Lawley Trace     2.58246571      8.61        3       10   0.0040
+Roy's Greatest Root        2.58246571      8.61        3       10   0.0040
+
+
+\end{verbatim}
+}
+
+\end{slide}
+
+\begin{slide}{Comments}
+
+\begin{itemize}
+\item First, a check that the responses are all scores on different activities. SAS: ``activity'' means ``the four responses combined''.
+\item This test: ``flatness'': do all the activities have the same average score for each profession group? Answer clearly no.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Another example}
+  
+Use SAS example 32.7 data for a second example (dogs).
+\end{slide}
+
+
+
+\end{document}

@@ -1,0 +1,34 @@
+Down
+Choice . . Y N
+  Response 
+  variable?
+Tag
+Right
+Choice . . Cont Cat
+  Type of 
+  response?
+Tag
+Right 2
+Box
+  Page 1
+ToTag
+Down
+Choice . . Y N
+  Predicting 
+  probs?
+Tag
+Right
+Box 5.5 3
+  Logistic 
+  regression
+  (PROC LOGISTIC)
+ToTag
+Down
+Box 5 3
+  Discriminant
+  analysis
+  (PROC DISCRIM)
+ToTag
+Down
+Box 4 2
+  Page 3

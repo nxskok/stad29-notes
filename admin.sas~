@@ -1,0 +1,7 @@
+data admin;
+    infile "admin.dat";
+    input x @@;
+    y=(x<8); /* for sign test */
+
+proc print;
+

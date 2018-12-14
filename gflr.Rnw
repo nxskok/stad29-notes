@@ -1,0 +1,260 @@
+\documentclass{article}
+
+\title{\texttt{gather}, factors and logistic regression}
+\author{Ken Butler}
+
+\begin{document}
+
+\maketitle
+
+\section{\texttt{gather}}
+
+\texttt{gather} is a handy tool from the \texttt{tidyr} package that
+is used for gathering up columns of a data frame that are not
+variables in themselves but levels of a factor. This is an example:
+
+<<>>=
+d=data.frame(x=1:5,early=c(10,11,11,13,15),late=c(12,12,11,14,16))
+d
+@ 
+
+Suppose \texttt{early} and \texttt{late} are a response
+variable \texttt{y} that is measured early and late in the course of
+the experiment. Then it would be better to have all the values in one
+column \texttt{y} with a label \texttt{timepoint} that says whether
+they were measured early or late. This is done with \texttt{gather}
+like this:
+
+<<>>=
+library(tidyr)
+d2=gather(d,timepoint,y,early:late)
+d2
+@ 
+
+This is all fine and well. We'd expect \texttt{timepoint} to be a
+factor since it is a categorical variable that distinguishes the
+timepoints in the experiment where the measurements were taken. Is it?
+
+<<>>=
+str(d2)
+@ 
+
+No, it is \texttt{chr} or ``text''. I find this odd, but I know that
+Hadley Wickham, who wrote \texttt{tidyr}, has a thing about factors
+and likes things to be text.\footnote{To be fairer to his point of
+  view, I think he prefers that we should \emph{deliberately create}
+  factors when we need them, and not have factors pop out of functions
+unexpectedly.} \emph{I} like factors to be
+factors. Sometimes it matters what kind of variable you have and
+sometimes it doesn't. For example, what if we want the mean value of
+\texttt{y} at each timepoint?
+
+<<>>=
+aggregate(y~timepoint,d2,mean)
+@ 
+
+That works. 
+
+\section{Logistic regression}
+
+What about if we do a (stupid\footnote{We might have been asking a
+  different question: what is it about $x$ and $y$ that makes the
+  timepoints different? This is what discriminant analysis does, which
+we see later.}) logistic regression to
+predict timepoint from \texttt{x} and \texttt{y}?
+
+<<>>=
+timepoint.1=glm(timepoint~x+y,d2,family="binomial")
+@ 
+That doesn't seem to work (and gives an arcane error). What R means by
+\texttt{y} is the response variable (the help for \texttt{glm} calls
+that \texttt{y}); it's trying to infer what we meant, and the best it
+can do is to guess that we were trying to have a numeric response
+variable where 1 is success and 0 is failure. That this wasn't what we
+were trying to do isn't R's fault, really.
+
+Fortunately, we can make \texttt{gather} produce a factor instead. I
+just discovered this today. Here's how it's done:
+
+<<>>=
+d2=gather(d,timepoint,y,early:late,factor_key=T)
+str(d2)
+@ 
+
+Indeed, \texttt{timepoint} is now a factor. Does a logistic regression
+now work?
+
+<<>>=
+timepoint.1=glm(timepoint~x+y,d2,family="binomial")
+summary(timepoint.1)
+@ 
+
+This now works, showing that \texttt{glm} (with
+\texttt{family="binomial"}) needs a genuine factor for a response variable.
+
+\section{Ordinal logistic regression}
+
+Let's do one like the coal-miners example from class. I'll make up
+some data in similar format, with explanatory variable
+\texttt{exposure} and a three-category response \texttt{low},
+\texttt{medium}, \texttt{high} and frequencies in the cells:
+
+<<>>=
+ord.wide=data.frame(exposure=1:4,low=c(10,9,7,5),med=c(0,1,1,2),
+  high=c(3,4,6,8))
+ord.wide
+@ 
+
+This is also untidy since we need all the frequencies in one column
+(``low'', ``med'', ``high'' are not variable names but levels of a
+factor with a name like ``severity''). The remedy is as above:
+
+<<>>=
+ord=gather(ord.wide,severity,frequency,low:high)
+ord
+@ 
+
+That variable \texttt{severity} is text, not a factor:
+
+<<>>=
+str(ord)
+@ 
+
+Does that matter, when we come to predict severity from exposure?
+
+<<>>=
+library(MASS)
+severity.1=polr(severity~exposure,data=ord,weights=frequency)
+@ 
+
+Yes, it does matter, and this time, we got a nice clear error message
+telling us so. So we'll use the variant of \texttt{gather} that
+we saw just now:
+
+<<>>=
+ord=gather(ord.wide,severity,frequency,low:high,factor_key=T)
+str(ord)
+@ 
+
+Look carefully at the levels listed for \texttt{severity}: they are
+low, medium, high \emph{in that order}. That is the order we want,
+and not the alphabetical order that we might have gotten. What
+\texttt{gather} does, when run this way, is to create a factor
+\emph{whose levels are in the order that they appear in the data
+  frame}. So if that's what you want, as it is here, this is the way
+to make it happen.
+
+So now the ordinal logistic regression should run with no problems:
+
+<<>>=
+severity.1=polr(severity~exposure,data=ord,weights=frequency)
+@ 
+and we can test for an effect of exposure thus, with the first line
+saying ``take \texttt{exposure} out of the previous model'':
+
+<<>>=
+severity.0=update(severity.1,.~.-exposure)
+anova(severity.0,severity.1)
+@ 
+
+Exposure has a significant but not strongly significant  effect,
+probably because there wasn't all that much (made-up) data.
+
+\section{Multinomial logistic regression}
+
+Our model for this one is the alligator question on the
+assignment. Let's think about favourite foods by age (presumably of
+humans), with made-up data like this, and the extra columns being
+frequencies again:
+
+<<>>=
+food=data.frame(age=c(12,14,16,21,22),meat=c(1,2,4,4,5),
+  fish=c(0,0,1,1,1),ketchup=c(20,12,5,2,1),
+  chicken.nuggets=c(10,8,2,1,1))
+food
+@ 
+
+The last four columns are favourite foods and frequency of each, so
+we'll do the same \texttt{gather} thing that we did last time:
+
+<<>>=
+food2=gather(food,favourite,frequency,meat:chicken.nuggets)
+food2
+@ 
+
+Since we didn't say anything about \verb-factor_key-,
+\texttt{favourite} is presumably text:
+
+<<>>=
+str(food2)
+@ 
+
+Does that matter, as far as \texttt{multinom} is concerned? Let's see:
+
+<<>>=
+library(nnet)
+favourite.1=multinom(favourite~age,data=food2,weight=frequency)
+@ 
+
+That seems to have worked, this time. Let's see if some predictions
+look reasonable:
+
+<<>>=
+ages=c(12,15,18,21)
+ages
+new=expand.grid(age=ages)
+new
+@ 
+%$ %$
+
+I didn't really need to use \texttt{expand.grid} this time, since you
+can't really get ``all combinations'' of only one variable, but the
+advantage of doing it like this is that I can go my standard way
+without thinking too much. Then:
+
+<<>>=
+pp=predict(favourite.1,new,type="p")
+cbind(new,pp)
+@ 
+
+You see that the probability of favourite food being chicken nuggets
+or ketchup decreases sharply with age, while that of fish or meat goes
+up with age. (I made up the data to illustrate precisely this point,
+so it wasn't exactly a surprise to me.)
+
+\section{Conclusions}
+
+I think there are two major conclusions to come from this:
+
+\begin{enumerate}
+\item \texttt{gather}, when it gathers up columns, creates a ``key''
+  column, saying which original column each observation came from. By
+  default, \emph{that column is text, not a factor}. But you can make
+  it be a factor by adding \verb-factor_key=T- to your
+  \texttt{gather}. In the examples we have seen here, it is
+  \emph{always safe} to do this, but sometimes
+  unnecessary.\footnote{In my opinion, the default output of
+    \texttt{gather} should be a factor, but that's not the way it is,
+    so we have to live with it.}
+  
+\item Both the \texttt{glm} and \texttt{polr} versions of logistic
+  regression \emph{require} a factor response variable. For
+  \texttt{multinom}, the response variable can be a \texttt{chr}
+  (text) variable, but it could be a factor as well.
+\end{enumerate}
+
+My advice in these situations is currently this (but subject to change
+as I learn more): when you do a \texttt{gather}, think about what
+you are going to use the new data frame for. Typically, you are going
+to be doing some kind of modelling. If you are likely to need the
+``what makes them different'' column to be a factor, rather than just
+text, put the \verb-factor_key=T- in your \texttt{gather}. That would
+apply in all three cases here: we're going to use it as a
+response\footnote{The same applies if it's going to be a factor
+  explanatory variable in a regression. A text variable won't work
+  here either.}
+variable, so we can play it safe and make it into a
+factor.\footnote{And thus ignoring the fact that \texttt{multinom}
+  doesn't need a factor to work properly, for the sake of a uniform treatment.}
+
+\end{document}

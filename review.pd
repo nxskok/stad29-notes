@@ -1,0 +1,181 @@
+<h1 id="review-session">Review session</h1>
+<h2 id="generating-some-data">Generating some data</h2>
+<p>Generate a matrix of 60 random normals, in 3 columns:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">457299</span>)
+z = <span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">60</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">3</span>), <span class="dt">ncol =</span> <span class="dv">3</span>)
+<span class="kw">head</span>(z)</code></pre>
+<pre><code>##        [,1]   [,2]   [,3]
+## [1,] 14.866 13.482  9.502
+## [2,]  7.761 11.416  8.067
+## [3,]  9.193 12.834  3.525
+## [4,]  7.901  7.578  6.525
+## [5,] 10.640 10.838 11.557
+## [6,] 12.127 12.059  7.012</code></pre>
+<h2 id="making-some-correlated-variables">Making some correlated variables</h2>
+<p><code>x</code> and <code>y</code> are related, but <code>z</code> has nothing to do with them:</p>
+<pre class="sourceCode r"><code class="sourceCode r">w = <span class="kw">data.frame</span>(<span class="dt">x =</span> z[, <span class="dv">1</span>], <span class="dt">y =</span> z[, <span class="dv">1</span>] + <span class="fl">0.9</span> * z[, <span class="dv">2</span>], <span class="dt">z =</span> z[, <span class="dv">3</span>])
+<span class="kw">cor</span>(w)</code></pre>
+<pre><code>##        x      y      z
+## x 1.0000 0.8268 0.2908
+## y 0.8268 1.0000 0.2361
+## z 0.2908 0.2361 1.0000</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(z)</code></pre>
+<h2 id="principal-components">Principal components</h2>
+<pre class="sourceCode r"><code class="sourceCode r">w.pc = <span class="kw">princomp</span>(w, <span class="dt">cor =</span> T)
+<span class="kw">summary</span>(w.pc)</code></pre>
+<pre><code>## Importance of components:
+##                        Comp.1 Comp.2  Comp.3
+## Standard deviation     1.4036 0.9267 0.41372
+## Proportion of Variance 0.6567 0.2863 0.05705
+## Cumulative Proportion  0.6567 0.9429 1.00000</code></pre>
+<p>2 components explain 94% of variability.</p>
+<h2 id="scree-plot-version-1">Scree plot (version 1)</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(w.pc)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-4.png" alt="plot of chunk unnamed-chunk-4" /><p class="caption">plot of chunk unnamed-chunk-4</p>
+</div>
+<h2 id="scree-plot-version-2">Scree plot (version 2)</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(w.pc$sdev^<span class="dv">2</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-5.png" alt="plot of chunk unnamed-chunk-5" /><p class="caption">plot of chunk unnamed-chunk-5</p>
+</div>
+<h2 id="decision-to-make">Decision to make:</h2>
+<ul>
+<li>elbow at 2, suggests 1 component.</li>
+<li>2nd eigenvalue close to 1, suggests 2 components.</li>
+<li>1 component explains 66% of variability</li>
+<li>2 components explain 94% of variability.</li>
+</ul>
+<p>I go with 2 components.</p>
+<h2 id="loadings">Loadings</h2>
+<pre class="sourceCode r"><code class="sourceCode r">w.pc$loadings</code></pre>
+<pre><code>## 
+## Loadings:
+##   Comp.1 Comp.2 Comp.3
+## x -0.665 -0.216  0.714
+## y -0.655 -0.291 -0.698
+## z -0.359  0.932       
+## 
+##                Comp.1 Comp.2 Comp.3
+## SS loadings     1.000  1.000  1.000
+## Proportion Var  0.333  0.333  0.333
+## Cumulative Var  0.333  0.667  1.000</code></pre>
+<p>Component 1 mostly x and y (negatively), component 2 mostly z. (z had nothing to do with x and y, which were related.)</p>
+<h2 id="biplot">Biplot</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">biplot</span>(w.pc)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-7.png" alt="plot of chunk unnamed-chunk-7" /><p class="caption">plot of chunk unnamed-chunk-7</p>
+</div>
+<h2 id="individuals">Individuals</h2>
+<p>Individual 1 should be high on <code>x</code> and <code>y</code>, 12 (or 20) low on both. Individual 3 should be low on <code>z</code>, 11 high (and also low on <code>x</code> and <code>y</code>)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(w)</code></pre>
+<pre><code>##        x               y              z        
+##  Min.   : 4.84   Min.   :13.6   Min.   : 2.74  
+##  1st Qu.: 7.76   1st Qu.:17.9   1st Qu.: 7.32  
+##  Median :10.09   Median :19.8   Median : 9.34  
+##  Mean   :10.02   Mean   :20.0   Mean   : 8.47  
+##  3rd Qu.:12.41   3rd Qu.:22.6   3rd Qu.:10.19  
+##  Max.   :14.87   Max.   :27.0   Max.   :11.75</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">pickout = <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">3</span>, <span class="dv">11</span>)
+w[pickout, ]</code></pre>
+<pre><code>##         x     y      z
+## 1  14.866 27.00  9.502
+## 12  6.379 13.64  7.420
+## 20  4.839 14.86  2.736
+## 3   9.193 20.74  3.525
+## 11  5.034 14.07 11.750</code></pre>
+<h2 id="summary">Summary</h2>
+<pre>
+Observation |   x    |   y    |   z 
+------------|--------|--------|---------
+          1 | high   | high   | average
+         12 | low    | low    | average
+         20 | low    | low    | low
+         3  | average| average| low
+         11 | low    | low    | high
+</pre>
+
+<h2 id="without-using-a-biplot">Without using a biplot</h2>
+<p>Look at loadings first to determine which variables have to do with which components:</p>
+<pre class="sourceCode r"><code class="sourceCode r">w.pc$loadings</code></pre>
+<pre><code>## 
+## Loadings:
+##   Comp.1 Comp.2 Comp.3
+## x -0.665 -0.216  0.714
+## y -0.655 -0.291 -0.698
+## z -0.359  0.932       
+## 
+##                Comp.1 Comp.2 Comp.3
+## SS loadings     1.000  1.000  1.000
+## Proportion Var  0.333  0.333  0.333
+## Cumulative Var  0.333  0.667  1.000</code></pre>
+<ul>
+<li>Component 1 mostly <code>x</code> and <code>y</code> (negative)</li>
+<li>Component 2 <code>z</code> (positive)</li>
+</ul>
+<h2 id="plotting-component-scores">Plotting component scores</h2>
+<pre class="sourceCode r"><code class="sourceCode r">labels = <span class="kw">as.character</span>(<span class="dv">1</span>:<span class="dv">20</span>)
+<span class="kw">plot</span>(w.pc$scores, <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>)
+<span class="kw">text</span>(w.pc$scores, labels)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-10.png" alt="plot of chunk unnamed-chunk-10" /><p class="caption">plot of chunk unnamed-chunk-10</p>
+</div>
+<p>Individuals on:</p>
+<ul>
+<li>left: <em>high</em> on <code>x</code>, <code>y</code></li>
+<li>right: <em>low</em> on <code>x</code>, <code>y</code></li>
+<li>top: <em>high</em> on <code>z</code></li>
+<li>bottom: <em>low</em> on <code>z</code></li>
+</ul>
+<h2 id="adding-a-group-variable">Adding a group variable</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cbind</span>(w, group)</code></pre>
+<pre><code>##         x     y      z group
+## 1  14.866 27.00  9.502     c
+## 2   7.761 18.04  8.067     b
+## 3   9.193 20.74  3.525     a
+## 4   7.901 14.72  6.525     a
+## 5  10.640 20.39 11.557     d
+## 6  12.127 22.98  7.012     a
+## 7   6.765 17.41  9.662     c
+## 8  12.374 21.57 10.609     d
+## 9  10.012 18.60  3.847     a
+## 10 13.288 19.11 10.249     d
+## 11  5.034 14.07 11.750     d
+## 12  6.379 13.64  7.420     b
+## 13 13.806 26.59  9.019     b
+## 14 12.515 19.18  9.174     b
+## 15  7.762 20.34 10.023     c
+## 16 10.158 23.12  8.128     b
+## 17 14.545 26.77  9.814     c
+## 18  9.663 22.54 10.699     d
+## 19 10.800 18.24 10.173     c
+## 20  4.839 14.86  2.736     a</code></pre>
+<h2 id="manova-are-the-groups-different-on-any-of-the-variables">Manova: are the groups different on any of the variables?</h2>
+<pre class="sourceCode r"><code class="sourceCode r">gf = <span class="kw">factor</span>(group)
+<span class="kw">attach</span>(w)
+response = <span class="kw">cbind</span>(x, y, z)
+<span class="kw">detach</span>(w)
+w.man = <span class="kw">manova</span>(response ~ gf)
+<span class="kw">summary</span>(w.man)</code></pre>
+<pre><code>##           Df Pillai approx F num Df den Df Pr(&gt;F)  
+## gf         3  0.947     2.46      9     48  0.021 *
+## Residuals 16                                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Yes, something distinguishes groups.</p>
+<h2 id="which-variables-distinguish-groups">Which variable(s) distinguish groups?</h2>
+<p>Discriminant analysis.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
+w.lda = <span class="kw">lda</span>(group ~ x + y + z, <span class="dt">data =</span> w)
+w.lda$scaling</code></pre>
+<pre><code>##        LD1      LD2     LD3
+## x -0.09778  0.25938  0.4814
+## y  0.04896 -0.37284 -0.1843
+## z  0.95083  0.05488 -0.0723</code></pre>
+<p>LD1 best distinguishes groups, and is almost entirely <code>z</code>.</p>
+<h2 id="discriminant-predictions">Discriminant predictions</h2>
+<p>Or, how separate are the groups?</p>
+<pre class="sourceCode r"><code class="sourceCode r">w.lda2 = <span class="kw">lda</span>(group ~ x + y + z, <span class="dt">data =</span> w, <span class="dt">CV =</span> T)
+<span class="kw">table</span>(group, <span class="dt">pred =</span> lda2$group)</code></pre>
+<pre><code>## Error: object &#39;lda2&#39; not found</code></pre>

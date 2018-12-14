@@ -1,0 +1,46 @@
+\documentclass{article}
+\title{The multiway data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+politician male scifi 15
+politician male spy 15
+politician female scifi 10
+politician female spy 15
+administrator male scifi 10
+administrator male spy 30
+administrator female scifi 5
+administrator female spy 10
+bellydancer male scifi 5
+bellydancer male spy 5
+bellydancer female scifi 10
+bellydancer female spy 25
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data small;
+  infile "multiway.dat";
+  input profession $ sex $ readtype $ freq;
+
+proc catmod;
+  weight freq;
+  model profession*sex*readtype=_response_;
+  loglin profession sex readtype profession*sex profession*readtype sex*readtype profession*sex*readtype;
+
+proc catmod;
+  weight freq;
+  model profession*sex*readtype=_response_;
+  loglin profession sex readtype profession*sex profession*readtype sex*readtype;
+
+proc catmod;
+  weight freq;
+  model profession*sex*readtype=_response_;
+  loglin profession sex readtype profession*sex;
+
+\end{SAScode}
+\end{document}

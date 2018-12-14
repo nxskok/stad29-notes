@@ -1,0 +1,108 @@
+1                                                          The SAS System                             13:46 Wednesday, April 4, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-40-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.09 seconds
+      cpu time            0.04 seconds
+      
+1          
+2          options linesize=70;
+3          
+4          data test;
+5              infile "test23.dat";
+6              input score1 score2 score3;
+7          
+
+NOTE: The infile "test23.dat" is:
+      Filename=/home/ken/teaching/d29/notes/test23.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rw-r--r--,
+      Last Modified=Wed Apr  4 13:44:17 2012,
+      File Size (bytes)=72
+
+NOTE: 10 records were read from the infile "test23.dat".
+      The minimum record length was 0.
+      The maximum record length was 8.
+NOTE: SAS went to a new line when INPUT statement reached past the 
+      end of a line.
+NOTE: The data set WORK.TEST has 8 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+2                           The SAS System
+                                        13:46 Wednesday, April 4, 2012
+
+8          proc gplot;
+9              plot score2*score3;
+10         
+
+NOTE: This SAS session is using a registry in WORK.  All changes will 
+      be lost at the end of this session.
+WARNING: The specified value of 11.9802 inches for HSIZE= is larger 
+         than 8.1948 inches which is the maximum for the device 
+         Xcolor. HSIZE is ignored.
+WARNING: The specified value of 7.5248 inches for VSIZE= is larger 
+         than 4.6986 inches which is the maximum for the device 
+         Xcolor. VSIZE is ignored.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened 
+instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: There were 8 observations read from the data set WORK.TEST.
+NOTE: PROCEDURE GPLOT used (Total process time):
+      real time           17.53 seconds
+      cpu time            0.46 seconds
+      
+
+11         proc princomp out=fred;
+12            var score2 score3;
+13         
+
+NOTE: The data set WORK.FRED has 8 observations and 5 variables.
+NOTE: The PROCEDURE PRINCOMP printed page 1.
+NOTE: PROCEDURE PRINCOMP used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.02 seconds
+      
+
+14         proc print;
+NOTE: There were 8 observations read from the data set WORK.FRED.
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           17.67 seconds
+      cpu time            0.54 seconds
+      

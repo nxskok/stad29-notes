@@ -1,0 +1,523 @@
+\section{Brief review of analysis of variance}
+
+\begin{frame}[fragile]{Analysis of variance}
+
+  \begin{itemize}
+  \item Analysis of variance used with:
+    \begin{itemize}
+    \item counted/measured response
+    \item categorical explanatory variable(s)
+    \item that is, data divided into groups, and see if response significantly different among groups
+    \item or, see whether knowing group membership helps to predict response.
+    \end{itemize}
+  \item Typically two stages:
+    \begin{itemize}
+    \item $F$-test to detect {\em any} differences among/due to groups
+    \item if $F$-test significant, do {\em multiple comparisons} to see which groups significantly different from which.
+    \item Need special multiple comparisons method because just doing (say) two-sample $t$-tests on each pair of groups gives too big a chance of finding ``significant'' differences by accident.
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Example: jumping rats}
+
+  \begin{itemize}
+  \item Link between exercise and healthy bones: exercise stresses bones and helps them grow stronger.
+  \item Study assessed effect of jumping on bone density of rats. Rats randomly assigned to one of 3 treatment groups:
+    \begin{itemize}
+    \item no jumping (control)
+    \item low-jump (30 cm)
+    \item high-jump (60 cm)
+    \end{itemize}
+  \item 8 jumps/day, 5 days/week, measure bone density (response) at end.
+  \item PROC GLM to analyze (or PROC ANOVA, only works for balanced designs).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+
+  \begin{itemize}
+  \item Some of the data (10 rats in each group). Data separated by tabs.
+\begin{verbatim}
+Control      1            603
+Control      1            569
+...
+Lowjump      2            635
+Lowjump      2            605
+...
+Highjump     3            643
+Highjump     3            650
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code}
+\begin{itemize}
+  \item Code below. Note format for reading tab-separated data.
+\begin{verbatim}
+options linesize=70;
+
+data jumping;
+  infile "jumping.dat" delimiter='09'x;
+  input group $ g density;
+
+proc means;
+  var density;
+  class group;
+
+proc glm;
+  class group;
+  model density=group;
+  lsmeans group / adjust=tukey lines;
+  lsmeans group / adjust=bon lines;
+
+\end{verbatim}
+
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+
+  \begin{itemize}
+  \item ``Straightforward'' one-way ANOVA.
+  \item Get table of group means and SDs. Assumption: population SD in each group the same, so sample SDs should be ``not too different''.
+  \item Tukey's method asks: ``how far apart might lowest and highest sample group means be, if population means all same?''. Anything larger than that declared significantly different.
+  \item Bonferroni's method allows for number of paired comparisons, in general for $n$ groups is $n(n-1)/2$, here 3: divide $\alpha$ by 3 for each test (eg.\ $0.05/3=0.0167$). More ``conservative'' than Tukey.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Output part 1}
+
+{\scriptsize
+\begin{verbatim}
+                      Analysis Variable : density
+             N
+ group     Obs   N          Mean       Std Dev       Minimum       Maximum
+ -------------------------------------------------------------------------
+ Control    10  10   601.1000000    27.3636011   554.0000000   653.0000000
+ Highjump   10  10   638.7000000    16.5935061   622.0000000   674.0000000
+ Lowjump    10  10   612.5000000    19.3290225   588.0000000   638.0000000
+ -------------------------------------------------------------------------
+
+                          Dependent Variable: density   
+
+                                     Sum of
+ Source                    DF       Squares   Mean Square  F Value  Pr > F
+ Model                      2    7433.86667    3716.93333     7.98  0.0019
+ Error                     27   12579.50000     465.90741                 
+ Corrected Total           29   20013.36667                               
+
+ Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+ group                      2   7433.866667   3716.933333     7.98  0.0019
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+ group                      2   7433.866667   3716.933333     7.98  0.0019
+
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Notes}
+
+  \begin{itemize}
+  \item 
+Sample SDs not too different. (Argue that rats were randomly assigned to groups, so population SDs necessarily same.)
+
+\item $F$-tests for model as a whole and for groups (same)
+  significant: there is effect of jumping on bone density. Use
+  multiple comparisons to see what: Tukey then Bonferroni.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tukey}
+  
+{\scriptsize
+\begin{verbatim}
+        Tukey Comparison Lines for Least Squares Means of group
+ 
+    LS-means with the same letter are not significantly different.
+ 
+                       density                LSMEAN
+                        LSMEAN    group       Number
+
+                  A      638.7    Highjump         2
+                                                    
+                  B      612.5    Lowjump          3
+                  B                                 
+                  B      601.1    Control          1
+\end{verbatim}
+}
+
+High jumping has a significantly different (better) effect on bone density; no significant difference between low jumping and control.
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Bonferroni}
+
+{\scriptsize
+\begin{verbatim}
+     Bonferroni Comparison Lines for Least Squares Means of group
+ 
+    LS-means with the same letter are not significantly different.
+ 
+                       density                LSMEAN
+                        LSMEAN    group       Number
+
+                  A      638.7    Highjump         2
+                                                    
+                  B      612.5    Lowjump          3
+                  B                                 
+                  B      601.1    Control          1
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Here, same conclusions as before. But\ldots
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{More of the \texttt{lsmeans} output (edited)}
+
+{\tiny
+\begin{verbatim}
+                                  density      LSMEAN
+                 group             LSMEAN      Number
+                 Control       601.100000           1
+                 Highjump      638.700000           2
+                 Lowjump       612.500000           3
+Tukey
+                 Pr > |t| for H0: LSMean(i)=LSMean(j)
+            i/j              1             2             3
+               1                      0.0016        0.4744
+               2        0.0016                      0.0298
+               3        0.4744        0.0298              
+Bonferroni
+            i/j              1             2             3
+               1                      0.0018        0.7437
+               2        0.0018                      0.0343
+               3        0.7437        0.0343              
+\end{verbatim}
+}
+
+\begin{itemize}
+\item But P-values for Bonferroni all higher than corresponding ones
+  for Tukey.
+\item Bonferroni has harder job finding significant differences if they exist.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Another example: scaffolds}
+
+  \begin{itemize}
+  \item Repair serious wounds by inserting material as ``scaffold'' for body's repair cells to use as template for new tissue.
+  \item Scaffolds made from extracellular material (ECMs) promising (made from biological material).
+  \item Study: use mice to compare effects of 6 types of material.
+  \item Response: \% glucose phosphated isomerase (GPI) cells in region of wound: higher better.
+  \item GPI measured 2, 4, 8 weeks after tissue repair.
+  \item 3 mice for each combo of material (6) and weeks (3): 54 total.
+  \item Data: material, weeks, GPI.
+  \item See whether GPI depends on either/both of material and weeks or their interaction.
+  \end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Data }
+
+\begin{verbatim}
+ecm1  2   70
+ecm1  2   75
+ecm1  2   65
+ecm1  4   55
+ecm1  4   70
+ecm1  4   70
+ecm1  8   60
+ecm1  8   65
+ecm1  8   65
+ecm2  2   60
+...
+mat3  8   5
+mat3  8   15
+mat3  8   10
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Code}
+
+\begin{verbatim}
+options linesize=75;
+
+data scaffold;
+  infile "scaffold.dat";
+  input material $ weeks gpi;
+
+proc glm;
+  class material weeks;
+  model gpi=material|weeks;
+\end{verbatim}
+
+  \begin{itemize}
+  \item 
+Declare ``weeks'' as a categorical variable too (look for any differences among weeks), then fit model saying GPI depends on both and interaction too.
+\item The \verb-|- between material and weeks means ``fit interaction as well as main effects''.
+
+\item (Looking to see whether interaction significant first, then decide what to do next.)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{ANOVA output}
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+Dependent Variable: gpi   
+                                     Sum of
+ Source                    DF       Squares   Mean Square  F Value  Pr > F
+
+ Model                     17   37609.25926    2212.30937    86.88  <.0001
+ Error                     36     916.66667      25.46296                 
+ Corrected Total           53   38525.92593                               
+...
+ Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+ material                   5   35659.25926    7131.85185   280.09  <.0001
+ weeks                      2     867.59259     433.79630    17.04  <.0001
+ material*weeks            10    1082.40741     108.24074     4.25  0.0006
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+ material                   5   35659.25926    7131.85185   280.09  <.0001
+ weeks                      2     867.59259     433.79630    17.04  <.0001
+ material*weeks            10    1082.40741     108.24074     4.25  0.0006
+
+\end{verbatim}
+}
+
+Look at interaction test (bottom line) first: significant, so don't do any other tests. GPI depends on weeks in different way according to materials.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Doing Tukey for interactions}
+
+Using \texttt{means} in \texttt{proc glm}, difficult. But easy enough
+using \texttt{lsmeans}:
+
+\begin{verbatim}
+proc glm;
+  model gpi=material|weeks;
+  lsmeans material*weeks / adjust=tukey lines;
+
+\end{verbatim}
+
+Or \texttt{lsmeans material|weeks} appears to do the same thing.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tukey output}
+
+{\scriptsize
+\begin{verbatim}
+                                                         LSMEAN
+                      gpi LSMEAN    material    weeks    Number
+            A          73.333333    ecm3        8             9
+            A          73.333333    ecm3        4             8
+            A          71.666667    ecm3        2             7
+            A          70.000000    ecm1        2             1
+            A          65.000000    ecm2        2             4
+            A          65.000000    ecm1        4             2
+       B    A          63.333333    ecm2        8             6
+       B    A          63.333333    ecm2        4             5
+       B    A          63.333333    ecm1        8             3
+       B               48.333333    mat1        2            10
+            C          26.666667    mat3        2            16
+       D    C          23.333333    mat1        4            11
+       D    C    E     21.666667    mat1        8            12
+       D    C    E     11.666667    mat3        4            17
+       D         E     10.000000    mat3        8            18
+       D         E     10.000000    mat2        2            13
+                 E      6.666667    mat2        8            15
+                 E      6.666667    mat2        4            14
+\end{verbatim}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interpretation}
+
+  \begin{itemize}
+  \item Complicated, because of overlapping lines.
+  \item No sig.\ differences among ECMs.
+  \item ECMs all better than MATs except mat1 at 2 weeks.
+  \item Other MATs worse, with complicated pattern of significant differences.
+  \item No consistent pattern of which \#weeks best for each material (explains significant interaction).
+  \item Next step should be: MAT materials no good, so do another experiment on just ECMs.
+  \item We cheat --- extract data for just ECMs!
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Just the ECMs: code}
+
+First do the same analysis again, checking for significant interaction:
+
+\begin{verbatim}
+data scaffold;
+  infile "scaffold2.dat";
+  input material $ weeks gpi;
+
+proc glm;
+  class material weeks;
+  model gpi=weeks|material;
+\end{verbatim}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interaction test}
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+ 
+Dependent Variable: gpi   
+                                     Sum of
+ Source                    DF       Squares   Mean Square  F Value  Pr > F
+
+ Model                      8    468.518519     58.564815     1.62  0.1874
+ Error                     18    650.000000     36.111111                 
+ Corrected Total           26   1118.518519                               
+
+ Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+ weeks                      2    24.0740741    12.0370370     0.33  0.7209
+ material                   2   385.1851852   192.5925926     5.33  0.0152
+ material*weeks             4    59.2592593    14.8148148     0.41  0.7989
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+ weeks                      2    24.0740741    12.0370370     0.33  0.7209
+ material                   2   385.1851852   192.5925926     5.33  0.0152
+ material*weeks             4    59.2592593    14.8148148     0.41  0.7989
+
+\end{verbatim}
+}
+
+No significant interaction (very bottom line), so re-run analysis without (and do Tukey accordingly).
+  
+\end{frame}
+
+\begin{frame}[fragile]{Revised code}
+Read data as before, and then this:
+
+\begin{verbatim}
+proc glm;
+  class material weeks;
+  model gpi=weeks material;
+  lsmeans material weeks / adjust=tukey lines;
+\end{verbatim}
+
+\begin{itemize}
+\item 
+Note lack of \verb-|- in \verb-model- line, no interaction in
+\texttt{lsmeans} line.
+\item No interaction means effect of weeks on GPI same for each material, and effect of material on GPI same for each number of weeks.
+\item So get separate Tukeys to see which materials best, which \#weeks best.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The ANOVA}
+
+{\scriptsize
+\begin{verbatim}
+                             The GLM Procedure
+ 
+Dependent Variable: gpi   
+                                     Sum of
+ Source                    DF       Squares   Mean Square  F Value  Pr > F
+
+ Model                      4    409.259259    102.314815     3.17  0.0335
+ Error                     22    709.259259     32.239057                 
+ Corrected Total           26   1118.518519                               
+
+ Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+ weeks                      2    24.0740741    12.0370370     0.37  0.6927
+ material                   2   385.1851852   192.5925926     5.97  0.0085
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+ weeks                      2    24.0740741    12.0370370     0.37  0.6927
+ material                   2   385.1851852   192.5925926     5.97  0.0085
+
+\end{verbatim}
+}
+
+Significant effect of materials, but not of \#weeks.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tukey}
+
+{\scriptsize
+\begin{verbatim}
+      Tukey Comparison Lines for Least Squares Means of material
+ 
+    LS-means with the same letter are not significantly different.
+ 
+                              gpi                LSMEAN
+                           LSMEAN    material    Number
+
+                   A     72.77778    ecm3             3
+                   A                                   
+              B    A     66.11111    ecm1             1
+              B                                        
+              B          63.88889    ecm2             2
+
+\end{verbatim}
+}
+\begin{itemize}
+\item ecm3 better than ecm2.
+\item ecm1 in curious middle ground: not sig.\ worse than ecm3, not sig.\ better than ecm2.
+\item Not enough data to resolve this (ecm1 and ecm3 ``almost'' sig.\
+  different: P-value 0.0523). 
+\end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tukey for weeks}
+
+No sig.\ difference due to weeks, so shouldn't really even look at Tukey, but results not surprising:
+
+{\scriptsize
+\begin{verbatim}
+       Tukey Comparison Lines for Least Squares Means of weeks
+ 
+    LS-means with the same letter are not significantly different.
+ 
+                             gpi             LSMEAN
+                          LSMEAN    weeks    Number
+
+                  A     68.88889    2             1
+                  A                                
+                  A     67.22222    4             2
+                  A                                
+                  A     66.66667    8             3
+\end{verbatim}
+}
+  
+\end{frame}
+
+  
+
+
+
+
+
+
+
+

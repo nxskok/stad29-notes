@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\author{}
+\title{The scaffold data revisited}
+
+\begin{document}
+
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+
+\maketitle
+
+Remember how I carefully changed my lecture notes to replace
+\texttt{means} by \texttt{lsmeans} in \texttt{proc glm}? Well, I
+shouldn't have done, because you don't have the \texttt{lines} option
+on SAS 9.1 (the version that's in Mathlab), and without
+\texttt{lines}, it doesn't do much good. So here's how things were
+before, which is the way you can make this assignment work.
+
+Let's go back to the jumping rats first. The data looked like this:
+
+
+\begin{verbatim}
+Control	1	611
+Control	1	621
+Control	1	614
+Control	1	593
+Control	1	593
+Control	1	653
+Control	1	600
+Control	1	554
+Control	1	603
+Control	1	569
+Lowjump	2	635
+Lowjump	2	605
+Lowjump	2	638
+Lowjump	2	594
+Lowjump	2	599
+Lowjump	2	632
+Lowjump	2	631
+Lowjump	2	588
+Lowjump	2	607
+Lowjump	2	596
+Highjump	3	650
+Highjump	3	622
+Highjump	3	626
+Highjump	3	626
+Highjump	3	631
+Highjump	3	622
+Highjump	3	643
+Highjump	3	674
+Highjump	3	643
+Highjump	3	650
+\end{verbatim}
+
+
+with the variables being the amount of jumping done by each rat, a
+numeric version of the group name, and a measure of bone density, all
+separated by tabs. Thus:
+
+\begin{SAScode}{saveout}
+  data jumping;
+  infile "jumping.dat" delimiter='09'x;
+  input group $ g density;
+\end{SAScode}
+
+will read this in, and the following does Tukey and Bonferroni
+multiple comparisons.
+
+\begin{SAScode}{saveout}
+proc glm;
+  class group;
+  model density=group;
+  means group / tukey lines;
+  means group / bon lines;
+\end{SAScode}
+
+There's no problem with \texttt{lines} here, and the output is as
+shown below. This should be the same for you. Notice that
+\texttt{lsmeans} has changed to \texttt{means}, and there's no
+\texttt{adjust=} in there any more.
+
+\recallout{lastchunk}
+
+Now, the problem comes when you have a significant interaction, and
+you want to do Tukey for that. There seems to be no good alternative
+than to define all the treatment combinations using \texttt{cat} (just
+like we did to get the survival plot) and then doing an analysis on
+\emph{that}. This is after we've found that the interaction is significant:
+
+\begin{SAScode}{saveout}
+  data scaffold;
+  infile "scaffold.dat";
+  input material $ weeks gpi;
+  mw=cat(material,"-",weeks);
+
+proc glm;
+  class mw;
+  model gpi=mw;
+  means mw / tukey lines;
+
+\end{SAScode}
+
+The logic here is that we create a new variable (here \texttt{mw})
+that contains all the material-weeks combinations, and then we run a
+\emph{one-way} analysis of variance predicting \texttt{gpi} from
+that. If you check, the appropriate sums of squares from the output
+below match the ones in the output you saw before (model SS and error SS).
+
+Here's the output:
+
+\recallout{lastchunk}
+
+The last line of the code above gets the means for all the
+material-weeks combinations, and does Tukey on them. Since \texttt{mw}
+is not itself an interaction (as far as SAS is concerned), SAS can do
+it OK.
+
+The last part of this example used only the ECM materials. That goes
+like this:
+
+\begin{SAScode}{saveout}
+  data scaffold;
+  infile "scaffold2.dat";
+  input material $ weeks gpi;
+
+proc glm;
+  class material weeks;
+  model gpi=weeks material;
+  means material weeks / tukey lines;
+  
+run;
+
+\end{SAScode}
+
+and produces the same output as we had before:
+
+\recallout{lastchunk}
+
+
+\end{document}

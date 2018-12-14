@@ -1,0 +1,34 @@
+\HAPbookmark{}{section.0.1}{Multi-way frequency analysis}{1}{section.0}
+\HAPbookmark{}{section.0.2}{Data format}{2}{section.0}
+\HAPbookmark{}{section.0.3}{Some code, using PROC CATMOD}{3}{section.0}
+\HAPbookmark{}{section.0.4}{Maximum likelihood analysis}{4}{section.0}
+\HAPbookmark{}{section.0.5}{Understanding the association}{5}{section.0}
+\HAPbookmark{}{section.0.6}{All the estimates}{6}{section.0}
+\HAPbookmark{}{section.0.7}{Another example: reading, gender and occupation}{7}{section.0}
+\HAPbookmark{}{section.0.8}{Data into SAS}{8}{section.0}
+\HAPbookmark{}{section.0.9}{The code}{9}{section.0}
+\HAPbookmark{}{section.0.10}{Assessing what to take out}{10}{section.0}
+\HAPbookmark{}{section.0.11}{Output from this}{11}{section.0}
+\HAPbookmark{}{section.0.12}{Output}{12}{section.0}
+\HAPbookmark{}{section.0.13}{The maximum likelihood estimates}{13}{section.0}
+\HAPbookmark{}{section.0.14}{A different way to read the data}{14}{section.0}
+\HAPbookmark{}{section.0.15}{Simpson's paradox: the airlines example}{15}{section.0}
+\HAPbookmark{}{section.0.16}{Percentage delayed by airport}{16}{section.0}
+\HAPbookmark{}{section.0.17}{Data for SAS}{17}{section.0}
+\HAPbookmark{}{section.0.18}{Code}{18}{section.0}
+\HAPbookmark{}{section.0.19}{Alternative form for data}{19}{section.0}
+\HAPbookmark{}{section.0.20}{Output}{20}{section.0}
+\HAPbookmark{}{section.0.21}{Output now}{21}{section.0}
+\HAPbookmark{}{section.0.22}{Airline by status, adding missing ones}{22}{section.0}
+\HAPbookmark{}{section.0.23}{Airport by airline}{23}{section.0}
+\HAPbookmark{}{section.0.24}{Airport by status}{24}{section.0}
+\HAPbookmark{}{section.0.25}{Resolution of this Simpson's paradox}{25}{section.0}
+\HAPbookmark{}{section.0.26}{Ovarian cancer: a four-way table}{26}{section.0}
+\HAPbookmark{}{section.0.27}{The data}{27}{section.0}
+\HAPbookmark{}{section.0.28}{The code}{28}{section.0}
+\HAPbookmark{}{section.0.29}{Alternative data entry}{29}{section.0}
+\HAPbookmark{}{section.0.30}{Output \#1}{30}{section.0}
+\HAPbookmark{}{section.0.31}{Output \#2}{31}{section.0}
+\HAPbookmark{}{section.0.32}{Output \#3}{32}{section.0}
+\HAPbookmark{}{section.0.33}{Maximum likelihood estimates}{33}{section.0}
+\HAPbookmark{}{section.0.34}{General procedure}{34}{section.0}

@@ -1,0 +1,12 @@
+This is some data we had:
+
+<<>>=
+x
+y
+@ 
+
+Here is a scatterplot of it:
+
+<<fig=T>>=
+plot(y~x)
+@ 

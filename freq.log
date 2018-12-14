@@ -1,0 +1,94 @@
+1                                                          The SAS System                             09:28 Wednesday, April 6, 2011
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-30-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.10 seconds
+      cpu time            0.04 seconds
+      
+1          data myfreq;
+2            infile "freq.dat";
+3            do profession="politician   ","administrator","bellydancer";
+4              do sex="male  ","female";
+5                do readtype="scifi","spy";
+6                  input freq @@;
+7                  output;
+8                end;
+9              end;
+10           end;
+11         
+
+NOTE: The infile "freq.dat" is:
+      Filename=/home/ken/stad29/notes/freq.dat,
+      Owner Name=ken,Group Name=ken,
+      Access Permission=rw-r--r--,
+      Last Modified=Thu Mar 25 14:54:45 2010,
+      File Size (bytes)=33
+
+NOTE: 6 records were read from the infile "freq.dat".
+      The minimum record length was 3.
+      The maximum record length was 5.
+NOTE: SAS went to a new line when INPUT statement reached past the end of a line.
+NOTE: The data set WORK.MYFREQ has 12 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+2                                                          The SAS System                             09:28 Wednesday, April 6, 2011
+
+      cpu time            0.01 seconds
+      
+
+12         proc print;
+13         
+
+NOTE: There were 12 observations read from the data set WORK.MYFREQ.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.07 seconds
+      
+
+14         proc catmod;
+15           weight freq;
+16           model profession*sex*readtype=_response_ / pred;
+17           loglin profession sex readtype profession*sex;
+18         
+NOTE: The default estimation method for this model is maximum-likelihood.
+NOTE: Maximum likelihood computations converged.
+NOTE: There were 12 observations read from the data set WORK.MYFREQ.
+NOTE: The PROCEDURE CATMOD printed pages 2-3.
+NOTE: PROCEDURE CATMOD used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           0.21 seconds
+      cpu time            0.17 seconds
+      

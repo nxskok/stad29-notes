@@ -1,0 +1,435 @@
+\documentclass[pdf]{prosper}
+
+\usepackage[lakar]{HA-prosper}
+
+\usepackage{graphicx}
+
+% compile with latex and then dvips -t letter
+
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{30pt}
+
+%\setlength{\textwidth}{5in}
+%\setlength{\textheight}{5in}
+
+%\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\begin{slide}{Survival analysis}
+
+  \begin{itemize}
+  \item So far, have seen:
+    \begin{itemize}
+    \item response variable counted or measured (regression)
+    \item response variable categorized (logistic regression)
+    \end{itemize}
+    and have predicted response from explanatory variables.
+  \item But what if response is time until event (eg.\ time of
+    survival after surgery)?
+  \item Additional complication: event might not have happened at end of study (eg.\ patient still alive). But knowing that patient has ``not died yet'' presumably informative. Such data called {\em censored}. 
+  \item Enter {\em survival analysis}, in particular the ``Cox proportional hazards model''. 
+  \item Explanatory variables in this context often called {\em covariates}.
+  \end{itemize}
+
+\end{slide}
+
+\begin{slide}{Example: still dancing?}
+
+  \begin{itemize}
+  \item 12 women who have just started taking dancing lessons are
+    followed for up to a year, to see whether they are still taking
+    dancing lessons (or have quit).
+  \item This might depend on:
+    \begin{itemize}
+    \item a treatment (visit to a dance competition)
+    \item woman's age (at start of study).
+    \end{itemize}
+  \item Data:
+
+{\scriptsize
+\begin{verbatim}
+Months Dancing Treatment Age
+   1      1        0      16
+   2      1        0      24
+   2      1        0      18
+   3      0        0      27
+   4      1        0      25
+   5      1        0      21
+  11      1        0      55
+   7      1        1      26
+   8      1        1      36
+  10      1        1      38
+  10      0        1      45
+  12      1        1      47
+\end{verbatim}
+}
+
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{About the data}
+
+  \begin{itemize}
+  \item \verb-months- and \verb-dancing- are kind of combined response:
+    \begin{itemize}
+    \item  \verb-Months- is number of months a woman was actually observed dancing
+    \item \verb-dancing- is 1 if woman quit, 0 if still dancing at end of study.
+    \end{itemize}
+  \item Treatment is 1 if woman went to dance competition, 0 otherwise.
+  \item Want to do predictions for probabilities of still dancing after 3, 6, 9, 12 months for treatment group and control group, for women of ages 25 and 45.
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Doing predictions}
+
+Add to data file:
+{\scriptsize
+\begin{verbatim}
+3 . 0 25
+6 . 0 25
+9 . 0 25
+12 . 0 25
+...
+3 . 1 45
+6 . 1 45
+9 . 1 45
+12 . 1 45
+\end{verbatim}
+} 
+
+
+\vspace{3ex}
+
+Gives predicted survival probabilities for 3, 6, 9 and 12 months for
+(a) woman aged 25 in control group, (b) women aged 45 in traatment
+group (do other age/treatment combos also).
+
+\vspace{2ex}
+
+Censoring variable missing for these: won't affect analysis.
+
+\end{slide}
+
+\begin{slide}{The code}
+
+\begin{verbatim}
+data dancers;
+  infile "survival1.dat";
+  input months dancing treatment age;
+
+proc phreg;
+  model months*dancing(0) = age treatment;
+  output out=fred survival=s;
+
+proc print data=fred;
+\end{verbatim}
+
+\vspace{3ex}
+
+  \begin{itemize}
+  \item 
+Nothing new in reading data.
+\item Note specification of model: includes both survival time and censoring variable in response, and indication of what value means ``censored''.
+\item As ever, predictions saved in output data set, then printed.
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{The output, edited}
+
+{\scriptsize
+\begin{verbatim}
+             Model Information
+
+   Data Set                 WORK.DANCERS
+   Dependent Variable       months
+   Censoring Variable       dancing
+   Censoring Value(s)       0
+   Ties Handling            BRESLOW
+
+  Number of Observations Read          28
+  Number of Observations Used          12
+
+ Summary of the Number of Event and Censored Values
+
+                                    Percent
+  Total       Event    Censored    Censored
+     12          10           2       16.67
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{Output part 2}
+
+{\scriptsize
+\begin{verbatim}
+          Testing Global Null Hypothesis: BETA=0
+
+  Test                 Chi-Square       DF     Pr > ChiSq
+  Likelihood Ratio        21.0016        2         <.0001
+  Score                   14.2093        2         0.0008
+  Wald                     5.5556        2         0.0622
+
+                  Analysis of Maximum Likelihood Estimates
+
+                     Parameter  Standard                         Hazard
+ Parameter    DF      Estimate     Error  Chi-Square  Pr > ChiSq  Ratio
+ age           1      -0.35284   0.14973      5.5532      0.0184  0.703
+ treatment     1      -4.28283   2.54084      2.8412      0.0919  0.014
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Overall model seems significant.
+\item Survival depends on age but not apparently on treatment (could be small size of data set or confounding of treatment with age).
+\end{itemize}
+
+  
+\end{slide}
+
+\begin{slide}{Predicted survival probs}
+
+{\scriptsize
+\begin{verbatim}
+Obs    months    dancing    treatment    age       s
+ 13       3         .           0         25    0.87856
+ 14       6         .           0         25    0.56647
+ 15       9         .           0         25    0.00000
+ 16      12         .           0         25    0.00000
+ 
+ 17       3         .           1         25    0.99821
+ 18       6         .           1         25    0.99219
+ 19       9         .           1         25    0.00000
+ 20      12         .           1         25    0.00000
+
+ 21       3         .           0         45    0.99989
+ 22       6         .           0         45    0.99951
+ 23       9         .           0         45    0.14589
+ 24      12         .           0         45    0.00000
+
+ 25       3         .           1         45    1.00000
+ 26       6         .           1         45    0.99999
+ 27       9         .           1         45    0.97378
+ 28      12         .           1         45    0.08223
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{Conclusions from predicted probs}
+
+  \begin{itemize}
+  \item Older women more likely to be still dancing than younger women
+    (compare ``profiles'' for same treatment group).
+  \item Effect of treatment seems to be to increase prob of still dancing (compare ``profiles'' for same age for treatment group vs.\ not)
+  \item Would be nice to see this on a graph.
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Making a graph}
+
+  \begin{itemize}
+  \item Pain in the neck!
+  \item Create a new variable to be labels for plot: age and treatment concatenated.
+  \item The new variable doesn't survive creation of ``fred'', so explicitly create new data set ``y'' with it in.
+  \item Only want to plot the predictions, not actual data.
+  \end{itemize}
+
+{\scriptsize
+\begin{verbatim}
+data dancers;
+  infile "survival1.dat";
+  input months dancing treatment age;
+  label=cat(age,treatment);
+
+proc phreg as before, creating "fred"
+
+data y;
+  merge dancers fred(keep=s);
+data z;
+  set y(firstobs=13);
+proc plot data=z;
+  plot s*months $ label;
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{The plot}
+
+{\scriptsize
+\begin{verbatim}
+      1.0 +  3 251       450 3 251
+          |450451           451              > 451
+          |
+          |
+        s |  > 250
+          |
+          |
+          |
+          |
+      0.5 +
+          |
+          |
+          |
+          |
+          |
+          |                  > 250
+          |
+          |                                  > 450        451251
+      0.0 +                              251 2 250       250 4
+          ---+---------------+---------------+---------------+--
+             3               6               9              12
+
+                                  months
+\end{verbatim}
+
+}
+
+\end{slide}
+
+\begin{slide}{Comparisons}
+
+\begin{itemize}
+\item Trace each age-treatment label across the page to see its survival profile.
+\item To assess effect of age, compare 451 with 251 and 450 with 250.
+\item To assess effect of treatment, compare 451 with 450 and 251 with 250.
+\item Appears to be both age and treatment effects.
+\end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Another way of doing predictions}
+
+Instead of adding lines to data file and creating an output data set, use \verb-baseline- command like this:
+
+\begin{verbatim}
+data dancers;
+  infile "survival1.dat";
+  input months dancing treatment age;
+
+data mypred;
+  input treatment age;
+  datalines;
+  0 25 
+  0 45 
+  1 25 
+  1 45 
+;
+
+proc phreg data=dancers;
+  model months*dancing(0) = age treatment;
+  baseline out=fred covariates=mypred survival=s lower=lcl upper=ucl / 
+nomean;
+   
+proc print data=fred;
+\end{verbatim}
+  
+\end{slide}
+
+\begin{slide}{Results, including CIs}
+
+{\scriptsize
+\begin{verbatim}
+  Obs    age    treatment    months       s         lcl        ucl
+
+    1     25        0           0      1.00000     .          .     
+    2     25        0           1      0.96633    0.90266    1.00000
+    3     25        0           2      0.79225    0.60826    1.00000
+    4     25        0           4      0.63726    0.35919    1.00000
+    5     25        0           5      0.14748    0.05834    0.37282
+    6     25        0           7      0.00000    0.00000    1.00000
+    7     25        0           8      0.00000    0.00000    1.00000
+    8     25        0          10      0.00000    0.00000    1.00000
+    9     25        0          11      0.00000    0.00000    1.00000
+   10     25        0          12      0.00000     .          .     
+   11     45        0           0      1.00000     .          .     
+   12     45        0           1      0.99997    0.99980    1.00000
+   13     45        0           2      0.99980    0.99895    1.00000
+   14     45        0           4      0.99961    0.99760    1.00000
+   15     45        0           5      0.99835    0.99486    1.00000
+   16     45        0           7      0.75954    0.52629    1.00000
+   17     45        0           8      0.04468    0.00002    1.00000
+   18     45        0          10      0.00001    0.00000    1.00000
+   19     45        0          11      0.00000    0.00000    1.00000
+   20     45        0          12      0.00000     .          .     
+\end{verbatim}
+}
+\end{slide}
+
+\begin{slide}{The rest}
+
+{\scriptsize
+\begin{verbatim}
+   21     25        1           0      1.00000     .          .     
+   22     25        1           1      0.99953    0.99727    1.00000
+   23     25        1           2      0.99679    0.98545    1.00000
+   24     25        1           4      0.99380    0.96712    1.00000
+   25     25        1           5      0.97393    0.92908    1.00000
+   26     25        1           7      0.01220    0.00080    0.18538
+   27     25        1           8      0.00000    0.00000    1.00000
+   28     25        1          10      0.00000    0.00000    1.00000
+   29     25        1          11      0.00000    0.00000    1.00000
+   30     25        1          12      0.00000     .          .     
+   31     45        1           0      1.00000     .          .     
+   32     45        1           1      1.00000    1.00000    1.00000
+   33     45        1           2      1.00000    0.99998    1.00000
+   34     45        1           4      0.99999    0.99995    1.00000
+   35     45        1           5      0.99998    0.99990    1.00000
+   36     45        1           7      0.99621    0.98945    1.00000
+   37     45        1           8      0.95800    0.88352    1.00000
+   38     45        1          10      0.84737    0.67929    1.00000
+   39     45        1          11      0.38657    0.09793    1.00000
+   40     45        1          12      0.00000     .          .     
+
+\end{verbatim}
+}
+  
+\end{slide}
+
+\begin{slide}{Making a plot}
+
+  \begin{itemize}
+  \item Start from output data set ``fred''.
+  \item Create a new data set with everything in ``fred'' plus a new variable ``label'' which will actually be plotted
+  \item Plot the predicted survival probs against ``months'' marking each point using the labels.
+
+\begin{verbatim}
+data y;
+  set fred;
+  label=cat(age,treatment);
+
+proc plot vpercent=50;
+  plot s*months $ label;
+\end{verbatim}
+    \item Each plotted point will be labelled with something like `*******
+  \end{itemize}
+  
+\end{slide}
+
+\begin{slide}{Discussion}
+
+  \begin{itemize}
+  \item The confidence intervals are very wide (a lack of data).
+  \item ``baseline'' doesn't require any specification of lifetimes, and output gives more detail.
+  \item Look at combinations of treatment and age, see where predicted survival probs ``drop off'':
+    \begin{itemize}
+    \item age 25, control: after 4 months
+    \item age 25, treatment: after 5 months
+    \item age 45, control:  after 7 months
+    \item age 45, treatment: after 10 months
+    \end{itemize}
+  \item Indicates definite effect of age, possible effect of treatment.
+  \item Suggests would be worthwhile to do another experiment with more women to get more definite conclusions.
+  \end{itemize}
+  
+\end{slide}
+
+
+\end{document}

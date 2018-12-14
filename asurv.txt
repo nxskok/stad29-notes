@@ -1,0 +1,16 @@
+treatment time event
+trt1 34 1
+trt1 42 1
+trt1 27 1
+trt1 60 0
+trt1 33 1
+trt2 8 1
+trt2 11 1
+trt2 21 1
+trt2 18 1
+trt2 21 1
+trt3 57 1
+trt3 60 0
+trt3 60 0
+trt3 41 1
+trt3 37 1

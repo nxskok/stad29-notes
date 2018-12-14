@@ -1,0 +1,7 @@
+This is just some more text.
+
+The correlation between x and y is this:
+
+<<>>=
+cor(x,y)
+@ 

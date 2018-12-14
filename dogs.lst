@@ -1,0 +1,136 @@
+                              The SAS System                              1
+                                          09:49 Wednesday, February 3, 2010
+
+                             The GLM Procedure
+
+                         Class Level Information
+ 
+                Class         Levels    Values
+
+                Drug               2    Morphine Trimetha 
+
+                Depleted           2    N Y               
+
+
+                  Number of Observations Read          16
+                  Number of Observations Used          16
+
+                              The SAS System                              2
+                                          09:49 Wednesday, February 3, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+
+                    Repeated Measures Level Information
+ 
+                                  Log        Log        Log        Log
+     Dependent Variable    Histamine0 Histamine1 Histamine3 Histamine5
+
+          Level of Time             0          1          3          5
+
+
+                MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no Time Effect
+                     H = Type III SSCP Matrix for Time
+                           E = Error SSCP Matrix
+                                      
+                            S=1    M=0.5    N=4
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.11646797     25.29        3       10   <.0001
+Pillai's Trace             0.88353203     25.29        3       10   <.0001
+Hotelling-Lawley Trace     7.58605167     25.29        3       10   <.0001
+Roy's Greatest Root        7.58605167     25.29        3       10   <.0001
+
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no Time*Drug Effect
+                  H = Type III SSCP Matrix for Time*Drug
+                           E = Error SSCP Matrix
+                                      
+                            S=1    M=0.5    N=4
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.32712803      6.86        3       10   0.0086
+Pillai's Trace             0.67287197      6.86        3       10   0.0086
+Hotelling-Lawley Trace     2.05690706      6.86        3       10   0.0086
+Roy's Greatest Root        2.05690706      6.86        3       10   0.0086
+
+
+              MANOVA Test Criteria and Exact F Statistics for
+                 the Hypothesis of no Time*Depleted Effect
+                H = Type III SSCP Matrix for Time*Depleted
+                           E = Error SSCP Matrix
+                                      
+                            S=1    M=0.5    N=4
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.11469889     25.73        3       10   <.0001
+Pillai's Trace             0.88530111     25.73        3       10   <.0001
+Hotelling-Lawley Trace     7.71847993     25.73        3       10   <.0001
+Roy's Greatest Root        7.71847993     25.73        3       10   <.0001
+
+                              The SAS System                              3
+                                          09:49 Wednesday, February 3, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+
+              MANOVA Test Criteria and Exact F Statistics for
+              the Hypothesis of no Time*Drug*Depleted Effect
+              H = Type III SSCP Matrix for Time*Drug*Depleted
+                           E = Error SSCP Matrix
+                                      
+                            S=1    M=0.5    N=4
+ 
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+
+Wilks' Lambda              0.25513730      9.73        3       10   0.0026
+Pillai's Trace             0.74486270      9.73        3       10   0.0026
+Hotelling-Lawley Trace     2.91945820      9.73        3       10   0.0026
+Roy's Greatest Root        2.91945820      9.73        3       10   0.0026
+
+                              The SAS System                              4
+                                          09:49 Wednesday, February 3, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+             Tests of Hypotheses for Between Subjects Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ Drug                       1    5.76657565    5.76657565     2.81  0.1194
+ Depleted                   1   15.55678030   15.55678030     7.59  0.0175
+ Drug*Depleted              1    5.76485040    5.76485040     2.81  0.1194
+ Error                     12   24.60518845    2.05043237                 
+
+                              The SAS System                              5
+                                          09:49 Wednesday, February 3, 2010
+
+                             The GLM Procedure
+                  Repeated Measures Analysis of Variance
+         Univariate Tests of Hypotheses for Within Subject Effects
+
+ Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+
+ Time                       3   12.73566560    4.24522187    59.09  <.0001
+ Time*Drug                  3    2.22234979    0.74078326    10.31  <.0001
+ Time*Depleted              3   13.39579557    4.46526519    62.15  <.0001
+ Time*Drug*Depleted         3    2.89621313    0.96540438    13.44  <.0001
+ Error(Time)               36    2.58654828    0.07184856                 
+
+                                           Adj Pr > F
+                  Source                 G - G     H - F
+
+                  Time                  <.0001    <.0001
+                  Time*Drug             0.0010    0.0001
+                  Time*Depleted         <.0001    <.0001
+                  Time*Drug*Depleted    0.0002    <.0001
+                  Error(Time)                           
+
+
+                   Greenhouse-Geisser Epsilon    0.5935
+                   Huynh-Feldt Epsilon           0.8640

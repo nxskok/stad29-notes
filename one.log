@@ -1,0 +1,65 @@
+1                                                          The SAS System                          14:16 Wednesday, February 8, 2012
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+NOTE: Copyright (c) 2002-2008 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.2 (TS2M3) 
+      Licensed to UNIVERSITY OF TORONTO/COMPUTING & COMMUNICATIONS, Site 70072785.
+NOTE: This session is executing on the Linux 2.6.32-38-generic (LINUX) platform.
+
+
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           1.18 seconds
+      cpu time            0.08 seconds
+      
+1          
+2          data one;
+3            input x y;
+4           cards;
+
+NOTE: The data set WORK.ONE has 5 observations and 2 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.23 seconds
+      cpu time            0.01 seconds
+      
+
+10         ;
+11         
+12         proc plot;
+13          plot y*x;
+14         
+15         
+NOTE: There were 5 observations read from the data set WORK.ONE.
+NOTE: The PROCEDURE PLOT printed page 1.
+NOTE: PROCEDURE PLOT used (Total process time):
+      real time           0.37 seconds
+      cpu time            0.08 seconds
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+2                                                          The SAS System                          14:16 Wednesday, February 8, 2012
+
+      real time           1.85 seconds
+      cpu time            0.18 seconds
+      

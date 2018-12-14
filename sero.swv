@@ -1,0 +1,37 @@
+\documentclass{article}
+\title{The sero data}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+   1  1.5  123  8
+   2  4.0  132  6
+   3  7.5  182 18
+   4 12.5  140 14
+   5 17.5  138 20
+   6 25.0  161 39
+   7 35.0  133 19
+   8 47.0   92 25
+   9 60.0   74 44
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data sero;
+  infile "sero.dat";
+  input group age n r;
+  obspos=r/n;
+
+proc print;
+
+proc logistic;
+  model r/n = age / lackfit;
+  output out=sero2 pred=pred;
+
+proc print data=sero2;
+
+run;
+\end{SAScode}
+\end{document}

@@ -1,0 +1,118 @@
+                                                           The SAS System                         15:23 Wednesday, March 2, 2011   1
+
+                                                         The REG Procedure
+                                                           Model: MODEL1
+                                                      Dependent Variable: SAT 
+
+                                              Number of Observations Read          37
+                                              Number of Observations Used          37
+
+
+                                                        Analysis of Variance
+ 
+                                                               Sum of           Mean
+                           Source                   DF        Squares         Square    F Value    Pr > F
+
+                           Model                     2     1705.56004      852.78002       1.83    0.1765
+                           Error                    34          15878      466.99227                     
+                           Corrected Total          36          17583                                    
+
+
+                                        Root MSE             21.61000    R-Square     0.0970
+                                        Dependent Mean       31.27027    Adj R-Sq     0.0439
+                                        Coeff Var            69.10719                       
+
+
+                                                        Parameter Estimates
+ 
+                                                     Parameter       Standard
+                                Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+                                Intercept     1       12.96360       11.68856       1.11      0.2752
+                                na            1        1.32322        0.70976       1.86      0.0709
+                                ns            1       -0.83824        0.80914      -1.04      0.3075
+                                                           The SAS System                         15:23 Wednesday, March 2, 2011   2
+
+                                                         The REG Procedure
+                                                           Model: MODEL1
+                                                     Dependent Variable: PPVT 
+
+                                              Number of Observations Read          37
+                                              Number of Observations Used          37
+
+
+                                                        Analysis of Variance
+ 
+                                                               Sum of           Mean
+                           Source                   DF        Squares         Square    F Value    Pr > F
+
+                           Model                     2     2552.00497     1276.00248      14.01    <.0001
+                           Error                    34     3096.42746       91.07140                     
+                           Corrected Total          36     5648.43243                                    
+
+
+                                        Root MSE              9.54313    R-Square     0.4518
+                                        Dependent Mean       62.64865    Adj R-Sq     0.4196
+                                        Coeff Var            15.23278                       
+
+
+                                                        Parameter Estimates
+ 
+                                                     Parameter       Standard
+                                Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+                                Intercept     1       36.62049        5.16175       7.09      <.0001
+                                na            1        1.18805        0.31344       3.79      0.0006
+                                ns            1       -0.04141        0.35732      -0.12      0.9084
+                                                           The SAS System                         15:23 Wednesday, March 2, 2011   3
+
+                                                         The REG Procedure
+                                                           Model: MODEL1
+                                                     Dependent Variable: Raven 
+
+                                              Number of Observations Read          37
+                                              Number of Observations Used          37
+
+
+                                                        Analysis of Variance
+ 
+                                                               Sum of           Mean
+                           Source                   DF        Squares         Square    F Value    Pr > F
+
+                           Model                     2       66.86503       33.43252       4.09    0.0256
+                           Error                    34      277.94578        8.17488                     
+                           Corrected Total          36      344.81081                                    
+
+
+                                        Root MSE              2.85917    R-Square     0.1939
+                                        Dependent Mean       13.24324    Adj R-Sq     0.1465
+                                        Coeff Var            21.58968                       
+
+
+                                                        Parameter Estimates
+ 
+                                                     Parameter       Standard
+                                Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+                                Intercept     1       10.10329        1.54649       6.53      <.0001
+                                na            1        0.02256        0.09391       0.24      0.8116
+                                ns            1        0.19540        0.10706       1.83      0.0768
+                                                           The SAS System                         15:23 Wednesday, March 2, 2011   4
+
+                                                         The REG Procedure
+                                                           Model: MODEL1
+                                                        Multivariate Test 1
+
+                                           Multivariate Statistics and F Approximations
+ 
+                                                        S=2    M=0    N=15
+ 
+                          Statistic                        Value    F Value    Num DF    Den DF    Pr > F
+
+                          Wilks' Lambda               0.46333120       5.00         6        64    0.0003
+                          Pillai's Trace              0.59915258       4.70         6        66    0.0005
+                          Hotelling-Lawley Trace      1.02342563       5.38         6    40.936    0.0004
+                          Roy's Greatest Root         0.86807261       9.55         3        33    0.0001
+
+                                   NOTE: F Statistic for Roy's Greatest Root is an upper bound.
+                                           NOTE: F Statistic for Wilks' Lambda is exact.

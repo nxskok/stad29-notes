@@ -1,0 +1,40 @@
+\HAPbookmark{}{section.0.1}{Logistic regression}{1}{section.0}
+\HAPbookmark{}{section.0.2}{The rats, part 1}{2}{section.0}
+\HAPbookmark{}{section.0.3}{Output}{3}{section.0}
+\HAPbookmark{}{section.0.4}{Output part 2 (edited)}{4}{section.0}
+\HAPbookmark{}{section.0.5}{Interpreting the output}{5}{section.0}
+\HAPbookmark{}{section.0.6}{Predicted probabilities}{6}{section.0}
+\HAPbookmark{}{section.0.7}{The rats, part 2}{7}{section.0}
+\HAPbookmark{}{section.0.8}{SAS code for this logistic regression}{8}{section.0}
+\HAPbookmark{}{section.0.9}{Output part 1 (edited)}{9}{section.0}
+\HAPbookmark{}{section.0.10}{Output part 2 (edited)}{10}{section.0}
+\HAPbookmark{}{section.0.11}{Predicted probabilities}{11}{section.0}
+\HAPbookmark{}{section.0.12}{Multiple logistic regression}{12}{section.0}
+\HAPbookmark{}{section.0.13}{Some SAS code}{13}{section.0}
+\HAPbookmark{}{section.0.14}{Output part 1}{14}{section.0}
+\HAPbookmark{}{section.0.15}{Finding significant $x$'s}{15}{section.0}
+\HAPbookmark{}{section.0.16}{Predictions from model without ``malnut''}{16}{section.0}
+\HAPbookmark{}{section.0.17}{Changing the response category}{17}{section.0}
+\HAPbookmark{}{section.0.18}{Testing fit: seroconversion example}{18}{section.0}
+\HAPbookmark{}{section.0.19}{Does seropositiveness depend on age?}{19}{section.0}
+\HAPbookmark{}{section.0.20}{Does a logistic regression fit?}{20}{section.0}
+\HAPbookmark{}{section.0.21}{Hosmer-Lemeshow test output}{21}{section.0}
+\HAPbookmark{}{section.0.22}{Interpretation}{22}{section.0}
+\HAPbookmark{}{section.0.23}{Output from this analysis}{23}{section.0}
+\HAPbookmark{}{section.0.24}{Predicted probabilities}{24}{section.0}
+\HAPbookmark{}{section.0.25}{More than 2 response categories}{25}{section.0}
+\HAPbookmark{}{section.0.26}{Ordinal response: the miners}{26}{section.0}
+\HAPbookmark{}{section.0.27}{Data setup}{27}{section.0}
+\HAPbookmark{}{section.0.28}{Code}{28}{section.0}
+\HAPbookmark{}{section.0.29}{Output part 1}{29}{section.0}
+\HAPbookmark{}{section.0.30}{Output part 2}{30}{section.0}
+\HAPbookmark{}{section.0.31}{Predicted severity probs (edited)}{31}{section.0}
+\HAPbookmark{}{section.0.32}{Understanding the predicted probs}{32}{section.0}
+\HAPbookmark{}{section.0.33}{Unordered responses}{33}{section.0}
+\HAPbookmark{}{section.0.34}{The code}{34}{section.0}
+\HAPbookmark{}{section.0.35}{Output part 1}{35}{section.0}
+\HAPbookmark{}{section.0.36}{Output part 2}{36}{section.0}
+\HAPbookmark{}{section.0.37}{Predicted probabilities (a few)}{37}{section.0}
+\HAPbookmark{}{section.0.38}{Understanding them}{38}{section.0}
+\HAPbookmark{}{section.0.39}{Alternative data format}{39}{section.0}
+\HAPbookmark{}{section.0.40}{Code for alternative data format}{40}{section.0}

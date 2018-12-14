@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js.gz"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="section titleslide slide level1" id="time-series"><h1 id="time-series">Time Series</h1></div><div class="section slide level2" id="the-kings-of-england">
+<h1 id="the-kings-of-england">The Kings of England</h1>
+<ul>
+<li>Age at death of Kings and Queens of England since William the Conqueror (1066):</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">kings = <span class="kw">read.table</span>(<span class="st">&quot;kings.txt&quot;</span>, <span class="dt">header =</span> F)
+kings.ts = <span class="kw">ts</span>(kings)
+<span class="kw">head</span>(kings.ts)</code></pre>
+<pre><code>## [1] 60 43 67 50 56 42</code></pre>
+<p>Data in one long column, so <code>kings</code> data frame with one column. Turn into <code>ts</code> time series object.</p>
+<p>Plotting gives time plot:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kings.ts)
+<span class="kw">lines</span>(<span class="kw">lowess</span>(kings.ts))</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2" /><p class="caption">plot of chunk unnamed-chunk-2</p>
+</div>
+<ul>
+<li>&quot;Time&quot; here is order of monarch from William the Conqueror (1st) to George VI (last).</li>
+<li>Looks to be slightly increasing trend of age-at-death</li>
+<li>but lots of irregularity.</li>
+</ul>
+</div><div class="section slide level2" id="stationarity">
+<h1 id="stationarity">Stationarity</h1>
+<p>A time series is <strong>stationary</strong> if:</p>
+<ul>
+<li>mean is constant over time</li>
+<li>variability constant over time and not changing with mean.</li>
+</ul>
+<p>Kings time series seems to have: * non-constant mean * but constant variability * not stationary.</p>
+<p>Usual fix for non-stationarity is <em>differencing</em>: new series 2nd - 1st, 3rd - 2nd etc.</p>
+<p>In R, <code>diff</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">kings.diff.ts = <span class="kw">diff</span>(kings.ts)
+<span class="kw">plot</span>(kings.diff.ts)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3" /><p class="caption">plot of chunk unnamed-chunk-3</p>
+</div>
+<p>Looks stationary now.</p>
+</div><div class="section slide level2" id="births-per-month-in-new-york-city">
+<h1 id="births-per-month-in-new-york-city">Births per month in New York City</h1>
+<p>from January 1946 to December 1959:</p>
+<pre class="sourceCode r"><code class="sourceCode r">ny = <span class="kw">read.table</span>(<span class="st">&quot;nybirths.txt&quot;</span>, <span class="dt">header =</span> F)
+ny.ts = <span class="kw">ts</span>(ny, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1946</span>, <span class="dv">1</span>))</code></pre>
+<p>Note extras on <code>ts</code>:</p>
+<ul>
+<li>Time period is 1 year</li>
+<li>12 observations per year (monthly) in <code>freq</code></li>
+<li>First observation is 1st month of 1946 in <code>start</code></li>
+</ul>
+<p>Printing formats nicely:</p>
+<pre class="sourceCode r"><code class="sourceCode r">ny.ts</code></pre>
+<pre><code>##        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov
+## 1946 26.66 23.60 26.93 24.74 25.81 24.36 24.48 23.90 23.18 23.23 21.67
+## 1947 21.44 21.09 23.71 21.67 21.75 20.76 23.48 23.82 23.11 23.11 21.76
+## 1948 21.94 20.04 23.59 21.67 22.22 22.12 23.95 23.50 22.24 23.14 21.06
+## 1949 21.55 20.00 22.42 20.61 21.76 22.87 24.10 23.75 23.26 22.91 21.52
+## 1950 22.60 20.89 24.68 23.67 25.32 23.58 24.67 24.45 24.12 24.25 22.08
+## 1951 23.29 23.05 25.08 24.04 24.43 24.67 26.45 25.62 25.01 25.11 22.96
+## 1952 23.80 22.27 24.77 22.65 23.99 24.74 26.28 25.82 25.21 25.20 23.16
+## 1953 24.36 22.64 25.57 24.06 25.43 24.64 27.01 26.61 26.27 26.46 25.25
+## 1954 24.66 23.30 26.98 26.20 27.21 26.12 26.71 26.88 26.15 26.38 24.71
+## 1955 24.99 24.24 26.72 23.48 24.77 26.22 28.36 28.60 27.91 27.78 25.69
+## 1956 26.22 24.22 27.91 26.98 28.53 27.14 28.98 28.17 28.06 29.14 26.29
+## 1957 26.59 24.85 27.54 26.90 28.88 27.39 28.07 28.14 29.05 28.48 26.63
+## 1958 27.13 24.92 28.96 26.59 27.93 28.01 29.23 28.76 28.41 27.95 25.91
+## 1959 26.08 25.29 27.66 25.95 26.40 25.57 28.86 30.00 29.26 29.01 26.99
+##        Dec
+## 1946 21.87
+## 1947 22.07
+## 1948 21.57
+## 1949 22.02
+## 1950 22.99
+## 1951 23.98
+## 1952 24.71
+## 1953 25.18
+## 1954 25.69
+## 1955 26.88
+## 1956 26.99
+## 1957 27.73
+## 1958 26.62
+## 1959 27.90</code></pre>
+<ul>
+<li>Time plot shows extra pattern:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(ny.ts)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-6.png" alt="plot of chunk unnamed-chunk-6" /><p class="caption">plot of chunk unnamed-chunk-6</p>
+</div>
+<ul>
+<li>steady increase</li>
+<li>repeating pattern each year (seasonal component).</li>
+<li>Not stationary.</li>
+</ul>
+</div><div class="section slide level2" id="differencing-the-new-york-births">
+<h1 id="differencing-the-new-york-births">Differencing the New York births</h1>
+<p>Does differencing help here?</p>
+<pre class="sourceCode r"><code class="sourceCode r">ny.diff.ts = <span class="kw">diff</span>(ny.ts)
+<span class="kw">plot</span>(ny.diff.ts)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-7.png" alt="plot of chunk unnamed-chunk-7" /><p class="caption">plot of chunk unnamed-chunk-7</p>
+</div>
+<p>Looks stationary, but some regular spikes.</p>
+</div><div class="section slide level2" id="decomposing-a-seasonal-time-series">
+<h1 id="decomposing-a-seasonal-time-series">Decomposing a seasonal time series</h1>
+<p>Observations for NY births were every month. Are things the same every year?</p>
+<p>A visual (using original data):</p>
+<pre class="sourceCode r"><code class="sourceCode r">ny.d = <span class="kw">decompose</span>(ny.ts)
+<span class="kw">plot</span>(ny.d)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-8.png" alt="plot of chunk unnamed-chunk-8" /><p class="caption">plot of chunk unnamed-chunk-8</p>
+</div>
+<p>Shows: * original series * just the trend, going steadily up (except at the start) * a &quot;seasonal&quot; part: something that repeats every year * random: what is left over (&quot;residuals&quot;)</p>
+</div><div class="section slide level2" id="the-seasonal-part">
+<h1 id="the-seasonal-part">The seasonal part</h1>
+<p>Fitted seasonal part is same every year:</p>
+<pre class="sourceCode r"><code class="sourceCode r">ny.d$seasonal</code></pre>
+<pre><code>##          Jan     Feb     Mar     Apr     May     Jun     Jul     Aug
+## 1946 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1947 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1948 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1949 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1950 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1951 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1952 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1953 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1954 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1955 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1956 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1957 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1958 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+## 1959 -0.6772 -2.0830  0.8625 -0.8017  0.2517 -0.1533  1.4560  1.1646
+##          Sep     Oct     Nov     Dec
+## 1946  0.6916  0.7752 -1.1098 -0.3768
+## 1947  0.6916  0.7752 -1.1098 -0.3768
+## 1948  0.6916  0.7752 -1.1098 -0.3768
+## 1949  0.6916  0.7752 -1.1098 -0.3768
+## 1950  0.6916  0.7752 -1.1098 -0.3768
+## 1951  0.6916  0.7752 -1.1098 -0.3768
+## 1952  0.6916  0.7752 -1.1098 -0.3768
+## 1953  0.6916  0.7752 -1.1098 -0.3768
+## 1954  0.6916  0.7752 -1.1098 -0.3768
+## 1955  0.6916  0.7752 -1.1098 -0.3768
+## 1956  0.6916  0.7752 -1.1098 -0.3768
+## 1957  0.6916  0.7752 -1.1098 -0.3768
+## 1958  0.6916  0.7752 -1.1098 -0.3768
+## 1959  0.6916  0.7752 -1.1098 -0.3768</code></pre>
+<p>Births lowest in February and highest in July.</p>
+</div><div class="section slide level2" id="white-noise">
+<h1 id="white-noise">White noise</h1>
+<pre class="sourceCode r"><code class="sourceCode r">wn = <span class="kw">rnorm</span>(<span class="dv">100</span>)
+wn.ts = <span class="kw">ts</span>(wn)
+<span class="kw">plot</span>(wn.ts)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-11.png" alt="plot of chunk unnamed-chunk-11" /><p class="caption">plot of chunk unnamed-chunk-11</p>
+</div>
+<p>Knowing one value tells you nothing about the next (in this case, independent normal).</p>
+</div><div class="section slide level2" id="lagging-a-time-series">
+<h1 id="lagging-a-time-series">Lagging a time series</h1>
+<p>This means moving a time series one (or more) steps back in time:</p>
+<pre class="sourceCode r"><code class="sourceCode r">x = <span class="kw">rnorm</span>(<span class="dv">5</span>)
+x.ts = <span class="kw">ts</span>(x)
+x.ts</code></pre>
+<pre><code>## Time Series:
+## Start = 1 
+## End = 5 
+## Frequency = 1 
+## [1] -2.03609 -0.57862  0.60836  0.11803  0.05634</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x1.ts = <span class="kw">lag</span>(x.ts)
+x2.ts = <span class="kw">lag</span>(x.ts, <span class="dv">2</span>)
+m = <span class="kw">cbind</span>(x.ts, x1.ts, x2.ts)
+m</code></pre>
+<pre><code>## Time Series:
+## Start = -1 
+## End = 5 
+## Frequency = 1 
+##        x.ts    x1.ts    x2.ts
+## -1       NA       NA -2.03609
+##  0       NA -2.03609 -0.57862
+##  1 -2.03609 -0.57862  0.60836
+##  2 -0.57862  0.60836  0.11803
+##  3  0.60836  0.11803  0.05634
+##  4  0.11803  0.05634       NA
+##  5  0.05634       NA       NA</code></pre>
+<p>On the other hand, this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(kings.ts)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-13.png" alt="plot of chunk unnamed-chunk-13" /><p class="caption">plot of chunk unnamed-chunk-13</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forecast)</code></pre>
+<pre><code>## This is forecast 4.03</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">auto.arima</span>(kings.ts, <span class="dt">trace =</span> T)</code></pre>
+<pre><code>## Warning: p-value greater than printed p-value</code></pre>
+<pre><code>## 
+##  ARIMA(2,1,2) with drift         : 353.5
+##  ARIMA(0,1,0) with drift         : 358.3
+##  ARIMA(1,1,0) with drift         : 354.7
+##  ARIMA(0,1,1) with drift         : 346.5
+##  ARIMA(1,1,1) with drift         : 348.4
+##  ARIMA(0,1,2) with drift         : 348.3
+##  ARIMA(1,1,2) with drift         : 350.9
+##  ARIMA(0,1,1)                    : 344.4
+##  ARIMA(1,1,1)                    : 346.4
+##  ARIMA(0,1,0)                    : 356
+##  ARIMA(0,1,2)                    : 346.3
+##  ARIMA(1,1,2)                    : 348.7
+## 
+##  Best model: ARIMA(0,1,1)</code></pre>
+<pre><code>## Series: kings.ts 
+## ARIMA(0,1,1)                    
+## 
+## Coefficients:
+##          ma1
+##       -0.722
+## s.e.   0.121
+## 
+## sigma^2 estimated as 230:  log likelihood=-170.1
+## AIC=344.1   AICc=344.4   BIC=347.6</code></pre>
+<p>If one value is positive, the next value is more likely to be positive.</p>
+</div>
+</body>
+</html>

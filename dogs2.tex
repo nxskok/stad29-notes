@@ -1,0 +1,139 @@
+\documentclass{article}
+\title{The dogs2 data}
+\usepackage{graphicx}
+\usepackage{Statweave}
+\begin{document}
+\maketitle
+The data:
+\begin{verbatim}
+Morphine             N  -3.22  -1.61  -2.30  -2.53
+Morphine             N  -3.91  -2.81  -3.91  -3.91
+Morphine             N  -2.66   0.34  -0.73  -1.43
+Morphine             N  -1.77  -0.56  -1.05  -1.43
+Trimethaphan         N  -3.51  -0.48  -1.17  -1.51
+Trimethaphan         N  -3.51   0.05  -0.31  -0.51
+Trimethaphan         N  -2.66  -0.19   0.07  -0.22
+Trimethaphan         N  -2.41   1.14   0.72   0.21
+
+\end{verbatim}
+The SAS code and output:
+\begin{Winput}
+options linesize=75;
+
+data dogs;
+    infile "dogs2.dat";
+    input Drug $ x $ lh1 lh2 lh3 lh4;
+    avg=(lh1+lh2+lh3+lh4)/4;
+    
+proc glm;
+    class Drug;
+    model lh1 lh2 lh3 lh4 = Drug / nouni;
+    repeated Time;
+    lsmeans Drug;
+    
+proc glm;
+    class Drug;
+    model avg=Drug;
+    lsmeans Drug;
+
+
+run;
+\end{Winput}
+\begin{Woutput}
+The GLM Procedure
+         Class Level Information
+Class         Levels    Values
+Drug               2    Morphine Trimetha
+
+Number of Observations Read           8
+Number of Observations Used           8
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+           Repeated Measures Level Information
+Dependent Variable         lh1      lh2      lh3      lh4
+     Level of Time           1        2        3        4
+
+                MANOVA Test Criteria and Exact F Statistics
+                   for the Hypothesis of no Time Effect
+                     H = Type III SSCP Matrix for Time
+                           E = Error SSCP Matrix
+                            S=1    M=0.5    N=1
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.05012095     25.27        3        4   0.0046
+Pillai's Trace             0.94987905     25.27        3        4   0.0046
+Hotelling-Lawley Trace    18.95173763     25.27        3        4   0.0046
+Roy's Greatest Root       18.95173763     25.27        3        4   0.0046
+
+                MANOVA Test Criteria and Exact F Statistics
+                 for the Hypothesis of no Time*Drug Effect
+                  H = Type III SSCP Matrix for Time*Drug
+                           E = Error SSCP Matrix
+                            S=1    M=0.5    N=1
+Statistic                       Value   F Value   Num DF   Den DF   Pr > F
+Wilks' Lambda              0.10523944     11.34        3        4   0.0200
+Pillai's Trace             0.89476056     11.34        3        4   0.0200
+Hotelling-Lawley Trace     8.50214058     11.34        3        4   0.0200
+Roy's Greatest Root        8.50214058     11.34        3        4   0.0200
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+Tests of Hypotheses for Between Subjects Effects
+Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+Drug                       1   11.52000000   11.52000000     3.13  0.1274
+Error                      6   22.10263750    3.68377292
+
+The GLM Procedure
+Repeated Measures Analysis of Variance
+Univariate Tests of Hypotheses for Within Subject Effects
+Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+Time                       3   26.15951250    8.71983750    69.65  <.0001
+Time*Drug                  3    5.11117500    1.70372500    13.61  <.0001
+Error(Time)               18    2.25336250    0.12518681
+                         Adj Pr > F
+Source                 G - G     H-F-L
+Time                  <.0001    <.0001
+Time*Drug             0.0023    0.0007
+Error(Time)
+
+Greenhouse-Geisser Epsilon      0.5262
+Huynh-Feldt-Lecoutre Epsilon    0.6823
+
+The GLM Procedure
+Least Squares Means
+Drug          lh1 LSMEAN      lh2 LSMEAN      lh3 LSMEAN      lh4 LSMEAN
+Morphine     -2.89000000     -1.16000000     -1.99750000     -2.32500000
+Trimetha     -3.02250000      0.13000000     -0.17250000     -0.50750000
+
+The GLM Procedure
+         Class Level Information
+Class         Levels    Values
+Drug               2    Morphine Trimetha
+
+Number of Observations Read           8
+Number of Observations Used           8
+
+The GLM Procedure
+Dependent Variable: avg
+                                    Sum of
+Source                    DF       Squares   Mean Square  F Value  Pr > F
+Model                      1    2.88000000    2.88000000     3.13  0.1274
+Error                      6    5.52565938    0.92094323
+Corrected Total            7    8.40565938
+
+R-Square     Coeff Var      Root MSE      avg Mean
+0.342626     -64.27177      0.959658     -1.493125
+
+Source                    DF     Type I SS   Mean Square  F Value  Pr > F
+Drug                       1    2.88000000    2.88000000     3.13  0.1274
+
+Source                    DF   Type III SS   Mean Square  F Value  Pr > F
+Drug                       1    2.88000000    2.88000000     3.13  0.1274
+
+The GLM Procedure
+Least Squares Means
+Drug          avg LSMEAN
+Morphine     -2.09312500
+Trimetha     -0.89312500
+\end{Woutput}
+\end{document}

@@ -1,0 +1,1954 @@
+% $Header: /home/vedranm/bitbucket/beamer/solutions/conference-talks/conference-ornate-20min.en.tex,v 90e850259b8b 2007/01/28 20:48:30 tantau $
+
+\documentclass[unknownkeysallowed]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  \setbeamertemplate{headline}{}
+
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+  \setbeamertemplate{footline}[frame number]
+  \setbeamertemplate{navigation symbols}{}%remove navigation symbols
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{00D7}{$\times$}
+\DeclareUnicodeCharacter{221A}{\checkmark}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{graphicx}
+%\usepackage{hyperref}
+\usepackage{lastpage}
+%\usepackage{Sweave}
+\usepackage{verbatim}
+\usepackage{multicol}
+\usepackage[user]{zref}
+
+\title[Course Slides] % (optional, use only with long paper titles)
+{STAD29 / STA1007}
+\subtitle
+{Statistics for the Life and Social Sciences}
+
+\author % (optional, use only with lots of authors)
+{Ken Butler}
+% - Give the names in the same order as the appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+%\institute[testing] % (optional, but mostly needed)
+%{
+%  \inst{1}%
+%  Department of Computer and Mathematical Sciences\\
+%  University of Toronto Scarborough
+%}
+%% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Winter 2018] % (optional, should be abbreviation of conference name)
+{Winter semester 2018}
+% - Either use conference name or its abbreviation.
+% - Not really informative to the audience, more for people (including
+%   yourself) who are reading the slides online
+
+%\subject{Theoretical Computer Science}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+ 
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+% my chapters
+
+%\input{preamb}
+
+%\includeonly{bPrincomp}
+%\includeonly{bOutline,bRIntro,bggplot}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+%\setkeys{Gin}{width=0.6\textwidth}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\include{bOutline}
+
+
+\begin{frame}{What we (might) cover, part 1}
+  \tableofcontents[sections={1-10}]  % You might wish to add the option [pausesections]
+\end{frame}
+
+\begin{frame}{What we (might) cover, part 2}
+  \tableofcontents[sections={11-}]  % You might wish to add the option [pausesections]
+\end{frame}
+
+% % skip these
+% % <<intro,child="bRIntro.Rnw">>=
+% % @ 
+% % 
+% % <<ggplot,child="bggplot.Rnw">>=
+% % @ 
+% % 
+% % <<Inference,child="bInference.Rnw">>=
+% % @
+
+% % start here
+
+% <<Regression, child="bRegression.Rnw">>=
+% @ 
+
+% <Rscript, child="bRscript.Rnw">>=
+%  
+% 
+% <bLogistic, child="bLogistic.Rnw">>=
+%  
+% 
+% <<bSurvival, child="bSurvival.Rnw">>=
+% @ 
+% 
+% <<bAnova, child="bAnova.Rnw">>=
+% @ 
+% 
+% <<ancova, child="bAncova.Rnw">>=
+% @ 
+% 
+% <<bManova, child="bManova.Rnw">>=
+% @ 
+% 
+% <<bProfile, child="bProfile.Rnw">>=
+% @ 
+% 
+% <<bDiscrim, child="bDiscrim.Rnw">>=
+% @ 
+% 
+
+\section{Cluster analysis}
+\frame{\sectionpage}
+
+
+\begin{frame}[fragile]{Cluster Analysis}
+
+  \begin{itemize}
+  \item One side-effect of discriminant analysis: could draw picture of data (if 1st 2s \texttt{LD}s told most of story) and see which individuals ``close'' to each other.
+  \item Discriminant analysis requires knowledge of groups.
+  \item Without knowledge of groups, use {\em cluster analysis}: see which individuals close, which groups suggested by data.
+  \item Idea: see how individuals group into ``clusters'' of nearby individuals.
+  \item Base on ``dissimilarities'' between individuals.
+  \item Or base on standard deviations and correlations between variables (assesses dissimilarity behind scenes).
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(MASS)} \hlcom{# for lda later}
+\hlkwd{library}\hlstd{(tidyverse)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# -- Attaching packages ---------------------------------- tidyverse 1.2.1 --}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# √ ggplot2 2.2.1\ \ \ \  √ purrr\ \  0.2.4\\\#\# √ tibble\ \ 1.3.4\ \ \ \  √ dplyr\ \  0.7.4\\\#\# √ tidyr\ \  0.7.2\ \ \ \  √ stringr 1.2.0\\\#\# √ readr\ \  1.1.1\ \ \ \  √ forcats 0.2.0}}
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# -- Conflicts ------------------------------------- tidyverse\_conflicts() --\\\#\# x dplyr::filter() masks stats::filter()\\\#\# x dplyr::lag()\ \ \ \ masks stats::lag()\\\#\# x dplyr::select() masks MASS::select()}}\begin{alltt}
+\hlkwd{library}\hlstd{(ggrepel)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{One to ten in 11 languages}
+
+  \begin{tabular}{lcccccc}
+    & English & Norwegian & Danish & Dutch & German\\
+    \hline
+    1 & one & en & en & een & eins\\
+    2 & two & to & to & twee & zwei\\
+    3 & three & tre & tre & drie & drei\\
+    4 & four & fire & fire & vier & vier\\
+    5 & five & fem & fem & vijf & funf\\
+    6 & six & seks & seks & zes & sechs\\
+    7 & seven & sju & syv & zeven & sieben\\
+    8 & eight & atte & otte & acht & acht\\
+    9 & nine & ni & ni & negen & neun\\
+    10 & ten & ti & ti & tien & zehn\\
+    \hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{One to ten}
+
+  \begin{small}
+  \begin{tabular}{lcccccc}
+    & French & Spanish & Italian & Polish & Hungarian & Finnish\\
+\hline
+    1 & un & uno & uno & jeden & egy & yksi\\
+    2 & deux & dos & due & dwa & ketto & kaksi\\
+    3 & trois & tres & tre & trzy &  harom & kolme\\
+    4 & quatre & cuatro & quattro & cztery & negy & nelja\\
+    5 & cinq & cinco & cinque & piec & ot & viisi\\
+    6 & six & seis & sei & szesc & hat & kuusi\\
+    7 & sept & siete & sette & siedem & het & seitseman \\
+    8 & huit & ocho & otto & osiem & nyolc & kahdeksan\\
+    9 & neuf & nueve & nove & dziewiec & kilenc & yhdeksan \\
+    10 & dix & diez & dieci & dziesiec & tiz & kymmenen\\
+    \hline
+  \end{tabular}
+    
+  \end{small}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Dissimilarities and languages example}
+
+  \begin{itemize}
+  \item Can define dissimilarities how you like (whatever makes sense in application).
+  \item Sometimes defining ``similarity'' makes more sense; can turn this into dissimilarity by subtracting from some maximum.
+  \item Example: numbers 1--10 in various European languages. Define
+    similarity between two languages by counting how often the same
+    number has a name starting with the same letter (and dissimilarity
+    by how often number has names starting with different letter).
+  \item Crude (doesn't even look at most of the words), but see how effective.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two kinds of cluster analysis}
+
+  \begin{itemize}
+  \item Looking at process of forming clusters (of similar languages):
+    \textbf{hierarchical cluster analysis} (\texttt{hclust}).
+    \begin{itemize}
+    \item Start with each individual in cluster by itself.
+    \item Join ``closest'' clusters one by one until all individuals in one cluster.
+    \item How to define closeness of two \emph{clusters}? Not obvious,
+      investigate in a moment.
+    \end{itemize}
+  \item Know how many clusters: which division into that many clusters
+    is ``best'' for individuals? \textbf{K-means clustering} (\texttt{kmeans}).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Two made-up clusters}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-2-1} 
+
+\end{knitrout}
+
+How to measure distance between set of red points and set of blue
+ones? 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Single-linkage distance}
+  
+  Find the red point and the blue point that are closest together:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-3-1} 
+
+\end{knitrout}
+
+Single-linkage distance between 2 clusters is distance between their
+closest points.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Complete linkage}
+  
+  Find the red and blue points that are farthest apart:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-4-1} 
+
+\end{knitrout}
+
+Complete-linkage distance is distance between farthest points. 
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ward's method}
+  
+  Work out mean of each cluster and join point to its mean:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-5-1} 
+
+\end{knitrout}
+
+(i) Work out sum of squared distances of points from means.
+\end{frame}
+
+\begin{frame}[fragile]{Ward's method part 2}
+  
+Now imagine combining the two clusters and working out overall
+mean. Join each point to this mean:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-6-1} 
+
+\end{knitrout}
+(ii) Calc sum of squared distances of points to combined mean.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ward's method part 3}
+  
+  \begin{itemize}
+  \item (ii) will be bigger than (i) (points closer to own cluster
+    mean than combined mean).
+  \item Ward's distance is (ii) minus (i).
+  \item Think of as ``cost'' of combining clusters:
+    \begin{itemize}
+    \item if clusters close together, (ii) only a little larger than
+      (i)
+    \item if clusters far apart, (ii) a lot larger than (i) (as in
+      example). 
+    \end{itemize}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Hierarchical clustering revisited}
+  
+  \begin{itemize}
+  \item Single linkage, complete linkage, Ward are ways of measuring
+    closeness of clusters.
+  \item Use them, starting with each observation in own cluster, to
+    repeatedly combine two closest clusters until all points in one
+    cluster.
+  \item They will give different answers (clustering stories). 
+  \item Single linkage tends to make ``stringy'' clusters because
+    clusters can be very different apart from two closest points.
+  \item Complete linkage insists on whole clusters being similar.
+  \item Ward tends to form many small clusters first.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Dissimilarity data in R}
+
+
+Dissimilarities for language data\label{p:numberd} were how many
+number names had \emph{different} first letter:
+
+
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{number.d}\hlkwb{=}\hlkwd{read_table}\hlstd{(}\hlstr{"languages.txt"}\hlstd{)}
+\hlstd{number.d}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 11 x 12
+##       la    en    no    dk    nl    de    fr    es    it
+##    <chr> <int> <int> <int> <int> <int> <int> <int> <int>
+##  1    en     0     2     2     7     6     6     6     6
+##  2    no     2     0     1     5     4     6     6     6
+##  3    dk     2     1     0     6     5     6     5     5
+##  4    nl     7     5     6     0     5     9     9     9
+##  5    de     6     4     5     5     0     7     7     7
+##  6    fr     6     6     6     9     7     0     2     1
+##  7    es     6     6     5     9     7     2     0     1
+##  8    it     6     6     5     9     7     1     1     0
+##  9    pl     7     7     6    10     8     5     3     4
+## 10    hu     9     8     8     8     9    10    10    10
+## 11    fi     9     9     9     9     9     9     9     8
+## # ... with 3 more variables: pl <int>, hu <int>, fi <int>
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+\begin{frame}[fragile]{Making a distance object}
+  
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d} \hlkwb{=} \hlstd{number.d} \hlopt{%>%}
+    \hlkwd{select}\hlstd{(}\hlopt{-}\hlstd{la)} \hlopt{%>%}
+    \hlkwd{as.dist}\hlstd{()}
+\hlstd{d}
+\end{alltt}
+\begin{verbatim}
+##    en no dk nl de fr es it pl hu
+## no  2                           
+## dk  2  1                        
+## nl  7  5  6                     
+## de  6  4  5  5                  
+## fr  6  6  6  9  7               
+## es  6  6  5  9  7  2            
+## it  6  6  5  9  7  1  1         
+## pl  7  7  6 10  8  5  3  4      
+## hu  9  8  8  8  9 10 10 10 10   
+## fi  9  9  9  9  9  9  9  8  9  8
+\end{verbatim}
+\begin{alltt}
+\hlkwd{class}\hlstd{(d)}
+\end{alltt}
+\begin{verbatim}
+## [1] "dist"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Cluster analysis and dendrogram}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d.hc}\hlkwb{=}\hlkwd{hclust}\hlstd{(d,}\hlkwc{method}\hlstd{=}\hlstr{"single"}\hlstd{)}
+\hlkwd{plot}\hlstd{(d.hc)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-10-1} 
+
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Tree shows how languages combined into clusters.
+  \item First (bottom), Spanish, French, Italian joined into one
+    cluster, Norwegian and Danish into another.
+  \item Later, English joined to Norse languages, Polish to Romance group.
+  \item Then German, Dutch make a Germanic group.
+  \item Finally, Hungarian and Finnish joined to each other and
+    everything else.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Clustering process}
+
+  \begin{minipage}[t]{0.45\linewidth}
+
+
+    
+{\small    
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d.hc}\hlopt{$}\hlstd{labels}
+\end{alltt}
+\begin{verbatim}
+##  [1] "en" "no" "dk" "nl"
+##  [5] "de" "fr" "es" "it"
+##  [9] "pl" "hu" "fi"
+\end{verbatim}
+\begin{alltt}
+\hlstd{d.hc}\hlopt{$}\hlstd{merge}
+\end{alltt}
+\begin{verbatim}
+##       [,1] [,2]
+##  [1,]   -2   -3
+##  [2,]   -6   -8
+##  [3,]   -7    2
+##  [4,]   -1    1
+##  [5,]   -9    3
+##  [6,]   -5    4
+##  [7,]   -4    6
+##  [8,]    5    7
+##  [9,]  -10    8
+## [10,]  -11    9
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  \end{minipage}
+  \begin{minipage}[t]{0.5\linewidth}
+    \vspace{0.5in}
+    \begin{itemize}
+    \item Lines of \texttt{merge} show what was combined
+    \item First, languages 2 and 3 (\texttt{no} and \texttt{dk})
+    \item Then languages 6 and 8 (\texttt{fr} and \texttt{it})
+    \item Then \#7 combined with cluster formed at step 2 (\texttt{es}
+      joined to \texttt{fr} and \texttt{it}.
+    \item Then \texttt{en} joined to \texttt{no} and \texttt{dk} \ldots
+    \item Finally \texttt{fi} joined to all others.
+    \end{itemize}
+  \end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Complete linkage}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d.hc}\hlkwb{=}\hlkwd{hclust}\hlstd{(d,}\hlkwc{method}\hlstd{=}\hlstr{"complete"}\hlstd{)}
+\hlkwd{plot}\hlstd{(d.hc)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-13-1} 
+
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Ward}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d.hc}\hlkwb{=}\hlkwd{hclust}\hlstd{(d,}\hlkwc{method}\hlstd{=}\hlstr{"ward.D"}\hlstd{)}
+\hlkwd{plot}\hlstd{(d.hc)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/wardo-1} 
+
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Chopping the tree}
+
+  \begin{itemize}
+  \item Three clusters (from Ward) looks good:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{cutree}\hlstd{(d.hc,}\hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## en no dk nl de fr es it 
+##  1  1  1  1  1  2  2  2 
+## pl hu fi 
+##  2  3  3
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Drawing those clusters on the tree}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{plot}\hlstd{(d.hc)}
+\hlkwd{rect.hclust}\hlstd{(d.hc,}\hlnum{3}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/asfsagd-1} 
+
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comparing single-linkage and Ward}
+
+  \begin{itemize}
+  \item In Ward, Dutch and German get joined earlier (before joining to Germanic cluster).
+  \item Also Hungarian and Finnish get combined earlier.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Making those dissimilarities}
+
+Original data:
+
+
+
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{lang}\hlkwb{=}\hlkwd{read_delim}\hlstd{(}\hlstr{"one-ten.txt"}\hlstd{,}\hlstr{" "}\hlstd{)}
+\hlstd{lang}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 10 x 11
+##       en    no    dk    nl     de     fr     es      it
+##    <chr> <chr> <chr> <chr>  <chr>  <chr>  <chr>   <chr>
+##  1   one    en    en   een   eins     un    uno     uno
+##  2   two    to    to  twee   zwei   deux    dos     due
+##  3 three   tre   tre  drie   drei  trois   tres     tre
+##  4  four  fire  fire  vier   vier quatre cuatro quattro
+##  5  five   fem   fem  vijf   funf   cinq  cinco  cinque
+##  6   six  seks  seks   zes  sechs    six   seis     sei
+##  7 seven   sju   syv zeven sieben   sept  siete   sette
+##  8 eight  atte  otte  acht   acht   huit   ocho    otto
+##  9  nine    ni    ni negen   neun   neuf  nueve    nove
+## 10   ten    ti    ti  tien   zehn    dix   diez   dieci
+## # ... with 3 more variables: pl <chr>, hu <chr>, fi <chr>
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+It would be a lot easier to extract the first letter if the number
+names were all in one column.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Tidy, and extract first letter}
+  
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{lang.long} \hlkwb{=} \hlstd{lang} \hlopt{%>%} \hlkwd{mutate}\hlstd{(}\hlkwc{number}\hlstd{=}\hlkwd{row_number}\hlstd{())} \hlopt{%>%}
+    \hlkwd{gather}\hlstd{(language,name,}\hlopt{-}\hlstd{number)} \hlopt{%>%}
+    \hlkwd{mutate}\hlstd{(}\hlkwc{first}\hlstd{=}\hlkwd{str_sub}\hlstd{(name,}\hlnum{1}\hlstd{,}\hlnum{1}\hlstd{))}
+\hlstd{lang.long} \hlopt{%>%} \hlkwd{print}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{12}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 110 x 4
+##    number language  name first
+##     <int>    <chr> <chr> <chr>
+##  1      1       en   one     o
+##  2      2       en   two     t
+##  3      3       en three     t
+##  4      4       en  four     f
+##  5      5       en  five     f
+##  6      6       en   six     s
+##  7      7       en seven     s
+##  8      8       en eight     e
+##  9      9       en  nine     n
+## 10     10       en   ten     t
+## 11      1       no    en     e
+## 12      2       no    to     t
+## # ... with 98 more rows
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Calculating dissimilarity}
+  
+  \begin{itemize}
+  \item Suppose we wanted dissimilarity between English and
+    Norwegian. It's the number of first letters that are different.
+    
+    
+  \item First get the lines for English:
+    
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{english} \hlkwb{=} \hlstd{lang.long} \hlopt{%>%} \hlkwd{filter}\hlstd{(language}\hlopt{==}\hlstr{"en"}\hlstd{)}
+\hlstd{english}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 10 x 4
+##    number language  name first
+##     <int>    <chr> <chr> <chr>
+##  1      1       en   one     o
+##  2      2       en   two     t
+##  3      3       en three     t
+##  4      4       en  four     f
+##  5      5       en  five     f
+##  6      6       en   six     s
+##  7      7       en seven     s
+##  8      8       en eight     e
+##  9      9       en  nine     n
+## 10     10       en   ten     t
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{And then the lines for Norwegian}
+  
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{norwegian} \hlkwb{=} \hlstd{lang.long} \hlopt{%>%} \hlkwd{filter}\hlstd{(language}\hlopt{==}\hlstr{"no"}\hlstd{)}
+\hlstd{norwegian}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 10 x 4
+##    number language  name first
+##     <int>    <chr> <chr> <chr>
+##  1      1       no    en     e
+##  2      2       no    to     t
+##  3      3       no   tre     t
+##  4      4       no  fire     f
+##  5      5       no   fem     f
+##  6      6       no  seks     s
+##  7      7       no   sju     s
+##  8      8       no  atte     a
+##  9      9       no    ni     n
+## 10     10       no    ti     t
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+And now we want to put them side by side, matched by number. This is
+what \texttt{left\_join} does. (A ``join'' is a lookup of values in
+one table using another.)
+  
+\end{frame}
+
+\begin{frame}[fragile]{The join}
+  
+
+
+  
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{english} \hlopt{%>%} \hlkwd{left_join}\hlstd{(norwegian,} \hlkwc{by}\hlstd{=}\hlstr{"number"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 10 x 7
+##    number language.x name.x first.x language.y name.y first.y
+##     <int>      <chr>  <chr>   <chr>      <chr>  <chr>   <chr>
+##  1      1         en    one       o         no     en       e
+##  2      2         en    two       t         no     to       t
+##  3      3         en  three       t         no    tre       t
+##  4      4         en   four       f         no   fire       f
+##  5      5         en   five       f         no    fem       f
+##  6      6         en    six       s         no   seks       s
+##  7      7         en  seven       s         no    sju       s
+##  8      8         en  eight       e         no   atte       a
+##  9      9         en   nine       n         no     ni       n
+## 10     10         en    ten       t         no     ti       t
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\texttt{first.x} is 1st letter of English word, \texttt{first.y} 1st
+letter of Norwegian word.
+
+\end{frame}
+
+\begin{frame}[fragile]{Counting the different ones}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{english} \hlopt{%>%} \hlkwd{left_join}\hlstd{(norwegian,} \hlkwc{by}\hlstd{=}\hlstr{"number"}\hlstd{)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{different}\hlstd{=(first.x}\hlopt{!=}\hlstd{first.y))} \hlopt{%>%}
+  \hlkwd{summarize}\hlstd{(}\hlkwc{diff}\hlstd{=}\hlkwd{sum}\hlstd{(different))}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 1 x 1
+##    diff
+##   <int>
+## 1     2
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Words for 1 and 8 start with different letter; rest are same.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Function to do this for any two languages}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{countdiff}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{lang.1}\hlstd{,}\hlkwc{lang.2}\hlstd{,}\hlkwc{d}\hlstd{) \{}
+    \hlstd{lang1d}\hlkwb{=}\hlstd{d} \hlopt{%>%} \hlkwd{filter}\hlstd{(language}\hlopt{==}\hlstd{lang.1)}
+    \hlstd{lang2d}\hlkwb{=}\hlstd{d} \hlopt{%>%} \hlkwd{filter}\hlstd{(language}\hlopt{==}\hlstd{lang.2)}
+    \hlstd{lang1d} \hlopt{%>%} \hlkwd{left_join}\hlstd{(lang2d,} \hlkwc{by}\hlstd{=}\hlstr{"number"}\hlstd{)} \hlopt{%>%}
+        \hlkwd{mutate}\hlstd{(}\hlkwc{different}\hlstd{=(first.x}\hlopt{!=}\hlstd{first.y))} \hlopt{%>%}
+        \hlkwd{summarize}\hlstd{(}\hlkwc{diff}\hlstd{=}\hlkwd{sum}\hlstd{(different))} \hlopt{%>%}
+        \hlkwd{pull}\hlstd{(diff)}
+\hlstd{\}}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  
+Test:
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{countdiff}\hlstd{(}\hlstr{"en"}\hlstd{,}\hlstr{"no"}\hlstd{,lang.long)}
+\end{alltt}
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+\begin{frame}[fragile]{For all pairs of languages?}
+  
+  \begin{itemize}
+  \item First need all the languages:
+    
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{languages}\hlkwb{=}\hlkwd{names}\hlstd{(lang)}
+\hlstd{languages}
+\end{alltt}
+\begin{verbatim}
+##  [1] "en" "no" "dk" "nl" "de" "fr" "es" "it" "pl"
+## [10] "hu" "fi"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item and then all \emph{pairs} of languages:
+  
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{pairs}\hlkwb{=}\hlkwd{crossing}\hlstd{(}\hlkwc{lang}\hlstd{=languages,} \hlkwc{lang2}\hlstd{=languages)} \hlopt{%>%} \hlkwd{print}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{12}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 121 x 2
+##     lang lang2
+##    <chr> <chr>
+##  1    de    de
+##  2    de    dk
+##  3    de    en
+##  4    de    es
+##  5    de    fi
+##  6    de    fr
+##  7    de    hu
+##  8    de    it
+##  9    de    nl
+## 10    de    no
+## 11    de    pl
+## 12    dk    de
+## # ... with 109 more rows
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Run \texttt{countdiff} for all those language pairs}
+  
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{thediffs} \hlkwb{=} \hlstd{pairs} \hlopt{%>%}
+    \hlkwd{mutate}\hlstd{(}\hlkwc{diff}\hlstd{=}\hlkwd{map2_int}\hlstd{(lang,lang2,countdiff,lang.long))} \hlopt{%>%}
+    \hlkwd{print}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{12}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 121 x 3
+##     lang lang2  diff
+##    <chr> <chr> <int>
+##  1    de    de     0
+##  2    de    dk     5
+##  3    de    en     6
+##  4    de    es     7
+##  5    de    fi     9
+##  6    de    fr     7
+##  7    de    hu     9
+##  8    de    it     7
+##  9    de    nl     5
+## 10    de    no     4
+## 11    de    pl     8
+## 12    dk    de     5
+## # ... with 109 more rows
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Make square table of these}
+
+
+  
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{thediffs} \hlopt{%>%} \hlkwd{spread}\hlstd{(lang2,diff)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 11 x 12
+##     lang    de    dk    en    es    fi    fr    hu    it
+##  * <chr> <int> <int> <int> <int> <int> <int> <int> <int>
+##  1    de     0     5     6     7     9     7     9     7
+##  2    dk     5     0     2     5     9     6     8     5
+##  3    en     6     2     0     6     9     6     9     6
+##  4    es     7     5     6     0     9     2    10     1
+##  5    fi     9     9     9     9     0     9     8     9
+##  6    fr     7     6     6     2     9     0    10     1
+##  7    hu     9     8     9    10     8    10     0    10
+##  8    it     7     5     6     1     9     1    10     0
+##  9    nl     5     6     7     9     9     9     8     9
+## 10    no     4     1     2     6     9     6     8     6
+## 11    pl     8     6     7     3     9     5    10     4
+## # ... with 3 more variables: nl <int>, no <int>, pl <int>
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+and that was where we began.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Another example}
+
+Birth, death and infant mortality rates for 97 countries (variables not dissimilarities):
+
+{\scriptsize
+\begin{verbatim}
+24.7  5.7  30.8 Albania         12.5 11.9  14.4 Bulgaria
+13.4 11.7  11.3 Czechoslovakia  12   12.4   7.6 Former_E._Germany
+11.6 13.4  14.8 Hungary         14.3 10.2    16 Poland
+13.6 10.7  26.9 Romania           14    9  20.2 Yugoslavia
+17.7   10    23 USSR            15.2  9.5  13.1 Byelorussia_SSR
+13.4 11.6    13 Ukrainian_SSR   20.7  8.4  25.7 Argentina
+46.6   18   111 Bolivia         28.6  7.9    63 Brazil
+23.4  5.8  17.1 Chile           27.4  6.1    40 Columbia
+32.9  7.4    63 Ecuador         28.3  7.3    56 Guyana
+...
+\end{verbatim}
+}
+
+\begin{itemize}
+\item Want to find groups of similar countries (and how many groups, which countries in each group).
+\item Tree would be unwieldy with 97 countries.
+\item More automatic way of finding given number of clusters?
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reading in}
+
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital}\hlkwb{=}\hlkwd{read_table}\hlstd{(}\hlstr{"birthrate.txt"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  birth = col\_double(),\\\#\#\ \  death = col\_double(),\\\#\#\ \  infant = col\_double(),\\\#\#\ \  country = col\_character()\\\#\# )}}\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 97 x 4
+##    birth death infant        country
+##    <dbl> <dbl>  <dbl>          <chr>
+##  1  24.7   5.7   30.8        Albania
+##  2  13.4  11.7   11.3 Czechoslovakia
+##  3  11.6  13.4   14.8        Hungary
+##  4  13.6  10.7   26.9        Romania
+##  5  17.7  10.0   23.0           USSR
+##  6  13.4  11.6   13.0  Ukrainian_SSR
+##  7  46.6  18.0  111.0        Bolivia
+##  8  23.4   5.8   17.1          Chile
+##  9  32.9   7.4   63.0        Ecuador
+## 10  34.8   6.6   42.0       Paraguay
+## # ... with 87 more rows
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+\begin{frame}[fragile]{Standardizing}
+
+
+\begin{itemize}
+\item Infant mortality rate numbers bigger than others, consequence of
+  measurement scale (arbitrary).
+\item Standardize (numerical) columns of data frame to have mean 0, SD
+  1, done by \texttt{scale}.
+\end{itemize}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.s} \hlkwb{=} \hlstd{vital} \hlopt{%>%} \hlkwd{mutate_if}\hlstd{(is.numeric,scale)} \hlopt{%>%} \hlkwd{print}\hlstd{(}\hlkwc{n}\hlstd{=}\hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 97 x 4
+##         birth       death     infant        country
+##         <dbl>       <dbl>      <dbl>          <chr>
+##  1 -0.3343913 -1.10512932 -0.5240199        Albania
+##  2 -1.1685431  0.18588887 -0.9480013 Czechoslovakia
+##  3 -1.3014168  0.55167736 -0.8719021        Hungary
+##  4 -1.1537793 -0.02928083 -0.6088162        Romania
+##  5 -0.8511225 -0.17989961 -0.6936125           USSR
+##  6 -1.1685431  0.16437190 -0.9110388  Ukrainian_SSR
+##  7  1.2822392  1.54145798  1.2197394        Bolivia
+##  8 -0.4303557 -1.08361235 -0.8218940          Chile
+##  9  0.2709224 -0.73934083  0.1760929        Ecuador
+## 10  0.4111780 -0.91147659 -0.2805024       Paraguay
+## # ... with 87 more rows
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Three clusters}
+  
+  Pretend we know 3 clusters is good. Take off the 4th column (of
+  countries) and run \texttt{kmeans} on the resulting data frame,
+  asking for 3 clusters:
+
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3} \hlkwb{=} \hlstd{vital.s} \hlopt{%>%} \hlkwd{select}\hlstd{(}\hlopt{-}\hlnum{4}\hlstd{)} \hlopt{%>%} \hlkwd{kmeans}\hlstd{(}\hlnum{3}\hlstd{)}
+\hlkwd{names}\hlstd{(vital.km3)}
+\end{alltt}
+\begin{verbatim}
+## [1] "cluster"      "centers"      "totss"       
+## [4] "withinss"     "tot.withinss" "betweenss"   
+## [7] "size"         "iter"         "ifault"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  }
+  
+  A lot of output, so look at these individually.
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{What's in the output?}
+  
+  \begin{itemize}
+  \item Cluster sizes:
+    
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3}\hlopt{$}\hlstd{size}
+\end{alltt}
+\begin{verbatim}
+## [1] 29 44 24
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item Cluster centres:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3}\hlopt{$}\hlstd{centers}
+\end{alltt}
+\begin{verbatim}
+##        birth      death     infant
+## 1  0.4737967 -0.4878149  0.2466440
+## 2 -0.9593341 -0.4322350 -0.8904328
+## 3  1.1862748  1.3818738  1.3344318
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item Cluster 2 has lower than average rates on everything; cluster 3
+  has much higher than average.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Cluster sums of squares and membership}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3}\hlopt{$}\hlstd{withinss}
+\end{alltt}
+\begin{verbatim}
+## [1] 14.96356 25.13922 26.78049
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Cluster 1 compact relative to others (countries in cluster 1  more similar).
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3}\hlopt{$}\hlstd{cluster}
+\end{alltt}
+\begin{verbatim}
+##  [1] 2 2 2 2 2 2 3 2 1 1 2 3 2 2 2 2 2 2 2 2 2 3 1 2 2 1 1 3
+## [29] 2 1 2 1 1 2 2 1 1 1 3 3 1 1 3 3 1 3 3 3 1 2 2 2 2 2 2 1
+## [57] 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 2 3 2 1 1 3 1 2 1
+## [85] 3 3 3 3 1 3 3 3 3 3 1 3 3
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Store countries and clusters to which they belong}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.3}\hlkwb{=}\hlkwd{tibble}\hlstd{(}\hlkwc{country}\hlstd{=vital.s}\hlopt{$}\hlstd{country,}
+               \hlkwc{cluster}\hlstd{=vital.km3}\hlopt{$}\hlstd{cluster)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Next, which countries in which cluster?
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster membership: cluster 2}
+
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.3} \hlopt{%>%} \hlkwd{filter}\hlstd{(cluster}\hlopt{==}\hlnum{2}\hlstd{)} \hlopt{%>%} \hlkwd{pull}\hlstd{(country)}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Albania"              "Czechoslovakia"      
+##  [3] "Hungary"              "Romania"             
+##  [5] "USSR"                 "Ukrainian_SSR"       
+##  [7] "Chile"                "Uruguay"             
+##  [9] "Finland"              "France"              
+## [11] "Greece"               "Italy"               
+## [13] "Norway"               "Spain"               
+## [15] "Switzerland"          "Austria"             
+## [17] "Canada"               "Israel"              
+## [19] "Kuwait"               "China"               
+## [21] "Korea"                "Singapore"           
+## [23] "Thailand"             "Bulgaria"            
+## [25] "Former_E._Germany"    "Poland"              
+## [27] "Yugoslavia"           "Byelorussia_SSR"     
+## [29] "Argentina"            "Venezuela"           
+## [31] "Belgium"              "Denmark"             
+## [33] "Germany"              "Ireland"             
+## [35] "Netherlands"          "Portugal"            
+## [37] "Sweden"               "U.K."                
+## [39] "Japan"                "U.S.A."              
+## [41] "Bahrain"              "United_Arab_Emirates"
+## [43] "Hong_Kong"            "Sri_Lanka"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 3}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.3} \hlopt{%>%} \hlkwd{filter}\hlstd{(cluster}\hlopt{==}\hlnum{3}\hlstd{)} \hlopt{%>%} \hlkwd{pull}\hlstd{(country)}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Bolivia"      "Mexico"       "Afghanistan" 
+##  [4] "Bangladesh"   "Gabon"        "Ghana"       
+##  [7] "Namibia"      "Sierra_Leone" "Swaziland"   
+## [10] "Uganda"       "Zaire"        "Cambodia"    
+## [13] "Nepal"        "Angola"       "Congo"       
+## [16] "Ethiopia"     "Gambia"       "Malawi"      
+## [19] "Mozambique"   "Nigeria"      "Somalia"     
+## [22] "Sudan"        "Tanzania"     "Zambia"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 1}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.3} \hlopt{%>%} \hlkwd{filter}\hlstd{(cluster}\hlopt{==}\hlnum{1}\hlstd{)} \hlopt{%>%} \hlkwd{pull}\hlstd{(country)}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Ecuador"      "Paraguay"     "Iran"        
+##  [4] "Oman"         "Turkey"       "India"       
+##  [7] "Mongolia"     "Pakistan"     "Algeria"     
+## [10] "Botswana"     "Egypt"        "Libya"       
+## [13] "Morocco"      "South_Africa" "Zimbabwe"    
+## [16] "Brazil"       "Columbia"     "Guyana"      
+## [19] "Peru"         "Iraq"         "Jordan"      
+## [22] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [25] "Malaysia"     "Philippines"  "Vietnam"     
+## [28] "Kenya"        "Tunisia"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]{Problem!}
+  
+  \begin{itemize}
+  \item \texttt{kmeans} uses randomization. So result of one run might
+    be different from another run.
+  \item Example: just run again on 3 clusters, \texttt{table} of results:
+
+    
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3a}\hlkwb{=}\hlkwd{kmeans}\hlstd{(vital.s[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{],}\hlnum{3}\hlstd{)}
+\hlkwd{table}\hlstd{(}\hlkwc{first}\hlstd{=vital.km3}\hlopt{$}\hlstd{cluster,}
+      \hlkwc{second}\hlstd{=vital.km3a}\hlopt{$}\hlstd{cluster)}
+\end{alltt}
+\begin{verbatim}
+##      second
+## first  1  2  3
+##     1  1  0 28
+##     2  0 40  4
+##     3 24  0  0
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item Solution: \texttt{nstart} option on \texttt{kmeans} runs that
+  many times, takes best. Should be same every time:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km3b}\hlkwb{=}\hlkwd{kmeans}\hlstd{(vital.s,}\hlnum{3}\hlstd{,}\hlkwc{nstart}\hlstd{=}\hlnum{20}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+    
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{How many clusters?}
+  
+  \begin{itemize}
+  \item Three was just a guess.
+  \item Idea: try a whole bunch of \#clusters (say 2--20), obtain measure of
+    goodness of fit for each, make plot.
+  \item Appropriate measure is \texttt{tot.withinss}.
+  \item Use loop to run \texttt{kmeans} for each \#clusters, keep
+    track of \texttt{tot.withinss}.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Making this happen}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{clus}\hlkwb{=}\hlnum{2}\hlopt{:}\hlnum{20}
+\hlstd{wss}\hlkwb{=}\hlkwd{numeric}\hlstd{(}\hlnum{0}\hlstd{)}
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlstd{clus)}
+\hlstd{\{}
+  \hlstd{wss[i]}\hlkwb{=}\hlkwd{kmeans}\hlstd{(vital.s[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{],i,}\hlkwc{nstart}\hlstd{=}\hlnum{20}\hlstd{)}\hlopt{$}\hlstd{tot.withinss}
+\hlstd{\}}
+\hlstd{wss}
+\end{alltt}
+\begin{verbatim}
+##  [1]         NA 117.375682  66.883275  51.403362  37.513143
+##  [6]  28.659864  24.714303  22.296955  19.632431  17.472883
+## [11]  16.207393  14.956056  13.242480  12.127228  11.741309
+## [16]  10.676895   9.526443   9.058126   8.597169   7.577362
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{A more R way to do it}
+  
+  \begin{itemize}
+  \item Define a function whose input is the number of clusters and
+    whose output is the total within-cluster sum of squares:
+    
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{wssf}\hlkwb{=}\hlkwa{function}\hlstd{(}\hlkwc{nclust}\hlstd{) \{}
+  \hlkwd{kmeans}\hlstd{(vital.s[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{],nclust,}\hlkwc{nstart}\hlstd{=}\hlnum{20}\hlstd{)}\hlopt{$}\hlstd{tot.withinss}
+\hlstd{\}}
+\hlkwd{wssf}\hlstd{(}\hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 117.3757
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+%$ %$ %$ 
+
+\item Feed that into \texttt{map\_dbl} thus (``for each value of the
+  first thing, run function that is second thing''):
+  
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{wss}\hlkwb{=}\hlkwd{map_dbl}\hlstd{(clus,wssf)}
+\hlstd{wss}
+\end{alltt}
+\begin{verbatim}
+##  [1] 117.375682  66.883275  51.403362  37.513143  28.659864
+##  [6]  24.714303  22.016306  19.640729  17.472883  16.317851
+## [11]  15.140205  13.395265  12.423674  11.168144  10.520674
+## [16]   9.830072   9.372249   8.318697   7.298821
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{d}\hlkwb{=}\hlkwd{data.frame}\hlstd{(clus,wss)}
+\hlkwd{ggplot}\hlstd{(d,}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=clus,}\hlkwc{y}\hlstd{=wss))}\hlopt{+}\hlkwd{geom_point}\hlstd{()}\hlopt{+}
+  \hlkwd{geom_line}\hlstd{()}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/favalli-1} 
+
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interpreting scree plot}
+  
+  \begin{itemize}
+  \item Lower \texttt{wss} better.
+  \item But lower for larger \#clusters, harder to explain.
+  \item Compromise: low-ish \texttt{wss} and low-ish \#clusters.
+  \item Look for ``elbow'' in plot.
+  \item Idea: this is where \texttt{wss} decreases fast then slow.
+  \item On our plot, small elbow at 6 clusters. Try this many clusters.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Six clusters, using \texttt{nstart}}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.km6}\hlkwb{=}\hlkwd{kmeans}\hlstd{(vital.s[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{],}\hlnum{6}\hlstd{,}\hlkwc{nstart}\hlstd{=}\hlnum{20}\hlstd{)}
+\hlstd{vital.km6}\hlopt{$}\hlstd{size}
+\end{alltt}
+\begin{verbatim}
+## [1]  8 30 24 15 18  2
+\end{verbatim}
+\begin{alltt}
+\hlstd{vital.km6}\hlopt{$}\hlstd{centers}
+\end{alltt}
+\begin{verbatim}
+##        birth      death     infant
+## 1  1.3043848  2.1896567  1.9470306
+## 2 -1.1737104 -0.1856375 -0.9534370
+## 3  0.4160993 -0.5169988  0.2648754
+## 4 -0.4357690 -1.1438599 -0.7281108
+## 5  1.2092406  0.7441347  1.0278003
+## 6 -0.2199722  2.1116577 -0.4544435
+\end{verbatim}
+\begin{alltt}
+\hlstd{vital.s}\hlopt{$}\hlstd{clus6}\hlkwb{=}\hlstd{vital.km6}\hlopt{$}\hlstd{cluster}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 1}
+
+    High on everything:
+
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{with}\hlstd{(vital.s,country[clus6}\hlopt{==}\hlnum{1}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+## [1] "Afghanistan"  "Sierra_Leone" "Angola"      
+## [4] "Ethiopia"     "Gambia"       "Malawi"      
+## [7] "Mozambique"   "Somalia"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 2}
+
+  Low on everything, though death rate close to average:
+  
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{with}\hlstd{(vital.s,country[clus6}\hlopt{==}\hlnum{2}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Czechoslovakia"    "Hungary"           "Romania"          
+##  [4] "USSR"              "Ukrainian_SSR"     "Uruguay"          
+##  [7] "Finland"           "France"            "Greece"           
+## [10] "Italy"             "Norway"            "Spain"            
+## [13] "Switzerland"       "Austria"           "Canada"           
+## [16] "Bulgaria"          "Former_E._Germany" "Poland"           
+## [19] "Yugoslavia"        "Byelorussia_SSR"   "Belgium"          
+## [22] "Denmark"           "Germany"           "Ireland"          
+## [25] "Netherlands"       "Portugal"          "Sweden"           
+## [28] "U.K."              "Japan"             "U.S.A."
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 3}
+
+  Below-average death rate, though other rates a little higher than average:
+
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{with}\hlstd{(vital.s,country[clus6}\hlopt{==}\hlnum{3}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Ecuador"      "Paraguay"     "Oman"        
+##  [4] "Turkey"       "India"        "Mongolia"    
+##  [7] "Pakistan"     "Algeria"      "Egypt"       
+## [10] "Libya"        "Morocco"      "South_Africa"
+## [13] "Zimbabwe"     "Brazil"       "Guyana"      
+## [16] "Peru"         "Iraq"         "Jordan"      
+## [19] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [22] "Philippines"  "Vietnam"      "Tunisia"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 4}
+
+    Low on everything, especially death rate:
+
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{with}\hlstd{(vital.s,country[clus6}\hlopt{==}\hlnum{4}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Albania"              "Chile"               
+##  [3] "Israel"               "Kuwait"              
+##  [5] "China"                "Singapore"           
+##  [7] "Thailand"             "Argentina"           
+##  [9] "Columbia"             "Venezuela"           
+## [11] "Bahrain"              "United_Arab_Emirates"
+## [13] "Hong_Kong"            "Malaysia"            
+## [15] "Sri_Lanka"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 5}
+
+  Higher than average on everything, though not the highest:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{with}\hlstd{(vital.s,country[clus6}\hlopt{==}\hlnum{5}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+##  [1] "Bolivia"    "Iran"       "Bangladesh"
+##  [4] "Botswana"   "Gabon"      "Ghana"     
+##  [7] "Namibia"    "Swaziland"  "Uganda"    
+## [10] "Zaire"      "Cambodia"   "Nepal"     
+## [13] "Congo"      "Kenya"      "Nigeria"   
+## [16] "Sudan"      "Tanzania"   "Zambia"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+\begin{frame}[fragile]{Cluster 6}
+
+    Very high death rate, just below average on all else:
+
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{with}\hlstd{(vital.s,country[clus6}\hlopt{==}\hlnum{6}\hlstd{])}
+\end{alltt}
+\begin{verbatim}
+## [1] "Mexico" "Korea"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comparing our 3 and 6-cluster solutions}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{table}\hlstd{(}\hlkwc{three}\hlstd{=vital.km3}\hlopt{$}\hlstd{cluster,}\hlkwc{six}\hlstd{=vital.km6}\hlopt{$}\hlstd{cluster)}
+\end{alltt}
+\begin{verbatim}
+##      six
+## three  1  2  3  4  5  6
+##     1  0  0 24  2  3  0
+##     2  0 30  0 13  0  1
+##     3  8  0  0  0 15  1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Compared to 3-cluster solution:
+
+\begin{itemize}
+\item most of cluster 1 gone to cluster 3
+\item cluster 2 split into clusters 2 and 4 (two types of ``richer'' countries)
+\item cluster 3 split into clusters 1 and 5 (two types of ``poor''
+  countries, divided by death rate).
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Getting a picture from \texttt{kmeans}}
+  
+  \begin{itemize}
+  \item Use multidimensional scaling (later)
+  \item Use discriminant analysis on clusters found, treating them as
+    ``known'' groups.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{MANOVA and discriminant analysis}
+  
+  \begin{itemize}
+  \item Go back to 1st 3 columns of \texttt{vital.s} (variables,
+    standardized), plus \texttt{cf} (cluster as factor).
+    \texttt{clus} (6 clusters).
+  \item First, do they actually differ by group? (MANOVA):
+    {\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{v}\hlkwb{=}\hlkwd{as.matrix}\hlstd{(vital.s[,}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{])}
+\hlstd{cf}\hlkwb{=}\hlkwd{as.factor}\hlstd{(vital.s}\hlopt{$}\hlstd{clus6)}
+\hlstd{vital.manova}\hlkwb{=}\hlkwd{manova}\hlstd{(v}\hlopt{~}\hlstd{cf)}
+\hlkwd{summary}\hlstd{(vital.manova)}
+\end{alltt}
+\begin{verbatim}
+##           Df Pillai approx F num Df den Df
+## cf         5 1.9215   32.427     15    273
+## Residuals 91                              
+##              Pr(>F)    
+## cf        < 2.2e-16 ***
+## Residuals              
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+
+Oh yes.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant analysis}
+  
+  \begin{itemize}
+  \item So what makes the groups different?
+  \item Uses package \texttt{MASS} (loaded):
+    
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.lda}\hlkwb{=}\hlkwd{lda}\hlstd{(cf}\hlopt{~}\hlstd{birth}\hlopt{+}\hlstd{death}\hlopt{+}\hlstd{infant,}\hlkwc{data}\hlstd{=vital.s)}
+\hlstd{vital.lda}\hlopt{$}\hlstd{svd}
+\end{alltt}
+\begin{verbatim}
+## [1] 21.687195  8.851811  1.773006
+\end{verbatim}
+\begin{alltt}
+\hlstd{vital.lda}\hlopt{$}\hlstd{scaling}
+\end{alltt}
+\begin{verbatim}
+##               LD1        LD2        LD3
+## birth  -2.6879695 -1.1224202  1.9483853
+## death  -0.6652712  2.7213044  0.6049358
+## infant -2.1111801 -0.7650912 -2.3542296
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item LD1 is some of everything, but not so much death rate
+  (high=rich, low=poor).
+\item LD2 mainly death rate, high or low.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{To make a plot}
+  
+  
+  \begin{itemize}
+  \item Get predictions first:
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{vital.pred}\hlkwb{=}\hlkwd{predict}\hlstd{(vital.lda)}
+\hlstd{d}\hlkwb{=}\hlkwd{data.frame}\hlstd{(}\hlkwc{country}\hlstd{=vital.s}\hlopt{$}\hlstd{country,}
+  \hlkwc{cluster}\hlstd{=vital.km6}\hlopt{$}\hlstd{cluster,vital.pred}\hlopt{$}\hlstd{x)}
+\hlkwd{str}\hlstd{(d)}
+\end{alltt}
+\begin{verbatim}
+## 'data.frame':	97 obs. of  5 variables:
+##  $ country: Factor w/ 97 levels "Afghanistan",..: 2 21 36 69 91 88 10 17 23 64 ...
+##  $ cluster: int  4 2 2 2 2 2 5 4 3 3 ...
+##  $ LD1    : num  2.74 5.02 4.97 4.41 3.87 ...
+##  $ LD2    : num  -2.231 2.543 3.629 1.681 0.996 ...
+##  $ LD3    : num  -0.0864 0.0675 -0.1493 -0.8324 -0.1342 ...
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+%$ %$ %$
+
+\item \texttt{d} contains country names, cluster memberships and
+  discriminant scores. Plot \texttt{LD1} against \texttt{LD2},
+  colouring points by cluster and labelling by country:
+  
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{g}\hlkwb{=}\hlkwd{ggplot}\hlstd{(d,}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=LD1,}\hlkwc{y}\hlstd{=LD2,}\hlkwc{colour}\hlstd{=}\hlkwd{factor}\hlstd{(cluster),}
+    \hlkwc{label}\hlstd{=country))}\hlopt{+}\hlkwd{geom_point}\hlstd{()}\hlopt{+}
+    \hlkwd{geom_text_repel}\hlstd{(}\hlkwc{size}\hlstd{=}\hlnum{2}\hlstd{)}\hlopt{+}\hlkwd{guides}\hlstd{(}\hlkwc{colour}\hlstd{=F)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{g}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-62-1} 
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]{Final example: a hockey league}
+
+  \begin{itemize}
+  \item 
+An Ontario hockey league has teams in 21 cities. How can we arrange those teams into 4 geographical divisions?
+\item Distance data in spreadsheet.
+\item Take out spaces in team names.
+\item Save as ``text/csv''.
+  \item Distances, so back to \texttt{hclust}.
+
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{A map}
+
+\includegraphics[width=4.5in]{map1}
+\end{frame}
+
+\begin{frame}[fragile]{Attempt 1}
+
+  {\small
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ontario}\hlkwb{=}\hlkwd{read.csv}\hlstd{(}\hlstr{"ontario-road-distances.csv"}\hlstd{,}\hlkwc{header}\hlstd{=T)}
+\hlstd{ontario.d}\hlkwb{=}\hlkwd{dist}\hlstd{(ontario)}
+\hlstd{ontario.hc}\hlkwb{=}\hlkwd{hclust}\hlstd{(ontario.d,}\hlkwc{method}\hlstd{=}\hlstr{"ward.D"}\hlstd{)}
+\hlkwd{cutree}\hlstd{(ontario.hc,}\hlnum{4}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+##        Barrie    Belleville     Brantford 
+##             1             2             1 
+##    Brockville      Cornwall      Hamilton 
+##             2             2             1 
+##    Huntsville      Kingston     Kitchener 
+##             2             2             1 
+##        London  NiagaraFalls      NorthBay 
+##             1             1             2 
+##        Ottawa     OwenSound  Peterborough 
+##             2             1             2 
+##        Sarnia SaultSteMarie  StCatharines 
+##             1             3             1 
+##    ThunderBay       Toronto       Windsor 
+##             4             1             1
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Plot, with 4 clusters}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{plot}\hlstd{(ontario.hc)}
+\hlkwd{rect.hclust}\hlstd{(ontario.hc,}\hlnum{4}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-64-1} 
+
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Can't have divisions of 1 team!
+  \item ``Southern'' divisions way too big!
+  \item Try splitting into more. I found 7 to be good:
+  \end{itemize}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Seven clusters}
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{plot}\hlstd{(ontario.hc)}
+\hlkwd{rect.hclust}\hlstd{(ontario.hc,}\hlnum{7}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-65-1} 
+
+\end{knitrout}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Divisions now}
+  
+  \begin{itemize}
+  \item I want to put Huntsville and North Bay together with northern teams.
+  \item I'll put the Eastern teams together. Gives:
+    \begin{itemize}
+    \item North: Sault Ste Marie, Sudbury, Huntsville, North Bay
+    \item East: Brockville, Cornwall, Ottawa, Peterborough,
+      Belleville, Kingston
+    \item West:  Windsor, London, Sarnia
+    \item Central: Owen Sound, Barrie, Toronto, Niagara Falls, St
+      Catharines, Brantford, Hamilton, Kitchener
+    \end{itemize}
+  \item Getting them same size beyond us!
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Another map}
+
+\includegraphics[width=4.5in]{map2}
+  
+\end{frame}
+
+
+% <<bMDS, child="bMDS.Rnw">>=
+% @ 
+% 
+% <<bPrincomp, child="bPrincomp.Rnw">>=
+% @ 
+% 
+% <<bFactor, child="bFactor.Rnw">>=
+% @ 
+%  
+% % <<bTimeSeries, child="bTimeSeries.Rnw">>=
+% % @ 
+% 
+% <<bMultiway, child="bMultiway.Rnw">>=
+% @ 
+%
+%\include{bRIntro}
+%\include{bggplot} 
+%\include{bInference}
+%\include{bRegression}
+%\include{bRscript}
+%\include{bLogistic}
+%\include{bSurvival}
+%\include{bAnova}
+%\include{bAncova}
+%\include{bManova}
+%\include{bProfile}
+%\include{bDiscrim}
+%\include{bCluster}
+%\include{bMDS}
+%\include{bPrincomp}
+%\include{bFactor} % lavaan for confirmatory?
+%%\include{bKriging}
+%\include{bTimeSeries}
+%\include{bMultiway} % poisson glm model? http://ww2.coastal.edu/kingw/statistics/R-tutorials/loglin.html
+%\section{Time series}
+%\section{Nonparametric statistics}
+  
+%\include{bSummary}
+  
+
+
+\begin{frame}{The end}
+
+{\centering
+{\Huge
+\hfill
+DONE!
+\hfill
+}
+}
+\end{frame}
+
+
+\end{document}
+
+

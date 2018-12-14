@@ -1,0 +1,8 @@
+open IN, "languages.dat" or die "Cannot open languages file: $!";
+
+my %f=();
+while (<IN>) {
+    my @line=split /:/;
+    my @first=map { substr $_, 0, 1} @line;
+    print "@first\n";
+}

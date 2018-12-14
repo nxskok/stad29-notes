@@ -1,0 +1,24 @@
+data mvreg;
+    input z1 z2 y1 y2;
+    cards;
+    0 1 1 1.5
+    1 2 4 2.5
+    2 5 6 7.5
+    3 1 8 3.5
+    4 2 9 6.5
+    5 5 12 9.5
+    ;
+
+ proc reg;
+     model y1 y2 = z1 z2;
+     all0: mtest;
+     allequal: mtest y1=y2;
+     allequal2: mtest y1-y2;
+     z1equal: mtest y1=y2, z1;
+     z2equal: mtest y1=y2, z2;
+     z1all0: mtest z1;
+     z2all0: mtest z2;
+
+     
+run;
+

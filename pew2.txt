@@ -1,0 +1,6 @@
+        Agree Disagree
+ConRep   220     280
+LibRep   710     290
+Ind      610     390
+ConDem   640     360
+LibDem   355     145

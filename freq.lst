@@ -1,0 +1,124 @@
+                                                           The SAS System                         09:28 Wednesday, April 6, 2011   1
+
+                                         Obs     profession       sex      readtype    freq
+
+                                           1    politician       male       scifi       15 
+                                           2    politician       male       spy         15 
+                                           3    politician       female     scifi       10 
+                                           4    politician       female     spy         15 
+                                           5    administrator    male       scifi       10 
+                                           6    administrator    male       spy         30 
+                                           7    administrator    female     scifi        5 
+                                           8    administrator    female     spy         10 
+                                           9    bellydancer      male       scifi        5 
+                                          10    bellydancer      male       spy          5 
+                                          11    bellydancer      female     scifi       10 
+                                          12    bellydancer      female     spy         25 
+                                                           The SAS System                         09:28 Wednesday, April 6, 2011   2
+
+                                                        The CATMOD Procedure
+
+                                                           Data Summary
+
+                                Response           profession*sex*readtype     Response Levels   12
+                                Weight Variable    freq                        Populations        1
+                                Data Set           MYFREQ                      Total Frequency  155
+                                Frequency Missing  0                           Observations      12
+
+
+                                                        Population Profiles
+ 
+                                                       Sample    Sample Size
+                                                       ---------------------
+                                                           1             155
+
+
+                                                         Response Profiles
+ 
+                                          Response    profession       sex       readtype
+                                          -----------------------------------------------
+                                              1       administrator    female    scifi   
+                                              2       administrator    female    spy     
+                                              3       administrator    male      scifi   
+                                              4       administrator    male      spy     
+                                              5       bellydancer      female    scifi   
+                                              6       bellydancer      female    spy     
+                                              7       bellydancer      male      scifi   
+                                              8       bellydancer      male      spy     
+                                              9       politician       female    scifi   
+                                             10       politician       female    spy     
+                                             11       politician       male      scifi   
+                                             12       politician       male      spy     
+
+
+                                                     Maximum Likelihood Analysis
+
+                                             Maximum likelihood computations converged.           
+
+
+                                              Maximum Likelihood Analysis of Variance
+ 
+                                         Source               DF   Chi-Square    Pr > ChiSq
+                                         --------------------------------------------------
+                                         profession            2         2.90        0.2348
+                                         sex                   1         0.03        0.8686
+                                         readtype              1        12.68        0.0004
+                                         profession*sex        2        22.79        <.0001
+
+                                         Likelihood Ratio      5         6.56        0.2557
+
+
+                                                           The SAS System                         09:28 Wednesday, April 6, 2011   3
+
+                                                        The CATMOD Procedure
+
+                                              Analysis of Maximum Likelihood Estimates
+ 
+                                                                          Standard        Chi-
+                        Parameter                              Estimate      Error      Square    Pr > ChiSq
+                        ------------------------------------------------------------------------------------
+                        profession     administrator             0.0526     0.1257        0.18        0.6753
+                                       bellydancer              -0.2169     0.1374        2.49        0.1144
+                        sex            female                    0.0149     0.0903        0.03        0.8686
+                        readtype       scifi                    -0.2989     0.0839       12.68        0.0004
+                        profession*sex administrator female     -0.5053     0.1257       16.17        <.0001
+                                       bellydancer female        0.6114     0.1374       19.82        <.0001
+
+
+                                     Maximum Likelihood Predicted Values for Response Functions
+ 
+                                            ------Observed------    ------Predicted-----
+                                Function                Standard                Standard
+                                 Number     Function       Error    Function       Error    Residual
+                                --------------------------------------------------------------------
+                                    1       -1.09861    0.516398    -1.29098    0.358028    0.192372
+                                    2       -0.40547    0.408248    -0.69315    0.316231    0.287682
+                                    3       -0.40547    0.408248    -0.31015    0.294137    -0.09531
+                                    4       0.693147    0.316228    0.287682    0.241526    0.405465
+                                    5       -0.40547    0.408248    -0.44369    0.300147    0.038221
+                                    6       0.510826    0.326599    0.154151     0.24881    0.356675
+                                    7       -1.09861    0.516398    -1.69645    0.401849    0.597837
+                                    8       -1.09861    0.516398    -1.09861    0.365104    -5.55E-8
+                                    9       -0.40547    0.408248    -0.78016    0.318617    0.374693
+                                   10       1.29E-16    0.365148    -0.18232    0.270805    0.182322
+                                   11       1.29E-16    0.365148    -0.59784    0.167874    0.597837
+
+
+                                       Maximum Likelihood Predicted Values for Probabilities
+ 
+                                                      --------Observed-------    -------Predicted-------
+                                                                     Standard                   Standard
+               profession       sex       readtype    Probability       Error    Probability       Error    Residual
+               -----------------------------------------------------------------------------------------------------
+               administrator    female    scifi            0.0323      0.0142         0.0343      0.0092      -0.002
+               administrator    female    spy              0.0645      0.0197         0.0624      0.0158      0.0021
+               administrator    male      scifi            0.0645      0.0197         0.0916      0.0159      -0.027
+               administrator    male      spy              0.1935      0.0317         0.1665      0.0247      0.0271
+               bellydancer      female    scifi            0.0645      0.0197         0.0801      0.0147      -0.016
+               bellydancer      female    spy              0.1613      0.0295         0.1457      0.0233      0.0156
+               bellydancer      male      scifi            0.0323      0.0142         0.0229      0.0074      0.0094
+               bellydancer      male      spy              0.0323      0.0142         0.0416       0.013      -0.009
+               politician       female    scifi            0.0645      0.0197         0.0572      0.0122      0.0073
+               politician       female    spy              0.0968      0.0237         0.1041        0.02      -0.007
+               politician       male      scifi            0.0968      0.0237         0.0687      0.0135      0.0281
+               politician       male      spy              0.0968      0.0237         0.1249      0.0218      -0.028

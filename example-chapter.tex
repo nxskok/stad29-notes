@@ -1,0 +1,228 @@
+
+\part{Chapter 9: Analysis of two-way tables}
+
+\begin{slide}{Comparing multiple proportions (\S 9.1)}
+  \begin{itemize}
+  \item 
+We have been stressing the need to do {\em comparative experiments}
+where possible. For instance: in type A people who have survived heart
+attacks, is it helpful to offer behavioral training as well as medical
+care?
+
+\item 290 patients randomized into 2 groups. Treatment group got behavioral training
+plus medical care, while control group got medical care only. Each person
+either suffered a 2nd heart attack or not.
+
+\item For two proportions, can use methods of \S 8.2; for more, need
+  something new. (Compare this example using two methods.)
+
+  \end{itemize}
+\end{slide}
+\begin{slide}{Contingency table}
+  \begin{itemize}
+  \item 
+Summarize results this way:
+
+\begin{tabular}{l|cc|c}
+\hline
+& 2nd attack & No 2nd attack & Total\\
+\hline
+Treatment & 17 & 123 & 140\\
+Control   & 29 & 121 & 150\\
+\hline
+Total & 46 & 244 & 290\\
+\hline
+\end{tabular}
+
+\item For instance, 123 patients were in treatment group and did not get a
+2nd heart attack. Layout called {\bf contingency table}.
+
+\item Research question: does treatment affect rate of 2nd heart attacks?
+
+  \end{itemize}
+\end{slide}
+\begin{slide}{Percentages}
+  \begin{itemize}
+  \item 
+Starting point: percentages. Depending on data, row/column/overall
+\%'s may be best. Here, want \% of 2nd attacks for treatment \&
+control groups.
+
+\item Treatment: $17/140\times 100\% = 12\%$, control: $29/150\times
+100\%=19\%$.  Fewer 2nd attacks in treatment group -- but could be
+just chance.
+
+  \end{itemize}
+\end{slide}
+
+\begin{slide}{Inference for two or more proportions (\S 9.2)}
+  \begin{itemize}
+  \item 
+Alternative hypothesis: treatment has some effect (treatment
+proportion of 2nd attacks different from control proportion). Null
+hyp.: proportions same.
+
+\item In example, expect more 2nd attacks in control group because 150
+patients vs.\ 140. This true even if treatment has no effect. But how
+many? 
+
+\item Idea: 46 of 290 patients (0.1586) had 2nd attack overall. So, if
+null hyp.\ true, expect $0.1586\times 140=22.21$ in treatment group,
+$0.1586 \times 150=23.79$ in control group.
+
+  \end{itemize}
+\end{slide}
+\begin{slide}{Expected counts}
+
+Work out expected numbers of patients without 2nd attacks in same way,
+get this:
+
+\scriptsize
+\begin{verbatim}
+Expected counts are printed below observed counts
+
+            C1       C2    Total
+    1       17      123      140
+         22.21   117.79
+
+    2       29      121      150
+         23.79   126.21
+
+Total       46      244      290
+\end{verbatim}
+\normalsize
+
+\end{slide}
+\begin{slide}{Chisquare test}
+
+Now want one number summarizing this: small if observed and expected all
+close, large otherwise. Right mathematics p.\ 610; use Minitab
+calculation:
+
+\scriptsize
+\begin{verbatim}
+Chi-Sq =  1.221 +  0.230 +
+          1.139 +  0.215 = 2.805
+DF = 1, P-Value = 0.094
+\end{verbatim}
+\normalsize
+
+At $\alpha=0.05$, can't reject null hyp. Evidence in data set not
+strong enough to conclude that treatment has effect.
+
+Procedure called a {\bf chisquare test}. 
+
+\end{slide}
+
+\begin{slide}{Doing it all in Minitab}
+  \begin{itemize}
+  \item 
+Calculations above were actually Minitab output. First step is to get
+table into Minitab. Just enter counts as laid out in table (without
+totals): 17 and 29 in column C1, 123 and 121 in column C2.
+
+\item Then: Stat, Tables, Chisquare Test. Select C1 and C2 as columns
+containing table; get output as above.
+
+  \end{itemize}
+\end{slide}
+
+\begin{slide}{Another example}
+
+Altruism defined as ``interest in welfare of others''. Questionnaire
+developed to measure altruism -- results low, medium, high. Students
+from different majors studied:
+
+\begin{tabular}{lcccc}
+\hline
+Major & Low & Medium & High\\
+\hline
+Agriculture & 5 & 27 & 35\\
+Family studies & 1 & 32 & 34\\
+Engineering & 12 & 129 & 94\\
+Education & 7 & 77 & 129\\
+Management & 3 & 44 & 28\\
+Science & 7 & 29 & 24\\
+Technology & 2 & 62 & 64\\
+\hline
+\end{tabular}
+
+Comparing many proportions. Analysis from Minitab (tidied):
+
+\end{slide}
+\begin{slide}{Expected counts}
+
+\footnotesize
+\begin{verbatim}
+Expected counts are printed below observed counts
+
+           Low   Medium     High    Total
+Agric        5       27       35       67
+          2.87    30.98    33.15
+Family       1       32       54       87
+          3.72    40.23    43.05
+Engin       12      129       94      235
+         10.05   108.67   116.28
+Educat       7       77      129      213
+          9.11    98.50   105.39
+Manage       3       44       28       75
+          3.21    34.68    37.11
+Science      7       29       24       60
+          2.57    27.75    29.69
+Techno       2       62       64      128
+          5.48    59.19    63.33
+Total       37      400      428      865
+\end{verbatim}
+\end{slide}
+\begin{slide}{Chisquare test}
+
+\begin{verbatim}
+Chi-Sq =  1.589 +  0.512 +  0.103 +
+          1.990 +  1.684 +  2.787 +
+          0.377 +  3.803 +  4.268 +
+          0.489 +  4.692 +  5.288 +
+          0.013 +  2.503 +  2.236 +
+          7.659 +  0.057 +  1.090 +
+          2.206 +  0.133 +  0.007 = 43.487
+DF = 12, P-Value = 0.000
+4 cells with expected counts less than 5.0
+\end{verbatim}
+\normalsize
+
+\begin{itemize}
+\item 
+P-value is small; reject null hyp. Definitely difference in
+proportions of low, medium, high among majors.
+
+\item How do majors differ? Compare observed and expected; something
+interesting happening where very different:
+
+\end{itemize}
+\end{slide}
+\begin{slide}{Why was $H_0$ rejected?}
+
+\begin{itemize}
+\item Science (row 6): more lows than expected.
+\item Education (row 4): more highs, fewer medium/low than expected.
+\item Engineering (row 3): fewer highs, more medium/low than expected.
+\end{itemize}
+According to questionnaire, education students more altruistic than
+average, science and engineering students less so.
+
+\end{slide}
+
+\begin{slide}{Summary}
+
+\begin{itemize}
+\item Often do comparative studies of two or more groups, yes/no type answers.
+\item Contingency table to display results; percents to summarize.
+\item Calculate expected frequencies;
+leads to chi-square test: null of all proportions same,
+  alternative not all same. Reject: conclude some differences among
+  proportions.
+\end{itemize}
+\end{slide}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "slides"
+%%% End: 

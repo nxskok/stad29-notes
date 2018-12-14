@@ -1,0 +1,312 @@
+\documentclass{article}
+
+\title{Missing values and modelling in R}
+\author{Ken Butler}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+In class today, we were working with the lung cancer data set from the
+\texttt{survival} package. This had some missing data in it:
+
+<<>>=
+library(survival)
+head(lung,10)
+@ 
+
+You might have been wondering why (a) I could fit models, but (b) why
+I could \emph{not} do \texttt{anova} and suchlike things (which I
+really ought to have done, from a data analysis point of view.)
+
+\section{Complete cases}
+
+An observation (row) of the data frame that has values for all the variables
+is called a \textbf{complete case}. Or, if there are any missing
+values anywhere along the row, it is \emph{not} a complete case.
+
+In the lung cancer data frame excerpt above, rows 1, 3 and 5 have
+missing values in them somewhere, but the other rows are all complete cases.
+
+R has a function called \texttt{complete.cases} that takes a data
+frame and returns \texttt{TRUE} if that row is a complete case and
+\texttt{FALSE} if it has any missing values anywhere. Here is the
+output from running \texttt{complete.cases} on the first 10 rows of
+our data frame:
+
+<<>>=
+v=complete.cases(lung)
+v[1:10]
+@
+
+Or, more precisely, of running it on the whole data frame and showing
+you the first ten values. Values 1, 3 and 5 are \texttt{FALSE},
+corresponding to those rows having missing values in them somewhere,
+and the other values are \texttt{TRUE}, meaning that those rows are
+complete cases with no missing values.
+
+When we fit a model, only the relevantly complete cases are used (I
+expand on this in a moment). The simplest situation is if the model has all
+the explanatory variables in it, like this:
+
+<<>>=
+attach(lung)
+resp=Surv(time,status==2)
+lung.1=coxph(resp~age+sex+ph.ecog+ph.karno+pat.karno+
+  meal.cal+wt.loss)
+summary(lung.1)
+@ 
+
+This uses 168 observations (as the output shows). This is how many
+complete cases there are:
+
+<<>>=
+table(v)
+@ 
+
+Oh, not quite the same. But I can explain that too. I explain that in a minute,
+but this is relevant in the meanwhile:
+
+<<>>=
+summary(lung)
+@ 
+
+Now, suppose I decide to take out \texttt{meal.cal} since that is
+nowhere near significant. I could go blindly like this, and wonder
+what happened:
+
+<<>>=
+lung.2=coxph(resp~age+sex+ph.ecog+ph.karno+pat.karno+wt.loss)
+anova(lung.2,lung.1)
+@ 
+
+The answer to this riddle is found by looking at the \texttt{summary}
+of our smaller model:
+
+<<>>=
+summary(lung.2)
+@ 
+
+The model \texttt{lung.2} without \texttt{meal.cal} is based on 210 observations, much
+more than the 168 observations on which \texttt{lung.1} was based. We
+can't very well compare two models fit to different data, and indeed
+\texttt{anova} won't let us do that (that was the error message).
+
+Why the big difference? Let's look at the top of the data frame again:
+
+<<>>=
+head(lung)
+@ 
+
+Take a look at rows 3 and 5. These observations are missing
+\texttt{meal.cal} but nothing else. So, as far as a model without
+\texttt{meal.cal} is concerned, these are now complete cases, because
+they have values for all the variables that feature in the model. That
+is what I meant by ``relevantly complete'': rows 3 and 5 (and
+evidently a lot of others) are complete cases as far as
+\texttt{lung.2} is concerned, which is why \texttt{lung.2} is based on
+a lot more observations than \texttt{lung.1}. If you look at the
+output to \texttt{summary(lung)} above (the summary of the data
+frame), you'll see that \texttt{meal.cal} has 47 missing
+observations. Some of these (though probably not many) are going to
+have other missing values as well (and therefore aren't in
+\texttt{lung.2} either), but most of them will have the
+\texttt{meal.cal} as the only missing value, and therefore they will
+be included in \texttt{lung.2} but not in \texttt{lung.1}.
+
+So why did I have 168 observations in \texttt{lung.1} but only 167
+complete cases? ``Relevantly complete'' is the answer here too. One
+observation has a missing value for \texttt{inst} but is otherwise
+complete. Since \texttt{inst} didn't feature in \texttt{lung.1}, this
+observation is a complete case for \texttt{lung.1}.
+
+This all explains my rather cavalier treatment of model-building in
+class. The only other way I could go is to deliberately remove the one
+least significant explanatory variable at a time, and that would have
+taken too long in class.
+
+\section{Using only the complete cases}
+
+The other option is to throw out all the observations with any missing
+values before you start. That way, you know that all your analyses are
+based on the same data set, and the issue of ``relevantly complete''
+is, um, irrelevant. If you do that, you might lose a lot of data off
+the top, but you have all the apparatus of model-building available to you.
+
+How to keep only the complete cases? Remember the function \texttt{complete.cases}?
+That was \texttt{TRUE} if the row was complete and \texttt{FALSE} if
+it had any missing values. We can use that to select only the rows
+without missings like this:
+
+<<>>=
+v=complete.cases(lung)
+lung.nom=lung[v,]
+head(lung.nom)
+@ 
+
+No missing values here (or, presumably, anywhere else in
+\texttt{lung.nom}). Note that the row numbers come from the
+\emph{original} data frame, rows 1, 3 and 5 of which must have had
+(and did have) missing values. \texttt{lung.nom} ought to have 167
+rows, since that's how many completely complete cases we had:
+
+<<>>=
+dim(lung.nom)
+@ 
+
+If you like \texttt{dplyr}, you can also pull out the complete cases
+that way. The smartest thing is to save the result of
+\texttt{complete.cases} \emph{inside} the data frame:
+
+<<>>=
+library(dplyr)
+lung %>% mutate(comp=complete.cases(lung)) %>% filter(comp) -> lung.nom
+dim(lung.nom)
+@ 
+
+The extra column is that \texttt{comp} I created, which will be
+completely \texttt{TRUE} in \texttt{lung.nom}.
+
+\section{Modelling with the complete cases}
+
+If we use the data frame \texttt{lung.nom} with no missing values, we
+have all the modelling machinery available to us. But we have to go
+back and start again:
+
+<<>>=
+detach(lung)
+attach(lung.nom)
+y=Surv(time,status==2)
+lung.nom.1=coxph(y~age+sex+ph.ecog+ph.karno+pat.karno+meal.cal+wt.loss)
+lung.nom.2=update(lung.nom.1,.~.-meal.cal)
+anova(lung.nom.2,lung.nom.1)
+@ 
+
+We can also use \texttt{drop1} to help us decide what should come out next:
+
+<<>>=
+drop1(lung.nom.2,test="Chisq")
+@ 
+
+It appears to be \texttt{age}.
+
+And if you are lazy (or efficient, depending on your point of view),
+you can do the whole elimination in one go:
+
+<<>>=
+step(lung.nom.1)
+@ 
+
+Following the process through, we eliminate \texttt{meal.cal} and then
+age, but stop there,
+leaving everything else in the model.
+
+This is based on AIC rather than tests, so it can leave some
+tangentially relevant variables in the model. 
+
+I think we should now go back and fit this model to the whole data
+set, so that we can take advantage of the relevantly-complete cases:
+
+<<>>=
+detach(lung.nom)
+lung.4=coxph(resp~sex+ph.ecog+ph.karno+pat.karno+wt.loss,data=lung)
+summary(lung.4)
+@ 
+
+We had to be careful to use the response variable \texttt{resp} that
+came from the \emph{original} data set, not the new one \texttt{y}
+that we created from only the complete cases.
+
+The result from \texttt{step} and the model \texttt{lung.4} won't be
+exactly the same, because they are based on different data, but the
+overall picture should be similar. In each case here, the two
+Karnofsky scores and weight loss were teetering on the brink of
+significance. 
+
+Also, predictions from
+\texttt{lung.4} ought to be better because they are based on more data.
+
+Talking of predictions, how can we do predictions with so many
+variables? I think we have to distinguish them by colours:
+
+<<>>=
+sexes=c(1,2)
+ph.ecogs=c(0,1)
+ph.karnos=c(75,82)
+pat.karnos=c(70,80)
+wt.losses=c(0,16)
+@ 
+
+We have so many variables, so I only picked two values (the quartiles) for each, to
+stop the ``newdata'' data frame from getting too big. As it is, it'll
+have $2^5=32$ rows, which is going to make for a very busy plot.
+
+<<>>=
+new=expand.grid(sex=sexes,ph.ecog=ph.ecogs,ph.karno=ph.karnos,
+  pat.karno=pat.karnos,wt.loss=wt.losses)
+pp=survfit(lung.4,new)
+plot(pp,col=1:32)
+@ 
+
+Pretty, but very uninformative (there are too many colours to tell
+apart). I can't even imagine getting a 32-item legend on there.
+
+Or we go back to the summary of \texttt{lung.4}:
+
+<<>>=
+summary(lung.4)$coefficients
+@ 
+
+What is associated with survival (not dying) is a higher value of
+\texttt{sex} (being female), a lower value of \texttt{ph.ecog} (which
+makes sense), a lower value of \texttt{ph.karno} (which makes no sense
+since higher is supposed to be better), a higher value of
+\texttt{pat.karno}, as expected, and oddly a \emph{higher} value of
+\texttt{wt.loss}. 
+
+Am I brave enough to try to do this in \texttt{ggplot}? I'm going to
+use my function \texttt{ggsurvplot}\footnote{One of the first things
+  you learn as a programmer is to re-use what you did before rather
+  than reinventing the wheel.} from my solutions to assignment 4
+(question 5; see there for what this function does):
+
+<<>>=
+ggsurvplot=function(s,new) {
+  # s is output from survfit 
+  # new is combos of values that were predicted for
+  newnames=do.call(paste, c(new, sep="."))
+  v=data.frame(time=s$time,surv=s$surv)
+  names(v)=c("time",newnames)
+  p=gather(v,combo,surv,-time)
+  ggplot(p,aes(x=time,y=surv,colour=combo))+
+    geom_point()+geom_line()
+}
+@
+
+and then run it:
+
+<<>>=
+library(tidyr)
+library(ggplot2)
+ggsurvplot(pp,new)
+@ 
+
+Good luck picking out the colour of the best combination! The labels
+on the legend are the values of the five variables in the order that we put them in
+\texttt{new} (that is, the same order as in the
+\texttt{expand.grid}). I think the best one ought to be
+\texttt{2.0.75.80.16} (those are respectively high, low, low, high,
+high of the values we chose for those five variables). Which is
+certainly one of those blue ones, but I'm not sure whether it's
+\emph{that} one.
+
+Qualitatively, the best survival curves are the blue and purple ones
+(females with the best ECOG score of zero), and the worst ones are the
+green ones (males with the worse ECOG score of 1). The better-ECOG
+males (orange) and the worse-ECOG females (pink) are all  mixed up in
+the middle.
+
+\end{document}
+

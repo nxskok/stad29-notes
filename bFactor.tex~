@@ -1,0 +1,1384 @@
+\section{Exploratory factor analysis}
+
+
+\begin{frame}[fragile]{Principal components and factor analysis}
+
+  \begin{itemize}
+  \item Principal components: 
+    \begin{itemize}
+    \item Purely mathematical.
+    \item Find eigenvalues, eigenvectors of correlation matrix.
+    \item No testing whether observed components reproducible, or even probability model behind it.
+    \end{itemize}
+  \item Factor analysis: 
+    \begin{itemize}
+    \item some way towards fixing this (confirmatory factor analysis, later, a long way).
+    \item In factor analysis, each variable modelled as: ``common factor'' (eg. verbal ability) and ``specific factor'' (left over).
+    \item SAS: choose the common factors to ``best'' reproduce pattern seen in correlation matrix.
+    \item Iterative procedure, different answer from principal components.
+    \end{itemize}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example}
+
+  \begin{itemize}
+  \item 
+145 children given 5 tests, called PARA, SENT, WORD, ADD and DOTS. 3 linguistic tasks (paragraph comprehension, sentence completion  and word meaning), 2 mathematical ones (addition and counting dots).
+\item Correlation matrix of scores on the tests:
+
+\begin{verbatim}
+para 1     0.722 0.714 0.203 0.095
+sent 0.722 1     0.685 0.246 0.181
+word 0.714 0.685 1     0.170 0.113
+add  0.203 0.246 0.170 1     0.585
+dots 0.095 0.181 0.113 0.585 1
+\end{verbatim}
+
+\item Is there small number of underlying ``constructs'' (unobservable) that explains this pattern of correlations?
+
+
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{To start: principal components}
+
+Using correlation matrix:
+
+\begin{Schunk}
+\begin{Sinput}
+> kids=read.table("rex2.txt",header=T)
+> km=as.matrix(kids)
+> kids.pc=princomp(covmat=km)
+> plot(kids.pc$sdev^2,type="b")
+\end{Sinput}
+\end{Schunk}
+
+Obtained scree plot to figure number of components/factors.
+  
+\end{frame}
+
+\begin{frame}{Scree plot}
+  
+  \includegraphics[height=\textheight]{bFactor-kids-scree}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Principal component results}
+  
+  \begin{itemize}
+  \item Need 2 components.
+  \item Loadings:
+{\small
+\begin{Schunk}
+\begin{Sinput}
+> kids.pc$loadings
+\end{Sinput}
+\begin{Soutput}
+Loadings:
+     Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
+para -0.534 -0.245 -0.114         0.795
+sent -0.542 -0.164        -0.660 -0.489
+word -0.523 -0.247  0.144  0.738 -0.316
+add  -0.297  0.627 -0.707              
+dots -0.241  0.678  0.680         0.143
+
+               Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
+SS loadings       1.0    1.0    1.0    1.0    1.0
+Proportion Var    0.2    0.2    0.2    0.2    0.2
+Cumulative Var    0.2    0.4    0.6    0.8    1.0
+\end{Soutput}
+\end{Schunk}
+}
+%$
+\item First component has a bit of everything, though especially the
+  first three tests.
+\item Second component rather more clearly \texttt{add} and \texttt{dots}.
+\item No scores, plots since no actual data.
+  
+  \end{itemize}
+  
+  
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Factor analysis}
+  
+  \begin{itemize}
+  \item Specify number of factors first, get solution with exactly
+    that many factors.
+  \item Includes hypothesis test, need to specify how many children
+    wrote the tests.
+  \item Works from correlation matrix via \texttt{covmat} or actual
+    data, like \texttt{princomp}.
+  \item Introduces extra feature, \emph{rotation}, to make
+    interpretation of loadings (factor-variable relation) easier.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Factor analysis for the kids data}
+
+  \begin{itemize}
+  \item Create ``covariance list'' to include number of children who
+    wrote the tests (first two lines).
+  \item Feed this into \texttt{factanal}, specifying how many factors (2).
+  \end{itemize}
+  
+\begin{Schunk}
+\begin{Sinput}
+> km$cov=km
+> km$n.obs=145
+> kids.f2=factanal(factors=2,covmat=km)
+\end{Sinput}
+\end{Schunk}
+
+\end{frame}
+
+\begin{frame}[fragile]{Uniquenesses}
+
+\begin{Schunk}
+\begin{Sinput}
+> kids.f2$uniquenesses
+\end{Sinput}
+\begin{Soutput}
+     para      sent      word       add      dots 
+0.2424457 0.2997349 0.3272312 0.5743568 0.1554076 
+\end{Soutput}
+\end{Schunk}
+%$
+
+  \begin{itemize}
+  \item Uniquenesses say how ``unique'' a variable is. Small
+    uniqueness means that the variable is summarized by a factor (good).
+  \item Mildly worried by how large \texttt{add}'s uniqueness is.
+  \item Also see ``communality'' for this, where \emph{large} is good.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Loadings}
+
+  \begin{minipage}[t]{0.55\linewidth}
+\begin{Schunk}
+\begin{Sinput}
+> kids.f2$loadings
+\end{Sinput}
+\begin{Soutput}
+Loadings:
+     Factor1 Factor2
+para 0.867          
+sent 0.820   0.166  
+word 0.816          
+add  0.167   0.631  
+dots         0.918  
+
+               Factor1 Factor2
+SS loadings      2.119   1.282
+Proportion Var   0.424   0.256
+Cumulative Var   0.424   0.680
+\end{Soutput}
+\end{Schunk}
+%$
+  \end{minipage}
+  \begin{minipage}[t]{0.4\linewidth}
+  \begin{itemize}
+  \item Loadings show how each factor depends on variables. Blanks
+    indicate ``small'', less than 0.1.
+  \item Factor 1 clearly the ``linguistic'' tasks, factor 2 clearly
+    the ``mathematical'' ones.
+  \item Two factors together explain 68\% of variability (like
+    regression R-squared).
+  \end{itemize}    
+  \end{minipage}
+\end{frame}
+
+
+\begin{frame}[fragile]{Are 2 factors enough?}
+  
+\begin{Schunk}
+\begin{Sinput}
+> kids.f2$STATISTIC
+\end{Sinput}
+\begin{Soutput}
+objective 
+0.5810578 
+\end{Soutput}
+\begin{Sinput}
+> kids.f2$dof
+\end{Sinput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
+\begin{Sinput}
+> kids.f2$PVAL
+\end{Sinput}
+\begin{Soutput}
+objective 
+ 0.445898 
+\end{Soutput}
+\end{Schunk}
+
+P-value not small, so 2 factors OK.
+  
+\end{frame}
+
+\begin{frame}[fragile]{1 factor}
+
+\begin{Schunk}
+\begin{Sinput}
+> kids.f1=factanal(factors=1,covmat=km)
+> kids.f1$STATISTIC
+\end{Sinput}
+\begin{Soutput}
+objective 
+ 58.16534 
+\end{Soutput}
+\begin{Sinput}
+> kids.f1$dof
+\end{Sinput}
+\begin{Soutput}
+[1] 5
+\end{Soutput}
+\begin{Sinput}
+> kids.f1$PVAL
+\end{Sinput}
+\begin{Soutput}
+   objective 
+2.907856e-11 
+\end{Soutput}
+\end{Schunk}
+
+1 factor rejected (P-value small). Definitely need more than 1.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track running records revisited}
+  
+    \includegraphics[height=\textheight]{bPrincomp-biplot}
+
+\end{frame}
+
+\begin{frame}{Benefit of rotation}
+  
+  \begin{itemize}
+  \item 100m and marathon arrows almost perpendicular, but components
+    don't match anything much:
+    \begin{itemize}
+    \item sprinting: top left and bottom right
+    \item distance running: bottom left and top right.
+    \end{itemize}
+  \item Can we arrange things so that components (factors) correspond
+    to something meaningful?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track records by factor analysis}
+
+  Obtain factor scores (have actual data) and use them to make biplot:
+  
+\begin{Schunk}
+\begin{Sinput}
+> track=read.table("men_track_field.txt",header=T)
+> track.f=factanal(track[,-9],2,scores="r")
+> biplot(track.f$scores,track.f$loadings,xlabs=track[,9])
+\end{Sinput}
+\end{Schunk}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Track data biplot}
+  \includegraphics[height=\textheight]{bFactor-track-factor-biplot}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item This time 100m ``up'' (factor 2), marathon ``right'' (factor 1).
+  \item Countries most negative on factor 2 good at sprinting.
+  \item Countries most negative on factor 1 good at distance running.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Which countries are these?}
+  
+\begin{Schunk}
+\begin{Sinput}
+> good.sprint=track.f$scores[,2]<(-1)
+> track[good.sprint,9]
+\end{Sinput}
+\begin{Soutput}
+[1] bm dr uk it us ru
+55 Levels: ar at au be bm br bu ca ch ck cl cn co cr cz dee dew dk dr es ... ws
+\end{Soutput}
+\begin{Sinput}
+> good.distance=track.f$scores[,1]<(-0.8)
+> track[good.distance,9]
+\end{Sinput}
+\begin{Soutput}
+[1] fi ir ke mx nl nz no pt rm
+55 Levels: ar at au be bm br bu ca ch ck cl cn co cr cz dee dew dk dr es ... ws
+\end{Soutput}
+\end{Schunk}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{A bigger example: BEM sex role inventory}
+
+  \begin{itemize}
+  \item 369 women asked to rate themselves on 44 traits, like ``self-reliant'' or ``shy''.
+  \item Rating 1 ``never or almost never true of me'' to 7 ``always or almost always true of me''.
+  \item 44 personality traits is a lot. Can we find a smaller number of factors that capture aspects of personality?
+  \item The whole BEM sex role inventory on next page.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{The whole inventory}
+
+{\centering
+\includegraphics[width=4.5in]{bem}
+
+\end{frame}
+
+\begin{frame}[fragile]{Some of the data, and making a scree plot}
+
+  {\footnotesize
+\begin{Schunk}
+\begin{Sinput}
+> bem=read.table("factor.txt",header=T)
+> bem[1:10,1:9]
+\end{Sinput}
+\begin{Soutput}
+   subno helpful reliant defbel yielding cheerful indpt athlet shy
+1      1       7       7      5        5        7     7      7   1
+2      2       5       6      6        6        2     3      3   3
+3      3       7       6      4        4        5     5      2   3
+4      4       6       6      7        4        6     6      3   4
+5      5       6       6      7        4        7     7      7   2
+6      7       5       6      7        4        6     6      2   4
+7      8       6       4      6        6        6     3      1   3
+8      9       7       6      7        5        6     7      5   2
+9     10       7       6      6        4        4     5      2   2
+10    11       7       4      7        4        7     5      2   1
+\end{Soutput}
+\begin{Sinput}
+> bem.pc=princomp(bem[,-1],cor=T)
+> plot(bem.pc$sdev^2,type="b")
+> abline(h=1,lty="dashed")
+\end{Sinput}
+\end{Schunk}
+}
+%$
+\end{frame}
+
+\begin{frame}[fragile]{The scree plot}
+  
+  \includegraphics[height=\textheight]{bFactor-bem-scree}
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item No obvious elbow.
+  \item \emph{Lots} of eigenvalues bigger than 1.
+  \item Zoom in on scree plot to search for elbow, putting in 1 line again:
+\begin{Schunk}
+\begin{Sinput}
+> plot(bem.pc$sdev^2,type="b",xlim=c(0,10))
+> abline(h=1,lty="dashed")
+\end{Sinput}
+\end{Schunk}
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{Scree plot mark 2}
+  
+  \begin{minipage}[t]{0.8\linewidth}
+  \includegraphics[height=\textheight]{bFactor-bem-scree-two}
+  \end{minipage}
+  \begin{minipage}[t]{0.18\linewidth}
+    Apparent elbow at 3, suggests 2 components/factors.
+  \end{minipage}
+  
+  
+\end{frame}
+
+\begin{frame}[fragile]{but is 2 really good?}
+  
+  {\footnotesize
+\begin{Schunk}
+\begin{Sinput}
+> summary(bem.pc)
+\end{Sinput}
+\begin{Soutput}
+Importance of components:
+                          Comp.1    Comp.2     Comp.3     Comp.4     Comp.5
+Standard deviation     2.7444993 2.2405789 1.55049106 1.43886350 1.30318840
+Proportion of Variance 0.1711881 0.1140953 0.05463688 0.04705291 0.03859773
+Cumulative Proportion  0.1711881 0.2852834 0.33992029 0.38697320 0.42557093
+                           Comp.6     Comp.7     Comp.8     Comp.9    Comp.10
+Standard deviation     1.18837867 1.15919129 1.07838912 1.07120568 1.04901318
+Proportion of Variance 0.03209645 0.03053919 0.02643007 0.02607913 0.02500974
+Cumulative Proportion  0.45766738 0.48820657 0.51463664 0.54071577 0.56572551
+                          Comp.11    Comp.12    Comp.13    Comp.14   Comp.15
+Standard deviation     1.03848656 1.00152287 0.97753974 0.95697572 0.9287543
+Proportion of Variance 0.02451033 0.02279655 0.02171782 0.02081369 0.0196042
+Cumulative Proportion  0.59023584 0.61303238 0.63475020 0.65556390 0.6751681
+                          Comp.16    Comp.17   Comp.18    Comp.19    Comp.20
+Standard deviation     0.92262649 0.90585705 0.8788668 0.86757525 0.84269120
+Proportion of Variance 0.01934636 0.01864948 0.0175547 0.01710652 0.01613928
+Cumulative Proportion  0.69451445 0.71316392 0.7307186 0.74782514 0.76396443
+                          Comp.21    Comp.22    Comp.23    Comp.24    Comp.25
+Standard deviation     0.83124925 0.80564654 0.78975423 0.78100835 0.77852606
+Proportion of Variance 0.01570398 0.01475151 0.01417527 0.01386305 0.01377506
+Cumulative Proportion  0.77966841 0.79441992 0.80859519 0.82245823 0.83623330
+                          Comp.26    Comp.27    Comp.28    Comp.29    Comp.30
+Standard deviation     0.74969868 0.74137885 0.72343693 0.71457305 0.70358645
+Proportion of Variance 0.01277382 0.01249188 0.01189457 0.01160488 0.01125077
+Cumulative Proportion  0.84900712 0.86149899 0.87339356 0.88499844 0.89624921
+                          Comp.31     Comp.32     Comp.33    Comp.34
+Standard deviation     0.69022738 0.654861232 0.640339974 0.63179848
+Proportion of Variance 0.01082759 0.009746437 0.009318984 0.00907203
+Cumulative Proportion  0.90707680 0.916823235 0.926142219 0.93521425
+                           Comp.35     Comp.36     Comp.37     Comp.38
+Standard deviation     0.616621295 0.602404917 0.570025368 0.560881809
+Proportion of Variance 0.008641405 0.008247538 0.007384748 0.007149736
+Cumulative Proportion  0.943855654 0.952103192 0.959487940 0.966637677
+                           Comp.39     Comp.40     Comp.41     Comp.42
+Standard deviation     0.538149460 0.530277613 0.512370708 0.505662309
+Proportion of Variance 0.006581928 0.006390781 0.005966449 0.005811236
+Cumulative Proportion  0.973219605 0.979610386 0.985576834 0.991388070
+                           Comp.43     Comp.44
+Standard deviation     0.480413465 0.384873772
+Proportion of Variance 0.005245389 0.003366541
+Cumulative Proportion  0.996633459 1.000000000
+\end{Soutput}
+\end{Schunk}
+}
+
+\end{frame}[fragile]
+
+\begin{itemize}
+\item Want overall fraction of variance explained (``cumulative
+  proportion'') to be reasonably high.
+\item 56\% (10 factors) not!
+\item Have to live with that!
+\item Look at biplot:
+\begin{Schunk}
+\begin{Sinput}
+> biplot(bem.pc)
+\end{Sinput}
+\end{Schunk}
+\end{itemize}
+
+\begin{frame}[fragile]{Biplot version 1}
+  \includegraphics[height=0.8\textheight]{bFactor-bem-biplot}
+  
+  Busy! Shrink individuals (1st thing in \texttt{cex}), variables (2nd):
+\begin{Schunk}
+\begin{Sinput}
+> biplot(bem.pc,cex=c(0.25,0.5))
+\end{Sinput}
+\end{Schunk}
+\end{frame}
+
+\begin{frame}[fragile]{Comments}
+  
+  \begin{itemize}
+  \item Ignore individuals for now.
+  \item Most variables point to 10 o'clock or 7 o'clock.
+  \item Suggests factor analysis wih rotation will get interpretable
+    factors (rotate to 6 o'clock and 9 o'clock, for example).
+  \item Try for 2-factor solution (rough interpretation, will be bad):
+\begin{Schunk}
+\begin{Sinput}
+> bem.2=factanal(bem[,-1],factors=2)
+\end{Sinput}
+\end{Schunk}
+\item Show output in pieces (just print \texttt{bem.2} to see all of it).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Uniquenesses}
+  
+\begin{Schunk}
+\begin{Sinput}
+> bem.2$uniquenesses
+\end{Sinput}
+\begin{Soutput}
+  helpful   reliant    defbel  yielding  cheerful     indpt    athlet       shy 
+0.7598223 0.7808058 0.7748448 0.8688473 0.8394916 0.7282742 0.9229702 0.8239496 
+   assert   strpers  forceful    affect   flatter     loyal    analyt  feminine 
+0.6329347 0.5679398 0.5631857 0.6616625 0.9409500 0.8035264 0.8968744 0.8829927 
+ sympathy     moody  sensitiv  undstand   compass  leaderab    soothe      risk 
+0.7231450 0.9730607 0.8018851 0.6194392 0.5937073 0.4091894 0.6596103 0.7789761 
+   decide  selfsuff  conscien  dominant  masculin     stand     happy  softspok 
+0.6938578 0.7210246 0.7974820 0.4942909 0.8453368 0.6024001 0.8008966 0.8339058 
+     warm  truthful    tender  gullible   leadact  childlik   individ  foullang 
+0.4764762 0.8889983 0.4928919 0.9583435 0.4166153 0.9800360 0.7941998 0.9821662 
+  lovchil   compete  ambitiou    gentle 
+0.8924392 0.7942910 0.8101599 0.5064551 
+\end{Soutput}
+\end{Schunk}
+
+\begin{itemize}
+\item Mostly high or very high (bad).
+\item Some smaller, eg.:
+  \begin{itemize}
+  \item Leadership ability (0.410)
+  \item Acts like leader (0.419)
+  \item Warm (0.476)
+  \item Tender (0.493)
+  \end{itemize}
+\item Smaller uniquenesses captured by one of our two factors.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Reading a SAS data set}
+
+  \begin{itemize}
+  \item Data come to us as a SAS data set (somebody else has read the numbers in from a file and created a SAS data set, which they saved).
+  \item First step is to specify the \verb-libname-, where the data set file is, which is usually in same folder as code. This can be given any name, like \verb-fred-, resulting in 
+
+\begin{verbatim}
+libname fred '.';
+\end{verbatim}
+
+  \item Then data step only needs to contain one line (no infile, input etc):
+
+\begin{verbatim}
+data x;
+  set fred.datasetname;
+\end{verbatim}
+
+links our SAS data set \verb-x- to SAS data set file \verb-datasetname- in current directory (folder).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{More; number of factors}
+
+\begin{itemize}
+\item
+In our case, data in file \verb-factor.sas7bdat-, so code as
+below. Also, data step can contain other things like defining new
+variables, or \texttt{drop} variables we don't need.
+
+\begin{verbatim}
+libname sasdata '.';
+
+data bem;
+  set sasdata.factor;
+
+\end{verbatim}
+
+  \item Run PROC FACTOR with scree plot, look at eigenvalues.
+  \item No rotation yet, since interpretation later. 
+
+\begin{verbatim}
+proc factor scree method=prinit;
+\end{verbatim}
+  \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot}
+
+{\tiny
+\begin{verbatim}
+Scree Plot of Eigenvalues
+      |
+  7.5 +     1
+      |
+E     |
+i     |
+g     |
+e 5.0 +      2
+n     |
+v     |
+a     |
+l     |
+u 2.5 +        3
+e     |         4
+s     |          567
+      |              89012 34567 89
+      |                            012 34567 89012 34567 89012
+  0.0 +                                                        34
+      |
+      -----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----
+           0     5    10    15    20    25    30    35    40    45
+
+                                   Number
+
+\end{verbatim}
+}
+
+Scale makes it hard to tell, but might be an elbow at 5, favouring 4 factors.
+  
+\end{frame}
+
+\begin{frame}[fragile]{The eigenvalues}
+
+{\scriptsize
+\begin{verbatim}
+           Preliminary Eigenvalues: Total = 44  Average = 1
+ 
+             Eigenvalue    Difference    Proportion    Cumulative
+
+        1    7.53227628    2.51208242        0.1712        0.1712
+        2    5.02019387    2.61617135        0.1141        0.2853
+        3    2.40402251    0.33369433        0.0546        0.3399
+        4    2.07032818    0.37202817        0.0471        0.3870
+        5    1.69830001    0.28605615        0.0386        0.4256
+        6    1.41224387    0.06851943        0.0321        0.4577
+        7    1.34372444    0.18080134        0.0305        0.4882
+        8    1.16292310    0.01544149        0.0264        0.5146
+        9    1.14748161    0.04705296        0.0261        0.5407
+       10    1.10042865    0.02197431        0.0250        0.5657
+       11    1.07845434    0.07540628        0.0245        0.5902
+       12    1.00304806    0.04746411        0.0228        0.6130
+       13    0.95558395    0.03978141        0.0217        0.6348
+       14    0.91580253    0.05321790        0.0208        0.6556
+       15    0.86258464    0.01134500        0.0196        0.6752
+       16    0.85123963    0.03066264        0.0193        0.6945
+       ...
+       43    0.23079710    0.08266928        0.0052        0.9966
+       44    0.14812782                      0.0034        1.0000
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{Interpreting eigenvalues}
+
+\begin{itemize}
+\item 
+No ``obvious'' gaps -- maybe first 2 eigenvalues bigger than others (but then only 28.5\% of variability explained).
+\item Scree plot said 4 eigenvalues before ``elbow''.
+\item 12 eigenvalues $>1$, even then only 61.3\% of variability explained.
+\item Personality is complicated, multidimensional thing.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Extract 4 factors for interpretation}
+
+  \begin{itemize}
+  \item Specify to extract 4 factors.
+  \item Aim for interpretation of them: rotation (varimax).
+  \item Plot factor scores for first 2.
+  \item Code:
+
+\begin{verbatim}
+proc factor method=prinit n=4 rotate=varimax out=fred;
+
+goptions reset=all;
+symbol1 pointlabel=('#subno');
+        
+proc gplot data=fred;
+  plot Factor2*Factor1;
+
+\end{verbatim}
+
+
+  \item Make plot of factor scores labelled by subject numbers.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Rotated factor pattern}
+
+
+{\scriptsize
+\begin{tabular}{lrrrr}
+              &  Factor1   &    Factor2   &      Factor3  &     Factor4 \\
+\hline
+ HELPFUL      &  0.26184   &    0.26300   &      0.27923  &     0.20967 \\
+ RELIANT      &  0.36213   &    0.07112   &      0.11709  &     {\bf 0.43997} \\
+ DEFBEL       &  {\bf 0.42138}   &    0.01991   &      0.27629  &     0.07063 \\
+ YIELDING     & -0.14990   &    0.31860   &      0.15308  &     0.04241 \\
+ CHEERFUL     &  0.14162   &    {\bf 0.50944}   &      0.02272  &     0.11443 \\
+ INDPT        &  {\bf 0.44735}   &    0.00272   &      0.01255  & {\bf 0.43723} \\
+ ATHLET       &  0.30056   &    0.22166   &     -0.10326  &    -0.03315 \\
+ SHY          & {\bf -0.40567}   &   -0.07819   &     -0.04059  &    -0.05705 \\
+ ASSERT       &  {\bf 0.63003}   &   -0.04904   &      0.12778  &    -0.02520 \\
+ STRPERS      &  {\bf 0.70736}   &    0.00870   &      0.05617  &    -0.07512 \\
+ FORCEFUL     &  {\bf 0.67282}   &   -0.18610   &      0.04465  &    -0.03587 \\
+ AFFECT       &  0.25423   &   {\bf 0.47711}   &      0.32397  &    -0.30032 \\
+ FLATTER      &  0.18401   &    0.26908   &      0.06747  &    -0.30375 \\
+ LOYAL        &  0.17038   &    0.31797   &      0.27964  &    -0.07210 \\
+ ANALYT       &  0.28690   &   -0.00555   &      0.19432  &     0.05692 \\
+\hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]{More}
+
+{\scriptsize
+\begin{tabular}{lrrrr}
+\hline
+ FEMININE     &  0.06328   &    0.27971   &      0.18228  &     0.15442 \\
+ SYMPATHY     & -0.02104   &    0.13347   &    {\bf  0.65757}  &    -0.00735 \\
+ MOODY        &  0.05025   &   -0.32997   &      0.11292  &    -0.34756 \\
+ SENSITIV     &  0.08165   &    0.04258   &    {\bf  0.59779}  &     0.06167 \\
+ UNDSTAND     &  0.01071   &    0.22379   &    {\bf  0.68323}  &     0.14200 \\
+ COMPASS      &  0.05335   &    0.18929   &    {\bf  0.75108}  &     0.04977 \\
+ LEADERAB     &  {\bf 0.70626}   &    0.04234   &      0.08985  &     0.20489 \\
+ SOOTHE       &  0.03670   &    0.31150   &   {\bf   0.53622}  &    -0.05341 \\
+ RISK         &  {\bf 0.45177}   &    0.14371   &      0.09032  &     0.02003 \\
+ DECIDE       &  {\bf 0.47222}   &    0.10438   &      0.06711  &     0.35742 \\
+ SELFSUFF     &  {\bf 0.39617}   &    0.10659   &      0.08957  &   {\bf  0.63085} \\
+ CONSCIEN     &  0.21155   &    0.16877   &      0.28705  &   {\bf  0.43193} \\
+ DOMINANT     &  {\bf 0.67958}   &   -0.26115   &     -0.05550  &     0.02484 \\
+ MASCULIN     &  0.30166   &   -0.29009   &     -0.09734  &    -0.06293 \\
+ STAND        &  {\bf 0.58910}   &    0.03865   &      0.22935  &     0.14560 \\
+ HAPPY        &  0.11130   &  {\bf  0.62439}   &     -0.00707  &     0.12417 \\
+\hline
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]{More}
+
+{\scriptsize
+\begin{tabular}{lrrrr}
+\hline
+ SOFTSPOK     & -0.30162   &    0.30583   &      0.13379  &     0.22252 \\
+ WARM         &  0.09721   &  {\bf  0.61767}   &   {\bf   0.39400}  &    -0.12470 \\
+ TRUTHFUL     &  0.08921   &    0.20685   &      0.23252  &     0.07630 \\
+ TENDER       &  0.07217   &  {\bf  0.60209}   &      0.37809  &    -0.10875 \\
+ GULLIBLE     & -0.07654   &    0.14233   &      0.04295  &    -0.36485 \\
+ LEADACT      &  {\bf 0.71462}   &    0.00697   &     -0.02843  &     0.17498 \\
+ CHILDLIK     &  0.00468   &   -0.07610   &     -0.07340  &  {\bf  -0.40445} \\
+ INDIV        &  {\bf 0.43371}   &    0.10224   &      0.03320  &     0.18009 \\
+ FOULLANG     & -0.00735   &    0.16780   &      0.01744  &     0.03762 \\
+ LOVECHIL     &  0.00090   &    0.30809   &      0.13968  &    -0.09332 \\
+ COMPETE      &  {\bf 0.50472}   &    0.19757   &     -0.11419  &    -0.06369 \\
+ AMBITIOU     &  {\bf 0.41041}   &    0.18988   &      0.00370  &     0.11983 \\
+ GENTLE       & -0.02111   &  {\bf  0.61269}   &      0.35327  &    -0.03461 \\
+\hline
+\end{tabular}
+}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interpretation}
+
+  \begin{itemize}
+  \item I used 0.40 (or close) as cutoff.
+  \item Factor 1: defends own beliefs, independent, not-shy, assertive, strong personality, forceful, has leadership ability, takes risks, is decisive, self-sufficient, dominant, willing to take a stand.
+  \item Factor 2: cheerful, affectionate, happy, warm, tender, gentle.
+  \item Factor 3: sympathetic, sensitive, understanding, compassionate, soothes hurt feelings, warm.
+  \item Factor 4: self-reliant, independent, self-sufficient, conscientious, not-childlike.
+  \item Decide for yourself what traits in each factor have in common!
+  \item Some traits appear in more than one factor, some in none.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Communalities}
+
+{\scriptsize
+\begin{verbatim}
+   HELPFUL     RELIANT      DEFBEL    YIELDING    CHEERFUL       INDPT
+0.25966592  0.34347676  0.25927866  0.14921084  0.29319613  0.39145262
+
+    ATHLET         SHY      ASSERT     STRPERS    FORCEFUL      AFFECT
+0.15123194  0.17558566  0.41630723  0.50923469  0.49059572  0.48740930
+
+   FLATTER       LOYAL      ANALYT    FEMININE    SYMPATHY       MOODY
+0.20308368  0.21353167  0.12334064  0.13931465  0.45071468  0.24495805
+
+  SENSITIV    UNDSTAND     COMPASS    LEADERAB      SOOTHE        RISK
+0.36963797  0.53717166  0.60527481  0.55064036  0.38876534  0.23331239
+
+    DECIDE    SELFSUFF    CONSCIEN    DOMINANT    MASCULIN       STAND
+0.36614500  0.57430213  0.34219775  0.53373041  0.18858344  0.42233319
+
+     HAPPY    SOFTSPOK        WARM    TRUTHFUL      TENDER    GULLIBLE
+0.41771222  0.25191883  0.56174959  0.11063193  0.52249779  0.16107602
+
+   LEADACT    CHILDLIK       INDIV    FOULLANG    LOVECHIL     COMPETE
+0.54215483  0.17477789  0.23208669  0.02992972  0.12313782  0.31086844
+
+                        AMBITIOU          GENTLE
+                      0.21885749      0.50182441
+\end{verbatim}
+
+}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Interpreting communalities}
+
+  \begin{itemize}
+  \item Low communality means variable not related to any factor.
+  \item Eg.\ yielding, athletic, shy, feminine, masculine, truthful, gullible, childlike, uses foul language (very low), loves children.
+  \item Large number of low communalities means that more factors necessary to describe data well.
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Factor scores plot}
+
+\includegraphics[width=4in]{factor-scores}
+
+Unusual subjects: 474, 457, 528.
+  
+\end{frame}
+
+\begin{frame}[fragile]{Looking at unusual subjects}
+
+Create new data set by picking out these subjects, and look at:
+
+\begin{verbatim}
+data fred2;
+    set fred;
+    if subno=474 or subno=457 or subno=528;
+
+proc print;
+\end{verbatim}
+
+{\scriptsize
+\begin{verbatim}
+                Y C           F         F S   S U   L
+          H R   I H         S O   F     E Y   E N C E
+          E E D E E   A   A T R A L   A M M   N D O A S
+       S  L L E L E I T   S R C F A L N I P M S S M D O
+       U  P I F D R N H   S P E F T O A N A O I T P E O R
+    O  B  F A B I F D L S E E F E T Y L I T O T A A R T I
+    b  N  U N E N U P E H R R U C E A Y N H D I N S A H S
+    s  O  L T L G L T T Y T S L T R L T E Y Y V D S B E K
+
+    1 457 6 4 1 7 5 7 7 7 3 1 1 4 1 7 4 4 7 3 7 7 6 1 7 5
+    2 474 6 6 6 6 5 7 5 2 3 1 3 6 6 6 6 7 7 7 7 7 7 5 7 3
+    3 528 6 7 3 6 5 6 5 5 3 4 3 4 3 6 5 3 3 3 3 3 3 3 3 2
+
+\end{verbatim}
+
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{The unusual individuals}
+
+
+{\scriptsize
+\begin{verbatim}
+        S C D M     S   T   G   C   F L   A            _
+        E O O A     O   R   U L H   O O C M            O
+      D L N M S     F   U T L E I   U V O B G          B
+      E F S I C S H T   T E L A L I L E M I E          S
+      C S C N U T A S W H N I D D N L C P T N          T
+    O I U I A L A P P A F D B A L D A H E I T          A
+    b D F E N I N P O R U E L C I I N I T O L          T
+    s E F N T N D Y K M L R E T K V G L E U E          _
+
+    1 1 4 7 1 1 1 6 6 6 5 6 7 1 1 3 4 7 2 2 7 01101    0    0    0
+    2 3 7 7 3 3 7 3 7 7 7 7 4 4 4 7 4 7 3 6 7 01101    0    0    0
+    3 3 6 6 4 2 3 7 5 4 6 4 5 1 3 6 4 4 6 6 5 01101    0    0    0
+
+          F           F           F           F          F
+          a           a           a           a          a
+          c           c           c           c          c
+          t           t           t           t          t
+    O     o           o           o           o          o
+    b     r           r           r           r          r
+    s     1           2           3           4          5
+
+    1 -3.07459     0.93204    -0.45515    -0.54083    0.08734
+    2 -0.84162     2.15352    -1.07810     0.02538    0.71570
+    3 -1.31338    -3.18950    -0.10796     0.31081    0.66190
+\end{verbatim}
+}
+
+\end{frame}
+
+\begin{frame}[fragile]{What makes them unusual}
+
+\begin{itemize}
+
+\item \#457 (low on F1): 
+defends own beliefs (1), independent (7!), not-shy (shy=7), assertive (3),
+strong personality (1), forceful (1), has leadership ability (1),
+takes risks (5), is
+decisive (1), self-sufficient (4), dominant (1), willing to take a
+stand (1).
+
+\item \#474 (high on F2): 
+cheerful (5), affectionate (6), happy (3), warm (7), tender (7),
+gentle (7).
+
+\item \#528 (low on F2)
+cheerful (5), affectionate (4), happy (7!), warm (4), tender (4),
+gentle (5).
+\end{itemize}
+
+\#528's values are low for those variables.
+\end{frame}
+
+\begin{frame}[fragile]{12 factors}
+
+Just for fun, I tried 12 factors (the number of eigenvalues $>1$). High loadings (bigger than 0.5) are now:
+
+\begin{enumerate}
+\item assertive, strong personality, forceful, dominant 
+\item sympathetic, sensitive, understanding, compassionate, soothes hurt feelings
+\item affectionate, loyal, warm, tender, gentle (0.48)
+\item self-reliant, independent, self-sufficient
+\item competitive, ambitious, athletic (0.33), takes risks (0.36) 
+\item cheerful, not-moody, happy
+\item leadership ability, acts like a leader, dominant (0.34)
+\item feminine, not-masculine (0.38)
+\item soft-spoken, gentle (0.48)
+\item willing to take a stand (0.47), truthful (0.43), defends own beliefs (0.35), not-gullible (0.30)
+\item childlike, not-self-sufficient (0.30)
+\item decisive, takes risks (0.34), willing to take a stand (0.30)
+\end{enumerate}
+  
+
+  
+\end{frame}
+
+\section{Confirmatory factor analysis}
+
+
+\begin{frame}[fragile]{Confirmatory factor analysis}
+
+  \begin{itemize}
+  \item Exploratory: what do data suggest as hidden underlying factors (in terms of variables observed)?
+  \item Confirmatory: have {\em theory} about how underlying factors depend on observed variables; test whether theory supported by data:
+    \begin{itemize}
+    \item does theory provide {\em some} explanation (better than nothing)
+    \item can we do better?
+    \end{itemize}
+  \item Also can compare two theories about factors: is more complicated one significantly better than simpler one?
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Children and tests again}
+
+\begin{itemize}
+\item
+Previously had this data (based on 145 children):
+
+\begin{verbatim}
+para 1     0.722 0.714 0.203 0.095
+sent 0.722 1     0.685 0.246 0.181
+word 0.714 0.685 1     0.170 0.113
+add  0.203 0.246 0.170 1     0.585
+dots 0.095 0.181 0.113 0.585 1
+\end{verbatim}
+
+\item SAS: use \verb-type=corr-. Special variable \verb-_NAME_- for reading in variable names; numbers read as correlations by default.
+\item Now have to specify sample size. Now have to use special variable \verb-_TYPE_- which is CORR for correlation, N for sample size.
+\item Only one sample size, but need to be 5 values: others can be missing.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{New data file and code}
+
+Note that sample size has no variable name (all variables have $n=145$):
+
+\begin{verbatim}
+n . 145 . . . .  
+corr para 1 0.722 0.714 0.203 0.095 
+corr sent 0.722 1 0.685 0.246 0.181 
+corr word 0.714 0.685 1 0.170 0.113 
+corr add 0.203 0.246 0.170 1 0.585 
+corr dots 0.095 0.181 0.113 0.585 1 
+\end{verbatim}
+
+
+Read it in with
+
+\begin{verbatim}
+data rex(type=corr);
+  infile "rex3.dat";
+  input _type_ $ _name_ $ para sent word add dots;
+
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{How to specify theories}
+
+    \begin{itemize}
+    \item SAS uses PROC CALIS for confirmatory factor analysis (and many other things besides).
+    \item Specify relationship between variables and factors (looks like regression analysis with ``error'').
+      \item Two competing theories:
+        \begin{itemize}
+        \item One-factor ``general intelligence'' model: all the test scores are high or low together for a child.
+        \item Two-factor ``verbal and mathematical intelligence'' model: a child might be good at the verbal tests, or good at the mathematical tests (or both or neither). These are 2 factors we found before.
+        \end{itemize}
+      \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code for the 1-factor model}
+
+Specify how each variable related to the factor(s) hypothesized. I use symbol \verb-f- for common factor(s) and \verb-e- for specific factors.
+
+\begin{verbatim}
+proc calis method=lsml;
+  lineqs
+    para=x1 f1 + e1,
+    sent=x2 f1 + e2,
+    word=x3 f1 + e3,
+    add =x4 f1 + e4,
+    dots=x5 f1 + e5;
+  std
+    f1=1,
+    e1-e5=eps1-eps5;
+  bounds
+    eps1-eps5>0;
+\end{verbatim}
+
+Note punctuation in \verb-lineqs- section (and other sections): commas
+at end of each line, except semicolon at end of last.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Output (heavily edited)}
+
+    To start:
+
+{\scriptsize
+\begin{verbatim}
+                      The 5 Endogenous Variables
+
+Manifest        para  sent  word  add   dots                          
+Latent                                                                
+
+                      The 6 Exogenous Variables
+Manifest                                                              
+Latent          f1    
+Error           e1    e2    e3    e4    e5                            
+
+\end{verbatim}
+}
+
+\begin{itemize}
+\item ``Endogenous'' means ``going in''.
+\item ``Manifest'' means ``observed''.
+\item ``Latent'' means ``not able to be observed''.
+\item ``Exogenous'' means ``coming out''.
+\item Original variables are endogenous and manifest.
+\item Factors are exogenous and latent (or ``error'', for specific factors).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Did it converge?}
+
+Look for ``maximum likelihood estimation'':
+
+{\tiny
+\begin{verbatim}
+
+                                                                                           Ratio
+                                                                                         Between
+                                                                                          Actual
+                                                         Objective   Max Abs                 and
+                   Function       Active      Objective   Function  Gradient           Predicted
+  Iter   Restarts     Calls  Constraints       Function     Change   Element   Lambda     Change
+     1          0         2            0        0.41335     0.0104    0.0256        0      1.206
+     2          0         3            0        0.41302   0.000329   0.00349        0      1.174
+     3          0         4            0        0.41301   9.497E-6  0.000603        0      1.171
+     4          0         5            0        0.41301   2.771E-7  0.000099        0      1.171
+     5          0         6            0        0.41301   8.072E-9  0.000017        0      1.171
+     6          0         7            0        0.41301   2.35E-10  2.905E-6        0      1.171
+                                       Optimization Results
+
+Iterations                                     6  Function Calls                                 8
+Jacobian Calls                                 7  Active Constraints                             0
+Objective Function                  0.4130083436  Max Abs Gradient Element            2.9047445E-6
+Lambda                                         0  Actual Over Pred Change             1.1706449333
+Radius                              0.0000463356
+
+GCONV convergence criterion satisfied.
+
+\end{verbatim}
+}
+
+Answer: yes. Objective function stopped changing, and the largest gradient element very close to 0. Also, see last line.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Assessing and testing the fit}
+
+There follows a long list of things, of which we need only these:
+
+{\scriptsize
+\begin{verbatim}
+  Goodness of Fit Index (GFI)                           0.8764
+  GFI Adjusted for Degrees of Freedom (AGFI)            0.6291
+
+  Chi-Square                                           59.4732
+  Chi-Square DF                                              5
+  Pr > Chi-Square                                       <.0001
+
+  Independence Model Chi-Square                         298.65
+  Independence Model Chi-Square DF                          10
+
+\end{verbatim}
+}
+\begin{itemize}
+\item GFI and AGFI like R-squared and adjusted R-squared in regression.
+\item AGFI quite a bit smaller here because we estimated a lot of things.
+\item Model that fits perfectly has 0 DF.
+\item 1st chi-square and P-value says ``are we significantly worse than perfect'', ie.\ ``can we do better''? Answer here ``yes''.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Are we better than nothing?}
+
+{\scriptsize
+\begin{verbatim}
+  Chi-Square                                           59.4732
+  Chi-Square DF                                              5
+  Pr > Chi-Square                                       <.0001
+
+  Independence Model Chi-Square                         298.65
+  Independence Model Chi-Square DF                          10
+
+\end{verbatim}
+}
+
+
+\begin{itemize}
+
+\item Independence model has no common factors (only specific factors), so by comparing our model chisquare and DF with it, we answer ``are we better than nothing?''. Take difference of chi-squares, $298.65-59.47=239.18$, difference of DF, $10-5=5$ to get very small P-value.
+\item 1-factor model doing better than nothing, but can do better.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Improving the model}
+
+Obvious way to improve things: original idea of 2 common factors, one verbal (para, sent, words), one mathematical (add, dots). Code for that:
+
+\begin{verbatim}
+proc calis method=lsml;
+  lineqs
+    para=x1 f1 + e1,
+    sent=x2 f1 + e2,
+    word=x3 f1 + e3,
+    add =x4 f2 + e4,
+    dots=x5 f2 + e5;
+  std
+    f1=1,
+    f2=1,
+    e1-e5=eps1-eps5;
+  bounds
+    eps1-eps5>0;
+  cov
+    f1 f2 = rho;
+
+\end{verbatim}
+
+Allow 2 factors to be correlated, and estimate correlation.
+
+\end{frame}
+
+\begin{frame}[fragile]{Endogenous and exogenous variables}
+
+{\scriptsize
+\begin{verbatim}
+                      The 5 Endogenous Variables
+
+Manifest        para  sent  word  add   dots                          
+Latent                                                                
+
+
+                      The 7 Exogenous Variables
+
+Manifest                                                              
+Latent          f1    f2                                              
+Error           e1    e2    e3    e4    e5                            
+
+\end{verbatim}
+}
+
+Now 2 exogenous latent variables (common factors).
+
+\end{frame}
+
+\begin{frame}[fragile]{Convergence}
+
+All good:
+{\scriptsize
+\begin{verbatim}
+                                                              Actual
+                                              Max Abs           Over
+        Rest  Func  Act   Objective  Obj Fun Gradient           Pred
+  Iter  arts Calls  Con    Function   Change  Element  Lambda Change
+
+     1     0     2    0     0.02038  0.00325  0.00679       0  1.019
+     2     0     3    0     0.02035 0.000026 0.000721       0  1.028
+     3     0     4    0     0.02035  2.16E-7 0.000043       0  1.058
+     4     0     5    0     0.02035  1.61E-9 5.325E-6       0  1.081
+
+                         Optimization Results
+
+Iterations                       4  Function Calls                   6
+Jacobian Calls                   5  Active Constraints               0
+Objective Function    0.0203513722  Max Abs Gradient      5.3251548E-6
+                                    Element                           
+Lambda                           0  Actual Over Pred      1.0814713689
+                                    Change                            
+Radius                0.0008266204                                    
+
+ABSGCONV convergence criterion satisfied.                             
+
+\end{verbatim}
+}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Quality of fit}
+
+{\scriptsize
+\begin{verbatim}
+     Goodness of Fit Index (GFI)                           0.9919
+     GFI Adjusted for Degrees of Freedom (AGFI)            0.9697
+
+\end{verbatim}
+}
+
+GFI and (especially) AGFI much better than 0.88 and 0.63 from before. Near-perfect fit.
+
+{\scriptsize
+\begin{verbatim}
+     Chi-Square                                            2.9306
+     Chi-Square DF                                              4
+     Pr > Chi-Square                                       0.5695
+
+\end{verbatim}
+}
+
+No longer significantly worse than perfect fit: no point trying to do better.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Better than nothing?}
+
+Predictably yes:
+
+{\scriptsize
+\begin{verbatim}
+     Chi-Square                                            2.9306
+     Chi-Square DF                                              4
+     Pr > Chi-Square                                       0.5695
+     Independence Model Chi-Square                         298.65
+     Independence Model Chi-Square DF                          10
+
+\end{verbatim}
+}
+
+Chi-square $298.65-2.93=295.72$ with $10-4=6$ DF. P-value extremely small.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Communalities and estimated correlation}
+
+{\scriptsize
+\begin{verbatim}
+                    Squared Multiple Correlations
+ 
+                                Error         Total
+               Variable      Variance      Variance    R-Square
+
+          1    para           0.25049       1.00000      0.7495
+          2    sent           0.30038       1.00000      0.6996
+          3    word           0.32651       1.00000      0.6735
+          4    add            0.04949       1.00000      0.9505
+          5    dots           0.63996       1.00000      0.3600
+
+
+                Correlations Among Exogenous Variables
+ 
+                  Var1 Var2 Parameter      Estimate
+
+                  f1   f2   rho             0.25197
+
+\end{verbatim}
+}
+
+Communalities (in R-squared column) nice and high (possibly excepting DOTS). Correlation between factors estimated at 0.25.
+    
+\end{frame}
+
+\begin{frame}[fragile]{Using SAS to figure out those P-values}
+
+To save hauling out your calculator and tables to figure out the comparison between 298.65 with 10 DF and 2.9306 with 4 DF, make a file \verb-stat.dat- with this in it:
+
+{\scriptsize
+\begin{verbatim}
+298.65 10 2.9306 4
+\end{verbatim}
+}
+
+and a file \verb-stat.sas- with this in it:
+
+{\scriptsize
+\begin{verbatim}
+data xx;
+  infile "stat.dat";
+  input c1 df1 c2 df2;
+  mystat=c1-c2;
+  mydf=df1-df2;
+  pval=1-probchi(mystat,mydf);
+
+proc print;
+
+\end{verbatim}
+}
+
+This works out the P-value in \verb-pval-; printing out the whole ``data set'' shows it to you.
+
+    
+\end{frame}
+
+\begin{frame}[fragile]{The P-value}
+
+{\scriptsize
+\begin{verbatim}
+  Obs      c1      df1      c2      df2     mystat    mydf    pval
+
+    1     298.65     10    2.9306     4     295.719      6       0 
+\end{verbatim}
+}
+
+\ldots is close to 0.
+
+
+Can also compare the 1- and 2-factor models to see if the 2-factor one fits significantly better. The chi square statistics are 59.4732 with 5 DF and 2.93 with 4 DF, so change \verb-stat.dat- to read \verb-59.4372 5 2.93 4- and re-run to get:
+
+{\scriptsize
+\begin{verbatim}
+   Obs      c1     df1     c2     df2    mystat   mydf      pval
+
+    1    59.4372    5    2.9306    4    56.5066     1    5.5955E-14
+\end{verbatim}
+}
+
+P-value is the merest smidgen bigger than 0. The 2-factor model is a significantly better description of the data than the 1-factor.
+    
+\end{frame}
+

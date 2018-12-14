@@ -1,0 +1,12 @@
+This is just some more text.
+
+The correlation between x and y is this:
+
+@ 
+<<corr>>=
+z=read.table("z.txt",header=T)
+attach(z)
+cor(x,y)
+@ %def 
+
+

@@ -1,0 +1,44 @@
+\documentclass{article}
+\title{The mixup data}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+\SASweaveOpts{prompt=""}
+\weaveOpts{newlang = SASwide:SAS}
+\SASwideweaveOpts{outfmt = "fontsize=\scriptsize", prompt = ""}
+The data:
+\begin{verbatim}
+a 1 2
+a 1 5
+a 2 3
+a 1 4
+b 5 7
+b 4 4
+b 7 5
+b 6 5
+c 6 6
+c 7 4
+c 4 7
+c 4 5
+\end{verbatim}
+The SAS code and output:
+\begin{SAScode}
+data mix;
+    infile "mixup.dat";
+    input group $ x y;
+
+proc gplot;
+    plot y*x=group;
+    
+proc discrim can list out=xx;
+    class group;
+    var x y;
+    
+proc print;
+
+proc gplot;
+    plot Can1 * Can2 = group;
+
+run;
+\end{SAScode}
+\end{document}

@@ -1,0 +1,29 @@
+Down
+Choice . . N Y
+  Response variable?
+tag
+Right
+Choice . . Categorical Continuous
+  Type of response?
+tag
+Right
+Choice . . $>1$ 1
+  Number of responses?
+tag
+Right
+Choice . Mixed Categorical Continuous
+  Explanatory variables?
+tag
+Right
+Box
+  Regression (PROC REG)
+totag
+tag
+Down
+Box
+  ANOVA (PROC GLM)
+totag
+Left
+Box 
+  ANCOVA (PROC GLM)
+  

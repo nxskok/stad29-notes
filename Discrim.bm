@@ -1,0 +1,43 @@
+\HAPbookmark{}{section.0.1}{Discriminant analysis}{1}{section.0}
+\HAPbookmark{}{section.0.2}{Example 1: seed yields and weights}{2}{section.0}
+\HAPbookmark{}{section.0.3}{Plot variations}{3}{section.0}
+\HAPbookmark{}{section.0.4}{Basic PROC DISCRIM}{4}{section.0}
+\HAPbookmark{}{section.0.5}{Output}{5}{section.0}
+\HAPbookmark{}{section.0.6}{More output}{6}{section.0}
+\HAPbookmark{}{section.0.7}{Canonical coefficients}{7}{section.0}
+\HAPbookmark{}{section.0.8}{Output from ``list''}{8}{section.0}
+\HAPbookmark{}{section.0.9}{Classification summary}{9}{section.0}
+\HAPbookmark{}{section.0.10}{Output data set}{10}{section.0}
+\HAPbookmark{}{section.0.11}{Example 2: professions and leisure activities}{11}{section.0}
+\HAPbookmark{}{section.0.12}{Some SAS code}{12}{section.0}
+\HAPbookmark{}{section.0.13}{Some output}{13}{section.0}
+\HAPbookmark{}{section.0.14}{Distances between groups}{14}{section.0}
+\HAPbookmark{}{section.0.15}{How many canonical variables do I need?}{15}{section.0}
+\HAPbookmark{}{section.0.16}{What separates the groups}{16}{section.0}
+\HAPbookmark{}{section.0.17}{Output from ``list''}{17}{section.0}
+\HAPbookmark{}{section.0.18}{Classification summary}{18}{section.0}
+\HAPbookmark{}{section.0.19}{Output data set}{19}{section.0}
+\HAPbookmark{}{section.0.20}{Plotting 1st 2 canonical variables}{20}{section.0}
+\HAPbookmark{}{section.0.21}{Comments}{21}{section.0}
+\HAPbookmark{}{section.0.22}{What if groups aren't all distinct?}{22}{section.0}
+\HAPbookmark{}{section.0.23}{SAS code}{23}{section.0}
+\HAPbookmark{}{section.0.24}{Distances}{24}{section.0}
+\HAPbookmark{}{section.0.25}{Just one useful canonical variable}{25}{section.0}
+\HAPbookmark{}{section.0.26}{Canonical variables}{26}{section.0}
+\HAPbookmark{}{section.0.27}{Classification}{27}{section.0}
+\HAPbookmark{}{section.0.28}{Classification summary}{28}{section.0}
+\HAPbookmark{}{section.0.29}{Canonical variable plot}{29}{section.0}
+\HAPbookmark{}{section.0.30}{Example 3: remote-sensing data}{30}{section.0}
+\HAPbookmark{}{section.0.31}{The resulting SAS code}{31}{section.0}
+\HAPbookmark{}{section.0.32}{Summary of data}{32}{section.0}
+\HAPbookmark{}{section.0.33}{Assessing equality of covariance matrices}{33}{section.0}
+\HAPbookmark{}{section.0.34}{How distinct are the groups?}{34}{section.0}
+\HAPbookmark{}{section.0.35}{How many canonical variables?}{35}{section.0}
+\HAPbookmark{}{section.0.36}{Crop means on canonical variables}{36}{section.0}
+\HAPbookmark{}{section.0.37}{Classification}{37}{section.0}
+\HAPbookmark{}{section.0.38}{The rest}{38}{section.0}
+\HAPbookmark{}{section.0.39}{Misclassification summary}{39}{section.0}
+\HAPbookmark{}{section.0.40}{Cross-validation results are quite different}{40}{section.0}
+\HAPbookmark{}{section.0.41}{The rest}{41}{section.0}
+\HAPbookmark{}{section.0.42}{Cross-validation misclassification error summary}{42}{section.0}
+\HAPbookmark{}{section.0.43}{Plot of 1st 2 canonical variables}{43}{section.0}

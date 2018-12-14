@@ -1,0 +1,18 @@
+\beamer@endinputifotherversion {3.07pt}
+\beamer@sectionintoc {2}{Review of inference; 2-sample t}{6}{0}{1}
+\beamer@sectionintoc {3}{Review of (multiple) regression}{20}{0}{2}
+\beamer@sectionintoc {4}{Logistic regression (ordinal/nominal response)}{70}{0}{3}
+\beamer@sectionintoc {5}{Survival analysis}{111}{0}{4}
+\beamer@sectionintoc {6}{Brief review of analysis of variance}{130}{0}{5}
+\beamer@sectionintoc {7}{Analysis of covariance}{154}{0}{6}
+\beamer@sectionintoc {8}{Multivariate ANOVA}{165}{0}{7}
+\beamer@sectionintoc {9}{Repeated measures by profile analysis}{176}{0}{8}
+\beamer@sectionintoc {10}{Multivariate regression}{204}{0}{9}
+\beamer@sectionintoc {11}{Discriminant analysis}{217}{0}{10}
+\beamer@sectionintoc {12}{Cluster analysis}{262}{0}{11}
+\beamer@sectionintoc {13}{Multidimensional scaling}{305}{0}{12}
+\beamer@sectionintoc {14}{Principal components}{326}{0}{13}
+\beamer@sectionintoc {15}{Exploratory factor analysis}{346}{0}{14}
+\beamer@sectionintoc {16}{Confirmatory factor analysis}{376}{0}{15}
+\beamer@sectionintoc {17}{Spatial statistics}{394}{0}{16}
+\beamer@sectionintoc {18}{Multiway frequency tables}{421}{0}{17}

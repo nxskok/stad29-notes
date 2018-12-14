@@ -1,0 +1,355 @@
+
+
+\question Hand this one in. An experiment tested the effects of three treatments,
+labelled A, B and C, on performance \texttt{y} at some task, on a scale from 0 to
+200, with higher being better (I don't know what
+this task is). Also measured for each subject was a measure of skill, \texttt{S}, on a scale
+from 0 to 100 (higher means more skill).  Of primary interest was
+whether the treatments differ in their impact on performance. The data
+are in \url{http://www.utsc.utoronto.ca/~butler/d29/perf.txt}.
+
+\begin{parts}
+  \part[2] Read the data and convince yourself (and the grader) that
+  you have the variables you need.
+  
+  \begin{solution}
+    The usual:
+<<>>=
+performance=read.table("perf.txt",header=T)
+str(performance)
+@     
+
+or, if you like, 
+
+<<>>=
+head(performance)
+@ 
+
+We have the variables \texttt{y} (performance), \texttt{S} (skill) and
+\texttt{treatment}, as promised. I'm not picky about whether you use
+\texttt{str} or \texttt{head}; anything that shows that you have the
+right variables is OK. Even this works:
+
+<<>>=
+names(performance)
+@ 
+
+The advantage to \texttt{str}, to my mind, is that you get to see
+how many observations you have, in this case 90, and also which
+different treatments there are, here A, B and C. 
+  \end{solution}
+  
+  \part[2] Why would analysis of covariance be a useful technique in
+  this problem? Explain briefly.
+  
+  \begin{solution}
+    The crucial thing that makes ANCOVA the right technique here is that
+    we have an analysis-of-variance situation (performance depending
+    on a categorical treatment), but we \emph{also} have a continuous
+    explanatory variable Skill that might (probably will) also have an
+    impact on performance.
+    
+    In  bullet points, we need all three of these things:
+    
+    \begin{itemize}
+    \item a numerical response variable (\texttt{y}, performance)
+    \item at least one categorical explanatory variable (\texttt{treatment})
+    \item at least one numerical explanatory variable (\texttt{S},
+      skill). 
+    \end{itemize}
+  \end{solution}
+  
+  \part[3] Make a plot of performance against skill, but with the
+  points coloured according to which \texttt{treatment} they come
+  from. Add a legend to your plot that shows which treatment is which.
+  
+  \begin{solution}
+    The hard part of this is the legend. Here's a way it can go:
+    
+<<>>=
+attach(performance)
+plot(y~S,col=treatment)
+legend("topleft",levels(treatment),fill=1:3)
+@     
+
+The \texttt{fill} trick is handy in legends to get filled boxes of the
+appropriate colour. You could also distinguish points by plotting
+character as well as colour, and then you need to put both things in
+the legend:
+
+<<>>=
+plot(y~S,col=treatment,pch=as.numeric(treatment))
+legend("topleft",levels(treatment),col=1:3,pch=1:3)
+@ 
+
+Doing it this way there is a symmetry: \texttt{col} and \texttt{pch}
+in the \texttt{plot}, and also \texttt{col} and \texttt{pch} in the
+legend. This makes it easier to remember everything, but there is the
+annoyance that \texttt{pch} has to be a number, so you have to create one.
+
+In the first
+graph, you could have your legend show coloured circles by saying
+\texttt{col=1:3} but \emph{also} \texttt{pch=1} (a circle is plotting
+character number 1). Otherwise, your legend would have different
+coloured nothings!
+
+Finally, another option is to use \texttt{ggplot}, which will take
+care of the legend for you. That goes like this:
+
+<<>>=
+library(ggplot2)
+ggplot(performance,aes(x=S,y=y,colour=treatment))+geom_point()
+@ 
+
+or even
+
+<<>>=
+ggplot(performance,aes(x=S,y=y,colour=treatment,shape=treatment))+
+  geom_point()
+@ 
+
+Now that I'm used to the process, I find \texttt{ggplot} easier (and I
+like the fact that it makes a legend without my having to think about
+it). But either way is good for this question.
+
+In the second \texttt{ggplot}, \texttt{shape=} can go either in the
+original \texttt{aes} (the setup for the whole plot), or in the
+\verb=geom_point= (specific for the plotting of points). In a way,
+it's more logical to put the \texttt{shape} in the \verb=geom_point=,
+since that's the only place the \texttt{shape} gets used.
+  \end{solution}
+  
+  \part[2] Does there seem to be an effect of Skill? Explain briefly.
+  
+  \begin{solution}
+    If you look at any one of the treatment groups, as Skill goes up,
+    Performance goes strongly up as well. (Or, if you like, look at
+    the overall scatter, but then the effect of Skill is confounded
+    with \texttt{treatment}.) So I would definitely expect to see a
+    significant effect of Skill.
+  \end{solution}
+  
+  \part[3] Does there seem to be an effect of \texttt{treatment}?
+  Explain briefly. If there is an \texttt{treatment} effect, which
+  treatment or treatments seem different from the others?
+  
+  \begin{solution}
+    If you look at your graph, the treatment A points seem to be
+    consistently at the bottom all the way across: that is, for any
+    level of Skill, the Performance for a person on treatment A is
+    consistently worse than someone on the other treatments.
+    
+    It's up to you whether you think there's a difference between
+    treatments B and C. There is a fair bit of overlap among these
+    points, but I think the treatment C points are usually above the
+    treatment B ones. I'm happy either way. If you say something about
+    B and C, just make sure you explain why you think so.
+  \end{solution}
+  
+  \part[3] Fit an analysis of covariance model with interaction and
+  display the \texttt{anova} of it.
+  
+  \begin{solution}
+    Use \texttt{lm}:
+    
+<<>>=
+performance.1=lm(y~S*treatment,data=performance)
+anova(performance.1)
+@     
+
+You can actually get the same result using \texttt{aov} (surprisingly,
+even with the numeric explanatory variable):
+
+<<>>=
+performance.2=aov(y~S*treatment,data=performance)
+summary(performance.2)
+@ 
+
+I didn't know you could do this until about 3 minutes ago. I guess I
+never tried it to see what would happen.
+  \end{solution}
+  
+  \part[2]\label{part:int} Interpret your \texttt{anova} table. What is the major
+  conclusion from it, in the context of this data set?
+  
+  \begin{solution}
+    The second sentence of the question is meant to alert you to the
+    fact that once you have seen the significant interaction, that's
+    where you stop looking.
+    
+    There is a significant interaction between Skill and
+    \texttt{treatment}: that is to say, the effect of Skill on
+    Performance is \emph{different} for each \texttt{treatment}. 
+    
+    That's as much as you can say at this point, because without
+    looking at fitted lines for each \texttt{treatment} you cannot say
+    \emph{how} the treatment effects differ. (That's coming up.)
+  \end{solution}
+  
+  \part[3]\label{part:gg} Use \texttt{ggplot} to plot Performance against Skill, with 
+  the points coloured by \texttt{treatment}. On that plot, also
+  include regression lines for predicting Performance from Skill
+  \emph{within each \texttt{treatment} group}. (This is the simpler
+  version of plotting lines for each group, and not the complicated
+  version where the lines are constrained to have the same slope.)
+  
+  \begin{solution}
+    If you did the \texttt{ggplot} graph before, this is only a matter
+    of adding something to it. If not, you'll need the \texttt{aes}
+    ingredients of an \texttt{x}, a \texttt{y} and a \texttt{colour},
+    and then a \verb=geom_point= to plot the points and a
+    \verb=geom_smooth= with \texttt{method="lm"} to plot the lines,
+    which will come out one for each group:
+    
+<<>>=
+ggplot(performance,aes(x=S,y=y,colour=treatment))+
+  geom_point()+
+  geom_smooth(method="lm")
+@     
+
+This, as usual with \texttt{ggplot} code, is simpler than you might
+think at first, because all the grouping stuff is handled by the
+\texttt{colour=treatment} in the \texttt{aes}. 
+  \end{solution}
+  
+  \part[3] Consider your conclusion in part (\ref{part:int}) and
+  your graph in part (\ref{part:gg}). Explain briefly how they are
+  consistent with each other.
+  
+  \begin{solution}
+    The significant interaction in the \texttt{anova} said that the
+    effect of Skill on Performance was different for each
+    \texttt{treatment} group. This plays out in ANCOVA as the slopes
+    being different for each group. If you look at the graph in
+    (\ref{part:gg}), you'll see that the treatment C line (blue on my
+    plot) is not parallel to the treatment B line (green), because
+    they start out close together on the left and finish farther apart
+    on the right. It is probably also true that the treatment A line
+    is less steep than the others, but that's harder to judge, and,
+    besides, all you need for a significant interaction is for
+    \emph{two} of the slopes to be significantly different from each
+    other. 
+    
+    That's all I needed, but I have a lot more discussion below.
+    
+    You might (reasonably) say ``those slopes are not really
+    \emph{very} different'', especially in the light of the previous
+    question, where the slopes were more different, but the
+    interaction was not significant. Certainly, in this case, even
+    though the slopes are significantly different, you could with good
+    conscience recommend treatment C at all skill levels. The issue is
+    how good the evidence is for the difference in slopes. In this
+    question, everything is estimated accurately (those grey
+    ``envelopes'' around the lines are pretty small), so that even a
+    small difference among the slopes is significant. This is because
+    the trend is clear within each group: the points of each colour
+    follow their respective coloured lines well. In contrast, in the
+    previous question, the points are all over the place, so the lines
+    are estimated much less accurately, and the grey envelopes are a
+    lot bigger and overlap much more.
+    
+    Normally, we would look at the \texttt{summary} of our preferred
+    analysis of covariance model:
+    
+<<>>=
+summary(performance.1)
+@     
+
+but that is more difficult to understand in the presence of an
+interaction. 
+
+When we're assessing significance, we start at the bottom with the
+highest-order interaction. But when interpreting coefficients, it's
+easier to start at the top. Note that treatment A doesn't appear here
+at all, because treatment A is the baseline (first alphabetically).
+
+So:
+
+\begin{itemize}
+\item the intercept, 14.56, is for treatment A: a person with Skill 0
+  on treatment A is predicted to have a Performance of 14.56.\endnote{No-one in our data
+    set actually \emph{has} a Skill of zero, which makes interpreting
+    the intercept rather difficult; for this reason, some people
+    advocate ``centring'' the Skill scores to have a mean of zero, by
+    subtracting the mean first. If that is done, the intercept would
+    give you the mean Performance score for a person of \emph{average}
+  skill, which is much easier to make sense of.}
+\item the slope for \texttt{S}, 0.92, is also for treatment A. On
+  treatment A, an increase in Skill of 1 point is associated with an
+  increase in Performance of 0.92 points.
+\item The coefficient for treatment B, 17.10 (which I am trying to
+  avoid calling a ``slope'', since it isn't one) expresses the change
+  in \emph{intercept} for treatment B over treatment A. That means a
+  person on treatment B with Skill 0 is predicted to have Performance
+  $14.56+17.10=31.66$. This is positive and large, expressing that
+  treatment B is overall better than treatment A.
+\item The coefficient for treatment C is 17.76. This is again saying
+  how the \emph{intercept} for treatment C compares to that for A: for
+  treatment C the intercept is $14.56+17.76=32.32$. This, again, is
+  substantially positive, and so treatment C is substantially better
+  than treatment A. On the other hand, the intercept coefficients for
+  treatments B and C are similar, and that means, at least for
+  individuals with low Skill on these two treatments, their
+  performance is going to be fairly similar. (What about individuals
+  with high skill on these treatments? Coming up.)
+  
+
+\item The interaction term for Skill and treatment B is 0.23. That
+  means that the \emph{slope} for treatment B, as compared to the
+  slope for treatment A, is 0.23: the line is 0.23 steeper, or has a
+  slope of $0.92+0.23=1.15$.
+\item The interaction term for Skill and treatment C is 0.50. Thus the
+  line for treatment C is 0.50 steeper than the line for treatment A,
+  that is, its slope is 1.42. The line for treatment C is the steepest
+  of all, which means that even though the lines for treatments B and
+  C start off close together on the graph, by the end, for larger
+  Skill scores, they are further apart. That is, treatment C is more
+  beneficial when the Skill score is large.
+  
+  These last two coefficients are small
+  (though significantly nonzero) compared to the intercept ones,
+  meaning that the slopes for 
+  treatments B and C are close to the slope for treatment A, even
+  though their intercepts are greatly different. (If these two
+  interaction coefficients had been \emph{exactly} zero, the
+  differences in slopes between the lines would have been exactly zero
+  as well: that is, the lines would have been exactly parallel.)
+\end{itemize}
+
+Finally, you were probably wondering about something like Tukey for
+comparing treatments. Here, we're taking advantage of being able to
+fit the model as an \texttt{aov}:
+
+<<>>=
+TukeyHSD(performance.2)
+@ 
+
+Not surprisingly, all three treatments are significantly
+different. Don't worry about the warnings: they are because \texttt{S}
+is numerical, and \texttt{TukeyHSD} can't handle that, as we would expect.
+
+Suppose we had ignored Skill and just done a one-way ANOVA. What would
+have happened then?
+
+<<>>=
+performance.3=aov(y~treatment,data=performance)
+summary(performance.3)
+@ 
+
+Strongly significant effect of treatment. Tukey:
+
+<<>>=
+TukeyHSD(performance.3)
+@ 
+
+All three treatments are still significantly different, though B and C
+are now only just, and the evidence is a lot weaker. Qualitatively,
+this goes to show that if it makes a difference (as Skill does), it
+should be in the model. Mathematically, Tukey from
+\texttt{performance.2} is using errors from the model with Skill in
+it, which are a lot smaller than the errors from the model without,
+since knowing Skill helps a lot in predicting Performance.
+  \end{solution}
+  
+\end{parts}
+

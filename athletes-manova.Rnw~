@@ -1,0 +1,6 @@
+\question This question uses the data on Australian elite athletes,
+which can be found at
+\url{http://www.utsc.utoronto.ca/~butler/c32/ais.txt}. 202 elite
+athletes had various physical and physiological measurements taken,
+and for each their gender (in the column \texttt{Sex}) and the sport
+they play (\texttt{Sport}) was also noted.

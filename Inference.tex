@@ -1,0 +1,83 @@
+\documentclass[pdf]{prosper}
+
+\usepackage[Lakar]{HA-prosper}
+
+\usepackage{graphicx}
+
+% compile with latex and then dvips -t letter
+
+%\setlength{\parindent}{0em}
+%\setlength{\parskip}{30pt}
+
+%\setlength{\textwidth}{5in}
+%\setlength{\textheight}{5in}
+
+%\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\part{Statistical Inference}
+
+\begin{slide}{The statistical world}
+  \begin{itemize}
+  \item 
+  Consists of:
+
+  \begin{itemize}
+  \item objects or people of interest to us ({\em individuals})
+  \item things measured or counted on those individuals ({\em variables})
+  \end{itemize}
+
+\vspace{3ex}
+
+\item About the individuals:
+
+\begin{itemize}
+\item which ones do we care about? All of them, the {\em population}.
+\item which ones do we know about? The ones we happened to look at, the {\em sample}.
+\end{itemize}
+
+\vspace{3ex}
+
+\item Sample is (or should be) randomly chosen from population, with no favoritism.
+  \end{itemize}
+
+\end{slide}
+
+\begin{slide}{Sample to population: confidence interval}
+  
+  \begin{itemize}
+  \item 
+Want to know about population (parameter), but don't. Only have sample (statistic). Eg.\ population mean, only have sample mean.
+\item Logic:
+  \begin{itemize}
+  \item {\em If} we knew about population, could figure out kinds of samples that might appear (math).
+  \item In particular, can figure how far apart sample statistic and population parameter might be.
+  \item Use this to construct {\em confidence interval} for population parameter: says eg.\ ``based on my sample, I think population mean between $a$ and $b$''. 
+  \end{itemize}
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Test of significance}
+\begin{itemize}
+\item Or: 
+  \begin{itemize}
+  \item 
+might have theory leading to {\em null hypothesis} (eg.\ population mean is 20) and {\em alternative hypothesis} (eg.\ population mean not 20).
+\item This leads to {\em test of significance} (hypothesis test): ``based on my sample, I think pop.\ mean is (is not) 20''
+\item Done by choosing $\alpha$ (eg.\ 0.05), calculating {\em test statistic} and {\em P-value}. If P-value $< \alpha$, {\em reject null}: have evidence in favour of alternative.
+  \end{itemize}
+\item Math producing inference procedures can be difficult, but calculations (with software) and interpretations need not be.
+  \end{itemize}
+
+
+\end{slide}
+
+\end{document}
+
+
+
+
+
+

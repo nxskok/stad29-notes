@@ -1,0 +1,17 @@
+This is some data we had:
+
+@ 
+<<>>=
+z=read.table("z.txt",header=T)
+attach(z)
+x
+y
+@ %def 
+
+
+Here is a scatterplot of it:
+
+@ 
+<<fig=T>>=
+plot(y~x)
+@ %def 

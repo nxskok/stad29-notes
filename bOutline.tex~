@@ -1,0 +1,138 @@
+\section*{Course Outline}
+\frame{\sectionpage}
+
+\begin{frame}[fragile]{Course and instructor}
+  \begin{itemize}
+    \item correct these
+    \item  Lecture: Wednesday 14:00-16:00 in IC 320.
+    \item  Instructor: Ken Butler
+    \item  Office: IC 471.
+    \item  E-mail: \verb-butler@utsc.utoronto.ca-
+    \item Office hours: Officially Monday 2:00-4:00. Also, Wednesday mornings good, or after
+      class. I am often around. See if I'm in. Or make an
+      appointment. E-mail always good.
+    \item Course website: 
+\url{www.utsc.utoronto.ca/~butler/d29}.
+    \item Using Blackboard for assignments/grades only; using website for
+      everything else.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Text, programs, prerequisites and exclusions}
+
+\begin{itemize}
+    \item {\bf Recommended text} for this course is my own (yes, I
+      know):
+      \verb=www.utsc.utoronto.ca/~butler/r/r-howto.pdf=. 
+      ``The book'', free for the download.
+
+    \item Prerequisites:
+      \begin{itemize}
+      \item For undergrads: STAC32.
+    \item  For grad students,
+      a first course in statistics, and some training in
+      regression and ANOVA. The less you know, the more you'll have to
+      catch up!
+      \end{itemize}
+
+    \item This course is part of Applied Statistics minor.
+    \item Exclusions: \textbf{this course is not for Math/Statistics/CS majors/minors}. It
+      is for
+      students in other fields who wish to learn some more advanced
+      statistical methods. The exclusions in the Calendar reflect
+      this. (If you are in one of those programs, you won't get
+      program credit for this course.)
+\end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Computing}
+
+  \begin{itemize}
+  \item Computing: big part of the course, {\bf not}
+    optional. Demonstrate that you can use 
+    R to analyze data, and can
+    critically interpret the output.
+  \item A brief introduction will be given
+    for those who have not come through STAC32. I am happy to offer
+    extra help to these people.
+  \end{itemize}
+  
+\end{frame}
+
+
+\begin{frame}{Computing and assessment}
+\begin{itemize}
+\item Grading: (2 hour) midterm, (3 hour) final exam. Assignments most
+  weeks, due Tuesday at midnight. 
+  Graduate students (STA 1007) also required to
+  complete a project using one or more of the techniques learned in
+  class, on a dataset from their field of study.    Projects due on
+  the last day of classes.
+
+\item Assessment:
+
+  \begin{tabular}{lcc}
+    & STAD29 & STA 1007\\
+    Assignments & 20\% & 20\%\\
+    Midterm exam & 30\%  & 20\% \\
+    Project & - & 20\%\\
+    Final exam & 50\% & 40\%
+  \end{tabular}
+
+\item Assessments missed \emph{with documentation} will cause a
+  re-weighting of other assessments of same type. No make-ups.
+\item You \textbf{must pass the final exam} to pass the course. If you
+  fail the final exam but would otherwise have passed the course, you
+  receive a grade of 45.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Plagiarism}
+
+  \begin{itemize}
+  \item
+    \url{http://www.utoronto.ca/academicintegrity/academicoffenses.html}
+    defines academic offences at this university. Read it.
+  \item Plagiarism is defined (at the end) as
+    \begin{quote}
+       The wrongful appropriation and purloining, and publication as one’s own, of the ideas, or the expression of the ideas ... of another.
+    \end{quote}
+    \item The code and
+    explanations  that
+    you write and hand in must be \emph{yours and yours
+      alone}. 
+    \item When you hand in work, it is implied that it is
+    \emph{your} work. Handing in work, with your name on it, that was actually done by
+    someone else is an \emph{academic offence}.
+  \item If I am suspicious
+    that anyone's work is plagiarized, I will take action.
+    
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Getting help}
+
+  \begin{itemize}
+  \item The English Language Development Centre supports all students
+    in developing better Academic English and critical thinking skills
+    needed in academic communication. Make use of the personalized
+    support in academic writing skills development. Details and sign-up information:
+    \url{http://www.utsc.utoronto.ca/eld/}.
+  \item      Students with diverse learning styles and needs are welcome in this
+course. In particular, if you have a disability/health consideration
+that may require accommodations, please feel free to approach the AccessAbility Services Office as soon as possible. I will
+work with you and AccessAbility Services to ensure you can achieve
+your learning goals in this course. Enquiries are confidential. The
+UTSC AccessAbility Services staff are available by
+appointment to assess specific needs, provide referrals and arrange
+appropriate accommodations: (416) 287-7560 or by e-mail: \texttt{ability@utsc.utoronto.ca}.
+
+
+  \end{itemize}
+  
+\end{frame}

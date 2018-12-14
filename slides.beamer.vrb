@@ -1,0 +1,48 @@
+\frametitle {The code}\par   \begin{itemize}
+  \item First, call in \texttt{survival} package, read data and make combined
+    response:
+\begin{verbatim}
+> library(survival)
+> dance=read.table("dancing.txt",header=T)
+> attach(dance)
+> mth=Surv(Months,Quit)
+> mth
+ [1]  1   2   2   3+  4   5  11   7   8  10  10+ 12
+\end{verbatim}
+  \item Then fit model, predicting \texttt{mth} from explanatories:
+\begin{verbatim}
+> dance.1=coxph(mth~Treatment+Age)
+\end{verbatim}
+
+  \end{itemize}
+
+\begin{frame}[fragile]{The output}
+
+Looks a lot like a regression:
+
+{\scriptsize
+\begin{verbatim}
+> summary(dance.1)
+Call:
+coxph(formula = mth ~ Treatment + Age)
+
+  n= 12, number of events= 10
+
+              coef exp(coef) se(coef)      z Pr(>|z|)
+Treatment -4.44915   0.01169  2.60929 -1.705   0.0882 .
+Age       -0.36619   0.69337  0.15381 -2.381   0.0173 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+          exp(coef) exp(-coef) lower .95 upper .95
+Treatment   0.01169     85.554 7.026e-05    1.9444
+Age         0.69337      1.442 5.129e-01    0.9373
+
+Concordance= 0.964  (se = 0.125 )
+Rsquare= 0.836   (max possible= 0.938 )
+Likelihood ratio test= 21.68  on 2 df,   p=1.956e-05
+Wald test            = 5.67  on 2 df,   p=0.0587
+Score (logrank) test = 14.75  on 2 df,   p=0.0006274
+\end{verbatim}
+}
+
