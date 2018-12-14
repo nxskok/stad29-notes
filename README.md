@@ -1,4 +1,6 @@
-# stad29-notes
-Lecture notes for STAD29 at UTSC
+STAD29 notes
+================
 
-Add links here to things.
+This repo contains my [lecture
+notes](https://github.com/nxskok/stad29-notes/blob/master/slides-sw.pdf)
+for the STAD29 course at UTSC.
