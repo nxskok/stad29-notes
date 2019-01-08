@@ -8,23 +8,33 @@
     \item  Instructor: Ken Butler
     \item  Office: IC 471.
     \item  E-mail: \verb-butler@utsc.utoronto.ca-
-    \item Office hours: Monday 11:00-13:00. Also, Wednesday mornings
-      good. I am often around. See if I'm in. Or make an
-      appointment. E-mail always good.
+    \item Office hours: Monday 11:00-13:00. I am often around
+      otherwise. See if I'm in. Or make an appointment. E-mail always
+      good.
     \item Course website: 
 \url{www.utsc.utoronto.ca/~butler/d29}.
-    \item Using Blackboard for assignments/grades only; using website for
+    \item Using Quercus for assignments/grades only; using website for
       everything else.
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{Text, programs, prerequisites and exclusions}
+\begin{frame}[fragile]{Texts}
 
 \begin{itemize}
-\item There is no official text for this course. You may find
+\item There is no official text for this course. 
+\item You may find ``R for Data Science'', 
   \url{http://r4ds.had.co.nz/} helpful for R background.
-    \item Prerequisites:
+\item I will refer frequently to my book of Problems and Solutions in Applied Statistics (PASIAS), \url{http://ritsokiguess.site/pasias/}.
+\item Both of these resources are and will remain free.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Programs, prerequisites and exclusions}
+
+  \begin{itemize}
+  \item Prerequisites:
       \begin{itemize}
       \item For undergrads: STAC32. Not negotiable.
     \item  For grad students,
@@ -33,7 +43,7 @@
       catch up!
       \end{itemize}
 
-    \item This course is part of Applied Statistics minor.
+    \item This course is a required part of Applied Statistics minor.
     \item Exclusions: \textbf{this course is not for
         Math/Statistics/CS majors/minors}. It is for students in other
       fields who wish to learn some more advanced statistical
@@ -41,7 +51,8 @@
     \item If you
       are in one of those programs, you won't get program credit for
       this course, \textbf{or for any future STA courses you take.}
-\end{itemize}
+
+  \end{itemize}
   
 \end{frame}
 
@@ -60,7 +71,7 @@
 \end{frame}
 
 
-\begin{frame}{Computing and assessment}
+\begin{frame}{Assessment}
 \begin{itemize}
 \item Grading: (2 hour) midterm, (3 hour) final exam. Assignments most
   weeks, due Tuesday at 11:59pm. 

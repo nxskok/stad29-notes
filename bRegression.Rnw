@@ -182,7 +182,7 @@ glance(sleep.1)
 \begin{frame}[fragile]{Broom part 2}
   
 <<size="footnotesize",warning=F>>=
-augment(sleep.1) %>% slice(1:8)
+sleep.1 %>% augment(sleep) %>% slice(1:8)
 @   
   
 Useful for plotting residuals against an $x$-variable.
@@ -541,16 +541,30 @@ boxcox(y~x,data=madeup)
   \item Calculate transformed $y$ and plot against $x$. Here try log:
  
  
-<<fig.height=2.8>>=
-log.y=log(madeup$y) 
-ggplot(madeup,aes(x=x,y=log.y))+geom_point()+
+<<fig.height=2.8, size="footnotesize">>=
+madeup %>% mutate(log_y=log(y)) %>% 
+  ggplot(aes(x=x,y=log_y))+geom_point()+
   geom_smooth()
 @ %def 
 
+Looks much straighter.
     
   \end{itemize}
   
   
+\end{frame}
+
+
+\begin{frame}[fragile]{Regression with transformed $y$}
+
+<<size="footnotesize">>=
+madeup.1=lm(log(y)~x, data=madeup)
+glance(madeup.1)
+tidy(madeup.1)
+@
+
+R-squared now decently high.
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -765,9 +779,8 @@ ggplot(visits.1,aes(x=.fitted,y=abs(.resid)))+
 
  
 <<>>=
-lgtime=with(visits,log(timedrs+1))
-visits.3=lm(lgtime~phyheal+menheal+stress,
-  data=visits)
+visits.3=lm(log(timedrs+1)~phyheal+menheal+stress, 
+            data=visits)
 @ %def 
     
 \item \texttt{timedrs+1}  because some \texttt{timedrs} values 0,
@@ -850,7 +863,7 @@ ggplot(visits.3,aes(x=.fitted,y=abs(.resid)))+
 
  
 <<eval=F>>=
-boxcox(timedrs+1~phyheal+menheal+stress,data=visitsp)
+boxcox(timedrs+1~phyheal+menheal+stress,data=visits)
 @ %def 
   \end{itemize}
 
@@ -927,8 +940,8 @@ variable at once, fit model with and without variables and use
 
 {\small
 <<>>=
-visits.5=lm(lgtime~phyheal+menheal+stress,data=visits)
-visits.6=lm(lgtime~stress,data=visits)
+visits.5=lm(log(timedrs+1)~phyheal+menheal+stress,data=visits)
+visits.6=lm(log(timedrs+1)~stress,data=visits)
 anova(visits.6,visits.5)
 @ %def 
 }

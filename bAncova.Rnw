@@ -68,7 +68,7 @@ library(broom)
 
  
 <<size="small">>=
-my_url="http://www.utsc.utoronto.ca/~butler/c32/ancova.txt"
+my_url="http://www.utsc.utoronto.ca/~butler/d29/ancova.txt"
 prepost=read_delim(my_url," ")
 glimpse(prepost)
 g=ggplot(prepost,aes(x=before,y=after,colour=drug))+

@@ -93,23 +93,33 @@
     \item  Instructor: Ken Butler
     \item  Office: IC 471.
     \item  E-mail: \verb-butler@utsc.utoronto.ca-
-    \item Office hours: Monday 11:00-13:00. Also, Wednesday mornings
-      good. I am often around. See if I'm in. Or make an
-      appointment. E-mail always good.
+    \item Office hours: Monday 11:00-13:00. I am often around
+      otherwise. See if I'm in. Or make an appointment. E-mail always
+      good.
     \item Course website: 
 \url{www.utsc.utoronto.ca/~butler/d29}.
-    \item Using Blackboard for assignments/grades only; using website for
+    \item Using Quercus for assignments/grades only; using website for
       everything else.
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{Text, programs, prerequisites and exclusions}
+\begin{frame}[fragile]{Texts}
 
 \begin{itemize}
-\item There is no official text for this course. You may find
+\item There is no official text for this course. 
+\item You may find ``R for Data Science'', 
   \url{http://r4ds.had.co.nz/} helpful for R background.
-    \item Prerequisites:
+\item I will refer frequently to my book of Problems and Solutions in Applied Statistics (PASIAS), \url{http://ritsokiguess.site/pasias/}.
+\item Both of these resources are and will remain free.
+\end{itemize}
+  
+\end{frame}
+
+\begin{frame}[fragile]{Programs, prerequisites and exclusions}
+
+  \begin{itemize}
+  \item Prerequisites:
       \begin{itemize}
       \item For undergrads: STAC32. Not negotiable.
     \item  For grad students,
@@ -118,7 +128,7 @@
       catch up!
       \end{itemize}
 
-    \item This course is part of Applied Statistics minor.
+    \item This course is a required part of Applied Statistics minor.
     \item Exclusions: \textbf{this course is not for
         Math/Statistics/CS majors/minors}. It is for students in other
       fields who wish to learn some more advanced statistical
@@ -126,7 +136,8 @@
     \item If you
       are in one of those programs, you won't get program credit for
       this course, \textbf{or for any future STA courses you take.}
-\end{itemize}
+
+  \end{itemize}
   
 \end{frame}
 
@@ -145,7 +156,7 @@
 \end{frame}
 
 
-\begin{frame}{Computing and assessment}
+\begin{frame}{Assessment}
 \begin{itemize}
 \item Grading: (2 hour) midterm, (3 hour) final exam. Assignments most
   weeks, due Tuesday at 11:59pm. 
@@ -531,7 +542,7 @@ Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{augment}\hlstd{(sleep.1)} \hlopt{%>%} \hlkwd{slice}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{8}\hlstd{)}
+\hlstd{sleep.1} \hlopt{%>%} \hlkwd{augment}\hlstd{(sleep)} \hlopt{%>%} \hlkwd{slice}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{8}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## # A tibble: 8 x 9
@@ -1065,11 +1076,11 @@ Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
   \item Calculate transformed $y$ and plot against $x$. Here try log:
  
  
-\begin{knitrout}
+\begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{log.y}\hlkwb{=}\hlkwd{log}\hlstd{(madeup}\hlopt{$}\hlstd{y)}
-\hlkwd{ggplot}\hlstd{(madeup,}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=x,}\hlkwc{y}\hlstd{=log.y))}\hlopt{+}\hlkwd{geom_point}\hlstd{()}\hlopt{+}
+\hlstd{madeup} \hlopt{%>%} \hlkwd{mutate}\hlstd{(}\hlkwc{log_y}\hlstd{=}\hlkwd{log}\hlstd{(y))} \hlopt{%>%}
+  \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=x,}\hlkwc{y}\hlstd{=log_y))}\hlopt{+}\hlkwd{geom_point}\hlstd{()}\hlopt{+}
   \hlkwd{geom_smooth}\hlstd{()}
 \end{alltt}
 
@@ -1079,10 +1090,45 @@ Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
 
 \end{knitrout}
 
+Looks much straighter.
     
   \end{itemize}
   
   
+\end{frame}
+
+
+\begin{frame}[fragile]{Regression with transformed $y$}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{madeup.1}\hlkwb{=}\hlkwd{lm}\hlstd{(}\hlkwd{log}\hlstd{(y)}\hlopt{~}\hlstd{x,} \hlkwc{data}\hlstd{=madeup)}
+\hlkwd{glance}\hlstd{(madeup.1)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df
+## *     <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>
+## 1     0.883         0.864 0.501      45.3 5.24e-4     2
+## # ... with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
+\end{verbatim}
+\begin{alltt}
+\hlkwd{tidy}\hlstd{(madeup.1)}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    2.91     0.323       8.99 0.000106
+## 2 x              0.520    0.0773      6.73 0.000524
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+R-squared now decently high.
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1355,7 +1401,7 @@ Apparently random. But\ldots
 \hlkwd{ggplot}\hlstd{(visits.1,} \hlkwd{aes}\hlstd{(}\hlkwc{sample}\hlstd{=.resid))}\hlopt{+}\hlkwd{stat_qq}\hlstd{()}\hlopt{+}\hlkwd{stat_qq_line}\hlstd{()}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-29-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-30-1} 
 
 \end{knitrout}
   
@@ -1375,7 +1421,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# `geom\_smooth()` using method = 'loess' and formula 'y \textasciitilde{} x'}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-30-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-31-1} 
 
 \end{knitrout}
   
@@ -1423,9 +1469,8 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{lgtime}\hlkwb{=}\hlkwd{with}\hlstd{(visits,}\hlkwd{log}\hlstd{(timedrs}\hlopt{+}\hlnum{1}\hlstd{))}
-\hlstd{visits.3}\hlkwb{=}\hlkwd{lm}\hlstd{(lgtime}\hlopt{~}\hlstd{phyheal}\hlopt{+}\hlstd{menheal}\hlopt{+}\hlstd{stress,}
-  \hlkwc{data}\hlstd{=visits)}
+\hlstd{visits.3}\hlkwb{=}\hlkwd{lm}\hlstd{(}\hlkwd{log}\hlstd{(timedrs}\hlopt{+}\hlnum{1}\hlstd{)}\hlopt{~}\hlstd{phyheal}\hlopt{+}\hlstd{menheal}\hlopt{+}\hlstd{stress,}
+            \hlkwc{data}\hlstd{=visits)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1451,7 +1496,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = lgtime ~ phyheal + menheal + stress, data = visits)
+## lm(formula = log(timedrs + 1) ~ phyheal + menheal + stress, data = visits)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -1497,7 +1542,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
   \hlkwd{geom_point}\hlstd{()}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-33-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-34-1} 
 
 \end{knitrout}
 \end{frame}
@@ -1510,7 +1555,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \hlkwd{ggplot}\hlstd{(visits.3,} \hlkwd{aes}\hlstd{(}\hlkwc{sample}\hlstd{=.resid))}\hlopt{+}\hlkwd{stat_qq}\hlstd{()}\hlopt{+}\hlkwd{stat_qq_line}\hlstd{()}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-34-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-35-1} 
 
 \end{knitrout}
   
@@ -1527,7 +1572,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# `geom\_smooth()` using method = 'loess' and formula 'y \textasciitilde{} x'}}\end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-35-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-36-1} 
 
 \end{knitrout}
   
@@ -1559,7 +1604,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{boxcox}\hlstd{(timedrs}\hlopt{+}\hlnum{1}\hlopt{~}\hlstd{phyheal}\hlopt{+}\hlstd{menheal}\hlopt{+}\hlstd{stress,}\hlkwc{data}\hlstd{=visitsp)}
+\hlkwd{boxcox}\hlstd{(timedrs}\hlopt{+}\hlnum{1}\hlopt{~}\hlstd{phyheal}\hlopt{+}\hlstd{menheal}\hlopt{+}\hlstd{stress,}\hlkwc{data}\hlstd{=visits)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -1573,7 +1618,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
  
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-37-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-38-1} 
 
 \end{knitrout}
   
@@ -1625,7 +1670,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
   \hlkwc{data}\hlstd{=visits)}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-39-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-40-1} 
 
 \end{knitrout}
 
@@ -1658,15 +1703,15 @@ variable at once, fit model with and without variables and use
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{visits.5}\hlkwb{=}\hlkwd{lm}\hlstd{(lgtime}\hlopt{~}\hlstd{phyheal}\hlopt{+}\hlstd{menheal}\hlopt{+}\hlstd{stress,}\hlkwc{data}\hlstd{=visits)}
-\hlstd{visits.6}\hlkwb{=}\hlkwd{lm}\hlstd{(lgtime}\hlopt{~}\hlstd{stress,}\hlkwc{data}\hlstd{=visits)}
+\hlstd{visits.5}\hlkwb{=}\hlkwd{lm}\hlstd{(}\hlkwd{log}\hlstd{(timedrs}\hlopt{+}\hlnum{1}\hlstd{)}\hlopt{~}\hlstd{phyheal}\hlopt{+}\hlstd{menheal}\hlopt{+}\hlstd{stress,}\hlkwc{data}\hlstd{=visits)}
+\hlstd{visits.6}\hlkwb{=}\hlkwd{lm}\hlstd{(}\hlkwd{log}\hlstd{(timedrs}\hlopt{+}\hlnum{1}\hlstd{)}\hlopt{~}\hlstd{stress,}\hlkwc{data}\hlstd{=visits)}
 \hlkwd{anova}\hlstd{(visits.6,visits.5)}
 \end{alltt}
 \begin{verbatim}
 ## Analysis of Variance Table
 ## 
-## Model 1: lgtime ~ stress
-## Model 2: lgtime ~ phyheal + menheal + stress
+## Model 1: log(timedrs + 1) ~ stress
+## Model 2: log(timedrs + 1) ~ phyheal + menheal + stress
 ##   Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
 ## 1    463 371.47                                  
 ## 2    461 268.01  2    103.46 88.984 < 2.2e-16 ***
@@ -2320,11 +2365,7 @@ dose lived died
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  dose = col\_integer(),\\\#\#\ \  lived = col\_integer(),\\\#\#\ \  died = col\_integer()\\\#\# )}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in rbind(names(probs), probs\_f): number of columns of result is not a multiple of vector length (arg 1)}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: 5 parsing failures.\\\#\# row \# A tibble: 5 x 5 col\ \ \ \  row col\ \  expected\ \ actual\ \ file\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\ \  <int> <chr> <chr>\ \ \ \  <chr>\ \  <chr>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  actual 1\ \ \ \  2 <NA>\ \ 3 columns 4 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} file 2\ \ \ \  3 <NA>\ \ 3 columns 4 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} row 3\ \ \ \  4 <NA>\ \ 3 columns 4 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} col 4\ \ \ \  5 <NA>\ \ 3 columns 4 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} expected 5\ \ \ \  6 <NA>\ \ 3 columns 5 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{}}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  dose = col\_integer(),\\\#\#\ \  lived = col\_integer(),\\\#\#\ \  died = col\_integer()\\\#\# )}}\begin{alltt}
 \hlstd{rat2}
 \end{alltt}
 \begin{verbatim}
@@ -2483,11 +2524,7 @@ dose lived died
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  death = col\_integer(),\\\#\#\ \  shock = col\_integer(),\\\#\#\ \  malnut = col\_integer(),\\\#\#\ \  alcohol = col\_integer(),\\\#\#\ \  age = col\_integer(),\\\#\#\ \  bowelinf = col\_integer()\\\#\# )}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in rbind(names(probs), probs\_f): number of columns of result is not a multiple of vector length (arg 1)}}
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning: 106 parsing failures.\\\#\# row \# A tibble: 5 x 5 col\ \ \ \  row col\ \  expected\ \ actual\ \ file\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected\ \  <int> <chr> <chr>\ \ \ \  <chr>\ \  <chr>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  actual 1\ \ \ \  1 <NA>\ \ 6 columns 8 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} file 2\ \ \ \  2 <NA>\ \ 6 columns 8 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} row 3\ \ \ \  3 <NA>\ \ 6 columns 8 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} col 4\ \ \ \  4 <NA>\ \ 6 columns 8 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{} expected 5\ \ \ \  5 <NA>\ \ 6 columns 8 colu\textasciitilde{} 'http://www.utsc.utoronto.\textasciitilde{}\\\#\# ... ................. ... ........................................................... ........ ........................................................... ...... ........................................................... .... ........................................................... ... ........................................................... ... ........................................................... ........ ...........................................................\\\#\# See problems(...) for more details.}}\end{kframe}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  death = col\_integer(),\\\#\#\ \  shock = col\_integer(),\\\#\#\ \  malnut = col\_integer(),\\\#\#\ \  alcohol = col\_integer(),\\\#\#\ \  age = col\_integer(),\\\#\#\ \  bowelinf = col\_integer()\\\#\# )}}\end{kframe}
 \end{knitrout}
   
 
@@ -2970,7 +3007,7 @@ Data in aligned columns with more than one space between, so:
                   \hlkwc{colour}\hlstd{=Severity))}\hlopt{+}\hlkwd{geom_point}\hlstd{()}\hlopt{+}\hlkwd{geom_line}\hlstd{()}
 \end{alltt}
 \end{kframe}
-\includegraphics[width=\maxwidth]{figure/unnamed-chunk-79-1} 
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-80-1} 
 
 \end{knitrout}
   
@@ -3006,43 +3043,42 @@ Data in aligned columns with more than one space between, so:
   \end{footnotesize}
 \end{frame}
 
-
 \begin{frame}[fragile]{Creating an ordered factor}
   
   \begin{itemize}
   \item Problem: on plot, \texttt{Severity} categories in \emph{wrong
       order}. 
-  \item First we need the different values in  (text) \texttt{Severity}:
+  \item \emph{In the data frame}, categories in \emph{correct} order.
+  \item Package \texttt{forcats} (in \texttt{tidyverse}) has functions for creating factors to specifications.
+  \item \texttt{fct\_inorder} takes levels \emph{in order they appear in data}: 
     
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{v}\hlkwb{=}\hlkwd{unique}\hlstd{(miners}\hlopt{$}\hlstd{Severity)}
-\hlstd{v}
+\hlstd{miners} \hlopt{%>%}
+    \hlkwd{mutate}\hlstd{(}\hlkwc{sev_ord}\hlstd{=}\hlkwd{fct_inorder}\hlstd{(Severity))} \hlkwb{->} \hlstd{miners}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\item To check:
+  
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{levels}\hlstd{(miners}\hlopt{$}\hlstd{sev_ord)}
 \end{alltt}
 \begin{verbatim}
 ## [1] "None"     "Moderate" "Severe"
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
-\item These are in the right order. 
-  
-\item Now we make an ordered factor out
-  of \texttt{Severity} with these as its levels:
-  
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{miners} \hlkwb{=} \hlstd{miners} \hlopt{%>%}
-    \hlkwd{mutate}\hlstd{(}\hlkwc{sev_ord}\hlstd{=}\hlkwd{ordered}\hlstd{(Severity,v))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
   \end{itemize}
   
   
 \end{frame}
+
+
 
 \begin{frame}[fragile]{New data frame}
 
@@ -3055,7 +3091,7 @@ Data in aligned columns with more than one space between, so:
 ## # A tibble: 24 x 5
 ## # Groups:   Exposure [8]
 ##    Exposure Severity  Freq proportion sev_ord 
-##       <dbl> <chr>    <int>      <dbl> <ord>   
+##       <dbl> <chr>    <int>      <dbl> <fct>   
 ##  1      5.8 None        98     1      None    
 ##  2     15   None        51     0.944  None    
 ##  3     21.5 None        34     0.791  None    
@@ -3073,37 +3109,6 @@ Data in aligned columns with more than one space between, so:
   
 \end{frame}
 
-\begin{frame}[fragile]{In the opposite order}
-  
-\texttt{Severe} down to \texttt{None}:  
-  
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{miners} \hlopt{%>%} \hlkwd{mutate}\hlstd{(}\hlkwc{sev2}\hlstd{=}\hlkwd{ordered}\hlstd{(Severity,}\hlkwd{c}\hlstd{(v[}\hlnum{3}\hlstd{],v[}\hlnum{2}\hlstd{],v[}\hlnum{1}\hlstd{])))}
-\end{alltt}
-\begin{verbatim}
-## # A tibble: 24 x 6
-## # Groups:   Exposure [8]
-##    Exposure Severity  Freq proportion sev_ord  sev2    
-##       <dbl> <chr>    <int>      <dbl> <ord>    <ord>   
-##  1      5.8 None        98     1      None     None    
-##  2     15   None        51     0.944  None     None    
-##  3     21.5 None        34     0.791  None     None    
-##  4     27.5 None        35     0.729  None     None    
-##  5     33.5 None        32     0.627  None     None    
-##  6     39.5 None        23     0.605  None     None    
-##  7     46   None        12     0.429  None     None    
-##  8     51.5 None         4     0.364  None     None    
-##  9      5.8 Moderate     0     0      Moderate Moderate
-## 10     15   Moderate     2     0.0370 Moderate Moderate
-## # ... with 14 more rows
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-  
-  
-\end{frame}
 
 \begin{frame}[fragile]{Improved plot}
   
@@ -3272,13 +3277,15 @@ frame), and predict from that:
     goes down, Severe goes up (sharply for high exposure).
   \item Like original data frame, this one nice to look at but
     \emph{not tidy}. We want to make graph, so tidy it.
-  \item Usual \texttt{gather}:
+  \item Also want the severity values in right order.
+  \item Usual \texttt{gather}, plus a bit:
     
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{preds} \hlkwb{=} \hlstd{miners.pred} \hlopt{%>%}
-  \hlkwd{gather}\hlstd{(Severity,probability,None}\hlopt{:}\hlstd{Severe)}
+\hlstd{miners.pred} \hlopt{%>%}
+  \hlkwd{gather}\hlstd{(Severity,probability,}\hlopt{-}\hlstd{Exposure)} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}\hlkwc{sev_ord}\hlstd{=}\hlkwd{fct_inorder}\hlstd{(Severity))} \hlkwb{->} \hlstd{preds}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -3295,22 +3302,22 @@ frame), and predict from that:
 \hlstd{preds} \hlopt{%>%} \hlkwd{slice}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{15}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
-##    Exposure Severity probability
-## 1       5.8     None  0.96769203
-## 2      15.0     None  0.92534455
-## 3      21.5     None  0.86920028
-## 4      27.5     None  0.78892903
-## 5      33.5     None  0.67766411
-## 6      39.5     None  0.54181046
-## 7      46.0     None  0.38799618
-## 8      51.5     None  0.27225426
-## 9       5.8 Moderate  0.01908912
-## 10     15.0 Moderate  0.04329931
-## 11     21.5 Moderate  0.07385858
-## 12     27.5 Moderate  0.11413004
-## 13     33.5 Moderate  0.16207145
-## 14     39.5 Moderate  0.20484198
-## 15     46.0 Moderate  0.22441555
+##    Exposure Severity probability  sev_ord
+## 1       5.8     None  0.96769203     None
+## 2      15.0     None  0.92534455     None
+## 3      21.5     None  0.86920028     None
+## 4      27.5     None  0.78892903     None
+## 5      33.5     None  0.67766411     None
+## 6      39.5     None  0.54181046     None
+## 7      46.0     None  0.38799618     None
+## 8      51.5     None  0.27225426     None
+## 9       5.8 Moderate  0.01908912 Moderate
+## 10     15.0 Moderate  0.04329931 Moderate
+## 11     21.5 Moderate  0.07385858 Moderate
+## 12     27.5 Moderate  0.11413004 Moderate
+## 13     33.5 Moderate  0.16207145 Moderate
+## 14     39.5 Moderate  0.20484198 Moderate
+## 15     46.0 Moderate  0.22441555 Moderate
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -3332,7 +3339,7 @@ frame), and predict from that:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{g}\hlkwb{=}\hlkwd{ggplot}\hlstd{(preds,}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=Exposure,}\hlkwc{y}\hlstd{=probability,}
-    \hlkwc{colour}\hlstd{=Severity))} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+}
+    \hlkwc{colour}\hlstd{=sev_ord))} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+}
   \hlkwd{geom_point}\hlstd{(}\hlkwc{data}\hlstd{=miners,}\hlkwd{aes}\hlstd{(}\hlkwc{y}\hlstd{=proportion))}
 \end{alltt}
 \end{kframe}
@@ -3691,13 +3698,13 @@ but older males prefer brand 3.
 \end{alltt}
 \begin{verbatim}
 ##    age sex brand probability
-## 19  38   0     2  0.23855071
-## 8   35   1     1  0.08404134
-## 30  38   1     3  0.73214715
-## 3   28   0     1  0.79313204
-## 25  32   0     3  0.18702408
-## 5   32   0     1  0.40487271
-## 15  32   0     2  0.40810321
+## 21  24   0     3 0.001812497
+## 2   24   1     1 0.915320760
+## 4   28   1     1 0.695617893
+## 22  24   1     3 0.002788820
+## 8   35   1     1 0.084041337
+## 7   35   0     1 0.130578193
+## 16  32   1     2 0.495031350
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -5755,12 +5762,12 @@ Lines basically parallel, indicating no interaction.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{my_url}\hlkwb{=}\hlstr{"http://www.utsc.utoronto.ca/~butler/c32/autonoise.txt"}
+\hlstd{my_url}\hlkwb{=}\hlstr{"http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"}
 \hlstd{autonoise}\hlkwb{=}\hlkwd{read_table}\hlstd{(my_url)}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in open.connection(con, "{}rb"{}): HTTP error 403.}}\end{kframe}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  noise = col\_integer(),\\\#\#\ \  size = col\_character(),\\\#\#\ \  type = col\_character(),\\\#\#\ \  side = col\_character()\\\#\# )}}\end{kframe}
 \end{knitrout}
   
 \end{frame}
@@ -5772,9 +5779,23 @@ Lines basically parallel, indicating no interaction.
 \begin{alltt}
 \hlstd{autonoise}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 36 x 4
+##    noise size  type  side 
+##    <int> <chr> <chr> <chr>
+##  1   840 M     Std   R    
+##  2   770 L     Octel L    
+##  3   820 M     Octel R    
+##  4   775 L     Octel R    
+##  5   825 M     Octel L    
+##  6   840 M     Std   R    
+##  7   845 M     Std   L    
+##  8   825 M     Octel L    
+##  9   815 M     Octel L    
+## 10   845 M     Std   R    
+## # ... with 26 more rows
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   
 \end{frame}
@@ -5794,9 +5815,7 @@ Lines basically parallel, indicating no interaction.
     \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=size,}\hlkwc{y}\hlstd{=noise,}\hlkwc{fill}\hlstd{=type))}\hlopt{+}
     \hlkwd{geom_boxplot}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
   \end{itemize}
   
@@ -5829,15 +5848,18 @@ medium engine size than for large or small.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{autonoise.1}\hlkwb{=}\hlkwd{aov}\hlstd{(noise}\hlopt{~}\hlstd{size}\hlopt{*}\hlstd{type,}\hlkwc{data}\hlstd{=autonoise)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in terms.formula(formula, "{}Error"{}, data = data): object 'autonoise' not found}}\begin{alltt}
 \hlkwd{summary}\hlstd{(autonoise.1)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in summary(autonoise.1): object 'autonoise.1' not found}}\end{kframe}
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## size         2  26051   13026 199.119  < 2e-16 ***
+## type         1   1056    1056  16.146 0.000363 ***
+## size:type    2    804     402   6.146 0.005792 ** 
+## Residuals   30   1962      65                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \begin{itemize}
@@ -5854,15 +5876,27 @@ medium engine size than for large or small.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{autonoise.2}\hlkwb{=}\hlkwd{TukeyHSD}\hlstd{(autonoise.1)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in TukeyHSD(autonoise.1): object 'autonoise.1' not found}}\begin{alltt}
 \hlstd{autonoise.2}\hlopt{$}\hlstd{`size:type`}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'autonoise.2' not found}}\end{kframe}
+\begin{verbatim}
+##                        diff        lwr        upr        p adj
+## M:Octel-L:Octel  51.6666667  37.463511  65.869823 6.033496e-11
+## S:Octel-L:Octel  52.5000000  38.296844  66.703156 4.089762e-11
+## L:Std-L:Octel     5.0000000  -9.203156  19.203156 8.890358e-01
+## M:Std-L:Octel    75.8333333  61.630177  90.036489 4.962697e-14
+## S:Std-L:Octel    55.8333333  41.630177  70.036489 9.002910e-12
+## S:Octel-M:Octel   0.8333333 -13.369823  15.036489 9.999720e-01
+## L:Std-M:Octel   -46.6666667 -60.869823 -32.463511 6.766649e-10
+## M:Std-M:Octel    24.1666667   9.963511  38.369823 1.908995e-04
+## S:Std-M:Octel     4.1666667 -10.036489  18.369823 9.454142e-01
+## L:Std-S:Octel   -47.5000000 -61.703156 -33.296844 4.477636e-10
+## M:Std-S:Octel    23.3333333   9.130177  37.536489 3.129974e-04
+## S:Std-S:Octel     3.3333333 -10.869823  17.536489 9.787622e-01
+## M:Std-L:Std      70.8333333  56.630177  85.036489 6.583623e-14
+## S:Std-L:Std      50.8333333  36.630177  65.036489 8.937329e-11
+## S:Std-M:Std     -20.0000000 -34.203156  -5.796844 2.203265e-03
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   
 \end{frame}
@@ -5884,9 +5918,7 @@ medium engine size than for large or small.
   \hlkwd{stat_summary}\hlstd{(}\hlkwc{fun.y}\hlstd{=mean,}\hlkwc{geom}\hlstd{=}\hlstr{"point"}\hlstd{)}\hlopt{+}
   \hlkwd{stat_summary}\hlstd{(}\hlkwc{fun.y}\hlstd{=mean,}\hlkwc{geom}\hlstd{=}\hlstr{"line"}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(autonoise, aes(x = size, y = noise, colour = type, group = type)): object 'autonoise' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
   \end{itemize}
   
@@ -5921,9 +5953,9 @@ of \texttt{type} is different for medium-sized engines than for others.
   \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=size,}\hlkwc{y}\hlstd{=mean_noise,}\hlkwc{group}\hlstd{=type,}
       \hlkwc{colour}\hlstd{=type))}\hlopt{+}\hlkwd{geom_point}\hlstd{()}\hlopt{+}\hlkwd{geom_line}\hlstd{()}
 \end{alltt}
+\end{kframe}
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-177-1} 
 
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
 \end{knitrout}
     
   
@@ -5958,9 +5990,12 @@ of \texttt{type} is different for medium-sized engines than for others.
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"S"}\hlstd{)} \hlopt{%>%}
   \hlkwd{aov}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlkwd{summary}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## type         1   33.3   33.33   0.548  0.476
+## Residuals   10  608.3   60.83
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \item No filter difference for small cars.
@@ -5980,9 +6015,14 @@ of \texttt{type} is different for medium-sized engines than for others.
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"M"}\hlstd{)} \hlopt{%>%}
   \hlkwd{aov}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlkwd{summary}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value   Pr(>F)    
+## type         1 1752.1  1752.1   68.93 8.49e-06 ***
+## Residuals   10  254.2    25.4                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 }
 
@@ -5997,9 +6037,14 @@ of \texttt{type} is different for medium-sized engines than for others.
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"M"}\hlstd{)} \hlopt{%>%}
   \hlkwd{group_by}\hlstd{(type)} \hlopt{%>%} \hlkwd{summarize}\hlstd{(}\hlkwc{m}\hlstd{=}\hlkwd{mean}\hlstd{(noise))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   type      m
+##   <chr> <dbl>
+## 1 Octel  822.
+## 2 Std    846.
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 }
 
@@ -6021,9 +6066,12 @@ of \texttt{type} is different for medium-sized engines than for others.
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"L"}\hlstd{)} \hlopt{%>%}
   \hlkwd{aov}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlkwd{summary}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## type         1     75      75   0.682  0.428
+## Residuals   10   1100     110
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \item No significant difference again.
@@ -6036,9 +6084,14 @@ of \texttt{type} is different for medium-sized engines than for others.
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"L"}\hlstd{)} \hlopt{%>%}
   \hlkwd{aov}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlkwd{glance}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC deviance
+## *     <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl> <dbl> <dbl>    <dbl>
+## 1    0.0638       -0.0298  10.5     0.682   0.428     2  -44.1  94.3  95.7     1100
+## # ... with 1 more variable: df.residual <int>
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
     
     
@@ -6059,9 +6112,15 @@ The ``split'' part:
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{group_by}\hlstd{(size)} \hlopt{%>%}
     \hlkwd{nest}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   size  data             
+##   <chr> <list>           
+## 1 M     <tibble [12 x 3]>
+## 2 L     <tibble [12 x 3]>
+## 3 S     <tibble [12 x 3]>
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 Now have \emph{three} rows, with the data frame for each size encoded
@@ -6096,9 +6155,10 @@ as \emph{one element} of this data frame.
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"L"}\hlstd{)} \hlopt{%>%}
   \hlkwd{aov_pval}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## [1] 0.428221
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \item Check.
@@ -6119,11 +6179,17 @@ as \emph{one element} of this data frame.
 \begin{alltt}
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{group_by}\hlstd{(size)} \hlopt{%>%}
     \hlkwd{nest}\hlstd{()} \hlopt{%>%}
-    \hlkwd{mutate}\hlstd{(}\hlkwc{p_val}\hlstd{=}\hlkwd{map_dbl}\hlstd{(data,aov_pval))}
+    \hlkwd{mutate}\hlstd{(}\hlkwc{p_val}\hlstd{=}\hlkwd{map_dbl}\hlstd{(data,}\hlopt{~}\hlkwd{aov_pval}\hlstd{(.)))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   size  data                   p_val
+##   <chr> <list>                 <dbl>
+## 1 M     <tibble [12 x 3]> 0.00000849
+## 2 L     <tibble [12 x 3]> 0.428     
+## 3 S     <tibble [12 x 3]> 0.476
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 \item \texttt{map\_dbl} because \texttt{aov\_pval} returns a decimal
   number (a \texttt{dbl}). Investigate what happens if you use
@@ -6143,17 +6209,19 @@ as \emph{one element} of this data frame.
 \begin{alltt}
 \hlstd{simple_effects} \hlkwb{=} \hlstd{autonoise} \hlopt{%>%} \hlkwd{group_by}\hlstd{(size)} \hlopt{%>%}
     \hlkwd{nest}\hlstd{()} \hlopt{%>%}
-    \hlkwd{mutate}\hlstd{(}\hlkwc{p_val}\hlstd{=}\hlkwd{map_dbl}\hlstd{(data,aov_pval))} \hlopt{%>%}
+    \hlkwd{mutate}\hlstd{(}\hlkwc{p_val}\hlstd{=}\hlkwd{map_dbl}\hlstd{(data,}\hlopt{~}\hlkwd{aov_pval}\hlstd{(.)))} \hlopt{%>%}
     \hlkwd{select}\hlstd{(}\hlopt{-}\hlstd{data)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\begin{alltt}
 \hlstd{simple_effects}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'simple\_effects' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   size       p_val
+##   <chr>      <dbl>
+## 1 M     0.00000849
+## 2 L     0.428     
+## 3 S     0.476
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   \end{itemize}
   
@@ -6173,15 +6241,24 @@ as \emph{one element} of this data frame.
     \hlkwd{mutate}\hlstd{(}\hlkwc{multiplier}\hlstd{=}\hlnum{4}\hlopt{-}\hlkwd{row_number}\hlstd{())} \hlopt{%>%}
     \hlkwd{mutate}\hlstd{(}\hlkwc{p_val_adj}\hlstd{=p_val}\hlopt{*}\hlstd{multiplier)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'simple\_effects' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 3 x 4
+##   size       p_val multiplier p_val_adj
+##   <chr>      <dbl>      <dbl>     <dbl>
+## 1 M     0.00000849          3 0.0000255
+## 2 L     0.428               2 0.856    
+## 3 S     0.476               1 0.476
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
+
+\begin{footnotesize}
 \item No change in rejection decisions.
 \item Octel filters sig.\ better in terms of noise for
   medium cars, and not sig.\ different for other sizes.
 \item Octel filters never significantly worse than standard
   ones. 
+\end{footnotesize}
   \end{itemize}
   
 \end{frame}
@@ -6234,9 +6311,12 @@ Same idea as for simple effect test:
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"S"}\hlstd{)} \hlopt{%>%}
   \hlkwd{t.test}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlstd{.[[}\hlstr{"conf.int"}\hlstd{]]}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## [1] -14.517462   7.850795
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
   
@@ -6253,9 +6333,12 @@ Same idea as for simple effect test:
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"M"}\hlstd{)} \hlopt{%>%}
   \hlkwd{t.test}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlstd{.[[}\hlstr{"conf.int"}\hlstd{]]}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## [1] -30.75784 -17.57549
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   
 \end{frame}
@@ -6268,9 +6351,12 @@ Same idea as for simple effect test:
 \hlstd{autonoise} \hlopt{%>%} \hlkwd{filter}\hlstd{(size}\hlopt{==}\hlstr{"L"}\hlstd{)} \hlopt{%>%}
   \hlkwd{t.test}\hlstd{(noise}\hlopt{~}\hlstd{type,}\hlkwc{data}\hlstd{=.)} \hlopt{%>%} \hlstd{.[[}\hlstr{"conf.int"}\hlstd{]]}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\begin{verbatim}
+## [1] -19.270673   9.270673
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   
 \end{frame}
@@ -6286,12 +6372,10 @@ Same idea as for simple effect test:
 \hlstd{\}}
 \hlstd{cis} \hlkwb{=} \hlstd{autonoise} \hlopt{%>%}
     \hlkwd{group_by}\hlstd{(size)} \hlopt{%>%} \hlkwd{nest}\hlstd{()} \hlopt{%>%}
-    \hlkwd{mutate}\hlstd{(}\hlkwc{ci}\hlstd{=}\hlkwd{map}\hlstd{(data,ci_func))} \hlopt{%>%}
+    \hlkwd{mutate}\hlstd{(}\hlkwc{ci}\hlstd{=}\hlkwd{map}\hlstd{(data,}\hlopt{~}\hlkwd{ci_func}\hlstd{(.)))} \hlopt{%>%}
     \hlkwd{unnest}\hlstd{(ci)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'autonoise' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
 
 \begin{multicols}{2}
@@ -6300,9 +6384,18 @@ Same idea as for simple effect test:
 \begin{alltt}
 \hlstd{cis}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'cis' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   size      ci
+##   <chr>  <dbl>
+## 1 M     -30.8 
+## 2 M     -17.6 
+## 3 L     -19.3 
+## 4 L       9.27
+## 5 S     -14.5 
+## 6 S       7.85
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \begin{small}
@@ -6340,9 +6433,15 @@ Same idea as for simple effect test:
 \hlstd{cis} \hlopt{%>%} \hlkwd{mutate}\hlstd{(}\hlkwc{hilo}\hlstd{=}\hlkwd{rep}\hlstd{(}\hlkwd{c}\hlstd{(}\hlstr{"lower"}\hlstd{,}\hlstr{"upper"}\hlstd{),}\hlnum{3}\hlstd{))} \hlopt{%>%}
     \hlkwd{spread}\hlstd{(hilo,ci)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'cis' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   size  lower  upper
+##   <chr> <dbl>  <dbl>
+## 1 L     -19.3   9.27
+## 2 M     -30.8 -17.6 
+## 3 S     -14.5   7.85
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
     
 %     \begin{tabular}{lrr}
@@ -6543,17 +6642,25 @@ orthogonal.
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{my_url}\hlkwb{=}\hlstr{"http://www.utsc.utoronto.ca/~butler/c32/chainsaw.txt"}
+\hlstd{my_url}\hlkwb{=}\hlstr{"http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"}
 \hlstd{chain.wide}\hlkwb{=}\hlkwd{read_table}\hlstd{(my_url)}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in open.connection(con, "{}rb"{}): HTTP error 403.}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  A = col\_integer(),\\\#\#\ \  B = col\_integer(),\\\#\#\ \  C = col\_integer(),\\\#\#\ \  D = col\_integer()\\\#\# )}}\begin{alltt}
 \hlstd{chain.wide}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'chain.wide' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 5 x 4
+##       A     B     C     D
+##   <int> <int> <int> <int>
+## 1    42    28    57    29
+## 2    17    50    45    29
+## 3    24    44    48    22
+## 4    39    32    41    34
+## 5    43    61    54    30
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
   
@@ -6569,9 +6676,7 @@ Need all the kickbacks in \emph{one} column:
 \hlstd{chain}\hlkwb{=}\hlkwd{gather}\hlstd{(chain.wide,model,kickback,A}\hlopt{:}\hlstd{D,}
   \hlkwc{factor_key}\hlstd{=T)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in gather(chain.wide, model, kickback, A:D, factor\_key = T): object 'chain.wide' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
   
   
@@ -6587,9 +6692,22 @@ Need all the kickbacks in \emph{one} column:
 \begin{alltt}
 \hlstd{chain} \hlopt{%>%} \hlkwd{slice}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'chain' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 10 x 2
+##    model kickback
+##    <fct>    <int>
+##  1 A           42
+##  2 A           17
+##  3 A           24
+##  4 A           39
+##  5 A           43
+##  6 B           28
+##  7 B           50
+##  8 B           44
+##  9 B           32
+## 10 B           61
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \begin{knitrout}
@@ -6597,9 +6715,22 @@ Need all the kickbacks in \emph{one} column:
 \begin{alltt}
 \hlstd{chain} \hlopt{%>%} \hlkwd{slice}\hlstd{(}\hlnum{11}\hlopt{:}\hlnum{20}\hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'chain' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 10 x 2
+##    model kickback
+##    <fct>    <int>
+##  1 C           57
+##  2 C           45
+##  3 C           48
+##  4 C           41
+##  5 C           54
+##  6 D           29
+##  7 D           29
+##  8 D           22
+##  9 D           34
+## 10 D           30
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   \end{multicols}
 \end{frame}
@@ -6622,9 +6753,7 @@ Need all the kickbacks in \emph{one} column:
 \begin{alltt}
 \hlkwd{contrasts}\hlstd{(chain}\hlopt{$}\hlstd{model)}\hlkwb{=}\hlstd{m}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in contrasts(chain\$model) = m: object 'chain' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
 
   
@@ -6639,15 +6768,31 @@ Need all the kickbacks in \emph{one} column:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{chain.1}\hlkwb{=}\hlkwd{lm}\hlstd{(kickback}\hlopt{~}\hlstd{model,}\hlkwc{data}\hlstd{=chain)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in is.data.frame(data): object 'chain' not found}}\begin{alltt}
 \hlkwd{summary}\hlstd{(chain.1)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in summary(chain.1): object 'chain.1' not found}}\end{kframe}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = kickback ~ model, data = chain)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -16.00  -7.10   0.60   6.25  18.00 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)         38.450      2.179  17.649 6.52e-12 ***
+## modelc.home          2.100      3.081   0.682  0.50524    
+## modelc.industrial   -3.000      3.081  -0.974  0.34469    
+## modelc.home.ind    -15.100      4.357  -3.466  0.00319 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.743 on 16 degrees of freedom
+## Multiple R-squared:  0.4562,	Adjusted R-squared:  0.3542 
+## F-statistic: 4.474 on 3 and 16 DF,  p-value: 0.01833
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 }
 
@@ -6660,9 +6805,16 @@ Need all the kickbacks in \emph{one} column:
 \begin{alltt}
 \hlkwd{tidy}\hlstd{(chain.1)} \hlopt{%>%} \hlkwd{select}\hlstd{(term,p.value)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in tidy(chain.1): object 'chain.1' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   term               p.value
+##   <chr>                <dbl>
+## 1 (Intercept)       6.52e-12
+## 2 modelc.home       5.05e- 1
+## 3 modelc.industrial 3.45e- 1
+## 4 modelc.home.ind   3.19e- 3
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   
   \begin{itemize}
@@ -6685,9 +6837,16 @@ Need all the kickbacks in \emph{one} column:
   \hlkwd{summarize}\hlstd{(}\hlkwc{mean.kick}\hlstd{=}\hlkwd{mean}\hlstd{(kickback))} \hlopt{%>%}
     \hlkwd{arrange}\hlstd{(}\hlkwd{desc}\hlstd{(mean.kick))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'chain' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   model mean.kick
+##   <fct>     <dbl>
+## 1 C          49  
+## 2 B          43  
+## 3 A          33  
+## 4 D          28.8
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 \item Home models A \& D have less kickback than industrial ones B \& C.
 \item Makes sense because industrial users should get training to cope
@@ -6785,23 +6944,26 @@ b 9 22
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{my_url}\hlkwb{=}\hlstr{"http://www.utsc.utoronto.ca/~butler/c32/ancova.txt"}
+\hlstd{my_url}\hlkwb{=}\hlstr{"http://www.utsc.utoronto.ca/~butler/d29/ancova.txt"}
 \hlstd{prepost}\hlkwb{=}\hlkwd{read_delim}\hlstd{(my_url,}\hlstr{" "}\hlstd{)}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in open.connection(con, "{}rb"{}): HTTP error 403.}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Parsed with column specification:\\\#\# cols(\\\#\#\ \  drug = col\_character(),\\\#\#\ \  before = col\_integer(),\\\#\#\ \  after = col\_integer()\\\#\# )}}\begin{alltt}
 \hlkwd{glimpse}\hlstd{(prepost)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in glimpse(prepost): object 'prepost' not found}}\begin{alltt}
+\begin{verbatim}
+## Observations: 20
+## Variables: 3
+## $ drug   <chr> "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "b", "b", "b", "b", ...
+## $ before <int> 5, 10, 12, 9, 23, 21, 14, 18, 6, 13, 7, 12, 27, 24, 18, 22, 26, 21, 14, 9
+## $ after  <int> 20, 23, 30, 25, 34, 40, 27, 38, 24, 31, 19, 26, 33, 35, 30, 31, 34, 28...
+\end{verbatim}
+\begin{alltt}
 \hlstd{g}\hlkwb{=}\hlkwd{ggplot}\hlstd{(prepost,}\hlkwd{aes}\hlstd{(}\hlkwc{x}\hlstd{=before,}\hlkwc{y}\hlstd{=after,}\hlkwc{colour}\hlstd{=drug))}\hlopt{+}
   \hlkwd{geom_point}\hlstd{()}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(prepost, aes(x = before, y = after, colour = drug)): object 'prepost' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
   
   
@@ -6856,9 +7018,14 @@ b 9 22
             \hlkwc{after_mean}\hlstd{=}\hlkwd{mean}\hlstd{(after)}
            \hlstd{)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(lhs, parent, parent): object 'prepost' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   drug  before_mean after_mean
+##   <chr>       <dbl>      <dbl>
+## 1 a            13.1       29.2
+## 2 b            18         28.1
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
   
 
@@ -6877,15 +7044,21 @@ b 9 22
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{prepost.1}\hlkwb{=}\hlkwd{lm}\hlstd{(after}\hlopt{~}\hlstd{before}\hlopt{*}\hlstd{drug,}\hlkwc{data}\hlstd{=prepost)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in is.data.frame(data): object 'prepost' not found}}\begin{alltt}
 \hlkwd{anova}\hlstd{(prepost.1)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in anova(prepost.1): object 'prepost.1' not found}}\end{kframe}
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: after
+##             Df Sum Sq Mean Sq F value    Pr(>F)    
+## before       1 430.92  430.92 62.6894  6.34e-07 ***
+## drug         1 115.31  115.31 16.7743 0.0008442 ***
+## before:drug  1  12.34   12.34  1.7948 0.1990662    
+## Residuals   16 109.98    6.87                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 
@@ -6934,43 +7107,19 @@ Do predictions:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{pred}\hlkwb{=}\hlkwd{predict}\hlstd{(prepost.1,new)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in predict(prepost.1, new): object 'prepost.1' not found}}\begin{alltt}
 \hlstd{preds}\hlkwb{=}\hlkwd{bind_cols}\hlstd{(new,}\hlkwc{pred}\hlstd{=pred)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in dots\_values(...): object 'pred' not found}}\begin{alltt}
 \hlstd{preds}
 \end{alltt}
 \begin{verbatim}
-##    Exposure Severity probability
-## 1       5.8     None  0.96769203
-## 2      15.0     None  0.92534455
-## 3      21.5     None  0.86920028
-## 4      27.5     None  0.78892903
-## 5      33.5     None  0.67766411
-## 6      39.5     None  0.54181046
-## 7      46.0     None  0.38799618
-## 8      51.5     None  0.27225426
-## 9       5.8 Moderate  0.01908912
-## 10     15.0 Moderate  0.04329931
-## 11     21.5 Moderate  0.07385858
-## 12     27.5 Moderate  0.11413004
-## 13     33.5 Moderate  0.16207145
-## 14     39.5 Moderate  0.20484198
-## 15     46.0 Moderate  0.22441555
-## 16     51.5 Moderate  0.21025011
-## 17      5.8   Severe  0.01321885
-## 18     15.0   Severe  0.03135614
-## 19     21.5   Severe  0.05694115
-## 20     27.5   Severe  0.09694093
-## 21     33.5   Severe  0.16026444
-## 22     39.5   Severe  0.25334756
-## 23     46.0   Severe  0.38758828
-## 24     51.5   Severe  0.51749563
+## # A tibble: 6 x 3
+##   before drug   pred
+##    <dbl> <chr> <dbl>
+## 1      5 a      21.3
+## 2      5 b      18.7
+## 3     15 a      31.1
+## 4     15 b      25.9
+## 5     25 a      40.8
+## 6     25 b      33.2
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -6990,9 +7139,7 @@ Do predictions:
   \hlkwd{geom_point}\hlstd{()}\hlopt{+}
   \hlkwd{geom_line}\hlstd{(}\hlkwc{data}\hlstd{=preds,}\hlkwd{aes}\hlstd{(}\hlkwc{y}\hlstd{=pred))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(prepost, aes(x = before, y = after, colour = drug)): object 'prepost' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
 
 
@@ -7056,15 +7203,20 @@ which would work here, but not for later plot.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{prepost.2}\hlkwb{=}\hlkwd{update}\hlstd{(prepost.1,.}\hlopt{~}\hlstd{.}\hlopt{-}\hlstd{before}\hlopt{:}\hlstd{drug)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in update(prepost.1, . \textasciitilde{} . - before:drug): object 'prepost.1' not found}}\begin{alltt}
 \hlkwd{anova}\hlstd{(prepost.2)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in anova(prepost.2): object 'prepost.2' not found}}\end{kframe}
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: after
+##           Df Sum Sq Mean Sq F value    Pr(>F)    
+## before     1 430.92  430.92  59.890 5.718e-07 ***
+## drug       1 115.31  115.31  16.025 0.0009209 ***
+## Residuals 17 122.32    7.20                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 }
   
@@ -7083,43 +7235,19 @@ which would work here, but not for later plot.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlstd{pred}\hlkwb{=}\hlkwd{predict}\hlstd{(prepost.2,new)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in predict(prepost.2, new): object 'prepost.2' not found}}\begin{alltt}
 \hlstd{preds}\hlkwb{=}\hlkwd{bind_cols}\hlstd{(new,}\hlkwc{pred}\hlstd{=pred)}
-\end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in dots\_values(...): object 'pred' not found}}\begin{alltt}
 \hlstd{preds}
 \end{alltt}
 \begin{verbatim}
-##    Exposure Severity probability
-## 1       5.8     None  0.96769203
-## 2      15.0     None  0.92534455
-## 3      21.5     None  0.86920028
-## 4      27.5     None  0.78892903
-## 5      33.5     None  0.67766411
-## 6      39.5     None  0.54181046
-## 7      46.0     None  0.38799618
-## 8      51.5     None  0.27225426
-## 9       5.8 Moderate  0.01908912
-## 10     15.0 Moderate  0.04329931
-## 11     21.5 Moderate  0.07385858
-## 12     27.5 Moderate  0.11413004
-## 13     33.5 Moderate  0.16207145
-## 14     39.5 Moderate  0.20484198
-## 15     46.0 Moderate  0.22441555
-## 16     51.5 Moderate  0.21025011
-## 17      5.8   Severe  0.01321885
-## 18     15.0   Severe  0.03135614
-## 19     21.5   Severe  0.05694115
-## 20     27.5   Severe  0.09694093
-## 21     33.5   Severe  0.16026444
-## 22     39.5   Severe  0.25334756
-## 23     46.0   Severe  0.38758828
-## 24     51.5   Severe  0.51749563
+## # A tibble: 6 x 3
+##   before drug   pred
+##    <dbl> <chr> <dbl>
+## 1      5 a      22.5
+## 2      5 b      17.3
+## 3     15 a      30.8
+## 4     15 b      25.6
+## 5     25 a      39.0
+## 6     25 b      33.9
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -7141,9 +7269,7 @@ score, \emph{the same for both drugs}.
   \hlkwd{geom_point}\hlstd{()}\hlopt{+}
   \hlkwd{geom_line}\hlstd{(}\hlkwc{data}\hlstd{=preds,}\hlkwd{aes}\hlstd{(}\hlkwc{y}\hlstd{=pred))}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(prepost, aes(x = before, y = after, colour = drug)): object 'prepost' not found}}\end{kframe}
+\end{kframe}
 \end{knitrout}
  
 
@@ -7183,9 +7309,28 @@ to have the same slope.
 \begin{alltt}
 \hlkwd{summary}\hlstd{(prepost.2)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in summary(prepost.2): object 'prepost.2' not found}}\end{kframe}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = after ~ before + drug, data = prepost)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6348 -2.5099 -0.2038  1.8871  4.7453 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  18.3600     1.5115  12.147 8.35e-10 ***
+## before        0.8275     0.0955   8.665 1.21e-07 ***
+## drugb        -5.1547     1.2876  -4.003 0.000921 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.682 on 17 degrees of freedom
+## Multiple R-squared:  0.817,	Adjusted R-squared:  0.7955 
+## F-statistic: 37.96 on 2 and 17 DF,  p-value: 5.372e-07
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
     \end{scriptsize}
   \end{itemize}
@@ -7199,9 +7344,15 @@ to have the same slope.
 \begin{alltt}
 \hlkwd{tidy}\hlstd{(prepost.2)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in tidy(prepost.2): object 'prepost.2' not found}}\end{kframe}
+\begin{verbatim}
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)   18.4      1.51       12.1  8.35e-10
+## 2 before         0.827    0.0955      8.66 1.21e- 7
+## 3 drugb         -5.15     1.29       -4.00 9.21e- 4
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \begin{itemize}

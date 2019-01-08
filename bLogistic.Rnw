@@ -572,32 +572,31 @@ miners
   \end{footnotesize}
 \end{frame}
 
-
 \begin{frame}[fragile]{Creating an ordered factor}
   
   \begin{itemize}
   \item Problem: on plot, \texttt{Severity} categories in \emph{wrong
       order}. 
-  \item First we need the different values in  (text) \texttt{Severity}:
+  \item \emph{In the data frame}, categories in \emph{correct} order.
+  \item Package \texttt{forcats} (in \texttt{tidyverse}) has functions for creating factors to specifications.
+  \item \texttt{fct\_inorder} takes levels \emph{in order they appear in data}: 
     
 <<>>=
-v=unique(miners$Severity)
-v
-@
+miners %>% 
+    mutate(sev_ord=fct_inorder(Severity)) -> miners
+@     
 
-\item These are in the right order. 
+\item To check:
   
-\item Now we make an ordered factor out
-  of \texttt{Severity} with these as its levels:
-  
-<<size="small">>=
-miners = miners %>% 
-    mutate(sev_ord=ordered(Severity,v))
+<<>>=
+levels(miners$sev_ord)
 @   
   \end{itemize}
   
   
 \end{frame}
+
+
 
 \begin{frame}[fragile]{New data frame}
 
@@ -607,16 +606,6 @@ miners
   
 \end{frame}
 
-\begin{frame}[fragile]{In the opposite order}
-  
-\texttt{Severe} down to \texttt{None}:  
-  
-<<>>=
-miners %>% mutate(sev2=ordered(Severity,c(v[3],v[2],v[1])))
-@     
-  
-  
-\end{frame}
 
 \begin{frame}[fragile]{Improved plot}
   
@@ -711,11 +700,13 @@ miners.pred
     goes down, Severe goes up (sharply for high exposure).
   \item Like original data frame, this one nice to look at but
     \emph{not tidy}. We want to make graph, so tidy it.
-  \item Usual \texttt{gather}:
+  \item Also want the severity values in right order.
+  \item Usual \texttt{gather}, plus a bit:
     
 <<size="small">>=
-preds = miners.pred %>% 
-  gather(Severity,probability,None:Severe) 
+miners.pred %>% 
+  gather(Severity,probability,-Exposure) %>%
+  mutate(sev_ord=fct_inorder(Severity)) -> preds
 @     
 
   \end{itemize}
@@ -743,7 +734,7 @@ preds %>% slice(1:15)
   
 <<>>=
 g=ggplot(preds,aes(x=Exposure,y=probability,
-    colour=Severity)) + geom_line() +
+    colour=sev_ord)) + geom_line() +
   geom_point(data=miners,aes(y=proportion))
 @   
 

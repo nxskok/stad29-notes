@@ -425,7 +425,7 @@ summary(vitaminb.2)
   equal to those of standard silencers. 
  
 <<>>=
-my_url="http://www.utsc.utoronto.ca/~butler/c32/autonoise.txt"
+my_url="http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
 autonoise=read_table(my_url)
 @ 
   
@@ -682,7 +682,7 @@ autonoise %>% filter(size=="L") %>%
 <<>>=
 autonoise %>% group_by(size) %>%
     nest() %>%
-    mutate(p_val=map_dbl(data,aov_pval))
+    mutate(p_val=map_dbl(data,~aov_pval(.)))
 @     
 \item \texttt{map\_dbl} because \texttt{aov\_pval} returns a decimal
   number (a \texttt{dbl}). Investigate what happens if you use
@@ -700,7 +700,7 @@ autonoise %>% group_by(size) %>%
 <<size="small">>=
 simple_effects = autonoise %>% group_by(size) %>%
     nest() %>%
-    mutate(p_val=map_dbl(data,aov_pval)) %>%
+    mutate(p_val=map_dbl(data,~aov_pval(.))) %>%
     select(-data)
 simple_effects
 @     
@@ -720,11 +720,14 @@ simple_effects %>%
     mutate(multiplier=4-row_number()) %>%
     mutate(p_val_adj=p_val*multiplier)
 @     
+
+\begin{footnotesize}
 \item No change in rejection decisions.
 \item Octel filters sig.\ better in terms of noise for
   medium cars, and not sig.\ different for other sizes.
 \item Octel filters never significantly worse than standard
   ones. 
+\end{footnotesize}
   \end{itemize}
   
 \end{frame}
@@ -809,7 +812,7 @@ ci_func=function(x) {
 }
 cis = autonoise %>%
     group_by(size) %>% nest() %>%
-    mutate(ci=map(data,ci_func)) %>%
+    mutate(ci=map(data,~ci_func(.))) %>%
     unnest(ci)
 @   
 
@@ -1002,7 +1005,7 @@ orthogonal.
 \begin{frame}[fragile]{Starting the analysis}
   
 <<size="footnotesize">>=
-my_url="http://www.utsc.utoronto.ca/~butler/c32/chainsaw.txt"
+my_url="http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"
 chain.wide=read_table(my_url)
 chain.wide
 @   

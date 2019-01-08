@@ -2,18 +2,7 @@
 
 
 
-## ----Rscript, child="bRscript.Rnw"---------------------------------------
-
-
-
 ## ----Regression, child="bRegression.Rnw"---------------------------------
-
-## ----setup2,echo=F-------------------------------------------------------
-library(knitr)
-opts_chunk$set(dev = 'pdf')
-opts_chunk$set(comment=NA, fig.width=5, fig.height=3.5)
-options(width=45)
-#suppressMessages(library(tidyverse))
 
 ## ------------------------------------------------------------------------
 library(MASS) # for Box-Cox, later
@@ -21,12 +10,13 @@ library(tidyverse)
 library(broom)
 
 ## ------------------------------------------------------------------------
-sleep=read_delim("sleep.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/sleep.txt"
+sleep=read_delim(my_url," ")
 
 ## ----size="footnotesize"-------------------------------------------------
 sleep
 
-## ----suggo---------------------------------------------------------------
+## ----suggo, fig.height=4-------------------------------------------------
 ggplot(sleep,aes(x=age,y=atst))+geom_point()
 
 ## ------------------------------------------------------------------------
@@ -35,7 +25,7 @@ with(sleep,cor(atst,age))
 ## ------------------------------------------------------------------------
 cor(sleep)
 
-## ----icko,fig.height=2.75------------------------------------------------
+## ----icko,fig.height=3---------------------------------------------------
 ggplot(sleep,aes(x=age,y=atst))+geom_point()+
   geom_smooth()
 
@@ -48,7 +38,7 @@ tidy(sleep.1)
 glance(sleep.1)
 
 ## ----size="footnotesize",warning=F---------------------------------------
-augment(sleep.1) %>% slice(1:8)
+sleep.1 %>% augment(sleep) %>% slice(1:8)
 
 ## ------------------------------------------------------------------------
 my.age=c(10,5)
@@ -74,15 +64,16 @@ ggplot(sleep,aes(x=age,y=atst))+geom_point()+
 ggplot(sleep.1,aes(x=.fitted,y=.resid))+geom_point()
 
 ## ----curvy---------------------------------------------------------------
-curvy=read_delim("curvy.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/curvy.txt"
+curvy=read_delim(my_url," ")
 
-## ------------------------------------------------------------------------
+## ----fig.height=4--------------------------------------------------------
 ggplot(curvy,aes(x=xx,y=yy))+geom_point()
 
 ## ------------------------------------------------------------------------
 curvy.1=lm(yy~xx,data=curvy) ; summary(curvy.1)
 
-## ----altoadige,size="small"----------------------------------------------
+## ----altoadige,fig.height=4----------------------------------------------
 ggplot(curvy.1,aes(x=.fitted,y=.resid))+geom_point()
 
 ## ------------------------------------------------------------------------
@@ -98,7 +89,8 @@ summary(curvy.2)
 ggplot(curvy.2,aes(x=.fitted,y=.resid))+geom_point()
 
 ## ----message=F-----------------------------------------------------------
-madeup=read_csv("madeup.csv")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/madeup.csv"
+madeup=read_csv(my_url)
 madeup
 
 ## ----dsljhsdjlhf,fig.height=2.75-----------------------------------------
@@ -108,16 +100,22 @@ ggplot(madeup,aes(x=x,y=y))+geom_point()+
 ## ----eval=F--------------------------------------------------------------
 ## boxcox(y~x,data=madeup)
 
-## ----trento,echo=F-------------------------------------------------------
+## ----trento,echo=F, fig.height=4-----------------------------------------
 boxcox(y~x,data=madeup)
 
-## ----fig.height=2.8------------------------------------------------------
-log.y=log(madeup$y) 
-ggplot(madeup,aes(x=x,y=log.y))+geom_point()+
+## ----fig.height=2.8, size="footnotesize"---------------------------------
+madeup %>% mutate(log_y=log(y)) %>% 
+  ggplot(aes(x=x,y=log_y))+geom_point()+
   geom_smooth()
 
+## ----size="footnotesize"-------------------------------------------------
+madeup.1=lm(log(y)~x, data=madeup)
+glance(madeup.1)
+tidy(madeup.1)
+
 ## ------------------------------------------------------------------------
-visits=read_delim("regressx.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
+visits=read_delim(my_url," ")
 
 ## ----size="small"--------------------------------------------------------
 visits
@@ -140,57 +138,53 @@ visits %>% select(-subjno) %>% cor()
 ggplot(visits.1,aes(x=.fitted,y=.resid))+geom_point()
 
 ## ----fig.height=3.5------------------------------------------------------
-r=resid(visits.1)
-qqnorm(r)
-qqline(r)
+ggplot(visits.1, aes(sample=.resid))+stat_qq()+stat_qq_line()
 
-## ----fig.height=2--------------------------------------------------------
+## ----fig.height=2.5------------------------------------------------------
 ggplot(visits.1,aes(x=.fitted,y=abs(.resid)))+
   geom_point()+geom_smooth()
 
 ## ------------------------------------------------------------------------
-lgtime=with(visits,log(timedrs+1))
-visits.3=lm(lgtime~phyheal+menheal+stress,
-  data=visits)
+visits.3=lm(log(timedrs+1)~phyheal+menheal+stress, 
+            data=visits)
 
 ## ------------------------------------------------------------------------
 summary(visits.3)
 
-## ----fig.height=3--------------------------------------------------------
+## ----fig.height=3.5------------------------------------------------------
 ggplot(visits.3,aes(x=.fitted,y=.resid))+
   geom_point()
 
-## ------------------------------------------------------------------------
-r=residuals(visits.3); qqnorm(r); qqline(r)
+## ----fig.height=4--------------------------------------------------------
+ggplot(visits.3, aes(sample=.resid))+stat_qq()+stat_qq_line()
 
-## ----fig.height=2.75-----------------------------------------------------
+## ----fig.height=3--------------------------------------------------------
 ggplot(visits.3,aes(x=.fitted,y=abs(.resid)))+
   geom_point()+geom_smooth()
 
-## ------------------------------------------------------------------------
-tp=with(visits,timedrs+1)
-
 ## ----eval=F--------------------------------------------------------------
-## boxcox(tp~phyheal+menheal+stress,data=visits)
+## boxcox(timedrs+1~phyheal+menheal+stress,data=visits)
 
 ## ----echo=F,fig.height=4.5-----------------------------------------------
-boxcox(tp~phyheal+menheal+stress,data=visits)
+visits %>% mutate(tp=timedrs+1) %>% 
+  boxcox(timedrs+1~phyheal+menheal+stress,data=.)
 
 ## ----size="footnotesize"-------------------------------------------------
 my.lambda=seq(-0.3,0.1,0.01)
 my.lambda
 
-## ------------------------------------------------------------------------
-boxcox(tp~phyheal+menheal+stress,lambda=my.lambda,
+## ----fig.height=3.5------------------------------------------------------
+boxcox(timedrs+1~phyheal+menheal+stress,lambda=my.lambda,
   data=visits)
 
 ## ------------------------------------------------------------------------
-visits.5=lm(lgtime~phyheal+menheal+stress,data=visits)
-visits.6=lm(lgtime~stress,data=visits)
+visits.5=lm(log(timedrs+1)~phyheal+menheal+stress,data=visits)
+visits.6=lm(log(timedrs+1)~stress,data=visits)
 anova(visits.6,visits.5)
 
 ## ------------------------------------------------------------------------
-punting=read_table("punting.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/punting.txt"
+punting=read_table(my_url)
 
 ## ----size="small"--------------------------------------------------------
 punting
@@ -214,10 +208,10 @@ summary(punting.2)$r.squared
 summary(punting.2)
 
 ## ----size="footnotesize"-------------------------------------------------
-punting.2.aug=augment(punting.2,punting)
+punting.2 %>% augment(punting) -> punting.2.aug
 punting.2.aug %>% slice(1:8)
 
-## ----basingstoke,fig.height=3--------------------------------------------
+## ----basingstoke,fig.height=3.5------------------------------------------
 ggplot(punting.2.aug,aes(x=left,y=.resid))+
   geom_point()
 
@@ -243,7 +237,8 @@ library(broom)
 library(nnet)
 
 ## ----size="small"--------------------------------------------------------
-rats=read_delim("rat.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/rat.txt"
+rats=read_delim(my_url," ")
 
 ## ----size="small"--------------------------------------------------------
 rats
@@ -265,13 +260,17 @@ p=predict(status.1,type="response")
 cbind(rats,p)
 
 ## ----size="footnotesize"-------------------------------------------------
-rat2=read_delim("rat2.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/rat2.txt"
+rat2=read_delim(my_url," ")
 rat2
 
 ## ------------------------------------------------------------------------
 response=with(rat2,cbind(lived,died))
 rat2.1=glm(response~dose,family="binomial",
   data=rat2)
+
+## ------------------------------------------------------------------------
+class(response)
 
 ## ----size="scriptsize"---------------------------------------------------
 summary(rat2.1)
@@ -281,7 +280,8 @@ p=predict(rat2.1,type="response")
 cbind(rat2,p)
 
 ## ----size="footnotesize"-------------------------------------------------
-sepsis=read_delim("sepsis.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/sepsis.txt"
+sepsis=read_delim(my_url," ")
 
 ## ----size="footnotesize"-------------------------------------------------
 sepsis
@@ -303,11 +303,11 @@ sepsis.pred=predict(sepsis.2,type="response")
 d=data.frame(sepsis,sepsis.pred)
 myrows=c(4,1,2,11,32) ; slice(d,myrows)
 
-## ----virtusentella,fig.height=3.5, warning=F-----------------------------
+## ----virtusentella,fig.height=3.4, warning=F-----------------------------
 ggplot(augment(sepsis.2),aes(x=age,y=.resid))+
   geom_point()
 
-## ----size="scriptsize"---------------------------------------------------
+## ----size="small"--------------------------------------------------------
 sepsis.2.tidy=tidy(sepsis.2)
 sepsis.2.tidy
 
@@ -315,43 +315,41 @@ sepsis.2.tidy
 cc=exp(sepsis.2.tidy$estimate)
 data.frame(sepsis.2.tidy$term,expcoeff=round(cc,2))
 
-## ----size="small"--------------------------------------------------------
+## ------------------------------------------------------------------------
 (od1=0.02/0.98)
 (od2=0.01/0.99)
 
-## ----size="small"--------------------------------------------------------
-od1/od2 # very close to 2
+## ------------------------------------------------------------------------
+od1/od2 
 
 ## ------------------------------------------------------------------------
-freqs=read_table("miners-tab.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/miners-tab.txt"
+freqs=read_table(my_url)
 
 ## ------------------------------------------------------------------------
 freqs
 
 ## ------------------------------------------------------------------------
-miners = freqs %>% 
-  gather(Severity,Freq,None:Severe) %>%
-  group_by(Exposure) %>%
-  mutate(proportion=prop.table(Freq)) %>%
-  ungroup()
+freqs %>% gather(Severity, Freq, None:Severe) %>%
+    group_by(Exposure) %>%
+    mutate(proportion=Freq/sum(Freq)) -> miners
 
 ## ------------------------------------------------------------------------
 miners
 
 ## ----fig.height=3.5,size="small"-----------------------------------------
 ggplot(miners,aes(x=Exposure,y=proportion,
-    colour=Severity))+geom_point()+geom_line()
+                  colour=Severity))+geom_point()+geom_line()
 
 ## ------------------------------------------------------------------------
 miners
 
 ## ------------------------------------------------------------------------
-v=unique(miners$Severity)
-v
+miners %>% 
+    mutate(sev_ord=fct_inorder(Severity)) -> miners
 
-## ----size="small"--------------------------------------------------------
-miners = miners %>% 
-    mutate(sev_ord=ordered(Severity,v))
+## ------------------------------------------------------------------------
+levels(miners$sev_ord)
 
 ## ------------------------------------------------------------------------
 miners
@@ -388,22 +386,24 @@ miners.pred=cbind(sev.new,pr)
 miners.pred
 
 ## ----size="small"--------------------------------------------------------
-preds = miners.pred %>% 
-  gather(Severity,probability,None:Severe) 
+miners.pred %>% 
+  gather(Severity,probability,-Exposure) %>%
+  mutate(sev_ord=fct_inorder(Severity)) -> preds
 
 ## ----size="small"--------------------------------------------------------
 preds %>% slice(1:15)
 
 ## ------------------------------------------------------------------------
 g=ggplot(preds,aes(x=Exposure,y=probability,
-    colour=Severity)) + geom_line() +
+    colour=sev_ord)) + geom_line() +
   geom_point(data=miners,aes(y=proportion))
 
 ## ----fig.height=3.6------------------------------------------------------
 g
 
 ## ------------------------------------------------------------------------
-brandpref=read_csv("mlogit.csv")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/mlogit.csv"
+brandpref=read_csv(my_url)
 
 ## ------------------------------------------------------------------------
 brandpref
@@ -454,13 +454,14 @@ ggplot(probs.long,aes(x=age,y=probability,
   geom_point()+geom_line(aes(linetype=sex))
 
 ## ------------------------------------------------------------------------
-b = brandpref %>%
+brandpref %>%
       group_by(age,sex,brand) %>%
-      summarize(Freq=n())
-head(b)  
+      summarize(Freq=n()) %>%
+      ungroup() -> b
+b %>% slice(1:6)
 
 ## ----size="scriptsize"---------------------------------------------------
-bf = b %>% ungroup() %>%
+bf = b %>%
       mutate(sex=factor(sex)) %>%
       mutate(brand=factor(brand)) 
 b.1=multinom(brand~age+sex,data=bf,weights=Freq)
@@ -474,9 +475,9 @@ b %>% group_by(age) %>%
   summarize(total=sum(Freq)) 
 
 ## ----spal-b--------------------------------------------------------------
-brands = b %>%  
+b %>%  
   group_by(age,sex) %>%
-  mutate(proportion=prop.table(Freq)) 
+  mutate(proportion=Freq/sum(Freq)) -> brands
 
 ## ------------------------------------------------------------------------
 brands %>% filter(age==32)
@@ -508,20 +509,16 @@ options(width=60)
 b.4=update(b.1,.~.+age:sex)
 anova(b.1,b.4)
 
-## ----echo=F--------------------------------------------------------------
-pkgs = names(sessionInfo()$otherPkgs) 
-pkgs=paste('package:', pkgs, sep = "")
-x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-
 
 ## ----bSurvival, child="bSurvival.Rnw"------------------------------------
 
-## ----size="footnotesize",message=F---------------------------------------
+## ----message=F-----------------------------------------------------------
 library(tidyverse)
 library(survival)
 library(survminer)
 library(broom)
-dance=read_table("dancing.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/dancing.txt"
+dance=read_table(my_url)
 
 ## ----size="small"--------------------------------------------------------
 dance
@@ -548,7 +545,7 @@ dance.new
 ## ----echo=F--------------------------------------------------------------
 options(width=80)
 
-## ----size="tiny"---------------------------------------------------------
+## ----size="footnotesize"-------------------------------------------------
 s=survfit(dance.1,newdata=dance.new,data=dance)
 summary(s)
 
@@ -587,25 +584,26 @@ resp=with(lung.complete,Surv(time,status==2))
 lung.1=coxph(resp~.-inst-time-status,
   data=lung.complete)
 
-## ------------------------------------------------------------------------
+## ----size="tiny"---------------------------------------------------------
 summary(lung.1)
 
 ## ----size="small"--------------------------------------------------------
 glance(lung.1)[c(4,6,8)]
 
 ## ------------------------------------------------------------------------
-tidy(lung.1) %>% select(term, p.value)
+tidy(lung.1) %>% select(term, p.value) %>% arrange(p.value)
 
-## ------------------------------------------------------------------------
+## ----size="footnotesize"-------------------------------------------------
 lung.2=update(lung.1,.~.-age-pat.karno-meal.cal)
 tidy(lung.2) %>% select(term,p.value)
 
-## ------------------------------------------------------------------------
+## ----size="footnotesize"-------------------------------------------------
+anova(lung.2,lung.1)
+
+## ----size="footnotesize"-------------------------------------------------
 lung.3=update(lung.2,.~.-ph.karno-wt.loss)
 tidy(lung.3) %>% select(term,estimate,p.value)
-
-## ------------------------------------------------------------------------
-anova(lung.3,lung.1)
+anova(lung.3, lung.2)
 
 ## ----size="footnotesize"-------------------------------------------------
 sexes=c(1,2)
@@ -614,7 +612,7 @@ lung.new=crossing(sex=sexes,ph.ecog=ph.ecogs)
 lung.new
 s=survfit(lung.3,data=lung.complete,newdata=lung.new)
 
-## ----fig.height=3.5------------------------------------------------------
+## ----fig.height=4--------------------------------------------------------
 ggsurvplot(s,conf.int=F)
 
 ## ----fig.height=2.25-----------------------------------------------------
@@ -641,11 +639,6 @@ summary(y.2)
 ## ----fig.height=2.5------------------------------------------------------
 ggcoxdiagnostics(y.2)+geom_smooth(se=F)
 
-## ----echo=F--------------------------------------------------------------
-pkgs = names(sessionInfo()$otherPkgs) 
-pkgs=paste('package:', pkgs, sep = "")
-x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-
 
 ## ----bAnova, child="bAnova.Rnw"------------------------------------------
 
@@ -654,7 +647,8 @@ library(tidyverse)
 library(broom)
 
 ## ----size="footnotesize"-------------------------------------------------
-hairpain=read_delim("hairpain.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/hairpain.txt"
+hairpain=read_delim(my_url," ")
 hairpain %>% group_by(hair) %>%
   summarize( n=n(),
              xbar=mean(pain),
@@ -683,7 +677,8 @@ pairwise.t.test(pain,hair,p.adj="fdr")
 pairwise.t.test(pain,hair,p.adj="bon")
 
 ## ------------------------------------------------------------------------
-vitaminb=read_delim("vitaminb.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/vitaminb.txt"
+vitaminb=read_delim(my_url," ")
 
 ## ------------------------------------------------------------------------
 vitaminb
@@ -715,7 +710,8 @@ vitaminb.2=update(vitaminb.1,.~.-ratsize:diet)
 summary(vitaminb.2)
 
 ## ------------------------------------------------------------------------
-autonoise=read_table("autonoise.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
+autonoise=read_table(my_url)
 
 ## ------------------------------------------------------------------------
 autonoise
@@ -790,12 +786,12 @@ autonoise %>% filter(size=="L") %>%
 ## ------------------------------------------------------------------------
 autonoise %>% group_by(size) %>%
     nest() %>%
-    mutate(p_val=map_dbl(data,aov_pval))
+    mutate(p_val=map_dbl(data,~aov_pval(.)))
 
 ## ----size="small"--------------------------------------------------------
 simple_effects = autonoise %>% group_by(size) %>%
     nest() %>%
-    mutate(p_val=map_dbl(data,aov_pval)) %>%
+    mutate(p_val=map_dbl(data,~aov_pval(.))) %>%
     select(-data)
 simple_effects
 
@@ -824,7 +820,7 @@ ci_func=function(x) {
 }
 cis = autonoise %>%
     group_by(size) %>% nest() %>%
-    mutate(ci=map(data,ci_func)) %>%
+    mutate(ci=map(data,~ci_func(.))) %>%
     unnest(ci)
 
 ## ----size="footnotesize"-------------------------------------------------
@@ -856,7 +852,8 @@ c2
 c1*c2
 
 ## ----size="footnotesize"-------------------------------------------------
-chain.wide=read_table("chainsaw.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"
+chain.wide=read_table(my_url)
 chain.wide
 
 ## ------------------------------------------------------------------------
@@ -864,10 +861,10 @@ chain=gather(chain.wide,model,kickback,A:D,
   factor_key=T)
 
 ## ------------------------------------------------------------------------
-chain[1:10,]
+chain %>% slice(1:10)
 
 ## ------------------------------------------------------------------------
-chain[11:20,]
+chain %>% slice(11:20)
 
 ## ------------------------------------------------------------------------
 m=cbind(c.home,c.industrial,c.home.ind)
@@ -883,7 +880,8 @@ tidy(chain.1) %>% select(term,p.value)
 
 ## ------------------------------------------------------------------------
 chain %>% group_by(model) %>%
-  summarize(mean.kick=mean(kickback))
+  summarize(mean.kick=mean(kickback)) %>%
+    arrange(desc(mean.kick))
 
 ## ----echo=F,warning=F----------------------------------------------------
 pkgs = names(sessionInfo()$otherPkgs) 
@@ -898,7 +896,8 @@ library(tidyverse)
 library(broom)
 
 ## ----size="small"--------------------------------------------------------
-prepost=read_delim("ancova.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/ancova.txt"
+prepost=read_delim(my_url," ")
 glimpse(prepost)
 g=ggplot(prepost,aes(x=before,y=after,colour=drug))+
   geom_point()
@@ -979,7 +978,8 @@ library(car)
 library(tidyverse)
 
 ## ------------------------------------------------------------------------
-hilo=read_delim("manova1.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
+hilo=read_delim(my_url," ")
 
 ## ------------------------------------------------------------------------
 hilo
@@ -1027,9 +1027,9 @@ hilo.2.lm=lm(response~fertilizer,data=hilo)
 hilo.2=Manova(hilo.2.lm)
 hilo.2
 
-## ----message=F,size="small"----------------------------------------------
-peanuts.orig=read_delim("peanuts.txt"," ")
-peanuts.orig
+## ----message=F,size="footnotesize"---------------------------------------
+my_url="http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
+(peanuts.orig=read_delim(my_url," "))
 
 ## ------------------------------------------------------------------------
 peanuts = peanuts.orig %>%
@@ -1056,7 +1056,8 @@ library(car)
 library(tidyverse)
 
 ## ------------------------------------------------------------------------
-dogs=read_table("dogs.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/dogs.txt"
+dogs=read_table(my_url)
 
 ## ----size="small"--------------------------------------------------------
 dogs
@@ -1111,7 +1112,8 @@ g=ggplot(dogs.long,aes(x=time,y=lh,
 g
 
 ## ------------------------------------------------------------------------
-exercise.long=read_tsv("exercise.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/exercise.txt"
+exercise.long=read_tsv(my_url)
 
 ## ----size="small"--------------------------------------------------------
 exercise.long %>% print(n=8)
@@ -1189,7 +1191,8 @@ library(ggrepel)
 library(ggbiplot)
 
 ## ----size="small",message=F----------------------------------------------
-hilo=read_delim("manova1.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
+hilo=read_delim(my_url," ")
 g=ggplot(hilo,aes(x=yield,y=weight,
   colour=fertilizer))+geom_point(size=4)
 
@@ -1231,7 +1234,8 @@ d=cbind(hilo,hilo.pred$x,pp)
 d
 
 ## ----message=F,size="footnotesize"---------------------------------------
-peanuts=read_delim("peanuts.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
+peanuts=read_delim(my_url," ")
 peanuts 
 
 ## ----combos,size="small"-------------------------------------------------
@@ -1279,7 +1283,7 @@ pp=predict(peanuts.1,new)
 ## ----size="footnotesize"-------------------------------------------------
 cbind(new,pp$x) %>% arrange(LD1)
 
-## ----fig.height=4--------------------------------------------------------
+## ----fig.height=3.5------------------------------------------------------
 g=ggplot(mm,aes(x=LD1,y=LD2,colour=combo,
   label=combo))+geom_point()+
   geom_text_repel()+guides(colour=F) ; g
@@ -1310,7 +1314,8 @@ data.frame(obs=peanuts.combo$combo,
            pred=peanuts.cv$class,pp)
 
 ## ----message=F-----------------------------------------------------------
-active=read_delim("profile.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/profile.txt"
+active=read_delim(my_url," ")
 active.1=lda(job~reading+dance+tv+ski,data=active)
 active.1$svd
 active.1$scaling
@@ -1328,7 +1333,7 @@ g=ggplot(mm,aes(x=LD1,y=LD2,
 ## ----fig.height=4.5------------------------------------------------------
 ggbiplot(active.1,groups=active$job)
 
-## ----fig.height=3.1------------------------------------------------------
+## ----fig.height=2.8------------------------------------------------------
 ggplot(mm,aes(x=LD1,y=LD2,
     colour=job,label=person))+geom_point()+
     geom_text_repel()
@@ -1348,11 +1353,12 @@ data.frame(obs=active$job,pred=active.cv$class,pp) %>%
   mutate(max=pmax(admin,bellydancer,politician)) %>%
   filter(max<0.9995)
 
-## ----nesta---------------------------------------------------------------
+## ----nesta, fig.height=4.5, echo=F---------------------------------------
 g
 
 ## ------------------------------------------------------------------------
-crops=read_table("remote-sensing.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"
+crops=read_table(my_url)
 
 ## ------------------------------------------------------------------------
 crops.lda=lda(crop~x1+x2+x3+x4,data=crops)
@@ -1372,11 +1378,11 @@ table(obs=crops$crop,pred=crops.pred$class)
 ## ------------------------------------------------------------------------
 mm=data.frame(crop=crops$crop,crops.pred$x)
 
-## ----piacentini,fig.height=4---------------------------------------------
+## ----piacentini,fig.height=3.1-------------------------------------------
 ggplot(mm,aes(x=LD1,y=LD2,colour=crop))+
   geom_point()
 
-## ----fig.height=4.5------------------------------------------------------
+## ----fig.height=3.5------------------------------------------------------
 ggbiplot(crops.lda,groups=crops$crop)
 
 ## ------------------------------------------------------------------------
@@ -1392,11 +1398,11 @@ crops2.lda$means
 crops2.lda$svd
 crops2.lda$scaling
 
-## ----nedved,fig.height=3.25----------------------------------------------
+## ----nedved,fig.height=3.1-----------------------------------------------
 ggplot(mm,aes(x=LD1,y=LD2,colour=crop))+
   geom_point()
 
-## ----fig.height=4.5------------------------------------------------------
+## ----fig.height=3.6------------------------------------------------------
 ggbiplot(crops2.lda,groups=crops2$crop)
 
 ## ----size="small"--------------------------------------------------------
@@ -1437,7 +1443,7 @@ g=ggplot(ddd,aes(x=x,y=y,colour=cluster))+geom_point()+
   coord_fixed(xlim=c(0,40),ylim=c(0,40))
 g
 
-## ----echo=F,fig.height=4-------------------------------------------------
+## ----echo=F,fig.height=3.1-----------------------------------------------
 distance=function(p1,p2) {
   sqrt((p1[1]-p2[1])^2+(p1[2]-p2[2])^2)
 }
@@ -1454,13 +1460,13 @@ closest=bind_rows(a=a[wm1,],b=b[wm2,],.id="cluster")
 # single linkage distance
 g+geom_segment(data=closest,aes(x=x[1],y=y[1],xend=x[2],yend=y[2]),colour="blue")
 
-## ----echo=F,fig.height=4-------------------------------------------------
+## ----echo=F,fig.height=3.4-----------------------------------------------
 wm1=which.max(apply(distances,1,max))
 wm2=which.max(apply(distances,2,max))
 closest=bind_rows(a[wm1,],b[wm2,],.id="cluster")
 g+geom_segment(data=closest,aes(x=x[1],y=y[1],xend=x[2],yend=y[2]),colour="blue")
 
-## ----fig.height=4,echo=F-------------------------------------------------
+## ----fig.height=3.2,echo=F-----------------------------------------------
 xm=aggregate(x~cluster,ddd,mean)
 ym=aggregate(y~cluster,ddd,mean)
 dm=cbind(xm,y=ym[,2])
@@ -1482,7 +1488,7 @@ ggplot(ddd,aes(x=x,y=y,colour=cluster))+
   geom_point(data=dm,shape=3)+
   geom_line(data=new,aes(group=grp),alpha=0.5)
 
-## ----echo=F,fig.height=3.5-----------------------------------------------
+## ----echo=F,fig.height=3.0-----------------------------------------------
 ddd %>% summarize(x=mean(x),y=mean(y)) -> dm
 # loop through data frame and create grp that links to cluster's mean
 new=data.frame(x=double(),y=double(),cluster=character(),grp=integer(),
@@ -1506,7 +1512,8 @@ ggplot(ddd,aes(x=x,y=y,colour=cluster))+
 options(width=60)
 
 ## ----size="scriptsize",message=F-----------------------------------------
-number.d=read_table("languages.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
+number.d=read_table(my_url)
 number.d
 
 ## ----size="footnotesize"-------------------------------------------------
@@ -1546,7 +1553,8 @@ rect.hclust(d.hc,3)
 options(width=60)
 
 ## ----message=F, size="footnotesize"--------------------------------------
-lang=read_delim("one-ten.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/one-ten.txt"
+lang=read_delim(my_url," ")
 lang 
 
 ## ----size="footnotesize"-------------------------------------------------
@@ -1609,13 +1617,14 @@ options(width=60)
 thediffs %>% spread(lang2,diff)
 
 ## ------------------------------------------------------------------------
-vital=read_table("birthrate.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/birthrate.txt"
+vital=read_table(my_url)
 
 ## ------------------------------------------------------------------------
 vital
 
 ## ----size="footnotesize"-------------------------------------------------
-vital.s = vital %>% mutate_if(is.numeric,scale) %>% print(n=10)
+vital.s = vital %>% mutate_if(is.numeric,scale) 
 
 ## ----echo=FALSE----------------------------------------------------------
 set.seed(457299)
@@ -1678,7 +1687,7 @@ ssd = tibble(clusters=2:20) %>%
     mutate(wss=map_dbl(clusters,ss,vital.s)) %>% 
     print(n=10)
 
-## ----favalli,fig.height=4------------------------------------------------
+## ----favalli,fig.height=3.3----------------------------------------------
 ggplot(ssd,aes(x=clusters,y=wss))+geom_point()+
   geom_line()
 
@@ -1738,11 +1747,11 @@ g=ggplot(d,aes(x=LD1,y=LD2,colour=factor(cluster),
 ## ----fig.height=3.5------------------------------------------------------
 g
 
-## ------------------------------------------------------------------------
-ontario=read.csv("ontario-road-distances.csv",header=T)
-ontario.d=dist(ontario)
+## ----message=F-----------------------------------------------------------
+my_url="http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario=read_csv(my_url)
+ontario.d = ontario %>% select(-1) %>% as.dist()
 ontario.hc=hclust(ontario.d,method="ward.D")
-cutree(ontario.hc,4)
 
 ## ----fig.height=4--------------------------------------------------------
 plot(ontario.hc)
@@ -1771,7 +1780,8 @@ library(shapes)
 options(width=65)
 
 ## ----size="scriptsize"---------------------------------------------------
-europe=read_csv("europe.csv")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/europe.csv"
+europe=read_csv(my_url)
 
 ## ----size="scriptsize"---------------------------------------------------
 europe
@@ -1787,7 +1797,7 @@ europe_coord = europe.scale %>% as_tibble() %>%
 g = ggplot(europe_coord, aes(x=V1,y=V2,label=city))+
     geom_point() + geom_text_repel() 
 
-## ----fig.height=3.75-----------------------------------------------------
+## ----fig.height=3.6------------------------------------------------------
 g
 
 ## ----size="footnotesize"-------------------------------------------------
@@ -1830,10 +1840,10 @@ g2=ggmap(map)+
   geom_point(data=latlong,aes(x=lon,y=lat),
   shape=3,colour="red")
 
-## ----fig.height=4--------------------------------------------------------
+## ----fig.height=3.6------------------------------------------------------
 g2
 
-## ----fig.height=4.5,echo=F-----------------------------------------------
+## ----fig.height=4,echo=F-------------------------------------------------
 g
 
 ## ----eval=F--------------------------------------------------------------
@@ -1846,7 +1856,8 @@ g
 g=mds_map("ontario-road-distances.csv") ; g
 
 ## ----message=F-----------------------------------------------------------
-square=read_csv("square.csv")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/square.csv"
+square=read_csv(my_url)
 square
 
 ## ----size="footnotesize"-------------------------------------------------
@@ -1870,7 +1881,8 @@ mds_map("no-c.csv")
 g
 
 ## ----message=F,size="footnotesize"---------------------------------------
-ontario2 = read_csv("ontario-road-distances.csv") %>%
+my_url="http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario2 = read_csv(my_url) %>%
     gather(place,distance,-1) %>%
     filter(x != "Thunder Bay", 
            place != "Thunder Bay",
@@ -1889,8 +1901,7 @@ g2 = g + coord_fixed(xlim=c(-150,-100),ylim=c(-50,0))
 g2
 
 ## ----message=F, size="footnotesize",cache=T, eval=F----------------------
-## cities=c("Kitchener ON", "Hamilton ON",
-##          "Niagara Falls ON",
+## cities=c("Kitchener ON", "Hamilton ON","Niagara Falls ON",
 ##          "St Catharines ON", "Brantford ON")
 ## latlong=geocode(cities)
 ## latlong = bind_cols(city=cities,latlong) %>% print()
@@ -1899,10 +1910,13 @@ g2
 latlong=readRDS("ontario_trouble.rds")
 latlong %>% print()
 
-## ----message=F-----------------------------------------------------------
-map=get_map("Hamilton ON", zoom=8)
+## ----message=F, eval=F---------------------------------------------------
+## map=get_map("Hamilton ON", zoom=8)
 
-## ----fig.height=4--------------------------------------------------------
+## ----echo=F--------------------------------------------------------------
+map=readRDS("hamilton_map.rds")
+
+## ------------------------------------------------------------------------
 gmap = ggmap(map)+
        geom_point(data=latlong,
                   aes(x=lon,y=lat),
@@ -1910,14 +1924,15 @@ gmap = ggmap(map)+
        geom_text_repel(data=latlong,
                        aes(label=city))
 
-## ----fig.height=6--------------------------------------------------------
+## ----fig.height=5.5------------------------------------------------------
 g2
 
-## ----fig.height=6--------------------------------------------------------
+## ----fig.height=5.5, warning=F-------------------------------------------
 gmap
 
 ## ----message=F-----------------------------------------------------------
-ontario2=read_csv("southern-ontario.csv")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"
+ontario2=read_csv(my_url)
 
 ## ----size="footnotesize"-------------------------------------------------
 ontario2.2 = ontario2 %>% select_if(is.numeric) %>% 
@@ -1974,7 +1989,7 @@ g_opa = ggplot(dp,aes(x=V1,y=V2,colour=which,
     geom_line(aes(group=city),colour="green")+
     geom_text_repel(size=2)
 
-## ----prosesto,echo=F,fig.height=4.25-------------------------------------
+## ----prosesto,echo=F,fig.height=4----------------------------------------
 g_opa
 
 ## ------------------------------------------------------------------------
@@ -1984,7 +1999,8 @@ ontario.pro$R
 g
 
 ## ----f, message=F, size="footnotesize"-----------------------------------
-cube=read_delim("cube.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/cube.txt"
+cube=read_delim(my_url," ")
 cube
 
 ## ----cuby----------------------------------------------------------------
@@ -2014,7 +2030,8 @@ cube.3$GOF
 options(width=55)
 
 ## ----message=F, size="scriptsize"----------------------------------------
-number.d=read_table("languages.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
+number.d=read_table(my_url)
 number.d
 
 ## ----size="small"--------------------------------------------------------
@@ -2060,11 +2077,6 @@ g2
 ## ----fig.height=3.5------------------------------------------------------
 g3
 
-## ----echo=F, warning=F---------------------------------------------------
-pkgs = names(sessionInfo()$otherPkgs) 
-pkgs=paste('package:', pkgs, sep = "")
-x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-
 
 ## ----bPrincomp, child="bPrincomp.Rnw"------------------------------------
 
@@ -2087,7 +2099,8 @@ library(ggrepel)
 ## install_github("vqv/ggbiplot")
 
 ## ----testt,message=F,size="small"----------------------------------------
-test12=read_table2("test12.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/test12.txt"
+test12=read_table2(my_url)
 test12
 
 ## ----ff1-----------------------------------------------------------------
@@ -2139,11 +2152,13 @@ w=getOption("width")
 options(width=w+10)
 
 ## ----size="scriptsize",message=F-----------------------------------------
-track=read_table2("men_track_field.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/men-track-field.txt"
+track=read_table2(my_url)
 track %>% sample_n(12)
 
 ## ----message=F, size="small"---------------------------------------------
-iso=read_csv("isocodes.csv")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/isocodes.txt"
+iso=read_csv(my_url)
 iso
 
 ## ----echo=FALSE----------------------------------------------------------
@@ -2191,6 +2206,12 @@ d %>% arrange(Comp.1) %>%
     select(Comp.1,country,Country) %>%
     slice(1:8)
 
+## ----"footnotesize", warning=F-------------------------------------------
+d %>% arrange(desc(Comp.1)) %>%
+    left_join(iso,by=c("country"="ISO2")) %>%
+    select(Comp.1,country,Country) %>%
+    slice(1:8)
+
 ## ----size="footnotesize",warning=F---------------------------------------
 d %>% arrange(desc(Comp.2)) %>%
     left_join(iso,by=c("country"="ISO2")) %>%
@@ -2215,7 +2236,8 @@ g = d %>% left_join(iso,by=c("country"="ISO2")) %>%
 g
 
 ## ----message=F-----------------------------------------------------------
-mat=read_table("cov.txt",col_names=F)
+my_url="http://www.utsc.utoronto.ca/~butler/d29/cov.txt"
+mat=read_table(my_url,col_names=F)
 mat
 
 ## ----pc-cov,fig.height=4-------------------------------------------------
@@ -2245,7 +2267,8 @@ library(ggbiplot)
 library(tidyverse)
 
 ## ----kids-scree,message=F------------------------------------------------
-kids = read_delim("rex2.txt"," ") 
+my_url="http://www.utsc.utoronto.ca/~butler/d29/rex2.txt"
+kids = read_delim(my_url," ") 
 kids
 kids.pc = kids %>%
     select_if(is.numeric) %>%
@@ -2315,7 +2338,8 @@ scores %>% arrange(Factor1) %>%
   slice(1:10)
 
 ## ----bem-scree,size="scriptsize",message=F-------------------------------
-bem=read_tsv("factor.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/factor.txt"
+bem=read_tsv(my_url)
 bem
 
 ## ------------------------------------------------------------------------
@@ -2538,7 +2562,8 @@ x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
 library(tidyverse)
 
 ## ----message=F-----------------------------------------------------------
-eyewear=read_delim("eyewear.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/eyewear.txt"
+eyewear=read_delim(my_url," ")
 eyewear
 
 ## ----size="footnotesize"-------------------------------------------------
@@ -2562,7 +2587,8 @@ xt
 prop.table(xt,margin=1)
 
 ## ----size="scriptsize", message=F----------------------------------------
-eyewear2=read_table("eyewear2.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/eyewear2.txt"
+eyewear2=read_table(my_url)
 eyes2 = eyewear2 %>% gather(eyewear,frequency,contacts:none)
 xt2=xtabs(frequency~gender+eyewear,data=eyes2)
 xt2
@@ -2578,7 +2604,8 @@ eyes.3=update(eyes.2,.~.-gender:eyewear)
 drop1(eyes.3,test="Chisq")
 
 ## ----size="small", message=F---------------------------------------------
-chest=read_delim("ecg.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/ecg.txt"
+chest=read_delim(my_url," ")
 chest.1=glm(count~ecg*bmi*smoke,data=chest,
             family="poisson")
 drop1(chest.1,test="Chisq")
@@ -2598,7 +2625,8 @@ xtabs(count~ecg+bmi,data=chest)
 xtabs(count~ecg+smoke,data=chest)
 
 ## ----message=F, size="small"---------------------------------------------
-airlines=read_table2("airlines.txt")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/airlines.txt"
+airlines=read_table2(my_url)
 punctual = airlines %>% 
     gather(line.status,freq, contains("_")) %>%
     separate(line.status,c("airline","status"))
@@ -2641,7 +2669,8 @@ xt=xtabs(freq~airport+airline,data=punctual)
 prop.table(xt,margin=2)
 
 ## ----message=F-----------------------------------------------------------
-cancer=read_delim("cancer.txt"," ")
+my_url="http://www.utsc.utoronto.ca/~butler/d29/cancer.txt"
+cancer=read_delim(my_url," ")
 cancer %>% print(n=6)
 cancer.1=glm(freq~stage*operation*xray*survival,
     data=cancer,family="poisson")

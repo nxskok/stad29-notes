@@ -1,15 +1,16 @@
-## ----setup,echo=F--------------------------------------------------------
-library(knitr)
-opts_chunk$set(dev = 'pdf')
-opts_chunk$set(comment=NA, fig.width=5, fig.height=3.5)
-options(width=45)
-suppressMessages(library(tidyverse))
+## ------------------------------------------------------------------------
+library(MASS) # for Box-Cox, later
+library(tidyverse)
+library(broom)
 
 ## ------------------------------------------------------------------------
-sleep=read.table("sleep.txt",header=T)
-head(sleep)
+my_url="http://www.utsc.utoronto.ca/~butler/d29/sleep.txt"
+sleep=read_delim(my_url," ")
 
-## ----suggo---------------------------------------------------------------
+## ----size="footnotesize"-------------------------------------------------
+sleep
+
+## ----suggo, fig.height=4-------------------------------------------------
 ggplot(sleep,aes(x=age,y=atst))+geom_point()
 
 ## ------------------------------------------------------------------------
@@ -26,10 +27,19 @@ ggplot(sleep,aes(x=age,y=atst))+geom_point()+
 options(width=60)
 sleep.1=lm(atst~age,data=sleep) ; summary(sleep.1)
 
+## ----size="footnotesize"-------------------------------------------------
+tidy(sleep.1)
+glance(sleep.1)
+
+## ----size="footnotesize",warning=F---------------------------------------
+sleep.1 %>% augment(sleep) %>% slice(1:8)
+
 ## ------------------------------------------------------------------------
 my.age=c(10,5)
-ages.new=data.frame(age=my.age)
+ages.new=tibble(age=my.age)
 ages.new
+
+## ------------------------------------------------------------------------
 pc=predict(sleep.1,ages.new,interval="c")
 pp=predict(sleep.1,ages.new,interval="p")
 
@@ -42,125 +52,142 @@ cbind(ages.new,pp)
 ## ----fig.height=2.8------------------------------------------------------
 ggplot(sleep,aes(x=age,y=atst))+geom_point()+
   geom_smooth(method="lm")+
-  scale_y_continuous(breaks=seq(420,600,20))
+  scale_y_continuous(breaks=seq(420,600,20)) 
 
-## ----akjhkadjfhjahnkkk---------------------------------------------------
+## ----akjhkadjfhjahnkkk,fig.height=3.5------------------------------------
 ggplot(sleep.1,aes(x=.fitted,y=.resid))+geom_point()
 
-## ----curvy,fig.height=3--------------------------------------------------
-curvy=read.table("curvy.txt",header=T)
+## ----curvy---------------------------------------------------------------
+my_url="http://www.utsc.utoronto.ca/~butler/d29/curvy.txt"
+curvy=read_delim(my_url," ")
+
+## ----fig.height=4--------------------------------------------------------
 ggplot(curvy,aes(x=xx,y=yy))+geom_point()
 
 ## ------------------------------------------------------------------------
 curvy.1=lm(yy~xx,data=curvy) ; summary(curvy.1)
 
-## ----altoadige-----------------------------------------------------------
+## ----altoadige,fig.height=4----------------------------------------------
 ggplot(curvy.1,aes(x=.fitted,y=.resid))+geom_point()
 
 ## ------------------------------------------------------------------------
 curvy.2=lm(yy~xx+I(xx^2),data=curvy)
 
 ## ------------------------------------------------------------------------
+curvy.2a=update(curvy.1,.~.+I(xx^2))
+
+## ------------------------------------------------------------------------
 summary(curvy.2)
 
-## ------------------------------------------------------------------------
+## ----size="small", fig.height=3------------------------------------------
 ggplot(curvy.2,aes(x=.fitted,y=.resid))+geom_point()
 
-## ----eval=F--------------------------------------------------------------
-## install.packages("MASS")
-
-## ------------------------------------------------------------------------
-library(MASS)
-
-## ------------------------------------------------------------------------
-madeup=read.csv("madeup.csv")
+## ----message=F-----------------------------------------------------------
+my_url="http://www.utsc.utoronto.ca/~butler/d29/madeup.csv"
+madeup=read_csv(my_url)
 madeup
 
-## ----dsljhsdjlhf,fig.height=3--------------------------------------------
+## ----dsljhsdjlhf,fig.height=2.75-----------------------------------------
 ggplot(madeup,aes(x=x,y=y))+geom_point()+
   geom_smooth()
 
 ## ----eval=F--------------------------------------------------------------
 ## boxcox(y~x,data=madeup)
 
-## ----trento,echo=F-------------------------------------------------------
+## ----trento,echo=F, fig.height=4-----------------------------------------
 boxcox(y~x,data=madeup)
 
-## ----fig.height=3--------------------------------------------------------
+## ----fig.height=2.8------------------------------------------------------
 log.y=log(madeup$y) 
 ggplot(madeup,aes(x=x,y=log.y))+geom_point()+
   geom_smooth()
 
 ## ------------------------------------------------------------------------
-visits=read.table("regressx.txt",header=T)
-head(visits)
-attach(visits)
-visits.1=lm(timedrs~phyheal+menheal+stress)
+my_url="http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
+visits=read_delim(my_url," ")
+
+## ----size="small"--------------------------------------------------------
+visits
+visits.1=lm(timedrs~phyheal+menheal+stress,
+  data=visits)
 
 ## ------------------------------------------------------------------------
 summary(visits.1)
 
 ## ------------------------------------------------------------------------
-summary(visits.1)$coefficients
+tidy(visits.1)
 
 ## ------------------------------------------------------------------------
-visits.2=lm(timedrs~menheal) ; summary(visits.2)
+visits.2=lm(timedrs~menheal,data=visits) ; summary(visits.2)
 
 ## ------------------------------------------------------------------------
-cor(visits[,-1])
+visits %>% select(-subjno) %>% cor()
 
-## ----iffy8,fig.height=3--------------------------------------------------
+## ----iffy8,fig.height=3,size="small"-------------------------------------
 ggplot(visits.1,aes(x=.fitted,y=.resid))+geom_point()
 
-## ----dawlish,fig.height=4------------------------------------------------
-par(mfrow=c(2,2)) ; plot(visits.1)
+## ----fig.height=3.5------------------------------------------------------
+ggplot(visits.1, aes(sample=.resid))+stat_qq()+stat_qq_line()
+
+## ----fig.height=2.5------------------------------------------------------
+ggplot(visits.1,aes(x=.fitted,y=abs(.resid)))+
+  geom_point()+geom_smooth()
 
 ## ------------------------------------------------------------------------
-lgtime=log(timedrs+1)
-visits.3=lm(lgtime~phyheal+menheal+stress)
+lgtime=with(visits,log(timedrs+1))
+visits.3=lm(lgtime~phyheal+menheal+stress,
+  data=visits)
 
 ## ------------------------------------------------------------------------
 summary(visits.3)
 
-## ----asljsakjhd,fig.height=4---------------------------------------------
-par(mfrow=c(2,2)) ; plot(visits.3)
+## ----fig.height=3.5------------------------------------------------------
+ggplot(visits.3,aes(x=.fitted,y=.resid))+
+  geom_point()
 
-## ------------------------------------------------------------------------
-tp=timedrs+1
-library(MASS)
+## ----fig.height=4--------------------------------------------------------
+ggplot(visits.3, aes(sample=.resid))+stat_qq()+stat_qq_line()
+
+## ----fig.height=3--------------------------------------------------------
+ggplot(visits.3,aes(x=.fitted,y=abs(.resid)))+
+  geom_point()+geom_smooth()
 
 ## ----eval=F--------------------------------------------------------------
-## boxcox(tp~phyheal+menheal+stress)
+## boxcox(timedrs+1~phyheal+menheal+stress,data=visitsp)
 
 ## ----echo=F,fig.height=4.5-----------------------------------------------
-boxcox(tp~phyheal+menheal+stress)
+visits %>% mutate(tp=timedrs+1) %>% 
+  boxcox(timedrs+1~phyheal+menheal+stress,data=.)
 
-## ------------------------------------------------------------------------
+## ----size="footnotesize"-------------------------------------------------
 my.lambda=seq(-0.3,0.1,0.01)
 my.lambda
 
-## ------------------------------------------------------------------------
-boxcox(tp~phyheal+menheal+stress,lambda=my.lambda)
+## ----fig.height=3.5------------------------------------------------------
+boxcox(timedrs+1~phyheal+menheal+stress,lambda=my.lambda,
+  data=visits)
 
 ## ------------------------------------------------------------------------
-visits.5=lm(lgtime~phyheal+menheal+stress)
-visits.6=lm(lgtime~stress)
+visits.5=lm(lgtime~phyheal+menheal+stress,data=visits)
+visits.6=lm(lgtime~stress,data=visits)
 anova(visits.6,visits.5)
 
 ## ------------------------------------------------------------------------
-punting=read.table("punting.txt",header=T)
-head(punting)
-attach(punting)
-punting.1=lm(punt~left+right+fred)
+my_url="http://www.utsc.utoronto.ca/~butler/d29/punting.txt"
+punting=read_table(my_url)
 
-## ------------------------------------------------------------------------
+## ----size="small"--------------------------------------------------------
+punting
+
+## ----size="footnotesize"-------------------------------------------------
+punting.1=lm(punt~left+right+fred,data=punting)
 summary(punting.1)
 
 ## ------------------------------------------------------------------------
 cor(punting)
 
 ## ------------------------------------------------------------------------
-punting.2=lm(punt~right)
+punting.2=lm(punt~right,data=punting)
 anova(punting.2,punting.1)
 
 ## ------------------------------------------------------------------------
@@ -170,14 +197,23 @@ summary(punting.2)$r.squared
 ## ------------------------------------------------------------------------
 summary(punting.2)
 
-## ----basingstoke,fig.height=3--------------------------------------------
-r=resid(punting.2)
-ggplot(punting,aes(x=left,y=r))+geom_point()+geom_smooth()
+## ----size="footnotesize"-------------------------------------------------
+punting.2 %>% augment(punting) -> punting.2.aug
+punting.2.aug %>% slice(1:8)
+
+## ----basingstoke,fig.height=3.5------------------------------------------
+ggplot(punting.2.aug,aes(x=left,y=.resid))+
+  geom_point()
 
 ## ------------------------------------------------------------------------
-leftsq=left*left
-punting.3=lm(punt~left+leftsq+right)
+punting.3=lm(punt~left+I(left^2)+right,
+  data=punting)
 
-## ------------------------------------------------------------------------
+## ----size="scriptsize"---------------------------------------------------
 summary(punting.3)
+
+## ----echo=F,warning=F----------------------------------------------------
+pkgs = names(sessionInfo()$otherPkgs) 
+pkgs=paste('package:', pkgs, sep = "")
+x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
 
