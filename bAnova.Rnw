@@ -223,7 +223,7 @@ darkbrown lightbrown  darkblond lightblond
     \item \textbf{Bonferroni}: multiply all P-values by $k$.
     \item \textbf{Holm}: multiply smallest P-value by $k$, next-smallest by
       $k-1$, etc.
-    \item \texttt{False discovery rate}: multiply smallest P-value by $k/1$,
+    \item \textbf{False discovery rate}: multiply smallest P-value by $k/1$,
       2nd-smallest by $k/2$, \ldots, $i$-th smallest by $k/i$.
       
     \item Stop after non-rejection.
@@ -254,6 +254,15 @@ Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
 \item Times next smallest by 2: $0.03*2=0.06>0.05$, do not reject. Stop.
   \end{itemize}
 
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{\ldots Continued}
+  
+  
+  \begin{itemize}
+  \item   With P-values 0.005, 0.015, 0.03, 0.06:
 \item False discovery rate:
   \begin{itemize}
   \item Times smallest P-value by 4: $0.005*4=0.02<0.05$: reject.
@@ -262,7 +271,7 @@ Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
 \item Times fourth smallest by $4/4$: 0.06*4/4=0.06>0.05, do not reject. Stop.
   \end{itemize}
   \end{itemize}
-
+  
 \end{frame}
 
 \begin{frame}[fragile]{\texttt{pairwise.t.test}}

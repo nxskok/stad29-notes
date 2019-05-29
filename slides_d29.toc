@@ -1,0 +1,8 @@
+\beamer@sectionintoc {3}{Logistic regression (ordinal/nominal response)}{91}{0}{2}
+\beamer@sectionintoc {5}{Analysis of variance}{204}{0}{4}
+\beamer@sectionintoc {6}{Analysis of covariance}{269}{0}{5}
+\beamer@sectionintoc {8}{Repeated measures by profile analysis}{306}{0}{7}
+\beamer@sectionintoc {9}{Discriminant analysis}{341}{0}{8}
+\beamer@sectionintoc {10}{Cluster analysis}{405}{0}{9}
+\beamer@sectionintoc {14}{Confirmatory factor analysis}{646}{0}{13}
+\beamer@sectionintoc {15}{Multiway frequency tables}{658}{0}{14}

@@ -1,28 +1,42 @@
-all: slides-sw.pdf
+all: slides_d29.pdf
 
-show: slides-sw.pdf
-	evince slides-sw.pdf &
+show: slides_d29.pdf
+	evince slides_d29.pdf &
 
 
 
-CHAPTERS = slides-sw bOutline bRIntro bInference bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim bCluster bMDS bPrincomp bFactor bTimeSeries bMultiway bggplot
+CHAPTERS = slides_d29 bOutline bRIntro bInference bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim bCluster bMDS bPrincomp bFactor bTimeSeries bMultiway bggplot
+
 
 TEX = $(CHAPTERS:=.tex)
 
 RNW = $(CHAPTERS:=.Rnw)
 
-slides-sw.pdf: slides-sw.tex
-	lualatex --interaction=nonstopmode slides-sw
-	lualatex --interaction=nonstopmode slides-sw
+RMD = $(CHAPTERS:=.Rmd)
 
-slides-sw.tex: $(RNW)
-	Rscript -e "knitr::knit(\"slides-sw.Rnw\")"
+slides_d29.pdf: slides_d29.tex
+	lualatex --interaction=nonstopmode slides_d29
+	lualatex --interaction=nonstopmode slides_d29
+
+slides_d29.tex: slides_d29.md 
+	/usr/lib/rstudio/bin/pandoc/pandoc +RTS -K512m -RTS slides_d29.md --to beamer --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash\
+                --output slides_d29.tex --slide-level 2 --variable theme=AnnArbor --variable colortheme=dove --highlight-style tango\
+                --pdf-engine xelatex --self-contained 
+
+
+slides_d29.md: $(RMD)
+	Rscript -e "knitr::knit(\"slides_d29.Rmd\")"
 
 %.R: %.Rnw
 	Rscript -e "knitr::purl(\"$^\")"
 
+%.Rmd: %.Rnw convert.pl
+	perl convert.pl $< > $@
+	Rscript -e "styler::style_file(\"$@\")"
+
+
 force:
-	touch slides-sw.Rnw
+	touch slides_d29.Rnw
 	make
 
 ## old 

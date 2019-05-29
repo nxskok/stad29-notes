@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2018.10.16)  7 JAN 2019 17:22
+This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2018.10.16)  18 MAR 2019 11:22
  restricted system commands enabled.
 **slides-sw
 (./slides-sw.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.111 seconds
+luaotfload | main : initialization completed in 0.113 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2018/02/20 v3.50 A class for typesetting presentations
@@ -2284,10 +2284,11 @@ Overfull \hbox (5.10463pt too wide) in paragraph at lines 15--15
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (28.47968pt too high) detected at line 5456
- []
-
 [218
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [219
 
 ]
 \openout4 = slides-sw.vrb
@@ -2311,11 +2312,11 @@ Overfull \hbox (2.71057pt too wide) in paragraph at lines 66--66
 []\remove@tlig ##  Pairwise comparisons using t tests with pooled SD[] 
  []
 
-) [219
+) [220
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [220
+ (./slides-sw.vrb) [221
 
 ]
 \openout4 = slides-sw.vrb
@@ -2326,32 +2327,32 @@ nb.txt"[][]
  []
 
 )
-Overfull \vbox (64.63695pt too high) detected at line 5583
+Overfull \vbox (64.63695pt too high) detected at line 5592
  []
 
-[221
+[222
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [222
+ (./slides-sw.vrb) [223
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-163-1.pdf, id=1575, 505.89pt x 234.8775pt>
+<figure/unnamed-chunk-163-1.pdf, id=1580, 505.89pt x 234.8775pt>
 File: figure/unnamed-chunk-163-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-163-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-163-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 158.92612pt.
-) [223
+) [224
 
 <./figure/unnamed-chunk-163-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (0.77994pt too high) detected at line 5658
+Overfull \vbox (0.77994pt too high) detected at line 5667
  []
 
-[224
+[225
 
 ]
 \openout4 = slides-sw.vrb
@@ -2361,25 +2362,25 @@ Overfull \hbox (31.3733pt too wide) in paragraph at lines 17--17
 1[] 
  []
 
-) [225
+) [226
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [226
+ (./slides-sw.vrb) [227
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-167-1.pdf, id=1604, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-167-1.pdf, id=1609, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-167-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-167-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-167-1.pdf  used on input line 8.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [227
+) [228
 
 <./figure/unnamed-chunk-167-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [228
+ (./slides-sw.vrb) [229
 
 ]
 \openout4 = slides-sw.vrb
@@ -2389,11 +2390,7 @@ Overfull \hbox (14.12706pt too wide) in paragraph at lines 14--14
 ise.txt"[][] 
  []
 
-) [229
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [230
+) [230
 
 ]
 \openout4 = slides-sw.vrb
@@ -2401,60 +2398,64 @@ ise.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [232
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-172-1.pdf, id=1638, 505.89pt x 194.7275pt>
+<figure/unnamed-chunk-172-1.pdf, id=1643, 505.89pt x 194.7275pt>
 File: figure/unnamed-chunk-172-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-172-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-172-1.pdf  used on input line 8.
 (luatex.def)             Requested size: 342.29536pt x 131.75925pt.
 )
-[232
+[233
 
 <./figure/unnamed-chunk-172-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [233
+ (./slides-sw.vrb) [234
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [234
+(./slides-sw.vrb) [235
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [235
+ (./slides-sw.vrb) [236
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-176-1.pdf, id=1665, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-176-1.pdf, id=1670, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-176-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-176-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-176-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [236
+) [237
 
 <./figure/unnamed-chunk-176-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-177-1.pdf, id=1678, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-177-1.pdf, id=1683, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-177-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-177-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-177-1.pdf  used on input line 14.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [237
+) [238
 
 <./figure/unnamed-chunk-177-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [238
-
-]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [239
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [240
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[240
+[241
 
 ]
 \openout4 = slides-sw.vrb
@@ -2466,7 +2467,7 @@ k   AIC   BIC deviance[]
 
 
 Overfull \hbox (85.95515pt too wide) in paragraph at lines 33--33
-[]\remove@tlig ## *     <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl
+[]\remove@tlig ##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>  <dbl
 > <dbl> <dbl>    <dbl>[] 
  []
 
@@ -2477,14 +2478,10 @@ Overfull \hbox (85.95515pt too wide) in paragraph at lines 34--34
  []
 
 )
-Overfull \vbox (9.15045pt too high) detected at line 6102
+Overfull \vbox (9.15045pt too high) detected at line 6111
  []
 
-[241
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [242
+[242
 
 ]
 \openout4 = slides-sw.vrb
@@ -2492,12 +2489,16 @@ Overfull \vbox (9.15045pt too high) detected at line 6102
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[244
+ (./slides-sw.vrb) [244
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [245
+ (./slides-sw.vrb)
+[245
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [246
 
 ]
 \openout4 = slides-sw.vrb
@@ -2506,14 +2507,10 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
 (Font)              Font shape `TU/lmss/m/sl' tried instead on input line 27.
 (load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsan
 s9-oblique.luc))
-Overfull \vbox (10.44366pt too high) detected at line 6264
+Overfull \vbox (10.44366pt too high) detected at line 6273
  []
 
-[246
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [247
+[247
 
 ]
 \openout4 = slides-sw.vrb
@@ -2521,12 +2518,12 @@ Overfull \vbox (10.44366pt too high) detected at line 6264
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[249
+ (./slides-sw.vrb) [249
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [250
+ (./slides-sw.vrb)
+[250
 
 ]
 \openout4 = slides-sw.vrb
@@ -2534,12 +2531,12 @@ Overfull \vbox (10.44366pt too high) detected at line 6264
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[252
+ (./slides-sw.vrb) [252
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [253
+ (./slides-sw.vrb)
+[253
 
 ]
 \openout4 = slides-sw.vrb
@@ -2547,12 +2544,16 @@ Overfull \vbox (10.44366pt too high) detected at line 6264
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[255
+ (./slides-sw.vrb) [255
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [256
+ (./slides-sw.vrb)
+[256
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [257
 
 ]
 \openout4 = slides-sw.vrb
@@ -2562,11 +2563,7 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 10.
 
-) [257
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [258
+) [258
 
 ]
 \openout4 = slides-sw.vrb
@@ -2574,15 +2571,15 @@ Package amsmath Warning: Foreign command \over;
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (4.18538pt too high) detected at line 6637
- []
-
-[260
+ (./slides-sw.vrb) [260
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [261
+ (./slides-sw.vrb)
+Overfull \vbox (4.18538pt too high) detected at line 6646
+ []
+
+[261
 
 ]
 \openout4 = slides-sw.vrb
@@ -2590,12 +2587,12 @@ Overfull \vbox (4.18538pt too high) detected at line 6637
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[263
+ (./slides-sw.vrb) [263
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [264
+ (./slides-sw.vrb)
+[264
 
 ]
 \openout4 = slides-sw.vrb
@@ -2603,31 +2600,35 @@ Overfull \vbox (4.18538pt too high) detected at line 6637
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[266
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [267
-
-] [268
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [269
+ (./slides-sw.vrb) [266
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[270
+[267
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [268
+
+] [269
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [270
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (2.96992pt too high) detected at line 6939
+[271
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.96992pt too high) detected at line 6948
  []
 
-[271
+[272
 
 ]
 \openout4 = slides-sw.vrb
@@ -2639,39 +2640,39 @@ a", "b", "b", "b", "b", ...[]
 
 
 Overfull \hbox (135.45464pt too wide) in paragraph at lines 19--19
-[]\remove@tlig ## $ before <int> 5, 10, 12, 9, 23, 21, 14, 18, 6, 13, 7, 12, 27
+[]\remove@tlig ## $ before <dbl> 5, 10, 12, 9, 23, 21, 14, 18, 6, 13, 7, 12, 27
 , 24, 18, 22, 26, 21, 14, 9[] 
  []
 
 
 Overfull \hbox (135.45464pt too wide) in paragraph at lines 20--20
-[]\remove@tlig ## $ after  <int> 20, 23, 30, 25, 34, 40, 27, 38, 24, 31, 19, 26
+[]\remove@tlig ## $ after  <dbl> 20, 23, 30, 25, 34, 40, 27, 38, 24, 31, 19, 26
 , 33, 35, 30, 31, 34, 28...[] 
  []
 
-) [272
+) [273
 
 ]
-<figure/spizzo-1.pdf, id=1879, 505.89pt x 252.945pt>
+<figure/spizzo-1.pdf, id=1884, 505.89pt x 252.945pt>
 File: figure/spizzo-1.pdf Graphic file (type pdf)
 <use figure/spizzo-1.pdf>
-Package luatex.def Info: figure/spizzo-1.pdf  used on input line 6986.
+Package luatex.def Info: figure/spizzo-1.pdf  used on input line 6995.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
- [273
+ [274
 
 <./figure/spizzo-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-211-1.pdf, id=1892, 505.89pt x 180.675pt>
+<figure/unnamed-chunk-211-1.pdf, id=1897, 505.89pt x 180.675pt>
 File: figure/unnamed-chunk-211-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-211-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-211-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 122.25085pt.
-) [274
+) [275
 
 <./figure/unnamed-chunk-211-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [275
+ (./slides-sw.vrb) [276
 
 ]
 \openout4 = slides-sw.vrb
@@ -2681,11 +2682,7 @@ Overfull \hbox (31.3733pt too wide) in paragraph at lines 20--20
 1[] 
  []
 
-) [276
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [277
+) [277
 
 ]
 \openout4 = slides-sw.vrb
@@ -2693,69 +2690,73 @@ Overfull \hbox (31.3733pt too wide) in paragraph at lines 20--20
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [279
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/nachwazzo-1.pdf, id=1925, 505.89pt x 252.945pt>
+<figure/nachwazzo-1.pdf, id=1930, 505.89pt x 252.945pt>
 File: figure/nachwazzo-1.pdf Graphic file (type pdf)
 <use figure/nachwazzo-1.pdf>
 Package luatex.def Info: figure/nachwazzo-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
 )
-[279
+[280
 
 <./figure/nachwazzo-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [280
+ (./slides-sw.vrb) [281
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[281
+[282
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [282
+ (./slides-sw.vrb) [283
 
 ]
-<figure/cabazzo-1.pdf, id=1954, 505.89pt x 216.81pt>
+<figure/cabazzo-1.pdf, id=1959, 505.89pt x 216.81pt>
 File: figure/cabazzo-1.pdf Graphic file (type pdf)
 <use figure/cabazzo-1.pdf>
-Package luatex.def Info: figure/cabazzo-1.pdf  used on input line 7297.
+Package luatex.def Info: figure/cabazzo-1.pdf  used on input line 7306.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
- [283
+ [284
 
 <./figure/cabazzo-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (13.46765pt too high) detected at line 7338
- []
-
-[284
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (12.49341pt too high) detected at line 7375
+Overfull \vbox (13.46765pt too high) detected at line 7347
  []
 
 [285
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [286
+ (./slides-sw.vrb)
+Overfull \vbox (12.49341pt too high) detected at line 7384
+ []
 
-] [287
+[286
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [288
+ (./slides-sw.vrb) [287
+
+] [288
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [289
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (30.16994pt too high) detected at line 7431
+Overfull \vbox (30.16994pt too high) detected at line 7440
  []
 
-[289
+[290
 
 ]
 \openout4 = slides-sw.vrb
@@ -2765,70 +2766,66 @@ Overfull \hbox (24.52956pt too wide) in paragraph at lines 11--11
 1.txt"[][] 
  []
 
-) [290
+) [291
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [291
+ (./slides-sw.vrb) [292
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/ferto-1.pdf, id=2010, 505.89pt x 216.81pt>
+<figure/ferto-1.pdf, id=2015, 505.89pt x 216.81pt>
 File: figure/ferto-1.pdf Graphic file (type pdf)
 <use figure/ferto-1.pdf>
 Package luatex.def Info: figure/ferto-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [292
+) [293
 
 <./figure/ferto-1.pdf>]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/casteldisangro-1.pdf, id=2022, 505.89pt x 216.81pt>
+<figure/casteldisangro-1.pdf, id=2027, 505.89pt x 216.81pt>
 File: figure/casteldisangro-1.pdf Graphic file (type pdf)
 <use figure/casteldisangro-1.pdf>
 Package luatex.def Info: figure/casteldisangro-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [293
+) [294
 
 <./figure/casteldisangro-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[294
+[295
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [295
+ (./slides-sw.vrb) [296
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/charlecombe-1.pdf, id=2044, 505.89pt x 252.945pt>
+<figure/charlecombe-1.pdf, id=2049, 505.89pt x 252.945pt>
 File: figure/charlecombe-1.pdf Graphic file (type pdf)
 <use figure/charlecombe-1.pdf>
 Package luatex.def Info: figure/charlecombe-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [296
+) [297
 
 <./figure/charlecombe-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-229-1.pdf, id=2057, 505.89pt x 180.675pt>
+<figure/unnamed-chunk-229-1.pdf, id=2062, 505.89pt x 180.675pt>
 File: figure/unnamed-chunk-229-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-229-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-229-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 122.25085pt.
-) [297
+) [298
 
 <./figure/unnamed-chunk-229-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[298
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [299
+[299
 
 ]
 \openout4 = slides-sw.vrb
@@ -2836,43 +2833,43 @@ Package luatex.def Info: figure/unnamed-chunk-229-1.pdf  used on input line 9.
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[301
+ (./slides-sw.vrb) [301
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (9.48465pt too high) detected at line 7756
- []
-
 [302
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [303
+ (./slides-sw.vrb)
+Overfull \vbox (9.48465pt too high) detected at line 7765
+ []
+
+[303
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [304
 
-] [305
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [305
+
+] [306
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[306
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (30.16994pt too high) detected at line 7862
- []
-
 [307
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [308
+ (./slides-sw.vrb)
+Overfull \vbox (30.16994pt too high) detected at line 7871
+ []
+
+[308
 
 ]
 \openout4 = slides-sw.vrb
@@ -2880,12 +2877,12 @@ Overfull \vbox (30.16994pt too high) detected at line 7862
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[310
+ (./slides-sw.vrb) [310
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [311
+ (./slides-sw.vrb)
+[311
 
 ]
 \openout4 = slides-sw.vrb
@@ -2893,12 +2890,12 @@ Overfull \vbox (30.16994pt too high) detected at line 7862
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[313
+ (./slides-sw.vrb) [313
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [314
+ (./slides-sw.vrb)
+[314
 
 ]
 \openout4 = slides-sw.vrb
@@ -2906,35 +2903,35 @@ Overfull \vbox (30.16994pt too high) detected at line 7862
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [316
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[316
+[317
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-245-1.pdf, id=2169, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-245-1.pdf, id=2174, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-245-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-245-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-245-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-Overfull \vbox (15.57098pt too high) detected at line 8144
+Overfull \vbox (15.57098pt too high) detected at line 8153
  []
 
-[317
+[318
 
 <./figure/unnamed-chunk-245-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [318
+ (./slides-sw.vrb) [319
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [319
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [320
+(./slides-sw.vrb) [320
 
 ]
 \openout4 = slides-sw.vrb
@@ -2942,23 +2939,27 @@ Overfull \vbox (15.57098pt too high) detected at line 8144
 
 ]
 \openout4 = slides-sw.vrb
-
-(./slides-sw.vrb
-<figure/hoverla-1.pdf, id=2203, 505.89pt x 252.945pt>
-File: figure/hoverla-1.pdf Graphic file (type pdf)
-<use figure/hoverla-1.pdf>
-Package luatex.def Info: figure/hoverla-1.pdf  used on input line 9.
-(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [322
-
-<./figure/hoverla-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [323
+ (./slides-sw.vrb) [322
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [324
+(./slides-sw.vrb
+<figure/hoverla-1.pdf, id=2208, 505.89pt x 252.945pt>
+File: figure/hoverla-1.pdf Graphic file (type pdf)
+<use figure/hoverla-1.pdf>
+Package luatex.def Info: figure/hoverla-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [323
+
+<./figure/hoverla-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [324
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [325
 
 ]
 \openout4 = slides-sw.vrb
@@ -2968,11 +2969,7 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 8--8
 se.txt"[][] 
  []
 
-) [325
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [326
+) [326
 
 ]
 \openout4 = slides-sw.vrb
@@ -2980,12 +2977,12 @@ se.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[328
+ (./slides-sw.vrb) [328
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [329
+ (./slides-sw.vrb)
+[329
 
 ]
 \openout4 = slides-sw.vrb
@@ -2993,27 +2990,27 @@ se.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [331
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-256-1.pdf, id=2257, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-256-1.pdf, id=2263, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-256-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-256-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-256-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
 )
-[331
+[332
 
 <./figure/unnamed-chunk-256-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [332
+ (./slides-sw.vrb) [333
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [333
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [334
+(./slides-sw.vrb) [334
 
 ]
 \openout4 = slides-sw.vrb
@@ -3021,24 +3018,28 @@ Package luatex.def Info: figure/unnamed-chunk-256-1.pdf  used on input line 9.
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [336
 
-(./slides-sw.vrb) [336
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [337
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-262-1.pdf, id=2296, 505.89pt x 180.675pt>
+<figure/unnamed-chunk-262-1.pdf, id=2301, 505.89pt x 180.675pt>
 File: figure/unnamed-chunk-262-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-262-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-262-1.pdf  used on input line 13.
 (luatex.def)             Requested size: 320.39537pt x 114.4296pt.
-) [337
+) [338
 
-<./figure/unnamed-chunk-262-1.pdf>] [338
+<./figure/unnamed-chunk-262-1.pdf>] [339
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [339
+ (./slides-sw.vrb) [340
 
 ]
 \openout4 = slides-sw.vrb
@@ -3055,33 +3056,29 @@ Overfull \hbox (119.70464pt too wide) in paragraph at lines 28--29
  []
 
 )
-Overfull \vbox (459.08014pt too high) detected at line 8737
+Overfull \vbox (459.08014pt too high) detected at line 8746
  []
 
-[340
+[341
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [341
+ (./slides-sw.vrb) [342
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/berzani-1.pdf, id=2331, 505.89pt x 289.08pt>
+<figure/berzani-1.pdf, id=2336, 505.89pt x 289.08pt>
 File: figure/berzani-1.pdf Graphic file (type pdf)
 <use figure/berzani-1.pdf>
 Package luatex.def Info: figure/berzani-1.pdf  used on input line 22.
 (luatex.def)             Requested size: 205.3793pt x 117.35905pt.
-) [342
+) [343
 
 <./figure/berzani-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [343
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [344
+(./slides-sw.vrb) [344
 
 ]
 \openout4 = slides-sw.vrb
@@ -3089,34 +3086,34 @@ Package luatex.def Info: figure/berzani-1.pdf  used on input line 22.
 
 ]
 \openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [346
+ (./slides-sw.vrb) [346
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [347
+
+(./slides-sw.vrb) [347
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [348
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-270-1.pdf, id=2370, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-270-1.pdf, id=2375, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-270-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-270-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-270-1.pdf  used on input line 11.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [348
+) [349
 
 <./figure/unnamed-chunk-270-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (17.57037pt too high) detected at line 8977
+Overfull \vbox (17.57037pt too high) detected at line 8986
  []
 
-[349
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [350
+[350
 
 ]
 \openout4 = slides-sw.vrb
@@ -3124,36 +3121,36 @@ Overfull \vbox (17.57037pt too high) detected at line 8977
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[352
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [353
+ (./slides-sw.vrb) [352
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (2.82214pt too high) detected at line 9155
+[353
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [354
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (2.82214pt too high) detected at line 9164
  []
 
-[354
+[355
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [355
+ (./slides-sw.vrb) [356
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (4.03397pt too high) detected at line 9224
+Overfull \vbox (4.03397pt too high) detected at line 9233
  []
 
-[356
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [357
+[357
 
 ]
 \openout4 = slides-sw.vrb
@@ -3161,12 +3158,12 @@ Overfull \vbox (4.03397pt too high) detected at line 9224
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[359
+ (./slides-sw.vrb) [359
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [360
+ (./slides-sw.vrb)
+[360
 
 ]
 \openout4 = slides-sw.vrb
@@ -3174,12 +3171,12 @@ Overfull \vbox (4.03397pt too high) detected at line 9224
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[362
+ (./slides-sw.vrb) [362
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [363
+ (./slides-sw.vrb)
+[363
 
 ]
 \openout4 = slides-sw.vrb
@@ -3187,64 +3184,68 @@ Overfull \vbox (4.03397pt too high) detected at line 9224
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [365
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-286-1.pdf, id=2464, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-286-1.pdf, id=2469, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-286-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-286-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-286-1.pdf  used on input line 11.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
 )
-[365
+[366
 
 <./figure/unnamed-chunk-286-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-287-1.pdf, id=2477, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-287-1.pdf, id=2482, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-287-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-287-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-287-1.pdf  used on input line 21.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [366
+) [367
 
 <./figure/unnamed-chunk-287-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [367
-
-]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [368
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [369
 
-(./slides-sw.vrb) [369
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [370
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/graziani-1.pdf, id=2506, 505.89pt x 252.945pt>
+<figure/graziani-1.pdf, id=2511, 505.89pt x 252.945pt>
 File: figure/graziani-1.pdf Graphic file (type pdf)
 <use figure/graziani-1.pdf>
 Package luatex.def Info: figure/graziani-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [370
+) [371
 
 <./figure/graziani-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [371
+(./slides-sw.vrb) [372
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [372
+ (./slides-sw.vrb) [373
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (22.39545pt too high) detected at line 9673
+Overfull \vbox (22.39545pt too high) detected at line 9682
  []
 
-[373
+[374
 
 ]
 \openout4 = slides-sw.vrb
@@ -3254,59 +3255,55 @@ Overfull \hbox (2.62956pt too wide) in paragraph at lines 6--6
 e.txt"[][] 
  []
 
-) [374
+) [375
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [375
+ (./slides-sw.vrb) [376
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-294-1.pdf, id=2545, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-294-1.pdf, id=2550, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-294-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-294-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-294-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [376
+) [377
 
 <./figure/unnamed-chunk-294-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-295-1.pdf, id=2558, 505.89pt x 325.215pt>
+<figure/unnamed-chunk-295-1.pdf, id=2563, 505.89pt x 325.215pt>
 File: figure/unnamed-chunk-295-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-295-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-295-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 220.05154pt.
 )
-Overfull \vbox (6.49803pt too high) detected at line 9763
+Overfull \vbox (6.49803pt too high) detected at line 9772
  []
 
-[377
+[378
 
 <./figure/unnamed-chunk-295-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [378
+ (./slides-sw.vrb) [379
 
 ]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/unnamed-chunk-296-1.pdf, id=2576, 505.89pt x 201.75375pt>
+<figure/unnamed-chunk-296-1.pdf, id=2581, 505.89pt x 201.75375pt>
 File: figure/unnamed-chunk-296-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-296-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-296-1.pdf  used on input line 13.
 (luatex.def)             Requested size: 342.29536pt x 136.51346pt.
-) [379
+) [380
 
 <./figure/unnamed-chunk-296-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[380
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [381
+[381
 
 ]
 \openout4 = slides-sw.vrb
@@ -3314,18 +3311,22 @@ Package luatex.def Info: figure/unnamed-chunk-296-1.pdf  used on input line 13.
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [383
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/nesta-1.pdf, id=2605, 505.89pt x 325.215pt>
+<figure/nesta-1.pdf, id=2610, 505.89pt x 325.215pt>
 File: figure/nesta-1.pdf Graphic file (type pdf)
 <use figure/nesta-1.pdf>
 Package luatex.def Info: figure/nesta-1.pdf  used on input line 6.
 (luatex.def)             Requested size: 239.6057pt x 154.0321pt.
 )
-[383
+[384
 
 <./figure/nesta-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [384
+ (./slides-sw.vrb) [385
 
 ]
 \openout4 = slides-sw.vrb
@@ -3335,11 +3336,7 @@ Overfull \hbox (42.8708pt too wide) in paragraph at lines 6--6
 -sensing.txt"[][] 
  []
 
-) [385
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [386
+) [386
 
 ]
 \openout4 = slides-sw.vrb
@@ -3347,74 +3344,74 @@ Overfull \hbox (42.8708pt too wide) in paragraph at lines 6--6
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[388
+ (./slides-sw.vrb) [388
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [389
+ (./slides-sw.vrb)
+[389
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [390
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/piacentini-1.pdf, id=2649, 505.89pt x 223.83624pt>
+<figure/piacentini-1.pdf, id=2654, 505.89pt x 223.83624pt>
 File: figure/piacentini-1.pdf Graphic file (type pdf)
 <use figure/piacentini-1.pdf>
 Package luatex.def Info: figure/piacentini-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 151.45522pt.
-) [390
+) [391
 
 <./figure/piacentini-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-306-1.pdf, id=2662, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-306-1.pdf, id=2668, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-306-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-306-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-306-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [391
+) [392
 
 <./figure/unnamed-chunk-306-1.pdf>]
-Package keyval Info: figure undefined on input line 10093.
- [392
+Package keyval Info: figure undefined on input line 10102.
+ [393
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [393
+(./slides-sw.vrb) [394
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [394
+ (./slides-sw.vrb) [395
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/nedved-1.pdf, id=2691, 505.89pt x 223.83624pt>
+<figure/nedved-1.pdf, id=2696, 505.89pt x 223.83624pt>
 File: figure/nedved-1.pdf Graphic file (type pdf)
 <use figure/nedved-1.pdf>
 Package luatex.def Info: figure/nedved-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.29536pt x 151.45522pt.
-) [395
+) [396
 
 <./figure/nedved-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-310-1.pdf, id=2704, 505.89pt x 259.97125pt>
+<figure/unnamed-chunk-310-1.pdf, id=2709, 505.89pt x 259.97125pt>
 File: figure/unnamed-chunk-310-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-310-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-310-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 175.9054pt.
-) [396
+) [397
 
 <./figure/unnamed-chunk-310-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [397
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [398
+(./slides-sw.vrb) [398
 
 ]
 \openout4 = slides-sw.vrb
@@ -3422,23 +3419,23 @@ Package luatex.def Info: figure/unnamed-chunk-310-1.pdf  used on input line 9.
 
 ]
 \openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [400
-
-] [401
+ (./slides-sw.vrb) [400
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [402
+
+(./slides-sw.vrb) [401
+
+] [402
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [403
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[403
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [404
+[404
 
 ]
 \openout4 = slides-sw.vrb
@@ -3446,138 +3443,151 @@ Package luatex.def Info: figure/unnamed-chunk-310-1.pdf  used on input line 9.
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[406
+ (./slides-sw.vrb) [406
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [407
+ (./slides-sw.vrb)
+[407
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [408
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-317-1.pdf, id=2775, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-317-1.pdf, id=2780, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-317-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-317-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-317-1.pdf  used on input line 5.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [408
+) [409
 
 <./figure/unnamed-chunk-317-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [409
+ (./slides-sw.vrb
+<figure/unnamed-chunk-318-1.pdf, id=2793, 505.89pt x 223.83624pt>
+File: figure/unnamed-chunk-318-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-318-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-318-1.pdf  used on input line 7.
+(luatex.def)             Requested size: 342.29536pt x 151.45522pt.
+) [410
 
-]
+<./figure/unnamed-chunk-318-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [410
 
-]
+(./slides-sw.vrb
+<figure/unnamed-chunk-319-1.pdf, id=2806, 505.89pt x 244.915pt>
+File: figure/unnamed-chunk-319-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-319-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-319-1.pdf  used on input line 7.
+(luatex.def)             Requested size: 342.29536pt x 165.71782pt.
+) [411
+
+<./figure/unnamed-chunk-319-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-320-1.pdf, id=2798, 505.89pt x 230.8625pt>
+<figure/unnamed-chunk-320-1.pdf, id=2820, 505.89pt x 230.8625pt>
 File: figure/unnamed-chunk-320-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-320-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-320-1.pdf  used on input line 7.
 (luatex.def)             Requested size: 342.29536pt x 156.20943pt.
 )
-[411
+[412
 
 <./figure/unnamed-chunk-320-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-321-1.pdf, id=2815, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-321-1.pdf, id=2836, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-321-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-321-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-321-1.pdf  used on input line 8.
 (luatex.def)             Requested size: 342.29536pt x 146.70102pt.
-) [412
+) [413
 
 <./figure/unnamed-chunk-321-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [413
-
-]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [414
 
 ]
 \openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [415
+ (./slides-sw.vrb) [415
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [416
+
+(./slides-sw.vrb) [416
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [417
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-325-1.pdf, id=2852, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-325-1.pdf, id=2873, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-325-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-325-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-325-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [417
+) [418
 
 <./figure/unnamed-chunk-325-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [418
-
-]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [419
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [420
+
+]
+\openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/unnamed-chunk-328-1.pdf, id=2876, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-328-1.pdf, id=2897, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-328-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-328-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-328-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [420
+) [421
 
 <./figure/unnamed-chunk-328-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/wardo-1.pdf, id=2889, 505.89pt x 289.08pt>
+<figure/wardo-1.pdf, id=2911, 505.89pt x 289.08pt>
 File: figure/wardo-1.pdf Graphic file (type pdf)
 <use figure/wardo-1.pdf>
 Package luatex.def Info: figure/wardo-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-[421
+[422
 
 <./figure/wardo-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [422
+ (./slides-sw.vrb) [423
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/asfsagd-1.pdf, id=2908, 505.89pt x 289.08pt>
+<figure/asfsagd-1.pdf, id=2929, 505.89pt x 289.08pt>
 File: figure/asfsagd-1.pdf Graphic file (type pdf)
 <use figure/asfsagd-1.pdf>
 Package luatex.def Info: figure/asfsagd-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [423
+) [424
 
 <./figure/asfsagd-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [424
+ (./slides-sw.vrb) [425
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (10.75711pt too high) detected at line 10812
+Overfull \vbox (10.75711pt too high) detected at line 10805
  []
 
-[425
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [426
+[426
 
 ]
 \openout4 = slides-sw.vrb
@@ -3585,12 +3595,12 @@ Overfull \vbox (10.75711pt too high) detected at line 10812
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[428
+ (./slides-sw.vrb) [428
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [429
+ (./slides-sw.vrb)
+[429
 
 ]
 \openout4 = slides-sw.vrb
@@ -3598,20 +3608,20 @@ Overfull \vbox (10.75711pt too high) detected at line 10812
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[431
+ (./slides-sw.vrb) [431
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (27.46465pt too high) detected at line 11050
- []
-
 [432
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [433
+ (./slides-sw.vrb)
+Overfull \vbox (27.46465pt too high) detected at line 11043
+ []
+
+[433
 
 ]
 \openout4 = slides-sw.vrb
@@ -3619,8 +3629,12 @@ Overfull \vbox (27.46465pt too high) detected at line 11050
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [435
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[435
+[436
 
 ]
 \openout4 = slides-sw.vrb
@@ -3630,11 +3644,7 @@ Overfull \hbox (14.12706pt too wide) in paragraph at lines 7--7
 ate.txt"[][] 
  []
 
-) [436
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [437
+) [437
 
 ]
 \openout4 = slides-sw.vrb
@@ -3642,12 +3652,12 @@ ate.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[439
+ (./slides-sw.vrb) [439
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [440
+ (./slides-sw.vrb)
+[440
 
 ]
 \openout4 = slides-sw.vrb
@@ -3655,12 +3665,12 @@ ate.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[442
+ (./slides-sw.vrb) [442
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [443
+ (./slides-sw.vrb)
+[443
 
 ]
 \openout4 = slides-sw.vrb
@@ -3668,20 +3678,20 @@ ate.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[445
+ (./slides-sw.vrb) [445
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (2.71967pt too high) detected at line 11461
- []
-
 [446
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [447
+ (./slides-sw.vrb)
+Overfull \vbox (2.71967pt too high) detected at line 11454
+ []
+
+[447
 
 ]
 \openout4 = slides-sw.vrb
@@ -3689,30 +3699,30 @@ Overfull \vbox (2.71967pt too high) detected at line 11461
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [449
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (2.68465pt too high) detected at line 11530
+Overfull \vbox (2.68465pt too high) detected at line 11523
  []
 
-[449
+[450
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/favalli-1.pdf, id=3054, 505.89pt x 237.88875pt>
+<figure/favalli-1.pdf, id=3075, 505.89pt x 237.88875pt>
 File: figure/favalli-1.pdf Graphic file (type pdf)
 <use figure/favalli-1.pdf>
 Package luatex.def Info: figure/favalli-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 160.96362pt.
-) [450
+) [451
 
 <./figure/favalli-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[451
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [452
+[452
 
 ]
 \openout4 = slides-sw.vrb
@@ -3720,12 +3730,12 @@ Package luatex.def Info: figure/favalli-1.pdf  used on input line 10.
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[454
+ (./slides-sw.vrb) [454
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [455
+ (./slides-sw.vrb)
+[455
 
 ]
 \openout4 = slides-sw.vrb
@@ -3733,12 +3743,12 @@ Package luatex.def Info: figure/favalli-1.pdf  used on input line 10.
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[457
+ (./slides-sw.vrb) [457
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [458
+ (./slides-sw.vrb)
+[458
 
 ]
 \openout4 = slides-sw.vrb
@@ -3746,53 +3756,57 @@ Package luatex.def Info: figure/favalli-1.pdf  used on input line 10.
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[460
+ (./slides-sw.vrb) [460
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (0.2344pt too high) detected at line 11803
- []
-
 [461
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [462
+ (./slides-sw.vrb)
+Overfull \vbox (0.2344pt too high) detected at line 11796
+ []
+
+[462
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [463
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (13.63965pt too high) detected at line 11882
+Overfull \vbox (13.63965pt too high) detected at line 11875
  []
 
-[463
+[464
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-377-1.pdf, id=3135, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-377-1.pdf, id=3156, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-377-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-377-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-377-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [464
+) [465
 
 <./figure/unnamed-chunk-377-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [465
+(./slides-sw.vrb) [466
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<map1.pdf, id=3153, 896.34875pt x 628.3475pt>
+<map1.pdf, id=3174, 896.34875pt x 628.3475pt>
 File: map1.pdf Graphic file (type pdf)
 <use map1.pdf>
 Package luatex.def Info: map1.pdf  used on input line 3.
 (luatex.def)             Requested size: 325.215pt x 227.97867pt.
-) [466
+) [467
 
 <./map1.pdf>]
 \openout4 = slides-sw.vrb
@@ -3802,69 +3816,65 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 6--6
 o-road-
  []
 
-) [467
+) [468
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-379-1.pdf, id=3171, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-379-1.pdf, id=3192, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-379-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-379-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-379-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [468
+) [469
 
 <./figure/unnamed-chunk-379-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [469
+(./slides-sw.vrb) [470
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-380-1.pdf, id=3189, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-380-1.pdf, id=3210, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-380-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-380-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-380-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [470
+) [471
 
 <./figure/unnamed-chunk-380-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [471
+ (./slides-sw.vrb) [472
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<map2.pdf, id=3208, 1077.02374pt x 642.4pt>
+<map2.pdf, id=3229, 1077.02374pt x 642.4pt>
 File: map2.pdf Graphic file (type pdf)
 <use map2.pdf>
 Package luatex.def Info: map2.pdf  used on input line 3.
 (luatex.def)             Requested size: 325.215pt x 193.97617pt.
-) [472
+) [473
 
-<./map2.pdf>] [473
-
-]
-\openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [474
+<./map2.pdf>] [474
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [475
+
+(./slides-sw.vrb) [475
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [476
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (47.64766pt too high) detected at line 12068
+Overfull \vbox (47.64766pt too high) detected at line 12061
  []
 
-[476
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [477
+[477
 
 ]
 \openout4 = slides-sw.vrb
@@ -3872,116 +3882,119 @@ Overfull \vbox (47.64766pt too high) detected at line 12068
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [479
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[479
+Overfull \vbox (37.87564pt too high) detected at line 12170
+ []
+
+[480
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-388-1.pdf, id=3257, 505.89pt x 259.97125pt>
+<figure/unnamed-chunk-388-1.pdf, id=3279, 505.89pt x 259.97125pt>
 File: figure/unnamed-chunk-388-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-388-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-388-1.pdf  used on input line 9.
+Package luatex.def Info: figure/unnamed-chunk-388-1.pdf  used on input line 11.
 (luatex.def)             Requested size: 342.29536pt x 175.9054pt.
-) [480
+) [481
 
 <./figure/unnamed-chunk-388-1.pdf>]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb)
-Overfull \vbox (18.45697pt too high) detected at line 12210
+Overfull \vbox (18.45697pt too high) detected at line 12221
  []
 
-[481
+[482
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-390-1.pdf, id=3277, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-390-1.pdf, id=3295, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-390-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-390-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-390-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [482
+) [483
 
 <./figure/unnamed-chunk-390-1.pdf>]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/unnamed-chunk-391-1.pdf, id=3290, 216.81pt x 216.81pt>
+<figure/unnamed-chunk-391-1.pdf, id=3308, 216.81pt x 216.81pt>
 File: figure/unnamed-chunk-391-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-391-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-391-1.pdf  used on input line 25.
 (luatex.def)             Requested size: 144.24768pt x 144.25291pt.
-) [483
+) [484
 
 <./figure/unnamed-chunk-391-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (4.04715pt too high) detected at line 12301
+Overfull \vbox (4.04715pt too high) detected at line 12312
  []
 
-[484
+[485
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [485
+ (./slides-sw.vrb) [486
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-397-1.pdf, id=3313, 505.89pt x 259.97125pt>
+<figure/unnamed-chunk-397-1.pdf, id=3331, 505.89pt x 259.97125pt>
 File: figure/unnamed-chunk-397-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-397-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-397-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 175.9054pt.
-) [486
+) [487
 
 <./figure/unnamed-chunk-397-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-398-1.pdf, id=3326, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-398-1.pdf, id=3344, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-398-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-398-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-398-1.pdf  used on input line 5.
+Package luatex.def Info: figure/unnamed-chunk-398-1.pdf  used on input line 8.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [487
+) [488
 
 <./figure/unnamed-chunk-398-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [488
+(./slides-sw.vrb) [489
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [489
+ (./slides-sw.vrb) [490
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-400-1.pdf, id=3349, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-400-1.pdf, id=3364, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-400-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-400-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-400-1.pdf  used on input line 11.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-Overfull \vbox (38.69263pt too high) detected at line 12429
+Overfull \vbox (38.69263pt too high) detected at line 12443
  []
 
-[490
+[491
 
 <./figure/unnamed-chunk-400-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [491
+ (./slides-sw.vrb) [492
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [492
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [493
+(./slides-sw.vrb) [493
 
 ]
 \openout4 = slides-sw.vrb
@@ -3989,32 +4002,36 @@ Overfull \vbox (38.69263pt too high) detected at line 12429
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [495
 
-(./slides-sw.vrb) [495
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [496
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-405-1.pdf, id=3388, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-405-1.pdf, id=3404, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-405-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-405-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-405-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [496
+) [497
 
 <./figure/unnamed-chunk-405-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-406-1.pdf, id=3402, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-406-1.pdf, id=3417, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-406-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-406-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-406-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-Overfull \vbox (1.93321pt too high) detected at line 12593
+Overfull \vbox (1.93321pt too high) detected at line 12607
  []
 
-[497
+[498
 
 <./figure/unnamed-chunk-406-1.pdf>]
 \openout4 = slides-sw.vrb
@@ -4025,67 +4042,67 @@ o-road-distances.csv"[][]
  []
 
 )
-Overfull \vbox (244.80063pt too high) detected at line 12619
+Overfull \vbox (399.58363pt too high) detected at line 12633
  []
 
-[498
+[499
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-408-1.pdf, id=3420, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-408-1.pdf, id=3435, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-408-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-408-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-408-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-Overfull \vbox (4.70357pt too high) detected at line 12635
+Overfull \vbox (4.70357pt too high) detected at line 12649
  []
 
-[499
+[500
 
 <./figure/unnamed-chunk-408-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [500
+ (./slides-sw.vrb) [501
 
 ]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/spal-1.pdf, id=3438, 505.89pt x 252.945pt>
+<figure/spal-1.pdf, id=3454, 505.89pt x 252.945pt>
 File: figure/spal-1.pdf Graphic file (type pdf)
 <use figure/spal-1.pdf>
 Package luatex.def Info: figure/spal-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [501
+) [502
 
 <./figure/spal-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (30.34547pt too high) detected at line 12726
+Overfull \vbox (30.34547pt too high) detected at line 12740
  []
 
-[502
+[503
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [503
+ (./slides-sw.vrb) [504
 
 ]
-Package keyval Info: frame undefined on input line 12777.
-<figure/unnamed-chunk-414-1.pdf, id=3462, 505.89pt x 397.485pt>
+Package keyval Info: frame undefined on input line 12791.
+<figure/unnamed-chunk-414-1.pdf, id=3477, 505.89pt x 397.485pt>
 File: figure/unnamed-chunk-414-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-414-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-414-1.pdf  used on input line 1277
-7.
+Package luatex.def Info: figure/unnamed-chunk-414-1.pdf  used on input line 1279
+1.
 (luatex.def)             Requested size: 166.14767pt x 130.54575pt.
-<figure/unnamed-chunk-415-1.pdf, id=3463, 505.89pt x 397.485pt>
+<figure/unnamed-chunk-415-1.pdf, id=3478, 505.89pt x 397.485pt>
 File: figure/unnamed-chunk-415-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-415-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-415-1.pdf  used on input line 1277
-7.
+Package luatex.def Info: figure/unnamed-chunk-415-1.pdf  used on input line 1279
+1.
 (luatex.def)             Requested size: 166.14767pt x 130.54575pt.
- [504
+ [505
 
 <./figure/unnamed-chunk-414-1.pdf><./figure/unnamed-chunk-415-1.pdf>]
 \openout4 = slides-sw.vrb
@@ -4096,11 +4113,7 @@ Overfull \hbox (7.28331pt too wide) in paragraph at lines 9--9
 rn-
  []
 
-) [505
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [506
+) [506
 
 ]
 \openout4 = slides-sw.vrb
@@ -4108,12 +4121,12 @@ rn-
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[508
+ (./slides-sw.vrb) [508
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [509
+ (./slides-sw.vrb)
+[509
 
 ]
 \openout4 = slides-sw.vrb
@@ -4121,12 +4134,12 @@ rn-
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[511
+ (./slides-sw.vrb) [511
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [512
+ (./slides-sw.vrb)
+[512
 
 ]
 \openout4 = slides-sw.vrb
@@ -4134,56 +4147,52 @@ rn-
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[514
+ (./slides-sw.vrb) [514
 
 ]
-<figure/prosesto-1.pdf, id=3535, 505.89pt x 289.08pt>
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[515
+
+]
+<figure/prosesto-1.pdf, id=3550, 505.89pt x 289.08pt>
 File: figure/prosesto-1.pdf Graphic file (type pdf)
 <use figure/prosesto-1.pdf>
-Package luatex.def Info: figure/prosesto-1.pdf  used on input line 13111.
+Package luatex.def Info: figure/prosesto-1.pdf  used on input line 13125.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
- [515
+ [516
 
 <./figure/prosesto-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [516
+ (./slides-sw.vrb) [517
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[517
+[518
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-429-1.pdf, id=3558, 505.89pt x 289.08pt>
+<figure/unnamed-chunk-429-1.pdf, id=3573, 505.89pt x 289.08pt>
 File: figure/unnamed-chunk-429-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-429-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-429-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-Overfull \vbox (1.94417pt too high) detected at line 13165
+Overfull \vbox (1.94417pt too high) detected at line 13179
  []
 
-[518
+[519
 
 <./figure/unnamed-chunk-429-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [519
+ (./slides-sw.vrb) [520
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb)
-Overfull \vbox (269.43665pt too high) detected at line 13225
- []
-
-[520
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [521
+(./slides-sw.vrb) [521
 
 ]
 \openout4 = slides-sw.vrb
@@ -4191,30 +4200,27 @@ Overfull \vbox (269.43665pt too high) detected at line 13225
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb
-<figure/bianconeri-1.pdf, id=3592, 505.89pt x 289.08pt>
+ (./slides-sw.vrb) [523
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb
+<figure/bianconeri-1.pdf, id=3607, 505.89pt x 289.08pt>
 File: figure/bianconeri-1.pdf Graphic file (type pdf)
 <use figure/bianconeri-1.pdf>
-Package luatex.def Info: figure/bianconeri-1.pdf  used on input line 8.
+Package luatex.def Info: figure/bianconeri-1.pdf  used on input line 5.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-)
-Overfull \vbox (4.605pt too high) detected at line 13305
- []
-
-[523
+) [524
 
 <./figure/bianconeri-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [524
+ (./slides-sw.vrb) [525
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[525
 
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [526
+(./slides-sw.vrb) [526
 
 ]
 \openout4 = slides-sw.vrb
@@ -4222,79 +4228,85 @@ Overfull \vbox (4.605pt too high) detected at line 13305
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[528
+ (./slides-sw.vrb) [528
+
+]
+\openout4 = slides-sw.vrb
+
+(./slides-sw.vrb) [529
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/padova-1.pdf, id=3627, 505.89pt x 289.08pt>
+<figure/padova-1.pdf, id=3645, 505.89pt x 289.08pt>
 File: figure/padova-1.pdf Graphic file (type pdf)
 <use figure/padova-1.pdf>
 Package luatex.def Info: figure/padova-1.pdf  used on input line 5.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [529
+) [530
 
 <./figure/padova-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [530
-
-]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb) [531
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [532
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/parma-1.pdf, id=3651, 505.89pt x 252.945pt>
+<figure/parma-1.pdf, id=3670, 505.89pt x 252.945pt>
 File: figure/parma-1.pdf Graphic file (type pdf)
 <use figure/parma-1.pdf>
 Package luatex.def Info: figure/parma-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
 )
-Overfull \vbox (7.92426pt too high) detected at line 13531
- []
-
-[532
-
-<./figure/parma-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (158.7437pt too high) detected at line 13593
+Overfull \vbox (7.92426pt too high) detected at line 13532
  []
 
 [533
 
+<./figure/parma-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+Overfull \vbox (16.16267pt too high) detected at line 13578
+ []
+
+[534
+
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-442-1.pdf, id=3670, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-442-1.pdf, id=3688, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-442-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-442-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-442-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [534
+) [535
 
 <./figure/unnamed-chunk-442-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [535
+(./slides-sw.vrb
+<figure/unnamed-chunk-443-1.pdf, id=3701, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-443-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-443-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-443-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [536
 
-]
+<./figure/unnamed-chunk-443-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
 Underfull \hbox (badness 1281) in paragraph at lines 9--10
 []\TU/lmss/m/n/10.95 Ex-cel-lent: no prospect of mis-in-ter-pre-ta-tion
  []
 
-) [536
+) [537
 
-] [537
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [538
+] [538
 
 ]
 \openout4 = slides-sw.vrb
@@ -4314,93 +4326,93 @@ Underfull \hbox (badness 1281) in paragraph at lines 9--10
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [543
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/ff2-1.pdf, id=3725, 505.89pt x 289.08pt>
+<figure/ff2-1.pdf, id=3751, 505.89pt x 289.08pt>
 File: figure/ff2-1.pdf Graphic file (type pdf)
 <use figure/ff2-1.pdf>
 Package luatex.def Info: figure/ff2-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
 )
-[543
+[544
 
 <./figure/ff2-1.pdf>]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [544
-
-]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [545
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [546
+
+]
+\openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/unnamed-chunk-450-1.pdf, id=3748, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-450-1.pdf, id=3774, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-450-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-450-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-450-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [546
+) [547
 
 <./figure/unnamed-chunk-450-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (2.78378pt too high) detected at line 13897
+Overfull \vbox (2.78378pt too high) detected at line 13882
  []
 
-[547
+[548
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [548
+ (./slides-sw.vrb) [549
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/score-plot-1.pdf, id=3771, 505.89pt x 252.945pt>
+<figure/score-plot-1.pdf, id=3798, 505.89pt x 252.945pt>
 File: figure/score-plot-1.pdf Graphic file (type pdf)
 <use figure/score-plot-1.pdf>
 Package luatex.def Info: figure/score-plot-1.pdf  used on input line 10.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [549
+) [550
 
 <./figure/score-plot-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/eqsc2-1.pdf, id=3785, 505.89pt x 144.54pt>
+<figure/eqsc2-1.pdf, id=3811, 505.89pt x 144.54pt>
 File: figure/eqsc2-1.pdf Graphic file (type pdf)
 <use figure/eqsc2-1.pdf>
 Package luatex.def Info: figure/eqsc2-1.pdf  used on input line 23.
 (luatex.def)             Requested size: 320.39537pt x 91.54367pt.
-) [550
+) [551
 
 <./figure/eqsc2-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [551
+ (./slides-sw.vrb) [552
 
 ]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/ff3-1.pdf, id=3804, 505.89pt x 289.08pt>
+<figure/ff3-1.pdf, id=3830, 505.89pt x 289.08pt>
 File: figure/ff3-1.pdf Graphic file (type pdf)
 <use figure/ff3-1.pdf>
 Package luatex.def Info: figure/ff3-1.pdf  used on input line 5.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [552
+) [553
 
 <./figure/ff3-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [553
+ (./slides-sw.vrb) [554
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [554
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [555
+(./slides-sw.vrb) [555
 
 ]
 \openout4 = slides-sw.vrb
@@ -4408,59 +4420,65 @@ Package luatex.def Info: figure/ff3-1.pdf  used on input line 5.
 
 ]
 \openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [557
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [558
+ (./slides-sw.vrb) [557
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [559
+
+(./slides-sw.vrb) [558
 
 ]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb
+<figure/scree-b-1.pdf, id=3867, 505.89pt x 252.945pt>
+File: figure/scree-b-1.pdf Graphic file (type pdf)
+<use figure/scree-b-1.pdf>
+Package luatex.def Info: figure/scree-b-1.pdf  used on input line 9.
+(luatex.def)             Requested size: 342.29536pt x 171.1512pt.
+) [559
+
+<./figure/scree-b-1.pdf>]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb) [560
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [561
+ (./slides-sw.vrb)
+Overfull \vbox (118.48463pt too high) detected at line 14222
+ []
+
+[561
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (25.91028pt too high) detected at line 14243
- []
-
-[562
+ (./slides-sw.vrb) [562
 
 ]
-<figure/lecce-1.pdf, id=3867, 505.89pt x 281.05pt>
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [563
+
+]
+<figure/lecce-1.pdf, id=3901, 505.89pt x 281.05pt>
 File: figure/lecce-1.pdf Graphic file (type pdf)
 <use figure/lecce-1.pdf>
-Package luatex.def Info: figure/lecce-1.pdf  used on input line 14260.
+Package luatex.def Info: figure/lecce-1.pdf  used on input line 14297.
 (luatex.def)             Requested size: 342.29536pt x 190.168pt.
- [563
+ [564
 
 <./figure/lecce-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [564
+ (./slides-sw.vrb) [565
 
 ]
-<figure/biplot2-1.pdf, id=3882, 505.89pt x 252.945pt>
+<figure/biplot2-1.pdf, id=3920, 505.89pt x 252.945pt>
 File: figure/biplot2-1.pdf Graphic file (type pdf)
 <use figure/biplot2-1.pdf>
-Package luatex.def Info: figure/biplot2-1.pdf  used on input line 14291.
+Package luatex.def Info: figure/biplot2-1.pdf  used on input line 14328.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
- [565
+ [566
 
-<./figure/biplot2-1.pdf>] [566
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [567
+<./figure/biplot2-1.pdf>] [567
 
 ]
 \openout4 = slides-sw.vrb
@@ -4476,67 +4494,67 @@ Package luatex.def Info: figure/biplot2-1.pdf  used on input line 14291.
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [571
+ (./slides-sw.vrb)
+[571
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[572
+ (./slides-sw.vrb) [572
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [573
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-464-1.pdf, id=3932, 505.89pt x 397.485pt>
+<figure/unnamed-chunk-464-1.pdf, id=3968, 505.89pt x 397.485pt>
 File: figure/unnamed-chunk-464-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-464-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-464-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 268.95189pt.
 )
-Overfull \vbox (52.63898pt too high) detected at line 14430
+Overfull \vbox (52.63898pt too high) detected at line 14514
  []
 
-[573
+[574
 
 <./figure/unnamed-chunk-464-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
 File: cov.txt  (verbatim)
-) [574
+) [575
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [575
+(./slides-sw.vrb) [576
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/palermo-1.pdf, id=3954, 505.89pt x 252.945pt>
+<figure/palermo-1.pdf, id=3991, 505.89pt x 252.945pt>
 File: figure/palermo-1.pdf Graphic file (type pdf)
 <use figure/palermo-1.pdf>
 Package luatex.def Info: figure/palermo-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [576
+) [577
 
 <./figure/palermo-1.pdf>]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [577
+(./slides-sw.vrb) [578
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [578
+ (./slides-sw.vrb) [579
 
-] [579
+] [580
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[580
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [581
+[581
 
 ]
 \openout4 = slides-sw.vrb
@@ -4544,34 +4562,34 @@ Package luatex.def Info: figure/palermo-1.pdf  used on input line 9.
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [583
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (2.90424pt too high) detected at line 14660
+Overfull \vbox (2.90424pt too high) detected at line 14744
  []
 
-[583
+[584
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-470-1.pdf, id=4004, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-470-1.pdf, id=4041, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-470-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-470-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-470-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [584
+) [585
 
 <./figure/unnamed-chunk-470-1.pdf>]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb)
-Overfull \vbox (19.40897pt too high) detected at line 14714
+Overfull \vbox (19.40897pt too high) detected at line 14798
  []
 
-[585
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [586
+[586
 
 ]
 \openout4 = slides-sw.vrb
@@ -4579,12 +4597,12 @@ Overfull \vbox (19.40897pt too high) detected at line 14714
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[588
+ (./slides-sw.vrb) [588
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [589
+ (./slides-sw.vrb)
+[589
 
 ]
 \openout4 = slides-sw.vrb
@@ -4592,42 +4610,52 @@ Overfull \vbox (19.40897pt too high) detected at line 14714
 
 ]
 \openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [591
+
+]
+\openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[591
+[592
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/unnamed-chunk-477-1.pdf, id=4054, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-477-1.pdf, id=4091, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-477-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-477-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-477-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [592
+) [593
 
-<./figure/unnamed-chunk-477-1.pdf>] [593
-
-]
-\openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [594
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [595
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [596
+<./figure/unnamed-chunk-477-1.pdf>] [594
 
 ]
 \openout4 = slides-sw.vrb
 
-(./slides-sw.vrb) [597
+(./slides-sw.vrb) [595
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [598
+ (./slides-sw.vrb
+<figure/siracusa-1.pdf, id=4113, 505.89pt x 289.08pt>
+File: figure/siracusa-1.pdf Graphic file (type pdf)
+<use figure/siracusa-1.pdf>
+Package luatex.def Info: figure/siracusa-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.29536pt x 195.60136pt.
+)
+Overfull \vbox (16.03691pt too high) detected at line 15048
+ []
+
+[596
+
+<./figure/siracusa-1.pdf>]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [597
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[598
 
 ]
 \openout4 = slides-sw.vrb
@@ -4635,101 +4663,102 @@ Package luatex.def Info: figure/unnamed-chunk-477-1.pdf  used on input line 9.
 
 ]
 \openout4 = slides-sw.vrb
-
-(./slides-sw.vrb) [600
+ (./slides-sw.vrb) [600
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [601
+ (./slides-sw.vrb)
+[601
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [602
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<bem.png, id=4113, 624.3325pt x 411.5375pt>
+<bem.png, id=4156, 624.3325pt x 411.5375pt>
 File: bem.png Graphic file (type png)
 <use bem.png>
 Package luatex.def Info: bem.png  used on input line 3.
 (luatex.def)             Requested size: 325.215pt x 214.37123pt.
-) [602
+) [603
 
 <./bem.png>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (44.61563pt too high) detected at line 15102
+
+(./slides-sw.vrb)
+Overfull \vbox (44.61563pt too high) detected at line 15239
  []
 
-[603
+[604
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [604
+ (./slides-sw.vrb) [605
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/genoa-1.pdf, id=4129, 505.89pt x 252.945pt>
+<figure/genoa-1.pdf, id=4172, 505.89pt x 252.945pt>
 File: figure/genoa-1.pdf Graphic file (type pdf)
 <use figure/genoa-1.pdf>
 Package luatex.def Info: figure/genoa-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [605
+) [606
 
 <./figure/genoa-1.pdf>]
 \openout4 = slides-sw.vrb
 
 (./slides-sw.vrb
-<figure/bem-scree-two-1.pdf, id=4142, 505.89pt x 252.945pt>
+<figure/bem-scree-two-1.pdf, id=4186, 505.89pt x 252.945pt>
 File: figure/bem-scree-two-1.pdf Graphic file (type pdf)
 <use figure/bem-scree-two-1.pdf>
 Package luatex.def Info: figure/bem-scree-two-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [606
+) [607
 
 <./figure/bem-scree-two-1.pdf>]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (358.06763pt too high) detected at line 15230
+Overfull \vbox (358.06763pt too high) detected at line 15367
  []
 
-[607
+[608
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [608
+ (./slides-sw.vrb) [609
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/bem-biplot-1.pdf, id=4165, 505.89pt x 252.945pt>
+<figure/bem-biplot-1.pdf, id=4209, 505.89pt x 252.945pt>
 File: figure/bem-biplot-1.pdf Graphic file (type pdf)
 <use figure/bem-biplot-1.pdf>
 Package luatex.def Info: figure/bem-biplot-1.pdf  used on input line 9.
 (luatex.def)             Requested size: 342.29536pt x 171.1512pt.
-) [609
+) [610
 
 <./figure/bem-biplot-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [610
+ (./slides-sw.vrb) [611
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (5.91641pt too high) detected at line 15320
- []
-
-[611
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (270.87163pt too high) detected at line 15388
+Overfull \vbox (5.91641pt too high) detected at line 15457
  []
 
 [612
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [613
+ (./slides-sw.vrb)
+Overfull \vbox (270.87163pt too high) detected at line 15525
+ []
+
+[613
 
 ]
 \openout4 = slides-sw.vrb
@@ -4737,38 +4766,38 @@ Overfull \vbox (270.87163pt too high) detected at line 15388
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[615
+ (./slides-sw.vrb) [615
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [616
+ (./slides-sw.vrb)
+[616
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [617
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb
-<figure/biplot-two-ag-1.pdf, id=4218, 505.89pt x 289.08pt>
+<figure/biplot-two-ag-1.pdf, id=4261, 505.89pt x 289.08pt>
 File: figure/biplot-two-ag-1.pdf Graphic file (type pdf)
 <use figure/biplot-two-ag-1.pdf>
 Package luatex.def Info: figure/biplot-two-ag-1.pdf  used on input line 7.
 (luatex.def)             Requested size: 342.29536pt x 195.60136pt.
-) [617
+) [618
 
 <./figure/biplot-two-ag-1.pdf>]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [618
+ (./slides-sw.vrb) [619
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (127.87163pt too high) detected at line 15598
+Overfull \vbox (127.87163pt too high) detected at line 15735
  []
 
-[619
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [620
+[620
 
 ]
 \openout4 = slides-sw.vrb
@@ -4776,28 +4805,28 @@ Overfull \vbox (127.87163pt too high) detected at line 15598
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[622
+ (./slides-sw.vrb) [622
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (5.29337pt too high) detected at line 15724
- []
-
 [623
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (0.7294pt too high) detected at line 15758
+Overfull \vbox (5.29337pt too high) detected at line 15861
  []
 
 [624
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [625
+ (./slides-sw.vrb)
+Overfull \vbox (0.7294pt too high) detected at line 15895
+ []
+
+[625
 
 ]
 \openout4 = slides-sw.vrb
@@ -4805,12 +4834,12 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[627
+ (./slides-sw.vrb) [627
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [628
+ (./slides-sw.vrb)
+[628
 
 ]
 \openout4 = slides-sw.vrb
@@ -4818,12 +4847,12 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[630
+ (./slides-sw.vrb) [630
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [631
+ (./slides-sw.vrb)
+[631
 
 ]
 \openout4 = slides-sw.vrb
@@ -4831,12 +4860,12 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[633
+ (./slides-sw.vrb) [633
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [634
+ (./slides-sw.vrb)
+[634
 
 ]
 \openout4 = slides-sw.vrb
@@ -4844,12 +4873,12 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[636
+ (./slides-sw.vrb) [636
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [637
+ (./slides-sw.vrb)
+[637
 
 ]
 \openout4 = slides-sw.vrb
@@ -4857,12 +4886,12 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[639
+ (./slides-sw.vrb) [639
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [640
+ (./slides-sw.vrb)
+[640
 
 ]
 \openout4 = slides-sw.vrb
@@ -4870,27 +4899,27 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[642
+ (./slides-sw.vrb) [642
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [643
+ (./slides-sw.vrb)
+[643
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [644
 
-] [645
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [645
+
+] [646
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[646
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [647
+[647
 
 ]
 \openout4 = slides-sw.vrb
@@ -4898,15 +4927,15 @@ Overfull \vbox (0.7294pt too high) detected at line 15758
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-Overfull \vbox (9.24428pt too high) detected at line 16445
- []
-
-[649
+ (./slides-sw.vrb) [649
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [650
+ (./slides-sw.vrb)
+Overfull \vbox (9.24428pt too high) detected at line 16582
+ []
+
+[650
 
 ]
 \openout4 = slides-sw.vrb
@@ -4914,12 +4943,12 @@ Overfull \vbox (9.24428pt too high) detected at line 16445
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[652
+ (./slides-sw.vrb) [652
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [653
+ (./slides-sw.vrb)
+[653
 
 ]
 \openout4 = slides-sw.vrb
@@ -4927,23 +4956,30 @@ Overfull \vbox (9.24428pt too high) detected at line 16445
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[655
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [656
-
-] [657
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [658
+ (./slides-sw.vrb) [655
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[659
+Overfull \vbox (26.85474pt too high) detected at line 16832
+ []
+
+[656
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [657
+
+] [658
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [659
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb)
+[660
 
 ]
 \openout4 = slides-sw.vrb
@@ -4953,11 +4989,7 @@ Overfull \hbox (2.62956pt too wide) in paragraph at lines 18--18
 r.txt"[][] 
  []
 
-) [660
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [661
+) [661
 
 ]
 \openout4 = slides-sw.vrb
@@ -4965,12 +4997,12 @@ r.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[663
+ (./slides-sw.vrb) [663
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [664
+ (./slides-sw.vrb)
+[664
 
 ]
 \openout4 = slides-sw.vrb
@@ -4978,12 +5010,12 @@ r.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[666
+ (./slides-sw.vrb) [666
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [667
+ (./slides-sw.vrb)
+[667
 
 ]
 \openout4 = slides-sw.vrb
@@ -4991,12 +5023,12 @@ r.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[669
+ (./slides-sw.vrb) [669
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [670
+ (./slides-sw.vrb)
+[670
 
 ]
 \openout4 = slides-sw.vrb
@@ -5004,12 +5036,12 @@ r.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[672
+ (./slides-sw.vrb) [672
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [673
+ (./slides-sw.vrb)
+[673
 
 ]
 \openout4 = slides-sw.vrb
@@ -5017,12 +5049,12 @@ r.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[675
+ (./slides-sw.vrb) [675
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [676
+ (./slides-sw.vrb)
+[676
 
 ]
 \openout4 = slides-sw.vrb
@@ -5030,23 +5062,27 @@ r.txt"[][]
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[678
+ (./slides-sw.vrb) [678
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [679
+ (./slides-sw.vrb)
+[679
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [680
 
-] [681
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [681
+
+] [682
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-[682
+[683
 
 ]
 \openout4 = slides-sw.vrb
@@ -5056,11 +5092,7 @@ Overfull \hbox (2.63008pt too wide) in paragraph at lines 13--13
 :status +[] 
  []
 
-) [683
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [684
+) [684
 
 ]
 \openout4 = slides-sw.vrb
@@ -5068,12 +5100,12 @@ Overfull \hbox (2.63008pt too wide) in paragraph at lines 13--13
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[686
+ (./slides-sw.vrb) [686
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [687
+ (./slides-sw.vrb)
+[687
 
 ]
 \openout4 = slides-sw.vrb
@@ -5081,32 +5113,32 @@ Overfull \hbox (2.63008pt too wide) in paragraph at lines 13--13
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[689
+ (./slides-sw.vrb) [689
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (3.03563pt too high) detected at line 17666
- []
-
 [690
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [691
+ (./slides-sw.vrb)
+Overfull \vbox (3.03563pt too high) detected at line 17838
+ []
+
+[691
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [692
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (1.01518pt too high) detected at line 17733
+Overfull \vbox (1.01518pt too high) detected at line 17905
  []
 
-[692
-
-]
-\openout4 = slides-sw.vrb
- (./slides-sw.vrb) [693
+[693
 
 ]
 \openout4 = slides-sw.vrb
@@ -5114,16 +5146,20 @@ Overfull \vbox (1.01518pt too high) detected at line 17733
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb)
-[695
+ (./slides-sw.vrb) [695
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [696
+ (./slides-sw.vrb)
+[696
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb) [697
+
+]
+\openout4 = slides-sw.vrb
+ (./slides-sw.vrb) [698
 
 ]
 \openout4 = slides-sw.vrb
@@ -5134,26 +5170,26 @@ ation:xray[]
  []
 
 )
-Overfull \vbox (9.1294pt too high) detected at line 17920
+Overfull \vbox (9.1294pt too high) detected at line 18092
  []
 
-[698
+[699
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [699
+ (./slides-sw.vrb) [700
 
 ]
 \openout4 = slides-sw.vrb
  (./slides-sw.vrb)
-Overfull \vbox (3.15608pt too high) detected at line 17982
+Overfull \vbox (3.15608pt too high) detected at line 18154
  []
 
-[700
+[701
 
 ]
 \openout4 = slides-sw.vrb
- (./slides-sw.vrb) [701
+ (./slides-sw.vrb) [702
 
 ]
 \tf@nav=\write6
@@ -5165,28 +5201,28 @@ Overfull \vbox (3.15608pt too high) detected at line 17982
 \tf@snm=\write8
 
 \openout8 = slides-sw.snm
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 18001.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 18001.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 18173.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 18173.
  (./slides-sw.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 18001.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 18001.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 18173.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 18173.
 
 Package rerunfilecheck Info: File `slides-sw.out' has not changed.
 (rerunfilecheck)             Checksum: 1192300DCFA48361368744328E32343B;907.
 )
 
 Here is how much of LuaTeX's memory you used:
- 29031 strings out of 494480
+ 29120 strings out of 494480
  100000,1144653 words of node,token memory allocated
  5843 words of node memory still in use:
    49 hlist, 9 vlist, 4 rule, 53 disc, 8 local_par, 12 math, 138 glue, 21 kern, 
 30 penalty, 420 glyph, 86 attribute, 64 glue_spec, 86 attribute_list, 3 write, 2
  pdf_action, 36 pdf_colorstack nodes
-   avail lists: 1:2,2:645,3:1996,4:450,5:497,6:5154,7:2236,8:102,9:638,10:20,11:
+   avail lists: 1:2,2:605,3:1996,4:414,5:498,6:5154,7:2236,8:102,9:638,10:21,11:
 172
- 23618 multiletter control sequences out of 65536+600000
- 96 fonts using 8114543 bytes
- 56i,11n,55p,2075b,1463s stack positions out of 5000i,500n,10000p,200000b,100000s
+ 23640 multiletter control sequences out of 65536+600000
+ 96 fonts using 8122863 bytes
+ 56i,11n,55p,2319b,1465s stack positions out of 5000i,500n,10000p,200000b,100000s
 </usr/share/texmf/fonts/opentype/public/lm/lmsans9-regular.otf></usr/share/texmf
 /fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texmf/fonts/opentype/
 public/lm/lmsans8-oblique.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono8
@@ -5203,10 +5239,10 @@ r.otf></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on slides-sw.pdf (701 pages, 6762545 bytes).
+Output written on slides-sw.pdf (702 pages, 6783550 bytes).
 
-PDF statistics: 4827 PDF objects out of 5155 (max. 8388607)
- 3807 compressed objects within 39 object streams
- 1419 named destinations out of 1440 (max. 131072)
+PDF statistics: 4870 PDF objects out of 5155 (max. 8388607)
+ 3839 compressed objects within 39 object streams
+ 1421 named destinations out of 1440 (max. 131072)
  136 words of extra memory for PDF output out of 10000 (max. 100000000)
 

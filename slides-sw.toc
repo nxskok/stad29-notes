@@ -2,13 +2,13 @@
 \beamer@sectionintoc {3}{Logistic regression (ordinal/nominal response)}{91}{0}{2}
 \beamer@sectionintoc {4}{Survival analysis}{166}{0}{3}
 \beamer@sectionintoc {5}{Analysis of variance}{204}{0}{4}
-\beamer@sectionintoc {6}{Analysis of covariance}{268}{0}{5}
-\beamer@sectionintoc {7}{Multivariate ANOVA}{287}{0}{6}
-\beamer@sectionintoc {8}{Repeated measures by profile analysis}{305}{0}{7}
-\beamer@sectionintoc {9}{Discriminant analysis}{338}{0}{8}
-\beamer@sectionintoc {10}{Cluster analysis}{401}{0}{9}
-\beamer@sectionintoc {11}{Multidimensional scaling}{473}{0}{10}
-\beamer@sectionintoc {12}{Principal components}{537}{0}{11}
-\beamer@sectionintoc {13}{Exploratory factor analysis}{579}{0}{12}
-\beamer@sectionintoc {14}{Confirmatory factor analysis}{645}{0}{13}
-\beamer@sectionintoc {15}{Multiway frequency tables}{657}{0}{14}
+\beamer@sectionintoc {6}{Analysis of covariance}{269}{0}{5}
+\beamer@sectionintoc {7}{Multivariate ANOVA}{288}{0}{6}
+\beamer@sectionintoc {8}{Repeated measures by profile analysis}{306}{0}{7}
+\beamer@sectionintoc {9}{Discriminant analysis}{339}{0}{8}
+\beamer@sectionintoc {10}{Cluster analysis}{402}{0}{9}
+\beamer@sectionintoc {11}{Multidimensional scaling}{474}{0}{10}
+\beamer@sectionintoc {12}{Principal components}{538}{0}{11}
+\beamer@sectionintoc {13}{Exploratory factor analysis}{580}{0}{12}
+\beamer@sectionintoc {14}{Confirmatory factor analysis}{646}{0}{13}
+\beamer@sectionintoc {15}{Multiway frequency tables}{658}{0}{14}

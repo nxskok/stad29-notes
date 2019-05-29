@@ -115,72 +115,72 @@
 @ 
 
 
-\begin{frame}{What we (might) cover, part 1}
-  \tableofcontents[sections={1-10}]  % You might wish to add the option [pausesections]
-\end{frame}
-
-\begin{frame}{What we (might) cover, part 2}
-  \tableofcontents[sections={11-}]  % You might wish to add the option [pausesections]
-\end{frame}
-
-% skip these
-% <<intro,child="bRIntro.Rnw">>=
-% @ 
+% \begin{frame}{What we (might) cover, part 1}
+%   \tableofcontents[sections={1-10}]  % You might wish to add the option [pausesections]
+% \end{frame}
 % 
-% <<ggplot,child="bggplot.Rnw">>=
-% @ 
+% \begin{frame}{What we (might) cover, part 2}
+%   \tableofcontents[sections={11-}]  % You might wish to add the option [pausesections]
+% \end{frame}
 % 
-% <<Inference,child="bInference.Rnw">>=
-% @
-
-% start here
-
-<<Rscript, child="bRscript.Rnw">>=
-@  
-
-<<Regression, child="bRegression.Rnw">>=
-@ 
-
-
-<<bLogistic, child="bLogistic.Rnw">>=
- 
-
-<<bSurvival, child="bSurvival.Rnw">>=
-@ 
-
-<<bAnova, child="bAnova.Rnw">>=
-@ 
-
-<<ancova, child="bAncova.Rnw">>=
-@ 
-
-<<bManova, child="bManova.Rnw">>=
-@ 
-
-<<bProfile, child="bProfile.Rnw">>=
-@ 
-
-<<bDiscrim, child="bDiscrim.Rnw">>=
-@ 
-
-<<bCluster, child="bCluster.Rnw">>=
-@ 
-
-<<bMDS, child="bMDS.Rnw">>=
-@ 
-
-<<bPrincomp, child="bPrincomp.Rnw">>=
-@ 
-
-<<bFactor, child="bFactor.Rnw">>=
-@ 
- 
-% % <<bTimeSeries, child="bTimeSeries.Rnw">>=
+% % skip these
+% % <<intro,child="bRIntro.Rnw">>=
 % % @ 
-
-<<bMultiway, child="bMultiway.Rnw">>=
-@
- 
+% % 
+% % <<ggplot,child="bggplot.Rnw">>=
+% % @ 
+% % 
+% % <<Inference,child="bInference.Rnw">>=
+% % @
+% 
+% % start here
+% 
+% <<Rscript, child="bRscript.Rnw">>=
+% @  
+% 
+% <<Regression, child="bRegression.Rnw">>=
+% @ 
+% 
+% 
+% <<bLogistic, child="bLogistic.Rnw">>=
+%  
+% 
+% <<bSurvival, child="bSurvival.Rnw">>=
+% @ 
+% 
+% <<bAnova, child="bAnova.Rnw">>=
+% @ 
+% 
+% <<ancova, child="bAncova.Rnw">>=
+% @ 
+% 
+% <<bManova, child="bManova.Rnw">>=
+% @ 
+% 
+% <<bProfile, child="bProfile.Rnw">>=
+% @ 
+% 
+% <<bDiscrim, child="bDiscrim.Rnw">>=
+% @ 
+% 
+% <<bCluster, child="bCluster.Rnw">>=
+% @ 
+% 
+% <<bMDS, child="bMDS.Rnw">>=
+% @ 
+% 
+% <<bPrincomp, child="bPrincomp.Rnw">>=
+% @ 
+% 
+% <<bFactor, child="bFactor.Rnw">>=
+% @ 
+%  
+% % % <<bTimeSeries, child="bTimeSeries.Rnw">>=
+% % % @ 
+% 
+% <<bMultiway, child="bMultiway.Rnw">>=
+% @
+% %  
 
 %
 %\include{bRIntro}
@@ -209,16 +209,16 @@
   
 
 
-\begin{frame}{The end}
-
-{\centering
-{\Huge
-\hfill
-DONE!
-\hfill
-}
-}
-\end{frame}
+% % \begin{frame}{The end}
+% 
+% {\centering
+% {\Huge
+% \hfill
+% DONE!
+% \hfill
+% }
+% }
+% \end{frame}
 
 
 \end{document}

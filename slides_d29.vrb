@@ -1,0 +1,22 @@
+\frametitle{General procedure}
+\protect\hypertarget{general-procedure}{}
+
+\begin{itemize}
+\item
+  Start with ``complete model'' including all possible interactions.
+\item
+  \texttt{drop1} gives highest-order interaction(s) remaining, remove
+  least non-significant.
+\item
+  Repeat as necessary until everything significant.
+\item
+  Look at subtables of significant interactions.
+\item
+  Main effects not usually very interesting.
+\item
+  Interactions with ``response'' usually of most interest: show
+  association with response.
+\end{itemize}
+
+make DONE slide
+

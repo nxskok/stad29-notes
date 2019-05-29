@@ -268,8 +268,8 @@ options(width=w+10)
 @ 
 
 <<size="scriptsize",message=F>>=
-my_url="http://www.utsc.utoronto.ca/~butler/d29/men-track-field.txt"
-track=read_table2(my_url)
+my_url="http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
+track=read_table(my_url)
 track %>% sample_n(12)
 @ 
   
@@ -280,7 +280,7 @@ track %>% sample_n(12)
 Also read in a table to look country names up in later:
 
 <<message=F, size="small">>=
-my_url="http://www.utsc.utoronto.ca/~butler/d29/isocodes.txt"
+my_url="http://www.utsc.utoronto.ca/~butler/d29/isocodes.csv"
 iso=read_csv(my_url)
 iso
 @ 
@@ -422,10 +422,10 @@ g1
   \item Good running countries at right of plot: US, UK, Italy,
     Russia, East and West Germany.
   \item Bad running countries at left: Western Samoa, Cook Islands.
-  \item Better sprinting countries at top: US, Italy, Russia,
+  \item Better sprinting countries at bottom: US, Italy, Russia,
     Brazil, Greece. \texttt{do} is Dominican Republic, where sprinting
     records relatively good, distance records very bad.
-  \item Better distance-running countries at bottom: Portugal, Norway,
+  \item Better distance-running countries at top: Portugal, Norway,
     Turkey, Ireland, New Zealand, Mexico. \texttt{ke} is Kenya.
   \end{itemize}
   

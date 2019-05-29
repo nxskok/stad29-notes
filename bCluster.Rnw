@@ -122,16 +122,7 @@ ones?
   Find the red point and the blue point that are closest together:
   
 <<echo=F,fig.height=3.1>>=
-distance=function(p1,p2) {
-  sqrt((p1[1]-p2[1])^2+(p1[2]-p2[2])^2)
-}
-distances=matrix(0,nrow(a),nrow(b))
-for (i in 1:nrow(a)) {
-  for (j in 1:nrow(b)) {
-    dd=distance(a[i,],b[j,])
-    distances[i,j]=dd
-  }
-}
+distances=spatstat::crossdist(a$x, a$y, b$x, b$y)
 wm1=which.min(apply(distances,1,min))
 wm2=which.min(apply(distances,2,min))
 closest=bind_rows(a=a[wm1,],b=b[wm2,],.id="cluster")
