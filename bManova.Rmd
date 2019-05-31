@@ -1,5 +1,6 @@
-\section{Multivariate ANOVA}
-\frame{\sectionpage}
+
+# Multivariate ANOVA
+
 ## Multivariate analysis of variance
 
 

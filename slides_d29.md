@@ -22,8 +22,7 @@ output:
 
 
 
-\section*{Course Outline}
-\frame{\sectionpage}
+# Course Outline
 
 ## Course and instructor
 
@@ -41,8 +40,8 @@ lab Monday 16:00-17:00 in BV 498.
 otherwise. See if I'm in. Or make an appointment. E-mail always
 good.
 
-* Course website: 
-[link](www.utsc.utoronto.ca/~butler/d29).
+* Course website: xxx
+[link](http://ritsokiguess.site/STAD29/).
 
 * Using Quercus for assignments/grades only; using website for
 everything else.
@@ -57,9 +56,9 @@ everything else.
 * There is no official text for this course. 
 
 * You may find "R for Data Science", 
-[link](http://r4ds.had.co.nz/) helpful for R background.
+[**link**](http://r4ds.had.co.nz/) helpful for R background.
 
-* I will refer frequently to my book of Problems and Solutions in Applied Statistics (PASIAS), [link](http://ritsokiguess.site/pasias/).
+* I will refer frequently to my book of Problems and Solutions in Applied Statistics (PASIAS), [**link**](http://ritsokiguess.site/pasias/).
 
 * Both of these resources are and will remain free.
 
@@ -81,8 +80,8 @@ catch up!
 
 * This course is a required part of Applied Statistics minor.
 
-* Exclusions: \textbf{this course is not for
-Math/Statistics/CS majors/minors}. It is for students in other
+* Exclusions: **this course is not for Math/Statistics/CS majors/minors**. 
+It is for students in other
 fields who wish to learn some more advanced statistical
 methods. The exclusions in the Calendar reflect this. 
 
@@ -94,8 +93,8 @@ this course, **or for any future STA courses you take.**
 ## Computing
 
 
-* Computing: big part of the course, {\bf not}
-optional. Demonstrate that you can use 
+* Computing: big part of the course, **not**
+optional. You will need to demonstrate that you can use 
 R to analyze data, and can
 critically interpret the output.
 
@@ -103,7 +102,7 @@ critically interpret the output.
 to offer extra help to get you up to speed.
 
 
-## Assessment
+## Assessment 1/2
 
 
 * Grading: (2 hour) midterm, (3 hour) final exam. Assignments most
@@ -123,11 +122,12 @@ Project & - & 20\%\\
 Final exam & 50\% & 40\%
 \end{tabular}
 
+## Assessment 2/2
 
 * Assessments missed *with documentation* will cause a
 re-weighting of other assessments of same type. No make-ups.
 
-* You **must pass the final exam** to pass the course. If you
+* You **must pass the final exam** to guarantee passing the course. If you
 fail the final exam but would otherwise have passed the course, you
 receive a grade of 45.
 
@@ -137,18 +137,17 @@ receive a grade of 45.
 ## Plagiarism
 
 
-* [link](http://www.utoronto.ca/academicintegrity/academicoffenses.html)
-defines academic offences at this university. Read it.
+* [**This link**](http://www.utoronto.ca/academicintegrity/academicoffenses.html)
+defines academic offences at this university. Read it. You are bound by it. xxx
 
-* Plagiarism is defined (at the end) as
-\begin{quote}
-The wrongful appropriation and purloining, and publication as one’s own, of the ideas, or the expression of the ideas ... of another.
-\end{quote}
+* Plagiarism defined (at the end) as
+
+> The wrongful appropriation and purloining, and publication as one’s own, of the ideas, 
+> or the expression of the ideas ... of another.
 
 * The code and
 explanations  that
-you write and hand in must be \emph{yours and yours
-alone}. 
+you write and hand in must be *yours and yours alone*.
 
 * When you hand in work, it is implied that it is
 *your* work. Handing in work, with your name on it, that was actually done by
@@ -168,7 +167,7 @@ needed in academic communication. Make use of the personalized
 support in academic writing skills development. Details and sign-up information:
 [link](http://www.utsc.utoronto.ca/eld/).
 
-*      Students with diverse learning styles and needs are welcome in this
+* Students with diverse learning styles and needs are welcome in this
 course. In particular, if you have a disability/health consideration
 that may require accommodations, please feel free to approach the AccessAbility Services Office as soon as possible. I will
 work with you and AccessAbility Services to ensure you can achieve
@@ -178,44 +177,46 @@ appointment to assess specific needs, provide referrals and arrange
 appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.ca`.
 
 
+## Course material xxx
 
- 
-## What we (might) cover, part 1
-\tableofcontents[sections={1-10}]  % You might wish to add the option [pausesections]
+- Regression-like things 
+  - review of (multiple) regression
+  - logistic regression (including multi-category responses)
+  - survival analysis
+- ANOVA-like things
+  - more ANOVA
+  - multivariate ANOVA
+  - repeated measures
+- Multivariate methods
+  - discriminant analysis
+  - cluster analysis
+  - multidimensional scaling
+  - principal components
+  - factor analysis
+- Miscellanea
+  - time series
+  - multiway frequency tables
+  
 
 
-## What we (might) cover, part 2
-\tableofcontents[sections={11-}]  % You might wish to add the option [pausesections]
+# Review of (multiple) regression
 
-
-%\usepackage[utf8]{inputenc}
-
-\section{Review of (multiple) regression}
-\frame{\sectionpage}
- <<setup2,echo=F>>=
- library(knitr)
- opts_chunk$set(dev = 'pdf')
- opts_chunk$set(comment=NA, fig.width=5, fig.height=3.5)
- options(width=45)
- #suppressMessages(library(tidyverse))
- @ %def 
 ## Regression
 
 
-* Use regression when one variable is an outcome ({\em response}, $y$).
+* Use regression when one variable is an outcome (*response*, $y$).
 
-* See if/how response depends on other variable(s), {\em explanatory}, $x_1, x_2,\ldots$.
+* See if/how response depends on other variable(s), *explanatory*, $x_1, x_2,\ldots$.
 
-* Can have {\em one} or {\em more than one} explanatory variable, but always one response.
+* Can have *one* or *more than one* explanatory variable, but always one response.
 
-* Assumes a {\em straight-line} relationship between response and explanatory.
+* Assumes a *straight-line* relationship between response and explanatory.
 
-* Ask: 
+* Ask: xxx
 
 
-* {\em is there} a relationship between $y$ and $x$'s, and if so, which ones?
-
-* what does the relationship look like?
+  * *is there* a relationship between $y$ and $x$'s, and if so, which ones?
+  * what does the relationship look like?
 
 
 
@@ -247,37 +248,25 @@ sleep <- read_delim(my_url, " ")
 ##   age = col_double()
 ## )
 ```
-def 
 
 
-## Check data
+
+## Check data xxx
 
 ```r
-sleep
+glimpse(sleep)
 ```
 
 ```
-## # A tibble: 13 x 2
-##     atst   age
-##    <dbl> <dbl>
-##  1  586   4.4 
-##  2  462. 14   
-##  3  491. 10.1 
-##  4  565   6.7 
-##  5  462  11.5 
-##  6  532.  9.6 
-##  7  478. 12.4 
-##  8  515.  8.9 
-##  9  493  11.1 
-## 10  528.  7.75
-## 11  576.  5.5 
-## 12  532.  8.6 
-## 13  530.  7.2
+## Observations: 13
+## Variables: 2
+## $ atst <dbl> 586.00, 461.75, 491.10, 565.00, 462.…
+## $ age  <dbl> 4.40, 14.00, 10.10, 6.70, 11.50, 9.6…
 ```
 
-   
+## Exploratory stuff   
 
-and make scatter plot of ATST (response) vs.\ age (explanatory) using
+Make scatter plot of ATST (response) vs. age (explanatory) using
 code overleaf:
 
 
@@ -288,9 +277,9 @@ ggplot(sleep, aes(x = age, y = atst)) + geom_point()
 ```
 
 ![plot of chunk suggo](figure/suggo-1.pdf)
-def 
+ 
 
-![](sleep-times.png)
+
 
 
 
@@ -307,7 +296,7 @@ with(sleep, cor(atst, age))
 ```
 ## [1] -0.9515469
 ```
-def 
+ 
 
 
 * $1$ is perfect upward trend, $-1$ is perfect downward trend, 0
@@ -315,7 +304,7 @@ is no trend.
 
 * This one close to perfect downward trend.
 
-* Can do correlations of whole data frame:
+* Can do correlations of all pairs of variables:
 
 ```r
 cor(sleep)
@@ -326,9 +315,7 @@ cor(sleep)
 ## atst  1.0000000 -0.9515469
 ## age  -0.9515469  1.0000000
 ```
-def 
-
-* Correlations of all possible pairs of variables.  
+ 
 
 
 ## Lowess curve
@@ -359,13 +346,12 @@ ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
 ```
 
 ![plot of chunk icko](figure/icko-1.pdf)
-def 
+ 
 
 ## The regression
 
 Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can run the regression:
 
-{\scriptsize
 
 ```r
 sleep.1 <- lm(atst ~ age, data = sleep)
@@ -393,8 +379,8 @@ summary(sleep.1)
 ## Multiple R-squared:  0.9054,	Adjusted R-squared:  0.8968 
 ## F-statistic: 105.3 on 1 and 11 DF,  p-value: 5.7e-07
 ```
-def 
-}
+ 
+
 
 
 ## Conclusions
@@ -497,9 +483,9 @@ Once useful regression exists, use it for prediction:
 * To express uncertainty of this prediction:
 
 
-* {\em CI for mean response} expresses uncertainty about mean ATST for all children aged 10, based on data.
+* *CI for mean response* expresses uncertainty about mean ATST for all children aged 10, based on data.
 
-* {\em Prediction interval} expresses uncertainty about predicted ATST for a new child aged 10 whose ATST not known. More uncertain.
+* *Prediction interval* expresses uncertainty about predicted ATST for a new child aged 10 whose ATST not known. More uncertain.
 
 
 * Also do above for a child aged 5.
@@ -534,7 +520,7 @@ ages.new
 pc <- predict(sleep.1, ages.new, interval = "c")
 pp <- predict(sleep.1, ages.new, interval = "p")
 ```
-def 
+ 
 
 
 
@@ -551,7 +537,7 @@ cbind(ages.new, pc)
 ## 1  10 506.0729 497.5574 514.5883
 ## 2   5 576.2781 561.6578 590.8984
 ```
-def 
+ 
 
 Prediction intervals for new response:
 
@@ -564,7 +550,7 @@ cbind(ages.new, pp)
 ## 1  10 506.0729 475.8982 536.2475
 ## 2   5 576.2781 543.8474 608.7088
 ```
-def 
+ 
 
 ## Comments
 
@@ -604,7 +590,7 @@ How to tell whether a straight-line regression is appropriate?
 
 * Before: check scatterplot for straight trend.
 
-* After: plot {\em residuals} (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
+* After: plot *residuals* (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
 
 
 \vspace{3ex}
@@ -617,7 +603,7 @@ ggplot(sleep.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
 
 ![plot of chunk akjhkadjfhjahnkkk](figure/akjhkadjfhjahnkkk-1.pdf)
-def 
+ 
 
 ![](sleep-resid.png)
 
@@ -640,7 +626,7 @@ curvy <- read_delim(my_url, " ")
 ##   yy = col_double()
 ## )
 ```
-def 
+ 
 
 ![](curvy-scatter.png)
 
@@ -687,7 +673,7 @@ summary(curvy.1)
 ## Multiple R-squared:  0.5848,	Adjusted R-squared:  0.5329 
 ## F-statistic: 11.27 on 1 and 8 DF,  p-value: 0.009984
 ```
-def 
+ 
 }
 
 ## Residual plot
@@ -697,7 +683,7 @@ ggplot(curvy.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
 
 ![plot of chunk altoadige](figure/altoadige-1.pdf)
-def 
+ 
 
 ![](curvy-residual.png)
 
@@ -706,14 +692,14 @@ def
 ## No good: fixing it up
 
 
-* Residual plot has {\em curve}: middle residuals positive, high and low ones negative. Bad.
+* Residual plot has *curve*: middle residuals positive, high and low ones negative. Bad.
 
 * Fitting a curve would be better. Try this:
 
 ```r
 curvy.2 <- lm(yy ~ xx + I(xx^2), data = curvy)
 ```
-def 
+ 
 
 
 * Adding `xx`-squared term, to allow for curve.
@@ -756,20 +742,20 @@ summary(curvy.2)
 ## Multiple R-squared:  0.9502,	Adjusted R-squared:  0.936 
 ## F-statistic: 66.83 on 2 and 7 DF,  p-value: 2.75e-05
 ```
-def 
+ 
 }
 
 
 ## Comments
 
 
-* `xx`-squared term definitely significant (P-value
+* `xx`-squared term initely significant (P-value
 0.000182), so need this curve to describe relationship.
 
 * Adding squared term has made R-squared go up from 0.5848 to
 0.9502: great improvement.
 
-* This is a definite curve!
+* This is a inite curve!
 
 
 ## The residual plot now
@@ -779,7 +765,7 @@ ggplot(curvy.2, aes(x = .fitted, y = .resid)) + geom_point()
 ```
 
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.pdf)
-def 
+ 
 
 ![](curvy-resid2.png)
 
@@ -843,7 +829,7 @@ madeup
 ## 7     7     6 469. 
 ## 8     8     7 583.
 ```
-def 
+ 
 Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
 
 
@@ -859,7 +845,7 @@ ggplot(madeup, aes(x = x, y = y)) + geom_point() +
 ```
 
 ![plot of chunk dsljhsdjlhf](figure/dsljhsdjlhf-1.pdf)
-def 
+ 
 
 
 ## Running Box-Cox
@@ -875,13 +861,13 @@ such as you would use for `lm`.
 ```r
 boxcox(y ~ x, data = madeup)
 ```
-def 
+ 
 
 
 
 ## The Box-Cox output
 ![plot of chunk trento](figure/trento-1.pdf)
-def 
+ 
 
 
 ## Comments
@@ -923,7 +909,7 @@ madeup %>%
 ```
 
 ![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.pdf)
-def 
+ 
 
 Looks much straighter.
 
@@ -1017,7 +1003,7 @@ visits <- read_delim(my_url, " ")
 ##   stress = col_double()
 ## )
 ```
-def 
+ 
 
 
 ## Check data, fit multiple regression
@@ -1083,7 +1069,7 @@ summary(visits.1)
 ## Multiple R-squared:  0.2188,	Adjusted R-squared:  0.2137 
 ## F-statistic: 43.03 on 3 and 461 DF,  p-value: < 2.2e-16
 ```
-def 
+ 
 }  
 
 ## The slopes
@@ -1105,10 +1091,10 @@ tidy(visits.1)
 ## 3 menheal     -0.00967   0.129     -0.0749 9.40e- 1
 ## 4 stress       0.0136    0.00361    3.77   1.85e- 4
 ```
-def 
+ 
 \end{footnotesize}
 
-The physical health and stress variables definitely help to predict the number of visits, but {\em with those in the model} we don't need `menheal`.
+The physical health and stress variables initely help to predict the number of visits, but *with those in the model* we don't need `menheal`.
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
@@ -1142,7 +1128,7 @@ summary(visits.2)
 ## Multiple R-squared:  0.06532,	Adjusted R-squared:  0.0633 
 ## F-statistic: 32.35 on 1 and 463 DF,  p-value: 2.279e-08
 ```
-def 
+ 
 }
 
 
@@ -1174,7 +1160,7 @@ visits %>% select(-subjno) %>% cor()
 ## menheal 0.2555703 0.5049464 1.0000000 0.3697911
 ## stress  0.2865951 0.3055517 0.3697911 1.0000000
 ```
-def 
+ 
 
 
 * `phyheal` most strongly correlated with `timedrs`.
@@ -1196,7 +1182,7 @@ ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
 
 ![plot of chunk iffy8](figure/iffy8-1.pdf)
-def 
+ 
 
 Apparently random. But\ldots
 
@@ -1270,9 +1256,9 @@ transformation of response often fixes: that is, predict
 * Residuals not normal (skewed right), increase in size with
 fitted value.
 
-* Sometimes residuals are {\em very} positive: observed a {\em lot} larger than predicted.
+* Sometimes residuals are *very} positive: observed a {\em lot* larger than predicted.
 
-* Try {\em  transforming} response: use log or square root of response. (Note that response is {\em count}, often skewed to right.)
+* Try * transforming} response: use log or square root of response. (Note that response is {\em count*, often skewed to right.)
 
 * Try regression again, with transformed response instead of
 original one.
@@ -1284,7 +1270,7 @@ visits.3 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress,
   data = visits
 )
 ```
-def 
+ 
 
 * `timedrs+1`  because some `timedrs` values 0,
 can't take log of 0.
@@ -1324,7 +1310,7 @@ summary(visits.3)
 ## Multiple R-squared:  0.3682,	Adjusted R-squared:  0.3641 
 ## F-statistic: 89.56 on 3 and 461 DF,  p-value: < 2.2e-16
 ```
-def 
+ 
 }
 
 
@@ -1408,13 +1394,13 @@ Box-Cox expects all +. Note response for `boxcox`:
 ```r
 boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 ```
-def 
+ 
 
 
 
 ## Try 1
 ![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
-def 
+ 
 
 
 ## Comments on try 1
@@ -1439,7 +1425,7 @@ my.lambda
 ## [28] -0.03 -0.02 -0.01  0.00  0.01  0.02  0.03  0.04  0.05
 ## [37]  0.06  0.07  0.08  0.09  0.10
 ```
-def 
+ 
 }
 
 
@@ -1453,7 +1439,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress,
 ```
 
 ![plot of chunk unnamed-chunk-42](figure/unnamed-chunk-42-1.pdf)
-def 
+ 
 
 
 ## Comments
@@ -1494,7 +1480,7 @@ anova(visits.6, visits.5)
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-def 
+ 
 }
 
 
@@ -1619,7 +1605,7 @@ summary(punting.1)
 ## Multiple R-squared:  0.7781,	Adjusted R-squared:  0.7042 
 ## F-statistic: 10.52 on 3 and 9 DF,  p-value: 0.00267
 ```
-def 
+ 
 
 ## Comments
 
@@ -1630,7 +1616,7 @@ def
 
 * $t$-tests only say that you could take any one of the $x$'s out without damaging the fit; doesn't matter which one.
 
-* Explanation: look at {\em correlations}. 
+* Explanation: look at *correlations*. 
 
 
 
@@ -1647,10 +1633,10 @@ cor(punting)
 ## punt  0.8117368 0.8805469 1.0000000 0.8679507
 ## fred  0.9722632 0.9728784 0.8679507 1.0000000
 ```
-def 
+ 
 
 
-* {\em All} correlations are high: $x$'s with `punt` (good) and
+* *All* correlations are high: $x$'s with `punt` (good) and
 with each other (bad, at least confusing).
 
 * What to do? Probably do just as well to pick one variable, say
@@ -1675,7 +1661,7 @@ anova(punting.2, punting.1)
 ## 1     11 1962.5                           
 ## 2      9 1938.2  2    24.263 0.0563 0.9456
 ```
-def 
+ 
 }
 No significant loss by dropping other two variables.
 
@@ -1699,7 +1685,7 @@ summary(punting.2)$r.squared
 ```
 ## [1] 0.7753629
 ```
-def 
+ 
 }
 
 Basically no difference. In regression (over), `right` significant:
@@ -1734,7 +1720,7 @@ summary(punting.2)
 ## Multiple R-squared:  0.7754,	Adjusted R-squared:  0.7549 
 ## F-statistic: 37.97 on 1 and 11 DF,  p-value: 7.088e-05
 ```
-def 
+ 
 }
 
 ## But\ldots
@@ -1849,7 +1835,7 @@ summary(punting.3)
 ## Comments
 
 
-* This was definitely a good idea (R-squared has clearly increased).
+* This was initely a good idea (R-squared has clearly increased).
 
 * We would never have seen it without plotting residuals from
 `punting.2` (without `left`) against `left`.
@@ -1867,10 +1853,11 @@ it decreases again.
 
 
 
+xxx
  
 
-\section{Logistic regression (ordinal/nominal response)}
-\frame{\sectionpage}
+# Logistic regression (ordinal/nominal response)
+
 ## Logistic regression
 
 
@@ -3364,13 +3351,13 @@ sample_n(probs.long, 7) # 7 random rows
 
 ```
 ##   age sex brand probability
-## 1  32   1     3  0.21410518
-## 2  24   1     2  0.08189042
-## 3  28   1     3  0.03294301
-## 4  38   0     2  0.23855071
-## 5  24   0     1  0.94795822
-## 6  32   0     1  0.40487271
-## 7  32   1     1  0.29086347
+## 1  32   0     1   0.4048727
+## 2  35   1     2   0.4316859
+## 3  38   0     3   0.7354677
+## 4  35   0     3   0.4721813
+## 5  28   0     2   0.1832969
+## 6  38   1     2   0.2516220
+## 7  24   1     1   0.9153208
 ```
 
      
@@ -3735,8 +3722,9 @@ the two genders.
   
 
 
-\section{Survival analysis}
-\frame{\sectionpage}
+# Survival analysis
+
+
 ## Survival analysis
 
 
@@ -4662,8 +4650,9 @@ Not great, but less problematic than before.
 
  
 
-\section{Analysis of variance}
-\frame{\sectionpage}
+
+# Analysis of variance
+
 
 ## Analysis of variance
 
@@ -6438,8 +6427,9 @@ with additional kickback.
  
 
 
-\section{Analysis of covariance}
-\frame{\sectionpage}
+
+# Analysis of covariance
+
 ## Analysis of covariance
 
 
@@ -6505,7 +6495,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -6548,7 +6538,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ```
@@ -6976,8 +6966,9 @@ of value of covariate.
  
 
 
-\section{Multivariate ANOVA}
-\frame{\sectionpage}
+
+# Multivariate ANOVA
+
 ## Multivariate analysis of variance
 
 
@@ -7014,7 +7005,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -7057,7 +7048,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ✖ dplyr::recode() masks car::recode()
@@ -7428,8 +7419,8 @@ on location and on variety
  
 
 
-\section{Repeated measures by profile analysis}
-\frame{\sectionpage}
+
+# Repeated measures by profile analysis
 
 ## Repeated measures by profile analysis
 
@@ -7479,7 +7470,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -7522,7 +7513,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ✖ dplyr::recode() masks car::recode()
@@ -8341,8 +8332,9 @@ and time.
  
 
 
-\section{Discriminant analysis}
-\frame{\sectionpage}
+
+# Discriminant analysis
+
 ## Discriminant analysis
 
 
@@ -8369,7 +8361,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ───────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -8412,7 +8404,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ✖ dplyr::select() masks MASS::select()
@@ -8666,28 +8658,19 @@ Component $x$ contains LD score(s), here in descending order:
 
 ```r
 d <- cbind(hilo, hilo.pred$x) %>% arrange(desc(LD1))
-```
-
-```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
-```
-
-```r
 d
 ```
 
 ```
-## # A tibble: 2 x 2
-##   line_x line_y
-##    <dbl>  <dbl>
-## 1     31     14
-## 2     38     10
+##   fertilizer yield weight        LD1
+## 1        low    34     10  3.0931414
+## 2        low    29     14  1.9210963
+## 3        low    35     11  1.0751090
+## 4        low    32     13  0.8724245
+## 5       high    34     13 -0.6609276
+## 6       high    33     14 -1.1456079
+## 7       high    38     12 -2.4762756
+## 8       high    35     14 -2.6789600
 ```
 
  
@@ -8700,10 +8683,6 @@ With one LD score, plot against (true) groups, eg. boxplot:
 
 ```r
 ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
-```
-
-```
-## Error in FUN(X[[i]], ...): object 'fertilizer' not found
 ```
 
 ![plot of chunk unnamed-chunk-272](figure/unnamed-chunk-272-1.pdf)
@@ -9215,13 +9194,15 @@ cbind(new, pp$x) %>% arrange(LD1)
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+##         y     smk     w        LD1        LD2         LD3
+## 1 200.375 166.275 51.00 -5.9688625 -0.3330095 -0.04523828
+## 2 200.375 155.875 51.00 -4.1723048 -1.0396138  0.93093630
+## 3 192.550 166.275 51.00 -2.8174566 -0.1007728 -1.51940856
+## 4 200.375 166.275 59.05 -1.3059358  0.9791583  0.54572212
+## 5 192.550 155.875 51.00 -1.0208989 -0.8073770 -0.54323399
+## 6 200.375 155.875 59.05  0.4906219  0.2725540  1.52189670
+## 7 192.550 166.275 59.05  1.8454701  1.2113950 -0.92844817
+## 8 192.550 155.875 59.05  3.6420278  0.5047907  0.04772641
 ```
 
    
@@ -9626,13 +9607,12 @@ data.frame(obs = active$job, pred = active.cv$class, pp) %>%
 ```
 
 ```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
+##           obs       pred admin bellydancer politician   max
+## 1 bellydancer politician 0.000       0.001      0.999 0.999
+## 2  politician politician 0.006       0.000      0.994 0.994
+## 3  politician politician 0.001       0.000      0.999 0.999
+## 4  politician politician 0.000       0.009      0.991 0.991
+## 5       admin      admin 0.819       0.000      0.181 0.819
 ```
 $
 
@@ -10047,8 +10027,8 @@ that Tukey does in ANOVA.
  
 
 
-\section{Cluster analysis}
-\frame{\sectionpage}
+# Cluster analysis
+
 ## Cluster Analysis
 
 
@@ -10075,7 +10055,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -10118,7 +10098,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ✖ dplyr::select() masks MASS::select()
@@ -11731,9 +11711,9 @@ Catharines, Brantford, Hamilton, Kitchener
  
 
 
-\section{Multidimensional scaling}
+# Multidimensional scaling
 
-\frame{\sectionpage}
+
 ## Multidimensional Scaling
 
 
@@ -13412,8 +13392,8 @@ More than 20 & Poor: may be dangerous to interpret\\
 
  
 
-\section{Principal components}
-\frame{\sectionpage}
+# Principal components
+
 
 ## Principal Components
 
@@ -13446,6 +13426,19 @@ More than 20 & Poor: may be dangerous to interpret\\
 
 ## Packages
 
+```
+## Warning: package 'plyr' was built under R version 3.5.1
+```
+
+```
+## Warning: package 'ggbiplot' was built under R version
+## 3.5.1
+```
+
+```
+## Warning: package 'scales' was built under R version
+## 3.5.1
+```
 
    
 
@@ -14095,13 +14088,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+##      Comp.1 country          Country
+## 1 10.652914      ck     Cook Islands
+## 2  7.297865      ws            Samoa
+## 3  4.297909      mt            Malta
+## 4  3.945224      pg Papua New Guinea
+## 5  3.150886      sg        Singapore
+## 6  2.787273      th         Thailand
+## 7  2.773125      id        Indonesia
+## 8  2.697066      gu             Guam
 ```
 
    
@@ -14118,13 +14113,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+##      Comp.1 country                  Country
+## 1 -3.462175      us United States of America
+## 2 -3.052104      uk           United Kingdom
+## 3 -2.752084      it                    Italy
+## 4 -2.651062      ru       Russian Federation
+## 5 -2.613964     dee             East Germany
+## 6 -2.576272     dew             West Germany
+## 7 -2.468919      au                Australia
+## 8 -2.191917      fr                   France
 ```
 
    
@@ -14141,13 +14138,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+##      Comp.1 country          Country
+## 1 10.652914      ck     Cook Islands
+## 2  7.297865      ws            Samoa
+## 3  4.297909      mt            Malta
+## 4  3.945224      pg Papua New Guinea
+## 5  3.150886      sg        Singapore
+## 6  2.787273      th         Thailand
+## 7  2.773125      id        Indonesia
+## 8  2.697066      gu             Guam
 ```
 
    
@@ -14164,13 +14163,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+##      Comp.2 country                   Country
+## 1 1.6860391      cr                Costa Rica
+## 2 1.5791490      kp             Korea (North)
+## 3 1.5226742      ck              Cook Islands
+## 4 1.3957839      tr                    Turkey
+## 5 1.3167578      pt                  Portugal
+## 6 1.2829272      gu                      Guam
+## 7 1.0663756      no                    Norway
+## 8 0.9547437      ir Iran, Islamic Republic of
 ```
 
    
@@ -14186,13 +14187,17 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+##        Comp.2 country                  Country
+## 1  -2.4715736      do       Dominican Republic
+## 2  -1.9196130      ws                    Samoa
+## 3  -1.8055052      sg                Singapore
+## 4  -1.7832229      bm                  Bermuda
+## 5  -1.7386063      my                 Malaysia
+## 6  -1.6851772      th                 Thailand
+## 7  -1.1204235      us United States of America
+## 8  -0.9989821      it                    Italy
+## 9  -0.7639385      ru       Russian Federation
+## 10 -0.6470634      br                   Brazil
 ```
 
    
@@ -14358,8 +14363,8 @@ $
  
 
 
-\section{Exploratory factor analysis}
-\frame{\sectionpage}
+# Exploratory factor analysis
+
 ## Principal components and factor analysis
 
 
@@ -14386,12 +14391,10 @@ $
 
 
 
-
-
 ## Packages
 
 ```r
-library(lavaan) # confirmatory factor analysis
+library(lavaan) # for confirmatory, later
 library(ggbiplot)
 library(tidyverse)
 ```
@@ -14829,13 +14832,17 @@ scores %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##                     Country     Factor1    Factor2
+## 1  United States of America -0.21942697 -1.7251036
+## 2                     Italy -0.18436705 -1.4990521
+## 3        Dominican Republic  2.12906546 -1.4666402
+## 4        Russian Federation -0.32473110 -1.2236590
+## 5                   Bermuda  1.46541593 -1.1704466
+## 6            United Kingdom -0.58969058 -1.0139983
+## 7                    France -0.25301846 -0.9519162
+## 8              West Germany -0.46748876 -0.9079005
+## 9                    Canada -0.13690160 -0.8920777
+## 10                   Brazil  0.07780163 -0.8871291
 ```
 
  
@@ -14854,13 +14861,17 @@ scores %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##                      Country    Factor1     Factor2
+## 1                   Portugal -1.2509805  0.78366889
+## 2                     Norway -0.9920727  0.62299560
+## 3                New Zealand -0.9813348  0.26603491
+## 4                      Kenya -0.9749696 -0.07099477
+## 5  Iran, Islamic Republic of -0.9231505  0.50271208
+## 6                Netherlands -0.9078661  0.23948200
+## 7                    Romania -0.8178386  0.18555001
+## 8                     Mexico -0.8096291  0.51446762
+## 9                    Finland -0.8094725 -0.05705220
+## 10                   Belgium -0.7960275 -0.23885253
 ```
 
  
@@ -15213,24 +15224,21 @@ bit tricky:
 ```r
 loadings <- as.data.frame(unclass(bem.2$loadings)) %>%
   mutate(trait = rownames(bem.2$loadings))
-```
-
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::mutate
-## * plyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "dplyr")
-## * conflict_prefer("mutate", "plyr")
-```
-
-```r
 loadings %>% slice(1:10)
 ```
 
 ```
-## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
+##       Factor1      Factor2    trait
+## 1   0.3137466  0.376484908  helpful
+## 2   0.4532904  0.117140647  reliant
+## 3   0.4336574  0.192602996   defbel
+## 4  -0.1309965  0.337629288 yielding
+## 5   0.1523718  0.370530549 cheerful
+## 6   0.5212403  0.005870336    indpt
+## 7   0.2670788  0.075542858   athlet
+## 8  -0.4144579 -0.065372760      shy
+## 9   0.6049588  0.033004846   assert
+## 10  0.6569855  0.020777649  strpers
 ```
 
    
@@ -15245,7 +15253,24 @@ loadings %>% filter(abs(Factor1) > 0.4)
 ```
 
 ```
-## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
+##       Factor1      Factor2    trait
+## 1   0.4532904  0.117140647  reliant
+## 2   0.4336574  0.192602996   defbel
+## 3   0.5212403  0.005870336    indpt
+## 4  -0.4144579 -0.065372760      shy
+## 5   0.6049588  0.033004846   assert
+## 6   0.6569855  0.020777649  strpers
+## 7   0.6487190 -0.126405816 forceful
+## 8   0.7654924  0.069513572 leaderab
+## 9   0.4416176  0.161238425     risk
+## 10  0.5416796  0.112807957   decide
+## 11  0.5109964  0.133626767 selfsuff
+## 12  0.6676490 -0.244855780 dominant
+## 13  0.6066864  0.171848896    stand
+## 14  0.7627129 -0.040667202  leadact
+## 15  0.4448064  0.089146147  individ
+## 16  0.4504188  0.053207281  compete
+## 17  0.4136498  0.136869589 ambitiou
 ```
 
 
@@ -15258,7 +15283,18 @@ loadings %>% filter(abs(Factor2) > 0.4)
 ```
 
 ```
-## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
+##        Factor1   Factor2    trait
+## 1   0.17789112 0.5537994   affect
+## 2   0.15121266 0.4166622    loyal
+## 3   0.02301456 0.5256654 sympathy
+## 4   0.13476970 0.4242037 sensitiv
+## 5   0.09111299 0.6101294 undstand
+## 6   0.11350643 0.6272223  compass
+## 7   0.06061755 0.5802714   soothe
+## 8   0.11893011 0.4300698    happy
+## 9   0.07956978 0.7191610     warm
+## 10  0.05113807 0.7102763   tender
+## 11 -0.01873224 0.7022768   gentle
 ```
 
    
@@ -15380,24 +15416,24 @@ things up.
 bem_tidy <- bem %>%
   mutate(row = row_number()) %>%
   gather(trait, score, c(-subno, -row))
-```
-
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::mutate
-## * plyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "dplyr")
-## * conflict_prefer("mutate", "plyr")
-```
-
-```r
 bem_tidy
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'bem_tidy' not found
+## # A tibble: 16,236 x 4
+##    subno   row trait   score
+##    <dbl> <int> <chr>   <dbl>
+##  1     1     1 helpful     7
+##  2     2     2 helpful     5
+##  3     3     3 helpful     7
+##  4     4     4 helpful     6
+##  5     5     5 helpful     6
+##  6     7     6 helpful     5
+##  7     8     7 helpful     6
+##  8     9     8 helpful     7
+##  9    10     9 helpful     7
+## 10    11    10 helpful     7
+## # … with 16,226 more rows
 ```
 
    
@@ -15410,7 +15446,17 @@ loadings %>% slice(1:10)
 ```
 
 ```
-## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
+##       Factor1      Factor2    trait
+## 1   0.3137466  0.376484908  helpful
+## 2   0.4532904  0.117140647  reliant
+## 3   0.4336574  0.192602996   defbel
+## 4  -0.1309965  0.337629288 yielding
+## 5   0.1523718  0.370530549 cheerful
+## 6   0.5212403  0.005870336    indpt
+## 7   0.2670788  0.075542858   athlet
+## 8  -0.4144579 -0.065372760      shy
+## 9   0.6049588  0.033004846   assert
+## 10  0.6569855  0.020777649  strpers
 ```
 
    
@@ -15427,7 +15473,7 @@ bem_tidy <- bem_tidy %>% left_join(loadings)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## Joining, by = "trait"
 ```
 
 ```r
@@ -15435,7 +15481,21 @@ bem_tidy %>% sample_n(12)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 12 x 6
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1    32    22 compass      6  0.114   0.627 
+##  2   358   209 conscien     7  0.328   0.308 
+##  3   154   102 helpful      7  0.314   0.376 
+##  4    15    13 loyal        7  0.151   0.417 
+##  5     3     3 truthful     7  0.109   0.315 
+##  6   336   197 happy        7  0.119   0.430 
+##  7   485   274 sympathy     7  0.0230  0.526 
+##  8    89    55 stand        6  0.607   0.172 
+##  9   578   338 shy          1 -0.414  -0.0654
+## 10   404   230 softspok     3 -0.230   0.336 
+## 11    86    52 compass      4  0.114   0.627 
+## 12   425   241 feminine     6  0.113   0.323
 ```
 
    
@@ -15452,7 +15512,20 @@ bem_tidy %>% filter(row == 366, abs(Factor2) > 0.4)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 11 x 6
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1   755   366 affect       7  0.178    0.554
+##  2   755   366 loyal        7  0.151    0.417
+##  3   755   366 sympathy     7  0.0230   0.526
+##  4   755   366 sensitiv     7  0.135    0.424
+##  5   755   366 undstand     7  0.0911   0.610
+##  6   755   366 compass      6  0.114    0.627
+##  7   755   366 soothe       7  0.0606   0.580
+##  8   755   366 happy        7  0.119    0.430
+##  9   755   366 warm         7  0.0796   0.719
+## 10   755   366 tender       7  0.0511   0.710
+## 11   755   366 gentle       7 -0.0187   0.702
 ```
 
  
@@ -15471,7 +15544,20 @@ bem_tidy %>% filter(
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 33 x 6
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1   369   214 affect       1  0.178    0.554
+##  2   534   311 affect       5  0.178    0.554
+##  3   755   366 affect       7  0.178    0.554
+##  4   369   214 loyal        7  0.151    0.417
+##  5   534   311 loyal        4  0.151    0.417
+##  6   755   366 loyal        7  0.151    0.417
+##  7   369   214 sympathy     4  0.0230   0.526
+##  8   534   311 sympathy     4  0.0230   0.526
+##  9   755   366 sympathy     7  0.0230   0.526
+## 10   369   214 sensitiv     7  0.135    0.424
+## # … with 23 more rows
 ```
 
    
@@ -15494,7 +15580,20 @@ bem_tidy %>%
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 11 x 4
+##    trait    `214` `311` `366`
+##    <chr>    <dbl> <dbl> <dbl>
+##  1 affect       1     5     7
+##  2 compass      5     4     6
+##  3 gentle       2     3     7
+##  4 happy        4     3     7
+##  5 loyal        7     4     7
+##  6 sensitiv     7     4     7
+##  7 soothe       3     4     7
+##  8 sympathy     4     4     7
+##  9 tender       3     4     7
+## 10 undstand     5     3     7
+## 11 warm         1     3     7
 ```
 
  
@@ -15512,7 +15611,26 @@ bem_tidy %>%
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 17 x 4
+##    trait    `230` `258` `359`
+##    <chr>    <dbl> <dbl> <dbl>
+##  1 ambitiou     7     2     4
+##  2 assert       7     3     1
+##  3 compete      6     2     1
+##  4 decide       7     1     2
+##  5 defbel       7     1     1
+##  6 dominant     7     1     1
+##  7 forceful     7     1     1
+##  8 individ      7     3     3
+##  9 indpt        7     7     1
+## 10 leadact      7     1     1
+## 11 leaderab     7     1     1
+## 12 reliant      7     4     1
+## 13 risk         7     5     7
+## 14 selfsuff     7     4     1
+## 15 shy          2     7     5
+## 16 stand        7     1     6
+## 17 strpers      7     1     3
 ```
 
  
@@ -15564,16 +15682,6 @@ loadings <- as.data.frame(unclass(bem.15$loadings)) %>%
   mutate(trait = rownames(bem.15$loadings))
 ```
 
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::mutate
-## * plyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "dplyr")
-## * conflict_prefer("mutate", "plyr")
-```
-
    
 
 then show the highest few loadings on each factor.
@@ -15590,13 +15698,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor1    trait
+## 1  0.8127595  compass
+## 2  0.6756043 undstand
+## 3  0.6611293 sympathy
+## 4  0.6408327 sensitiv
+## 5  0.5971006   soothe
+## 6  0.3481290     warm
+## 7  0.2797159   gentle
+## 8  0.2788627   tender
+## 9  0.2501505  helpful
+## 10 0.2340594 conscien
 ```
 
    
@@ -15615,13 +15727,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor2    trait
+## 1   0.7615492  strpers
+## 2   0.7160312 forceful
+## 3   0.6981500   assert
+## 4   0.5041921 dominant
+## 5   0.3929344 leaderab
+## 6   0.3669560    stand
+## 7   0.3507080  leadact
+## 8  -0.3131682 softspok
+## 9  -0.2866862      shy
+## 10  0.2602525   analyt
 ```
 
    
@@ -15640,13 +15756,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor3    trait
+## 1   0.6697542  reliant
+## 2   0.6475496 selfsuff
+## 3   0.6204018    indpt
+## 4   0.3899607  helpful
+## 5  -0.3393605 gullible
+## 6   0.3333813  individ
+## 7   0.3319003   decide
+## 8   0.3294806 conscien
+## 9   0.2877396 leaderab
+## 10  0.2804170   defbel
 ```
 
    
@@ -15665,13 +15785,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor4    trait
+## 1  0.6956206   gentle
+## 2  0.6920303   tender
+## 3  0.5992467     warm
+## 4  0.4465546   affect
+## 5  0.3942568 softspok
+## 6  0.2779793  lovchil
+## 7  0.2444249 undstand
+## 8  0.2442119    happy
+## 9  0.2125905    loyal
+## 10 0.2022861   soothe
 ```
 
    
@@ -15690,13 +15814,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor5    trait
+## 1  0.6956846  compete
+## 2  0.6743459 ambitiou
+## 3  0.3453425     risk
+## 4  0.3423456  individ
+## 5  0.2808623   athlet
+## 6  0.2695570 leaderab
+## 7  0.2449656   decide
+## 8  0.2064415 dominant
+## 9  0.1928159  leadact
+## 10 0.1854989  strpers
 ```
 
    
@@ -15716,13 +15844,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor6    trait
+## 1   0.8675651  leadact
+## 2   0.6078869 leaderab
+## 3   0.3378645 dominant
+## 4   0.2014835 forceful
+## 5  -0.1915632      shy
+## 6   0.1789256     risk
+## 7   0.1703440 masculin
+## 8   0.1639190   decide
+## 9   0.1594585  compete
+## 10  0.1466037   athlet
 ```
 
    
@@ -15742,13 +15874,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor7    trait
+## 1   0.6698996    happy
+## 2   0.6667105 cheerful
+## 3  -0.5219125    moody
+## 4   0.2191425   athlet
+## 5   0.2126626     warm
+## 6   0.1719953   gentle
+## 7  -0.1640302 masculin
+## 8   0.1601472  reliant
+## 9   0.1472926 yielding
+## 10  0.1410481  lovchil
 ```
 
    
@@ -15768,13 +15904,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor8    trait
+## 1   0.6296764   affect
+## 2   0.5158355  flatter
+## 3  -0.2512066 softspok
+## 4   0.2214623     warm
+## 5   0.1878549   tender
+## 6   0.1846225  strpers
+## 7  -0.1804838      shy
+## 8   0.1801992  compete
+## 9   0.1658105    loyal
+## 10  0.1548617  helpful
 ```
 
    
@@ -15792,13 +15932,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor9    trait
+## 1   0.8633171    stand
+## 2   0.3403294   defbel
+## 3   0.2446971  individ
+## 4   0.1941110     risk
+## 5  -0.1715481      shy
+## 6   0.1710978   decide
+## 7   0.1197126   assert
+## 8   0.1157729 conscien
+## 9   0.1120308   analyt
+## 10 -0.1115140 gullible
 ```
 
    
@@ -15817,13 +15961,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##       Factor10    trait
+## 1   0.80751267 feminine
+## 2  -0.26378513 masculin
+## 3   0.24507184 softspok
+## 4   0.23175597 conscien
+## 5   0.20192035 selfsuff
+## 6   0.17584233 yielding
+## 7   0.14127067   gentle
+## 8   0.11282028  flatter
+## 9   0.10934531   decide
+## 10 -0.09407978  lovchil
 ```
 
    
@@ -15842,13 +15990,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor11    trait
+## 1  0.91622589    loyal
+## 2  0.18949077   affect
+## 3  0.15883857 truthful
+## 4  0.12464529  helpful
+## 5  0.10440664   analyt
+## 6  0.10076794   tender
+## 7  0.09720457  lovchil
+## 8  0.09635223 gullible
+## 9  0.09350623 cheerful
+## 10 0.08207596 conscien
 ```
 
    
@@ -15867,13 +16019,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor12    trait
+## 1   0.6106933 childlik
+## 2  -0.2845004 selfsuff
+## 3  -0.2786751 conscien
+## 4   0.2588843    moody
+## 5   0.2013245      shy
+## 6  -0.1669301   decide
+## 7   0.1542031 masculin
+## 8   0.1455526 dominant
+## 9   0.1379163  compass
+## 10 -0.1297408 leaderab
 ```
 
    
@@ -15892,13 +16048,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor13    trait
+## 1   0.5729242 truthful
+## 2  -0.2776490 gullible
+## 3   0.2631046    happy
+## 4   0.1885152     warm
+## 5  -0.1671924      shy
+## 6   0.1646031    loyal
+## 7  -0.1438127 yielding
+## 8  -0.1302900   assert
+## 9   0.1137074   defbel
+## 10 -0.1105583  lovchil
 ```
 
    
@@ -15917,13 +16077,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor14    trait
+## 1   0.4429926   decide
+## 2   0.2369714 selfsuff
+## 3   0.1945034 forceful
+## 4  -0.1862756 softspok
+## 5   0.1604175     risk
+## 6  -0.1484606  strpers
+## 7   0.1461972 dominant
+## 8   0.1279456    happy
+## 9   0.1154479  compass
+## 10  0.1054078 masculin
 ```
 
    
@@ -15942,13 +16106,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##      Factor15    trait
+## 1  -0.3244092  compass
+## 2   0.2471884   athlet
+## 3   0.2292980 sensitiv
+## 4   0.1986878     risk
+## 5  -0.1638296   affect
+## 6   0.1632164    moody
+## 7  -0.1118135  individ
+## 8   0.1100678     warm
+## 9   0.1047347 cheerful
+## 10  0.1012342  reliant
 ```
 
    
@@ -15966,13 +16134,17 @@ data.frame(uniq = bem.15$uniquenesses) %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::arrange
-## * plyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "dplyr")
-## * conflict_prefer("arrange", "plyr")
+##     rowname      uniq
+## 1  foullang 0.9136126
+## 2   lovchil 0.8242992
+## 3    analyt 0.8120934
+## 4  yielding 0.7911748
+## 5  masculin 0.7228739
+## 6    athlet 0.7217327
+## 7       shy 0.7033071
+## 8  gullible 0.7000779
+## 9   flatter 0.6625008
+## 10  helpful 0.6516863
 ```
 
    
@@ -15981,8 +16153,8 @@ Uses foul language especially, also loves children and analytical. So
 could use even more factors.
 
 
-\section{Confirmatory factor analysis}
-\frame{\sectionpage}
+# Confirmatory factor analysis}
+
 ## Confirmatory factor analysis
 
 
@@ -16328,20 +16500,31 @@ def
 
 
 
-include time series notes here
+time series notes need tidying
 
 
-\section{Multiway frequency tables}
-\frame{\sectionpage}
+# Time Series
 
 ## Packages
+
+You might need to install these:
+
+
+```r
+install.packages("ggfortify")
+install.packages("forecast")
+install.packages("devtools")
+devtools::install_github("nxskok/mkac")
+```
+
+
 
 ```r
 library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -16384,9 +16567,1792 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
+```
+
+```r
+library(mkac) 
+```
+
+```
+## Warning: package 'mkac' was built under R version 3.5.3
+```
+
+```r
+library(ggfortify)
+```
+
+```
+## Warning: package 'ggfortify' was built under R version 3.5.3
+```
+
+```r
+library(forecast)
+```
+
+```
+## Warning: package 'forecast' was built under R version 3.5.3
+```
+
+
+## Time trends
+
+
+```
+## Error in eval(expr, envir, enclos): object 'opts_chunk' not found
+```
+
+
+* Assess existence or nature of time trends with:
+  * correlation
+  * regression ideas.
+  
+### World mean temperatures
+
+
+Global mean temperature every year since 1880:
+
+
+```r
+temp=read_csv("temperature.csv")
+```
+
+```
+## Warning: Missing column names filled in: 'X1' [1]
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double(),
+##   Year = col_date(format = ""),
+##   temperature = col_double(),
+##   year = col_double()
+## )
+```
+
+```r
+ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![plot of chunk unnamed-chunk-536](figure/unnamed-chunk-536-1.pdf)
+
+
+Examining trend
+
+* Temperatures increasing on average over time, but pattern very irregular.
+* Find (Pearson) correlation with time, and test for significance:
+
+
+```r
+with(temp, cor.test(temperature,year))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  temperature and year
+## t = 19.996, df = 129, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8203548 0.9059362
+## sample estimates:
+##       cor 
+## 0.8695276
+```
+
+* Correlation, 0.8695, significantly different from zero. 
+* CI shows how far from zero it is.
+
+Tests for *linear* trend with *normal* data. 
+
+### Kendall correlation
+
+Alternative, Kendall (rank) correlation, which just tests for monotone trend (anything upward, anything downward) and is resistant to outliers:
+
+
+```r
+with(temp, cor.test(temperature,year,method="kendall"))
+```
+
+```
+## 
+## 	Kendall's rank correlation tau
+## 
+## data:  temperature and year
+## z = 11.776, p-value < 2.2e-16
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.6992574
+```
+
+Kendall correlation usually closer to 0 for same data, but here P-values comparable. Trend again strongly significant.
+
+### Mann-Kendall
+
+Another way is via **Mann-Kendall**: Kendall correlation with time:
+
+
+```r
+library(Kendall)
+```
+
+```
+## Warning: package 'Kendall' was built under R version 3.5.1
+```
+
+```r
+MannKendall(temperature)
+```
+
+```
+## Error in Kendall(1:length(x), x): object 'temperature' not found
+```
+
+Answer same as previous.
+
+Also my package `mkac`, install from Github thus:
+
+
+```r
+devtools::install_github("nxskok/mkac")
+```
+
+
+```r
+kendall_Z_adjusted(temp$temperature)
+```
+
+```
+## $z
+## [1] 11.77267
+## 
+## $z_star
+## [1] 4.475666
+## 
+## $ratio
+## [1] 6.918858
+## 
+## $P_value
+## [1] 0
+## 
+## $P_value_adj
+## [1] 7.617357e-06
+```
+
+P-value is very small, but adjusted one not as small as before because of *autocorrelation* (see later). Idea: observations close together in time are correlated with each other, so observations not independent. This is correction for that.
+
+### Examining rate of change
+
+* Having seen that there *is* a change, question is "how fast is it?"
+* Examine slopes:
+
+  * regular regression slope, if you believe straight-line regression
+  * Theil-Sen slope: resistant to outliers, based on medians
+  
+### Ordinary regression against time
+
+
+```r
+temp.lm=lm(temperature~year)
+```
+
+```
+## Error in eval(predvars, data, env): object 'temperature' not found
+```
+
+```r
+summary(temp.lm)
+```
+
+```
+## Error in summary(temp.lm): object 'temp.lm' not found
+```
+
+Slope about 0.006 degrees per year (about this many degrees over course of data):
+
+
+```r
+coef(temp.lm)[2]*130
+```
+
+```
+## Error in coef(temp.lm): object 'temp.lm' not found
+```
+
+
+### Theil-Sen slope
+
+also from `mkac`:
+
+
+```r
+theil_sen_slope(temp$temperature)
+```
+
+```
+## [1] 0.005675676
+```
+
+Conclusions
+
+* Linear regression slope is 0.005863
+* Theil-Sen slope is 0.005676
+* Very close.
+* Pearson correlation is 0.8675
+* Kendall correlation is 0.6993
+* Kendall correlation smaller, but P-value equally significant (usually the case)
+
+
+This assumes that the rate of change is same over all years, but trend seemed to be accelerating:
+
+
+```r
+ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![plot of chunk unnamed-chunk-545](figure/unnamed-chunk-545-1.pdf)
+
+Look at pre-1970 and post-1970:
+
+
+```r
+temp %>% mutate(time_period=ifelse(year<=1970, "pre-1970", "post-1970")) %>% 
+  nest(-time_period) %>% 
+  mutate(theil_sen=map_dbl(data, ~theil_sen_slope(.$temperature)))
+```
+
+```
+## # A tibble: 2 x 3
+##   time_period data              theil_sen
+##   <chr>       <list>                <dbl>
+## 1 pre-1970    <tibble [91 × 4]>   0.00429
+## 2 post-1970   <tibble [40 × 4]>   0.0168
+```
+
+Theil-Sen slope is very nearly *four times* as big since 1970 vs. before.
+
+
+
+
+
+## Actual time series
+
+### The Kings of England
+
+* Age at death of Kings and Queens of England since William the Conqueror (1066):
+
+
+```r
+kings=read_table("kings.txt", col_names=F)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double()
+## )
+```
+
+```r
+kings.ts=ts(kings)
+```
+
+Data in one long column `X1`, so `kings` is data frame with one column. Turn into `ts` time series object.
+
+
+```r
+kings.ts
+```
+
+```
+## Time Series:
+## Start = 1 
+## End = 42 
+## Frequency = 1 
+##       X1
+##  [1,] 60
+##  [2,] 43
+##  [3,] 67
+##  [4,] 50
+##  [5,] 56
+##  [6,] 42
+##  [7,] 50
+##  [8,] 65
+##  [9,] 68
+## [10,] 43
+## [11,] 65
+## [12,] 34
+## [13,] 47
+## [14,] 34
+## [15,] 49
+## [16,] 41
+## [17,] 13
+## [18,] 35
+## [19,] 53
+## [20,] 56
+## [21,] 16
+## [22,] 43
+## [23,] 69
+## [24,] 59
+## [25,] 48
+## [26,] 59
+## [27,] 86
+## [28,] 55
+## [29,] 68
+## [30,] 51
+## [31,] 33
+## [32,] 49
+## [33,] 67
+## [34,] 77
+## [35,] 81
+## [36,] 67
+## [37,] 71
+## [38,] 81
+## [39,] 68
+## [40,] 70
+## [41,] 77
+## [42,] 56
+```
+
+
+### Plotting a time series
+
+`autoplot` from `ggfortify` gives time plot:
+
+
+```r
+autoplot(kings.ts)
+```
+
+![plot of chunk Kings-Time-Series](figure/Kings-Time-Series-1.pdf)
+
+Comments
+
+* "Time" here is order of monarch from William the Conqueror (1st) to George VI (last).
+
+* Looks to be slightly increasing trend of age-at-death
+
+* but lots of irregularity.
+
+
+### Stationarity
+
+A time series is **stationary** if:
+
+* mean is constant over time
+* variability constant over time and not changing with mean.
+
+Kings time series seems to have:
+
+* non-constant mean
+* but constant variability
+* not stationary.
+
+Usual fix for non-stationarity is *differencing*: new series 2nd - 1st, 3rd - 2nd etc.
+
+In R, `diff`:
+
+
+```r
+kings.diff.ts=diff(kings.ts)
+```
+
+Did differencing fix stationarity?
+
+Looks stationary now:
+
+
+```r
+autoplot(kings.diff.ts)
+```
+
+![plot of chunk Differenced-Kings-Series](figure/Differenced-Kings-Series-1.pdf)
+
+
+
+### Births per month in New York City
+
+from January 1946 to December 1959:
+
+
+```r
+ny=read_table("nybirths.txt",col_names=F)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double()
+## )
+```
+
+```r
+ny
+```
+
+```
+## # A tibble: 168 x 1
+##       X1
+##    <dbl>
+##  1  26.7
+##  2  23.6
+##  3  26.9
+##  4  24.7
+##  5  25.8
+##  6  24.4
+##  7  24.5
+##  8  23.9
+##  9  23.2
+## 10  23.2
+## # … with 158 more rows
+```
+
+```r
+ny.ts=ts(ny,freq=12,start=c(1946,1))
+ny.ts
+```
+
+```
+##         Jan    Feb    Mar    Apr    May    Jun    Jul
+## 1946 26.663 23.598 26.931 24.740 25.806 24.364 24.477
+## 1947 21.439 21.089 23.709 21.669 21.752 20.761 23.479
+## 1948 21.937 20.035 23.590 21.672 22.222 22.123 23.950
+## 1949 21.548 20.000 22.424 20.615 21.761 22.874 24.104
+## 1950 22.604 20.894 24.677 23.673 25.320 23.583 24.671
+## 1951 23.287 23.049 25.076 24.037 24.430 24.667 26.451
+## 1952 23.798 22.270 24.775 22.646 23.988 24.737 26.276
+## 1953 24.364 22.644 25.565 24.062 25.431 24.635 27.009
+## 1954 24.657 23.304 26.982 26.199 27.210 26.122 26.706
+## 1955 24.990 24.239 26.721 23.475 24.767 26.219 28.361
+## 1956 26.217 24.218 27.914 26.975 28.527 27.139 28.982
+## 1957 26.589 24.848 27.543 26.896 28.878 27.390 28.065
+## 1958 27.132 24.924 28.963 26.589 27.931 28.009 29.229
+## 1959 26.076 25.286 27.660 25.951 26.398 25.565 28.865
+##         Aug    Sep    Oct    Nov    Dec
+## 1946 23.901 23.175 23.227 21.672 21.870
+## 1947 23.824 23.105 23.110 21.759 22.073
+## 1948 23.504 22.238 23.142 21.059 21.573
+## 1949 23.748 23.262 22.907 21.519 22.025
+## 1950 24.454 24.122 24.252 22.084 22.991
+## 1951 25.618 25.014 25.110 22.964 23.981
+## 1952 25.816 25.210 25.199 23.162 24.707
+## 1953 26.606 26.268 26.462 25.246 25.180
+## 1954 26.878 26.152 26.379 24.712 25.688
+## 1955 28.599 27.914 27.784 25.693 26.881
+## 1956 28.169 28.056 29.136 26.291 26.987
+## 1957 28.141 29.048 28.484 26.634 27.735
+## 1958 28.759 28.405 27.945 25.912 26.619
+## 1959 30.000 29.261 29.012 26.992 27.897
+```
+
+Note extras on `ts`:
+
+* Time period is 1 year
+* 12 observations per year (monthly) in `freq`
+* First observation is 1st month of 1946 in `start`
+
+Printing formats nicely.
+
+Time plot
+
+* Time plot shows extra pattern:
+
+
+```r
+autoplot(ny.ts)
+```
+
+![](figure/unnamed-chunk-551-1.pdf)
+
+Comments on time plot
+
+* steady increase (after initial drop)
+* repeating pattern each year (seasonal component).
+* Not stationary.
+
+Differencing the New York births
+
+Does differencing help here?
+
+
+```r
+ny.diff.ts=diff(ny.ts)
+autoplot(ny.diff.ts)
+```
+
+![plot of chunk unnamed-chunk-552](figure/unnamed-chunk-552-1.pdf)
+
+Looks stationary, but some regular spikes.
+
+### Decomposing a seasonal time series
+
+Observations for NY births were every month. Are things the same every year?
+
+A visual (using original data):
+
+
+```r
+decompose(ny.ts) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-553](figure/unnamed-chunk-553-1.pdf)
+
+Decomposition bits
+
+
+Shows:
+
+* original series
+* a "seasonal" part: something that repeats every year
+* just the trend, going steadily up (except at the start)
+* random: what is left over ("remainder")
+
+The seasonal part
+
+Fitted seasonal part is same every year, births lowest in February and highest in July:
+
+
+
+```r
+ny.d$seasonal
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'ny.d' not found
+```
+
+
+
+
+## Time series basics
+
+### White noise
+
+Independent random normal. Knowing one value tells you nothing about the next. "Random" process.
+
+
+
+```r
+wn=rnorm(100)
+wn.ts=ts(wn)
+autoplot(wn.ts)
+```
+
+![plot of chunk White-Noise](figure/White-Noise-1.pdf)
+
+
+
+
+### Lagging a time series
+
+This means moving a time series one (or more) steps back in time:
+
+
+```r
+x=rnorm(5)
+tibble(x) %>% mutate(x_lagged=lag(x)) -> with_lagged
+with_lagged
+```
+
+```
+## # A tibble: 5 x 2
+##         x x_lagged
+##     <dbl>    <dbl>
+## 1 -2.04     NA    
+## 2 -0.579    -2.04 
+## 3  0.608    -0.579
+## 4  0.118     0.608
+## 5  0.0563    0.118
+```
+
+Gain a missing because there is nothing before the first observation.
+
+Lagging white noise
+
+
+```r
+tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
+ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
+```
+
+```
+## Warning: Removed 1 rows containing missing values
+## (geom_point).
+```
+
+![plot of chunk unnamed-chunk-557](figure/unnamed-chunk-557-1.pdf)
+
+```r
+with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  wn and wn_lagged
+## t = -0.16512, df = 97, p-value = 0.8692
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.213468  0.181249
+## sample estimates:
+##         cor 
+## -0.01676257
+```
+
+
+Correlation with lagged series
+
+If you know about white noise at one time point, you know *nothing* about it at the next. This is shown by the scatterplot and the correlation. 
+
+
+On the other hand, this:
+
+
+```r
+tibble(age=kings$X1) %>% 
+  mutate(age_lagged=lag(age)) -> kings_with_lagged
+with(kings_with_lagged, cor.test(age, age_lagged))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  age and age_lagged
+## t = 2.7336, df = 39, p-value = 0.00937
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.1064770 0.6308209
+## sample estimates:
+##       cor 
+## 0.4009919
+```
+
+If one value larger, the next value (a bit) more likely to be larger:
+
+
+```r
+ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + geom_point()
+```
+
+```
+## Warning: Removed 1 rows containing missing values
+## (geom_point).
+```
+
+![plot of chunk unnamed-chunk-559](figure/unnamed-chunk-559-1.pdf)
+
+Two steps back:
+
+
+```r
+kings_with_lagged %>% 
+  mutate(age_lag_2=lag(age_lagged)) %>% 
+  with(., cor.test(age, age_lag_2))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  age and age_lag_2
+## t = 1.5623, df = 38, p-value = 0.1265
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.07128917  0.51757510
+## sample estimates:
+##      cor 
+## 0.245676
+```
+
+Still a correlation two steps back, but smaller (and no longer significant).
+
+### Autocorrelation
+
+Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`:
+
+White noise:
+
+
+```r
+acf(wn.ts, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-561](figure/unnamed-chunk-561-1.pdf)
+
+No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
+
+Autocorrelations work best on *stationary* series.
+
+Kings, differenced
+
+
+```r
+acf(kings.diff.ts, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-562](figure/unnamed-chunk-562-1.pdf)
+
+Comments on autocorrelations of kings series
+
+Negative autocorrelation at lag 1, nothing beyond that. 
+
+* If one value of differenced series positive, next one most likely negative.
+* If one king lives longer than predecessor, next one likely lives shorter.
+
+NY births, differenced
+
+
+```r
+acf(ny.diff.ts, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-563](figure/unnamed-chunk-563-1.pdf)
+
+Lots of stuff:
+
+* large positive autocorrelation at 1.0 years (July one year like July last year)
+* large negative autocorrelation at 1 month.
+* smallish but significant negative autocorrelation at 0.5 year = 6 months.
+* Other stuff -- complicated.
+
+### Souvenir sales
+
+Monthly sales for a beach souvenir shop in Queensland, Australia:
+
+
+```r
+souv=read_table("souvenir.txt", col_names=F)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double()
+## )
+```
+
+```r
+souv.ts=ts(souv,frequency=12,start=1987)
+souv.ts
+```
+
+```
+##            Jan       Feb       Mar       Apr       May
+## 1987   1664.81   2397.53   2840.71   3547.29   3752.96
+## 1988   2499.81   5198.24   7225.14   4806.03   5900.88
+## 1989   4717.02   5702.63   9957.58   5304.78   6492.43
+## 1990   5921.10   5814.58  12421.25   6369.77   7609.12
+## 1991   4826.64   6470.23   9638.77   8821.17   8722.37
+## 1992   7615.03   9849.69  14558.40  11587.33   9332.56
+## 1993  10243.24  11266.88  21826.84  17357.33  15997.79
+##            Jun       Jul       Aug       Sep       Oct
+## 1987   3714.74   4349.61   3566.34   5021.82   6423.48
+## 1988   4951.34   6179.12   4752.15   5496.43   5835.10
+## 1989   6630.80   7349.62   8176.62   8573.17   9690.50
+## 1990   7224.75   8121.22   7979.25   8093.06   8476.70
+## 1991  10209.48  11276.55  12552.22  11637.39  13606.89
+## 1992  13082.09  16732.78  19888.61  23933.38  25391.35
+## 1993  18601.53  26155.15  28586.52  30505.41  30821.33
+##            Nov       Dec
+## 1987   7600.60  19756.21
+## 1988  12600.08  28541.72
+## 1989  15151.84  34061.01
+## 1990  17914.66  30114.41
+## 1991  21822.11  45060.69
+## 1992  36024.80  80721.71
+## 1993  46634.38 104660.67
+```
+
+Plot of souvenir sales
+
+
+```r
+autoplot(souv.ts)
+```
+
+![plot of chunk unnamed-chunk-565](figure/unnamed-chunk-565-1.pdf)
+
+Several problems:
+
+* Mean goes up over time
+* Variability gets larger as mean gets larger
+* Not stationary
+
+Problem-fixing:
+
+Fix non-constant variability first by taking logs:
+
+
+```r
+souv.log.ts=log(souv.ts)
+autoplot(souv.log.ts)
+```
+
+![plot of chunk unnamed-chunk-566](figure/unnamed-chunk-566-1.pdf)
+
+Mean still not constant, so try taking differences:
+
+
+```r
+souv.log.diff.ts=diff(souv.log.ts)
+autoplot(souv.log.diff.ts)
+```
+
+![plot of chunk unnamed-chunk-567](figure/unnamed-chunk-567-1.pdf)
+
+* Now stationary
+* but clear seasonal effect.
+
+Decomposing to see the seasonal effect
+
+
+```r
+souv.d=decompose(souv.log.diff.ts)
+autoplot(souv.d)
+```
+
+![plot of chunk unnamed-chunk-568](figure/unnamed-chunk-568-1.pdf)
+
+**Big** drop in one month's differences. Look at seasonal component to see which:
+
+
+```r
+souv.d$seasonal
+```
+
+```
+##              Jan         Feb         Mar         Apr
+## 1987              0.23293343  0.49068755 -0.39700942
+## 1988 -1.90372141  0.23293343  0.49068755 -0.39700942
+## 1989 -1.90372141  0.23293343  0.49068755 -0.39700942
+## 1990 -1.90372141  0.23293343  0.49068755 -0.39700942
+## 1991 -1.90372141  0.23293343  0.49068755 -0.39700942
+## 1992 -1.90372141  0.23293343  0.49068755 -0.39700942
+## 1993 -1.90372141  0.23293343  0.49068755 -0.39700942
+##              May         Jun         Jul         Aug
+## 1987  0.02410429  0.05074206  0.13552988 -0.03710275
+## 1988  0.02410429  0.05074206  0.13552988 -0.03710275
+## 1989  0.02410429  0.05074206  0.13552988 -0.03710275
+## 1990  0.02410429  0.05074206  0.13552988 -0.03710275
+## 1991  0.02410429  0.05074206  0.13552988 -0.03710275
+## 1992  0.02410429  0.05074206  0.13552988 -0.03710275
+## 1993  0.02410429  0.05074206  0.13552988 -0.03710275
+##              Sep         Oct         Nov         Dec
+## 1987  0.08650584  0.09148236  0.47311204  0.75273614
+## 1988  0.08650584  0.09148236  0.47311204  0.75273614
+## 1989  0.08650584  0.09148236  0.47311204  0.75273614
+## 1990  0.08650584  0.09148236  0.47311204  0.75273614
+## 1991  0.08650584  0.09148236  0.47311204  0.75273614
+## 1992  0.08650584  0.09148236  0.47311204  0.75273614
+## 1993  0.08650584  0.09148236  0.47311204  0.75273614
+```
+
+January.
+
+Autocorrelations:
+
+
+```r
+acf(souv.log.diff.ts, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-570](figure/unnamed-chunk-570-1.pdf)
+
+* Big positive autocorrelation at 1 year (strong seasonal effect)
+* Small negative autocorrelation at 1 and 2 months.
+
+
+### Moving average
+
+A particular type of time series called a **moving average** or MA process captures idea of autocorrelations at a few lags but not at others.
+
+Here's generation of MA(1) process, with autocorrelation at lag 1 but not otherwise:
+
+
+```r
+beta=1
+tibble(e=rnorm(100)) %>% 
+  mutate(e_lag=lag(e)) %>% 
+  mutate(y=e+beta*e_lag) %>% 
+  mutate(y=ifelse(is.na(y), 0, y)) -> ma
+ma
+```
+
+```
+## # A tibble: 100 x 3
+##         e   e_lag      y
+##     <dbl>   <dbl>  <dbl>
+##  1  0.991  NA      0    
+##  2  0.469   0.991  1.46 
+##  3  0.535   0.469  1.00 
+##  4 -0.244   0.535  0.291
+##  5  1.17   -0.244  0.928
+##  6 -0.473   1.17   0.699
+##  7  1.56   -0.473  1.08 
+##  8 -0.355   1.56   1.20 
+##  9 -0.400  -0.355 -0.755
+## 10 -2.10   -0.400 -2.50 
+## # … with 90 more rows
+```
+
+
+* `e` contains independent "random shocks". 
+* Start process at 0. 
+* Then, each value of the time series has that time's random shock, plus a multiple of the last time's random shock. 
+* `y[i]` has shock in common with `y[i-1]`; should be a lag 1 autocorrelation. 
+* But `y[i]` has no shock in common with `y[i-2]`, so no lag 2 autocorrelation (or beyond).
+
+
+ACF for MA(1) process
+
+
+```r
+acf(ma$y, plot=F, na.rm=T) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-572](figure/unnamed-chunk-572-1.pdf)
+
+Everything beyond lag 1 appears to be just chance.
+
+
+### AR process
+
+Another kind of time series is AR process, where each value depends on previous one, like this (loop):
+
+
+```r
+e=rnorm(100)
+x=numeric(0)
+x[1]=0
+alpha=0.7
+for (i in 2:100)
+{
+  x[i]=alpha*x[i-1]+e[i]
+}
+x
+```
+
+```
+##   [1]  0.00000000  0.69150384 -0.27156693 -1.69374385
+##   [5] -0.04624706 -0.61289729  0.26464756 -0.21493841
+##   [9] -1.31429232  0.44277420  0.09918044  0.19080999
+##  [13] -1.02379326  0.16693770  0.98374525  0.04866219
+##  [17]  1.22331904 -0.04784703 -0.21367820 -0.68228901
+##  [21]  0.25079396 -0.86025292  1.75818244  1.19266409
+##  [25]  0.30513461  2.41224530  1.28151011  1.68979182
+##  [29]  2.01815565  3.53754507  1.85840920  2.32513921
+##  [33]  1.77111656  2.12223993  0.91095776  1.58477201
+##  [37]  2.08225425  1.09623045 -0.76369221 -0.70809836
+##  [41] -1.84439667 -0.38985352 -1.04265756 -0.86988314
+##  [45] -1.14485961 -3.18900426 -2.93376468 -2.16075858
+##  [49] -1.59508681 -1.74905113 -3.13933449 -3.02637272
+##  [53] -1.44218503 -1.55489860 -1.73928909 -2.00995900
+##  [57] -2.66272165 -3.20337770 -3.51822345 -3.07147301
+##  [61] -3.97833623 -3.76371790 -3.52532969 -3.45189431
+##  [65] -0.06074526 -0.57178351  0.81558455 -0.27386449
+##  [69]  0.75054673 -1.41070534 -2.60770962 -0.77008248
+##  [73] -0.44599398  0.92659720 -0.50866042 -0.28000966
+##  [77] -0.69941661 -0.87488058 -1.34524333 -1.24758120
+##  [81] -2.20687436 -1.55318855 -0.03079664 -0.30483692
+##  [85]  1.32564353  1.13381949  0.88141908  0.19972924
+##  [89] -1.03973656 -0.60655913  0.27269352  0.49555143
+##  [93]  0.74140308  0.41684887 -0.01247512 -0.08955967
+##  [97]  1.09794055  0.51405840  1.27608083  0.05862015
+```
+
+* Each random shock now only used for its own value of `x`
+* but `x[i]` also depends on previous value `x[i-1]`
+* so correlated with previous value
+* *but* `x[i]` also contains multiple of `x[i-2]` and previous x's
+* so all x's correlated, but autocorrelation dying away.
+
+ACF for AR(1) series:
+
+
+```r
+acf(x, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-574](figure/unnamed-chunk-574-1.pdf)
+
+### Partial autocorrelation function
+
+This cuts off for an AR series:
+
+
+```r
+pacf(x, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-575](figure/unnamed-chunk-575-1.pdf)
+
+The lag-2 autocorrelation should not be significant, and isn't.
+
+PACF for an MA series decays slowly:
+
+
+```r
+pacf(ma$y, plot=F) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-576](figure/unnamed-chunk-576-1.pdf)
+
+### The old way of doing time series analysis
+
+Starting from a series with constant variability (eg. transform first to get it, as for souvenirs):
+
+* Assess stationarity.
+* If not stationary, take differences as many times as needed until it is.
+* Look at ACF, see if it dies off. If it does, you have MA series.
+* Look at PACF, see if that dies off. If it does, have AR series.
+* If neither dies off, probably have a mixed "ARMA" series.
+* Fit coefficients (like regression slopes).
+* Do forecasts.
+
+
+### The new way of doing time series analysis (in R)
+
+* Transform series if needed to get constant variability
+* Use package `forecast`.
+* Use function `auto.arima` to estimate what kind of series best fits data.
+* Use `forecast` to see what will happen in future.
+
+Anatomy of `auto.arima` output
+
+
+```r
+auto.arima(ma$y)
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
+```
+
+* ARIMA part tells you what kind of series you are estimated to have:
+  * first number (first 0) is AR (autoregressive) part
+  * second number (second 0) is amount of differencing here
+  * third number (1) is MA (moving average) part
+  
+* Below that, coefficients (with SEs)
+* AICc is measure of fit (lower better)
+
+What other models were possible?
+Run `auto.arima` with `trace=T`:
+
+
+```r
+auto.arima(ma$y,trace=T)
+```
+
+```
+## 
+##  ARIMA(2,0,2) with non-zero mean : Inf
+##  ARIMA(0,0,0) with non-zero mean : 345.2328
+##  ARIMA(1,0,0) with non-zero mean : 313.9535
+##  ARIMA(0,0,1) with non-zero mean : 287.9463
+##  ARIMA(0,0,0) with zero mean     : 346.0889
+##  ARIMA(1,0,1) with non-zero mean : 290.112
+##  ARIMA(0,0,2) with non-zero mean : 290.1128
+##  ARIMA(1,0,2) with non-zero mean : 291.7865
+##  ARIMA(0,0,1) with zero mean     : 287.4124
+##  ARIMA(1,0,1) with zero mean     : 289.4909
+##  ARIMA(0,0,2) with zero mean     : 289.4993
+##  ARIMA(1,0,0) with zero mean     : 312.7625
+##  ARIMA(1,0,2) with zero mean     : 290.6071
+## 
+##  Best model: ARIMA(0,0,1) with zero mean
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
+```
+
+Also possible were MA(2) and ARMA(1,1), both with AICc=273.7.
+
+
+### Doing it all the new way
+
+#### White noise
+
+
+```r
+wn.aa=auto.arima(wn.ts)
+wn.aa
+```
+
+```
+## Series: wn.ts 
+## ARIMA(0,0,0) with zero mean 
+## 
+## sigma^2 estimated as 1.111:  log likelihood=-147.16
+## AIC=296.32   AICc=296.36   BIC=298.93
+```
+
+Best fit *is* white noise (no AR, no MA, no differencing). 
+
+Forecasts:
+
+
+```r
+forecast(wn.aa)
+```
+
+```
+##     Point Forecast     Lo 80    Hi 80     Lo 95    Hi 95
+## 101              0 -1.350869 1.350869 -2.065975 2.065975
+## 102              0 -1.350869 1.350869 -2.065975 2.065975
+## 103              0 -1.350869 1.350869 -2.065975 2.065975
+## 104              0 -1.350869 1.350869 -2.065975 2.065975
+## 105              0 -1.350869 1.350869 -2.065975 2.065975
+## 106              0 -1.350869 1.350869 -2.065975 2.065975
+## 107              0 -1.350869 1.350869 -2.065975 2.065975
+## 108              0 -1.350869 1.350869 -2.065975 2.065975
+## 109              0 -1.350869 1.350869 -2.065975 2.065975
+## 110              0 -1.350869 1.350869 -2.065975 2.065975
+```
+
+Forecasts all 0, since the past doesn't help to predict future.
+
+
+#### MA(1)
+
+
+```r
+y.aa=auto.arima(ma$y)
+y.aa
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
+```
+
+```r
+y.f=forecast(y.aa)
+```
+
+Plotting the forecasts for MA(1):
+
+
+```r
+autoplot(y.f)
+```
+
+![plot of chunk unnamed-chunk-582](figure/unnamed-chunk-582-1.pdf)
+
+
+#### AR(1)
+
+
+```r
+x.aa=auto.arima(x)
+x.aa
+```
+
+```
+## Series: x 
+## ARIMA(0,1,1) 
+## 
+## Coefficients:
+##           ma1
+##       -0.3544
+## s.e.   0.1062
+## 
+## sigma^2 estimated as 0.979:  log likelihood=-138.99
+## AIC=281.97   AICc=282.1   BIC=287.16
+```
+
+Oops!
+
+Got it wrong! Fit right AR(1) model:
+
+
+```r
+x.arima=arima(x,order=c(1,0,0))
+x.arima
+```
+
+```
+## 
+## Call:
+## arima(x = x, order = c(1, 0, 0))
+## 
+## Coefficients:
+##          ar1  intercept
+##       0.7758    -0.3646
+## s.e.  0.0611     0.4220
+## 
+## sigma^2 estimated as 0.957:  log likelihood = -140.16,  aic = 286.31
+```
+
+Forecasts for `x`:
+
+
+```r
+forecast(x.arima) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-585](figure/unnamed-chunk-585-1.pdf)
+
+Comparing wrong model:
+
+
+```r
+forecast(x.aa) %>% autoplot()
+```
+
+![plot of chunk unnamed-chunk-586](figure/unnamed-chunk-586-1.pdf)
+
+
+#### Kings
+
+
+```r
+kings.aa=auto.arima(kings.ts)
+kings.aa
+```
+
+```
+## Series: kings.ts 
+## ARIMA(0,1,1) 
+## 
+## Coefficients:
+##           ma1
+##       -0.7218
+## s.e.   0.1208
+## 
+## sigma^2 estimated as 236.2:  log likelihood=-170.06
+## AIC=344.13   AICc=344.44   BIC=347.56
+```
+
+Kings forecasts:
+
+
+```r
+kings.f=forecast(kings.aa)
+kings.f
+```
+
+```
+##    Point Forecast    Lo 80    Hi 80    Lo 95     Hi 95
+## 43       67.75063 48.05479 87.44646 37.62845  97.87281
+## 44       67.75063 47.30662 88.19463 36.48422  99.01703
+## 45       67.75063 46.58489 88.91637 35.38042 100.12084
+## 46       67.75063 45.88696 89.61429 34.31304 101.18822
+## 47       67.75063 45.21064 90.29062 33.27869 102.22257
+## 48       67.75063 44.55402 90.94723 32.27448 103.22678
+## 49       67.75063 43.91549 91.58577 31.29793 104.20333
+## 50       67.75063 43.29362 92.20763 30.34687 105.15439
+## 51       67.75063 42.68718 92.81408 29.41939 106.08187
+## 52       67.75063 42.09507 93.40619 28.51383 106.98742
+```
+
+Kings forecasts, plotted:
+
+
+```r
+autoplot(kings.f) + labs(x="index", y= "age at death")
+```
+
+![plot of chunk unnamed-chunk-589](figure/unnamed-chunk-589-1.pdf)
+
+
+
+
+#### NY births
+
+
+
+```r
+ny.aa=auto.arima(ny.ts)
+ny.aa
+```
+
+```
+## Series: ny.ts 
+## ARIMA(2,1,2)(1,1,1)[12] 
+## 
+## Coefficients:
+##          ar1      ar2      ma1     ma2     sar1     sma1
+##       0.6539  -0.4540  -0.7255  0.2532  -0.2427  -0.8451
+## s.e.  0.3003   0.2429   0.3227  0.2878   0.0985   0.0995
+## 
+## sigma^2 estimated as 0.4076:  log likelihood=-157.45
+## AIC=328.91   AICc=329.67   BIC=350.21
+```
+
+```r
+ny.f=forecast(ny.aa,h=36)
+```
+
+Going 36 time periods (3 years) into future.
+
+NY births forecasts
+
+Not *quite* same every year:
+
+
+```r
+ny.f
+```
+
+```
+##          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+## Jan 1960       27.69056 26.87069 28.51043 26.43668 28.94444
+## Feb 1960       26.07680 24.95838 27.19522 24.36632 27.78728
+## Mar 1960       29.26544 28.01566 30.51523 27.35406 31.17683
+## Apr 1960       27.59444 26.26555 28.92333 25.56208 29.62680
+## May 1960       28.93193 27.52089 30.34298 26.77392 31.08995
+## Jun 1960       28.55379 27.04381 30.06376 26.24448 30.86309
+## Jul 1960       29.84713 28.23370 31.46056 27.37960 32.31466
+## Aug 1960       29.45347 27.74562 31.16132 26.84155 32.06539
+## Sep 1960       29.16388 27.37259 30.95517 26.42433 31.90342
+## Oct 1960       29.21343 27.34498 31.08188 26.35588 32.07098
+## Nov 1960       27.26221 25.31879 29.20563 24.29000 30.23441
+## Dec 1960       28.06863 26.05137 30.08589 24.98349 31.15377
+## Jan 1961       27.66908 25.59684 29.74132 24.49986 30.83830
+## Feb 1961       26.21255 24.08615 28.33895 22.96051 29.46460
+## Mar 1961       29.22612 27.04347 31.40878 25.88804 32.56420
+## Apr 1961       27.58011 25.34076 29.81945 24.15533 31.00488
+## May 1961       28.71354 26.41925 31.00783 25.20473 32.22235
+## Jun 1961       28.21736 25.87042 30.56429 24.62803 31.80668
+## Jul 1961       29.98728 27.58935 32.38521 26.31996 33.65460
+## Aug 1961       29.96127 27.51330 32.40925 26.21743 33.70512
+## Sep 1961       29.56515 27.06786 32.06243 25.74588 33.38441
+## Oct 1961       29.54543 26.99965 32.09121 25.65200 33.43886
+## Nov 1961       27.57845 24.98510 30.17181 23.61226 31.54465
+## Dec 1961       28.40796 25.76792 31.04801 24.37036 32.44556
+## Jan 1962       28.05431 25.33756 30.77106 23.89939 32.20922
+## Feb 1962       26.55936 23.77074 29.34799 22.29453 30.82420
+## Mar 1962       29.61570 26.76474 32.46667 25.25553 33.97588
+## Apr 1962       27.96392 25.05574 30.87209 23.51624 32.41159
+## May 1962       29.14695 26.18187 32.11202 24.61226 33.68164
+## Jun 1962       28.67933 25.65625 31.70240 24.05593 33.30272
+## Jul 1962       30.33348 27.25244 33.41453 25.62143 35.04554
+## Aug 1962       30.21822 27.08057 33.35587 25.41960 35.01684
+## Sep 1962       29.84798 26.65540 33.04056 24.96535 34.73061
+## Oct 1962       29.84511 26.59882 33.09139 24.88034 34.80987
+## Nov 1962       27.88196 24.58270 31.18121 22.83618 32.92773
+## Dec 1962       28.70585 25.35420 32.05750 23.57995 33.83176
+```
+
+
+
+Plotting the forecasts:
+
+
+```r
+autoplot(ny.f)+labs(x="time", y="births")
+```
+
+![plot of chunk unnamed-chunk-592](figure/unnamed-chunk-592-1.pdf)
+
+
+#### Log-souvenir sales
+
+
+```r
+souv.aa=auto.arima(souv.log.ts)
+souv.aa
+```
+
+```
+## Series: souv.log.ts 
+## ARIMA(2,0,0)(0,1,1)[12] with drift 
+## 
+## Coefficients:
+##          ar1     ar2     sma1   drift
+##       0.3470  0.3516  -0.5205  0.0238
+## s.e.  0.1092  0.1115   0.1700  0.0031
+## 
+## sigma^2 estimated as 0.02953:  log likelihood=24.54
+## AIC=-39.09   AICc=-38.18   BIC=-27.71
+```
+
+```r
+souv.f=forecast(souv.aa,h=27)
+```
+
+The forecasts
+
+Differenced series showed low value for January (large drop). December highest, Jan and Feb lowest:
+
+
+```r
+souv.f
+```
+
+```
+##          Point Forecast     Lo 80     Hi 80     Lo 95
+## Jan 1994       9.578291  9.358036  9.798545  9.241440
+## Feb 1994       9.754836  9.521700  9.987972  9.398285
+## Mar 1994      10.286195 10.030937 10.541453  9.895811
+## Apr 1994      10.028630  9.765727 10.291532  9.626555
+## May 1994       9.950862  9.681555 10.220168  9.538993
+## Jun 1994      10.116930  9.844308 10.389551  9.699991
+## Jul 1994      10.369140 10.094251 10.644028  9.948734
+## Aug 1994      10.460050 10.183827 10.736274 10.037603
+## Sep 1994      10.535595 10.258513 10.812677 10.111835
+## Oct 1994      10.585995 10.308386 10.863604 10.161429
+## Nov 1994      11.017734 10.739793 11.295674 10.592660
+## Dec 1994      11.795964 11.517817 12.074111 11.370575
+## Jan 1995       9.840884  9.540241 10.141527  9.381090
+## Feb 1995      10.015540  9.711785 10.319295  9.550987
+## Mar 1995      10.555070 10.246346 10.863794 10.082918
+## Apr 1995      10.299676  9.989043 10.610309  9.824604
+## May 1995      10.225535  9.913326 10.537743  9.748053
+## Jun 1995      10.393625 10.080573 10.706676  9.914853
+## Jul 1995      10.647811 10.334184 10.961437 10.168160
+## Aug 1995      10.740118 10.426149 11.054086 10.259944
+## Sep 1995      10.816842 10.502654 11.131031 10.336333
+## Oct 1995      10.868142 10.553818 11.182466 10.387425
+## Nov 1995      11.300608 10.986200 11.615017 10.819762
+## Dec 1995      12.079407 11.764946 12.393869 11.598481
+## Jan 1996      10.124780  9.791571 10.457989  9.615181
+## Feb 1996      10.299793  9.964159 10.635427  9.786485
+## Mar 1996      10.839607 10.499858 11.179355 10.320006
+##              Hi 95
+## Jan 1994  9.915141
+## Feb 1994 10.111386
+## Mar 1994 10.676578
+## Apr 1994 10.430704
+## May 1994 10.362731
+## Jun 1994 10.533868
+## Jul 1994 10.789545
+## Aug 1994 10.882498
+## Sep 1994 10.959356
+## Oct 1994 11.010561
+## Nov 1994 11.442807
+## Dec 1994 12.221353
+## Jan 1995 10.300678
+## Feb 1995 10.480093
+## Mar 1995 11.027222
+## Apr 1995 10.774749
+## May 1995 10.703017
+## Jun 1995 10.872396
+## Jul 1995 11.127461
+## Aug 1995 11.220291
+## Sep 1995 11.297352
+## Oct 1995 11.348859
+## Nov 1995 11.781454
+## Dec 1995 12.560334
+## Jan 1996 10.634379
+## Feb 1996 10.813101
+## Mar 1996 11.359207
+```
+
+```r
+souv.f$mean
+```
+
+```
+##            Jan       Feb       Mar       Apr       May
+## 1994  9.578291  9.754836 10.286195 10.028630  9.950862
+## 1995  9.840884 10.015540 10.555070 10.299676 10.225535
+## 1996 10.124780 10.299793 10.839607                    
+##            Jun       Jul       Aug       Sep       Oct
+## 1994 10.116930 10.369140 10.460050 10.535595 10.585995
+## 1995 10.393625 10.647811 10.740118 10.816842 10.868142
+## 1996                                                  
+##            Nov       Dec
+## 1994 11.017734 11.795964
+## 1995 11.300608 12.079407
+## 1996
+```
+
+```r
+exp(souv.f$mean)
+```
+
+```
+##            Jan       Feb       Mar       Apr       May
+## 1994  14447.70  17237.39  29324.97  22666.19  20970.29
+## 1995  18786.31  22371.43  38371.49  29723.00  27599.00
+## 1996  24953.76  29726.47  51001.31                    
+##            Jun       Jul       Aug       Sep       Oct
+## 1994  24758.64  31861.05  34893.30  37631.45  39576.66
+## 1995  32650.80  42100.33  46171.49  49853.43  52477.62
+## 1996                                                  
+##            Nov       Dec
+## 1994  60945.41 132715.66
+## 1995  80870.81 176205.71
+## 1996
+```
+
+```r
+print.default(souv.f)
+```
+
+```
+## $method
+## [1] "ARIMA(2,0,0)(0,1,1)[12] with drift"
+## 
+## $model
+## Series: souv.log.ts 
+## ARIMA(2,0,0)(0,1,1)[12] with drift 
+## 
+## Coefficients:
+##          ar1     ar2     sma1   drift
+##       0.3470  0.3516  -0.5205  0.0238
+## s.e.  0.1092  0.1115   0.1700  0.0031
+## 
+## sigma^2 estimated as 0.02953:  log likelihood=24.54
+## AIC=-39.09   AICc=-38.18   BIC=-27.71
+## 
+## $level
+## [1] 80 95
+## 
+## $mean
+##            Jan       Feb       Mar       Apr       May
+## 1994  9.578291  9.754836 10.286195 10.028630  9.950862
+## 1995  9.840884 10.015540 10.555070 10.299676 10.225535
+## 1996 10.124780 10.299793 10.839607                    
+##            Jun       Jul       Aug       Sep       Oct
+## 1994 10.116930 10.369140 10.460050 10.535595 10.585995
+## 1995 10.393625 10.647811 10.740118 10.816842 10.868142
+## 1996                                                  
+##            Nov       Dec
+## 1994 11.017734 11.795964
+## 1995 11.300608 12.079407
+## 1996                    
+## 
+## $lower
+##                80%       95%
+## Jan 1994  9.358036  9.241440
+## Feb 1994  9.521700  9.398285
+## Mar 1994 10.030937  9.895811
+## Apr 1994  9.765727  9.626555
+## May 1994  9.681555  9.538993
+## Jun 1994  9.844308  9.699991
+## Jul 1994 10.094251  9.948734
+## Aug 1994 10.183827 10.037603
+## Sep 1994 10.258513 10.111835
+## Oct 1994 10.308386 10.161429
+## Nov 1994 10.739793 10.592660
+## Dec 1994 11.517817 11.370575
+## Jan 1995  9.540241  9.381090
+## Feb 1995  9.711785  9.550987
+## Mar 1995 10.246346 10.082918
+## Apr 1995  9.989043  9.824604
+## May 1995  9.913326  9.748053
+## Jun 1995 10.080573  9.914853
+## Jul 1995 10.334184 10.168160
+## Aug 1995 10.426149 10.259944
+## Sep 1995 10.502654 10.336333
+## Oct 1995 10.553818 10.387425
+## Nov 1995 10.986200 10.819762
+## Dec 1995 11.764946 11.598481
+## Jan 1996  9.791571  9.615181
+## Feb 1996  9.964159  9.786485
+## Mar 1996 10.499858 10.320006
+## 
+## $upper
+##                80%       95%
+## Jan 1994  9.798545  9.915141
+## Feb 1994  9.987972 10.111386
+## Mar 1994 10.541453 10.676578
+## Apr 1994 10.291532 10.430704
+## May 1994 10.220168 10.362731
+## Jun 1994 10.389551 10.533868
+## Jul 1994 10.644028 10.789545
+## Aug 1994 10.736274 10.882498
+## Sep 1994 10.812677 10.959356
+## Oct 1994 10.863604 11.010561
+## Nov 1994 11.295674 11.442807
+## Dec 1994 12.074111 12.221353
+## Jan 1995 10.141527 10.300678
+## Feb 1995 10.319295 10.480093
+## Mar 1995 10.863794 11.027222
+## Apr 1995 10.610309 10.774749
+## May 1995 10.537743 10.703017
+## Jun 1995 10.706676 10.872396
+## Jul 1995 10.961437 11.127461
+## Aug 1995 11.054086 11.220291
+## Sep 1995 11.131031 11.297352
+## Oct 1995 11.182466 11.348859
+## Nov 1995 11.615017 11.781454
+## Dec 1995 12.393869 12.560334
+## Jan 1996 10.457989 10.634379
+## Feb 1996 10.635427 10.813101
+## Mar 1996 11.179355 11.359207
+## 
+## $x
+##            Jan       Feb       Mar       Apr       May
+## 1987  7.417466  7.782194  7.951809  8.173939  8.230300
+## 1988  7.823970  8.556075  8.885322  8.477627  8.682857
+## 1989  8.458933  8.648683  9.206089  8.576364  8.778392
+## 1990  8.686278  8.668124  9.427164  8.759319  8.937103
+## 1991  8.481906  8.774967  9.173549  9.084910  9.073646
+## 1992  8.937879  9.195195  9.585923  9.357668  9.141265
+## 1993  9.234373  9.329623  9.990896  9.761770  9.680206
+##            Jun       Jul       Aug       Sep       Oct
+## 1987  8.220064  8.377841  8.179295  8.521548  8.767715
+## 1988  8.507414  8.728931  8.466352  8.611854  8.671647
+## 1989  8.799481  8.902404  9.009034  9.056393  9.178901
+## 1990  8.885268  9.002236  8.984600  8.998762  9.045077
+## 1991  9.231072  9.330481  9.437653  9.361978  9.518332
+## 1992  9.478999  9.725125  9.897902 10.083029 10.142164
+## 1993  9.830999 10.171801 10.260691 10.325659 10.335962
+##            Nov       Dec
+## 1987  8.935982  9.891223
+## 1988  9.441458 10.259122
+## 1989  9.625877 10.435909
+## 1990  9.793375 10.312759
+## 1991  9.990679 10.715766
+## 1992 10.491963 11.298763
+## 1993 10.750093 11.558479
+## 
+## $series
+## [1] "souv.log.ts"
+## 
+## $fitted
+##            Jan       Feb       Mar       Apr       May
+## 1987  7.410073  7.774460  7.943929  8.165861  8.222189
+## 1988  7.737469  8.200398  8.494420  8.807962  8.735935
+## 1989  8.209173  8.832180  9.049762  8.851068  8.934449
+## 1990  8.548108  8.966186  9.300665  8.884112  9.083565
+## 1991  8.716867  8.794359  9.412746  8.860024  9.122753
+## 1992  8.899194  9.171104  9.689975  9.345013  9.424726
+## 1993  9.382292  9.576494  9.877050  9.624983  9.657431
+##            Jun       Jul       Aug       Sep       Oct
+## 1987  8.211987  8.369630  8.171306  8.513240  8.759186
+## 1988  8.554636  8.713493  8.472167  8.791805  8.929755
+## 1989  8.684461  8.939090  8.722942  9.025778  9.214826
+## 1990  8.946289  9.091940  9.015035  9.152643  9.253725
+## 1991  9.165059  9.302968  9.322395  9.437171  9.524619
+## 1992  9.402271  9.512202  9.688090  9.785742 10.019754
+## 1993  9.854253 10.012085 10.153607 10.297393 10.376320
+##            Nov       Dec
+## 1987  8.927308  9.881618
+## 1988  9.050992 10.081222
+## 1989  9.667959 10.502318
+## 1990  9.667494 10.566558
+## 1991 10.106639 10.765163
+## 1992 10.606887 11.220778
+## 1993 10.790406 11.502027
+## 
+## $residuals
+##               Jan          Feb          Mar          Apr
+## 1987  0.007393658  0.007734578  0.007880384  0.008078708
+## 1988  0.086500680  0.355677770  0.390902029 -0.330335699
+## 1989  0.249759758 -0.183497442  0.156327204 -0.274704599
+## 1990  0.138169613 -0.298061978  0.126498707 -0.124793133
+## 1991 -0.234960761 -0.019392105 -0.239197642  0.224886129
+## 1992  0.038684952  0.024091125 -0.104051475  0.012654844
+## 1993 -0.147918881 -0.246870842  0.113845932  0.136787334
+##               May          Jun          Jul          Aug
+## 1987  0.008111263  0.008077223  0.008211198  0.007988850
+## 1988 -0.053078628 -0.047222006  0.015437982 -0.005814548
+## 1989 -0.156057171  0.115019554 -0.036685983  0.286092365
+## 1990 -0.146462326 -0.061020897 -0.089703878 -0.030435015
+## 1991 -0.049106990  0.066013439  0.027512770  0.115258184
+## 1992 -0.283461096  0.076727977  0.212922849  0.209812963
+## 1993  0.022775020 -0.023253788  0.159715936  0.107083958
+##               Sep          Oct          Nov          Dec
+## 1987  0.008307302  0.008529669  0.008674137  0.009605578
+## 1988 -0.179950487 -0.258107829  0.390466497  0.177900145
+## 1989  0.030614769 -0.035925124 -0.042081989 -0.066409363
+## 1990 -0.153880639 -0.208648543  0.125880605 -0.253799233
+## 1991 -0.075192996 -0.006287476 -0.115960322 -0.049397837
+## 1992  0.297287851  0.122410050 -0.114924058  0.077984541
+## 1993  0.028266617 -0.040357792 -0.040312585  0.056451584
+## 
+## attr(,"class")
+## [1] "forecast"
+```
+
+Plotting the forecasts
+
+
+```r
+autoplot(souv.f)
+```
+
+![plot of chunk unnamed-chunk-595](figure/unnamed-chunk-595-1.pdf)
+
+
+#### Global mean temperatures, revisited
+
+
+```r
+temp.ts=ts(temp$temperature,start=1880)
+temp.aa=auto.arima(temp.ts)
+temp.aa
+```
+
+```
+## Series: temp.ts 
+## ARIMA(1,1,3) with drift 
+## 
+## Coefficients:
+##           ar1     ma1      ma2      ma3   drift
+##       -0.9374  0.5038  -0.6320  -0.2988  0.0067
+## s.e.   0.0835  0.1088   0.0876   0.0844  0.0025
+## 
+## sigma^2 estimated as 0.008939:  log likelihood=124.34
+## AIC=-236.67   AICc=-235.99   BIC=-219.47
+```
+
+Forecasts
+
+
+```r
+temp.f=forecast(temp.aa)
+autoplot(temp.f)+labs(x="year", y="temperature")
+```
+
+![plot of chunk unnamed-chunk-597](figure/unnamed-chunk-597-1.pdf)
+
+
+
+# Multiway frequency tables
+
+
+## Packages
+
+```r
+library(tidyverse)
 ```
 
    

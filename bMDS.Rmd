@@ -1,6 +1,6 @@
-\section{Multidimensional scaling}
+# Multidimensional scaling
 
-\frame{\sectionpage}
+
 ## Multidimensional Scaling
 
 

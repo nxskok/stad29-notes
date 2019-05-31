@@ -1,5 +1,5 @@
-\section{Multiway frequency tables}
-\frame{\sectionpage}
+# Multiway frequency tables
+
 
 ## Packages
 ```{r size="footnotesize"}

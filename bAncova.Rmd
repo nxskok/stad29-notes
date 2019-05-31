@@ -1,5 +1,6 @@
-\section{Analysis of covariance}
-\frame{\sectionpage}
+
+# Analysis of covariance
+
 ## Analysis of covariance
 
 

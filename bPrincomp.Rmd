@@ -1,5 +1,5 @@
-\section{Principal components}
-\frame{\sectionpage}
+# Principal components
+
 
 ## Principal Components
 

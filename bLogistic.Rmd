@@ -1,5 +1,5 @@
-\section{Logistic regression (ordinal/nominal response)}
-\frame{\sectionpage}
+# Logistic regression (ordinal/nominal response)
+
 ## Logistic regression
 
 

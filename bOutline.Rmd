@@ -1,5 +1,4 @@
-\section*{Course Outline}
-\frame{\sectionpage}
+# Course Outline
 
 ## Course and instructor
 
@@ -17,8 +16,8 @@ lab Monday 16:00-17:00 in BV 498.
 otherwise. See if I'm in. Or make an appointment. E-mail always
 good.
 
-* Course website: 
-[link](www.utsc.utoronto.ca/~butler/d29).
+* Course website:
+[link](http://ritsokiguess.site/STAD29/).
 
 * Using Quercus for assignments/grades only; using website for
 everything else.
@@ -33,9 +32,9 @@ everything else.
 * There is no official text for this course. 
 
 * You may find "R for Data Science", 
-[link](http://r4ds.had.co.nz/) helpful for R background.
+[**link**](http://r4ds.had.co.nz/) helpful for R background.
 
-* I will refer frequently to my book of Problems and Solutions in Applied Statistics (PASIAS), [link](http://ritsokiguess.site/pasias/).
+* I will refer frequently to my book of Problems and Solutions in Applied Statistics (PASIAS), [**link**](http://ritsokiguess.site/pasias/).
 
 * Both of these resources are and will remain free.
 
@@ -57,8 +56,8 @@ catch up!
 
 * This course is a required part of Applied Statistics minor.
 
-* Exclusions: \textbf{this course is not for
-Math/Statistics/CS majors/minors}. It is for students in other
+* Exclusions: **this course is not for Math/Statistics/CS majors/minors**. 
+It is for students in other
 fields who wish to learn some more advanced statistical
 methods. The exclusions in the Calendar reflect this. 
 
@@ -70,8 +69,8 @@ this course, **or for any future STA courses you take.**
 ## Computing
 
 
-* Computing: big part of the course, {\bf not}
-optional. Demonstrate that you can use 
+* Computing: big part of the course, **not**
+optional. You will need to demonstrate that you can use 
 R to analyze data, and can
 critically interpret the output.
 
@@ -79,7 +78,7 @@ critically interpret the output.
 to offer extra help to get you up to speed.
 
 
-## Assessment
+## Assessment 1/2
 
 
 * Grading: (2 hour) midterm, (3 hour) final exam. Assignments most
@@ -99,11 +98,12 @@ Project & - & 20\%\\
 Final exam & 50\% & 40\%
 \end{tabular}
 
+## Assessment 2/2
 
 * Assessments missed *with documentation* will cause a
 re-weighting of other assessments of same type. No make-ups.
 
-* You **must pass the final exam** to pass the course. If you
+* You **must pass the final exam** to guarantee passing the course. If you
 fail the final exam but would otherwise have passed the course, you
 receive a grade of 45.
 
@@ -113,18 +113,17 @@ receive a grade of 45.
 ## Plagiarism
 
 
-* [link](http://www.utoronto.ca/academicintegrity/academicoffenses.html)
-defines academic offences at this university. Read it.
+* [**This link**](http://www.utoronto.ca/academicintegrity/academicoffenses.html)
+defines academic offences at this university. Read it. You are bound by it. 
 
-* Plagiarism is defined (at the end) as
-\begin{quote}
-The wrongful appropriation and purloining, and publication as one’s own, of the ideas, or the expression of the ideas ... of another.
-\end{quote}
+* Plagiarism defined (at the end) as
+
+> The wrongful appropriation and purloining, and publication as one’s own, of the ideas, 
+> or the expression of the ideas ... of another.
 
 * The code and
 explanations  that
-you write and hand in must be \emph{yours and yours
-alone}. 
+you write and hand in must be *yours and yours alone*.
 
 * When you hand in work, it is implied that it is
 *your* work. Handing in work, with your name on it, that was actually done by
@@ -144,7 +143,7 @@ needed in academic communication. Make use of the personalized
 support in academic writing skills development. Details and sign-up information:
 [link](http://www.utsc.utoronto.ca/eld/).
 
-*      Students with diverse learning styles and needs are welcome in this
+* Students with diverse learning styles and needs are welcome in this
 course. In particular, if you have a disability/health consideration
 that may require accommodations, please feel free to approach the AccessAbility Services Office as soon as possible. I will
 work with you and AccessAbility Services to ensure you can achieve
@@ -154,3 +153,23 @@ appointment to assess specific needs, provide referrals and arrange
 appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.ca`.
 
 
+## Course material 
+
+- Regression-like things 
+  - review of (multiple) regression
+  - logistic regression (including multi-category responses)
+  - survival analysis
+- ANOVA-like things
+  - more ANOVA
+  - multivariate ANOVA
+  - repeated measures
+- Multivariate methods
+  - discriminant analysis
+  - cluster analysis
+  - multidimensional scaling
+  - principal components
+  - factor analysis
+- Miscellanea
+  - time series
+  - multiway frequency tables
+  

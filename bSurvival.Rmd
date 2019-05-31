@@ -1,5 +1,6 @@
-\section{Survival analysis}
-\frame{\sectionpage}
+# Survival analysis
+
+
 ## Survival analysis
 
 

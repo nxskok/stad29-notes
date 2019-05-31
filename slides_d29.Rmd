@@ -21,18 +21,11 @@ output:
 
 ```
 
- 
-## What we (might) cover, part 1
-\tableofcontents[sections={1-10}]  % You might wish to add the option [pausesections]
-
-
-## What we (might) cover, part 2
-\tableofcontents[sections={11-}]  % You might wish to add the option [pausesections]
-
 ```{r Regression, child="bRegression.Rmd"}
 
 ```
 
+xxx
  
 ```{r bLogistic, child="bLogistic.Rmd"}
 
@@ -95,7 +88,10 @@ output:
 
 ```
 
-include time series notes here
+time series notes need tidying
+
+```{r time-series, child="time-series.Rmd"}
+```
 
 ```{r bMultiway, child="bMultiway.Rmd"}
 

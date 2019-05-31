@@ -1,5 +1,6 @@
-\section{Analysis of variance}
-\frame{\sectionpage}
+
+# Analysis of variance
+
 
 ## Analysis of variance
 

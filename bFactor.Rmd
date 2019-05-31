@@ -1,5 +1,5 @@
-\section{Exploratory factor analysis}
-\frame{\sectionpage}
+# Exploratory factor analysis
+
 ## Principal components and factor analysis
 
 
@@ -26,11 +26,9 @@
 
 
 
-
-
 ## Packages
 ```{r warning=F, message=F}
-library(lavaan) # confirmatory factor analysis
+library(lavaan) # for confirmatory, later
 library(ggbiplot)
 library(tidyverse)
 ```
@@ -927,8 +925,8 @@ Uses foul language especially, also loves children and analytical. So
 could use even more factors.
 
 
-\section{Confirmatory factor analysis}
-\frame{\sectionpage}
+# Confirmatory factor analysis}
+
 ## Confirmatory factor analysis
 
 

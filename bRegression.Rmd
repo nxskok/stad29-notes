@@ -1,37 +1,27 @@
-%\usepackage[utf8]{inputenc}
+# Review of (multiple) regression
 
-\section{Review of (multiple) regression}
-\frame{\sectionpage}
- <<setup2,echo=F>>=
- library(knitr)
- opts_chunk$set(dev = 'pdf')
- opts_chunk$set(comment=NA, fig.width=5, fig.height=3.5)
- options(width=45)
- #suppressMessages(library(tidyverse))
- @ %def 
 ## Regression
 
 
-* Use regression when one variable is an outcome ({\em response}, $y$).
+* Use regression when one variable is an outcome (*response*, $y$).
 
-* See if/how response depends on other variable(s), {\em explanatory}, $x_1, x_2,\ldots$.
+* See if/how response depends on other variable(s), *explanatory*, $x_1, x_2,\ldots$.
 
-* Can have {\em one} or {\em more than one} explanatory variable, but always one response.
+* Can have *one* or *more than one* explanatory variable, but always one response.
 
-* Assumes a {\em straight-line} relationship between response and explanatory.
+* Assumes a *straight-line* relationship between response and explanatory.
 
 * Ask: 
 
 
-* {\em is there} a relationship between $y$ and $x$'s, and if so, which ones?
-
-* what does the relationship look like?
+  * *is there* a relationship between $y$ and $x$'s, and if so, which ones?
+  * what does the relationship look like?
 
 
 
 
 ## Packages
-```{r }
+```{r, eval=F }
 library(MASS) # for Box-Cox, later
 library(tidyverse)
 library(broom)
@@ -47,27 +37,26 @@ library(broom)
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/sleep.txt"
 sleep <- read_delim(my_url, " ")
 ```
-def 
 
 
-## Check data
+
+## Check data xxx
 ```{r size="footnotesize"}
-sleep
+summary(sleep)
 ```
 
-   
+Make scatter plot of ATST (response) vs. age (explanatory) using
+code overleaf: xxx
 
-and make scatter plot of ATST (response) vs.\ age (explanatory) using
-code overleaf:
 
 
 ## The scatterplot
 ```{r suggo, fig.height=4}
 ggplot(sleep, aes(x = age, y = atst)) + geom_point()
 ```
-def 
+ 
 
-![](sleep-times.png)
+
 
 
 
@@ -79,7 +68,7 @@ def
 ```{r }
 with(sleep, cor(atst, age))
 ```
-def 
+ 
 
 
 * $1$ is perfect upward trend, $-1$ is perfect downward trend, 0
@@ -87,13 +76,11 @@ is no trend.
 
 * This one close to perfect downward trend.
 
-* Can do correlations of whole data frame:
+* Can do correlations of all pairs of variables:
 ```{r }
 cor(sleep)
 ```
-def 
-
-* Correlations of all possible pairs of variables.  
+ 
 
 
 ## Lowess curve
@@ -117,20 +104,19 @@ linearity.
 ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
   geom_smooth()
 ```
-def 
+ 
 
 ## The regression
 
 Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can run the regression:
 
-{\scriptsize
 ```{r echo=-1}
 options(width = 60)
 sleep.1 <- lm(atst ~ age, data = sleep)
 summary(sleep.1)
 ```
-def 
-}
+ 
+
 
 
 ## Conclusions
@@ -160,10 +146,14 @@ look at, but hard to extract and re-use information from.
 that can be used in pipe (later):
 ```{r size="footnotesize"}
 tidy(sleep.1)
+```
+
+## also one-line summary of model:
+
+```{r}
 glance(sleep.1)
 ```
 
-     
 
 
 
@@ -174,17 +164,6 @@ sleep.1 %>% augment(sleep) %>% slice(1:8)
 
    
 Useful for plotting residuals against an $x$-variable.
- for week 2:
- 
- regression and multiple regression
- 
- including univariate + tests
- ci, pi and influential points
- multiple, re-interpretation of tests, correlated x's
- residuals and plotting
- 
- next: ci and pi with children aged 10 and 3
- then: maybe diagnostics
 
 ## CI for mean response and prediction intervals
 
@@ -196,9 +175,9 @@ Once useful regression exists, use it for prediction:
 * To express uncertainty of this prediction:
 
 
-* {\em CI for mean response} expresses uncertainty about mean ATST for all children aged 10, based on data.
+* *CI for mean response* expresses uncertainty about mean ATST for all children aged 10, based on data.
 
-* {\em Prediction interval} expresses uncertainty about predicted ATST for a new child aged 10 whose ATST not known. More uncertain.
+* *Prediction interval* expresses uncertainty about predicted ATST for a new child aged 10 whose ATST not known. More uncertain.
 
 
 * Also do above for a child aged 5.
@@ -223,7 +202,7 @@ ages.new
 pc <- predict(sleep.1, ages.new, interval = "c")
 pp <- predict(sleep.1, ages.new, interval = "p")
 ```
-def 
+ 
 
 
 
@@ -233,13 +212,13 @@ Confidence intervals for mean response:
 ```{r }
 cbind(ages.new, pc)
 ```
-def 
+ 
 
 Prediction intervals for new response:
 ```{r }
 cbind(ages.new, pp)
 ```
-def 
+ 
 
 ## Comments
 
@@ -276,7 +255,7 @@ How to tell whether a straight-line regression is appropriate?
 
 * Before: check scatterplot for straight trend.
 
-* After: plot {\em residuals} (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
+* After: plot *residuals* (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
 
 
 \vspace{3ex}
@@ -286,7 +265,7 @@ How to tell whether a straight-line regression is appropriate?
 ```{r akjhkadjfhjahnkkk,fig.height=3.5}
 ggplot(sleep.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
-def 
+ 
 
 ![](sleep-resid.png)
 
@@ -300,7 +279,7 @@ Different data:
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/curvy.txt"
 curvy <- read_delim(my_url, " ")
 ```
-def 
+ 
 
 ![](curvy-scatter.png)
 
@@ -321,14 +300,14 @@ ggplot(curvy, aes(x = xx, y = yy)) + geom_point()
 curvy.1 <- lm(yy ~ xx, data = curvy)
 summary(curvy.1)
 ```
-def 
+ 
 }
 
 ## Residual plot
 ```{r altoadige,fig.height=4}
 ggplot(curvy.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
-def 
+ 
 
 ![](curvy-residual.png)
 
@@ -337,13 +316,13 @@ def
 ## No good: fixing it up
 
 
-* Residual plot has {\em curve}: middle residuals positive, high and low ones negative. Bad.
+* Residual plot has *curve*: middle residuals positive, high and low ones negative. Bad.
 
 * Fitting a curve would be better. Try this:
 ```{r }
 curvy.2 <- lm(yy ~ xx + I(xx^2), data = curvy)
 ```
-def 
+ 
 
 
 * Adding `xx`-squared term, to allow for curve.
@@ -361,27 +340,27 @@ curvy.2a <- update(curvy.1, . ~ . + I(xx^2))
 ```{r }
 summary(curvy.2)
 ```
-def 
+ 
 }
 
 
 ## Comments
 
 
-* `xx`-squared term definitely significant (P-value
+* `xx`-squared term initely significant (P-value
 0.000182), so need this curve to describe relationship.
 
 * Adding squared term has made R-squared go up from 0.5848 to
 0.9502: great improvement.
 
-* This is a definite curve!
+* This is a inite curve!
 
 
 ## The residual plot now
 ```{r size="small", fig.height=3}
 ggplot(curvy.2, aes(x = .fitted, y = .resid)) + geom_point()
 ```
-def 
+ 
 
 ![](curvy-resid2.png)
 
@@ -430,7 +409,7 @@ my_url <- "http://www.utsc.utoronto.ca/~butler/d29/madeup.csv"
 madeup <- read_csv(my_url)
 madeup
 ```
-def 
+ 
 Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
 
 
@@ -439,7 +418,7 @@ Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
 ggplot(madeup, aes(x = x, y = y)) + geom_point() +
   geom_smooth()
 ```
-def 
+ 
 
 
 ## Running Box-Cox
@@ -454,7 +433,7 @@ such as you would use for `lm`.
 ```{r eval=F}
 boxcox(y ~ x, data = madeup)
 ```
-def 
+ 
 
 
 
@@ -462,7 +441,7 @@ def
 ```{r trento,echo=F, fig.height=4}
 boxcox(y ~ x, data = madeup)
 ```
-def 
+ 
 
 
 ## Comments
@@ -497,7 +476,7 @@ madeup %>%
   ggplot(aes(x = x, y = log_y)) + geom_point() +
   geom_smooth()
 ```
-def 
+ 
 
 Looks much straighter.
 
@@ -558,7 +537,7 @@ Study of women and visits to health professionals, and how the number of visits 
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
 visits <- read_delim(my_url, " ")
 ```
-def 
+ 
 
 
 ## Check data, fit multiple regression
@@ -578,7 +557,7 @@ visits.1 <- lm(timedrs ~ phyheal + menheal + stress,
 ```{r }
 summary(visits.1)
 ```
-def 
+ 
 }  
 
 ## The slopes
@@ -589,10 +568,10 @@ Model as a whole strongly significant even though R-sq not very big (lots of dat
 ```{r }
 tidy(visits.1)
 ```
-def 
+ 
 \end{footnotesize}
 
-The physical health and stress variables definitely help to predict the number of visits, but {\em with those in the model} we don't need `menheal`.
+The physical health and stress variables initely help to predict the number of visits, but *with those in the model* we don't need `menheal`.
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
@@ -603,7 +582,7 @@ However, look at prediction of `timedrs` from `menheal` by itself:
 visits.2 <- lm(timedrs ~ menheal, data = visits)
 summary(visits.2)
 ```
-def 
+ 
 }
 
 
@@ -626,7 +605,7 @@ Leave out first column (`subjno`):
 ```{r }
 visits %>% select(-subjno) %>% cor()
 ```
-def 
+ 
 
 
 * `phyheal` most strongly correlated with `timedrs`.
@@ -645,7 +624,7 @@ so not as much to *add* to prediction as `stress`.
 ```{r iffy8,fig.height=3,size="small"}
 ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
-def 
+ 
 
 Apparently random. But\ldots
 
@@ -709,9 +688,9 @@ transformation of response often fixes: that is, predict
 * Residuals not normal (skewed right), increase in size with
 fitted value.
 
-* Sometimes residuals are {\em very} positive: observed a {\em lot} larger than predicted.
+* Sometimes residuals are *very} positive: observed a {\em lot* larger than predicted.
 
-* Try {\em  transforming} response: use log or square root of response. (Note that response is {\em count}, often skewed to right.)
+* Try * transforming} response: use log or square root of response. (Note that response is {\em count*, often skewed to right.)
 
 * Try regression again, with transformed response instead of
 original one.
@@ -722,7 +701,7 @@ visits.3 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress,
   data = visits
 )
 ```
-def 
+ 
 
 * `timedrs+1`  because some `timedrs` values 0,
 can't take log of 0.
@@ -737,7 +716,7 @@ be zero/negative, fix that before transformation.
 ```{r }
 summary(visits.3)
 ```
-def 
+ 
 }
 
 
@@ -807,7 +786,7 @@ Box-Cox expects all +. Note response for `boxcox`:
 ```{r eval=F}
 boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 ```
-def 
+ 
 
 
 
@@ -817,7 +796,7 @@ visits %>%
   mutate(tp = timedrs + 1) %>%
   boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = .)
 ```
-def 
+ 
 
 
 ## Comments on try 1
@@ -833,7 +812,7 @@ def
 my.lambda <- seq(-0.3, 0.1, 0.01)
 my.lambda
 ```
-def 
+ 
 }
 
 
@@ -844,7 +823,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress,
   data = visits
 )
 ```
-def 
+ 
 
 
 ## Comments
@@ -871,7 +850,7 @@ visits.5 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress, data = visits)
 visits.6 <- lm(log(timedrs + 1) ~ stress, data = visits)
 anova(visits.6, visits.5)
 ```
-def 
+ 
 }
 
 
@@ -943,7 +922,7 @@ punting
 punting.1 <- lm(punt ~ left + right + fred, data = punting)
 summary(punting.1)
 ```
-def 
+ 
 
 ## Comments
 
@@ -954,7 +933,7 @@ def
 
 * $t$-tests only say that you could take any one of the $x$'s out without damaging the fit; doesn't matter which one.
 
-* Explanation: look at {\em correlations}. 
+* Explanation: look at *correlations*. 
 
 
 
@@ -962,10 +941,10 @@ def
 ```{r }
 cor(punting)
 ```
-def 
+ 
 
 
-* {\em All} correlations are high: $x$'s with `punt` (good) and
+* *All* correlations are high: $x$'s with `punt` (good) and
 with each other (bad, at least confusing).
 
 * What to do? Probably do just as well to pick one variable, say
@@ -979,7 +958,7 @@ with each other (bad, at least confusing).
 punting.2 <- lm(punt ~ right, data = punting)
 anova(punting.2, punting.1)
 ```
-def 
+ 
 }
 No significant loss by dropping other two variables.
 
@@ -991,7 +970,7 @@ No significant loss by dropping other two variables.
 summary(punting.1)$r.squared
 summary(punting.2)$r.squared
 ```
-def 
+ 
 }
 
 Basically no difference. In regression (over), `right` significant:
@@ -1003,7 +982,7 @@ Basically no difference. In regression (over), `right` significant:
 ```{r }
 summary(punting.2)
 ```
-def 
+ 
 }
 
 ## But\ldots
@@ -1072,7 +1051,7 @@ summary(punting.3)
 ## Comments
 
 
-* This was definitely a good idea (R-squared has clearly increased).
+* This was initely a good idea (R-squared has clearly increased).
 
 * We would never have seen it without plotting residuals from
 `punting.2` (without `left`) against `left`.

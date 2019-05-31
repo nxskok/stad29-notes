@@ -1,5 +1,6 @@
-\section{Discriminant analysis}
-\frame{\sectionpage}
+
+# Discriminant analysis
+
 ## Discriminant analysis
 
 

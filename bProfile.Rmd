@@ -1,5 +1,5 @@
-\section{Repeated measures by profile analysis}
-\frame{\sectionpage}
+
+# Repeated measures by profile analysis
 
 ## Repeated measures by profile analysis
 

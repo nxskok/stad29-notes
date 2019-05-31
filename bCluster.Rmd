@@ -1,5 +1,5 @@
-\section{Cluster analysis}
-\frame{\sectionpage}
+# Cluster analysis
+
 ## Cluster Analysis
 
 
