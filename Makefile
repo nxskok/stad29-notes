@@ -5,14 +5,10 @@ show: slides_d29.pdf
 
 
 
-CHAPTERS = slides_d29 bOutline bRIntro bInference bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim bCluster bMDS bPrincomp bFactor bTimeSeries bMultiway bggplot
+#CHAPTERS = slides_d29 bOutline bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim\
+#bCluster bMDS bPrincomp bFactor timeseries bMultiway bggplot
 
-
-TEX = $(CHAPTERS:=.tex)
-
-RNW = $(CHAPTERS:=.Rnw)
-
-RMD = $(CHAPTERS:=.Rmd)
+RMDS = $(wildcard *.Rmd)
 
 slides_d29.pdf: slides_d29.tex
 	lualatex --interaction=nonstopmode slides_d29
@@ -24,15 +20,15 @@ slides_d29.tex: slides_d29.md
                 --pdf-engine xelatex --self-contained 
 
 
-slides_d29.md: $(RMD)
-	Rscript -e "knitr::knit(\"slides_d29.Rmd\")"
+slides_d29.md: slides_d29.Rmd bRegression.Rmd
+	Rscript -e "knitr::knit('slides_d29.Rmd')"
 
-%.R: %.Rnw
+%.R: %.Rmd
 	Rscript -e "knitr::purl(\"$^\")"
 
-%.Rmd: %.Rnw convert.pl
-	perl convert.pl $< > $@
-	Rscript -e "styler::style_file(\"$@\")"
+#%.Rmd: %.Rnw convert.pl # don't make these anymore
+#	perl convert.pl $< > $@
+#	Rscript -e "styler::style_file(\"$@\")"
 
 
 force:

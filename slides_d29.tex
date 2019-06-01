@@ -163,7 +163,7 @@
   Office hours: Monday 11:00-13:00. I am often around otherwise. See if
   I'm in. Or make an appointment. E-mail always good.
 \item
-  Course website: xxx \href{http://ritsokiguess.site/STAD29/}{link}.
+  Course website: \href{http://ritsokiguess.site/STAD29/}{link}.
 \item
   Using Quercus for assignments/grades only; using website for
   everything else.
@@ -277,7 +277,7 @@
 \item
   \href{http://www.utoronto.ca/academicintegrity/academicoffenses.html}{\textbf{This
   link}} defines academic offences at this university. Read it. You are
-  bound by it. xxx
+  bound by it.
 \item
   Plagiarism defined (at the end) as
 \end{itemize}
@@ -327,8 +327,8 @@ of the ideas, or the expression of the ideas \ldots{} of another.
 
 \end{frame}
 
-\begin{frame}{Course material xxx}
-\protect\hypertarget{course-material-xxx}{}
+\begin{frame}{Course material}
+\protect\hypertarget{course-material}{}
 
 \begin{itemize}
 \tightlist
@@ -407,7 +407,7 @@ regression}\label{review-of-multiple-regression}}
   Assumes a \emph{straight-line} relationship between response and
   explanatory.
 \item
-  Ask: xxx
+  Ask:
 
   \begin{itemize}
   \tightlist
@@ -458,26 +458,24 @@ regression}\label{review-of-multiple-regression}}
 
 \end{frame}
 
-\begin{frame}[fragile]{Check data xxx}
-\protect\hypertarget{check-data-xxx}{}
+\begin{frame}[fragile]{Check data}
+\protect\hypertarget{check-data}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{glimpse}\NormalTok{(sleep)}
+\KeywordTok{summary}\NormalTok{(sleep)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Observations: 13
-## Variables: 2
-## $ atst <dbl> 586.00, 461.75, 491.10, 565.00, 462.…
-## $ age  <dbl> 4.40, 14.00, 10.10, 6.70, 11.50, 9.6…
+##       atst            age        
+##  Min.   :461.8   Min.   : 4.400  
+##  1st Qu.:491.1   1st Qu.: 7.200  
+##  Median :528.3   Median : 8.900  
+##  Mean   :519.3   Mean   : 9.058  
+##  3rd Qu.:532.5   3rd Qu.:11.100  
+##  Max.   :586.0   Max.   :14.000
 \end{verbatim}
-
-\end{frame}
-
-\begin{frame}{Exploratory stuff}
-\protect\hypertarget{exploratory-stuff}{}
 
 Make scatter plot of ATST (response) vs.~age (explanatory) using code
 overleaf:
@@ -594,6 +592,18 @@ So we can run the regression:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{sleep}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(atst }\OperatorTok{~}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{The output xxx}
+\protect\hypertarget{the-output-xxx}{}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{summary}\NormalTok{(sleep}\FloatTok{.1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -619,6 +629,8 @@ So we can run the regression:
 ## Multiple R-squared:  0.9054, Adjusted R-squared:  0.8968 
 ## F-statistic: 105.3 on 1 and 11 DF,  p-value: 5.7e-07
 \end{verbatim}
+
+\normalsize
 
 \end{frame}
 
@@ -669,6 +681,11 @@ So we can run the regression:
 ## 2 age            -14.0      1.37     -10.3 5.70e- 7
 \end{verbatim}
 
+\end{frame}
+
+\begin{frame}[fragile]{also one-line summary of model:}
+\protect\hypertarget{also-one-line-summary-of-model}{}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{glance}\NormalTok{(sleep}\FloatTok{.1}\NormalTok{)}
@@ -710,14 +727,7 @@ So we can run the regression:
 ## # … with 1 more variable: .std.resid <dbl>
 \end{verbatim}
 
-Useful for plotting residuals against an \(x\)-variable. for week 2:
-
-regression and multiple regression
-
-including univariate + tests ci, pi and influential points multiple,
-re-interpretation of tests, correlated x's residuals and plotting
-
-next: ci and pi with children aged 10 and 3 then: maybe diagnostics
+Useful for plotting residuals against an \(x\)-variable.
 
 \end{frame}
 
@@ -838,6 +848,8 @@ Prediction intervals for new response:
 \begin{frame}[fragile]{That grey envelope}
 \protect\hypertarget{that-grey-envelope}{}
 
+Marks confidence interval for mean for all \(x\): xxx
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(sleep, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ age, }\DataTypeTok{y =}\NormalTok{ atst)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
@@ -848,11 +860,9 @@ Prediction intervals for new response:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-15-1.pdf}
-\caption{plot of chunk unnamed-chunk-15}
+\includegraphics{figure/unnamed-chunk-17-1.pdf}
+\caption{plot of chunk unnamed-chunk-17}
 \end{figure}
-
-Marks confidence interval for mean for all \(x\).
 
 \end{frame}
 
@@ -871,12 +881,12 @@ How to tell whether a straight-line regression is appropriate?
   against predicted values. Aim: a plot with no pattern.
 \end{itemize}
 
-\vspace{3ex}
-
 \end{frame}
 
-\begin{frame}[fragile]{Output}
-\protect\hypertarget{output}{}
+\begin{frame}[fragile]{Residual plot xxx}
+\protect\hypertarget{residual-plot-xxx}{}
+
+Not much pattern here --- regression appropriate.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -889,11 +899,6 @@ How to tell whether a straight-line regression is appropriate?
 \includegraphics{figure/akjhkadjfhjahnkkk-1.pdf}
 \caption{plot of chunk akjhkadjfhjahnkkk}
 \end{figure}
-
-\includegraphics{sleep-resid.png}
-
-Not much pattern here (is residual predictable from predicted? No).
-Good, indicating regression appropriate.
 
 \end{frame}
 
@@ -917,8 +922,6 @@ Different data:
 ## )
 \end{verbatim}
 
-\includegraphics{curvy-scatter.png}
-
 \end{frame}
 
 \begin{frame}[fragile]{Scatterplot}
@@ -932,8 +935,8 @@ Different data:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-16-1.pdf}
-\caption{plot of chunk unnamed-chunk-16}
+\includegraphics{figure/unnamed-chunk-18-1.pdf}
+\caption{plot of chunk unnamed-chunk-18}
 \end{figure}
 
 \end{frame}
@@ -941,7 +944,7 @@ Different data:
 \begin{frame}[fragile]{Regression line, anyway}
 \protect\hypertarget{regression-line-anyway}{}
 
-\{\footnotesize
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -972,7 +975,7 @@ Different data:
 ## F-statistic: 11.27 on 1 and 8 DF,  p-value: 0.009984
 \end{verbatim}
 
-\}
+\normalsize
 
 \end{frame}
 
@@ -990,8 +993,6 @@ Different data:
 \includegraphics{figure/altoadige-1.pdf}
 \caption{plot of chunk altoadige}
 \end{figure}
-
-\includegraphics{curvy-residual.png}
 
 \end{frame}
 
@@ -1027,41 +1028,84 @@ Different data:
 
 \end{frame}
 
-\begin{frame}[fragile]{Regression 2}
-\protect\hypertarget{regression-2}{}
-
-\{\scriptsize
+\begin{frame}[fragile]{Regression 2 xxx}
+\protect\hypertarget{regression-2-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(curvy}\FloatTok{.2}\NormalTok{)}
+\KeywordTok{tidy}\NormalTok{(curvy}\FloatTok{.2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = yy ~ xx + I(xx^2), data = curvy)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.2091 -0.3602 -0.2364  0.8023  1.2636 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  3.90000    0.77312   5.045 0.001489 ** 
-## xx           3.74318    0.40006   9.357 3.31e-05 ***
-## I(xx^2)     -0.30682    0.04279  -7.170 0.000182 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.9833 on 7 degrees of freedom
-## Multiple R-squared:  0.9502, Adjusted R-squared:  0.936 
-## F-statistic: 66.83 on 2 and 7 DF,  p-value: 2.75e-05
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)    3.9      0.773       5.04 0.00149  
+## 2 xx             3.74     0.400       9.36 0.0000331
+## 3 I(xx^2)       -0.307    0.0428     -7.17 0.000182
 \end{verbatim}
 
-\}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(curvy}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 12
+##  $ coefficients : Named num [1:3] 3.9 3.743 -0.307
+##   ..- attr(*, "names")= chr [1:3] "(Intercept)" "xx" "I(xx^2)"
+##  $ residuals    : Named num [1:10] 0.1 -0.336 -0.159 -0.368 1.036 ...
+##   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
+##  $ effects      : Named num [1:10] -37.947 8.918 -7.05 -0.335 1.048 ...
+##   ..- attr(*, "names")= chr [1:10] "(Intercept)" "xx" "I(xx^2)" "" ...
+##  $ rank         : int 3
+##  $ fitted.values: Named num [1:10] 3.9 7.34 10.16 12.37 13.96 ...
+##   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
+##  $ assign       : int [1:3] 0 1 2
+##  $ qr           :List of 5
+##   ..$ qr   : num [1:10, 1:3] -3.162 0.316 0.316 0.316 0.316 ...
+##   .. ..- attr(*, "dimnames")=List of 2
+##   .. ..- attr(*, "assign")= int [1:3] 0 1 2
+##   ..$ qraux: num [1:3] 1.32 1.27 1.22
+##   ..$ pivot: int [1:3] 1 2 3
+##   ..$ tol  : num 1e-07
+##   ..$ rank : int 3
+##   ..- attr(*, "class")= chr "qr"
+##  $ df.residual  : int 7
+##  $ xlevels      : Named list()
+##  $ call         : language lm(formula = yy ~ xx + I(xx^2), data = curvy)
+##  $ terms        :Classes 'terms', 'formula'  language yy ~ xx + I(xx^2)
+##   .. ..- attr(*, "variables")= language list(yy, xx, I(xx^2))
+##   .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+##   .. .. ..- attr(*, "dimnames")=List of 2
+##   .. ..- attr(*, "term.labels")= chr [1:2] "xx" "I(xx^2)"
+##   .. ..- attr(*, "order")= int [1:2] 1 1
+##   .. ..- attr(*, "intercept")= int 1
+##   .. ..- attr(*, "response")= int 1
+##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   .. ..- attr(*, "predvars")= language list(yy, xx, I(xx^2))
+##   .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
+##   .. .. ..- attr(*, "names")= chr [1:3] "yy" "xx" "I(xx^2)"
+##  $ model        :'data.frame':   10 obs. of  3 variables:
+##   ..$ yy     : num [1:10] 4 7 10 12 15 16 15 14 13 14
+##   ..$ xx     : num [1:10] 0 1 2 3 4 5 6 7 8 9
+##   ..$ I(xx^2): 'AsIs' num [1:10]  0  1  4  9 16 25 36 49 64 81
+##   ..- attr(*, "terms")=Classes 'terms', 'formula'  language yy ~ xx + I(xx^2)
+##   .. .. ..- attr(*, "variables")= language list(yy, xx, I(xx^2))
+##   .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+##   .. .. .. ..- attr(*, "dimnames")=List of 2
+##   .. .. ..- attr(*, "term.labels")= chr [1:2] "xx" "I(xx^2)"
+##   .. .. ..- attr(*, "order")= int [1:2] 1 1
+##   .. .. ..- attr(*, "intercept")= int 1
+##   .. .. ..- attr(*, "response")= int 1
+##   .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   .. .. ..- attr(*, "predvars")= language list(yy, xx, I(xx^2))
+##   .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
+##   .. .. .. ..- attr(*, "names")= chr [1:3] "yy" "xx" "I(xx^2)"
+##  - attr(*, "class")= chr "lm"
+\end{verbatim}
 
 \end{frame}
 
@@ -1070,19 +1114,21 @@ Different data:
 
 \begin{itemize}
 \item
-  \texttt{xx}-squared term initely significant (P-value 0.000182), so
+  \texttt{xx}-squared term definitely significant (P-value 0.000182), so
   need this curve to describe relationship.
 \item
   Adding squared term has made R-squared go up from 0.5848 to 0.9502:
   great improvement.
 \item
-  This is a inite curve!
+  This is a definite curve!
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{The residual plot now}
-\protect\hypertarget{the-residual-plot-now}{}
+\begin{frame}[fragile]{The residual plot now xxx}
+\protect\hypertarget{the-residual-plot-now-xxx}{}
+
+No problems any more:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1092,13 +1138,9 @@ Different data:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-21-1.pdf}
-\caption{plot of chunk unnamed-chunk-21}
+\includegraphics{figure/unnamed-chunk-23-1.pdf}
+\caption{plot of chunk unnamed-chunk-23}
 \end{figure}
-
-\includegraphics{curvy-resid2.png}
-
-No problems any more.
 
 \end{frame}
 
@@ -1165,12 +1207,11 @@ No problems any more.
 \end{verbatim}
 
 Seems to be faster-than-linear growth, maybe exponential growth.
-Scatterplot?
 
 \end{frame}
 
-\begin{frame}[fragile]{The scatterplot: faster than linear growth}
-\protect\hypertarget{the-scatterplot-faster-than-linear-growth}{}
+\begin{frame}[fragile]{Scatterplot: faster than linear growth xxx}
+\protect\hypertarget{scatterplot-faster-than-linear-growth-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1254,26 +1295,20 @@ Scatterplot?
 \begin{itemize}
 \tightlist
 \item
-  Calculate transformed \(y\) and plot against \(x\). Here try log:
+  Plot transformed \(y\) against \(x\). Here, log: xxx
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{madeup }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log_y =} \KeywordTok{log}\NormalTok{(y)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ log_y)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(madeup, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =} \KeywordTok{log}\NormalTok{(y))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-\end{verbatim}
-
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-24-1.pdf}
-\caption{plot of chunk unnamed-chunk-24}
+\includegraphics{figure/unnamed-chunk-26-1.pdf}
+\caption{plot of chunk unnamed-chunk-26}
 \end{figure}
 
 Looks much straighter.
@@ -1282,6 +1317,10 @@ Looks much straighter.
 
 \begin{frame}[fragile]{Regression with transformed \(y\)}
 \protect\hypertarget{regression-with-transformed-y}{}
+
+xxx from here
+
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1313,8 +1352,9 @@ Looks much straighter.
 ## 2 x              0.520    0.0773      6.73 0.000524
 \end{verbatim}
 
+\normalsize
+
 R-squared now decently high.
-\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%
 
 \end{frame}
 
@@ -1323,23 +1363,25 @@ R-squared now decently high.
 
 \begin{itemize}
 \item
-  What if more than one \(x\)? Extra issues: \% regression ex from
-  before
-\item
-  Now one intercept and a slope for each \(x\): how to interpret?
-\item
-  Which \(x\)-variables actually help to predict \(y\)?
-\item
-  Different interpretations of ``global'' \(F\)-test and individual
-  \(t\)-tests.
-\item
-  R-squared no longer correlation squared, but still interpreted as
-  ``higher better''.
-\item
-  In \texttt{lm} line, add extra \(x\)s after
-  \texttt{\textasciitilde{}}.
-\item
-  Interpretation not so easy (and other problems that can occur).
+  What if more than one \(x\)? Extra issues:
+
+  \begin{itemize}
+  \item
+    Now one intercept and a slope for each \(x\): how to interpret?
+  \item
+    Which \(x\)-variables actually help to predict \(y\)?
+  \item
+    Different interpretations of ``global'' \(F\)-test and individual
+    \(t\)-tests.
+  \item
+    R-squared no longer correlation squared, but still interpreted as
+    ``higher better''.
+  \item
+    In \texttt{lm} line, add extra \(x\)s after
+    \texttt{\textasciitilde{}}.
+  \item
+    Interpretation not so easy (and other problems that can occur).
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -1361,12 +1403,13 @@ visits might be related to other variables:
 
 \end{frame}
 
-\begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data}{}
+\begin{frame}[fragile]{The data xxx}
+\protect\hypertarget{the-data-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"}
+\NormalTok{my_url <-}\StringTok{ }
+\StringTok{  "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"}
 \NormalTok{visits <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(my_url, }\StringTok{" "}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1384,8 +1427,10 @@ visits might be related to other variables:
 
 \end{frame}
 
-\begin{frame}[fragile]{Check data, fit multiple regression}
-\protect\hypertarget{check-data-fit-multiple-regression}{}
+\begin{frame}[fragile]{Check data}
+\protect\hypertarget{check-data-1}{}
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1410,62 +1455,36 @@ visits might be related to other variables:
 ## # … with 455 more rows
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{visits}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(timedrs }\OperatorTok{~}\StringTok{ }\NormalTok{phyheal }\OperatorTok{+}\StringTok{ }\NormalTok{menheal }\OperatorTok{+}\StringTok{ }\NormalTok{stress,}
-  \DataTypeTok{data =}\NormalTok{ visits}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\normalsize
 
 \end{frame}
 
-\begin{frame}[fragile]{The regression}
-\protect\hypertarget{the-regression-1}{}
-
-\{\scriptsize
+\begin{frame}[fragile]{Fit multiple regression}
+\protect\hypertarget{fit-multiple-regression}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(visits}\FloatTok{.1}\NormalTok{)}
+\NormalTok{visits}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(timedrs }\OperatorTok{~}\StringTok{ }\NormalTok{phyheal }\OperatorTok{+}\StringTok{ }\NormalTok{menheal }\OperatorTok{+}\StringTok{ }\NormalTok{stress,}
+  \DataTypeTok{data =}\NormalTok{ visits)}
+\KeywordTok{glance}\NormalTok{(visits}\FloatTok{.1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = timedrs ~ phyheal + menheal + stress, data = visits)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -14.792  -4.353  -1.815   0.902  65.886 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -3.704848   1.124195  -3.296 0.001058 ** 
-## phyheal      1.786948   0.221074   8.083  5.6e-15 ***
-## menheal     -0.009666   0.129029  -0.075 0.940318    
-## stress       0.013615   0.003612   3.769 0.000185 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 9.708 on 461 degrees of freedom
-## Multiple R-squared:  0.2188, Adjusted R-squared:  0.2137 
-## F-statistic: 43.03 on 3 and 461 DF,  p-value: < 2.2e-16
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>
+## 1     0.219         0.214  9.71      43.0 1.56e-24     4
+## # … with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
 \end{verbatim}
-
-\}
 
 \end{frame}
 
-\begin{frame}[fragile]{The slopes}
-\protect\hypertarget{the-slopes}{}
+\begin{frame}{The regression}
+\protect\hypertarget{the-regression-1}{}
 
-Model as a whole strongly significant even though R-sq not very big
-(lots of data). At least one of the \(x\)'s predicts \texttt{timedrs}.
-
-\begin{footnotesize}
+\begin{scriptsize}
 
 ```r
 tidy(visits.1)
@@ -1480,8 +1499,31 @@ tidy(visits.1)
 ## 3 menheal     -0.00967   0.129     -0.0749 9.40e- 1
 ## 4 stress       0.0136    0.00361    3.77   1.85e- 4
 ```
- 
-\end{footnotesize}
+\end{scriptsize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The slopes}
+\protect\hypertarget{the-slopes}{}
+
+Model as a whole strongly significant even though R-sq not very big
+(lots of data). At least one of the \(x\)'s predicts \texttt{timedrs}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(visits}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept) -3.70      1.12      -3.30   1.06e- 3
+## 2 phyheal      1.79      0.221      8.08   5.60e-15
+## 3 menheal     -0.00967   0.129     -0.0749 9.40e- 1
+## 4 stress       0.0136    0.00361    3.77   1.85e- 4
+\end{verbatim}
 
 The physical health and stress variables initely help to predict the
 number of visits, but \emph{with those in the model} we don't need
@@ -1490,50 +1532,51 @@ number of visits, but \emph{with those in the model} we don't need
 
 \end{frame}
 
-\begin{frame}[fragile]{Just \texttt{menheal}}
-\protect\hypertarget{just-menheal}{}
+\begin{frame}[fragile]{Just \texttt{menheal} xxx}
+\protect\hypertarget{just-menheal-xxx}{}
 
-\{\footnotesize 
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{visits}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(timedrs }\OperatorTok{~}\StringTok{ }\NormalTok{menheal, }\DataTypeTok{data =}\NormalTok{ visits)}
-\KeywordTok{summary}\NormalTok{(visits}\FloatTok{.2}\NormalTok{)}
+\KeywordTok{glance}\NormalTok{(visits}\FloatTok{.2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = timedrs ~ menheal, data = visits)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -13.826  -5.150  -2.818   1.177  72.513 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   3.8159     0.8702   4.385 1.44e-05 ***
-## menheal       0.6672     0.1173   5.688 2.28e-08 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 10.6 on 463 degrees of freedom
-## Multiple R-squared:  0.06532,    Adjusted R-squared:  0.0633 
-## F-statistic: 32.35 on 1 and 463 DF,  p-value: 2.279e-08
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>
+## 1    0.0653        0.0633  10.6      32.4 2.28e-8     2
+## # … with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
 \end{verbatim}
 
-\}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(visits}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic      p.value
+##   <chr>          <dbl>     <dbl>     <dbl>        <dbl>
+## 1 (Intercept)    3.82      0.870      4.38 0.0000144   
+## 2 menheal        0.667     0.117      5.69 0.0000000228
+\end{verbatim}
+
+\normalsize
 
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{menheal\ by\ itself}}
+\begin{frame}[fragile]{\texttt{menheal} by itself}
 \protect\hypertarget{menheal-by-itself}{}
 
 \begin{itemize}
 \item
-  \texttt{menheal} by itself \{em does\} significantly help to predict
+  \texttt{menheal} by itself \emph{does} significantly help to predict
   \texttt{timedrs}.
 \item
   But the R-sq is much less (6.5\% vs.~22\%).
@@ -1579,8 +1622,8 @@ Leave out first column (\texttt{subjno}):
 
 \end{frame}
 
-\begin{frame}[fragile]{Residual plot (from \texttt{timedrs\ on\ all)}}
-\protect\hypertarget{residual-plot-from-timedrs-on-all}{}
+\begin{frame}[fragile]{Residual plot (from \texttt{timedrs} on all) xxx}
+\protect\hypertarget{residual-plot-from-timedrs-on-all-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1594,9 +1637,12 @@ Leave out first column (\texttt{subjno}):
 \caption{plot of chunk iffy8}
 \end{figure}
 
-Apparently random. But\ldots
+\end{frame}
 
-\includegraphics{regressx1.png}
+\begin{frame}{Comment xxx}
+\protect\hypertarget{comment-xxx}{}
+
+Apparently random. But\ldots
 
 \end{frame}
 
@@ -1611,8 +1657,8 @@ Apparently random. But\ldots
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-32-1.pdf}
-\caption{plot of chunk unnamed-chunk-32}
+\includegraphics{figure/unnamed-chunk-35-1.pdf}
+\caption{plot of chunk unnamed-chunk-35}
 \end{figure}
 
 \end{frame}
@@ -1621,7 +1667,7 @@ Apparently random. But\ldots
 \protect\hypertarget{absolute-residuals}{}
 
 Is there trend in \emph{size} of residuals (fan-out)? Plot
-\emph{absolute value} of residual against fitted value:
+\emph{absolute value} of residual against fitted value: xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1630,14 +1676,10 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-\end{verbatim}
-
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-33-1.pdf}
-\caption{plot of chunk unnamed-chunk-33}
+\includegraphics{figure/unnamed-chunk-36-1.pdf}
+\caption{plot of chunk unnamed-chunk-36}
 \end{figure}
 
 \end{frame}
@@ -1648,19 +1690,25 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \begin{itemize}
 \item
   On the normal quantile plot:
-\item
-  highest (most positive) residuals are \emph{way} too high
-\item
-  distribution of residuals skewed to right (not normal at all)
+
+  \begin{itemize}
+  \item
+    highest (most positive) residuals are \emph{way} too high
+  \item
+    distribution of residuals skewed to right (not normal at all)
+  \end{itemize}
 \item
   On plot of absolute residuals:
-\item
-  size of residuals getting bigger as fitted values increase
-\item
-  predictions getting more variable as fitted values increase
-\item
-  that is, predictions getting \emph{less accurate} as fitted values
-  increase, but predictions should be equally accurate all way along.
+
+  \begin{itemize}
+  \item
+    size of residuals getting bigger as fitted values increase
+  \item
+    predictions getting more variable as fitted values increase
+  \item
+    that is, predictions getting \emph{less accurate} as fitted values
+    increase, but predictions should be equally accurate all way along.
+  \end{itemize}
 \item
   Both indicate problems with regression, of kind that transformation of
   response often fixes: that is, predict \emph{function} of response
@@ -1677,11 +1725,11 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
   Residuals not normal (skewed right), increase in size with fitted
   value.
 \item
-  Sometimes residuals are *very\} positive: observed a
-  \{\em lot* larger than predicted.
+  Sometimes residuals are \emph{very} positive: observed a \emph{lot}
+  larger than predicted.
 \item
-  Try * transforming\} response: use log or square root of response.
-  (Note that response is \{\em count*, often skewed to right.)
+  Try \emph{transforming} response: use log or square root of response.
+  (Note that response is \emph{count}, often skewed to right.)
 \item
   Try regression again, with transformed response instead of original
   one.
@@ -1709,9 +1757,9 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \end{frame}
 
 \begin{frame}[fragile]{Output}
-\protect\hypertarget{output-1}{}
+\protect\hypertarget{output}{}
 
-\{\scriptsize
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1743,7 +1791,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 ## F-statistic: 89.56 on 3 and 461 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-\}
+\normalsize
 
 \end{frame}
 
@@ -1776,8 +1824,8 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-36-1.pdf}
-\caption{plot of chunk unnamed-chunk-36}
+\includegraphics{figure/unnamed-chunk-39-1.pdf}
+\caption{plot of chunk unnamed-chunk-39}
 \end{figure}
 
 \end{frame}
@@ -1793,8 +1841,8 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-37-1.pdf}
-\caption{plot of chunk unnamed-chunk-37}
+\includegraphics{figure/unnamed-chunk-40-1.pdf}
+\caption{plot of chunk unnamed-chunk-40}
 \end{figure}
 
 \end{frame}
@@ -1815,8 +1863,8 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-38-1.pdf}
-\caption{plot of chunk unnamed-chunk-38}
+\includegraphics{figure/unnamed-chunk-41-1.pdf}
+\caption{plot of chunk unnamed-chunk-41}
 \end{figure}
 
 \end{frame}
@@ -1865,8 +1913,8 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-40-1.pdf}
-\caption{plot of chunk unnamed-chunk-40}
+\includegraphics{figure/unnamed-chunk-43-1.pdf}
+\caption{plot of chunk unnamed-chunk-43}
 \end{figure}
 
 \end{frame}
@@ -1880,7 +1928,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 \item
   Hard to see scale.
 \item
-  Focus on \(\lambda\) in \((-0.3,0.1)\): \{\small    
+  Focus on \(\lambda\) in \((-0.3,0.1)\): \small    
 \end{itemize}
 
 \begin{Shaded}
@@ -1898,7 +1946,7 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 ## [37]  0.06  0.07  0.08  0.09  0.10
 \end{verbatim}
 
-\}
+\normalsize
 
 \end{frame}
 
@@ -1916,8 +1964,8 @@ Is there trend in \emph{size} of residuals (fan-out)? Plot
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-42-1.pdf}
-\caption{plot of chunk unnamed-chunk-42}
+\includegraphics{figure/unnamed-chunk-45-1.pdf}
+\caption{plot of chunk unnamed-chunk-45}
 \end{figure}
 
 \end{frame}
@@ -1994,10 +2042,9 @@ football kickers (punters): left leg and right leg strength (lbs),
 distance punted (ft), another variable called ``fred''. Predict punting
 distance from other variables:
 
-\begin{scriptsize}
+\scriptsize
 
-```
-
+\begin{verbatim}
 left                right               punt         fred
 170               170                162.50       171 
 130               140                144.0        136   
@@ -2012,10 +2059,9 @@ left                right               punt         fred
 140               120                140.25       129  
 130               140                150.17       136 
 150               160                165.17       154 
+\end{verbatim}
 
-```
-
-\end{scriptsize}
+\normalsize
 
 \end{frame}
 
@@ -2048,7 +2094,9 @@ left                right               punt         fred
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-1}{}
+\protect\hypertarget{the-data}{}
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2075,10 +2123,14 @@ left                right               punt         fred
 ## 13   150   160  165.   154
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
 \begin{frame}[fragile]{Regression and output}
 \protect\hypertarget{regression-and-output}{}
+
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2107,6 +2159,8 @@ left                right               punt         fred
 ## Multiple R-squared:  0.7781, Adjusted R-squared:  0.7042 
 ## F-statistic: 10.52 on 3 and 9 DF,  p-value: 0.00267
 \end{verbatim}
+
+\normalsize
 
 \end{frame}
 
@@ -2158,7 +2212,7 @@ left                right               punt         fred
 \begin{frame}[fragile]{Just \texttt{right}}
 \protect\hypertarget{just-right}{}
 
-\{\small
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2177,14 +2231,16 @@ left                right               punt         fred
 ## 2      9 1938.2  2    24.263 0.0563 0.9456
 \end{verbatim}
 
-\} No significant loss by dropping other two variables.
+\normalsize
+
+No significant loss by dropping other two variables.
 
 \end{frame}
 
 \begin{frame}[fragile]{Comparing R-squareds}
 \protect\hypertarget{comparing-r-squareds}{}
 
-\{\small
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2206,7 +2262,7 @@ left                right               punt         fred
 ## [1] 0.7753629
 \end{verbatim}
 
-\}
+\normalsize
 
 Basically no difference. In regression (over), \texttt{right}
 significant:
@@ -2216,7 +2272,7 @@ significant:
 \begin{frame}[fragile]{Regression results}
 \protect\hypertarget{regression-results}{}
 
-\{\footnotesize
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2246,7 +2302,7 @@ significant:
 ## F-statistic: 37.97 on 1 and 11 DF,  p-value: 7.088e-05
 \end{verbatim}
 
-\}
+\normalsize
 
 \end{frame}
 
@@ -2276,6 +2332,8 @@ significant:
 \begin{frame}[fragile]{Augmenting \texttt{punting.2}}
 \protect\hypertarget{augmenting-punting.2}{}
 
+\footnotesize
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{punting}\FloatTok{.2} \OperatorTok{%>%}\StringTok{ }\KeywordTok{augment}\NormalTok{(punting) ->}\StringTok{ }\NormalTok{punting.}\FloatTok{2.}\NormalTok{aug}
@@ -2298,6 +2356,8 @@ significant:
 ## # … with 3 more variables: .sigma <dbl>, .cooksd <dbl>,
 ## #   .std.resid <dbl>
 \end{verbatim}
+
+\normalsize
 
 \end{frame}
 
@@ -2343,6 +2403,8 @@ significant:
 \begin{frame}[fragile]{Regression with \texttt{left-squared}}
 \protect\hypertarget{regression-with-left-squared}{}
 
+\scriptsize
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{summary}\NormalTok{(punting}\FloatTok{.3}\NormalTok{)}
@@ -2373,6 +2435,8 @@ significant:
 ## F-statistic:  43.3 on 3 and 9 DF,  p-value: 1.13e-05
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
@@ -2389,10 +2453,6 @@ significant:
   strength only increases punting distance up to a point: beyond that,
   it decreases again.
 \end{itemize}
-
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-\end{verbatim}
 
 xxx
 
@@ -2541,7 +2601,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{Output}
-\protect\hypertarget{output-2}{}
+\protect\hypertarget{output-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2725,7 +2785,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{Output}
-\protect\hypertarget{output-3}{}
+\protect\hypertarget{output-2}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2856,7 +2916,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-2}{}
+\protect\hypertarget{the-data-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3338,7 +3398,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-3}{}
+\protect\hypertarget{the-data-2}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3419,8 +3479,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-82-1.pdf}
-\caption{plot of chunk unnamed-chunk-82}
+\includegraphics{figure/unnamed-chunk-84-1.pdf}
+\caption{plot of chunk unnamed-chunk-84}
 \end{figure}
 
 \end{frame}
@@ -3542,8 +3602,8 @@ miners
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-87-1.pdf}
-\caption{plot of chunk unnamed-chunk-87}
+\includegraphics{figure/unnamed-chunk-89-1.pdf}
+\caption{plot of chunk unnamed-chunk-89}
 \end{figure}
 
 \end{frame}
@@ -3800,7 +3860,7 @@ def
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-98-1.pdf} mlogit.pdf
+\includegraphics{figure/unnamed-chunk-100-1.pdf} mlogit.pdf
 
 \end{frame}
 
@@ -3839,7 +3899,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-4}{}
+\protect\hypertarget{the-data-3}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4177,13 +4237,13 @@ def
 
 \begin{verbatim}
 ##   age sex brand probability
-## 1  32   0     1   0.4048727
-## 2  35   1     2   0.4316859
-## 3  38   0     3   0.7354677
-## 4  35   0     3   0.4721813
-## 5  28   0     2   0.1832969
-## 6  38   1     2   0.2516220
-## 7  24   1     1   0.9153208
+## 1  28   0     2  0.18329690
+## 2  24   1     3  0.00278882
+## 3  35   1     3  0.48427275
+## 4  24   1     1  0.91532076
+## 5  38   0     1  0.02598163
+## 6  24   0     1  0.94795822
+## 7  38   0     2  0.23855071
 \end{verbatim}
 
 \end{frame}
@@ -4203,8 +4263,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-111-1.pdf}
-\caption{plot of chunk unnamed-chunk-111}
+\includegraphics{figure/unnamed-chunk-113-1.pdf}
+\caption{plot of chunk unnamed-chunk-113}
 \end{figure}
 
 \end{frame}
@@ -4493,8 +4553,8 @@ Same P-value as before, so we haven't changed anything important.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-118-1.pdf}
-\caption{plot of chunk unnamed-chunk-118}
+\includegraphics{figure/unnamed-chunk-120-1.pdf}
+\caption{plot of chunk unnamed-chunk-120}
 \end{figure}
 
 \end{frame}
@@ -4542,8 +4602,8 @@ Same P-value as before, so we haven't changed anything important.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-120-1.pdf}
-\caption{plot of chunk unnamed-chunk-120}
+\includegraphics{figure/unnamed-chunk-122-1.pdf}
+\caption{plot of chunk unnamed-chunk-122}
 \end{figure}
 
 \end{frame}
@@ -4735,7 +4795,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-5}{}
+\protect\hypertarget{the-data-4}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4887,8 +4947,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-128-1.pdf}
-\caption{plot of chunk unnamed-chunk-128}
+\includegraphics{figure/unnamed-chunk-130-1.pdf}
+\caption{plot of chunk unnamed-chunk-130}
 \end{figure}
 
 This looks good (with only 12 points).
@@ -5008,8 +5068,8 @@ four lists of survival probabilities belong to.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-134-1.pdf}
-\caption{plot of chunk unnamed-chunk-134}
+\includegraphics{figure/unnamed-chunk-136-1.pdf}
+\caption{plot of chunk unnamed-chunk-136}
 \end{figure}
 
 \begin{small}
@@ -5513,7 +5573,7 @@ def
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-149-1.pdf} def
+\includegraphics{figure/unnamed-chunk-151-1.pdf} def
 
 \end{frame}
 
@@ -5563,8 +5623,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-150-1.pdf}
-\caption{plot of chunk unnamed-chunk-150}
+\includegraphics{figure/unnamed-chunk-152-1.pdf}
+\caption{plot of chunk unnamed-chunk-152}
 \end{figure}
 
 No problems here.
@@ -5648,8 +5708,8 @@ summary(y.1)
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-153-1.pdf}
-\caption{plot of chunk unnamed-chunk-153}
+\includegraphics{figure/unnamed-chunk-155-1.pdf}
+\caption{plot of chunk unnamed-chunk-155}
 \end{figure}
 
 Down-and-up indicates incorrect relationship between age and survival.
@@ -5706,8 +5766,8 @@ Add age-squared term.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-155-1.pdf}
-\caption{plot of chunk unnamed-chunk-155}
+\includegraphics{figure/unnamed-chunk-157-1.pdf}
+\caption{plot of chunk unnamed-chunk-157}
 \end{figure}
 
 Not great, but less problematic than before.
@@ -5784,7 +5844,7 @@ These:
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-6}{}
+\protect\hypertarget{the-data-5}{}
 
 In \texttt{hairpain.txt}:
 
@@ -6277,7 +6337,7 @@ pairwise.t.test(pain, hair, p.adj = "bon")
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-7}{}
+\protect\hypertarget{the-data-6}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6318,8 +6378,8 @@ pairwise.t.test(pain, hair, p.adj = "bon")
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-165-1.pdf}
-\caption{plot of chunk unnamed-chunk-165}
+\includegraphics{figure/unnamed-chunk-167-1.pdf}
+\caption{plot of chunk unnamed-chunk-167}
 \end{figure}
 
 \end{frame}
@@ -6430,8 +6490,8 @@ interaction (can be removed).
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-169-1.pdf}
-\caption{plot of chunk unnamed-chunk-169}
+\includegraphics{figure/unnamed-chunk-171-1.pdf}
+\caption{plot of chunk unnamed-chunk-171}
 \end{figure}
 
 Lines basically parallel, indicating no interaction.
@@ -6500,7 +6560,7 @@ those of standard silencers.
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-8}{}
+\protect\hypertarget{the-data-7}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6558,8 +6618,8 @@ those of standard silencers.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-174-1.pdf}
-\caption{plot of chunk unnamed-chunk-174}
+\includegraphics{figure/unnamed-chunk-176-1.pdf}
+\caption{plot of chunk unnamed-chunk-176}
 \end{figure}
 
 \begin{itemize}
@@ -6671,8 +6731,8 @@ those of standard silencers.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-178-1.pdf}
-\caption{plot of chunk unnamed-chunk-178}
+\includegraphics{figure/unnamed-chunk-180-1.pdf}
+\caption{plot of chunk unnamed-chunk-180}
 \end{figure}
 
 The lines are definitely \emph{not} parallel, showing that the effect of
@@ -6699,8 +6759,8 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-179-1.pdf}
-\caption{plot of chunk unnamed-chunk-179}
+\includegraphics{figure/unnamed-chunk-181-1.pdf}
+\caption{plot of chunk unnamed-chunk-181}
 \end{figure}
 
 \end{frame}
@@ -7735,6 +7795,10 @@ Now run ANOVA \emph{as if regression}: \{\scriptsize
   additional kickback.
 \end{itemize}
 
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+\end{verbatim}
+
 \end{frame}
 
 \hypertarget{analysis-of-covariance}{%
@@ -7808,67 +7872,9 @@ b 9 22
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
-\end{verbatim}
-
-\begin{verbatim}
-## ✔ ggplot2 3.1.1          ✔ purrr   0.3.2     
-## ✔ tibble  2.1.1          ✔ dplyr   0.8.0.1   
-## ✔ tidyr   0.8.3.9000     ✔ stringr 1.4.0     
-## ✔ readr   1.3.1          ✔ forcats 0.3.0
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'ggplot2' was built under R version 3.5.3
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'tibble' was built under R version 3.5.3
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'tidyr' was built under R version 3.5.3
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'readr' was built under R version 3.5.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'purrr' was built under R version 3.5.3
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'dplyr' was built under R version 3.5.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'stringr' was built under R version 3.5.2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'forcats' was built under R version 3.5.1
-\end{verbatim}
-
-\begin{verbatim}
-## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(broom)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'broom' was built under R version 3.5.2
-\end{verbatim}
 
 \end{frame}
 
@@ -7940,8 +7946,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-213-1.pdf}
-\caption{plot of chunk unnamed-chunk-213}
+\includegraphics{figure/unnamed-chunk-215-1.pdf}
+\caption{plot of chunk unnamed-chunk-215}
 \end{figure}
 
 \begin{itemize}
@@ -8483,7 +8489,7 @@ def
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-9}{}
+\protect\hypertarget{the-data-8}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8637,8 +8643,8 @@ inherits \texttt{colour} from first one. This data frame has no
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-231-1.pdf}
-\caption{plot of chunk unnamed-chunk-231}
+\includegraphics{figure/unnamed-chunk-233-1.pdf}
+\caption{plot of chunk unnamed-chunk-233}
 \end{figure}
 
 \begin{small}
@@ -9289,8 +9295,8 @@ interaction plot.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-247-1.pdf}
-\caption{plot of chunk unnamed-chunk-247}
+\includegraphics{figure/unnamed-chunk-249-1.pdf}
+\caption{plot of chunk unnamed-chunk-249}
 \end{figure}
 
 \end{frame}
@@ -9493,7 +9499,7 @@ Separated by \emph{tabs}:
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-10}{}
+\protect\hypertarget{the-data-9}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9704,8 +9710,8 @@ exercise.2
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-258-1.pdf}
-\caption{plot of chunk unnamed-chunk-258}
+\includegraphics{figure/unnamed-chunk-260-1.pdf}
+\caption{plot of chunk unnamed-chunk-260}
 \end{figure}
 
 \end{frame}
@@ -9905,8 +9911,8 @@ ran}
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-264-1.pdf}
-\caption{plot of chunk unnamed-chunk-264}
+\includegraphics{figure/unnamed-chunk-266-1.pdf}
+\caption{plot of chunk unnamed-chunk-266}
 \end{figure}
 
 \begin{itemize}
@@ -10178,7 +10184,7 @@ or low fertilizer.
 \end{frame}
 
 \begin{frame}[fragile]{Output}
-\protect\hypertarget{output-4}{}
+\protect\hypertarget{output-3}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10268,20 +10274,31 @@ Component \(x\) contains LD score(s), here in descending order:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{d <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(hilo, hilo.pred}\OperatorTok{$}\NormalTok{x) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(LD1))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{d}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   fertilizer yield weight        LD1
-## 1        low    34     10  3.0931414
-## 2        low    29     14  1.9210963
-## 3        low    35     11  1.0751090
-## 4        low    32     13  0.8724245
-## 5       high    34     13 -0.6609276
-## 6       high    33     14 -1.1456079
-## 7       high    38     12 -2.4762756
-## 8       high    35     14 -2.6789600
+## # A tibble: 2 x 2
+##   line_x line_y
+##    <dbl>  <dbl>
+## 1     31     14
+## 2     38     10
 \end{verbatim}
 
 High fertilizer have yield and weight high, negative LD1 scores.
@@ -10299,10 +10316,14 @@ With one LD score, plot against (true) groups, eg. boxplot:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): object 'fertilizer' not found
+\end{verbatim}
+
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-272-1.pdf}
-\caption{plot of chunk unnamed-chunk-272}
+\includegraphics{figure/unnamed-chunk-274-1.pdf}
+\caption{plot of chunk unnamed-chunk-274}
 \end{figure}
 
 \end{frame}
@@ -10870,15 +10891,13 @@ First and third quartiles for three response variables (reading down):
 \end{Shaded}
 
 \begin{verbatim}
-##         y     smk     w        LD1        LD2         LD3
-## 1 200.375 166.275 51.00 -5.9688625 -0.3330095 -0.04523828
-## 2 200.375 155.875 51.00 -4.1723048 -1.0396138  0.93093630
-## 3 192.550 166.275 51.00 -2.8174566 -0.1007728 -1.51940856
-## 4 200.375 166.275 59.05 -1.3059358  0.9791583  0.54572212
-## 5 192.550 155.875 51.00 -1.0208989 -0.8073770 -0.54323399
-## 6 200.375 155.875 59.05  0.4906219  0.2725540  1.52189670
-## 7 192.550 166.275 59.05  1.8454701  1.2113950 -0.92844817
-## 8 192.550 155.875 59.05  3.6420278  0.5047907  0.04772641
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 \end{verbatim}
 
 \begin{itemize}
@@ -10910,8 +10929,8 @@ First and third quartiles for three response variables (reading down):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-288-1.pdf}
-\caption{plot of chunk unnamed-chunk-288}
+\includegraphics{figure/unnamed-chunk-290-1.pdf}
+\caption{plot of chunk unnamed-chunk-290}
 \end{figure}
 
 \end{frame}
@@ -10933,7 +10952,7 @@ library(ggbiplot) @
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-289-1.pdf} \$ \%\$ \%\$
+\includegraphics{figure/unnamed-chunk-291-1.pdf} \$ \%\$ \%\$
 
 \end{frame}
 
@@ -11215,8 +11234,8 @@ Everyone correctly classified.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-296-1.pdf}
-\caption{plot of chunk unnamed-chunk-296}
+\includegraphics{figure/unnamed-chunk-298-1.pdf}
+\caption{plot of chunk unnamed-chunk-298}
 \end{figure}
 
 \end{frame}
@@ -11232,8 +11251,8 @@ Everyone correctly classified.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-297-1.pdf}
-\caption{plot of chunk unnamed-chunk-297}
+\includegraphics{figure/unnamed-chunk-299-1.pdf}
+\caption{plot of chunk unnamed-chunk-299}
 \end{figure}
 
 \end{frame}
@@ -11272,8 +11291,8 @@ Make \texttt{label} be identifier of person. Now need legend:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-298-1.pdf}
-\caption{plot of chunk unnamed-chunk-298}
+\includegraphics{figure/unnamed-chunk-300-1.pdf}
+\caption{plot of chunk unnamed-chunk-300}
 \end{figure}
 
 \end{frame}
@@ -11353,12 +11372,13 @@ picking out the ones where things are not certain:
 \end{Shaded}
 
 \begin{verbatim}
-##           obs       pred admin bellydancer politician   max
-## 1 bellydancer politician 0.000       0.001      0.999 0.999
-## 2  politician politician 0.006       0.000      0.994 0.994
-## 3  politician politician 0.001       0.000      0.999 0.999
-## 4  politician politician 0.000       0.009      0.991 0.991
-## 5       admin      admin 0.819       0.000      0.181 0.819
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::mutate
+## * dplyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "plyr")
+## * conflict_prefer("mutate", "dplyr")
 \end{verbatim}
 
 \$
@@ -11594,8 +11614,8 @@ picking out the ones where things are not certain:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-308-1.pdf}
-\caption{plot of chunk unnamed-chunk-308}
+\includegraphics{figure/unnamed-chunk-310-1.pdf}
+\caption{plot of chunk unnamed-chunk-310}
 \end{figure}
 
 \textbackslash{}begin\{frame\}{[}figure{]}\{Comments\}
@@ -11725,8 +11745,8 @@ A bit more clustered:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-312-1.pdf}
-\caption{plot of chunk unnamed-chunk-312}
+\includegraphics{figure/unnamed-chunk-314-1.pdf}
+\caption{plot of chunk unnamed-chunk-314}
 \end{figure}
 
 \end{frame}
@@ -12038,8 +12058,8 @@ We did this the wrong way around, though!
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-319-1.pdf}
-\caption{plot of chunk unnamed-chunk-319}
+\includegraphics{figure/unnamed-chunk-321-1.pdf}
+\caption{plot of chunk unnamed-chunk-321}
 \end{figure}
 
 How to measure distance between set of red points and set of blue ones?
@@ -12105,7 +12125,7 @@ Complete-linkage distance is distance between farthest points.
 \protect\hypertarget{wards-method}{}
 
 Work out mean of each cluster and join point to its mean:
-\includegraphics{figure/unnamed-chunk-322-1.pdf}
+\includegraphics{figure/unnamed-chunk-324-1.pdf}
 
 \begin{enumerate}
 [(i)]
@@ -12124,8 +12144,8 @@ Join each point to this mean:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-323-1.pdf}
-\caption{plot of chunk unnamed-chunk-323}
+\includegraphics{figure/unnamed-chunk-325-1.pdf}
+\caption{plot of chunk unnamed-chunk-325}
 \end{figure}
 
 \begin{enumerate}
@@ -12279,8 +12299,8 @@ Dissimilarities for language data \emph{ were how many number names had
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-327-1.pdf}
-\caption{plot of chunk unnamed-chunk-327}
+\includegraphics{figure/unnamed-chunk-329-1.pdf}
+\caption{plot of chunk unnamed-chunk-329}
 \end{figure}
 
 \end{frame}
@@ -12378,8 +12398,8 @@ joined to `fr` and `it`).
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-330-1.pdf}
-\caption{plot of chunk unnamed-chunk-330}
+\includegraphics{figure/unnamed-chunk-332-1.pdf}
+\caption{plot of chunk unnamed-chunk-332}
 \end{figure}
 
 \end{frame}
@@ -12859,7 +12879,7 @@ dissimilarities):
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-11}{}
+\protect\hypertarget{the-data-10}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -13662,8 +13682,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-379-1.pdf}
-\caption{plot of chunk unnamed-chunk-379}
+\includegraphics{figure/unnamed-chunk-381-1.pdf}
+\caption{plot of chunk unnamed-chunk-381}
 \end{figure}
 
 \end{frame}
@@ -13720,8 +13740,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-381-1.pdf}
-\caption{plot of chunk unnamed-chunk-381}
+\includegraphics{figure/unnamed-chunk-383-1.pdf}
+\caption{plot of chunk unnamed-chunk-383}
 \end{figure}
 
 \end{frame}
@@ -13752,8 +13772,8 @@ def
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-382-1.pdf}
-\caption{plot of chunk unnamed-chunk-382}
+\includegraphics{figure/unnamed-chunk-384-1.pdf}
+\caption{plot of chunk unnamed-chunk-384}
 \end{figure}
 
 \end{frame}
@@ -13951,7 +13971,7 @@ Read in data:
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-12}{}
+\protect\hypertarget{the-data-11}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -14090,8 +14110,8 @@ We know how to plot data frames, so make one first.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-390-1.pdf}
-\caption{plot of chunk unnamed-chunk-390}
+\includegraphics{figure/unnamed-chunk-392-1.pdf}
+\caption{plot of chunk unnamed-chunk-392}
 \end{figure}
 
 \end{frame}
@@ -14148,8 +14168,8 @@ We know how to plot data frames, so make one first.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-392-1.pdf}
-\caption{plot of chunk unnamed-chunk-392}
+\includegraphics{figure/unnamed-chunk-394-1.pdf}
+\caption{plot of chunk unnamed-chunk-394}
 \end{figure}
 
 \end{frame}
@@ -14190,8 +14210,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-393-1.pdf}
-\caption{plot of chunk unnamed-chunk-393}
+\includegraphics{figure/unnamed-chunk-395-1.pdf}
+\caption{plot of chunk unnamed-chunk-395}
 \end{figure}
 
 \textbackslash{}end\{multicols\}
@@ -14296,8 +14316,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-399-1.pdf}
-\caption{plot of chunk unnamed-chunk-399}
+\includegraphics{figure/unnamed-chunk-401-1.pdf}
+\caption{plot of chunk unnamed-chunk-401}
 \end{figure}
 
 \end{frame}
@@ -14311,8 +14331,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-400-1.pdf}
-\caption{plot of chunk unnamed-chunk-400}
+\includegraphics{figure/unnamed-chunk-402-1.pdf}
+\caption{plot of chunk unnamed-chunk-402}
 \end{figure}
 
 \end{frame}
@@ -14379,8 +14399,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-402-1.pdf}
-\caption{plot of chunk unnamed-chunk-402}
+\includegraphics{figure/unnamed-chunk-404-1.pdf}
+\caption{plot of chunk unnamed-chunk-404}
 \end{figure}
 
 Thunder Bay and Sault Ste Marie dominate the picture since they are so
@@ -14545,8 +14565,8 @@ and save as .csv when we are happy:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-407-1.pdf}
-\caption{plot of chunk unnamed-chunk-407}
+\includegraphics{figure/unnamed-chunk-409-1.pdf}
+\caption{plot of chunk unnamed-chunk-409}
 \end{figure}
 
 \end{frame}
@@ -14562,8 +14582,8 @@ and save as .csv when we are happy:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-408-1.pdf}
-\caption{plot of chunk unnamed-chunk-408}
+\includegraphics{figure/unnamed-chunk-410-1.pdf}
+\caption{plot of chunk unnamed-chunk-410}
 \end{figure}
 
 Get rid of Thunder Bay and Sault Ste Marie.
@@ -14639,8 +14659,8 @@ Get rid of Thunder Bay and Sault Ste Marie.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-410-1.pdf}
-\caption{plot of chunk unnamed-chunk-410}
+\includegraphics{figure/unnamed-chunk-412-1.pdf}
+\caption{plot of chunk unnamed-chunk-412}
 \end{figure}
 
 Came out geographically about right.
@@ -14774,7 +14794,7 @@ Google map\}
 g2
 ```
 
-![plot of chunk unnamed-chunk-416](figure/unnamed-chunk-416-1.pdf)
+![plot of chunk unnamed-chunk-418](figure/unnamed-chunk-418-1.pdf)
 
      
 
@@ -14783,7 +14803,7 @@ g2
 gmap
 ```
 
-![plot of chunk unnamed-chunk-417](figure/unnamed-chunk-417-1.pdf)
+![plot of chunk unnamed-chunk-419](figure/unnamed-chunk-419-1.pdf)
 
  
 \end{multicols}
@@ -15222,8 +15242,8 @@ Rotation angle \(\theta\) such that \(\cos\theta=0.885\),
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-431-1.pdf}
-\caption{plot of chunk unnamed-chunk-431}
+\includegraphics{figure/unnamed-chunk-433-1.pdf}
+\caption{plot of chunk unnamed-chunk-433}
 \end{figure}
 
 23 degrees counterclockwise seems about right.
@@ -15701,8 +15721,8 @@ MDS higher too. (MDS working well.)
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-444-1.pdf}
-\caption{plot of chunk unnamed-chunk-444}
+\includegraphics{figure/unnamed-chunk-446-1.pdf}
+\caption{plot of chunk unnamed-chunk-446}
 \end{figure}
 
 Poor correspondence (not much trend).
@@ -15720,8 +15740,8 @@ Poor correspondence (not much trend).
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-445-1.pdf}
-\caption{plot of chunk unnamed-chunk-445}
+\includegraphics{figure/unnamed-chunk-447-1.pdf}
+\caption{plot of chunk unnamed-chunk-447}
 \end{figure}
 
 Almost perfect: all actual \(x=1\) go with smallest mapped distances;
@@ -16004,8 +16024,8 @@ instructions.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-452-1.pdf}
-\caption{plot of chunk unnamed-chunk-452}
+\includegraphics{figure/unnamed-chunk-454-1.pdf}
+\caption{plot of chunk unnamed-chunk-454}
 \end{figure}
 
 Imagine scree plot continues at zero, so 2 components is a \emph{big}
@@ -16576,15 +16596,13 @@ running countries:
 \end{Shaded}
 
 \begin{verbatim}
-##      Comp.1 country          Country
-## 1 10.652914      ck     Cook Islands
-## 2  7.297865      ws            Samoa
-## 3  4.297909      mt            Malta
-## 4  3.945224      pg Papua New Guinea
-## 5  3.150886      sg        Singapore
-## 6  2.787273      th         Thailand
-## 7  2.773125      id        Indonesia
-## 8  2.697066      gu             Guam
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 \end{verbatim}
 
 \end{frame}
@@ -16603,15 +16621,13 @@ running countries:
 \end{Shaded}
 
 \begin{verbatim}
-##      Comp.1 country                  Country
-## 1 -3.462175      us United States of America
-## 2 -3.052104      uk           United Kingdom
-## 3 -2.752084      it                    Italy
-## 4 -2.651062      ru       Russian Federation
-## 5 -2.613964     dee             East Germany
-## 6 -2.576272     dew             West Germany
-## 7 -2.468919      au                Australia
-## 8 -2.191917      fr                   France
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 \end{verbatim}
 
 \end{frame}
@@ -16630,15 +16646,13 @@ running countries:
 \end{Shaded}
 
 \begin{verbatim}
-##      Comp.1 country          Country
-## 1 10.652914      ck     Cook Islands
-## 2  7.297865      ws            Samoa
-## 3  4.297909      mt            Malta
-## 4  3.945224      pg Papua New Guinea
-## 5  3.150886      sg        Singapore
-## 6  2.787273      th         Thailand
-## 7  2.773125      id        Indonesia
-## 8  2.697066      gu             Guam
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 \end{verbatim}
 
 \end{frame}
@@ -16657,15 +16671,13 @@ running countries:
 \end{Shaded}
 
 \begin{verbatim}
-##      Comp.2 country                   Country
-## 1 1.6860391      cr                Costa Rica
-## 2 1.5791490      kp             Korea (North)
-## 3 1.5226742      ck              Cook Islands
-## 4 1.3957839      tr                    Turkey
-## 5 1.3167578      pt                  Portugal
-## 6 1.2829272      gu                      Guam
-## 7 1.0663756      no                    Norway
-## 8 0.9547437      ir Iran, Islamic Republic of
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 \end{verbatim}
 
 \end{frame}
@@ -16684,17 +16696,13 @@ running countries:
 \end{Shaded}
 
 \begin{verbatim}
-##        Comp.2 country                  Country
-## 1  -2.4715736      do       Dominican Republic
-## 2  -1.9196130      ws                    Samoa
-## 3  -1.8055052      sg                Singapore
-## 4  -1.7832229      bm                  Bermuda
-## 5  -1.7386063      my                 Malaysia
-## 6  -1.6851772      th                 Thailand
-## 7  -1.1204235      us United States of America
-## 8  -0.9989821      it                    Italy
-## 9  -0.7639385      ru       Russian Federation
-## 10 -0.6470634      br                   Brazil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 \end{verbatim}
 
 \end{frame}
@@ -16731,8 +16739,8 @@ running countries:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-466-1.pdf}
-\caption{plot of chunk unnamed-chunk-466}
+\includegraphics{figure/unnamed-chunk-468-1.pdf}
+\caption{plot of chunk unnamed-chunk-468}
 \end{figure}
 
 \end{frame}
@@ -16998,8 +17006,8 @@ Using correlation matrix:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-472-1.pdf}
-\caption{plot of chunk unnamed-chunk-472}
+\includegraphics{figure/unnamed-chunk-474-1.pdf}
+\caption{plot of chunk unnamed-chunk-474}
 \end{figure}
 
 \end{frame}
@@ -17252,8 +17260,8 @@ P-value not small, so 2 factors OK.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-479-1.pdf}
-\caption{plot of chunk unnamed-chunk-479}
+\includegraphics{figure/unnamed-chunk-481-1.pdf}
+\caption{plot of chunk unnamed-chunk-481}
 \end{figure}
 
 \end{frame}
@@ -17423,17 +17431,13 @@ Most negative on factor 2:
 \end{Shaded}
 
 \begin{verbatim}
-##                     Country     Factor1    Factor2
-## 1  United States of America -0.21942697 -1.7251036
-## 2                     Italy -0.18436705 -1.4990521
-## 3        Dominican Republic  2.12906546 -1.4666402
-## 4        Russian Federation -0.32473110 -1.2236590
-## 5                   Bermuda  1.46541593 -1.1704466
-## 6            United Kingdom -0.58969058 -1.0139983
-## 7                    France -0.25301846 -0.9519162
-## 8              West Germany -0.46748876 -0.9079005
-## 9                    Canada -0.13690160 -0.8920777
-## 10                   Brazil  0.07780163 -0.8871291
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 \end{frame}
@@ -17454,17 +17458,13 @@ Most negative on factor 1:
 \end{Shaded}
 
 \begin{verbatim}
-##                      Country    Factor1     Factor2
-## 1                   Portugal -1.2509805  0.78366889
-## 2                     Norway -0.9920727  0.62299560
-## 3                New Zealand -0.9813348  0.26603491
-## 4                      Kenya -0.9749696 -0.07099477
-## 5  Iran, Islamic Republic of -0.9231505  0.50271208
-## 6                Netherlands -0.9078661  0.23948200
-## 7                    Romania -0.8178386  0.18555001
-## 8                     Mexico -0.8096291  0.51446762
-## 9                    Finland -0.8094725 -0.05705220
-## 10                   Belgium -0.7960275 -0.23885253
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 \end{frame}
@@ -17859,22 +17859,27 @@ tricky:
 \begin{Highlighting}[]
 \NormalTok{loadings <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{unclass}\NormalTok{(bem}\FloatTok{.2}\OperatorTok{$}\NormalTok{loadings)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{trait =} \KeywordTok{rownames}\NormalTok{(bem}\FloatTok{.2}\OperatorTok{$}\NormalTok{loadings))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::mutate
+## * plyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("mutate", "plyr")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{loadings }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor1      Factor2    trait
-## 1   0.3137466  0.376484908  helpful
-## 2   0.4532904  0.117140647  reliant
-## 3   0.4336574  0.192602996   defbel
-## 4  -0.1309965  0.337629288 yielding
-## 5   0.1523718  0.370530549 cheerful
-## 6   0.5212403  0.005870336    indpt
-## 7   0.2670788  0.075542858   athlet
-## 8  -0.4144579 -0.065372760      shy
-## 9   0.6049588  0.033004846   assert
-## 10  0.6569855  0.020777649  strpers
+## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
 \end{verbatim}
 
 \end{frame}
@@ -17891,24 +17896,7 @@ Arbitrarily defining \(>0.4\) or \(<-0.4\) as ``big'':
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor1      Factor2    trait
-## 1   0.4532904  0.117140647  reliant
-## 2   0.4336574  0.192602996   defbel
-## 3   0.5212403  0.005870336    indpt
-## 4  -0.4144579 -0.065372760      shy
-## 5   0.6049588  0.033004846   assert
-## 6   0.6569855  0.020777649  strpers
-## 7   0.6487190 -0.126405816 forceful
-## 8   0.7654924  0.069513572 leaderab
-## 9   0.4416176  0.161238425     risk
-## 10  0.5416796  0.112807957   decide
-## 11  0.5109964  0.133626767 selfsuff
-## 12  0.6676490 -0.244855780 dominant
-## 13  0.6066864  0.171848896    stand
-## 14  0.7627129 -0.040667202  leadact
-## 15  0.4448064  0.089146147  individ
-## 16  0.4504188  0.053207281  compete
-## 17  0.4136498  0.136869589 ambitiou
+## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
 \end{verbatim}
 
 \end{frame}
@@ -17923,18 +17911,7 @@ Arbitrarily defining \(>0.4\) or \(<-0.4\) as ``big'':
 \end{Shaded}
 
 \begin{verbatim}
-##        Factor1   Factor2    trait
-## 1   0.17789112 0.5537994   affect
-## 2   0.15121266 0.4166622    loyal
-## 3   0.02301456 0.5256654 sympathy
-## 4   0.13476970 0.4242037 sensitiv
-## 5   0.09111299 0.6101294 undstand
-## 6   0.11350643 0.6272223  compass
-## 7   0.06061755 0.5802714   soothe
-## 8   0.11893011 0.4300698    happy
-## 9   0.07956978 0.7191610     warm
-## 10  0.05113807 0.7102763   tender
-## 11 -0.01873224 0.7022768   gentle
+## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
 \end{verbatim}
 
 \end{frame}
@@ -18067,25 +18044,27 @@ Numbers on plot are row numbers of \texttt{bem} data frame.
 \NormalTok{bem_tidy <-}\StringTok{ }\NormalTok{bem }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{row =} \KeywordTok{row_number}\NormalTok{()) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{gather}\NormalTok{(trait, score, }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{subno, }\OperatorTok{-}\NormalTok{row))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::mutate
+## * plyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("mutate", "plyr")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{bem_tidy}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 16,236 x 4
-##    subno   row trait   score
-##    <dbl> <int> <chr>   <dbl>
-##  1     1     1 helpful     7
-##  2     2     2 helpful     5
-##  3     3     3 helpful     7
-##  4     4     4 helpful     6
-##  5     5     5 helpful     6
-##  6     7     6 helpful     5
-##  7     8     7 helpful     6
-##  8     9     8 helpful     7
-##  9    10     9 helpful     7
-## 10    11    10 helpful     7
-## # … with 16,226 more rows
+## Error in eval(expr, envir, enclos): object 'bem_tidy' not found
 \end{verbatim}
 
 \end{frame}
@@ -18100,17 +18079,7 @@ Numbers on plot are row numbers of \texttt{bem} data frame.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor1      Factor2    trait
-## 1   0.3137466  0.376484908  helpful
-## 2   0.4532904  0.117140647  reliant
-## 3   0.4336574  0.192602996   defbel
-## 4  -0.1309965  0.337629288 yielding
-## 5   0.1523718  0.370530549 cheerful
-## 6   0.5212403  0.005870336    indpt
-## 7   0.2670788  0.075542858   athlet
-## 8  -0.4144579 -0.065372760      shy
-## 9   0.6049588  0.033004846   assert
-## 10  0.6569855  0.020777649  strpers
+## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
 \end{verbatim}
 
 Want to add the factor scores for each trait to our tidy data frame
@@ -18129,7 +18098,7 @@ Want to add the factor scores for each trait to our tidy data frame
 \end{Shaded}
 
 \begin{verbatim}
-## Joining, by = "trait"
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 \end{verbatim}
 
 \begin{Shaded}
@@ -18139,21 +18108,7 @@ Want to add the factor scores for each trait to our tidy data frame
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 12 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1    32    22 compass      6  0.114   0.627 
-##  2   358   209 conscien     7  0.328   0.308 
-##  3   154   102 helpful      7  0.314   0.376 
-##  4    15    13 loyal        7  0.151   0.417 
-##  5     3     3 truthful     7  0.109   0.315 
-##  6   336   197 happy        7  0.119   0.430 
-##  7   485   274 sympathy     7  0.0230  0.526 
-##  8    89    55 stand        6  0.607   0.172 
-##  9   578   338 shy          1 -0.414  -0.0654
-## 10   404   230 softspok     3 -0.230   0.336 
-## 11    86    52 compass      4  0.114   0.627 
-## 12   425   241 feminine     6  0.113   0.323
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 \end{verbatim}
 
 \end{frame}
@@ -18172,20 +18127,7 @@ score exceeds 0.4 in absolute value (our ``big'' from before):
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 11 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   755   366 affect       7  0.178    0.554
-##  2   755   366 loyal        7  0.151    0.417
-##  3   755   366 sympathy     7  0.0230   0.526
-##  4   755   366 sensitiv     7  0.135    0.424
-##  5   755   366 undstand     7  0.0911   0.610
-##  6   755   366 compass      6  0.114    0.627
-##  7   755   366 soothe       7  0.0606   0.580
-##  8   755   366 happy        7  0.119    0.430
-##  9   755   366 warm         7  0.0796   0.719
-## 10   755   366 tender       7  0.0511   0.710
-## 11   755   366 gentle       7 -0.0187   0.702
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 \end{verbatim}
 
 As expected, high scorer on these.
@@ -18208,20 +18150,7 @@ low. Can we do them all at once?
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 33 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   369   214 affect       1  0.178    0.554
-##  2   534   311 affect       5  0.178    0.554
-##  3   755   366 affect       7  0.178    0.554
-##  4   369   214 loyal        7  0.151    0.417
-##  5   534   311 loyal        4  0.151    0.417
-##  6   755   366 loyal        7  0.151    0.417
-##  7   369   214 sympathy     4  0.0230   0.526
-##  8   534   311 sympathy     4  0.0230   0.526
-##  9   755   366 sympathy     7  0.0230   0.526
-## 10   369   214 sensitiv     7  0.135    0.424
-## # … with 23 more rows
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 \end{verbatim}
 
 Can we display each individual in own column?
@@ -18246,20 +18175,7 @@ Un-\texttt{tidy}, that is, \texttt{spread}:
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 11 x 4
-##    trait    `214` `311` `366`
-##    <chr>    <dbl> <dbl> <dbl>
-##  1 affect       1     5     7
-##  2 compass      5     4     6
-##  3 gentle       2     3     7
-##  4 happy        4     3     7
-##  5 loyal        7     4     7
-##  6 sensitiv     7     4     7
-##  7 soothe       3     4     7
-##  8 sympathy     4     4     7
-##  9 tender       3     4     7
-## 10 undstand     5     3     7
-## 11 warm         1     3     7
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 \end{verbatim}
 
 366 high, 311 middling, 214 (sometimes) low.
@@ -18281,26 +18197,7 @@ These were high, low, low on factor 1. Adapt code:
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 17 x 4
-##    trait    `230` `258` `359`
-##    <chr>    <dbl> <dbl> <dbl>
-##  1 ambitiou     7     2     4
-##  2 assert       7     3     1
-##  3 compete      6     2     1
-##  4 decide       7     1     2
-##  5 defbel       7     1     1
-##  6 dominant     7     1     1
-##  7 forceful     7     1     1
-##  8 individ      7     3     3
-##  9 indpt        7     7     1
-## 10 leadact      7     1     1
-## 11 leaderab     7     1     1
-## 12 reliant      7     4     1
-## 13 risk         7     5     7
-## 14 selfsuff     7     4     1
-## 15 shy          2     7     5
-## 16 stand        7     1     6
-## 17 strpers      7     1     3
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 \end{verbatim}
 
 \end{frame}
@@ -18356,6 +18253,16 @@ into a data frame, as before:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::mutate
+## * plyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("mutate", "plyr")
+\end{verbatim}
+
 then show the highest few loadings on each factor.
 
 \end{frame}
@@ -18373,17 +18280,13 @@ then show the highest few loadings on each factor.
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor1    trait
-## 1  0.8127595  compass
-## 2  0.6756043 undstand
-## 3  0.6611293 sympathy
-## 4  0.6408327 sensitiv
-## 5  0.5971006   soothe
-## 6  0.3481290     warm
-## 7  0.2797159   gentle
-## 8  0.2788627   tender
-## 9  0.2501505  helpful
-## 10 0.2340594 conscien
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Compassionate, understanding, sympathetic, soothing: thoughtful of
@@ -18404,17 +18307,13 @@ others.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor2    trait
-## 1   0.7615492  strpers
-## 2   0.7160312 forceful
-## 3   0.6981500   assert
-## 4   0.5041921 dominant
-## 5   0.3929344 leaderab
-## 6   0.3669560    stand
-## 7   0.3507080  leadact
-## 8  -0.3131682 softspok
-## 9  -0.2866862      shy
-## 10  0.2602525   analyt
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Strong personality, forceful, assertive, dominant: getting ahead.
@@ -18434,17 +18333,13 @@ Strong personality, forceful, assertive, dominant: getting ahead.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor3    trait
-## 1   0.6697542  reliant
-## 2   0.6475496 selfsuff
-## 3   0.6204018    indpt
-## 4   0.3899607  helpful
-## 5  -0.3393605 gullible
-## 6   0.3333813  individ
-## 7   0.3319003   decide
-## 8   0.3294806 conscien
-## 9   0.2877396 leaderab
-## 10  0.2804170   defbel
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Self-reliant, self-sufficient, independent: going it alone.
@@ -18464,17 +18359,13 @@ Self-reliant, self-sufficient, independent: going it alone.
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor4    trait
-## 1  0.6956206   gentle
-## 2  0.6920303   tender
-## 3  0.5992467     warm
-## 4  0.4465546   affect
-## 5  0.3942568 softspok
-## 6  0.2779793  lovchil
-## 7  0.2444249 undstand
-## 8  0.2442119    happy
-## 9  0.2125905    loyal
-## 10 0.2022861   soothe
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Gentle, tender, warm (affectionate): caring for others.
@@ -18494,17 +18385,13 @@ Gentle, tender, warm (affectionate): caring for others.
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor5    trait
-## 1  0.6956846  compete
-## 2  0.6743459 ambitiou
-## 3  0.3453425     risk
-## 4  0.3423456  individ
-## 5  0.2808623   athlet
-## 6  0.2695570 leaderab
-## 7  0.2449656   decide
-## 8  0.2064415 dominant
-## 9  0.1928159  leadact
-## 10 0.1854989  strpers
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Ambitious, competitive (with a bit of risk-taking and individualism):
@@ -18525,17 +18412,13 @@ Being the best.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor6    trait
-## 1   0.8675651  leadact
-## 2   0.6078869 leaderab
-## 3   0.3378645 dominant
-## 4   0.2014835 forceful
-## 5  -0.1915632      shy
-## 6   0.1789256     risk
-## 7   0.1703440 masculin
-## 8   0.1639190   decide
-## 9   0.1594585  compete
-## 10  0.1466037   athlet
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Acts like a leader, leadership ability (with a bit of Dominant): Taking
@@ -18556,17 +18439,13 @@ charge.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor7    trait
-## 1   0.6698996    happy
-## 2   0.6667105 cheerful
-## 3  -0.5219125    moody
-## 4   0.2191425   athlet
-## 5   0.2126626     warm
-## 6   0.1719953   gentle
-## 7  -0.1640302 masculin
-## 8   0.1601472  reliant
-## 9   0.1472926 yielding
-## 10  0.1410481  lovchil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Acts like a leader, leadership ability (with a bit of Dominant): Taking
@@ -18587,17 +18466,13 @@ charge.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor8    trait
-## 1   0.6296764   affect
-## 2   0.5158355  flatter
-## 3  -0.2512066 softspok
-## 4   0.2214623     warm
-## 5   0.1878549   tender
-## 6   0.1846225  strpers
-## 7  -0.1804838      shy
-## 8   0.1801992  compete
-## 9   0.1658105    loyal
-## 10  0.1548617  helpful
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Affectionate, flattering: Making others feel good.
@@ -18617,17 +18492,13 @@ Affectionate, flattering: Making others feel good.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor9    trait
-## 1   0.8633171    stand
-## 2   0.3403294   defbel
-## 3   0.2446971  individ
-## 4   0.1941110     risk
-## 5  -0.1715481      shy
-## 6   0.1710978   decide
-## 7   0.1197126   assert
-## 8   0.1157729 conscien
-## 9   0.1120308   analyt
-## 10 -0.1115140 gullible
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Taking a stand.
@@ -18647,17 +18518,13 @@ Taking a stand.
 \end{Shaded}
 
 \begin{verbatim}
-##       Factor10    trait
-## 1   0.80751267 feminine
-## 2  -0.26378513 masculin
-## 3   0.24507184 softspok
-## 4   0.23175597 conscien
-## 5   0.20192035 selfsuff
-## 6   0.17584233 yielding
-## 7   0.14127067   gentle
-## 8   0.11282028  flatter
-## 9   0.10934531   decide
-## 10 -0.09407978  lovchil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Feminine. (A little bit of not-masculine!)
@@ -18677,17 +18544,13 @@ Feminine. (A little bit of not-masculine!)
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor11    trait
-## 1  0.91622589    loyal
-## 2  0.18949077   affect
-## 3  0.15883857 truthful
-## 4  0.12464529  helpful
-## 5  0.10440664   analyt
-## 6  0.10076794   tender
-## 7  0.09720457  lovchil
-## 8  0.09635223 gullible
-## 9  0.09350623 cheerful
-## 10 0.08207596 conscien
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Loyal.
@@ -18707,17 +18570,13 @@ Loyal.
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor12    trait
-## 1   0.6106933 childlik
-## 2  -0.2845004 selfsuff
-## 3  -0.2786751 conscien
-## 4   0.2588843    moody
-## 5   0.2013245      shy
-## 6  -0.1669301   decide
-## 7   0.1542031 masculin
-## 8   0.1455526 dominant
-## 9   0.1379163  compass
-## 10 -0.1297408 leaderab
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Childlike. (With a bit of moody, shy, not-self-sufficient,
@@ -18738,17 +18597,13 @@ not-conscientious.)
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor13    trait
-## 1   0.5729242 truthful
-## 2  -0.2776490 gullible
-## 3   0.2631046    happy
-## 4   0.1885152     warm
-## 5  -0.1671924      shy
-## 6   0.1646031    loyal
-## 7  -0.1438127 yielding
-## 8  -0.1302900   assert
-## 9   0.1137074   defbel
-## 10 -0.1105583  lovchil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Truthful. (With a bit of happy and not-gullible.)
@@ -18768,17 +18623,13 @@ Truthful. (With a bit of happy and not-gullible.)
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor14    trait
-## 1   0.4429926   decide
-## 2   0.2369714 selfsuff
-## 3   0.1945034 forceful
-## 4  -0.1862756 softspok
-## 5   0.1604175     risk
-## 6  -0.1484606  strpers
-## 7   0.1461972 dominant
-## 8   0.1279456    happy
-## 9   0.1154479  compass
-## 10  0.1054078 masculin
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Decisive. (With a bit of self-sufficient and not-soft-spoken.)
@@ -18798,17 +18649,13 @@ Decisive. (With a bit of self-sufficient and not-soft-spoken.)
 \end{Shaded}
 
 \begin{verbatim}
-##      Factor15    trait
-## 1  -0.3244092  compass
-## 2   0.2471884   athlet
-## 3   0.2292980 sensitiv
-## 4   0.1986878     risk
-## 5  -0.1638296   affect
-## 6   0.1632164    moody
-## 7  -0.1118135  individ
-## 8   0.1100678     warm
-## 9   0.1047347 cheerful
-## 10  0.1012342  reliant
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Not-compassionate, athletic, sensitive: A mixed bag. (``Cares about
@@ -18829,17 +18676,13 @@ self''?)
 \end{Shaded}
 
 \begin{verbatim}
-##     rowname      uniq
-## 1  foullang 0.9136126
-## 2   lovchil 0.8242992
-## 3    analyt 0.8120934
-## 4  yielding 0.7911748
-## 5  masculin 0.7228739
-## 6    athlet 0.7217327
-## 7       shy 0.7033071
-## 8  gullible 0.7000779
-## 9   flatter 0.6625008
-## 10  helpful 0.6516863
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 \end{verbatim}
 
 Uses foul language especially, also loves children and analytical. So
@@ -19456,8 +19299,8 @@ Global mean temperature every year since 1880:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-536-1.pdf}
-\caption{plot of chunk unnamed-chunk-536}
+\includegraphics{figure/unnamed-chunk-538-1.pdf}
+\caption{plot of chunk unnamed-chunk-538}
 \end{figure}
 
 Examining trend
@@ -19700,8 +19543,8 @@ seemed to be accelerating:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-545-1.pdf}
-\caption{plot of chunk unnamed-chunk-545}
+\includegraphics{figure/unnamed-chunk-547-1.pdf}
+\caption{plot of chunk unnamed-chunk-547}
 \end{figure}
 
 Look at pre-1970 and post-1970:
@@ -20012,7 +19855,7 @@ Time plot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-551-1.pdf}
+\includegraphics{figure/unnamed-chunk-553-1.pdf}
 
 Comments on time plot
 
@@ -20039,8 +19882,8 @@ Does differencing help here?
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-552-1.pdf}
-\caption{plot of chunk unnamed-chunk-552}
+\includegraphics{figure/unnamed-chunk-554-1.pdf}
+\caption{plot of chunk unnamed-chunk-554}
 \end{figure}
 
 Looks stationary, but some regular spikes.
@@ -20062,8 +19905,8 @@ A visual (using original data):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-553-1.pdf}
-\caption{plot of chunk unnamed-chunk-553}
+\includegraphics{figure/unnamed-chunk-555-1.pdf}
+\caption{plot of chunk unnamed-chunk-555}
 \end{figure}
 
 Decomposition bits
@@ -20166,8 +20009,8 @@ Lagging white noise
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-557-1.pdf}
-\caption{plot of chunk unnamed-chunk-557}
+\includegraphics{figure/unnamed-chunk-559-1.pdf}
+\caption{plot of chunk unnamed-chunk-559}
 \end{figure}
 
 \begin{Shaded}
@@ -20235,8 +20078,8 @@ If one value larger, the next value (a bit) more likely to be larger:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-559-1.pdf}
-\caption{plot of chunk unnamed-chunk-559}
+\includegraphics{figure/unnamed-chunk-561-1.pdf}
+\caption{plot of chunk unnamed-chunk-561}
 \end{figure}
 
 Two steps back:
@@ -20284,8 +20127,8 @@ White noise:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-561-1.pdf}
-\caption{plot of chunk unnamed-chunk-561}
+\includegraphics{figure/unnamed-chunk-563-1.pdf}
+\caption{plot of chunk unnamed-chunk-563}
 \end{figure}
 
 No autocorrelations beyond chance, anywhere (except \emph{possibly} at
@@ -20303,8 +20146,8 @@ Kings, differenced
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-562-1.pdf}
-\caption{plot of chunk unnamed-chunk-562}
+\includegraphics{figure/unnamed-chunk-564-1.pdf}
+\caption{plot of chunk unnamed-chunk-564}
 \end{figure}
 
 Comments on autocorrelations of kings series
@@ -20331,8 +20174,8 @@ NY births, differenced
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-563-1.pdf}
-\caption{plot of chunk unnamed-chunk-563}
+\includegraphics{figure/unnamed-chunk-565-1.pdf}
+\caption{plot of chunk unnamed-chunk-565}
 \end{figure}
 
 Lots of stuff:
@@ -20414,8 +20257,8 @@ Plot of souvenir sales
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-565-1.pdf}
-\caption{plot of chunk unnamed-chunk-565}
+\includegraphics{figure/unnamed-chunk-567-1.pdf}
+\caption{plot of chunk unnamed-chunk-567}
 \end{figure}
 
 Several problems:
@@ -20443,8 +20286,8 @@ Fix non-constant variability first by taking logs:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-566-1.pdf}
-\caption{plot of chunk unnamed-chunk-566}
+\includegraphics{figure/unnamed-chunk-568-1.pdf}
+\caption{plot of chunk unnamed-chunk-568}
 \end{figure}
 
 Mean still not constant, so try taking differences:
@@ -20458,8 +20301,8 @@ Mean still not constant, so try taking differences:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-567-1.pdf}
-\caption{plot of chunk unnamed-chunk-567}
+\includegraphics{figure/unnamed-chunk-569-1.pdf}
+\caption{plot of chunk unnamed-chunk-569}
 \end{figure}
 
 \begin{itemize}
@@ -20481,8 +20324,8 @@ Decomposing to see the seasonal effect
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-568-1.pdf}
-\caption{plot of chunk unnamed-chunk-568}
+\includegraphics{figure/unnamed-chunk-570-1.pdf}
+\caption{plot of chunk unnamed-chunk-570}
 \end{figure}
 
 \textbf{Big} drop in one month's differences. Look at seasonal component
@@ -20533,8 +20376,8 @@ Autocorrelations:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-570-1.pdf}
-\caption{plot of chunk unnamed-chunk-570}
+\includegraphics{figure/unnamed-chunk-572-1.pdf}
+\caption{plot of chunk unnamed-chunk-572}
 \end{figure}
 
 \begin{itemize}
@@ -20611,8 +20454,8 @@ ACF for MA(1) process
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-572-1.pdf}
-\caption{plot of chunk unnamed-chunk-572}
+\includegraphics{figure/unnamed-chunk-574-1.pdf}
+\caption{plot of chunk unnamed-chunk-574}
 \end{figure}
 
 Everything beyond lag 1 appears to be just chance.
@@ -20692,8 +20535,8 @@ ACF for AR(1) series:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-574-1.pdf}
-\caption{plot of chunk unnamed-chunk-574}
+\includegraphics{figure/unnamed-chunk-576-1.pdf}
+\caption{plot of chunk unnamed-chunk-576}
 \end{figure}
 
 \end{block}
@@ -20710,8 +20553,8 @@ This cuts off for an AR series:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-575-1.pdf}
-\caption{plot of chunk unnamed-chunk-575}
+\includegraphics{figure/unnamed-chunk-577-1.pdf}
+\caption{plot of chunk unnamed-chunk-577}
 \end{figure}
 
 The lag-2 autocorrelation should not be significant, and isn't.
@@ -20726,8 +20569,8 @@ PACF for an MA series decays slowly:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-576-1.pdf}
-\caption{plot of chunk unnamed-chunk-576}
+\includegraphics{figure/unnamed-chunk-578-1.pdf}
+\caption{plot of chunk unnamed-chunk-578}
 \end{figure}
 
 \end{block}
@@ -20944,8 +20787,8 @@ Plotting the forecasts for MA(1):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-582-1.pdf}
-\caption{plot of chunk unnamed-chunk-582}
+\includegraphics{figure/unnamed-chunk-584-1.pdf}
+\caption{plot of chunk unnamed-chunk-584}
 \end{figure}
 
 \end{block}
@@ -21006,8 +20849,8 @@ Forecasts for \texttt{x}:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-585-1.pdf}
-\caption{plot of chunk unnamed-chunk-585}
+\includegraphics{figure/unnamed-chunk-587-1.pdf}
+\caption{plot of chunk unnamed-chunk-587}
 \end{figure}
 
 Comparing wrong model:
@@ -21020,8 +20863,8 @@ Comparing wrong model:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-586-1.pdf}
-\caption{plot of chunk unnamed-chunk-586}
+\includegraphics{figure/unnamed-chunk-588-1.pdf}
+\caption{plot of chunk unnamed-chunk-588}
 \end{figure}
 
 \end{block}
@@ -21081,8 +20924,8 @@ Kings forecasts, plotted:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-589-1.pdf}
-\caption{plot of chunk unnamed-chunk-589}
+\includegraphics{figure/unnamed-chunk-591-1.pdf}
+\caption{plot of chunk unnamed-chunk-591}
 \end{figure}
 
 \end{block}
@@ -21177,8 +21020,8 @@ Plotting the forecasts:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-592-1.pdf}
-\caption{plot of chunk unnamed-chunk-592}
+\includegraphics{figure/unnamed-chunk-594-1.pdf}
+\caption{plot of chunk unnamed-chunk-594}
 \end{figure}
 
 \end{block}
@@ -21517,8 +21360,8 @@ Plotting the forecasts
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-595-1.pdf}
-\caption{plot of chunk unnamed-chunk-595}
+\includegraphics{figure/unnamed-chunk-597-1.pdf}
+\caption{plot of chunk unnamed-chunk-597}
 \end{figure}
 
 \end{block}
@@ -21557,8 +21400,8 @@ Forecasts
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-597-1.pdf}
-\caption{plot of chunk unnamed-chunk-597}
+\includegraphics{figure/unnamed-chunk-599-1.pdf}
+\caption{plot of chunk unnamed-chunk-599}
 \end{figure}
 
 \end{block}
@@ -21943,7 +21786,7 @@ No longer any association. Take out interaction.
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-13}{}
+\protect\hypertarget{the-data-12}{}
 
 In modelling-friendly format:
 
@@ -22549,7 +22392,7 @@ Stop here.
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-14}{}
+\protect\hypertarget{the-data-13}{}
 
 after tidying:
 

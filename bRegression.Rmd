@@ -40,18 +40,18 @@ sleep <- read_delim(my_url, " ")
 
 
 
-## Check data xxx
+## Check data 
 ```{r size="footnotesize"}
 summary(sleep)
 ```
 
 Make scatter plot of ATST (response) vs. age (explanatory) using
-code overleaf: xxx
+code overleaf: 
 
 
 
 ## The scatterplot
-```{r suggo, fig.height=4}
+```{r suggo, fig.height=3.8}
 ggplot(sleep, aes(x = age, y = atst)) + geom_point()
 ```
  
@@ -113,9 +113,15 @@ Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can
 ```{r echo=-1}
 options(width = 60)
 sleep.1 <- lm(atst ~ age, data = sleep)
-summary(sleep.1)
 ```
  
+## The output xxx
+
+\scriptsize
+```{r}
+summary(sleep.1)
+```
+\normalsize
 
 
 
@@ -235,7 +241,10 @@ does not work. Use base R `cbind`.
 
 
 ## That grey envelope
-```{r fig.height=2.8}
+
+Marks confidence interval for mean for all $x$: xxx
+
+```{r fig.height=3.0}
 ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
   geom_smooth(method = "lm") +
   scale_y_continuous(breaks = seq(420, 600, 20))
@@ -243,7 +252,6 @@ ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
 
    
 
-Marks confidence interval for mean for all $x$.
 
 
 ## Diagnostics
@@ -257,20 +265,17 @@ How to tell whether a straight-line regression is appropriate?
 
 * After: plot *residuals* (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
 
+## Residual plot xxx
 
-\vspace{3ex}
+Not much pattern here --- regression appropriate.
 
-
-## Output
-```{r akjhkadjfhjahnkkk,fig.height=3.5}
+```{r akjhkadjfhjahnkkk,fig.height=3.4}
 ggplot(sleep.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
  
 
-![](sleep-resid.png)
 
 
-Not much pattern here (is residual predictable from predicted? No). Good, indicating regression appropriate.
 
 ## An inappropriate regression
 
@@ -279,37 +284,28 @@ Different data:
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/curvy.txt"
 curvy <- read_delim(my_url, " ")
 ```
- 
-
-![](curvy-scatter.png)
 
 
-
-## Scatterplot
-```{r fig.height=4}
+## Scatterplot 
+```{r fig.height=3.8}
 ggplot(curvy, aes(x = xx, y = yy)) + geom_point()
 ```
 
-   
-
-
 ## Regression line, anyway
 
-{\footnotesize
-```{r }
+
+\scriptsize
+```{r}
 curvy.1 <- lm(yy ~ xx, data = curvy)
 summary(curvy.1)
 ```
- 
-}
+\normalsize
 
-## Residual plot
-```{r altoadige,fig.height=4}
+## Residual plot 
+```{r altoadige,fig.height=3.8}
 ggplot(curvy.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
  
-
-![](curvy-residual.png)
 
 
 
@@ -335,37 +331,36 @@ curvy.2a <- update(curvy.1, . ~ . + I(xx^2))
  
 
 
-## Regression 2
-{\scriptsize
+## Regression 2 xxx
+
 ```{r }
-summary(curvy.2)
+tidy(curvy.2)
+glimpse(curvy.2)
 ```
- 
-}
 
 
 ## Comments
 
 
-* `xx`-squared term initely significant (P-value
+* `xx`-squared term definitely significant (P-value
 0.000182), so need this curve to describe relationship.
 
 * Adding squared term has made R-squared go up from 0.5848 to
 0.9502: great improvement.
 
-* This is a inite curve!
+* This is a definite curve!
 
 
-## The residual plot now
-```{r size="small", fig.height=3}
+
+## The residual plot now xxx 
+No problems any more:
+
+```{r size="small", fig.height=3.4}
 ggplot(curvy.2, aes(x = .fitted, y = .resid)) + geom_point()
 ```
  
 
-![](curvy-resid2.png)
 
-
-No problems any more.  
 
 
 
@@ -410,11 +405,11 @@ madeup <- read_csv(my_url)
 madeup
 ```
  
-Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
+Seems to be faster-than-linear growth, maybe exponential growth. 
 
 
-## The scatterplot: faster than linear growth
-```{r dsljhsdjlhf,fig.height=2.75}
+## Scatterplot: faster than linear growth xxx
+```{r dsljhsdjlhf,fig.height=3.2}
 ggplot(madeup, aes(x = x, y = y)) + geom_point() +
   geom_smooth()
 ```
@@ -468,12 +463,9 @@ $2,1,0.5,0,-0.5,-1$. Here 0 and 0.5 good values to pick.
 
 ## Did transformation straighten things?
 
-
-* Calculate transformed $y$ and plot against $x$. Here try log:
-```{r fig.height=2.8, size="footnotesize"}
-madeup %>%
-  mutate(log_y = log(y)) %>%
-  ggplot(aes(x = x, y = log_y)) + geom_point() +
+* Plot transformed $y$ against $x$. Here, log: xxx
+```{r, message=FALSE }
+ggplot(madeup, aes(x = x, y = log(y))) + geom_point() +
   geom_smooth()
 ```
  
@@ -483,36 +475,37 @@ Looks much straighter.
 
 ## Regression with transformed $y$
 
-```{r size="footnotesize"}
+xxx from here
+
+\footnotesize
+```{r}
 madeup.1 <- lm(log(y) ~ x, data = madeup)
 glance(madeup.1)
 tidy(madeup.1)
 ```
-
-
+\normalsize
 
 R-squared now decently high.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ## Multiple regression
 
 
-* What if more than one $x$? Extra issues: % regression ex from before
+* What if more than one $x$? Extra issues:
 
 
-* Now one intercept and a slope for each $x$: how to interpret?
+  * Now one intercept and a slope for each $x$: how to interpret?
 
-* Which $x$-variables actually help to predict $y$?
+  * Which $x$-variables actually help to predict $y$?
 
-* Different interpretations of "global" $F$-test and individual $t$-tests.
+  * Different interpretations of "global" $F$-test and individual $t$-tests.
 
-* R-squared no longer correlation squared, but still
+  * R-squared no longer correlation squared, but still
 interpreted as "higher better".
 
 
-* In `lm` line, add extra $x$s after `~`.
+  * In `lm` line, add extra $x$s after `~`.
 
-* Interpretation not so easy (and other problems that can occur).
+  * Interpretation not so easy (and other problems that can occur).
 
 
 
@@ -532,65 +525,72 @@ Study of women and visits to health professionals, and how the number of visits 
 
 
 
-## The data
+## The data xxx
 ```{r }
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
+my_url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
 visits <- read_delim(my_url, " ")
 ```
  
 
 
-## Check data, fit multiple regression
-```{r size="small"}
+## Check data
+
+\small
+```{r}
 visits
-visits.1 <- lm(timedrs ~ phyheal + menheal + stress,
-  data = visits
-)
 ```
+\normalsize
 
    
+## Fit multiple regression
+
+```{r}
+visits.1 <- lm(timedrs ~ phyheal + menheal + stress,
+  data = visits)
+glance(visits.1)
+```
+
 
 
 ## The regression
 
-{\scriptsize
+\begin{scriptsize}
 ```{r }
-summary(visits.1)
+tidy(visits.1)
 ```
- 
-}  
+\end{scriptsize}
 
 ## The slopes
 
 Model as a whole strongly significant even though R-sq not very big (lots of data). At least one of the $x$'s predicts `timedrs`.
 
-\begin{footnotesize}
 ```{r }
 tidy(visits.1)
 ```
  
-\end{footnotesize}
 
 The physical health and stress variables initely help to predict the number of visits, but *with those in the model* we don't need `menheal`.
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
-## Just `menheal`
+## Just `menheal` xxx
 
-{\footnotesize 
+\footnotesize 
 ```{r }
 visits.2 <- lm(timedrs ~ menheal, data = visits)
-summary(visits.2)
+glance(visits.2)
+tidy(visits.2)
 ```
  
-}
+\normalsize
 
 
 
-## `menheal by itself`
+## `menheal` by itself
 
 
-* `menheal` by itself {em does} significantly help to predict `timedrs`.
+* `menheal` by itself *does* significantly help to predict `timedrs`.
 
 * But the R-sq is much less (6.5\% vs.\ 22\%).
 
@@ -620,15 +620,15 @@ so not as much to *add* to prediction as `stress`.
 
 
 
-## Residual plot (from `timedrs on all)`
-```{r iffy8,fig.height=3,size="small"}
+## Residual plot (from `timedrs` on all) xxx
+```{r iffy8,fig.height=3.5}
 ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
  
+## Comment xxx 
 
 Apparently random. But\ldots
 
-![](regressx1.png)
 
 
 
@@ -643,9 +643,9 @@ ggplot(visits.1, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 
 ## Absolute residuals
 Is there trend in *size* of residuals (fan-out)? Plot
-*absolute value* of residual against fitted value:
+*absolute value* of residual against fitted value: xxx
 
-```{r fig.height=2.5}
+```{r fig.height=3, message=FALSE}
 ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
   geom_point() + geom_smooth()
 ```
@@ -659,19 +659,19 @@ ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
 * On the normal quantile plot:
 
 
-* highest (most positive) residuals are *way* too high
+  * highest (most positive) residuals are *way* too high
 
-* distribution of residuals skewed to right (not normal at all)
+  * distribution of residuals skewed to right (not normal at all)
 
 
 * On plot of absolute residuals:
 
 
-* size of residuals getting bigger as fitted values increase
+  * size of residuals getting bigger as fitted values increase
 
-* predictions getting more variable as fitted values increase
+  * predictions getting more variable as fitted values increase
 
-* that is, predictions getting *less accurate* as fitted
+  * that is, predictions getting *less accurate* as fitted
 values increase, but predictions should be equally accurate all
 way along.
 
@@ -688,9 +688,9 @@ transformation of response often fixes: that is, predict
 * Residuals not normal (skewed right), increase in size with
 fitted value.
 
-* Sometimes residuals are *very} positive: observed a {\em lot* larger than predicted.
+* Sometimes residuals are *very* positive: observed a *lot* larger than predicted.
 
-* Try * transforming} response: use log or square root of response. (Note that response is {\em count*, often skewed to right.)
+* Try *transforming* response: use log or square root of response. (Note that response is *count*, often skewed to right.)
 
 * Try regression again, with transformed response instead of
 original one.
@@ -712,12 +712,12 @@ be zero/negative, fix that before transformation.
 
 ## Output
 
-{\scriptsize
+\scriptsize
 ```{r }
 summary(visits.3)
 ```
  
-}
+\normalsize
 
 
 ## Comments
@@ -792,9 +792,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 
 ## Try 1
 ```{r echo=F,fig.height=4.5}
-visits %>%
-  mutate(tp = timedrs + 1) %>%
-  boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = .)
+  boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 ```
  
 
@@ -807,13 +805,13 @@ visits %>%
 * Hard to see scale. 
 
 * Focus on $\lambda$ in $(-0.3,0.1)$:
-{\small    
+\small    
 ```{r size="footnotesize"}
 my.lambda <- seq(-0.3, 0.1, 0.01)
 my.lambda
 ```
  
-}
+\normalsize
 
 
 ## Try 2
@@ -872,10 +870,10 @@ Data set `punting.txt` contains 4 variables for 13 right-footed
 football kickers (punters): left leg and right leg strength (lbs),
 distance punted (ft), another variable called "fred". Predict
 punting distance from other variables:
-\begin{scriptsize}
+
+\scriptsize
 
 ```
-
 left                right               punt         fred
 170               170                162.50       171 
 130               140                144.0        136   
@@ -892,8 +890,7 @@ left                right               punt         fred
 150               160                165.17       154 
 
 ```
-
-\end{scriptsize}
+\normalsize
 
 
 ## Reading in
@@ -910,19 +907,21 @@ punting <- read_table(my_url)
 
 
 ## The data
-```{r size="small"}
+\small
+```{r}
 punting
 ```
-
+\normalsize
    
 
 
 ## Regression and output
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 punting.1 <- lm(punt ~ left + right + fred, data = punting)
 summary(punting.1)
 ```
- 
+\normalsize
 
 ## Comments
 
@@ -953,37 +952,37 @@ with each other (bad, at least confusing).
 
 
 ## Just `right`
-{\small
+\small
 ```{r }
 punting.2 <- lm(punt ~ right, data = punting)
 anova(punting.2, punting.1)
 ```
  
-}
+\normalsize
 No significant loss by dropping other two variables.
 
 
 
 ## Comparing R-squareds
-{\small
+\small
 ```{r }
 summary(punting.1)$r.squared
 summary(punting.2)$r.squared
 ```
  
-}
+\normalsize
 
 Basically no difference. In regression (over), `right` significant:
 
 
 ## Regression results
 
-{\footnotesize
+\footnotesize
 ```{r }
 summary(punting.2)
 ```
  
-}
+\normalsize
 
 ## But\ldots
 
@@ -1006,11 +1005,12 @@ from `broom`.
 
 
 ## Augmenting `punting.2`
-```{r size="footnotesize"}
+\footnotesize
+```{r }
 punting.2 %>% augment(punting) -> punting.2.aug
 punting.2.aug %>% slice(1:8)
 ```
-
+\normalsize
    
 
 
@@ -1041,10 +1041,11 @@ punting.3 <- lm(punt ~ left + I(left^2) + right,
 
 
 ## Regression with `left-squared`
-```{r size="scriptsize"}
+\scriptsize
+```{r}
 summary(punting.3)
 ```
-
+\normalsize
    
 
 
@@ -1060,11 +1061,6 @@ summary(punting.3)
 strength only increases punting distance up to a point: beyond that,
 it decreases again.
 
-```{r echo=F,warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
 
  
 

@@ -40,7 +40,7 @@ lab Monday 16:00-17:00 in BV 498.
 otherwise. See if I'm in. Or make an appointment. E-mail always
 good.
 
-* Course website: xxx
+* Course website:
 [link](http://ritsokiguess.site/STAD29/).
 
 * Using Quercus for assignments/grades only; using website for
@@ -138,7 +138,7 @@ receive a grade of 45.
 
 
 * [**This link**](http://www.utoronto.ca/academicintegrity/academicoffenses.html)
-defines academic offences at this university. Read it. You are bound by it. xxx
+defines academic offences at this university. Read it. You are bound by it. 
 
 * Plagiarism defined (at the end) as
 
@@ -177,7 +177,7 @@ appointment to assess specific needs, provide referrals and arrange
 appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.ca`.
 
 
-## Course material xxx
+## Course material 
 
 - Regression-like things 
   - review of (multiple) regression
@@ -212,7 +212,7 @@ appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.
 
 * Assumes a *straight-line* relationship between response and explanatory.
 
-* Ask: xxx
+* Ask: 
 
 
   * *is there* a relationship between $y$ and $x$'s, and if so, which ones?
@@ -251,23 +251,25 @@ sleep <- read_delim(my_url, " ")
 
 
 
-## Check data xxx
+## Check data 
 
 ```r
-glimpse(sleep)
+summary(sleep)
 ```
 
 ```
-## Observations: 13
-## Variables: 2
-## $ atst <dbl> 586.00, 461.75, 491.10, 565.00, 462.…
-## $ age  <dbl> 4.40, 14.00, 10.10, 6.70, 11.50, 9.6…
+##       atst            age        
+##  Min.   :461.8   Min.   : 4.400  
+##  1st Qu.:491.1   1st Qu.: 7.200  
+##  Median :528.3   Median : 8.900  
+##  Mean   :519.3   Mean   : 9.058  
+##  3rd Qu.:532.5   3rd Qu.:11.100  
+##  Max.   :586.0   Max.   :14.000
 ```
-
-## Exploratory stuff   
 
 Make scatter plot of ATST (response) vs. age (explanatory) using
-code overleaf:
+code overleaf: 
+
 
 
 ## The scatterplot
@@ -355,6 +357,13 @@ Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can
 
 ```r
 sleep.1 <- lm(atst ~ age, data = sleep)
+```
+ 
+## The output xxx
+
+\scriptsize
+
+```r
 summary(sleep.1)
 ```
 
@@ -379,7 +388,7 @@ summary(sleep.1)
 ## Multiple R-squared:  0.9054,	Adjusted R-squared:  0.8968 
 ## F-statistic: 105.3 on 1 and 11 DF,  p-value: 5.7e-07
 ```
- 
+\normalsize
 
 
 
@@ -421,6 +430,9 @@ tidy(sleep.1)
 ## 2 age            -14.0      1.37     -10.3 5.70e- 7
 ```
 
+## also one-line summary of model:
+
+
 ```r
 glance(sleep.1)
 ```
@@ -434,7 +446,6 @@ glance(sleep.1)
 ## #   BIC <dbl>, deviance <dbl>, df.residual <int>
 ```
 
-     
 
 
 
@@ -461,17 +472,6 @@ sleep.1 %>% augment(sleep) %>% slice(1:8)
 
    
 Useful for plotting residuals against an $x$-variable.
- for week 2:
- 
- regression and multiple regression
- 
- including univariate + tests
- ci, pi and influential points
- multiple, re-interpretation of tests, correlated x's
- residuals and plotting
- 
- next: ci and pi with children aged 10 and 3
- then: maybe diagnostics
 
 ## CI for mean response and prediction intervals
 
@@ -568,17 +568,19 @@ does not work. Use base R `cbind`.
 
 ## That grey envelope
 
+Marks confidence interval for mean for all $x$: xxx
+
+
 ```r
 ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
   geom_smooth(method = "lm") +
   scale_y_continuous(breaks = seq(420, 600, 20))
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.pdf)
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.pdf)
 
    
 
-Marks confidence interval for mean for all $x$.
 
 
 ## Diagnostics
@@ -592,11 +594,10 @@ How to tell whether a straight-line regression is appropriate?
 
 * After: plot *residuals* (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
 
+## Residual plot xxx
 
-\vspace{3ex}
+Not much pattern here --- regression appropriate.
 
-
-## Output
 
 ```r
 ggplot(sleep.1, aes(x = .fitted, y = .resid)) + geom_point()
@@ -605,10 +606,8 @@ ggplot(sleep.1, aes(x = .fitted, y = .resid)) + geom_point()
 ![plot of chunk akjhkadjfhjahnkkk](figure/akjhkadjfhjahnkkk-1.pdf)
  
 
-![](sleep-resid.png)
 
 
-Not much pattern here (is residual predictable from predicted? No). Good, indicating regression appropriate.
 
 ## An inappropriate regression
 
@@ -626,26 +625,20 @@ curvy <- read_delim(my_url, " ")
 ##   yy = col_double()
 ## )
 ```
- 
-
-![](curvy-scatter.png)
 
 
-
-## Scatterplot
+## Scatterplot 
 
 ```r
 ggplot(curvy, aes(x = xx, y = yy)) + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.pdf)
-
-   
-
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.pdf)
 
 ## Regression line, anyway
 
-{\footnotesize
+
+\scriptsize
 
 ```r
 curvy.1 <- lm(yy ~ xx, data = curvy)
@@ -673,10 +666,9 @@ summary(curvy.1)
 ## Multiple R-squared:  0.5848,	Adjusted R-squared:  0.5329 
 ## F-statistic: 11.27 on 1 and 8 DF,  p-value: 0.009984
 ```
- 
-}
+\normalsize
 
-## Residual plot
+## Residual plot 
 
 ```r
 ggplot(curvy.1, aes(x = .fitted, y = .resid)) + geom_point()
@@ -684,8 +676,6 @@ ggplot(curvy.1, aes(x = .fitted, y = .resid)) + geom_point()
 
 ![plot of chunk altoadige](figure/altoadige-1.pdf)
  
-
-![](curvy-residual.png)
 
 
 
@@ -713,64 +703,107 @@ curvy.2a <- update(curvy.1, . ~ . + I(xx^2))
  
 
 
-## Regression 2
-{\scriptsize
+## Regression 2 xxx
+
 
 ```r
-summary(curvy.2)
+tidy(curvy.2)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = yy ~ xx + I(xx^2), data = curvy)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -1.2091 -0.3602 -0.2364  0.8023  1.2636 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  3.90000    0.77312   5.045 0.001489 ** 
-## xx           3.74318    0.40006   9.357 3.31e-05 ***
-## I(xx^2)     -0.30682    0.04279  -7.170 0.000182 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.9833 on 7 degrees of freedom
-## Multiple R-squared:  0.9502,	Adjusted R-squared:  0.936 
-## F-statistic: 66.83 on 2 and 7 DF,  p-value: 2.75e-05
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)    3.9      0.773       5.04 0.00149  
+## 2 xx             3.74     0.400       9.36 0.0000331
+## 3 I(xx^2)       -0.307    0.0428     -7.17 0.000182
 ```
- 
-}
+
+```r
+glimpse(curvy.2)
+```
+
+```
+## List of 12
+##  $ coefficients : Named num [1:3] 3.9 3.743 -0.307
+##   ..- attr(*, "names")= chr [1:3] "(Intercept)" "xx" "I(xx^2)"
+##  $ residuals    : Named num [1:10] 0.1 -0.336 -0.159 -0.368 1.036 ...
+##   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
+##  $ effects      : Named num [1:10] -37.947 8.918 -7.05 -0.335 1.048 ...
+##   ..- attr(*, "names")= chr [1:10] "(Intercept)" "xx" "I(xx^2)" "" ...
+##  $ rank         : int 3
+##  $ fitted.values: Named num [1:10] 3.9 7.34 10.16 12.37 13.96 ...
+##   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
+##  $ assign       : int [1:3] 0 1 2
+##  $ qr           :List of 5
+##   ..$ qr   : num [1:10, 1:3] -3.162 0.316 0.316 0.316 0.316 ...
+##   .. ..- attr(*, "dimnames")=List of 2
+##   .. ..- attr(*, "assign")= int [1:3] 0 1 2
+##   ..$ qraux: num [1:3] 1.32 1.27 1.22
+##   ..$ pivot: int [1:3] 1 2 3
+##   ..$ tol  : num 1e-07
+##   ..$ rank : int 3
+##   ..- attr(*, "class")= chr "qr"
+##  $ df.residual  : int 7
+##  $ xlevels      : Named list()
+##  $ call         : language lm(formula = yy ~ xx + I(xx^2), data = curvy)
+##  $ terms        :Classes 'terms', 'formula'  language yy ~ xx + I(xx^2)
+##   .. ..- attr(*, "variables")= language list(yy, xx, I(xx^2))
+##   .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+##   .. .. ..- attr(*, "dimnames")=List of 2
+##   .. ..- attr(*, "term.labels")= chr [1:2] "xx" "I(xx^2)"
+##   .. ..- attr(*, "order")= int [1:2] 1 1
+##   .. ..- attr(*, "intercept")= int 1
+##   .. ..- attr(*, "response")= int 1
+##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   .. ..- attr(*, "predvars")= language list(yy, xx, I(xx^2))
+##   .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
+##   .. .. ..- attr(*, "names")= chr [1:3] "yy" "xx" "I(xx^2)"
+##  $ model        :'data.frame':	10 obs. of  3 variables:
+##   ..$ yy     : num [1:10] 4 7 10 12 15 16 15 14 13 14
+##   ..$ xx     : num [1:10] 0 1 2 3 4 5 6 7 8 9
+##   ..$ I(xx^2): 'AsIs' num [1:10]  0  1  4  9 16 25 36 49 64 81
+##   ..- attr(*, "terms")=Classes 'terms', 'formula'  language yy ~ xx + I(xx^2)
+##   .. .. ..- attr(*, "variables")= language list(yy, xx, I(xx^2))
+##   .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+##   .. .. .. ..- attr(*, "dimnames")=List of 2
+##   .. .. ..- attr(*, "term.labels")= chr [1:2] "xx" "I(xx^2)"
+##   .. .. ..- attr(*, "order")= int [1:2] 1 1
+##   .. .. ..- attr(*, "intercept")= int 1
+##   .. .. ..- attr(*, "response")= int 1
+##   .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   .. .. ..- attr(*, "predvars")= language list(yy, xx, I(xx^2))
+##   .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
+##   .. .. .. ..- attr(*, "names")= chr [1:3] "yy" "xx" "I(xx^2)"
+##  - attr(*, "class")= chr "lm"
+```
 
 
 ## Comments
 
 
-* `xx`-squared term initely significant (P-value
+* `xx`-squared term definitely significant (P-value
 0.000182), so need this curve to describe relationship.
 
 * Adding squared term has made R-squared go up from 0.5848 to
 0.9502: great improvement.
 
-* This is a inite curve!
+* This is a definite curve!
 
 
-## The residual plot now
+
+## The residual plot now xxx 
+No problems any more:
+
 
 ```r
 ggplot(curvy.2, aes(x = .fitted, y = .resid)) + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.pdf)
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23-1.pdf)
  
 
-![](curvy-resid2.png)
 
-
-No problems any more.  
 
 
 
@@ -830,10 +863,10 @@ madeup
 ## 8     8     7 583.
 ```
  
-Seems to be faster-than-linear growth, maybe exponential growth. Scatterplot?
+Seems to be faster-than-linear growth, maybe exponential growth. 
 
 
-## The scatterplot: faster than linear growth
+## Scatterplot: faster than linear growth xxx
 
 ```r
 ggplot(madeup, aes(x = x, y = y)) + geom_point() +
@@ -894,21 +927,14 @@ $2,1,0.5,0,-0.5,-1$. Here 0 and 0.5 good values to pick.
 
 ## Did transformation straighten things?
 
-
-* Calculate transformed $y$ and plot against $x$. Here try log:
+* Plot transformed $y$ against $x$. Here, log: xxx
 
 ```r
-madeup %>%
-  mutate(log_y = log(y)) %>%
-  ggplot(aes(x = x, y = log_y)) + geom_point() +
+ggplot(madeup, aes(x = x, y = log(y))) + geom_point() +
   geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.pdf)
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.pdf)
  
 
 Looks much straighter.
@@ -916,6 +942,9 @@ Looks much straighter.
 
 ## Regression with transformed $y$
 
+xxx from here
+
+\footnotesize
 
 ```r
 madeup.1 <- lm(log(y) ~ x, data = madeup)
@@ -942,31 +971,29 @@ tidy(madeup.1)
 ## 1 (Intercept)    2.91     0.323       8.99 0.000106
 ## 2 x              0.520    0.0773      6.73 0.000524
 ```
-
-
+\normalsize
 
 R-squared now decently high.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ## Multiple regression
 
 
-* What if more than one $x$? Extra issues: % regression ex from before
+* What if more than one $x$? Extra issues:
 
 
-* Now one intercept and a slope for each $x$: how to interpret?
+  * Now one intercept and a slope for each $x$: how to interpret?
 
-* Which $x$-variables actually help to predict $y$?
+  * Which $x$-variables actually help to predict $y$?
 
-* Different interpretations of "global" $F$-test and individual $t$-tests.
+  * Different interpretations of "global" $F$-test and individual $t$-tests.
 
-* R-squared no longer correlation squared, but still
+  * R-squared no longer correlation squared, but still
 interpreted as "higher better".
 
 
-* In `lm` line, add extra $x$s after `~`.
+  * In `lm` line, add extra $x$s after `~`.
 
-* Interpretation not so easy (and other problems that can occur).
+  * Interpretation not so easy (and other problems that can occur).
 
 
 
@@ -986,10 +1013,11 @@ Study of women and visits to health professionals, and how the number of visits 
 
 
 
-## The data
+## The data xxx
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
+my_url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
 visits <- read_delim(my_url, " ")
 ```
 
@@ -1006,7 +1034,9 @@ visits <- read_delim(my_url, " ")
  
 
 
-## Check data, fit multiple regression
+## Check data
+
+\small
 
 ```r
 visits
@@ -1028,55 +1058,52 @@ visits
 ## 10     10       4       3       9    391
 ## # … with 455 more rows
 ```
+\normalsize
+
+   
+## Fit multiple regression
+
 
 ```r
 visits.1 <- lm(timedrs ~ phyheal + menheal + stress,
-  data = visits
-)
+  data = visits)
+glance(visits.1)
 ```
 
-   
+```
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic  p.value    df
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>
+## 1     0.219         0.214  9.71      43.0 1.56e-24     4
+## # … with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
+```
+
 
 
 ## The regression
 
-{\scriptsize
+\begin{scriptsize}
 
 ```r
-summary(visits.1)
+tidy(visits.1)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = timedrs ~ phyheal + menheal + stress, data = visits)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -14.792  -4.353  -1.815   0.902  65.886 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -3.704848   1.124195  -3.296 0.001058 ** 
-## phyheal      1.786948   0.221074   8.083  5.6e-15 ***
-## menheal     -0.009666   0.129029  -0.075 0.940318    
-## stress       0.013615   0.003612   3.769 0.000185 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 9.708 on 461 degrees of freedom
-## Multiple R-squared:  0.2188,	Adjusted R-squared:  0.2137 
-## F-statistic: 43.03 on 3 and 461 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept) -3.70      1.12      -3.30   1.06e- 3
+## 2 phyheal      1.79      0.221      8.08   5.60e-15
+## 3 menheal     -0.00967   0.129     -0.0749 9.40e- 1
+## 4 stress       0.0136    0.00361    3.77   1.85e- 4
 ```
- 
-}  
+\end{scriptsize}
 
 ## The slopes
 
 Model as a whole strongly significant even though R-sq not very big (lots of data). At least one of the $x$'s predicts `timedrs`.
 
-\begin{footnotesize}
 
 ```r
 tidy(visits.1)
@@ -1092,51 +1119,49 @@ tidy(visits.1)
 ## 4 stress       0.0136    0.00361    3.77   1.85e- 4
 ```
  
-\end{footnotesize}
 
 The physical health and stress variables initely help to predict the number of visits, but *with those in the model* we don't need `menheal`.
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
-## Just `menheal`
+## Just `menheal` xxx
 
-{\footnotesize 
+\footnotesize 
 
 ```r
 visits.2 <- lm(timedrs ~ menheal, data = visits)
-summary(visits.2)
+glance(visits.2)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = timedrs ~ menheal, data = visits)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -13.826  -5.150  -2.818   1.177  72.513 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   3.8159     0.8702   4.385 1.44e-05 ***
-## menheal       0.6672     0.1173   5.688 2.28e-08 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 10.6 on 463 degrees of freedom
-## Multiple R-squared:  0.06532,	Adjusted R-squared:  0.0633 
-## F-statistic: 32.35 on 1 and 463 DF,  p-value: 2.279e-08
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>
+## 1    0.0653        0.0633  10.6      32.4 2.28e-8     2
+## # … with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
+```
+
+```r
+tidy(visits.2)
+```
+
+```
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic      p.value
+##   <chr>          <dbl>     <dbl>     <dbl>        <dbl>
+## 1 (Intercept)    3.82      0.870      4.38 0.0000144   
+## 2 menheal        0.667     0.117      5.69 0.0000000228
 ```
  
-}
+\normalsize
 
 
 
-## `menheal by itself`
+## `menheal` by itself
 
 
-* `menheal` by itself {em does} significantly help to predict `timedrs`.
+* `menheal` by itself *does* significantly help to predict `timedrs`.
 
 * But the R-sq is much less (6.5\% vs.\ 22\%).
 
@@ -1175,7 +1200,7 @@ so not as much to *add* to prediction as `stress`.
 
 
 
-## Residual plot (from `timedrs on all)`
+## Residual plot (from `timedrs` on all) xxx
 
 ```r
 ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
@@ -1183,10 +1208,10 @@ ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
 
 ![plot of chunk iffy8](figure/iffy8-1.pdf)
  
+## Comment xxx 
 
 Apparently random. But\ldots
 
-![](regressx1.png)
 
 
 
@@ -1197,14 +1222,14 @@ Apparently random. But\ldots
 ggplot(visits.1, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32-1.pdf)
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35-1.pdf)
 
    
 
 
 ## Absolute residuals
 Is there trend in *size* of residuals (fan-out)? Plot
-*absolute value* of residual against fitted value:
+*absolute value* of residual against fitted value: xxx
 
 
 ```r
@@ -1212,11 +1237,7 @@ ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
   geom_point() + geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33-1.pdf)
+![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
 
  
 
@@ -1227,19 +1248,19 @@ ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
 * On the normal quantile plot:
 
 
-* highest (most positive) residuals are *way* too high
+  * highest (most positive) residuals are *way* too high
 
-* distribution of residuals skewed to right (not normal at all)
+  * distribution of residuals skewed to right (not normal at all)
 
 
 * On plot of absolute residuals:
 
 
-* size of residuals getting bigger as fitted values increase
+  * size of residuals getting bigger as fitted values increase
 
-* predictions getting more variable as fitted values increase
+  * predictions getting more variable as fitted values increase
 
-* that is, predictions getting *less accurate* as fitted
+  * that is, predictions getting *less accurate* as fitted
 values increase, but predictions should be equally accurate all
 way along.
 
@@ -1256,9 +1277,9 @@ transformation of response often fixes: that is, predict
 * Residuals not normal (skewed right), increase in size with
 fitted value.
 
-* Sometimes residuals are *very} positive: observed a {\em lot* larger than predicted.
+* Sometimes residuals are *very* positive: observed a *lot* larger than predicted.
 
-* Try * transforming} response: use log or square root of response. (Note that response is {\em count*, often skewed to right.)
+* Try *transforming* response: use log or square root of response. (Note that response is *count*, often skewed to right.)
 
 * Try regression again, with transformed response instead of
 original one.
@@ -1281,7 +1302,7 @@ be zero/negative, fix that before transformation.
 
 ## Output
 
-{\scriptsize
+\scriptsize
 
 ```r
 summary(visits.3)
@@ -1311,7 +1332,7 @@ summary(visits.3)
 ## F-statistic: 89.56 on 3 and 461 DF,  p-value: < 2.2e-16
 ```
  
-}
+\normalsize
 
 
 ## Comments
@@ -1334,7 +1355,7 @@ ggplot(visits.3, aes(x = .fitted, y = .resid)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39-1.pdf)
 
    
 
@@ -1345,7 +1366,7 @@ ggplot(visits.3, aes(x = .fitted, y = .resid)) +
 ggplot(visits.3, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.pdf)
+![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
 
    
 
@@ -1361,7 +1382,7 @@ ggplot(visits.3, aes(x = .fitted, y = abs(.resid))) +
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38-1.pdf)
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41-1.pdf)
 
    
 
@@ -1399,7 +1420,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 
 
 ## Try 1
-![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
+![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43-1.pdf)
  
 
 
@@ -1411,7 +1432,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 * Hard to see scale. 
 
 * Focus on $\lambda$ in $(-0.3,0.1)$:
-{\small    
+\small    
 
 ```r
 my.lambda <- seq(-0.3, 0.1, 0.01)
@@ -1426,7 +1447,7 @@ my.lambda
 ## [37]  0.06  0.07  0.08  0.09  0.10
 ```
  
-}
+\normalsize
 
 
 ## Try 2
@@ -1438,7 +1459,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress,
 )
 ```
 
-![plot of chunk unnamed-chunk-42](figure/unnamed-chunk-42-1.pdf)
+![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-1.pdf)
  
 
 
@@ -1502,10 +1523,10 @@ Data set `punting.txt` contains 4 variables for 13 right-footed
 football kickers (punters): left leg and right leg strength (lbs),
 distance punted (ft), another variable called "fred". Predict
 punting distance from other variables:
-\begin{scriptsize}
+
+\scriptsize
 
 ```
-
 left                right               punt         fred
 170               170                162.50       171 
 130               140                144.0        136   
@@ -1522,8 +1543,7 @@ left                right               punt         fred
 150               160                165.17       154 
 
 ```
-
-\end{scriptsize}
+\normalsize
 
 
 ## Reading in
@@ -1551,6 +1571,7 @@ punting <- read_table(my_url)
 
 
 ## The data
+\small
 
 ```r
 punting
@@ -1574,11 +1595,12 @@ punting
 ## 12   130   140  150.   136
 ## 13   150   160  165.   154
 ```
-
+\normalsize
    
 
 
 ## Regression and output
+\footnotesize
 
 ```r
 punting.1 <- lm(punt ~ left + right + fred, data = punting)
@@ -1605,7 +1627,7 @@ summary(punting.1)
 ## Multiple R-squared:  0.7781,	Adjusted R-squared:  0.7042 
 ## F-statistic: 10.52 on 3 and 9 DF,  p-value: 0.00267
 ```
- 
+\normalsize
 
 ## Comments
 
@@ -1645,7 +1667,7 @@ with each other (bad, at least confusing).
 
 
 ## Just `right`
-{\small
+\small
 
 ```r
 punting.2 <- lm(punt ~ right, data = punting)
@@ -1662,13 +1684,13 @@ anova(punting.2, punting.1)
 ## 2      9 1938.2  2    24.263 0.0563 0.9456
 ```
  
-}
+\normalsize
 No significant loss by dropping other two variables.
 
 
 
 ## Comparing R-squareds
-{\small
+\small
 
 ```r
 summary(punting.1)$r.squared
@@ -1686,14 +1708,14 @@ summary(punting.2)$r.squared
 ## [1] 0.7753629
 ```
  
-}
+\normalsize
 
 Basically no difference. In regression (over), `right` significant:
 
 
 ## Regression results
 
-{\footnotesize
+\footnotesize
 
 ```r
 summary(punting.2)
@@ -1721,7 +1743,7 @@ summary(punting.2)
 ## F-statistic: 37.97 on 1 and 11 DF,  p-value: 7.088e-05
 ```
  
-}
+\normalsize
 
 ## But\ldots
 
@@ -1744,6 +1766,7 @@ from `broom`.
 
 
 ## Augmenting `punting.2`
+\footnotesize
 
 ```r
 punting.2 %>% augment(punting) -> punting.2.aug
@@ -1765,7 +1788,7 @@ punting.2.aug %>% slice(1:8)
 ## # … with 3 more variables: .sigma <dbl>, .cooksd <dbl>,
 ## #   .std.resid <dbl>
 ```
-
+\normalsize
    
 
 
@@ -1800,6 +1823,7 @@ punting.3 <- lm(punt ~ left + I(left^2) + right,
 
 
 ## Regression with `left-squared`
+\scriptsize
 
 ```r
 summary(punting.3)
@@ -1828,7 +1852,7 @@ summary(punting.3)
 ## Multiple R-squared:  0.9352,	Adjusted R-squared:  0.9136 
 ## F-statistic:  43.3 on 3 and 9 DF,  p-value: 1.13e-05
 ```
-
+\normalsize
    
 
 
@@ -1844,10 +1868,6 @@ summary(punting.3)
 strength only increases punting distance up to a point: beyond that,
 it decreases again.
 
-
-```
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-```
 
  
 
@@ -2710,7 +2730,7 @@ ggplot(miners, aes(
 )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-82](figure/unnamed-chunk-82-1.pdf)
+![plot of chunk unnamed-chunk-84](figure/unnamed-chunk-84-1.pdf)
 
    
 
@@ -2813,7 +2833,7 @@ ggplot(miners, aes(
 )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-87](figure/unnamed-chunk-87-1.pdf)
+![plot of chunk unnamed-chunk-89](figure/unnamed-chunk-89-1.pdf)
 
    
 
@@ -3040,7 +3060,7 @@ as needed.
 g
 ```
 
-![plot of chunk unnamed-chunk-98](figure/unnamed-chunk-98-1.pdf)
+![plot of chunk unnamed-chunk-100](figure/unnamed-chunk-100-1.pdf)
  mlogit.pdf
 
 ## Unordered responses
@@ -3351,13 +3371,13 @@ sample_n(probs.long, 7) # 7 random rows
 
 ```
 ##   age sex brand probability
-## 1  32   0     1   0.4048727
-## 2  35   1     2   0.4316859
-## 3  38   0     3   0.7354677
-## 4  35   0     3   0.4721813
-## 5  28   0     2   0.1832969
-## 6  38   1     2   0.2516220
-## 7  24   1     1   0.9153208
+## 1  28   0     2  0.18329690
+## 2  24   1     3  0.00278882
+## 3  35   1     3  0.48427275
+## 4  24   1     1  0.91532076
+## 5  38   0     1  0.02598163
+## 6  24   0     1  0.94795822
+## 7  38   0     2  0.23855071
 ```
 
      
@@ -3374,7 +3394,7 @@ ggplot(probs.long, aes(
   geom_point() + geom_line(aes(linetype = sex))
 ```
 
-![plot of chunk unnamed-chunk-111](figure/unnamed-chunk-111-1.pdf)
+![plot of chunk unnamed-chunk-113](figure/unnamed-chunk-113-1.pdf)
 
    
 
@@ -3624,7 +3644,7 @@ g <- ggplot(probs.long, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-118](figure/unnamed-chunk-118-1.pdf)
+![plot of chunk unnamed-chunk-120](figure/unnamed-chunk-120-1.pdf)
 
    
 
@@ -3664,7 +3684,7 @@ g <- ggplot(probs.long, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-120](figure/unnamed-chunk-120-1.pdf)
+![plot of chunk unnamed-chunk-122](figure/unnamed-chunk-122-1.pdf)
 
    
 
@@ -3958,7 +3978,7 @@ ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-128](figure/unnamed-chunk-128-1.pdf)
+![plot of chunk unnamed-chunk-130](figure/unnamed-chunk-130-1.pdf)
 
    
 This looks good (with only 12 points).
@@ -4057,7 +4077,7 @@ g <- ggsurvplot(s, conf.int = F)
 g
 ```
 
-![plot of chunk unnamed-chunk-134](figure/unnamed-chunk-134-1.pdf)
+![plot of chunk unnamed-chunk-136](figure/unnamed-chunk-136-1.pdf)
 
    
 \begin{small}
@@ -4484,7 +4504,7 @@ def
 ggsurvplot(s, conf.int = F)
 ```
 
-![plot of chunk unnamed-chunk-149](figure/unnamed-chunk-149-1.pdf)
+![plot of chunk unnamed-chunk-151](figure/unnamed-chunk-151-1.pdf)
 def 
 
 ## Discussion of survival curves
@@ -4525,7 +4545,7 @@ ggcoxdiagnostics(lung.3) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-150](figure/unnamed-chunk-150-1.pdf)
+![plot of chunk unnamed-chunk-152](figure/unnamed-chunk-152-1.pdf)
 
    
 No problems here.
@@ -4589,7 +4609,7 @@ ggcoxdiagnostics(y.1) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-153](figure/unnamed-chunk-153-1.pdf)
+![plot of chunk unnamed-chunk-155](figure/unnamed-chunk-155-1.pdf)
 
    
 Down-and-up indicates incorrect relationship between age and
@@ -4636,7 +4656,7 @@ ggcoxdiagnostics(y.2) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-155](figure/unnamed-chunk-155-1.pdf)
+![plot of chunk unnamed-chunk-157](figure/unnamed-chunk-157-1.pdf)
 
    
 Not great, but less problematic than before.
@@ -5198,7 +5218,7 @@ ggplot(vitaminb, aes(
 )) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-165](figure/unnamed-chunk-165-1.pdf)
+![plot of chunk unnamed-chunk-167](figure/unnamed-chunk-167-1.pdf)
 
    
 
@@ -5290,7 +5310,7 @@ g <- ggplot(summary, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-169](figure/unnamed-chunk-169-1.pdf)
+![plot of chunk unnamed-chunk-171](figure/unnamed-chunk-171-1.pdf)
 
 
 
@@ -5403,7 +5423,7 @@ g <- autonoise %>%
 g
 ```
 
-![plot of chunk unnamed-chunk-174](figure/unnamed-chunk-174-1.pdf)
+![plot of chunk unnamed-chunk-176](figure/unnamed-chunk-176-1.pdf)
 
    
 
@@ -5503,7 +5523,7 @@ g <- ggplot(autonoise, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-178](figure/unnamed-chunk-178-1.pdf)
+![plot of chunk unnamed-chunk-180](figure/unnamed-chunk-180-1.pdf)
 
 
 
@@ -5525,7 +5545,7 @@ autonoise %>%
   )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-179](figure/unnamed-chunk-179-1.pdf)
+![plot of chunk unnamed-chunk-181](figure/unnamed-chunk-181-1.pdf)
 
    
 
@@ -6419,6 +6439,9 @@ with additional kickback.
 
 
 
+```
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+```
 
    
 
@@ -6492,63 +6515,7 @@ b 9 22
 
 ```r
 library(tidyverse)
-```
-
-```
-## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
-```
-
-```
-## ✔ ggplot2 3.1.1          ✔ purrr   0.3.2     
-## ✔ tibble  2.1.1          ✔ dplyr   0.8.0.1   
-## ✔ tidyr   0.8.3.9000     ✔ stringr 1.4.0     
-## ✔ readr   1.3.1          ✔ forcats 0.3.0
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'tibble' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'tidyr' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'readr' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'purrr' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'stringr' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'forcats' was built under R version 3.5.1
-```
-
-```
-## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(broom)
-```
-
-```
-## Warning: package 'broom' was built under R version 3.5.2
 ```
 
    
@@ -6606,7 +6573,7 @@ def
 g
 ```
 
-![plot of chunk unnamed-chunk-213](figure/unnamed-chunk-213-1.pdf)
+![plot of chunk unnamed-chunk-215](figure/unnamed-chunk-215-1.pdf)
 
    
 
@@ -7218,7 +7185,7 @@ def
 g
 ```
 
-![plot of chunk unnamed-chunk-231](figure/unnamed-chunk-231-1.pdf)
+![plot of chunk unnamed-chunk-233](figure/unnamed-chunk-233-1.pdf)
 
    
 
@@ -7802,7 +7769,7 @@ ggplot(dogs.long, aes(
   stat_summary(fun.y = mean, geom = "line")
 ```
 
-![plot of chunk unnamed-chunk-247](figure/unnamed-chunk-247-1.pdf)
+![plot of chunk unnamed-chunk-249](figure/unnamed-chunk-249-1.pdf)
 
    
 
@@ -8151,7 +8118,7 @@ so have the factor `exertype` with more levels going across.)
 g
 ```
 
-![plot of chunk unnamed-chunk-258](figure/unnamed-chunk-258-1.pdf)
+![plot of chunk unnamed-chunk-260](figure/unnamed-chunk-260-1.pdf)
 
    
 
@@ -8313,7 +8280,7 @@ ggplot(summ, aes(
 )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-264](figure/unnamed-chunk-264-1.pdf)
+![plot of chunk unnamed-chunk-266](figure/unnamed-chunk-266-1.pdf)
 
    
 
@@ -8658,19 +8625,28 @@ Component $x$ contains LD score(s), here in descending order:
 
 ```r
 d <- cbind(hilo, hilo.pred$x) %>% arrange(desc(LD1))
+```
+
+```
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
+```
+
+```r
 d
 ```
 
 ```
-##   fertilizer yield weight        LD1
-## 1        low    34     10  3.0931414
-## 2        low    29     14  1.9210963
-## 3        low    35     11  1.0751090
-## 4        low    32     13  0.8724245
-## 5       high    34     13 -0.6609276
-## 6       high    33     14 -1.1456079
-## 7       high    38     12 -2.4762756
-## 8       high    35     14 -2.6789600
+## # A tibble: 2 x 2
+##   line_x line_y
+##    <dbl>  <dbl>
+## 1     31     14
+## 2     38     10
 ```
 
  
@@ -8685,7 +8661,11 @@ With one LD score, plot against (true) groups, eg. boxplot:
 ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-272](figure/unnamed-chunk-272-1.pdf)
+```
+## Error in FUN(X[[i]], ...): object 'fertilizer' not found
+```
+
+![plot of chunk unnamed-chunk-274](figure/unnamed-chunk-274-1.pdf)
 
    
 
@@ -9194,15 +9174,13 @@ cbind(new, pp$x) %>% arrange(LD1)
 ```
 
 ```
-##         y     smk     w        LD1        LD2         LD3
-## 1 200.375 166.275 51.00 -5.9688625 -0.3330095 -0.04523828
-## 2 200.375 155.875 51.00 -4.1723048 -1.0396138  0.93093630
-## 3 192.550 166.275 51.00 -2.8174566 -0.1007728 -1.51940856
-## 4 200.375 166.275 59.05 -1.3059358  0.9791583  0.54572212
-## 5 192.550 155.875 51.00 -1.0208989 -0.8073770 -0.54323399
-## 6 200.375 155.875 59.05  0.4906219  0.2725540  1.52189670
-## 7 192.550 166.275 59.05  1.8454701  1.2113950 -0.92844817
-## 8 192.550 155.875 59.05  3.6420278  0.5047907  0.04772641
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 ```
 
    
@@ -9231,7 +9209,7 @@ g <- ggplot(mm, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-288](figure/unnamed-chunk-288-1.pdf)
+![plot of chunk unnamed-chunk-290](figure/unnamed-chunk-290-1.pdf)
 
    
 
@@ -9254,7 +9232,7 @@ ggbiplot(peanuts.1,
 )
 ```
 
-![plot of chunk unnamed-chunk-289](figure/unnamed-chunk-289-1.pdf)
+![plot of chunk unnamed-chunk-291](figure/unnamed-chunk-291-1.pdf)
 $ %$ %$
 
 
@@ -9493,7 +9471,7 @@ g <- ggplot(mm, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-296](figure/unnamed-chunk-296-1.pdf)
+![plot of chunk unnamed-chunk-298](figure/unnamed-chunk-298-1.pdf)
 
    
 
@@ -9504,7 +9482,7 @@ g
 ggbiplot(active.1, groups = active$job)
 ```
 
-![plot of chunk unnamed-chunk-297](figure/unnamed-chunk-297-1.pdf)
+![plot of chunk unnamed-chunk-299](figure/unnamed-chunk-299-1.pdf)
 
    
 
@@ -9535,7 +9513,7 @@ ggplot(mm, aes(
   geom_text_repel()
 ```
 
-![plot of chunk unnamed-chunk-298](figure/unnamed-chunk-298-1.pdf)
+![plot of chunk unnamed-chunk-300](figure/unnamed-chunk-300-1.pdf)
 
    
 
@@ -9607,12 +9585,13 @@ data.frame(obs = active$job, pred = active.cv$class, pp) %>%
 ```
 
 ```
-##           obs       pred admin bellydancer politician   max
-## 1 bellydancer politician 0.000       0.001      0.999 0.999
-## 2  politician politician 0.006       0.000      0.994 0.994
-## 3  politician politician 0.001       0.000      0.999 0.999
-## 4  politician politician 0.000       0.009      0.991 0.991
-## 5       admin      admin 0.819       0.000      0.181 0.819
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::mutate
+## * dplyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "plyr")
+## * conflict_prefer("mutate", "dplyr")
 ```
 $
 
@@ -9801,7 +9780,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops.lda, groups = crops$crop)
 ```
 
-![plot of chunk unnamed-chunk-308](figure/unnamed-chunk-308-1.pdf)
+![plot of chunk unnamed-chunk-310](figure/unnamed-chunk-310-1.pdf)
 
    
 
@@ -9906,7 +9885,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops2.lda, groups = crops2$crop)
 ```
 
-![plot of chunk unnamed-chunk-312](figure/unnamed-chunk-312-1.pdf)
+![plot of chunk unnamed-chunk-314](figure/unnamed-chunk-314-1.pdf)
 
    
 
@@ -10190,7 +10169,7 @@ is "best" for individuals? **K-means clustering** (`kmeans`).
 
 
 ## Two made-up clusters
-![plot of chunk unnamed-chunk-319](figure/unnamed-chunk-319-1.pdf)
+![plot of chunk unnamed-chunk-321](figure/unnamed-chunk-321-1.pdf)
 
    
 
@@ -10253,7 +10232,7 @@ Complete-linkage distance is distance between farthest points.
 
 ## Ward's method
 Work out mean of each cluster and join point to its mean:
-![plot of chunk unnamed-chunk-322](figure/unnamed-chunk-322-1.pdf)
+![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
 
    
 
@@ -10264,7 +10243,7 @@ Work out mean of each cluster and join point to its mean:
 Now imagine combining the two clusters and working out overall
 mean. Join each point to this mean:
 
-![plot of chunk unnamed-chunk-323](figure/unnamed-chunk-323-1.pdf)
+![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
 
    
 (ii) Calc sum of squared distances of points to combined mean.
@@ -10389,7 +10368,7 @@ d.hc <- hclust(d, method = "single")
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-327](figure/unnamed-chunk-327-1.pdf)
+![plot of chunk unnamed-chunk-329](figure/unnamed-chunk-329-1.pdf)
 
    
 
@@ -10477,7 +10456,7 @@ d.hc <- hclust(d, method = "complete")
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-330](figure/unnamed-chunk-330-1.pdf)
+![plot of chunk unnamed-chunk-332](figure/unnamed-chunk-332-1.pdf)
 
   
 
@@ -11596,7 +11575,7 @@ g <- ggplot(d, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-379](figure/unnamed-chunk-379-1.pdf)
+![plot of chunk unnamed-chunk-381](figure/unnamed-chunk-381-1.pdf)
 
    
 
@@ -11644,7 +11623,7 @@ plot(ontario.hc)
 rect.hclust(ontario.hc, 4)
 ```
 
-![plot of chunk unnamed-chunk-381](figure/unnamed-chunk-381-1.pdf)
+![plot of chunk unnamed-chunk-383](figure/unnamed-chunk-383-1.pdf)
 
    
 
@@ -11667,7 +11646,7 @@ plot(ontario.hc)
 rect.hclust(ontario.hc, 7)
 ```
 
-![plot of chunk unnamed-chunk-382](figure/unnamed-chunk-382-1.pdf)
+![plot of chunk unnamed-chunk-384](figure/unnamed-chunk-384-1.pdf)
 
    
 
@@ -11985,7 +11964,7 @@ g
 ## Error in FUN(X[[i]], ...): object 'city' not found
 ```
 
-![plot of chunk unnamed-chunk-390](figure/unnamed-chunk-390-1.pdf)
+![plot of chunk unnamed-chunk-392](figure/unnamed-chunk-392-1.pdf)
 
    
 
@@ -12031,7 +12010,7 @@ data frame, acquires headers `V1` and `V2`.
 mds_map("europe.csv")
 ```
 
-![plot of chunk unnamed-chunk-392](figure/unnamed-chunk-392-1.pdf)
+![plot of chunk unnamed-chunk-394](figure/unnamed-chunk-394-1.pdf)
 
    
 
@@ -12061,7 +12040,7 @@ D,1.4,1  ,1  ,0
 mds_map("square.csv")
 ```
 
-![plot of chunk unnamed-chunk-393](figure/unnamed-chunk-393-1.pdf)
+![plot of chunk unnamed-chunk-395](figure/unnamed-chunk-395-1.pdf)
 
        
 
@@ -12148,7 +12127,7 @@ g2 <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-399](figure/unnamed-chunk-399-1.pdf)
+![plot of chunk unnamed-chunk-401](figure/unnamed-chunk-401-1.pdf)
 
    
 
@@ -12159,7 +12138,7 @@ g2
 ## Error in FUN(X[[i]], ...): object 'city' not found
 ```
 
-![plot of chunk unnamed-chunk-400](figure/unnamed-chunk-400-1.pdf)
+![plot of chunk unnamed-chunk-402](figure/unnamed-chunk-402-1.pdf)
 
    
 
@@ -12211,7 +12190,7 @@ g <- mds_map("ontario-road-distances.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-402](figure/unnamed-chunk-402-1.pdf)
+![plot of chunk unnamed-chunk-404](figure/unnamed-chunk-404-1.pdf)
 
    
 
@@ -12362,7 +12341,7 @@ noc %>% write_csv("no-c.csv")
 mds_map("no-c.csv")
 ```
 
-![plot of chunk unnamed-chunk-407](figure/unnamed-chunk-407-1.pdf)
+![plot of chunk unnamed-chunk-409](figure/unnamed-chunk-409-1.pdf)
 
    
 
@@ -12373,7 +12352,7 @@ mds_map("no-c.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-408](figure/unnamed-chunk-408-1.pdf)
+![plot of chunk unnamed-chunk-410](figure/unnamed-chunk-410-1.pdf)
 
    
 
@@ -12442,7 +12421,7 @@ g <- mds_map("southern-ontario.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-410](figure/unnamed-chunk-410-1.pdf)
+![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
 
    
 
@@ -12559,7 +12538,7 @@ gmap <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-416](figure/unnamed-chunk-416-1.pdf)
+![plot of chunk unnamed-chunk-418](figure/unnamed-chunk-418-1.pdf)
 
      
 
@@ -12568,7 +12547,7 @@ g2
 gmap
 ```
 
-![plot of chunk unnamed-chunk-417](figure/unnamed-chunk-417-1.pdf)
+![plot of chunk unnamed-chunk-419](figure/unnamed-chunk-419-1.pdf)
 
  
 \end{multicols}
@@ -12940,7 +12919,7 @@ $ %$ %$
 g
 ```
 
-![plot of chunk unnamed-chunk-431](figure/unnamed-chunk-431-1.pdf)
+![plot of chunk unnamed-chunk-433](figure/unnamed-chunk-433-1.pdf)
 
    
 
@@ -13338,7 +13317,7 @@ g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-444](figure/unnamed-chunk-444-1.pdf)
+![plot of chunk unnamed-chunk-446](figure/unnamed-chunk-446-1.pdf)
 
    
 
@@ -13351,7 +13330,7 @@ Poor correspondence (not much trend).
 g3
 ```
 
-![plot of chunk unnamed-chunk-445](figure/unnamed-chunk-445-1.pdf)
+![plot of chunk unnamed-chunk-447](figure/unnamed-chunk-447-1.pdf)
 
  
 Almost perfect: all actual $x=1$ go with smallest mapped distances; almost
@@ -13598,7 +13577,7 @@ variables measured on same scale and expect similar variability.)
 ggscreeplot(test12.pc)
 ```
 
-![plot of chunk unnamed-chunk-452](figure/unnamed-chunk-452-1.pdf)
+![plot of chunk unnamed-chunk-454](figure/unnamed-chunk-454-1.pdf)
 
    
 
@@ -14088,15 +14067,13 @@ d %>%
 ```
 
 ```
-##      Comp.1 country          Country
-## 1 10.652914      ck     Cook Islands
-## 2  7.297865      ws            Samoa
-## 3  4.297909      mt            Malta
-## 4  3.945224      pg Papua New Guinea
-## 5  3.150886      sg        Singapore
-## 6  2.787273      th         Thailand
-## 7  2.773125      id        Indonesia
-## 8  2.697066      gu             Guam
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 ```
 
    
@@ -14113,15 +14090,13 @@ d %>%
 ```
 
 ```
-##      Comp.1 country                  Country
-## 1 -3.462175      us United States of America
-## 2 -3.052104      uk           United Kingdom
-## 3 -2.752084      it                    Italy
-## 4 -2.651062      ru       Russian Federation
-## 5 -2.613964     dee             East Germany
-## 6 -2.576272     dew             West Germany
-## 7 -2.468919      au                Australia
-## 8 -2.191917      fr                   France
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 ```
 
    
@@ -14138,15 +14113,13 @@ d %>%
 ```
 
 ```
-##      Comp.1 country          Country
-## 1 10.652914      ck     Cook Islands
-## 2  7.297865      ws            Samoa
-## 3  4.297909      mt            Malta
-## 4  3.945224      pg Papua New Guinea
-## 5  3.150886      sg        Singapore
-## 6  2.787273      th         Thailand
-## 7  2.773125      id        Indonesia
-## 8  2.697066      gu             Guam
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 ```
 
    
@@ -14163,15 +14136,13 @@ d %>%
 ```
 
 ```
-##      Comp.2 country                   Country
-## 1 1.6860391      cr                Costa Rica
-## 2 1.5791490      kp             Korea (North)
-## 3 1.5226742      ck              Cook Islands
-## 4 1.3957839      tr                    Turkey
-## 5 1.3167578      pt                  Portugal
-## 6 1.2829272      gu                      Guam
-## 7 1.0663756      no                    Norway
-## 8 0.9547437      ir Iran, Islamic Republic of
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 ```
 
    
@@ -14187,17 +14158,13 @@ d %>%
 ```
 
 ```
-##        Comp.2 country                  Country
-## 1  -2.4715736      do       Dominican Republic
-## 2  -1.9196130      ws                    Samoa
-## 3  -1.8055052      sg                Singapore
-## 4  -1.7832229      bm                  Bermuda
-## 5  -1.7386063      my                 Malaysia
-## 6  -1.6851772      th                 Thailand
-## 7  -1.1204235      us United States of America
-## 8  -0.9989821      it                    Italy
-## 9  -0.7639385      ru       Russian Federation
-## 10 -0.6470634      br                   Brazil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::arrange
+## * dplyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "plyr")
+## * conflict_prefer("arrange", "dplyr")
 ```
 
    
@@ -14229,7 +14196,7 @@ g <- d %>%
 g
 ```
 
-![plot of chunk unnamed-chunk-466](figure/unnamed-chunk-466-1.pdf)
+![plot of chunk unnamed-chunk-468](figure/unnamed-chunk-468-1.pdf)
 
    
 
@@ -14466,7 +14433,7 @@ kids.pc <- kids %>%
 ggscreeplot(kids.pc)
 ```
 
-![plot of chunk unnamed-chunk-472](figure/unnamed-chunk-472-1.pdf)
+![plot of chunk unnamed-chunk-474](figure/unnamed-chunk-474-1.pdf)
 
    
 
@@ -14683,7 +14650,7 @@ kids.f1$PVAL
 g2
 ```
 
-![plot of chunk unnamed-chunk-479](figure/unnamed-chunk-479-1.pdf)
+![plot of chunk unnamed-chunk-481](figure/unnamed-chunk-481-1.pdf)
 
    
 
@@ -14832,17 +14799,13 @@ scores %>%
 ```
 
 ```
-##                     Country     Factor1    Factor2
-## 1  United States of America -0.21942697 -1.7251036
-## 2                     Italy -0.18436705 -1.4990521
-## 3        Dominican Republic  2.12906546 -1.4666402
-## 4        Russian Federation -0.32473110 -1.2236590
-## 5                   Bermuda  1.46541593 -1.1704466
-## 6            United Kingdom -0.58969058 -1.0139983
-## 7                    France -0.25301846 -0.9519162
-## 8              West Germany -0.46748876 -0.9079005
-## 9                    Canada -0.13690160 -0.8920777
-## 10                   Brazil  0.07780163 -0.8871291
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
  
@@ -14861,17 +14824,13 @@ scores %>%
 ```
 
 ```
-##                      Country    Factor1     Factor2
-## 1                   Portugal -1.2509805  0.78366889
-## 2                     Norway -0.9920727  0.62299560
-## 3                New Zealand -0.9813348  0.26603491
-## 4                      Kenya -0.9749696 -0.07099477
-## 5  Iran, Islamic Republic of -0.9231505  0.50271208
-## 6                Netherlands -0.9078661  0.23948200
-## 7                    Romania -0.8178386  0.18555001
-## 8                     Mexico -0.8096291  0.51446762
-## 9                    Finland -0.8094725 -0.05705220
-## 10                   Belgium -0.7960275 -0.23885253
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
  
@@ -15224,21 +15183,24 @@ bit tricky:
 ```r
 loadings <- as.data.frame(unclass(bem.2$loadings)) %>%
   mutate(trait = rownames(bem.2$loadings))
+```
+
+```
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::mutate
+## * plyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("mutate", "plyr")
+```
+
+```r
 loadings %>% slice(1:10)
 ```
 
 ```
-##       Factor1      Factor2    trait
-## 1   0.3137466  0.376484908  helpful
-## 2   0.4532904  0.117140647  reliant
-## 3   0.4336574  0.192602996   defbel
-## 4  -0.1309965  0.337629288 yielding
-## 5   0.1523718  0.370530549 cheerful
-## 6   0.5212403  0.005870336    indpt
-## 7   0.2670788  0.075542858   athlet
-## 8  -0.4144579 -0.065372760      shy
-## 9   0.6049588  0.033004846   assert
-## 10  0.6569855  0.020777649  strpers
+## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
 ```
 
    
@@ -15253,24 +15215,7 @@ loadings %>% filter(abs(Factor1) > 0.4)
 ```
 
 ```
-##       Factor1      Factor2    trait
-## 1   0.4532904  0.117140647  reliant
-## 2   0.4336574  0.192602996   defbel
-## 3   0.5212403  0.005870336    indpt
-## 4  -0.4144579 -0.065372760      shy
-## 5   0.6049588  0.033004846   assert
-## 6   0.6569855  0.020777649  strpers
-## 7   0.6487190 -0.126405816 forceful
-## 8   0.7654924  0.069513572 leaderab
-## 9   0.4416176  0.161238425     risk
-## 10  0.5416796  0.112807957   decide
-## 11  0.5109964  0.133626767 selfsuff
-## 12  0.6676490 -0.244855780 dominant
-## 13  0.6066864  0.171848896    stand
-## 14  0.7627129 -0.040667202  leadact
-## 15  0.4448064  0.089146147  individ
-## 16  0.4504188  0.053207281  compete
-## 17  0.4136498  0.136869589 ambitiou
+## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
 ```
 
 
@@ -15283,18 +15228,7 @@ loadings %>% filter(abs(Factor2) > 0.4)
 ```
 
 ```
-##        Factor1   Factor2    trait
-## 1   0.17789112 0.5537994   affect
-## 2   0.15121266 0.4166622    loyal
-## 3   0.02301456 0.5256654 sympathy
-## 4   0.13476970 0.4242037 sensitiv
-## 5   0.09111299 0.6101294 undstand
-## 6   0.11350643 0.6272223  compass
-## 7   0.06061755 0.5802714   soothe
-## 8   0.11893011 0.4300698    happy
-## 9   0.07956978 0.7191610     warm
-## 10  0.05113807 0.7102763   tender
-## 11 -0.01873224 0.7022768   gentle
+## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
 ```
 
    
@@ -15416,24 +15350,24 @@ things up.
 bem_tidy <- bem %>%
   mutate(row = row_number()) %>%
   gather(trait, score, c(-subno, -row))
+```
+
+```
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::mutate
+## * plyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("mutate", "plyr")
+```
+
+```r
 bem_tidy
 ```
 
 ```
-## # A tibble: 16,236 x 4
-##    subno   row trait   score
-##    <dbl> <int> <chr>   <dbl>
-##  1     1     1 helpful     7
-##  2     2     2 helpful     5
-##  3     3     3 helpful     7
-##  4     4     4 helpful     6
-##  5     5     5 helpful     6
-##  6     7     6 helpful     5
-##  7     8     7 helpful     6
-##  8     9     8 helpful     7
-##  9    10     9 helpful     7
-## 10    11    10 helpful     7
-## # … with 16,226 more rows
+## Error in eval(expr, envir, enclos): object 'bem_tidy' not found
 ```
 
    
@@ -15446,17 +15380,7 @@ loadings %>% slice(1:10)
 ```
 
 ```
-##       Factor1      Factor2    trait
-## 1   0.3137466  0.376484908  helpful
-## 2   0.4532904  0.117140647  reliant
-## 3   0.4336574  0.192602996   defbel
-## 4  -0.1309965  0.337629288 yielding
-## 5   0.1523718  0.370530549 cheerful
-## 6   0.5212403  0.005870336    indpt
-## 7   0.2670788  0.075542858   athlet
-## 8  -0.4144579 -0.065372760      shy
-## 9   0.6049588  0.033004846   assert
-## 10  0.6569855  0.020777649  strpers
+## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
 ```
 
    
@@ -15473,7 +15397,7 @@ bem_tidy <- bem_tidy %>% left_join(loadings)
 ```
 
 ```
-## Joining, by = "trait"
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 ```
 
 ```r
@@ -15481,21 +15405,7 @@ bem_tidy %>% sample_n(12)
 ```
 
 ```
-## # A tibble: 12 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1    32    22 compass      6  0.114   0.627 
-##  2   358   209 conscien     7  0.328   0.308 
-##  3   154   102 helpful      7  0.314   0.376 
-##  4    15    13 loyal        7  0.151   0.417 
-##  5     3     3 truthful     7  0.109   0.315 
-##  6   336   197 happy        7  0.119   0.430 
-##  7   485   274 sympathy     7  0.0230  0.526 
-##  8    89    55 stand        6  0.607   0.172 
-##  9   578   338 shy          1 -0.414  -0.0654
-## 10   404   230 softspok     3 -0.230   0.336 
-## 11    86    52 compass      4  0.114   0.627 
-## 12   425   241 feminine     6  0.113   0.323
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 ```
 
    
@@ -15512,20 +15422,7 @@ bem_tidy %>% filter(row == 366, abs(Factor2) > 0.4)
 ```
 
 ```
-## # A tibble: 11 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   755   366 affect       7  0.178    0.554
-##  2   755   366 loyal        7  0.151    0.417
-##  3   755   366 sympathy     7  0.0230   0.526
-##  4   755   366 sensitiv     7  0.135    0.424
-##  5   755   366 undstand     7  0.0911   0.610
-##  6   755   366 compass      6  0.114    0.627
-##  7   755   366 soothe       7  0.0606   0.580
-##  8   755   366 happy        7  0.119    0.430
-##  9   755   366 warm         7  0.0796   0.719
-## 10   755   366 tender       7  0.0511   0.710
-## 11   755   366 gentle       7 -0.0187   0.702
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 ```
 
  
@@ -15544,20 +15441,7 @@ bem_tidy %>% filter(
 ```
 
 ```
-## # A tibble: 33 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   369   214 affect       1  0.178    0.554
-##  2   534   311 affect       5  0.178    0.554
-##  3   755   366 affect       7  0.178    0.554
-##  4   369   214 loyal        7  0.151    0.417
-##  5   534   311 loyal        4  0.151    0.417
-##  6   755   366 loyal        7  0.151    0.417
-##  7   369   214 sympathy     4  0.0230   0.526
-##  8   534   311 sympathy     4  0.0230   0.526
-##  9   755   366 sympathy     7  0.0230   0.526
-## 10   369   214 sensitiv     7  0.135    0.424
-## # … with 23 more rows
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 ```
 
    
@@ -15580,20 +15464,7 @@ bem_tidy %>%
 ```
 
 ```
-## # A tibble: 11 x 4
-##    trait    `214` `311` `366`
-##    <chr>    <dbl> <dbl> <dbl>
-##  1 affect       1     5     7
-##  2 compass      5     4     6
-##  3 gentle       2     3     7
-##  4 happy        4     3     7
-##  5 loyal        7     4     7
-##  6 sensitiv     7     4     7
-##  7 soothe       3     4     7
-##  8 sympathy     4     4     7
-##  9 tender       3     4     7
-## 10 undstand     5     3     7
-## 11 warm         1     3     7
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 ```
 
  
@@ -15611,26 +15482,7 @@ bem_tidy %>%
 ```
 
 ```
-## # A tibble: 17 x 4
-##    trait    `230` `258` `359`
-##    <chr>    <dbl> <dbl> <dbl>
-##  1 ambitiou     7     2     4
-##  2 assert       7     3     1
-##  3 compete      6     2     1
-##  4 decide       7     1     2
-##  5 defbel       7     1     1
-##  6 dominant     7     1     1
-##  7 forceful     7     1     1
-##  8 individ      7     3     3
-##  9 indpt        7     7     1
-## 10 leadact      7     1     1
-## 11 leaderab     7     1     1
-## 12 reliant      7     4     1
-## 13 risk         7     5     7
-## 14 selfsuff     7     4     1
-## 15 shy          2     7     5
-## 16 stand        7     1     6
-## 17 strpers      7     1     3
+## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
 ```
 
  
@@ -15682,6 +15534,16 @@ loadings <- as.data.frame(unclass(bem.15$loadings)) %>%
   mutate(trait = rownames(bem.15$loadings))
 ```
 
+```
+## [conflicted] `mutate` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::mutate
+## * plyr::mutate
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("mutate", "plyr")
+```
+
    
 
 then show the highest few loadings on each factor.
@@ -15698,17 +15560,13 @@ loadings %>%
 ```
 
 ```
-##      Factor1    trait
-## 1  0.8127595  compass
-## 2  0.6756043 undstand
-## 3  0.6611293 sympathy
-## 4  0.6408327 sensitiv
-## 5  0.5971006   soothe
-## 6  0.3481290     warm
-## 7  0.2797159   gentle
-## 8  0.2788627   tender
-## 9  0.2501505  helpful
-## 10 0.2340594 conscien
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15727,17 +15585,13 @@ loadings %>%
 ```
 
 ```
-##       Factor2    trait
-## 1   0.7615492  strpers
-## 2   0.7160312 forceful
-## 3   0.6981500   assert
-## 4   0.5041921 dominant
-## 5   0.3929344 leaderab
-## 6   0.3669560    stand
-## 7   0.3507080  leadact
-## 8  -0.3131682 softspok
-## 9  -0.2866862      shy
-## 10  0.2602525   analyt
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15756,17 +15610,13 @@ loadings %>%
 ```
 
 ```
-##       Factor3    trait
-## 1   0.6697542  reliant
-## 2   0.6475496 selfsuff
-## 3   0.6204018    indpt
-## 4   0.3899607  helpful
-## 5  -0.3393605 gullible
-## 6   0.3333813  individ
-## 7   0.3319003   decide
-## 8   0.3294806 conscien
-## 9   0.2877396 leaderab
-## 10  0.2804170   defbel
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15785,17 +15635,13 @@ loadings %>%
 ```
 
 ```
-##      Factor4    trait
-## 1  0.6956206   gentle
-## 2  0.6920303   tender
-## 3  0.5992467     warm
-## 4  0.4465546   affect
-## 5  0.3942568 softspok
-## 6  0.2779793  lovchil
-## 7  0.2444249 undstand
-## 8  0.2442119    happy
-## 9  0.2125905    loyal
-## 10 0.2022861   soothe
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15814,17 +15660,13 @@ loadings %>%
 ```
 
 ```
-##      Factor5    trait
-## 1  0.6956846  compete
-## 2  0.6743459 ambitiou
-## 3  0.3453425     risk
-## 4  0.3423456  individ
-## 5  0.2808623   athlet
-## 6  0.2695570 leaderab
-## 7  0.2449656   decide
-## 8  0.2064415 dominant
-## 9  0.1928159  leadact
-## 10 0.1854989  strpers
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15844,17 +15686,13 @@ loadings %>%
 ```
 
 ```
-##       Factor6    trait
-## 1   0.8675651  leadact
-## 2   0.6078869 leaderab
-## 3   0.3378645 dominant
-## 4   0.2014835 forceful
-## 5  -0.1915632      shy
-## 6   0.1789256     risk
-## 7   0.1703440 masculin
-## 8   0.1639190   decide
-## 9   0.1594585  compete
-## 10  0.1466037   athlet
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15874,17 +15712,13 @@ loadings %>%
 ```
 
 ```
-##       Factor7    trait
-## 1   0.6698996    happy
-## 2   0.6667105 cheerful
-## 3  -0.5219125    moody
-## 4   0.2191425   athlet
-## 5   0.2126626     warm
-## 6   0.1719953   gentle
-## 7  -0.1640302 masculin
-## 8   0.1601472  reliant
-## 9   0.1472926 yielding
-## 10  0.1410481  lovchil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15904,17 +15738,13 @@ loadings %>%
 ```
 
 ```
-##       Factor8    trait
-## 1   0.6296764   affect
-## 2   0.5158355  flatter
-## 3  -0.2512066 softspok
-## 4   0.2214623     warm
-## 5   0.1878549   tender
-## 6   0.1846225  strpers
-## 7  -0.1804838      shy
-## 8   0.1801992  compete
-## 9   0.1658105    loyal
-## 10  0.1548617  helpful
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15932,17 +15762,13 @@ loadings %>%
 ```
 
 ```
-##       Factor9    trait
-## 1   0.8633171    stand
-## 2   0.3403294   defbel
-## 3   0.2446971  individ
-## 4   0.1941110     risk
-## 5  -0.1715481      shy
-## 6   0.1710978   decide
-## 7   0.1197126   assert
-## 8   0.1157729 conscien
-## 9   0.1120308   analyt
-## 10 -0.1115140 gullible
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15961,17 +15787,13 @@ loadings %>%
 ```
 
 ```
-##       Factor10    trait
-## 1   0.80751267 feminine
-## 2  -0.26378513 masculin
-## 3   0.24507184 softspok
-## 4   0.23175597 conscien
-## 5   0.20192035 selfsuff
-## 6   0.17584233 yielding
-## 7   0.14127067   gentle
-## 8   0.11282028  flatter
-## 9   0.10934531   decide
-## 10 -0.09407978  lovchil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -15990,17 +15812,13 @@ loadings %>%
 ```
 
 ```
-##      Factor11    trait
-## 1  0.91622589    loyal
-## 2  0.18949077   affect
-## 3  0.15883857 truthful
-## 4  0.12464529  helpful
-## 5  0.10440664   analyt
-## 6  0.10076794   tender
-## 7  0.09720457  lovchil
-## 8  0.09635223 gullible
-## 9  0.09350623 cheerful
-## 10 0.08207596 conscien
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -16019,17 +15837,13 @@ loadings %>%
 ```
 
 ```
-##      Factor12    trait
-## 1   0.6106933 childlik
-## 2  -0.2845004 selfsuff
-## 3  -0.2786751 conscien
-## 4   0.2588843    moody
-## 5   0.2013245      shy
-## 6  -0.1669301   decide
-## 7   0.1542031 masculin
-## 8   0.1455526 dominant
-## 9   0.1379163  compass
-## 10 -0.1297408 leaderab
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -16048,17 +15862,13 @@ loadings %>%
 ```
 
 ```
-##      Factor13    trait
-## 1   0.5729242 truthful
-## 2  -0.2776490 gullible
-## 3   0.2631046    happy
-## 4   0.1885152     warm
-## 5  -0.1671924      shy
-## 6   0.1646031    loyal
-## 7  -0.1438127 yielding
-## 8  -0.1302900   assert
-## 9   0.1137074   defbel
-## 10 -0.1105583  lovchil
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -16077,17 +15887,13 @@ loadings %>%
 ```
 
 ```
-##      Factor14    trait
-## 1   0.4429926   decide
-## 2   0.2369714 selfsuff
-## 3   0.1945034 forceful
-## 4  -0.1862756 softspok
-## 5   0.1604175     risk
-## 6  -0.1484606  strpers
-## 7   0.1461972 dominant
-## 8   0.1279456    happy
-## 9   0.1154479  compass
-## 10  0.1054078 masculin
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -16106,17 +15912,13 @@ loadings %>%
 ```
 
 ```
-##      Factor15    trait
-## 1  -0.3244092  compass
-## 2   0.2471884   athlet
-## 3   0.2292980 sensitiv
-## 4   0.1986878     risk
-## 5  -0.1638296   affect
-## 6   0.1632164    moody
-## 7  -0.1118135  individ
-## 8   0.1100678     warm
-## 9   0.1047347 cheerful
-## 10  0.1012342  reliant
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -16134,17 +15936,13 @@ data.frame(uniq = bem.15$uniquenesses) %>%
 ```
 
 ```
-##     rowname      uniq
-## 1  foullang 0.9136126
-## 2   lovchil 0.8242992
-## 3    analyt 0.8120934
-## 4  yielding 0.7911748
-## 5  masculin 0.7228739
-## 6    athlet 0.7217327
-## 7       shy 0.7033071
-## 8  gullible 0.7000779
-## 9   flatter 0.6625008
-## 10  helpful 0.6516863
+## [conflicted] `arrange` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::arrange
+## * plyr::arrange
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("arrange", "plyr")
 ```
 
    
@@ -16641,7 +16439,7 @@ ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-536](figure/unnamed-chunk-536-1.pdf)
+![plot of chunk unnamed-chunk-538](figure/unnamed-chunk-538-1.pdf)
 
 
 Examining trend
@@ -16823,7 +16621,7 @@ ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-545](figure/unnamed-chunk-545-1.pdf)
+![plot of chunk unnamed-chunk-547](figure/unnamed-chunk-547-1.pdf)
 
 Look at pre-1970 and post-1970:
 
@@ -17075,7 +16873,7 @@ Time plot
 autoplot(ny.ts)
 ```
 
-![](figure/unnamed-chunk-551-1.pdf)
+![](figure/unnamed-chunk-553-1.pdf)
 
 Comments on time plot
 
@@ -17093,7 +16891,7 @@ ny.diff.ts=diff(ny.ts)
 autoplot(ny.diff.ts)
 ```
 
-![plot of chunk unnamed-chunk-552](figure/unnamed-chunk-552-1.pdf)
+![plot of chunk unnamed-chunk-554](figure/unnamed-chunk-554-1.pdf)
 
 Looks stationary, but some regular spikes.
 
@@ -17108,7 +16906,7 @@ A visual (using original data):
 decompose(ny.ts) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-553](figure/unnamed-chunk-553-1.pdf)
+![plot of chunk unnamed-chunk-555](figure/unnamed-chunk-555-1.pdf)
 
 Decomposition bits
 
@@ -17193,7 +16991,7 @@ ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
 ## (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-557](figure/unnamed-chunk-557-1.pdf)
+![plot of chunk unnamed-chunk-559](figure/unnamed-chunk-559-1.pdf)
 
 ```r
 with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
@@ -17254,7 +17052,7 @@ ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + geom_point()
 ## (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-559](figure/unnamed-chunk-559-1.pdf)
+![plot of chunk unnamed-chunk-561](figure/unnamed-chunk-561-1.pdf)
 
 Two steps back:
 
@@ -17292,7 +17090,7 @@ White noise:
 acf(wn.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-561](figure/unnamed-chunk-561-1.pdf)
+![plot of chunk unnamed-chunk-563](figure/unnamed-chunk-563-1.pdf)
 
 No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
 
@@ -17305,7 +17103,7 @@ Kings, differenced
 acf(kings.diff.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-562](figure/unnamed-chunk-562-1.pdf)
+![plot of chunk unnamed-chunk-564](figure/unnamed-chunk-564-1.pdf)
 
 Comments on autocorrelations of kings series
 
@@ -17321,7 +17119,7 @@ NY births, differenced
 acf(ny.diff.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-563](figure/unnamed-chunk-563-1.pdf)
+![plot of chunk unnamed-chunk-565](figure/unnamed-chunk-565-1.pdf)
 
 Lots of stuff:
 
@@ -17385,7 +17183,7 @@ Plot of souvenir sales
 autoplot(souv.ts)
 ```
 
-![plot of chunk unnamed-chunk-565](figure/unnamed-chunk-565-1.pdf)
+![plot of chunk unnamed-chunk-567](figure/unnamed-chunk-567-1.pdf)
 
 Several problems:
 
@@ -17403,7 +17201,7 @@ souv.log.ts=log(souv.ts)
 autoplot(souv.log.ts)
 ```
 
-![plot of chunk unnamed-chunk-566](figure/unnamed-chunk-566-1.pdf)
+![plot of chunk unnamed-chunk-568](figure/unnamed-chunk-568-1.pdf)
 
 Mean still not constant, so try taking differences:
 
@@ -17413,7 +17211,7 @@ souv.log.diff.ts=diff(souv.log.ts)
 autoplot(souv.log.diff.ts)
 ```
 
-![plot of chunk unnamed-chunk-567](figure/unnamed-chunk-567-1.pdf)
+![plot of chunk unnamed-chunk-569](figure/unnamed-chunk-569-1.pdf)
 
 * Now stationary
 * but clear seasonal effect.
@@ -17426,7 +17224,7 @@ souv.d=decompose(souv.log.diff.ts)
 autoplot(souv.d)
 ```
 
-![plot of chunk unnamed-chunk-568](figure/unnamed-chunk-568-1.pdf)
+![plot of chunk unnamed-chunk-570](figure/unnamed-chunk-570-1.pdf)
 
 **Big** drop in one month's differences. Look at seasonal component to see which:
 
@@ -17471,7 +17269,7 @@ Autocorrelations:
 acf(souv.log.diff.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-570](figure/unnamed-chunk-570-1.pdf)
+![plot of chunk unnamed-chunk-572](figure/unnamed-chunk-572-1.pdf)
 
 * Big positive autocorrelation at 1 year (strong seasonal effect)
 * Small negative autocorrelation at 1 and 2 months.
@@ -17525,7 +17323,7 @@ ACF for MA(1) process
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-572](figure/unnamed-chunk-572-1.pdf)
+![plot of chunk unnamed-chunk-574](figure/unnamed-chunk-574-1.pdf)
 
 Everything beyond lag 1 appears to be just chance.
 
@@ -17588,7 +17386,7 @@ ACF for AR(1) series:
 acf(x, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-574](figure/unnamed-chunk-574-1.pdf)
+![plot of chunk unnamed-chunk-576](figure/unnamed-chunk-576-1.pdf)
 
 ### Partial autocorrelation function
 
@@ -17599,7 +17397,7 @@ This cuts off for an AR series:
 pacf(x, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-575](figure/unnamed-chunk-575-1.pdf)
+![plot of chunk unnamed-chunk-577](figure/unnamed-chunk-577-1.pdf)
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -17610,7 +17408,7 @@ PACF for an MA series decays slowly:
 pacf(ma$y, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-576](figure/unnamed-chunk-576-1.pdf)
+![plot of chunk unnamed-chunk-578](figure/unnamed-chunk-578-1.pdf)
 
 ### The old way of doing time series analysis
 
@@ -17779,7 +17577,7 @@ Plotting the forecasts for MA(1):
 autoplot(y.f)
 ```
 
-![plot of chunk unnamed-chunk-582](figure/unnamed-chunk-582-1.pdf)
+![plot of chunk unnamed-chunk-584](figure/unnamed-chunk-584-1.pdf)
 
 
 #### AR(1)
@@ -17833,7 +17631,7 @@ Forecasts for `x`:
 forecast(x.arima) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-585](figure/unnamed-chunk-585-1.pdf)
+![plot of chunk unnamed-chunk-587](figure/unnamed-chunk-587-1.pdf)
 
 Comparing wrong model:
 
@@ -17842,7 +17640,7 @@ Comparing wrong model:
 forecast(x.aa) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-586](figure/unnamed-chunk-586-1.pdf)
+![plot of chunk unnamed-chunk-588](figure/unnamed-chunk-588-1.pdf)
 
 
 #### Kings
@@ -17895,7 +17693,7 @@ Kings forecasts, plotted:
 autoplot(kings.f) + labs(x="index", y= "age at death")
 ```
 
-![plot of chunk unnamed-chunk-589](figure/unnamed-chunk-589-1.pdf)
+![plot of chunk unnamed-chunk-591](figure/unnamed-chunk-591-1.pdf)
 
 
 
@@ -17986,7 +17784,7 @@ Plotting the forecasts:
 autoplot(ny.f)+labs(x="time", y="births")
 ```
 
-![plot of chunk unnamed-chunk-592](figure/unnamed-chunk-592-1.pdf)
+![plot of chunk unnamed-chunk-594](figure/unnamed-chunk-594-1.pdf)
 
 
 #### Log-souvenir sales
@@ -18309,7 +18107,7 @@ Plotting the forecasts
 autoplot(souv.f)
 ```
 
-![plot of chunk unnamed-chunk-595](figure/unnamed-chunk-595-1.pdf)
+![plot of chunk unnamed-chunk-597](figure/unnamed-chunk-597-1.pdf)
 
 
 #### Global mean temperatures, revisited
@@ -18342,7 +18140,7 @@ temp.f=forecast(temp.aa)
 autoplot(temp.f)+labs(x="year", y="temperature")
 ```
 
-![plot of chunk unnamed-chunk-597](figure/unnamed-chunk-597-1.pdf)
+![plot of chunk unnamed-chunk-599](figure/unnamed-chunk-599-1.pdf)
 
 
 
