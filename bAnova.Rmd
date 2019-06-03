@@ -2,27 +2,27 @@
 # Analysis of variance
 
 
-## Analysis of variance
+## Analysis of variance 
 
 
-* Analysis of variance used with:
+* Analysis of variance used with: xxx
 
 
-* counted/measured response
+  * counted/measured response
 
-* categorical explanatory variable(s)
+  * categorical explanatory variable(s)
 
-* that is, data divided into groups, and see if response significantly different among groups
+  * that is, data divided into groups, and see if response significantly different among groups
 
-* or, see whether knowing group membership helps to predict response.
-
-
-* Typically two stages:
+  * or, see whether knowing group membership helps to predict response.
 
 
-* $F$-test to detect {\em any} differences among/due to groups
+* Typically two stages: 
 
-* if $F$-test significant, do {\em multiple comparisons} to see which groups significantly different from which.
+
+  * $F$-test to detect *any* differences among/due to groups
+
+  * if $F$-test significant, do *multiple comparisons* to see which groups significantly different from which.
 
 * Need special multiple comparisons method because just doing (say) two-sample $t$-tests on each pair of groups gives too big a chance of finding "significant" differences by accident.
 
@@ -30,10 +30,11 @@
 
 
 ## Packages
-These:
-```{r }
+These: 
+```{r, eval=F}
 library(tidyverse)
 library(broom)
+library(car) # for Levene's text
 ```
 
    
@@ -56,12 +57,11 @@ threshold score: higher score is higher pain tolerance.
 
 
 
-## The data
+## The data 
 In `hairpain.txt`:
 \begin{multicols}{2}
 
-```
-
+\begin{verbatim}
 hair pain
 lightblond 62
 lightblond 60
@@ -82,13 +82,13 @@ darkbrown 39
 darkbrown 51
 darkbrown 30
 darkbrown 35
-
-```
+\end{verbatim}
 
 \end{multicols}
 
-## Summarizing the groups
-```{r size="footnotesize"}
+## Summarizing the groups 
+\footnotesize
+```{r, message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/hairpain.txt"
 hairpain <- read_delim(my_url, " ")
 hairpain %>%
@@ -99,13 +99,15 @@ hairpain %>%
     s = sd(pain)
   )
 ```
+\normalsize
 
- 
+
 
 Brown-haired people seem to have lower pain tolerance.
 
 
 ## Boxplot
+
 ```{r tartuffo,fig.height=3.5}
 ggplot(hairpain, aes(x = hair, y = pain)) + geom_boxplot()
 ```
@@ -119,9 +121,9 @@ ggplot(hairpain, aes(x = hair, y = pain)) + geom_boxplot()
 * Data should be:
 
 
-* normally distributed within each group
+  * normally distributed within each group
 
-* same spread for each group
+  * same spread for each group
 
 
 * `darkbrown` group has upper outlier (suggests not normal)
@@ -139,9 +141,13 @@ ggplot(hairpain, aes(x = hair, y = pain)) + geom_boxplot()
 
 *   via **Levene's test** in package `car`:
 
-```{r size="small"}
-car::leveneTest(pain ~ hair, data = hairpain)
+\small
+
+```{r}
+leveneTest(pain ~ hair, data = hairpain)
 ```
+
+\normalsize
 
    
 
@@ -153,10 +159,15 @@ car::leveneTest(pain ~ hair, data = hairpain)
 
 
 ## Analysis of variance
-```{r size="small"}
+
+\small
+
+```{r}
 hairpain.1 <- aov(pain ~ hair, data = hairpain)
 summary(hairpain.1)
 ```
+
+\normalsize
 
    
 
@@ -196,12 +207,12 @@ different: significantly different.
 
 * `TukeyHSD:`
 
-{\footnotesize
-```{r size="scriptsize"}
+\footnotesize
+```{r}
 TukeyHSD(hairpain.1)
 ```
-def 
-}
+ 
+\normalsize
 
 
 
@@ -214,12 +225,10 @@ def
 different:
 
 ```
-
 darkbrown lightbrown  darkblond lightblond
 37.4      42.5       51.2       59.2
 -------------------------
----------------
-
+                     ---------------
 ```
 
 
@@ -241,12 +250,12 @@ but not completely clear.
 
 * Work any time you do $k$ tests at once (not just ANOVA).
 
-* **Bonferroni**: multiply all P-values by $k$.
+  * **Bonferroni**: multiply all P-values by $k$.
 
-* **Holm**: multiply smallest P-value by $k$, next-smallest by
+  * **Holm**: multiply smallest P-value by $k$, next-smallest by
 $k-1$, etc.
 
-* **False discovery rate**: multiply smallest P-value by $k/1$,
+  * **False discovery rate**: multiply smallest P-value by $k/1$,
 2nd-smallest by $k/2$, \ldots, $i$-th smallest by $k/i$.
 
 * Stop after non-rejection.
@@ -263,24 +272,20 @@ Use $\alpha=0.05$.
 * Bonferroni: 
 
 
-* 
-Multiply all P-values by 4 (4 tests).
+  * Multiply all P-values by 4 (4 tests).
 
-* 
-Reject only 1st null.
+  * Reject only 1st null.
 
 
 
 * Holm: 
 
 
-* 
-Times smallest P-value by 4: $0.005*4=0.020<0.05$, reject.
+  * Times smallest P-value by 4: $0.005*4=0.020<0.05$, reject.
 
-* 
-Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
+  * Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
 
-* Times next smallest by 2: $0.03*2=0.06>0.05$, do not reject. Stop.
+  * Times next smallest by 2: $0.03*2=0.06>0.05$, do not reject. Stop.
 
 
 
@@ -289,41 +294,41 @@ Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
 ## \ldots Continued
 
 
-*   With P-values 0.005, 0.015, 0.03, 0.06:
+* With P-values 0.005, 0.015, 0.03, 0.06:
 
 * False discovery rate:
 
 
-* Times smallest P-value by 4: $0.005*4=0.02<0.05$: reject.
+  * Times smallest P-value by 4: $0.005*4=0.02<0.05$: reject.
 
-* Times second smallest by $4/2$: $0.015*4/2=0.03<0.05$, reject.
+  * Times second smallest by $4/2$: $0.015*4/2=0.03<0.05$, reject.
 
-* Times third smallest by $4/3$: $0.03*4/3=0.04<0.05$, reject.
+  * Times third smallest by $4/3$: $0.03*4/3=0.04<0.05$, reject.
 
-* Times fourth smallest by $4/4$: 0.06*4/4=0.06>0.05, do not reject. Stop.
-
-
+  * Times fourth smallest by $4/4$: $0.06*4/4=0.06>0.05$, do not reject. Stop. xxx
 
 
-## `pairwise.t.test`
-\begin{multicols}{2}
-{\tiny
+
+
+## `pairwise.t.test` xxx
+
+\tiny
 ```{r }
 attach(hairpain)
 pairwise.t.test(pain, hair, p.adj = "none")
 pairwise.t.test(pain, hair, p.adj = "holm")
 ```
+\normalsize
 
-   
+## `pairwise.t.test` part 2 xxx
 
+\tiny
 ```{r }
 pairwise.t.test(pain, hair, p.adj = "fdr")
 pairwise.t.test(pain, hair, p.adj = "bon")
 ```
 
- 
-}
-\end{multicols}
+\normalsize 
 
 
 ## Comments
@@ -358,9 +363,9 @@ into size classes `lean` and `obese`.
 * Variables:
 
 
-* Response: `kidneyweight` (grams).
+  * Response: `kidneyweight` (grams).
 
-* Explanatory: `diet`, `ratsize`.
+  * Explanatory: `diet`, `ratsize`.
 
 
 * Read in data:
@@ -381,8 +386,8 @@ vitaminb
    
 
 
-## *Grouped boxplot*
-```{r fig.height=3.25}
+## Grouped boxplot
+```{r fig.height=3.0}
 ggplot(vitaminb, aes(
   x = ratsize, y = kidneyweight,
   fill = diet
@@ -395,14 +400,16 @@ ggplot(vitaminb, aes(
 ## What's going on?
 
 
-* Calculate group means:
+* Calculate group means: xxx
+
+\footnotesize
 ```{r }
 summary <- vitaminb %>%
   group_by(ratsize, diet) %>%
   summarize(mean = mean(kidneyweight))
 summary
 ```
-
+\normalsize
    
 
 * Rat size: a large and consistent effect.
@@ -425,7 +432,8 @@ summary(vitaminb.1)
 
    
 
-Significance/nonsignificance as we expected. Note no significant
+- Significance/nonsignificance as we expected. 
+- Note no significant
 interaction (can be removed). 
 
 
@@ -433,7 +441,7 @@ interaction (can be removed).
 
 
 * Plot mean of response variable against one of the explanatory, using
-other one as groups. Start from summary:
+other one as groups. Start from `summary`: 
 ```{r }
 g <- ggplot(summary, aes(
   x = ratsize, y = mean,
@@ -449,8 +457,8 @@ g <- ggplot(summary, aes(
 
 
 
-## The interaction plot
-```{r fig.height=3}
+## The interaction plot xxx
+```{r fig.height=3.7}
 g
 ```
 
@@ -460,10 +468,14 @@ Lines basically parallel, indicating no interaction.
 
 
 ## Take out interaction
-```{r size="small"}
+\small
+
+```{r}
 vitaminb.2 <- update(vitaminb.1, . ~ . - ratsize:diet)
 summary(vitaminb.2)
 ```
+
+\normalsize
 
    
 
@@ -485,10 +497,10 @@ pollution. However, questions had been raised about the effects of
 filter silencing. He referred to the data included in the report
 (and below) as evidence
 that the silencing properties of the Octel filter were at least
-equal to those of standard silencers. 
+equal to those of standard silencers. xxx
 ```{r }
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
-autonoise <- read_table(my_url)
+u <- "http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
+autonoise <- read_table(u)
 ```
 
  
@@ -520,6 +532,13 @@ g <- autonoise %>%
 
 
 ## The boxplot
+
+* See difference in engine noise between Octel and standard is larger for
+medium engine size than for large or small.
+
+* Some evidence of differences in spreads (ignore for now):
+
+
 ```{r fig.height=2.7}
 g
 ```
@@ -528,18 +547,16 @@ g
 
 
 
-* Difference in engine noise between Octel and standard is larger for
-medium engine size than for large or small.
-
-* Some evidence of differences in spreads (ignore for now).
-
 
 
 ## ANOVA
-```{r size="small"}
+\small
+```{r}
 autonoise.1 <- aov(noise ~ size * type, data = autonoise)
 summary(autonoise.1)
 ```
+
+\normalsize
 
    
 
@@ -552,11 +569,14 @@ on 6 obs each.
 
 
 
-## Tukey: ouch!
-```{r size="scriptsize"}
+## Tukey: ouch! xxx
+\scriptsize
+```{r}
 autonoise.2 <- TukeyHSD(autonoise.1)
 autonoise.2$`size:type`
 ```
+
+\normalsize
 
  
 
@@ -585,20 +605,25 @@ g <- ggplot(autonoise, aes(
 
 
 ## Interaction plot
+
+The lines are definitely *not* parallel, showing that the effect
+of `type` is different for medium-sized engines than for others:
+
 ```{r fig.height=3}
 g
 ```
 
 
 
-The lines are definitely *not* parallel, showing that the effect
-of `type` is different for medium-sized engines than for others.
+
 
 
 ## If you don't like that\ldots
-\ldots then compute the means first, in a pipeline:
+\ldots then compute the means first, in a pipeline: xxx
 
-```{r fig.height=3, size="small"}
+\footnotesize
+
+```{r fig.height=2.3}
 autonoise %>%
   group_by(size, type) %>%
   summarize(mean_noise = mean(noise)) %>%
@@ -607,6 +632,8 @@ autonoise %>%
     colour = type
   )) + geom_point() + geom_line()
 ```
+
+\normalsize
 
    
 
@@ -664,8 +691,13 @@ autonoise %>%
 
 
 * There *is* an effect of filter type for medium cars. Look
-at means to investigate:
-{\footnotesize
+at means to investigate (over). 
+
+## Mean noise for each filter type
+
+\ldots for medium engine size: 
+
+
 ```{r }
 autonoise %>%
   filter(size == "M") %>%
@@ -673,15 +705,14 @@ autonoise %>%
   summarize(m = mean(noise))
 ```
 
-   
-}
-
-
-
-## Medium and large cars
-
-
 * Octel filters produce *less* noise for medium cars.
+   
+
+
+
+## Large cars 
+
+
 
 * Large cars:
 ```{r }
@@ -694,16 +725,20 @@ autonoise %>%
    
 
 
-* No significant difference again.
+* No significant difference again. 
 
-* Or use `glance` from `broom`:
+## Or\ldots xxx
 
-```{r size="footnotesize"}
+use `glance` from `broom`:
+
+\small
+```{r}
 autonoise %>%
   filter(size == "L") %>%
   aov(noise ~ type, data = .) %>%
   glance()
 ```
+\normalsize
 
    
 
@@ -779,7 +814,10 @@ number (a `dbl`). Investigate what happens if you use
 
 * The `data` column was stepping-stone to getting
 answer. Don't need it any more:
-```{r size="small"}
+
+\small
+
+```{r}
 simple_effects <- autonoise %>%
   group_by(size) %>%
   nest() %>%
@@ -787,6 +825,8 @@ simple_effects <- autonoise %>%
   select(-data)
 simple_effects
 ```
+
+\normalsize
 
      
 
@@ -799,12 +839,17 @@ simple_effects
 this case, 3.)
 
 * Have to adjust P-values for this. Eg.\ Holm:
-```{r size="small"}
+
+\small
+
+```{r}
 simple_effects %>%
   arrange(p_val) %>%
   mutate(multiplier = 4 - row_number()) %>%
   mutate(p_val_adj = p_val * multiplier)
 ```
+
+\normalsize
 
      
 
@@ -894,29 +939,28 @@ autonoise %>%
 
 
 ## Or, all at once: split/apply/combine
-```{r size="scriptsize"}
+\scriptsize
+```{r}
 ci_func <- function(x) {
   tt <- t.test(noise ~ type, data = x)
   tt$conf.int
 }
-cis <- autonoise %>%
+autonoise %>%
   group_by(size) %>%
   nest() %>%
   mutate(ci = map(data, ~ ci_func(.))) %>%
-  unnest(ci)
+  unnest(ci) -> cis
 ```
 
-   
+\normalsize
 
-\begin{multicols}{2}
-```{r size="footnotesize"}
+## Results
+
+```{r}
 cis
 ```
 
-
-
-\begin{small}
-
+## Procedure 
 
 * Function to get CI of difference in noise means for types
 of filter on input data frame
@@ -929,9 +973,6 @@ of filter on input data frame
 * `unnest` `ci` column to see two numbers
 in each CI.
 
-\end{small}
-\end{multicols}
-
 
 ## CIs and noninferiority test
 
@@ -939,20 +980,19 @@ in each CI.
 * Suppose we decide that a 20 dB difference would be considered
 equivalent. (I have no idea whether that is reasonable.)
 
-* Intervals: \vspace{2ex}
-```{r size="small"}
+* Intervals: \vspace{2ex} 
+
+\small
+
+```{r}
 cis %>%
   mutate(hilo = rep(c("lower", "upper"), 3)) %>%
   spread(hilo, ci)
 ```
-     \begin{tabular}{lrr}
-       Engine size & Lower & Upper \\
-       \hline
-       Small & --14.5 &7.9 \\
-       Medium & --30.8 &--17.6\\
-       Large & --19.3&9.3\\
-       \hline
-     \end{tabular} \vspace{2ex}
+
+\normalsize
+
+## Comments 
 
 * In all cases, upper limit of CI is less than 20 dB. The Octel
 filters are "noninferior" to the standard ones.
@@ -1090,7 +1130,9 @@ contrasts are called **orthogonal**.
 ## Orthogonal contrasts (2)
 
 
-* Compare these:
+* Compare these: xxx
+
+\small
 ```{r }
 c1 <- c(1, -1, 0)
 c1
@@ -1098,7 +1140,7 @@ c2 <- c(0, 1, -1)
 c2
 c1 * c2
 ```
-
+\normalsize
  
 Does not add up to zero, so `c1` and `c2` are *not*
 orthogonal.
@@ -1106,16 +1148,19 @@ orthogonal.
 * Orthogonal contrasts are much easier to deal with. 
 
 
-* Can use non-orthogonal contrasts, but much more trouble (and
-beyond us).
+* Can use non-orthogonal contrasts, but more trouble 
+(beyond us).
 
 
-## Starting the analysis
-```{r size="footnotesize"}
+## Read in data xxx
+\footnotesize
+```{r, message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"
 chain.wide <- read_table(my_url)
 chain.wide
 ```
+
+\normalsize
 
    
 
@@ -1133,20 +1178,16 @@ chain <- gather(chain.wide, model, kickback, A:D,
 
 
 ## Starting the analysis (2)
-The proper data frame, displayed in two pieces:
-\begin{multicols}{2}
-```{r }
-chain %>% slice(1:10)
-```
+The proper data frame: xxx
 
+\tiny
+```{r }
+chain 
+```
+\normalsize
  
 
-```{r }
-chain %>% slice(11:20)
-```
-
  
-\end{multicols}
 
 
 ## Setting up contrasts
@@ -1159,16 +1200,15 @@ contrasts(chain$model) <- m
    
 
 
-## ANOVA as regression
-Now run ANOVA *as if regression*:
-{\scriptsize
+## ANOVA *as if regression*
+
+\scriptsize
 ```{r }
 chain.1 <- lm(kickback ~ model, data = chain)
 summary(chain.1)
 ```
 
- 
-}
+\normalsize 
 
 
 
@@ -1193,13 +1233,15 @@ models *are* sig.\ diff.\ (P-value 0.0032).
 
 
 * The means:
+
+\footnotesize
 ```{r }
 chain %>%
   group_by(model) %>%
   summarize(mean.kick = mean(kickback)) %>%
   arrange(desc(mean.kick))
 ```
-
+\normalsize
  
 
 * Home models A \& D have less kickback than industrial ones B \& C.
@@ -1207,13 +1249,5 @@ chain %>%
 * Makes sense because industrial users should get training to cope
 with additional kickback.
 
-
-```{r echo=F,warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
-
-   
 
 

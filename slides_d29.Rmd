@@ -25,7 +25,6 @@ output:
 
 ```
 
-xxx
  
 ```{r bLogistic, child="bLogistic.Rmd"}
 

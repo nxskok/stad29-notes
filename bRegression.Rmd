@@ -115,7 +115,7 @@ options(width = 60)
 sleep.1 <- lm(atst ~ age, data = sleep)
 ```
  
-## The output xxx
+## The output 
 
 \scriptsize
 ```{r}
@@ -242,7 +242,7 @@ does not work. Use base R `cbind`.
 
 ## That grey envelope
 
-Marks confidence interval for mean for all $x$: xxx
+Marks confidence interval for mean for all $x$: 
 
 ```{r fig.height=3.0}
 ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
@@ -265,7 +265,7 @@ How to tell whether a straight-line regression is appropriate?
 
 * After: plot *residuals* (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
 
-## Residual plot xxx
+## Residual plot 
 
 Not much pattern here --- regression appropriate.
 
@@ -331,11 +331,11 @@ curvy.2a <- update(curvy.1, . ~ . + I(xx^2))
  
 
 
-## Regression 2 xxx
+## Regression 2 
 
 ```{r }
 tidy(curvy.2)
-glimpse(curvy.2)
+glance(curvy.2) #
 ```
 
 
@@ -352,7 +352,7 @@ glimpse(curvy.2)
 
 
 
-## The residual plot now xxx 
+## The residual plot now  
 No problems any more:
 
 ```{r size="small", fig.height=3.4}
@@ -408,7 +408,7 @@ madeup
 Seems to be faster-than-linear growth, maybe exponential growth. 
 
 
-## Scatterplot: faster than linear growth xxx
+## Scatterplot: faster than linear growth 
 ```{r dsljhsdjlhf,fig.height=3.2}
 ggplot(madeup, aes(x = x, y = y)) + geom_point() +
   geom_smooth()
@@ -463,8 +463,8 @@ $2,1,0.5,0,-0.5,-1$. Here 0 and 0.5 good values to pick.
 
 ## Did transformation straighten things?
 
-* Plot transformed $y$ against $x$. Here, log: xxx
-```{r, message=FALSE }
+* Plot transformed $y$ against $x$. Here, log:
+```{r, message=FALSE, fig.height=3.2 }
 ggplot(madeup, aes(x = x, y = log(y))) + geom_point() +
   geom_smooth()
 ```
@@ -475,7 +475,7 @@ Looks much straighter.
 
 ## Regression with transformed $y$
 
-xxx from here
+
 
 \footnotesize
 ```{r}
@@ -525,7 +525,7 @@ Study of women and visits to health professionals, and how the number of visits 
 
 
 
-## The data xxx
+## The data 
 ```{r }
 my_url <- 
   "http://www.utsc.utoronto.ca/~butler/d29/regressx.txt"
@@ -552,15 +552,6 @@ glance(visits.1)
 ```
 
 
-
-## The regression
-
-\begin{scriptsize}
-```{r }
-tidy(visits.1)
-```
-\end{scriptsize}
-
 ## The slopes
 
 Model as a whole strongly significant even though R-sq not very big (lots of data). At least one of the $x$'s predicts `timedrs`.
@@ -574,7 +565,7 @@ The physical health and stress variables initely help to predict the number of v
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
-## Just `menheal` xxx
+## Just `menheal` 
 
 \footnotesize 
 ```{r }
@@ -620,12 +611,12 @@ so not as much to *add* to prediction as `stress`.
 
 
 
-## Residual plot (from `timedrs` on all) xxx
+## Residual plot (from `timedrs` on all) 
 ```{r iffy8,fig.height=3.5}
 ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
 ```
  
-## Comment xxx 
+## Comment
 
 Apparently random. But\ldots
 
@@ -643,14 +634,19 @@ ggplot(visits.1, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 
 ## Absolute residuals
 Is there trend in *size* of residuals (fan-out)? Plot
-*absolute value* of residual against fitted value: xxx
+*absolute value* of residual against fitted value (graph next page):
 
-```{r fig.height=3, message=FALSE}
-ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
+```{r fig.height=2.8, message=FALSE}
+g <- ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
   geom_point() + geom_smooth()
 ```
 
- 
+## The plot
+
+```{r, echo=F, message=F, fig.height=4.3}
+g
+```
+
 
 
 ## Comments
@@ -682,95 +678,6 @@ transformation of response often fixes: that is, predict
 `timedrs` itself.
 
 
-## Fixing the problems
-
-
-* Residuals not normal (skewed right), increase in size with
-fitted value.
-
-* Sometimes residuals are *very* positive: observed a *lot* larger than predicted.
-
-* Try *transforming* response: use log or square root of response. (Note that response is *count*, often skewed to right.)
-
-* Try regression again, with transformed response instead of
-original one.
-
-* Then check residual plot to see that it is OK now.
-```{r }
-visits.3 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress,
-  data = visits
-)
-```
- 
-
-* `timedrs+1`  because some `timedrs` values 0,
-can't take log of 0.
-
-* Won't usually need to worry about this, but when response could
-be zero/negative, fix that before transformation.
-
-
-## Output
-
-\scriptsize
-```{r }
-summary(visits.3)
-```
- 
-\normalsize
-
-
-## Comments
-
-
-* Model as a whole strongly significant again 
-
-* R-sq higher than before (37\% vs.\ 22\%) suggesting things more linear now
-
-* Same conclusion re `menheal`: can take out of regression.
-
-* Should look at residual plots (next pages). Have we fixed problems?
-
-
-
-## Residuals against fitted values
-```{r fig.height=3.5}
-ggplot(visits.3, aes(x = .fitted, y = .resid)) +
-  geom_point()
-```
-
-   
-
-
-## Normal quantile plot of residuals
-```{r fig.height=4}
-ggplot(visits.3, aes(sample = .resid)) + stat_qq() + stat_qq_line()
-```
-
-   
-
-
-## Absolute residuals against fitted
-```{r fig.height=3}
-ggplot(visits.3, aes(x = .fitted, y = abs(.resid))) +
-  geom_point() + geom_smooth()
-```
-
-   
-
-
-## Comments
-
-
-* Residuals vs.\ fitted looks a lot more random.
-
-* Normal quantile plot looks a lot more normal (though still a
-little right-skewness)
-
-* Absolute residuals: not so much trend (though still some).
-
-* Not perfect, but much improved.
-
 
 
 ## Box-Cox transformations
@@ -792,7 +699,8 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 
 ## Try 1
 ```{r echo=F,fig.height=4.5}
-  boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
+  boxcox(timedrs + 1 ~ phyheal + menheal + stress, 
+         data = visits)
 ```
  
 
@@ -804,8 +712,10 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 
 * Hard to see scale. 
 
-* Focus on $\lambda$ in $(-0.3,0.1)$:
-\small    
+* Focus on $\lambda$ in $(-0.3,0.1)$: 
+
+
+\footnotesize
 ```{r size="footnotesize"}
 my.lambda <- seq(-0.3, 0.1, 0.01)
 my.lambda
@@ -833,30 +743,116 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress,
 
 * Only nearby round number: $\lambda=0$, log transformation.
 
-* So we made lucky guess with log before!
+
+## Fixing the problems 
+
+
+* Try regression again, with transformed response instead of
+original one.
+
+* Then check residual plot to see that it is OK now.
+```{r }
+visits.3 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress,
+  data = visits
+)
+```
+ 
+
+* `timedrs+1`  because some `timedrs` values 0,
+can't take log of 0.
+
+* Won't usually need to worry about this, but when response could
+be zero/negative, fix that before transformation.
+
+
+## Output 
+
+\scriptsize
+```{r }
+summary(visits.3)
+```
+ 
+\normalsize
+
+
+## Comments 
+
+
+* Model as a whole strongly significant again 
+
+* R-sq higher than before (37\% vs.\ 22\%) suggesting things more linear now
+
+* Same conclusion re `menheal`: can take out of regression.
+
+* Should look at residual plots (next pages). Have we fixed problems?
+
+
+
+## Residuals against fitted values
+```{r fig.height=3.5}
+ggplot(visits.3, aes(x = .fitted, y = .resid)) +
+  geom_point()
+```
+
+   
+
+
+## Normal quantile plot of residuals
+```{r fig.height=3.8}
+ggplot(visits.3, aes(sample = .resid)) + stat_qq() + stat_qq_line()
+```
+
+   
+
+
+## Absolute residuals against fitted
+```{r fig.height=3.5, message=F}
+ggplot(visits.3, aes(x = .fitted, y = abs(.resid))) +
+  geom_point() + geom_smooth()
+```
+
+   
+
+
+## Comments 
+
+
+* Residuals vs.\ fitted looks a lot more random.
+
+* Normal quantile plot looks a lot more normal (though still a
+little right-skewness)
+
+* Absolute residuals: not so much trend (though still some).
+
+* Not perfect, but much improved.
+
 
 
 ## Testing more than one $x$ at once
 
-The $t$-tests test only whether one variable could be taken out of the
-regression you're looking at. To test significance of more than one
-variable at once, fit model with and without variables and use
-`anova` to compare fit of models:
-{\small
+- The $t$-tests test only whether one variable could be taken out of the
+regression you're looking at. 
+- To test significance of more than one
+variable at once, fit model with and without variables 
+  - then use `anova` to compare fit of models:
+
+
 ```{r }
-visits.5 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress, data = visits)
+visits.5 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress, 
+               data = visits)
 visits.6 <- lm(log(timedrs + 1) ~ stress, data = visits)
-anova(visits.6, visits.5)
 ```
  
-}
 
 
 ## Results of tests
 
+```{r}
+anova(visits.6, visits.5)
+```
 
 
-* Models don't fit equally well, so big one fits better.
+* Models don't fit equally well, so bigger one fits better.
 
 * Or "taking both variables out makes the fit worse, so don't do it".
 
@@ -874,7 +870,7 @@ punting distance from other variables:
 \scriptsize
 
 ```
-left                right               punt         fred
+left            right               punt         fred
 170               170                162.50       171 
 130               140                144.0        136   
 170               180                174.50       174 
@@ -916,10 +912,12 @@ punting
 
 
 ## Regression and output
-\footnotesize
+
+\small
 ```{r}
 punting.1 <- lm(punt ~ left + right + fred, data = punting)
-summary(punting.1)
+glance(punting.1)
+tidy(punting.1)
 ```
 \normalsize
 
@@ -964,26 +962,21 @@ No significant loss by dropping other two variables.
 
 
 ## Comparing R-squareds
-\small
 ```{r }
 summary(punting.1)$r.squared
 summary(punting.2)$r.squared
 ```
  
-\normalsize
-
 Basically no difference. In regression (over), `right` significant:
 
 
 ## Regression results
 
-\footnotesize
+
 ```{r }
-summary(punting.2)
+tidy(punting.2)
 ```
  
-\normalsize
-
 ## But\ldots
 
 
@@ -1052,7 +1045,7 @@ summary(punting.3)
 ## Comments
 
 
-* This was initely a good idea (R-squared has clearly increased).
+* This was definitely a good idea (R-squared has clearly increased).
 
 * We would never have seen it without plotting residuals from
 `punting.2` (without `left`) against `left`.

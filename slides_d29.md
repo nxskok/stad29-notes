@@ -359,7 +359,7 @@ Scatterplot shows no obvious curve, and a pretty clear downward trend. So we can
 sleep.1 <- lm(atst ~ age, data = sleep)
 ```
  
-## The output xxx
+## The output 
 
 \scriptsize
 
@@ -568,7 +568,7 @@ does not work. Use base R `cbind`.
 
 ## That grey envelope
 
-Marks confidence interval for mean for all $x$: xxx
+Marks confidence interval for mean for all $x$: 
 
 
 ```r
@@ -594,7 +594,7 @@ How to tell whether a straight-line regression is appropriate?
 
 * After: plot *residuals* (observed minus predicted response) against predicted values. Aim: a plot with no pattern.
 
-## Residual plot xxx
+## Residual plot 
 
 Not much pattern here --- regression appropriate.
 
@@ -703,7 +703,7 @@ curvy.2a <- update(curvy.1, . ~ . + I(xx^2))
  
 
 
-## Regression 2 xxx
+## Regression 2 
 
 
 ```r
@@ -720,62 +720,16 @@ tidy(curvy.2)
 ```
 
 ```r
-glimpse(curvy.2)
+glance(curvy.2) #
 ```
 
 ```
-## List of 12
-##  $ coefficients : Named num [1:3] 3.9 3.743 -0.307
-##   ..- attr(*, "names")= chr [1:3] "(Intercept)" "xx" "I(xx^2)"
-##  $ residuals    : Named num [1:10] 0.1 -0.336 -0.159 -0.368 1.036 ...
-##   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
-##  $ effects      : Named num [1:10] -37.947 8.918 -7.05 -0.335 1.048 ...
-##   ..- attr(*, "names")= chr [1:10] "(Intercept)" "xx" "I(xx^2)" "" ...
-##  $ rank         : int 3
-##  $ fitted.values: Named num [1:10] 3.9 7.34 10.16 12.37 13.96 ...
-##   ..- attr(*, "names")= chr [1:10] "1" "2" "3" "4" ...
-##  $ assign       : int [1:3] 0 1 2
-##  $ qr           :List of 5
-##   ..$ qr   : num [1:10, 1:3] -3.162 0.316 0.316 0.316 0.316 ...
-##   .. ..- attr(*, "dimnames")=List of 2
-##   .. ..- attr(*, "assign")= int [1:3] 0 1 2
-##   ..$ qraux: num [1:3] 1.32 1.27 1.22
-##   ..$ pivot: int [1:3] 1 2 3
-##   ..$ tol  : num 1e-07
-##   ..$ rank : int 3
-##   ..- attr(*, "class")= chr "qr"
-##  $ df.residual  : int 7
-##  $ xlevels      : Named list()
-##  $ call         : language lm(formula = yy ~ xx + I(xx^2), data = curvy)
-##  $ terms        :Classes 'terms', 'formula'  language yy ~ xx + I(xx^2)
-##   .. ..- attr(*, "variables")= language list(yy, xx, I(xx^2))
-##   .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-##   .. .. ..- attr(*, "dimnames")=List of 2
-##   .. ..- attr(*, "term.labels")= chr [1:2] "xx" "I(xx^2)"
-##   .. ..- attr(*, "order")= int [1:2] 1 1
-##   .. ..- attr(*, "intercept")= int 1
-##   .. ..- attr(*, "response")= int 1
-##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-##   .. ..- attr(*, "predvars")= language list(yy, xx, I(xx^2))
-##   .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-##   .. .. ..- attr(*, "names")= chr [1:3] "yy" "xx" "I(xx^2)"
-##  $ model        :'data.frame':	10 obs. of  3 variables:
-##   ..$ yy     : num [1:10] 4 7 10 12 15 16 15 14 13 14
-##   ..$ xx     : num [1:10] 0 1 2 3 4 5 6 7 8 9
-##   ..$ I(xx^2): 'AsIs' num [1:10]  0  1  4  9 16 25 36 49 64 81
-##   ..- attr(*, "terms")=Classes 'terms', 'formula'  language yy ~ xx + I(xx^2)
-##   .. .. ..- attr(*, "variables")= language list(yy, xx, I(xx^2))
-##   .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-##   .. .. .. ..- attr(*, "dimnames")=List of 2
-##   .. .. ..- attr(*, "term.labels")= chr [1:2] "xx" "I(xx^2)"
-##   .. .. ..- attr(*, "order")= int [1:2] 1 1
-##   .. .. ..- attr(*, "intercept")= int 1
-##   .. .. ..- attr(*, "response")= int 1
-##   .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-##   .. .. ..- attr(*, "predvars")= language list(yy, xx, I(xx^2))
-##   .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-##   .. .. .. ..- attr(*, "names")= chr [1:3] "yy" "xx" "I(xx^2)"
-##  - attr(*, "class")= chr "lm"
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>
+## 1     0.950         0.936 0.983      66.8 2.75e-5     3
+## # … with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
 ```
 
 
@@ -792,7 +746,7 @@ glimpse(curvy.2)
 
 
 
-## The residual plot now xxx 
+## The residual plot now  
 No problems any more:
 
 
@@ -866,7 +820,7 @@ madeup
 Seems to be faster-than-linear growth, maybe exponential growth. 
 
 
-## Scatterplot: faster than linear growth xxx
+## Scatterplot: faster than linear growth 
 
 ```r
 ggplot(madeup, aes(x = x, y = y)) + geom_point() +
@@ -927,7 +881,7 @@ $2,1,0.5,0,-0.5,-1$. Here 0 and 0.5 good values to pick.
 
 ## Did transformation straighten things?
 
-* Plot transformed $y$ against $x$. Here, log: xxx
+* Plot transformed $y$ against $x$. Here, log:
 
 ```r
 ggplot(madeup, aes(x = x, y = log(y))) + geom_point() +
@@ -942,7 +896,7 @@ Looks much straighter.
 
 ## Regression with transformed $y$
 
-xxx from here
+
 
 \footnotesize
 
@@ -1013,7 +967,7 @@ Study of women and visits to health professionals, and how the number of visits 
 
 
 
-## The data xxx
+## The data 
 
 ```r
 my_url <- 
@@ -1080,26 +1034,6 @@ glance(visits.1)
 ```
 
 
-
-## The regression
-
-\begin{scriptsize}
-
-```r
-tidy(visits.1)
-```
-
-```
-## # A tibble: 4 x 5
-##   term        estimate std.error statistic  p.value
-##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept) -3.70      1.12      -3.30   1.06e- 3
-## 2 phyheal      1.79      0.221      8.08   5.60e-15
-## 3 menheal     -0.00967   0.129     -0.0749 9.40e- 1
-## 4 stress       0.0136    0.00361    3.77   1.85e- 4
-```
-\end{scriptsize}
-
 ## The slopes
 
 Model as a whole strongly significant even though R-sq not very big (lots of data). At least one of the $x$'s predicts `timedrs`.
@@ -1124,7 +1058,7 @@ The physical health and stress variables initely help to predict the number of v
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
-## Just `menheal` xxx
+## Just `menheal` 
 
 \footnotesize 
 
@@ -1200,7 +1134,7 @@ so not as much to *add* to prediction as `stress`.
 
 
 
-## Residual plot (from `timedrs` on all) xxx
+## Residual plot (from `timedrs` on all) 
 
 ```r
 ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
@@ -1208,7 +1142,7 @@ ggplot(visits.1, aes(x = .fitted, y = .resid)) + geom_point()
 
 ![plot of chunk iffy8](figure/iffy8-1.pdf)
  
-## Comment xxx 
+## Comment
 
 Apparently random. But\ldots
 
@@ -1222,24 +1156,25 @@ Apparently random. But\ldots
 ggplot(visits.1, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35-1.pdf)
+![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-34-1.pdf)
 
    
 
 
 ## Absolute residuals
 Is there trend in *size* of residuals (fan-out)? Plot
-*absolute value* of residual against fitted value: xxx
+*absolute value* of residual against fitted value (graph next page):
 
 
 ```r
-ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
+g <- ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
   geom_point() + geom_smooth()
 ```
 
+## The plot
+
 ![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
 
- 
 
 
 ## Comments
@@ -1271,15 +1206,84 @@ transformation of response often fixes: that is, predict
 `timedrs` itself.
 
 
-## Fixing the problems
 
 
-* Residuals not normal (skewed right), increase in size with
-fitted value.
+## Box-Cox transformations
 
-* Sometimes residuals are *very* positive: observed a *lot* larger than predicted.
 
-* Try *transforming* response: use log or square root of response. (Note that response is *count*, often skewed to right.)
+* Taking log of `timedrs` and having it work: lucky
+guess. How to find good transformation?
+
+* Box-Cox again.
+
+* Extra problem: some of `timedrs` values are 0, but
+Box-Cox expects all +. Note response for `boxcox`:
+
+```r
+boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
+```
+ 
+
+
+
+## Try 1
+![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38-1.pdf)
+ 
+
+
+## Comments on try 1
+
+
+* Best: $\lambda$ just less than zero.
+
+* Hard to see scale. 
+
+* Focus on $\lambda$ in $(-0.3,0.1)$: 
+
+
+\footnotesize
+
+```r
+my.lambda <- seq(-0.3, 0.1, 0.01)
+my.lambda
+```
+
+```
+##  [1] -0.30 -0.29 -0.28 -0.27 -0.26 -0.25 -0.24 -0.23 -0.22
+## [10] -0.21 -0.20 -0.19 -0.18 -0.17 -0.16 -0.15 -0.14 -0.13
+## [19] -0.12 -0.11 -0.10 -0.09 -0.08 -0.07 -0.06 -0.05 -0.04
+## [28] -0.03 -0.02 -0.01  0.00  0.01  0.02  0.03  0.04  0.05
+## [37]  0.06  0.07  0.08  0.09  0.10
+```
+ 
+\normalsize
+
+
+## Try 2
+
+```r
+boxcox(timedrs + 1 ~ phyheal + menheal + stress,
+  lambda = my.lambda,
+  data = visits
+)
+```
+
+![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
+ 
+
+
+## Comments
+
+
+* Best: $\lambda$ just about $-0.07$.
+
+* CI for $\lambda$ about $(-0.14,0.01)$.
+
+* Only nearby round number: $\lambda=0$, log transformation.
+
+
+## Fixing the problems 
+
 
 * Try regression again, with transformed response instead of
 original one.
@@ -1300,7 +1304,7 @@ can't take log of 0.
 be zero/negative, fix that before transformation.
 
 
-## Output
+## Output 
 
 \scriptsize
 
@@ -1335,7 +1339,7 @@ summary(visits.3)
 \normalsize
 
 
-## Comments
+## Comments 
 
 
 * Model as a whole strongly significant again 
@@ -1355,7 +1359,7 @@ ggplot(visits.3, aes(x = .fitted, y = .resid)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39-1.pdf)
+![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43-1.pdf)
 
    
 
@@ -1366,7 +1370,7 @@ ggplot(visits.3, aes(x = .fitted, y = .resid)) +
 ggplot(visits.3, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
+![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44-1.pdf)
 
    
 
@@ -1378,16 +1382,12 @@ ggplot(visits.3, aes(x = .fitted, y = abs(.resid))) +
   geom_point() + geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41-1.pdf)
+![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-1.pdf)
 
    
 
 
-## Comments
+## Comments 
 
 
 * Residuals vs.\ fitted looks a lot more random.
@@ -1401,91 +1401,28 @@ little right-skewness)
 
 
 
-## Box-Cox transformations
-
-
-* Taking log of `timedrs` and having it work: lucky
-guess. How to find good transformation?
-
-* Box-Cox again.
-
-* Extra problem: some of `timedrs` values are 0, but
-Box-Cox expects all +. Note response for `boxcox`:
-
-```r
-boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
-```
- 
-
-
-
-## Try 1
-![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43-1.pdf)
- 
-
-
-## Comments on try 1
-
-
-* Best: $\lambda$ just less than zero.
-
-* Hard to see scale. 
-
-* Focus on $\lambda$ in $(-0.3,0.1)$:
-\small    
-
-```r
-my.lambda <- seq(-0.3, 0.1, 0.01)
-my.lambda
-```
-
-```
-##  [1] -0.30 -0.29 -0.28 -0.27 -0.26 -0.25 -0.24 -0.23 -0.22
-## [10] -0.21 -0.20 -0.19 -0.18 -0.17 -0.16 -0.15 -0.14 -0.13
-## [19] -0.12 -0.11 -0.10 -0.09 -0.08 -0.07 -0.06 -0.05 -0.04
-## [28] -0.03 -0.02 -0.01  0.00  0.01  0.02  0.03  0.04  0.05
-## [37]  0.06  0.07  0.08  0.09  0.10
-```
- 
-\normalsize
-
-
-## Try 2
-
-```r
-boxcox(timedrs + 1 ~ phyheal + menheal + stress,
-  lambda = my.lambda,
-  data = visits
-)
-```
-
-![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-1.pdf)
- 
-
-
-## Comments
-
-
-* Best: $\lambda$ just about $-0.07$.
-
-* CI for $\lambda$ about $(-0.14,0.01)$.
-
-* Only nearby round number: $\lambda=0$, log transformation.
-
-* So we made lucky guess with log before!
-
-
 ## Testing more than one $x$ at once
 
-The $t$-tests test only whether one variable could be taken out of the
-regression you're looking at. To test significance of more than one
-variable at once, fit model with and without variables and use
-`anova` to compare fit of models:
-{\small
+- The $t$-tests test only whether one variable could be taken out of the
+regression you're looking at. 
+- To test significance of more than one
+variable at once, fit model with and without variables 
+  - then use `anova` to compare fit of models:
+
+
 
 ```r
-visits.5 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress, data = visits)
+visits.5 <- lm(log(timedrs + 1) ~ phyheal + menheal + stress, 
+               data = visits)
 visits.6 <- lm(log(timedrs + 1) ~ stress, data = visits)
+```
+ 
+
+
+## Results of tests
+
+
+```r
 anova(visits.6, visits.5)
 ```
 
@@ -1501,15 +1438,9 @@ anova(visits.6, visits.5)
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
- 
-}
 
 
-## Results of tests
-
-
-
-* Models don't fit equally well, so big one fits better.
+* Models don't fit equally well, so bigger one fits better.
 
 * Or "taking both variables out makes the fit worse, so don't do it".
 
@@ -1527,7 +1458,7 @@ punting distance from other variables:
 \scriptsize
 
 ```
-left                right               punt         fred
+left            right               punt         fred
 170               170                162.50       171 
 130               140                144.0        136   
 170               180                174.50       174 
@@ -1600,32 +1531,35 @@ punting
 
 
 ## Regression and output
-\footnotesize
+
+\small
 
 ```r
 punting.1 <- lm(punt ~ left + right + fred, data = punting)
-summary(punting.1)
+glance(punting.1)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = punt ~ left + right + fred, data = punting)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -14.9325 -11.5618  -0.0315   9.0415  20.0886 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)
-## (Intercept)  -4.6855    29.1172  -0.161    0.876
-## left          0.2679     2.1111   0.127    0.902
-## right         1.0524     2.1477   0.490    0.636
-## fred         -0.2672     4.2266  -0.063    0.951
-## 
-## Residual standard error: 14.68 on 9 degrees of freedom
-## Multiple R-squared:  0.7781,	Adjusted R-squared:  0.7042 
-## F-statistic: 10.52 on 3 and 9 DF,  p-value: 0.00267
+## # A tibble: 1 x 11
+##   r.squared adj.r.squared sigma statistic p.value    df
+##       <dbl>         <dbl> <dbl>     <dbl>   <dbl> <int>
+## 1     0.778         0.704  14.7      10.5 0.00267     4
+## # … with 5 more variables: logLik <dbl>, AIC <dbl>,
+## #   BIC <dbl>, deviance <dbl>, df.residual <int>
+```
+
+```r
+tidy(punting.1)
+```
+
+```
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic p.value
+##   <chr>          <dbl>     <dbl>     <dbl>   <dbl>
+## 1 (Intercept)   -4.69      29.1    -0.161    0.876
+## 2 left           0.268      2.11    0.127    0.902
+## 3 right          1.05       2.15    0.490    0.636
+## 4 fred          -0.267      4.23   -0.0632   0.951
 ```
 \normalsize
 
@@ -1690,7 +1624,6 @@ No significant loss by dropping other two variables.
 
 
 ## Comparing R-squareds
-\small
 
 ```r
 summary(punting.1)$r.squared
@@ -1708,43 +1641,25 @@ summary(punting.2)$r.squared
 ## [1] 0.7753629
 ```
  
-\normalsize
-
 Basically no difference. In regression (over), `right` significant:
 
 
 ## Regression results
 
-\footnotesize
+
 
 ```r
-summary(punting.2)
+tidy(punting.2)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = punt ~ right, data = punting)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.7576 -11.0611   0.3656   7.8890  19.0423 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.6930    25.2649  -0.146    0.886    
-## right         1.0427     0.1692   6.162 7.09e-05 ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 13.36 on 11 degrees of freedom
-## Multiple R-squared:  0.7754,	Adjusted R-squared:  0.7549 
-## F-statistic: 37.97 on 1 and 11 DF,  p-value: 7.088e-05
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)    -3.69    25.3      -0.146 0.886    
+## 2 right           1.04     0.169     6.16  0.0000709
 ```
  
-\normalsize
-
 ## But\ldots
 
 
@@ -1859,7 +1774,7 @@ summary(punting.3)
 ## Comments
 
 
-* This was initely a good idea (R-squared has clearly increased).
+* This was definitely a good idea (R-squared has clearly increased).
 
 * We would never have seen it without plotting residuals from
 `punting.2` (without `left`) against `left`.
@@ -1873,7 +1788,6 @@ it decreases again.
 
 
 
-xxx
  
 
 # Logistic regression (ordinal/nominal response)
@@ -1885,13 +1799,17 @@ xxx
 
 * But what if response is yes/no, lived/died, success/failure?
 
-* Model {\em probability} of success.
+* Model *probability* of success.
 
 * Probability must be between 0 and 1; need method that ensures this.
 
-* {\em Logistic regression} does this. In R, is a
+* *Logistic regression* does this. In R, is a
 *generalized linear model* with binomial "family": 
-`glm(ytextasciitilde x,family="binomial")`
+
+```r
+glm(y ~ x, family="binomial")
+```
+
 
 * Begin with simplest case.
 
@@ -1913,10 +1831,9 @@ library(nnet)
 
 
 * Rats given dose of some poison; either live or die:
-\begin{small}
 
+\small
 ```
-
 dose status
 0 lived
 1 died
@@ -1924,12 +1841,12 @@ dose status
 3 lived
 4 died
 5 died
-
 ```
 
-\end{small}
+\normalsize
 
-* Read the data:
+## Read in: 
+
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rat.txt"
@@ -1943,58 +1860,50 @@ rats <- read_delim(my_url, " ")
 ##   status = col_character()
 ## )
 ```
-def 
+
+```r
+glimpse(rats)
+```
+
+```
+## Observations: 6
+## Variables: 2
+## $ dose   <dbl> 0, 1, 2, 3, 4, 5
+## $ status <chr> "lived", "died", "lived", "lived", "died",…
+```
+ 
 
 
 ## Basic logistic regression
 
 
-* Data:
-
-```r
-rats
-```
-
-```
-## # A tibble: 6 x 2
-##    dose status
-##   <dbl> <chr> 
-## 1     0 lived 
-## 2     1 died  
-## 3     2 lived 
-## 4     3 lived 
-## 5     4 died  
-## 6     5 died
-```
-
-   
-
-
 * Make response into a factor first:
+
+\small
 
 ```r
 rats2 <- rats %>% mutate(status = factor(status))
 ```
-
+\normalsize
    
 
 
 * then fit model:
 
+\small
+
 ```r
-status.1 <-
-  glm(status ~ dose, family = "binomial", data = rats2)
+status.1 <- glm(status ~ dose, family = "binomial", data = rats2)
 ```
-
+\normalsize
    
-
-
 
    
 
 
 ## Output
 
+\scriptsize
 
 ```r
 summary(status.1)
@@ -2022,7 +1931,7 @@ summary(status.1)
 ## 
 ## Number of Fisher Scoring iterations: 4
 ```
-def 
+\normalsize
 
 
 ## Interpreting the output
@@ -2031,7 +1940,7 @@ def
 * Like (multiple) regression, get
 tests of significance of individual $x$'s
 
-*     Here not significant (only 6 observations).
+* Here not significant (only 6 observations).
 
 * "Slope" for dose is negative, meaning that as dose increases, probability of event modelled (survival) decreases.
 
@@ -2055,7 +1964,7 @@ cbind(rats, p)
 ## 5    4   died 0.2668878
 ## 6    5   died 0.1565510
 ```
-def 
+ 
 
 ## The rats, more
 
@@ -2087,6 +1996,8 @@ dose lived died
 
 ## These data
 
+\footnotesize
+
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rat2.txt"
 rat2 <- read_delim(my_url, " ")
@@ -2116,26 +2027,38 @@ rat2
 ## 5     4     2     8
 ## 6     5     1     9
 ```
-def 
+\normalsize
 
 
-## This logistic regression
+## Create response matrix:
+
+- Each row contains *multiple* observations.
+- Create *two-column* response:
+  - \#survivals in first column, 
+  - \#deaths in second.
+
+
+\footnotesize
 
 ```r
 response <- with(rat2, cbind(lived, died))
-rat2.1 <- glm(response ~ dose,
-  family = "binomial",
-  data = rat2
-)
+response
 ```
 
-     
+```
+##      lived died
+## [1,]    10    0
+## [2,]     7    3
+## [3,]     6    4
+## [4,]     4    6
+## [5,]     2    8
+## [6,]     1    9
+```
+\normalsize
 
+- Response is R `matrix`:
 
-* Note construction of *two-column* response, \#survivals in
-first column, \#deaths in second.
-
-* The response variable is an R `matrix`:
+\footnotesize
 
 ```r
 class(response)
@@ -2144,13 +2067,27 @@ class(response)
 ```
 ## [1] "matrix"
 ```
+\normalsize
 
-   
+     
+## Fit logistic regression
+
+- using response you just made:
+
+
+```r
+rat2.1 <- glm(response ~ dose,
+  family = "binomial",
+  data = rat2
+)
+```
+
 
 
 
 ## Output
 
+\scriptsize
 
 ```r
 summary(rat2.1)
@@ -2181,7 +2118,7 @@ summary(rat2.1)
 ## 
 ## Number of Fisher Scoring iterations: 4
 ```
-def 
+\normalsize
 
 
 ## Predicted survival probs
@@ -2200,7 +2137,7 @@ cbind(rat2, p)
 ## 5    4     2    8 0.1951095
 ## 6    5     1    9 0.0861238
 ```
-def 
+ 
 
 
 ## Comments
@@ -2209,7 +2146,7 @@ def
 
 * Significant effect of dose. 
 
-* Effect of larger dose is to decrease survival probability
+* Effect of larger dose is to *decrease* survival probability
 ("slope" negative; also see in decreasing predictions.)
 
 
@@ -2223,17 +2160,12 @@ def
 * Variables, 1=present, 0=absent:
 
 
-* survival (death from sepsis=1), response
-
-* shock
-
-* malnutrition
-
-* alcoholism
-
-* age (as numerical variable)
-
-* bowel infarction
+  * survival (death from sepsis=1), response
+  * shock
+  * malnutrition
+  * alcoholism
+  * age (as numerical variable)
+  * bowel infarction
 
 
 * See what relates to death.
@@ -2243,7 +2175,8 @@ def
 ## Read in data
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/sepsis.txt"
+my_url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/sepsis.txt"
 sepsis <- read_delim(my_url, " ")
 ```
 
@@ -2258,7 +2191,7 @@ sepsis <- read_delim(my_url, " ")
 ##   bowelinf = col_double()
 ## )
 ```
-def 
+ 
 
 
 ## The data
@@ -2317,7 +2250,7 @@ tidy(sepsis.1)
 ## 5 age           0.0922    0.0303      3.04 0.00237 
 ## 6 bowelinf      2.80      1.16        2.40 0.0162
 ```
-def 
+ 
 
 
 
@@ -2344,7 +2277,7 @@ tidy(sepsis.2)
 ## 4 age           0.0898    0.0292      3.07 0.00211 
 ## 5 bowelinf      2.39      1.07        2.23 0.0260
 ```
-def 
+ 
 
 
 
@@ -2353,7 +2286,6 @@ def
 
 
 ## Comments
-$  
 
 
 * Most of the original $x$'s helped predict death. Only `malnut` seemed not to add anything.
@@ -2375,6 +2307,7 @@ factors (or being older)
 
 * A few chosen at random:
 
+\normalsize
 
 ```r
 sepsis.pred <- predict(sepsis.2, type = "response")
@@ -2391,8 +2324,9 @@ slice(d, myrows)
 ## 4     1     0      0       1  66        1 0.931290137
 ## 5     1     0      0       1  49        0 0.213000997
 ```
-def 
+\normalsize
 
+## Comments 
 
 * Survival chances pretty good if no risk factors, though decreasing with age.
 
@@ -2423,8 +2357,8 @@ ggplot(augment(sepsis.2), aes(x = age, y = .resid)) +
 ```
 
 ![plot of chunk virtusentella](figure/virtusentella-1.pdf)
-def 
-
+ 
+## Comments
 
 * No apparent problems overall.
 
@@ -2434,20 +2368,20 @@ def
 
 ## Probability and odds
 
+* For probability $p$, odds is $p/(1-p)$:
 
-* For probability $p$, odds is $p/(1-p)$. Examples:
-\vfill
-\begin{tabular}{rrrl}
-\hline
-Prob.\ & Odds & log-odds & in words\\
-\hline
-0.5 & $0.5/0.5=1/1=1.00$ & 0.00 &  "even money"\\
-0.1 & $0.1/0.9=1/9=0.11$ & $-2.20$ & "9 to 1"\\
-0.4 & $0.4/0.6=1/1.5=0.67$ & $-0.41$ & "1.5 to 1"\\
-0.8 & $0.8/0.2=4/1=4.00$ & 1.39 & "4 to 1 on"\\
-\hline
-\end{tabular}
-\vfill
+
+  \begin{tabular}{rrrl}
+      \hline
+      Prob.\ & Odds & log-odds & in words\\
+      \hline
+      0.5 & $0.5/0.5=1/1=1.00$ & $0.00$ &  ``even money''\\
+      0.1 & $0.1/0.9=1/9=0.11$ & $-2.20$ & ``9 to 1''\\
+      0.4 & $0.4/0.6=1/1.5=0.67$ & $-0.41$ & ``1.5 to 1''\\
+      0.8 & $0.8/0.2=4/1=4.00$ & $1.39$ & ``4 to 1 on''\\
+      \hline
+    \end{tabular}
+
 
 * Gamblers use odds: if you win at 9 to 1 odds, get original
 stake back plus 9 times the stake.
@@ -2510,20 +2444,39 @@ sepsis.2.tidy
 
 * Can interpret slopes by taking "exp" of them. We ignore intercept.
 
+
 ```r
-cc <- exp(sepsis.2.tidy$estimate)
-data.frame(sepsis.2.tidy$term, expcoeff = round(cc, 2))
+sepsis.2.tidy %>% 
+  mutate(exp_coeff=exp(estimate)) %>% 
+  select(term, exp_coeff)
 ```
 
 ```
-##   sepsis.2.tidy.term expcoeff
-## 1        (Intercept)     0.00
-## 2              shock    40.50
-## 3            alcohol    24.19
-## 4                age     1.09
-## 5           bowelinf    10.88
+## # A tibble: 5 x 2
+##   term        exp_coeff
+##   <chr>           <dbl>
+## 1 (Intercept)  0.000137
+## 2 shock       40.5     
+## 3 alcohol     24.2     
+## 4 age          1.09    
+## 5 bowelinf    10.9
 ```
-def 
+
+## Interpretation
+
+\small
+
+```
+## # A tibble: 5 x 2
+##   term        exp_coeff
+##   <chr>           <dbl>
+## 1 (Intercept)  0.000137
+## 2 shock       40.5     
+## 3 alcohol     24.2     
+## 4 age          1.09    
+## 5 bowelinf    10.9
+```
+\normalsize
 
 
 * These say ``how much do you *multiply* odds of death by
@@ -2551,13 +2504,14 @@ about  $1.09^{40}=31$ times.
 * Eg.\ prob of man having disease 0.02, woman 0.01.
 
 * Relative risk $0.02/0.01=2$.
-\begin{multicols}{2}
 
-* Odds for men and for women:
+## Odds ratio vs.\ relative risk
+
+- Odds for men and for women:
 
 
 ```r
-(od1 <- 0.02 / 0.98)
+(od1 <- 0.02 / 0.98) # men
 ```
 
 ```
@@ -2565,16 +2519,15 @@ about  $1.09^{40}=31$ times.
 ```
 
 ```r
-(od2 <- 0.01 / 0.99)
+(od2 <- 0.01 / 0.99) # women
 ```
 
 ```
 ## [1] 0.01010101
 ```
-def
 
+-  Odds ratio 
 
-* Odds ratio 
 
 ```r
 od1 / od2
@@ -2583,11 +2536,9 @@ od1 / od2
 ```
 ## [1] 2.020408
 ```
-def 
 
 
-* Very close to 2.
-\end{multicols}
+- Very close to relative risk of 2.
 
 
 ## More than 2 response categories
@@ -2598,9 +2549,9 @@ def
 * With more than 2 categories, have to think more carefully about the categories: are they
 
 
-* {\em ordered}: you can put them in a natural order (like low, medium, high)
+* *ordered*: you can put them in a natural order (like low, medium, high)
 
-* {\em nominal}: ordering the categories doesn't make sense (like red, green, blue).
+* *nominal*: ordering the categories doesn't make sense (like red, green, blue).
 
 
 * R handles both kinds of response; learn how.
@@ -2611,28 +2562,28 @@ def
 
 
 * 
-Model probability of being in given category {\em or lower}.
+Model probability of being in given category *or lower*.
 
 * Example: coal-miners often suffer disease pneumoconiosis. Likelihood of disease believed to be greater 
 among miners who have worked longer. 
 
-* Severity of disease measured on categorical scale: 1 = none, 2
-= moderate, 3 = severe.
+* Severity of disease measured on categorical scale: none,
+moderate, 3 severe.
+
+## Miners data
 
 * Data are frequencies:
 
 ```
-
 Exposure None Moderate Severe
-5.8    98      0       0
-15.0    51      2       1
-21.5    34      6       3
-27.5    35      5       8
-33.5    32      10      9
-39.5    23      7       8
-46.0    12      6      10
-51.5     4      2       5
-
+5.8       98      0       0
+15.0      51      2       1
+21.5      34      6       3
+27.5      35      5       8
+33.5      32     10       9
+39.5      23      7       8
+46.0      12      6      10
+51.5       4      2       5
 ```
 
 
@@ -2641,6 +2592,8 @@ Exposure None Moderate Severe
 ## Reading the data
 
 Data in aligned columns with more than one space between, so: 
+
+\small
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/miners-tab.txt"
@@ -2656,7 +2609,7 @@ freqs <- read_table(my_url)
 ##   Severe = col_double()
 ## )
 ```
-def 
+\normalsize
 
 
 ## The data
@@ -2696,6 +2649,8 @@ freqs %>%
 
 ## Result
 
+\small
+
 ```r
 miners
 ```
@@ -2717,26 +2672,26 @@ miners
 ## 10     15   Moderate     2     0.0370
 ## # … with 14 more rows
 ```
-
+\normalsize
      
 
 
 ## Plot proportions against exposure
 
+\small
+
 ```r
-ggplot(miners, aes(
-  x = Exposure, y = proportion,
-  colour = Severity
-)) + geom_point() + geom_line()
+ggplot(miners, aes(x = Exposure, y = proportion,
+                   colour = Severity)) + 
+  geom_point() + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-84](figure/unnamed-chunk-84-1.pdf)
-
-   
+![plot of chunk unnamed-chunk-85](figure/unnamed-chunk-85-1.pdf)
+\normalsize
 
 
 ## Reminder of data setup
-\begin{footnotesize}
+\footnotesize
 
 ```r
 miners
@@ -2761,8 +2716,7 @@ miners
 ```
 
    
-\end{footnotesize}
-
+\normalsize
 
 ## Creating an ordered factor
 
@@ -2799,6 +2753,7 @@ levels(miners$sev_ord)
 
 ## New data frame
 
+\small
 
 ```r
 miners
@@ -2821,19 +2776,18 @@ miners
 ## 10     15   Moderate     2     0.0370 Moderate
 ## # … with 14 more rows
 ```
-
+\normalsize
  
 
 ## Improved plot
 
 ```r
-ggplot(miners, aes(
-  x = Exposure, y = proportion,
-  colour = sev_ord
-)) + geom_point() + geom_line()
+ggplot(miners, aes(x = Exposure, y = proportion,
+                   colour = sev_ord)) + 
+  geom_point() + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-89](figure/unnamed-chunk-89-1.pdf)
+![plot of chunk unnamed-chunk-90](figure/unnamed-chunk-90-1.pdf)
 
    
 
@@ -2847,10 +2801,11 @@ sev.1 <- polr(sev_ord ~ Exposure,
   data = miners
 )
 ```
-def 
+ 
 
 
 ## Output: not very illuminating
+\scriptsize
 
 ```r
 summary(sev.1)
@@ -2877,7 +2832,7 @@ summary(sev.1)
 ## Residual Deviance: 416.9188 
 ## AIC: 422.9188
 ```
-
+\normalsize
    
 
 ## Does exposure have an effect?
@@ -2888,6 +2843,7 @@ using `anova`. Note `1` for model with just intercept:
 
  
 
+\small
 
 ```r
 sev.0 <- polr(sev_ord ~ 1, weights = Freq, data = miners)
@@ -2905,7 +2861,8 @@ anova(sev.0, sev.1)
 ## 1                       
 ## 2     1 88.24324       0
 ```
-def 
+\normalsize
+
 Exposure definitely has effect on severity of disease. 
 
 
@@ -2966,7 +2923,7 @@ miners.pred
 ## 7     46.0 0.3879962 0.22441555 0.38758828
 ## 8     51.5 0.2722543 0.21025011 0.51749563
 ```
-def 
+ 
 
 ## Comments
 
@@ -2993,6 +2950,8 @@ miners.pred %>%
 
 ## Some of the gathered predictions
 
+\footnotesize
+
 ```r
 preds %>% slice(1:15)
 ```
@@ -3015,7 +2974,7 @@ preds %>% slice(1:15)
 ## 14     39.5 Moderate  0.20484198 Moderate
 ## 15     46.0 Moderate  0.22441555 Moderate
 ```
-
+\normalsize
    
 
 
@@ -3023,14 +2982,14 @@ preds %>% slice(1:15)
 
 
 * Plot:
+  *  predicted probabilities, lines (shown) joining points (not shown)
 
-
-*  predicted probabilities, lines (shown) joining points (not shown)
-
-* data, just the points. 
+  * data, just the points. 
 
 
 * Unfamiliar process: data from two *different* data frames:
+
+\small
 
 ```r
 g <- ggplot(preds, aes(
@@ -3039,10 +2998,8 @@ g <- ggplot(preds, aes(
 )) + geom_line() +
   geom_point(data = miners, aes(y = proportion))
 ```
-
+\normalsize
    
-
-
 * Idea: final `geom_point` uses data in `miners`
 rather than `preds`, $y$-variable for plot is `proportion`
 from that data frame, but $x$-coordinate is `Exposure`, as it
@@ -3050,23 +3007,21 @@ was before, and `colour` is `Severity` as before. The
 final `geom_point` "inherits" from the first `aes`
 as needed.
 
-* Data conform to fitted relationship pretty well:
 
 
 
-## The plot
+## The plot: data match model
 
 ```r
 g
 ```
 
-![plot of chunk unnamed-chunk-100](figure/unnamed-chunk-100-1.pdf)
- mlogit.pdf
+![plot of chunk unnamed-chunk-101](figure/unnamed-chunk-101-1.pdf)
 
 ## Unordered responses
 
 
-* With unordered (nominal) responses, can use {\em generalized logit}.
+* With unordered (nominal) responses, can use *generalized logit*.
 
 * Example: 735 people, record age and sex (male 0, female 1), which of 3 brands of some product preferred.
 
@@ -3086,7 +3041,7 @@ brandpref <- read_csv(my_url)
 ##   age = col_double()
 ## )
 ```
-def 
+ 
 
 
 
@@ -3128,7 +3083,7 @@ brandpref <- brandpref %>%
   mutate(sex = factor(sex)) %>%
   mutate(brand = factor(brand))
 ```
-def 
+ 
 
 * We use `multinom` from package `nnet`. Works
 like `polr`.
@@ -3145,7 +3100,7 @@ brands.1 <- multinom(brand ~ age + sex, data = brandpref)
 ## final  value 702.970704 
 ## converged
 ```
-def 
+ 
 
 
 ## Can we drop anything?
@@ -3199,10 +3154,12 @@ brands.3 <- multinom(brand ~ sex, data = brandpref)
 ## final  value 791.861266 
 ## converged
 ```
-def 
+ 
 
 
 ## Do age/sex help predict brand? 2/2
+
+\scriptsize
 
 ```r
 anova(brands.2, brands.1)
@@ -3229,7 +3186,7 @@ anova(brands.3, brands.1)
 ## 1       sex      1466   1583.723                              
 ## 2 age + sex      1464   1405.941 1 vs 2     2 177.7811       0
 ```
-def 
+\normalsize
 
 
 ## Do age/sex help predict brand? 3/3
@@ -3248,6 +3205,8 @@ def
 
 
 * Start from model with everything and run `step`:
+
+\footnotesize
 
 ```r
 step(brands.1, trace = 0)
@@ -3270,7 +3229,7 @@ step(brands.1, trace = 0)
 ## Residual Deviance: 1405.941 
 ## AIC: 1417.941
 ```
-
+\normalsize
      
 
 * Final model contains both `age` and `sex` so neither
@@ -3282,6 +3241,7 @@ could be removed.
 
 Create data frame with various age and sex:
 
+\footnotesize
 
 ```r
 ages <- c(24, 28, 32, 35, 38)
@@ -3305,7 +3265,7 @@ new
 ##  9    38 0    
 ## 10    38 1
 ```
-def 
+\normalsize
 
 
 
@@ -3316,30 +3276,41 @@ p <- predict(brands.1, new, type = "probs")
 probs <- cbind(new, p)
 ```
 
+or
+
+
+```r
+p %>% as_tibble() %>% 
+  bind_cols(new) -> probs
+```
+
    
 
 
 ## The predictions
 
+\small
 
 ```r
 probs
 ```
 
 ```
-##    age sex          1          2           3
-## 1   24   0 0.94795822 0.05022928 0.001812497
-## 2   24   1 0.91532076 0.08189042 0.002788820
-## 3   28   0 0.79313204 0.18329690 0.023571058
-## 4   28   1 0.69561789 0.27143910 0.032943012
-## 5   32   0 0.40487271 0.40810321 0.187024082
-## 6   32   1 0.29086347 0.49503135 0.214105181
-## 7   35   0 0.13057819 0.39724053 0.472181272
-## 8   35   1 0.08404134 0.43168592 0.484272746
-## 9   38   0 0.02598163 0.23855071 0.735467663
-## 10  38   1 0.01623089 0.25162197 0.732147148
+## # A tibble: 10 x 5
+##       `1`    `2`     `3`   age sex  
+##     <dbl>  <dbl>   <dbl> <dbl> <fct>
+##  1 0.948  0.0502 0.00181    24 0    
+##  2 0.915  0.0819 0.00279    24 1    
+##  3 0.793  0.183  0.0236     28 0    
+##  4 0.696  0.271  0.0329     28 1    
+##  5 0.405  0.408  0.187      32 0    
+##  6 0.291  0.495  0.214      32 1    
+##  7 0.131  0.397  0.472      35 0    
+##  8 0.0840 0.432  0.484      35 1    
+##  9 0.0260 0.239  0.735      38 0    
+## 10 0.0162 0.252  0.732      38 1
 ```
-
+\normalsize
    
 
 
@@ -3364,25 +3335,34 @@ colour and gender by plotting symbol.
 * First need tidy data frame, by familiar process:
 
 ```r
-probs.long <- probs %>%
-  gather(brand, probability, -(age:sex))
-sample_n(probs.long, 7) # 7 random rows
+probs %>%
+  gather(brand, probability, -(age:sex)) -> probs.long
+```
+
+## The tidy data (random sample of rows)
+
+\small
+
+```r
+probs.long %>% sample_n(10)
 ```
 
 ```
-##   age sex brand probability
-## 1  28   0     2  0.18329690
-## 2  24   1     3  0.00278882
-## 3  35   1     3  0.48427275
-## 4  24   1     1  0.91532076
-## 5  38   0     1  0.02598163
-## 6  24   0     1  0.94795822
-## 7  38   0     2  0.23855071
+## # A tibble: 10 x 4
+##      age sex   brand probability
+##    <dbl> <fct> <chr>       <dbl>
+##  1    32 1     1          0.291 
+##  2    28 1     2          0.271 
+##  3    35 1     2          0.432 
+##  4    24 1     2          0.0819
+##  5    38 1     2          0.252 
+##  6    35 0     2          0.397 
+##  7    38 0     1          0.0260
+##  8    32 0     3          0.187 
+##  9    35 0     1          0.131 
+## 10    38 0     2          0.239
 ```
-
-     
-
-
+\normalsize
 
 ## The plot
 
@@ -3394,7 +3374,7 @@ ggplot(probs.long, aes(
   geom_point() + geom_line(aes(linetype = sex))
 ```
 
-![plot of chunk unnamed-chunk-113](figure/unnamed-chunk-113-1.pdf)
+![plot of chunk unnamed-chunk-116](figure/unnamed-chunk-116-1.pdf)
 
    
 
@@ -3407,7 +3387,6 @@ significant age effect.)
 
 * Brand vs.\ sex: females (dashed) like brand 1 less than males
 (solid), like brand 2 more (for all ages). 
-more.
 
 * Not much brand difference between genders (solid and dashed
 lines of same colours close), but enough to be significant.
@@ -3421,10 +3400,9 @@ gender.
 
 Summarize all people of same brand preference, same sex, same age on one line of data file with frequency on end:
 
-{
+
 
 ```
-
 1 0 24 1
 1 0 26 2
 1 0 27 4
@@ -3432,10 +3410,7 @@ Summarize all people of same brand preference, same sex, same age on one line of
 1 0 29 7
 1 0 30 3
 ...
-
 ```
-
-}
 
 Whole data set in 65 lines not 735! But how?
 
@@ -3475,38 +3450,22 @@ on each line!
 
 * Again turn (numerical) `sex` and `brand` into factors:
 
+\footnotesize
+
 ```r
-bf <- b %>%
+b %>%
   mutate(sex = factor(sex)) %>%
-  mutate(brand = factor(brand))
+  mutate(brand = factor(brand)) -> bf
 b.1 <- multinom(brand ~ age + sex, data = bf, weights = Freq)
-```
-
-```
-## # weights:  12 (6 variable)
-## initial  value 807.480032 
-## iter  10 value 702.976983
-## final  value 702.970704 
-## converged
-```
-
-```r
 b.2 <- multinom(brand ~ age, data = bf, weights = Freq)
 ```
-
-```
-## # weights:  9 (4 variable)
-## initial  value 807.480032 
-## iter  10 value 706.796323
-## iter  10 value 706.796322
-## final  value 706.796322 
-## converged
-```
-def 
+\normalsize
 
 
 
-## P-value for `sex identical`
+## P-value for `sex` identical
+
+\footnotesize
 
 ```r
 anova(b.2, b.1)
@@ -3520,7 +3479,7 @@ anova(b.2, b.1)
 ## 1       age       126   1413.593                                 
 ## 2 age + sex       124   1405.941 1 vs 2     2 7.651236 0.02180495
 ```
-def 
+\normalsize
 
 Same P-value as before, so we haven't changed anything important.
 
@@ -3531,6 +3490,8 @@ Same P-value as before, so we haven't changed anything important.
 * Everyone's age given as whole
 number, so maybe not too many different ages with sensible amount
 of data at each:
+
+\scriptsize
 
 ```r
 b %>%
@@ -3557,8 +3518,7 @@ b %>%
 ## 13    37    22
 ## 14    38    32
 ```
-$ %$
-
+\normalsize
 
 
 ## Comments and next
@@ -3581,6 +3541,8 @@ b %>%
 
 ## Checking proportions for age 32
 
+\small
+
 ```r
 brands %>% filter(age == 32)
 ```
@@ -3597,7 +3559,7 @@ brands %>% filter(age == 32)
 ## 5    32 1     2       117      0.544
 ## 6    32 1     3        36      0.167
 ```
-
+\normalsize
    
 
 
@@ -3644,7 +3606,7 @@ g <- ggplot(probs.long, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-120](figure/unnamed-chunk-120-1.pdf)
+![plot of chunk unnamed-chunk-123](figure/unnamed-chunk-123-1.pdf)
 
    
 
@@ -3662,6 +3624,8 @@ based on a lot of people (in `Freq`).
 
 * Code:
 
+\footnotesize
+
 ```r
 g <- ggplot(probs.long, aes(
   x = age, y = probability,
@@ -3673,7 +3637,7 @@ g <- ggplot(probs.long, aes(
     aes(y = proportion, size = Freq)
   )
 ```
-
+\normalsize
      
 
 
@@ -3684,7 +3648,7 @@ g <- ggplot(probs.long, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-122](figure/unnamed-chunk-122-1.pdf)
+![plot of chunk unnamed-chunk-125](figure/unnamed-chunk-125-1.pdf)
 
    
 
@@ -3694,7 +3658,7 @@ g
 
 
    
-\begin{scriptsize}
+\scriptsize
 
 ```r
 b.4 <- update(b.1, . ~ . + age:sex)
@@ -3726,18 +3690,10 @@ anova(b.1, b.4)
 ```
 
    
-\end{scriptsize}
-
+\normalsize
 
 * No evidence that effect of age on brand preference differs for
 the two genders.
- <<echo=F>>=
- pkgs = names(sessionInfo()$otherPkgs) 
- pkgs=paste('package:', pkgs, sep = "")
- x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
- @   
-
-
 
   
 
@@ -3751,20 +3707,20 @@ the two genders.
 * So far, have seen:
 
 
-* response variable counted or measured (regression)
+   * response variable counted or measured (regression)
 
-* response variable categorized (logistic regression)
+   * response variable categorized (logistic regression)
 
 and have predicted response from explanatory variables.
 
 * But what if response is time until event (eg. time of
 survival after surgery)?
 
-* Additional complication: event might not have happened at end of study (eg. patient still alive). But knowing that patient has "not died yet" presumably informative. Such data called {\em censored}. 
+* Additional complication: event might not have happened at end of study (eg. patient still alive). But knowing that patient has "not died yet" presumably informative. Such data called *censored*. 
 
-* Enter {\em survival analysis}, in particular the "Cox proportional hazards model". 
+* Enter *survival analysis*, in particular the "Cox proportional hazards model". 
 
-* Explanatory variables in this context often called {\em covariates}.
+* Explanatory variables in this context often called *covariates*.
 
 
 ## Example: still dancing?
@@ -3777,32 +3733,27 @@ dancing lessons, or have quit. The "event" here is "quit".
 * This might depend on:
 
 
-* a treatment (visit to a dance competition)
+   * a treatment (visit to a dance competition)
 
-* woman's age (at start of study).
+   * woman's age (at start of study).
 
+## Data
 
-* Data:
-{\scriptsize
-
+\normalsize
 ```
-
 Months  Quit   Treatment Age
-1      1        0      16
-2      1        0      24
-2      1        0      18
-3      0        0      27
-4      1        0      25
-7      1        1      26
-8      1        1      36
-10      1        1      38
-10      0        1      45
-12      1        1      47
-
+1        1        0      16
+2        1        0      24
+2        1        0      18
+3        0        0      27
+4        1        0      25
+7        1        1      26
+8        1        1      36
+10       1        1      38
+10       0        1      45
+12       1        1      47
 ```
-
-}
-
+\normalsize
 
 ## About the data
 
@@ -3810,9 +3761,9 @@ Months  Quit   Treatment Age
 * `months` and `quit` are kind of combined response:
 
 
-*  `Months` is number of months a woman was actually observed dancing
+   *  `Months` is number of months a woman was actually observed dancing
 
-* `quit` is 1 if woman quit, 0 if still dancing at end of study.
+   * `quit` is 1 if woman quit, 0 if still dancing at end of study.
 
 
 * Treatment is 1 if woman went to dance competition, 0 otherwise.
@@ -3823,43 +3774,49 @@ have effect on survival.
 * Want to do predictions for probabilities of still dancing as
 they depend on whatever is significant, and draw plot.
 
-
-## The code
-
+## Packages (for this section) 
 
 * Install packages `survival` and `survminer` if not done. 
 
 * Load `survival`, `survminer`,
-`broom` and `tidyverse`
-packages, read data (column-aligned):
+`broom` and `tidyverse`:
+
 
 ```r
 library(tidyverse)
 library(survival)
 library(survminer)
+library(broom)
 ```
 
-```
-## Warning: package 'survminer' was built under R version 3.5.1
-```
 
-```
-## Warning: package 'ggpubr' was built under R version 3.5.1
-```
+## Read data 
 
-```
-## Warning: package 'magrittr' was built under R version 3.5.1
-```
+
+- Column-aligned: 
+
+\normalsize
 
 ```r
-library(broom)
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/dancing.txt"
-dance <- read_table(my_url)
+url <- "http://www.utsc.utoronto.ca/~butler/d29/dancing.txt"
+dance <- read_table(url)
 ```
-def 
+
+```
+## Parsed with column specification:
+## cols(
+##   Months = col_double(),
+##   Quit = col_double(),
+##   Treatment = col_double(),
+##   Age = col_double()
+## )
+```
+\normalsize
 
 
 ## The data
+
+\small
 
 ```r
 dance
@@ -3882,13 +3839,15 @@ dance
 ## 11     10     0         1    45
 ## 12     12     1         1    47
 ```
-
+\normalsize
    
 
 ## Examine response and fit model
 
 
-* Response variable (has to be outside data frame):
+* Response variable (has to be outside data frame): 
+
+\small
 
 ```r
 mth <- with(dance, Surv(Months, Quit))
@@ -3898,6 +3857,8 @@ mth
 ```
 ##  [1]  1   2   2   3+  4   5  11   7   8  10  10+ 12
 ```
+\normalsize
+
 
   
 
@@ -3906,10 +3867,12 @@ mth
 ```r
 dance.1 <- coxph(mth ~ Treatment + Age, data = dance)
 ```
-def 
+ 
 
 
 ## Output looks a lot like regression
+
+\scriptsize
 
 ```r
 summary(dance.1)
@@ -3937,7 +3900,7 @@ summary(dance.1)
 ## Wald test            = 5.67  on 2 df,   p=0.06
 ## Score (logrank) test = 14.75  on 2 df,   p=6e-04
 ```
-def 
+\normalsize
 
 ## Conclusions
 
@@ -3970,6 +3933,9 @@ look normal.
 
 ## Martingale residual plot for dance data
 
+This looks good (with only 12 points):
+
+
 ```r
 ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 ```
@@ -3978,18 +3944,19 @@ ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-130](figure/unnamed-chunk-130-1.pdf)
+![plot of chunk unnamed-chunk-134](figure/unnamed-chunk-134-1.pdf)
 
    
-This looks good (with only 12 points).
 
-## Predicted survival probs
-The function we use is called
+## Predicted survival probs 
+- The function we use is called
 `survfit`, though actually works rather like
 `predict`. 
-First create a data frame of values to predict from. We'll do all
+- First create a data frame of values to predict from. We'll do all
 combos of ages 20 and 40, treatment and not, using
 `crossing` to get all the combos:
+
+\small
 
 ```r
 treatments <- c(0, 1)
@@ -4007,13 +3974,16 @@ dance.new
 ## 3         1    20
 ## 4         1    40
 ```
-def 
+\normalsize 
 
-## The predictions
-One prediction *for each time* for each combo of age and treatment:
+## The predictions  
+One prediction *for each time* for each combo of age and treatment in `dance.new`:
 
 
- 
+
+
+
+\footnotesize
 
 ```r
 s <- survfit(dance.1, newdata = dance.new, data = dance)
@@ -4034,23 +4004,9 @@ summary(s)
 ##    11      2       1  0.00e+00  0.00e+00  0.00e+00     0.000
 ##    12      1       1  0.00e+00  0.00e+00  0.00e+00     0.000
 ```
-def 
-\begin{multicols}{2}
+\normalsize
 
-```r
-t(dance.new)
-```
 
-```
-##           [,1] [,2] [,3] [,4]
-## Treatment    0    0    1    1
-## Age         20   40   20   40
-```
-
- 
-`dance.new` transposed (flipped around) shows which combo the
-four lists of survival probabilities belong to.
-\end{multicols}
 
 ## Conclusions from predicted probs
 
@@ -4068,34 +4024,36 @@ vs.\ not)
 g <- ggsurvplot(s, conf.int = F)
 ```
 
-     
+- uses "strata" thus (`dance.new`): 
+
+\footnotesize
 
 
-## Plotting survival probabilities
+```
+## # A tibble: 4 x 2
+##   Treatment   Age
+##       <dbl> <dbl>
+## 1         0    20
+## 2         0    40
+## 3         1    20
+## 4         1    40
+```
+\normalsize
+
+
+
+
+## Plotting survival probabilities 
 
 ```r
 g
 ```
 
-![plot of chunk unnamed-chunk-136](figure/unnamed-chunk-136-1.pdf)
+![plot of chunk survival-plot](figure/survival-plot-1.pdf)
 
    
-\begin{small}
-\begin{tabular}{rrr}
-Stratum& Age& Treatment \\
-\hline
-1 & 20 & no\\
-2 & 20 & yes\\
-3 & 40 & no\\
-4 & 40 & yes\\
-\hline
-\end{tabular}  
-\end{small}
 
-## Discussion
-  
-![](dance-2.png)
-
+## Discussion 
 
 
 * Survivor curve farther to the right is better (better chance
@@ -4103,15 +4061,15 @@ of surviving longer).
 
 * Best is age 40 with treatment, worst age 20 without.
 
-* Appears to be:
+* Appears to be: 
 
 
-* age effect (40 better than 20)
+   * age effect (40 better than 20)
 
-* treatment effect (treatment better than not)
+   * treatment effect (treatment better than not)
 
 
-* In analysis, treatment effect only marginally significant.
+   * In analysis, treatment effect only marginally significant.
 
 
 ## A more realistic example: lung cancer
@@ -4131,7 +4089,7 @@ activities.
 * Sometimes high good, but sometimes bad!
 
 * Variables below,
-from the help file data set (`?lung`).
+from the data set help file  (`?lung`).
 
 
 ## The variables
@@ -4140,6 +4098,8 @@ from the help file data set (`?lung`).
   
 
 ## Uh oh, missing values
+
+\scriptsize
 
 ```r
 lung %>% slice(1:16)
@@ -4164,12 +4124,16 @@ lung %>% slice(1:16)
 ## 15   12  567      2  57   1       1       80        70     2600      60
 ## 16    1  144      2  67   1       1       80        90       NA      15
 ```
-
+\normalsize
        
 
-## A closer look
+## A closer look 
 
 
+
+
+
+\tiny
  
 
 ```r
@@ -4194,17 +4158,19 @@ summary(lung)
 ##  Max.   :3.0000   Max.   :100.00   Max.   :100.00   Max.   :2600.0   Max.   : 68.000  
 ##  NA's   :1        NA's   :1        NA's   :3        NA's   :47       NA's   :14
 ```
+\normalsize
 
    
 
-## Remove any obs with any missing values
+## Remove obs with *any* missing values 
+
+\small
 
 ```r
-cc <- complete.cases(lung)
-lung %>% filter(cc) -> lung.complete
+lung %>% drop_na() -> lung.complete
 lung.complete %>%
   select(meal.cal:wt.loss) %>%
-  head(10)
+  slice(1:10)
 ```
 
 ```
@@ -4220,11 +4186,14 @@ lung.complete %>%
 ## 9      2600      60
 ## 10     1150      -5
 ```
+\normalsize
+
 
    
 Missing values seem to be gone.
 
-## Check!
+## Check! 
+\tiny
 
 ```r
 summary(lung.complete)
@@ -4246,30 +4215,27 @@ summary(lung.complete)
 ##  3rd Qu.:1.0000   3rd Qu.: 90.00   3rd Qu.: 90.00   3rd Qu.:1162.5   3rd Qu.: 15.000  
 ##  Max.   :3.0000   Max.   :100.00   Max.   :100.00   Max.   :2600.0   Max.   : 68.000
 ```
+\normalsize
+
 
    
 No missing values left.
 
 ## Model 1: use everything except `inst`
+\footnotesize
 
 ```r
-str(lung.complete)
+names(lung.complete)
 ```
 
 ```
-## 'data.frame':	167 obs. of  10 variables:
-##  $ inst     : num  3 5 12 7 11 1 7 6 12 22 ...
-##  $ time     : num  455 210 1022 310 361 ...
-##  $ status   : num  2 2 1 2 2 2 2 2 2 2 ...
-##  $ age      : num  68 57 74 68 71 53 61 57 57 70 ...
-##  $ sex      : num  1 1 1 2 2 1 1 1 1 1 ...
-##  $ ph.ecog  : num  0 1 1 2 2 1 2 1 1 1 ...
-##  $ ph.karno : num  90 90 50 70 60 70 70 80 80 90 ...
-##  $ pat.karno: num  90 60 80 60 80 80 70 80 70 100 ...
-##  $ meal.cal : num  1225 1150 513 384 538 ...
-##  $ wt.loss  : num  15 11 0 10 1 16 34 27 60 -5 ...
+##  [1] "inst"      "time"      "status"    "age"       "sex"       "ph.ecog"   "ph.karno" 
+##  [8] "pat.karno" "meal.cal"  "wt.loss"
 ```
-def 
+\normalsize
+
+- Event was death, goes with `status` of 2:
+ 
 
 ```r
 resp <- with(lung.complete, Surv(time, status == 2))
@@ -4277,10 +4243,11 @@ lung.1 <- coxph(resp ~ . - inst - time - status,
   data = lung.complete
 )
 ```
-def 
+ 
 "Dot" means "all the other variables".
 
-## `summary of model 1: too tiny to see!`
+## `summary` of model 1: too tiny to see! 
+\tiny
 
 ```r
 summary(lung.1)
@@ -4317,13 +4284,16 @@ summary(lung.1)
 ## Wald test            = 27.5  on 7 df,   p=3e-04
 ## Score (logrank) test = 28.31  on 7 df,   p=2e-04
 ```
-def 
+\normalsize
+
+ 
 
 ## Overall significance
-The three tests of overall significance:
+The three tests of overall significance: 
+\small
 
 ```r
-glance(lung.1)[c(4, 6, 8)]
+glance(lung.1) %>% select(starts_with("p.value"))
 ```
 
 ```
@@ -4332,10 +4302,14 @@ glance(lung.1)[c(4, 6, 8)]
 ##         <dbl>      <dbl>        <dbl>
 ## 1    0.000205   0.000193     0.000271
 ```
-def 
-All strongly significant. *Something* predicts survival.  
+\normalsize
 
-## Coefficients for model 1
+ 
+All strongly significant. *Something* predicts survival. 
+
+
+## Coefficients for model 1 
+\small
 
 ```r
 tidy(lung.1) %>% select(term, p.value) %>% arrange(p.value)
@@ -4353,25 +4327,22 @@ tidy(lung.1) %>% select(term, p.value) %>% arrange(p.value)
 ## 6 age       0.352  
 ## 7 meal.cal  0.913
 ```
-def 
+\normalsize
 
+ 
 
-* Model as a whole significant (strongly)
 
 * `sex` and
-`ph.ecog` definitely significant
+`ph.ecog` definitely significant here 
 
 * `age`, `pat.karno` and
 `meal.cal` definitely not
 
-*  others in
-between
-
-* Take out the three variables that are definitely not
-significant, and try again.
+* Take out definitely non-sig variables, and try again.
 
 
 ## Model 2
+\normalsize
 
 ```r
 lung.2 <- update(lung.1, . ~ . - age - pat.karno - meal.cal)
@@ -4387,10 +4358,12 @@ tidy(lung.2) %>% select(term, p.value)
 ## 3 ph.karno 0.101   
 ## 4 wt.loss  0.108
 ```
-def 
+\normalsize
 
+## Compare with first model: 
 
-* Compare with first model:
+\normalsize
+
 
 ```r
 anova(lung.2, lung.1)
@@ -4405,17 +4378,26 @@ anova(lung.2, lung.1)
 ## 1 -495.67                   
 ## 2 -494.03 3.269  3     0.352
 ```
+\normalsize
+
 
        
 
 * No harm in taking out those variables.
 
 
-## Model 3, and last
-Take out `ph.karno` and `wt.loss` as well.
+## Model 3 
+
+Take out `ph.karno` and `wt.loss` as well. 
+
+
 
 ```r
 lung.3 <- update(lung.2, . ~ . - ph.karno - wt.loss)
+```
+ 
+
+```r
 tidy(lung.3) %>% select(term, estimate, p.value)
 ```
 
@@ -4426,6 +4408,10 @@ tidy(lung.3) %>% select(term, estimate, p.value)
 ## 1 sex       -0.510 0.00958 
 ## 2 ph.ecog    0.483 0.000266
 ```
+ 
+
+## Check whether that was OK
+
 
 ```r
 anova(lung.3, lung.2)
@@ -4442,7 +4428,9 @@ anova(lung.3, lung.2)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-def 
+
+*Just* OK. 
+
 
 ## Commentary
 
@@ -4451,17 +4439,7 @@ def
 
 * Both remaining variables strongly significant.
 
-* Effect on survival time:
-
-
-* Higher value of `sex` (female) has *negative* effect
-on event (death).
-
-* Higher value of `ph.ecog` has *positive* effect on death.
-
-* i.\ e.\ being female or having lower `ph.ecog` score has
-positive effect on survival.
-
+* Nature of effect on survival time? Consider later. 
 
 * Picture?
 
@@ -4471,6 +4449,7 @@ positive effect on survival.
 
 * Create new data frame of values to predict for, then predict:
 
+\footnotesize
 
 ```r
 sexes <- c(1, 2)
@@ -4496,16 +4475,18 @@ lung.new
 ```r
 s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
 ```
-def 
+\normalsize
 
-## The plot
+ 
+
+## The plot 
 
 ```r
 ggsurvplot(s, conf.int = F)
 ```
 
-![plot of chunk unnamed-chunk-151](figure/unnamed-chunk-151-1.pdf)
-def 
+![plot of chunk unnamed-chunk-155](figure/unnamed-chunk-155-1.pdf)
+ 
 
 ## Discussion of survival curves
 
@@ -4524,10 +4505,26 @@ predicted survival than males.
 * For both genders, a lower score associated with better
 survival.
 
-* `sex` coeff in model 3 negative, so being higher
+## The coefficients in model 3 
+
+
+```r
+tidy(lung.3) %>% select(term, estimate, p.value)
+```
+
+```
+## # A tibble: 2 x 3
+##   term    estimate  p.value
+##   <chr>      <dbl>    <dbl>
+## 1 sex       -0.510 0.00958 
+## 2 ph.ecog    0.483 0.000266
+```
+
+
+* `sex` coeff negative, so being higher
 `sex` value (female) goes with *less* hazard of dying.
 
-* `ph.ecog` coeff in model 3 positive, so higher
+* `ph.ecog` coeff positive, so higher
 `ph.ecog` score goes with *more* hazard of dying
 
 * Two coeffs about same size, so being male rather than female
@@ -4536,6 +4533,8 @@ how survival curves come in 3 pairs plus 2 odd.
 
 
 ## Martingale residuals for this model
+No problems here:
+
 
 ```r
 ggcoxdiagnostics(lung.3) + geom_smooth(se = F)
@@ -4545,10 +4544,9 @@ ggcoxdiagnostics(lung.3) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-152](figure/unnamed-chunk-152-1.pdf)
+![plot of chunk unnamed-chunk-157](figure/unnamed-chunk-157-1.pdf)
 
    
-No problems here.
 
 ## When the Cox model fails
 
@@ -4570,8 +4568,10 @@ y <- with(d, Surv(survtime, stat))
 have been longer if observed.
 
 
-## Fit Cox model
-\begin{footnotesize}
+## Fit Cox model 
+
+\footnotesize
+
 
 ```r
 y.1 <- coxph(y ~ age, data = d)
@@ -4595,76 +4595,58 @@ summary(y.1)
 ## Wald test            = 0.33  on 1 df,   p=0.6
 ## Score (logrank) test = 0.33  on 1 df,   p=0.6
 ```
+\normalsize
 
    
-\end{footnotesize}
 
-## Martingale residuals
+## Martingale residuals 
+
+Down-and-up indicates incorrect relationship between age and
+survival: 
+
 
 ```r
 ggcoxdiagnostics(y.1) + geom_smooth(se = F)
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-155](figure/unnamed-chunk-155-1.pdf)
+![plot of chunk unnamed-chunk-160](figure/unnamed-chunk-160-1.pdf)
 
    
-Down-and-up indicates incorrect relationship between age and
-survival. Add age-squared term.
 
 ## Attempt 2
 
+Add squared term in age:
+
+
+
 ```r
 y.2 <- coxph(y ~ age + I(age^2), data = d)
-summary(y.2)
+tidy(y.2) %>% select(term, estimate, p.value)
 ```
 
 ```
-## Call:
-## coxph(formula = y ~ age + I(age^2), data = d)
-## 
-##   n= 9, number of events= 8 
-## 
-##               coef exp(coef)  se(coef)      z Pr(>|z|)  
-## age      -0.380184  0.683736  0.241617 -1.573   0.1156  
-## I(age^2)  0.004832  1.004844  0.002918  1.656   0.0977 .
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-##          exp(coef) exp(-coef) lower .95 upper .95
-## age         0.6837     1.4626    0.4258     1.098
-## I(age^2)    1.0048     0.9952    0.9991     1.011
-## 
-## Concordance= 0.758  (se = 0.123 )
-## Likelihood ratio test= 3.26  on 2 df,   p=0.2
-## Wald test            = 3.16  on 2 df,   p=0.2
-## Score (logrank) test = 3.75  on 2 df,   p=0.2
+## # A tibble: 2 x 3
+##   term     estimate p.value
+##   <chr>       <dbl>   <dbl>
+## 1 age      -0.380    0.116 
+## 2 I(age^2)  0.00483  0.0977
 ```
 
+- (Marginally) helpful.
        
 
-## Martingale residuals this time
+## Martingale residuals this time 
+
+Not great, but less problematic than before:
+
 
 ```r
 ggcoxdiagnostics(y.2) + geom_smooth(se = F)
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
-![plot of chunk unnamed-chunk-157](figure/unnamed-chunk-157-1.pdf)
+![plot of chunk unnamed-chunk-162](figure/unnamed-chunk-162-1.pdf)
 
    
-Not great, but less problematic than before.
- <<echo=F>>=
- pkgs = names(sessionInfo()$otherPkgs) 
- pkgs=paste('package:', pkgs, sep = "")
- x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
- @   
 
 
 
@@ -4674,27 +4656,27 @@ Not great, but less problematic than before.
 # Analysis of variance
 
 
-## Analysis of variance
+## Analysis of variance 
 
 
-* Analysis of variance used with:
+* Analysis of variance used with: xxx
 
 
-* counted/measured response
+  * counted/measured response
 
-* categorical explanatory variable(s)
+  * categorical explanatory variable(s)
 
-* that is, data divided into groups, and see if response significantly different among groups
+  * that is, data divided into groups, and see if response significantly different among groups
 
-* or, see whether knowing group membership helps to predict response.
-
-
-* Typically two stages:
+  * or, see whether knowing group membership helps to predict response.
 
 
-* $F$-test to detect {\em any} differences among/due to groups
+* Typically two stages: 
 
-* if $F$-test significant, do {\em multiple comparisons} to see which groups significantly different from which.
+
+  * $F$-test to detect *any* differences among/due to groups
+
+  * if $F$-test significant, do *multiple comparisons* to see which groups significantly different from which.
 
 * Need special multiple comparisons method because just doing (say) two-sample $t$-tests on each pair of groups gives too big a chance of finding "significant" differences by accident.
 
@@ -4702,11 +4684,12 @@ Not great, but less problematic than before.
 
 
 ## Packages
-These:
+These: 
 
 ```r
 library(tidyverse)
 library(broom)
+library(car) # for Levene's text
 ```
 
    
@@ -4729,12 +4712,11 @@ threshold score: higher score is higher pain tolerance.
 
 
 
-## The data
+## The data 
 In `hairpain.txt`:
 \begin{multicols}{2}
 
-```
-
+\begin{verbatim}
 hair pain
 lightblond 62
 lightblond 60
@@ -4755,27 +4737,16 @@ darkbrown 39
 darkbrown 51
 darkbrown 30
 darkbrown 35
-
-```
+\end{verbatim}
 
 \end{multicols}
 
-## Summarizing the groups
+## Summarizing the groups 
+\footnotesize
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/hairpain.txt"
 hairpain <- read_delim(my_url, " ")
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   hair = col_character(),
-##   pain = col_double()
-## )
-```
-
-```r
 hairpain %>%
   group_by(hair) %>%
   summarize(
@@ -4794,13 +4765,15 @@ hairpain %>%
 ## 3 lightblond     5  59.2  8.53
 ## 4 lightbrown     4  42.5  5.45
 ```
+\normalsize
 
- 
+
 
 Brown-haired people seem to have lower pain tolerance.
 
 
 ## Boxplot
+
 
 ```r
 ggplot(hairpain, aes(x = hair, y = pain)) + geom_boxplot()
@@ -4817,9 +4790,9 @@ ggplot(hairpain, aes(x = hair, y = pain)) + geom_boxplot()
 * Data should be:
 
 
-* normally distributed within each group
+  * normally distributed within each group
 
-* same spread for each group
+  * same spread for each group
 
 
 * `darkbrown` group has upper outlier (suggests not normal)
@@ -4837,9 +4810,11 @@ ggplot(hairpain, aes(x = hair, y = pain)) + geom_boxplot()
 
 *   via **Levene's test** in package `car`:
 
+\small
+
 
 ```r
-car::leveneTest(pain ~ hair, data = hairpain)
+leveneTest(pain ~ hair, data = hairpain)
 ```
 
 ```
@@ -4853,6 +4828,8 @@ car::leveneTest(pain ~ hair, data = hairpain)
 ##       15
 ```
 
+\normalsize
+
    
 
 
@@ -4863,6 +4840,9 @@ car::leveneTest(pain ~ hair, data = hairpain)
 
 
 ## Analysis of variance
+
+\small
+
 
 ```r
 hairpain.1 <- aov(pain ~ hair, data = hairpain)
@@ -4876,6 +4856,8 @@ summary(hairpain.1)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+\normalsize
 
    
 
@@ -4915,7 +4897,7 @@ different: significantly different.
 
 * `TukeyHSD:`
 
-{\footnotesize
+\footnotesize
 
 ```r
 TukeyHSD(hairpain.1)
@@ -4936,8 +4918,8 @@ TukeyHSD(hairpain.1)
 ## lightbrown-darkbrown    5.1 -10.700380 20.9003795 0.7893211
 ## lightbrown-lightblond -16.7 -32.500380 -0.8996205 0.0366467
 ```
-def 
-}
+ 
+\normalsize
 
 
 
@@ -4950,12 +4932,10 @@ def
 different:
 
 ```
-
 darkbrown lightbrown  darkblond lightblond
 37.4      42.5       51.2       59.2
 -------------------------
----------------
-
+                     ---------------
 ```
 
 
@@ -4977,12 +4957,12 @@ but not completely clear.
 
 * Work any time you do $k$ tests at once (not just ANOVA).
 
-* **Bonferroni**: multiply all P-values by $k$.
+  * **Bonferroni**: multiply all P-values by $k$.
 
-* **Holm**: multiply smallest P-value by $k$, next-smallest by
+  * **Holm**: multiply smallest P-value by $k$, next-smallest by
 $k-1$, etc.
 
-* **False discovery rate**: multiply smallest P-value by $k/1$,
+  * **False discovery rate**: multiply smallest P-value by $k/1$,
 2nd-smallest by $k/2$, \ldots, $i$-th smallest by $k/i$.
 
 * Stop after non-rejection.
@@ -4999,24 +4979,20 @@ Use $\alpha=0.05$.
 * Bonferroni: 
 
 
-* 
-Multiply all P-values by 4 (4 tests).
+  * Multiply all P-values by 4 (4 tests).
 
-* 
-Reject only 1st null.
+  * Reject only 1st null.
 
 
 
 * Holm: 
 
 
-* 
-Times smallest P-value by 4: $0.005*4=0.020<0.05$, reject.
+  * Times smallest P-value by 4: $0.005*4=0.020<0.05$, reject.
 
-* 
-Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
+  * Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
 
-* Times next smallest by 2: $0.03*2=0.06>0.05$, do not reject. Stop.
+  * Times next smallest by 2: $0.03*2=0.06>0.05$, do not reject. Stop.
 
 
 
@@ -5025,25 +5001,25 @@ Times next smallest by 3: $0.015*3=0.045<0.05$, reject.
 ## \ldots Continued
 
 
-*   With P-values 0.005, 0.015, 0.03, 0.06:
+* With P-values 0.005, 0.015, 0.03, 0.06:
 
 * False discovery rate:
 
 
-* Times smallest P-value by 4: $0.005*4=0.02<0.05$: reject.
+  * Times smallest P-value by 4: $0.005*4=0.02<0.05$: reject.
 
-* Times second smallest by $4/2$: $0.015*4/2=0.03<0.05$, reject.
+  * Times second smallest by $4/2$: $0.015*4/2=0.03<0.05$, reject.
 
-* Times third smallest by $4/3$: $0.03*4/3=0.04<0.05$, reject.
+  * Times third smallest by $4/3$: $0.03*4/3=0.04<0.05$, reject.
 
-* Times fourth smallest by $4/4$: 0.06*4/4=0.06>0.05, do not reject. Stop.
-
-
+  * Times fourth smallest by $4/4$: $0.06*4/4=0.06>0.05$, do not reject. Stop. xxx
 
 
-## `pairwise.t.test`
-\begin{multicols}{2}
-{\tiny
+
+
+## `pairwise.t.test` xxx
+
+\tiny
 
 ```r
 attach(hairpain)
@@ -5081,9 +5057,11 @@ pairwise.t.test(pain, hair, p.adj = "holm")
 ## 
 ## P value adjustment method: holm
 ```
+\normalsize
 
-   
+## `pairwise.t.test` part 2 xxx
 
+\tiny
 
 ```r
 pairwise.t.test(pain, hair, p.adj = "fdr")
@@ -5121,9 +5099,7 @@ pairwise.t.test(pain, hair, p.adj = "bon")
 ## P value adjustment method: bonferroni
 ```
 
- 
-}
-\end{multicols}
+\normalsize 
 
 
 ## Comments
@@ -5158,9 +5134,9 @@ into size classes `lean` and `obese`.
 * Variables:
 
 
-* Response: `kidneyweight` (grams).
+  * Response: `kidneyweight` (grams).
 
-* Explanatory: `diet`, `ratsize`.
+  * Explanatory: `diet`, `ratsize`.
 
 
 * Read in data:
@@ -5209,7 +5185,7 @@ vitaminb
    
 
 
-## *Grouped boxplot*
+## Grouped boxplot
 
 ```r
 ggplot(vitaminb, aes(
@@ -5218,7 +5194,7 @@ ggplot(vitaminb, aes(
 )) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-167](figure/unnamed-chunk-167-1.pdf)
+![plot of chunk unnamed-chunk-172](figure/unnamed-chunk-172-1.pdf)
 
    
 
@@ -5226,7 +5202,9 @@ ggplot(vitaminb, aes(
 ## What's going on?
 
 
-* Calculate group means:
+* Calculate group means: xxx
+
+\footnotesize
 
 ```r
 summary <- vitaminb %>%
@@ -5245,7 +5223,7 @@ summary
 ## 3 obese   regular   2.64
 ## 4 obese   vitaminb  2.67
 ```
-
+\normalsize
    
 
 * Rat size: a large and consistent effect.
@@ -5279,7 +5257,8 @@ summary(vitaminb.1)
 
    
 
-Significance/nonsignificance as we expected. Note no significant
+- Significance/nonsignificance as we expected. 
+- Note no significant
 interaction (can be removed). 
 
 
@@ -5287,7 +5266,7 @@ interaction (can be removed).
 
 
 * Plot mean of response variable against one of the explanatory, using
-other one as groups. Start from summary:
+other one as groups. Start from `summary`: 
 
 ```r
 g <- ggplot(summary, aes(
@@ -5304,13 +5283,13 @@ g <- ggplot(summary, aes(
 
 
 
-## The interaction plot
+## The interaction plot xxx
 
 ```r
 g
 ```
 
-![plot of chunk unnamed-chunk-171](figure/unnamed-chunk-171-1.pdf)
+![plot of chunk unnamed-chunk-176](figure/unnamed-chunk-176-1.pdf)
 
 
 
@@ -5318,6 +5297,8 @@ Lines basically parallel, indicating no interaction.
 
 
 ## Take out interaction
+\small
+
 
 ```r
 vitaminb.2 <- update(vitaminb.1, . ~ . - ratsize:diet)
@@ -5332,6 +5313,8 @@ summary(vitaminb.2)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
+
+\normalsize
 
    
 
@@ -5353,11 +5336,11 @@ pollution. However, questions had been raised about the effects of
 filter silencing. He referred to the data included in the report
 (and below) as evidence
 that the silencing properties of the Octel filter were at least
-equal to those of standard silencers. 
+equal to those of standard silencers. xxx
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
-autonoise <- read_table(my_url)
+u <- "http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
+autonoise <- read_table(u)
 ```
 
 ```
@@ -5419,24 +5402,27 @@ g <- autonoise %>%
 
 ## The boxplot
 
+* See difference in engine noise between Octel and standard is larger for
+medium engine size than for large or small.
+
+* Some evidence of differences in spreads (ignore for now):
+
+
+
 ```r
 g
 ```
 
-![plot of chunk unnamed-chunk-176](figure/unnamed-chunk-176-1.pdf)
+![plot of chunk unnamed-chunk-181](figure/unnamed-chunk-181-1.pdf)
 
    
 
 
 
-* Difference in engine noise between Octel and standard is larger for
-medium engine size than for large or small.
-
-* Some evidence of differences in spreads (ignore for now).
-
 
 
 ## ANOVA
+\small
 
 ```r
 autonoise.1 <- aov(noise ~ size * type, data = autonoise)
@@ -5453,6 +5439,8 @@ summary(autonoise.1)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
+\normalsize
+
    
 
 
@@ -5464,7 +5452,8 @@ on 6 obs each.
 
 
 
-## Tukey: ouch!
+## Tukey: ouch! xxx
+\scriptsize
 
 ```r
 autonoise.2 <- TukeyHSD(autonoise.1)
@@ -5489,6 +5478,8 @@ autonoise.2$`size:type`
 ## S:Std-L:Std      50.8333333  36.630177  65.036489 8.937329e-11
 ## S:Std-M:Std     -20.0000000 -34.203156  -5.796844 2.203265e-03
 ```
+
+\normalsize
 
  
 
@@ -5519,20 +5510,25 @@ g <- ggplot(autonoise, aes(
 
 ## Interaction plot
 
+The lines are definitely *not* parallel, showing that the effect
+of `type` is different for medium-sized engines than for others:
+
+
 ```r
 g
 ```
 
-![plot of chunk unnamed-chunk-180](figure/unnamed-chunk-180-1.pdf)
+![plot of chunk unnamed-chunk-185](figure/unnamed-chunk-185-1.pdf)
 
 
 
-The lines are definitely *not* parallel, showing that the effect
-of `type` is different for medium-sized engines than for others.
+
 
 
 ## If you don't like that\ldots
-\ldots then compute the means first, in a pipeline:
+\ldots then compute the means first, in a pipeline: xxx
+
+\footnotesize
 
 
 ```r
@@ -5545,7 +5541,9 @@ autonoise %>%
   )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-181](figure/unnamed-chunk-181-1.pdf)
+![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-1.pdf)
+
+\normalsize
 
    
 
@@ -5619,8 +5617,13 @@ autonoise %>%
 
 
 * There *is* an effect of filter type for medium cars. Look
-at means to investigate:
-{\footnotesize
+at means to investigate (over). 
+
+## Mean noise for each filter type
+
+\ldots for medium engine size: 
+
+
 
 ```r
 autonoise %>%
@@ -5637,15 +5640,14 @@ autonoise %>%
 ## 2 Std    846.
 ```
 
-   
-}
-
-
-
-## Medium and large cars
-
-
 * Octel filters produce *less* noise for medium cars.
+   
+
+
+
+## Large cars 
+
+
 
 * Large cars:
 
@@ -5665,10 +5667,13 @@ autonoise %>%
    
 
 
-* No significant difference again.
+* No significant difference again. 
 
-* Or use `glance` from `broom`:
+## Or\ldots xxx
 
+use `glance` from `broom`:
+
+\small
 
 ```r
 autonoise %>%
@@ -5684,6 +5689,7 @@ autonoise %>%
 ## 1    0.0638       -0.0298  10.5     0.682   0.428     2  -44.1  94.3  95.7     1100
 ## # … with 1 more variable: df.residual <int>
 ```
+\normalsize
 
    
 
@@ -5786,6 +5792,9 @@ number (a `dbl`). Investigate what happens if you use
 * The `data` column was stepping-stone to getting
 answer. Don't need it any more:
 
+\small
+
+
 ```r
 simple_effects <- autonoise %>%
   group_by(size) %>%
@@ -5804,6 +5813,8 @@ simple_effects
 ## 3 S     0.476
 ```
 
+\normalsize
+
      
 
 
@@ -5815,6 +5826,9 @@ simple_effects
 this case, 3.)
 
 * Have to adjust P-values for this. Eg.\ Holm:
+
+\small
+
 
 ```r
 simple_effects %>%
@@ -5831,6 +5845,8 @@ simple_effects %>%
 ## 2 L     0.428               2 0.856    
 ## 3 S     0.476               1 0.476
 ```
+
+\normalsize
 
      
 
@@ -5941,22 +5957,24 @@ autonoise %>%
 
 
 ## Or, all at once: split/apply/combine
+\scriptsize
 
 ```r
 ci_func <- function(x) {
   tt <- t.test(noise ~ type, data = x)
   tt$conf.int
 }
-cis <- autonoise %>%
+autonoise %>%
   group_by(size) %>%
   nest() %>%
   mutate(ci = map(data, ~ ci_func(.))) %>%
-  unnest(ci)
+  unnest(ci) -> cis
 ```
 
-   
+\normalsize
 
-\begin{multicols}{2}
+## Results
+
 
 ```r
 cis
@@ -5974,10 +5992,7 @@ cis
 ## 6 S       7.85
 ```
 
-
-
-\begin{small}
-
+## Procedure 
 
 * Function to get CI of difference in noise means for types
 of filter on input data frame
@@ -5990,9 +6005,6 @@ of filter on input data frame
 * `unnest` `ci` column to see two numbers
 in each CI.
 
-\end{small}
-\end{multicols}
-
 
 ## CIs and noninferiority test
 
@@ -6000,7 +6012,10 @@ in each CI.
 * Suppose we decide that a 20 dB difference would be considered
 equivalent. (I have no idea whether that is reasonable.)
 
-* Intervals: \vspace{2ex}
+* Intervals: \vspace{2ex} 
+
+\small
+
 
 ```r
 cis %>%
@@ -6016,14 +6031,10 @@ cis %>%
 ## 2 M     -30.8 -17.6 
 ## 3 S     -14.5   7.85
 ```
-     \begin{tabular}{lrr}
-       Engine size & Lower & Upper \\
-       \hline
-       Small & --14.5 &7.9 \\
-       Medium & --30.8 &--17.6\\
-       Large & --19.3&9.3\\
-       \hline
-     \end{tabular} \vspace{2ex}
+
+\normalsize
+
+## Comments 
 
 * In all cases, upper limit of CI is less than 20 dB. The Octel
 filters are "noninferior" to the standard ones.
@@ -6183,7 +6194,9 @@ contrasts are called **orthogonal**.
 ## Orthogonal contrasts (2)
 
 
-* Compare these:
+* Compare these: xxx
+
+\small
 
 ```r
 c1 <- c(1, -1, 0)
@@ -6210,7 +6223,7 @@ c1 * c2
 ```
 ## [1]  0 -1  0
 ```
-
+\normalsize
  
 Does not add up to zero, so `c1` and `c2` are *not*
 orthogonal.
@@ -6218,28 +6231,16 @@ orthogonal.
 * Orthogonal contrasts are much easier to deal with. 
 
 
-* Can use non-orthogonal contrasts, but much more trouble (and
-beyond us).
+* Can use non-orthogonal contrasts, but more trouble 
+(beyond us).
 
 
-## Starting the analysis
+## Read in data xxx
+\footnotesize
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"
 chain.wide <- read_table(my_url)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   A = col_double(),
-##   B = col_double(),
-##   C = col_double(),
-##   D = col_double()
-## )
-```
-
-```r
 chain.wide
 ```
 
@@ -6253,6 +6254,8 @@ chain.wide
 ## 4    39    32    41    34
 ## 5    43    61    54    30
 ```
+
+\normalsize
 
    
 
@@ -6271,15 +6274,16 @@ chain <- gather(chain.wide, model, kickback, A:D,
 
 
 ## Starting the analysis (2)
-The proper data frame, displayed in two pieces:
-\begin{multicols}{2}
+The proper data frame: xxx
+
+\tiny
 
 ```r
-chain %>% slice(1:10)
+chain 
 ```
 
 ```
-## # A tibble: 10 x 2
+## # A tibble: 20 x 2
 ##    model kickback
 ##    <fct>    <dbl>
 ##  1 A           42
@@ -6292,33 +6296,21 @@ chain %>% slice(1:10)
 ##  8 B           44
 ##  9 B           32
 ## 10 B           61
+## 11 C           57
+## 12 C           45
+## 13 C           48
+## 14 C           41
+## 15 C           54
+## 16 D           29
+## 17 D           29
+## 18 D           22
+## 19 D           34
+## 20 D           30
 ```
-
+\normalsize
  
 
-
-```r
-chain %>% slice(11:20)
-```
-
-```
-## # A tibble: 10 x 2
-##    model kickback
-##    <fct>    <dbl>
-##  1 C           57
-##  2 C           45
-##  3 C           48
-##  4 C           41
-##  5 C           54
-##  6 D           29
-##  7 D           29
-##  8 D           22
-##  9 D           34
-## 10 D           30
-```
-
  
-\end{multicols}
 
 
 ## Setting up contrasts
@@ -6343,9 +6335,9 @@ contrasts(chain$model) <- m
    
 
 
-## ANOVA as regression
-Now run ANOVA *as if regression*:
-{\scriptsize
+## ANOVA *as if regression*
+
+\scriptsize
 
 ```r
 chain.1 <- lm(kickback ~ model, data = chain)
@@ -6375,8 +6367,7 @@ summary(chain.1)
 ## F-statistic: 4.474 on 3 and 16 DF,  p-value: 0.01833
 ```
 
- 
-}
+\normalsize 
 
 
 
@@ -6413,6 +6404,8 @@ models *are* sig.\ diff.\ (P-value 0.0032).
 
 * The means:
 
+\footnotesize
+
 ```r
 chain %>%
   group_by(model) %>%
@@ -6429,7 +6422,7 @@ chain %>%
 ## 3 A          33  
 ## 4 D          28.8
 ```
-
+\normalsize
  
 
 * Home models A \& D have less kickback than industrial ones B \& C.
@@ -6437,13 +6430,6 @@ chain %>%
 * Makes sense because industrial users should get training to cope
 with additional kickback.
 
-
-
-```
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-```
-
-   
 
 
 
@@ -6573,7 +6559,7 @@ def
 g
 ```
 
-![plot of chunk unnamed-chunk-215](figure/unnamed-chunk-215-1.pdf)
+![plot of chunk unnamed-chunk-218](figure/unnamed-chunk-218-1.pdf)
 
    
 
@@ -6925,6 +6911,9 @@ of value of covariate.
 
 
 
+```
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+```
 
    
 
@@ -6960,66 +6949,24 @@ library(car)
 ```
 
 ```
-## Loading required package: carData
+## 
+## Attaching package: 'car'
 ```
 
 ```
-## Warning: package 'carData' was built under R version 3.5.1
+## The following object is masked from 'package:dplyr':
+## 
+##     recode
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     some
 ```
 
 ```r
 library(tidyverse)
-```
-
-```
-## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ──
-```
-
-```
-## ✔ ggplot2 3.1.1          ✔ purrr   0.3.2     
-## ✔ tibble  2.1.1          ✔ dplyr   0.8.0.1   
-## ✔ tidyr   0.8.3.9000     ✔ stringr 1.4.0     
-## ✔ readr   1.3.1          ✔ forcats 0.3.0
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'tibble' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'tidyr' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'readr' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'purrr' was built under R version 3.5.3
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'stringr' was built under R version 3.5.2
-```
-
-```
-## Warning: package 'forcats' was built under R version 3.5.1
-```
-
-```
-## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ✖ dplyr::recode() masks car::recode()
-## ✖ purrr::some()   masks car::some()
 ```
 
    
@@ -7185,7 +7132,7 @@ def
 g
 ```
 
-![plot of chunk unnamed-chunk-233](figure/unnamed-chunk-233-1.pdf)
+![plot of chunk unnamed-chunk-236](figure/unnamed-chunk-236-1.pdf)
 
    
 
@@ -7769,7 +7716,7 @@ ggplot(dogs.long, aes(
   stat_summary(fun.y = mean, geom = "line")
 ```
 
-![plot of chunk unnamed-chunk-249](figure/unnamed-chunk-249-1.pdf)
+![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-1.pdf)
 
    
 
@@ -8118,7 +8065,7 @@ so have the factor `exertype` with more levels going across.)
 g
 ```
 
-![plot of chunk unnamed-chunk-260](figure/unnamed-chunk-260-1.pdf)
+![plot of chunk unnamed-chunk-263](figure/unnamed-chunk-263-1.pdf)
 
    
 
@@ -8157,6 +8104,16 @@ runners.wide <- exercise.wide %>%
   filter(exertype == "running")
 ```
 
+```
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
+```
+
      
 
 * Create response variable and do MANOVA. Some of this looks like
@@ -8164,13 +8121,31 @@ before, but I have different data now:
 
 ```r
 response <- with(runners.wide, cbind(min01, min15, min30))
+```
+
+```
+## Error in with(runners.wide, cbind(min01, min15, min30)): object 'runners.wide' not found
+```
+
+```r
 runners.1 <- lm(response ~ diet, data = runners.wide)
+```
+
+```
+## Error in is.data.frame(data): object 'runners.wide' not found
+```
+
+```r
 times <- colnames(response)
 times.df <- data.frame(times)
 runners.2 <- Manova(runners.1,
   idata = times.df,
   idesign = ~times
 )
+```
+
+```
+## Error in Manova(runners.1, idata = times.df, idesign = ~times): object 'runners.1' not found
 ```
 
    
@@ -8185,15 +8160,7 @@ runners.2
 ```
 
 ```
-## 
-## Type II Repeated Measures MANOVA Tests: Pillai test statistic
-##             Df test stat approx F num Df den Df    Pr(>F)    
-## (Intercept)  1   0.99912   9045.3      1      8 1.668e-13 ***
-## diet         1   0.84986     45.3      1      8 0.0001482 ***
-## times        1   0.92493     43.1      2      7 0.0001159 ***
-## diet:times   1   0.68950      7.8      2      7 0.0166807 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Error in eval(expr, envir, enclos): object 'runners.2' not found
 ```
 
    
@@ -8226,6 +8193,10 @@ summ <- runners.wide %>%
   )
 ```
 
+```
+## Error in eval(lhs, parent, parent): object 'runners.wide' not found
+```
+
  
 
 
@@ -8244,16 +8215,7 @@ summ
 ```
 
 ```
-## # A tibble: 6 x 4
-## # Groups:   time [3]
-##   time  diet       mean    sd
-##   <chr> <chr>     <dbl> <dbl>
-## 1 min01 lowfat     98.2  3.70
-## 2 min01 nonlowfat  94    4.53
-## 3 min15 lowfat    124.   8.62
-## 4 min15 nonlowfat 110.  13.1 
-## 5 min30 lowfat    141.   7.20
-## 6 min30 nonlowfat 111.   7.92
+## Error in eval(expr, envir, enclos): object 'summ' not found
 ```
 
    
@@ -8280,7 +8242,9 @@ ggplot(summ, aes(
 )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-266](figure/unnamed-chunk-266-1.pdf)
+```
+## Error in ggplot(summ, aes(x = time, y = mean, colour = diet, group = diet)): object 'summ' not found
+```
 
    
 
@@ -8665,7 +8629,7 @@ ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ## Error in FUN(X[[i]], ...): object 'fertilizer' not found
 ```
 
-![plot of chunk unnamed-chunk-274](figure/unnamed-chunk-274-1.pdf)
+![plot of chunk unnamed-chunk-277](figure/unnamed-chunk-277-1.pdf)
 
    
 
@@ -9022,19 +8986,13 @@ peanuts.combo %>%
 ```
 
 ```
-##    obs combo pred  5_1 5_2 6_1  6_2  8_1  8_2
-## 1    1   5_1  5_1 0.69   0   0 0.31 0.00 0.00
-## 2    2   5_1  5_1 0.73   0   0 0.27 0.00 0.00
-## 3    3   5_2  5_2 0.00   1   0 0.00 0.00 0.00
-## 4    4   5_2  5_2 0.00   1   0 0.00 0.00 0.00
-## 5    5   6_1  6_1 0.00   0   1 0.00 0.00 0.00
-## 6    6   6_1  6_1 0.00   0   1 0.00 0.00 0.00
-## 7    7   6_2  6_2 0.13   0   0 0.87 0.00 0.00
-## 8    8   6_2  5_1 0.53   0   0 0.47 0.00 0.00
-## 9    9   8_1  8_1 0.02   0   0 0.02 0.75 0.21
-## 10  10   8_1  8_1 0.00   0   0 0.00 0.99 0.01
-## 11  11   8_2  8_2 0.00   0   0 0.00 0.03 0.97
-## 12  12   8_2  8_2 0.00   0   0 0.00 0.06 0.94
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -9122,19 +9080,32 @@ First and third quartiles for three response variables (reading down):
 quartiles <- peanuts %>%
   select(y:w) %>%
   map_df(quantile, c(0.25, 0.75))
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 quartiles
 ```
 
 ```
-## # A tibble: 2 x 3
-##       y   smk     w
-##   <dbl> <dbl> <dbl>
-## 1  193.  156.  51  
-## 2  200.  166.  59.0
+## Error in eval(expr, envir, enclos): object 'quartiles' not found
 ```
 
 ```r
 new <- with(quartiles, crossing(y, smk, w))
+```
+
+```
+## Error in with(quartiles, crossing(y, smk, w)): object 'quartiles' not found
 ```
 
    
@@ -9147,21 +9118,23 @@ new
 ```
 
 ```
-## # A tibble: 8 x 3
-##       y   smk     w
-##   <dbl> <dbl> <dbl>
-## 1  193.  156.  51  
-## 2  193.  156.  59.0
-## 3  193.  166.  51  
-## 4  193.  166.  59.0
-## 5  200.  156.  51  
-## 6  200.  156.  59.0
-## 7  200.  166.  51  
-## 8  200.  166.  59.0
+## # A tibble: 6 x 2
+##   before drug 
+##    <dbl> <chr>
+## 1      5 a    
+## 2      5 b    
+## 3     15 a    
+## 4     15 b    
+## 5     25 a    
+## 6     25 b
 ```
 
 ```r
 pp <- predict(peanuts.1, new)
+```
+
+```
+## Error in eval(predvars, data, env): object 'smk' not found
 ```
 
    
@@ -9174,13 +9147,7 @@ cbind(new, pp$x) %>% arrange(LD1)
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+## Error in pp$x: $ operator is invalid for atomic vectors
 ```
 
    
@@ -9209,7 +9176,7 @@ g <- ggplot(mm, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-290](figure/unnamed-chunk-290-1.pdf)
+![plot of chunk unnamed-chunk-293](figure/unnamed-chunk-293-1.pdf)
 
    
 
@@ -9232,7 +9199,7 @@ ggbiplot(peanuts.1,
 )
 ```
 
-![plot of chunk unnamed-chunk-291](figure/unnamed-chunk-291-1.pdf)
+![plot of chunk unnamed-chunk-294](figure/unnamed-chunk-294-1.pdf)
 $ %$ %$
 
 
@@ -9471,7 +9438,7 @@ g <- ggplot(mm, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-298](figure/unnamed-chunk-298-1.pdf)
+![plot of chunk unnamed-chunk-301](figure/unnamed-chunk-301-1.pdf)
 
    
 
@@ -9482,7 +9449,7 @@ g
 ggbiplot(active.1, groups = active$job)
 ```
 
-![plot of chunk unnamed-chunk-299](figure/unnamed-chunk-299-1.pdf)
+![plot of chunk unnamed-chunk-302](figure/unnamed-chunk-302-1.pdf)
 
    
 
@@ -9513,7 +9480,7 @@ ggplot(mm, aes(
   geom_text_repel()
 ```
 
-![plot of chunk unnamed-chunk-300](figure/unnamed-chunk-300-1.pdf)
+![plot of chunk unnamed-chunk-303](figure/unnamed-chunk-303-1.pdf)
 
    
 
@@ -9585,13 +9552,13 @@ data.frame(obs = active$job, pred = active.cv$class, pp) %>%
 ```
 
 ```
-## [conflicted] `mutate` found in 2 packages.
+## [conflicted] `filter` found in 2 packages.
 ## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
+## * dplyr::filter
+## * stats::filter
 ## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 $
 
@@ -9780,7 +9747,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops.lda, groups = crops$crop)
 ```
 
-![plot of chunk unnamed-chunk-310](figure/unnamed-chunk-310-1.pdf)
+![plot of chunk unnamed-chunk-313](figure/unnamed-chunk-313-1.pdf)
 
    
 
@@ -9807,7 +9774,24 @@ ggbiplot(crops.lda, groups = crops$crop)
 
 ```r
 crops %>% filter(crop != "Clover") -> crops2
+```
+
+```
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
+```
+
+```r
 crops2.lda <- lda(crop ~ x1 + x2 + x3 + x4, data = crops2)
+```
+
+```
+## Error in is.data.frame(data): object 'crops2' not found
 ```
 
    
@@ -9820,7 +9804,18 @@ crops2.lda <- lda(crop ~ x1 + x2 + x3 + x4, data = crops2)
 
 ```r
 crops2.pred <- predict(crops2.lda)
+```
+
+```
+## Error in predict(crops2.lda): object 'crops2.lda' not found
+```
+
+```r
 mm <- data.frame(crop = crops2$crop, crops2.pred$x)
+```
+
+```
+## Error in data.frame(crop = crops2$crop, crops2.pred$x): object 'crops2' not found
 ```
 
    
@@ -9835,11 +9830,7 @@ crops2.lda$means
 ```
 
 ```
-##                  x1       x2       x3       x4
-## Corn       15.28571 22.71429 27.42857 33.14286
-## Cotton     34.50000 32.66667 35.00000 39.16667
-## Soybeans   21.00000 27.00000 23.50000 29.66667
-## Sugarbeets 31.00000 32.16667 20.00000 40.50000
+## Error in eval(expr, envir, enclos): object 'crops2.lda' not found
 ```
 
 ```r
@@ -9847,7 +9838,7 @@ crops2.lda$svd
 ```
 
 ```
-## [1] 3.3639389 1.6054750 0.4180292
+## Error in eval(expr, envir, enclos): object 'crops2.lda' not found
 ```
 
 ```r
@@ -9855,11 +9846,7 @@ crops2.lda$scaling
 ```
 
 ```
-##            LD1          LD2           LD3
-## x1  0.14077479  0.007780184 -0.0312610362
-## x2  0.03006972  0.007318386  0.0085401510
-## x3 -0.06363974 -0.099520895 -0.0005309869
-## x4 -0.00677414 -0.035612707  0.0577718649
+## Error in eval(expr, envir, enclos): object 'crops2.lda' not found
 ```
 def 
 
@@ -9885,7 +9872,9 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops2.lda, groups = crops2$crop)
 ```
 
-![plot of chunk unnamed-chunk-314](figure/unnamed-chunk-314-1.pdf)
+```
+## Error in ggbiplot(crops2.lda, groups = crops2$crop): object 'crops2.lda' not found
+```
 
    
 
@@ -9897,12 +9886,7 @@ table(obs = crops2$crop, pred = crops2.pred$class)
 ```
 
 ```
-##             pred
-## obs          Corn Cotton Soybeans Sugarbeets
-##   Corn          6      0        1          0
-##   Cotton        0      4        2          0
-##   Soybeans      2      0        3          1
-##   Sugarbeets    0      0        3          3
+## Error in table(obs = crops2$crop, pred = crops2.pred$class): object 'crops2' not found
 ```
 
    
@@ -9917,21 +9901,19 @@ def
 
 ```r
 post <- round(crops2.pred$posterior, 3)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'crops2.pred' not found
+```
+
+```r
 data.frame(obs = crops2$crop, pred = crops2.pred$class, post) %>%
   filter(obs != pred)
 ```
 
 ```
-##          obs       pred  Corn Cotton Soybeans Sugarbeets
-## 1       Corn   Soybeans 0.443  0.034    0.494      0.029
-## 2   Soybeans Sugarbeets 0.010  0.107    0.299      0.584
-## 3   Soybeans       Corn 0.684  0.009    0.296      0.011
-## 4   Soybeans       Corn 0.467  0.199    0.287      0.047
-## 5     Cotton   Soybeans 0.056  0.241    0.379      0.324
-## 6     Cotton   Soybeans 0.066  0.138    0.489      0.306
-## 7 Sugarbeets   Soybeans 0.381  0.146    0.395      0.078
-## 8 Sugarbeets   Soybeans 0.106  0.144    0.518      0.232
-## 9 Sugarbeets   Soybeans 0.088  0.207    0.489      0.216
+## Error in data.frame(obs = crops2$crop, pred = crops2.pred$class, post): object 'crops2' not found
 ```
 
    
@@ -9954,17 +9936,26 @@ significantly separate the crops (excluding Clover)?
 
 ```r
 response <- with(crops2, cbind(x1, x2, x3, x4))
+```
+
+```
+## Error in with(crops2, cbind(x1, x2, x3, x4)): object 'crops2' not found
+```
+
+```r
 crops2.manova <- manova(response ~ crop, data = crops2)
+```
+
+```
+## Error in terms.formula(formula, "Error", data = data): object 'crops2' not found
+```
+
+```r
 summary(crops2.manova)
 ```
 
 ```
-##           Df Pillai approx F num Df den Df  Pr(>F)  
-## crop       3 0.9113   2.1815     12     60 0.02416 *
-## Residuals 21                                        
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Error in summary(crops2.manova): object 'crops2.manova' not found
 ```
 
  
@@ -10169,7 +10160,7 @@ is "best" for individuals? **K-means clustering** (`kmeans`).
 
 
 ## Two made-up clusters
-![plot of chunk unnamed-chunk-321](figure/unnamed-chunk-321-1.pdf)
+![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
 
    
 
@@ -10232,7 +10223,7 @@ Complete-linkage distance is distance between farthest points.
 
 ## Ward's method
 Work out mean of each cluster and join point to its mean:
-![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
+![plot of chunk unnamed-chunk-327](figure/unnamed-chunk-327-1.pdf)
 
    
 
@@ -10243,7 +10234,7 @@ Work out mean of each cluster and join point to its mean:
 Now imagine combining the two clusters and working out overall
 mean. Join each point to this mean:
 
-![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
+![plot of chunk unnamed-chunk-328](figure/unnamed-chunk-328-1.pdf)
 
    
 (ii) Calc sum of squared distances of points to combined mean.
@@ -10333,21 +10324,32 @@ number.d
 d <- number.d %>%
   select(-la) %>%
   as.dist()
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 d
 ```
 
 ```
-##    en no dk nl de fr es it pl hu
-## no  2                           
-## dk  2  1                        
-## nl  7  5  6                     
-## de  6  4  5  5                  
-## fr  6  6  6  9  7               
-## es  6  6  5  9  7  2            
-## it  6  6  5  9  7  1  1         
-## pl  7  7  6 10  8  5  3  4      
-## hu  9  8  8  8  9 10 10 10 10   
-## fi  9  9  9  9  9  9  9  8  9  8
+##   fertilizer yield weight        LD1   high    low
+## 1        low    34     10  3.0931414 0.0000 1.0000
+## 2        low    29     14  1.9210963 0.0012 0.9988
+## 3        low    35     11  1.0751090 0.0232 0.9768
+## 4        low    32     13  0.8724245 0.0458 0.9542
+## 5       high    33     14 -1.1456079 0.9818 0.0182
+## 6       high    38     12 -2.4762756 0.9998 0.0002
+## 7       high    34     13 -0.6609276 0.9089 0.0911
+## 8       high    35     14 -2.6789600 0.9999 0.0001
 ```
 
 ```r
@@ -10355,7 +10357,7 @@ class(d)
 ```
 
 ```
-## [1] "dist"
+## [1] "data.frame"
 ```
 
    
@@ -10365,10 +10367,19 @@ class(d)
 
 ```r
 d.hc <- hclust(d, method = "single")
+```
+
+```
+## Error in if (is.na(n) || n > 65536L) stop("size cannot be NA nor exceed 65536"): missing value where TRUE/FALSE needed
+```
+
+```r
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-329](figure/unnamed-chunk-329-1.pdf)
+```
+## Error in plot(d.hc): object 'd.hc' not found
+```
 
    
 
@@ -10402,9 +10413,7 @@ d.hc$labels
 ```
 
 ```
-##  [1] "en" "no" "dk" "nl"
-##  [5] "de" "fr" "es" "it"
-##  [9] "pl" "hu" "fi"
+## Error in eval(expr, envir, enclos): object 'd.hc' not found
 ```
 
 ```r
@@ -10412,17 +10421,7 @@ d.hc$merge
 ```
 
 ```
-##       [,1] [,2]
-##  [1,]   -2   -3
-##  [2,]   -6   -8
-##  [3,]   -7    2
-##  [4,]   -1    1
-##  [5,]   -9    3
-##  [6,]   -5    4
-##  [7,]   -4    6
-##  [8,]    5    7
-##  [9,]  -10    8
-## [10,]  -11    9
+## Error in eval(expr, envir, enclos): object 'd.hc' not found
 ```
 
  
@@ -10453,10 +10452,19 @@ joined to `fr` and `it`).
 
 ```r
 d.hc <- hclust(d, method = "complete")
+```
+
+```
+## Error in if (is.na(n) || n > 65536L) stop("size cannot be NA nor exceed 65536"): missing value where TRUE/FALSE needed
+```
+
+```r
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-332](figure/unnamed-chunk-332-1.pdf)
+```
+## Error in plot(d.hc): object 'd.hc' not found
+```
 
   
 
@@ -10465,10 +10473,19 @@ plot(d.hc)
 
 ```r
 d.hc <- hclust(d, method = "ward.D")
+```
+
+```
+## Error in if (is.na(n) || n > 65536L) stop("size cannot be NA nor exceed 65536"): missing value where TRUE/FALSE needed
+```
+
+```r
 plot(d.hc)
 ```
 
-![plot of chunk wardo](figure/wardo-1.pdf)
+```
+## Error in plot(d.hc): object 'd.hc' not found
+```
 
    
 
@@ -10483,10 +10500,7 @@ cutree(d.hc, 3)
 ```
 
 ```
-## en no dk nl de fr es it 
-##  1  1  1  1  1  2  2  2 
-## pl hu fi 
-##  2  3  3
+## Error in nrow(tree$merge): object 'd.hc' not found
 ```
 
      
@@ -10497,10 +10511,19 @@ cutree(d.hc, 3)
 
 ```r
 plot(d.hc)
+```
+
+```
+## Error in plot(d.hc): object 'd.hc' not found
+```
+
+```r
 rect.hclust(d.hc, 3)
 ```
 
-![plot of chunk asfsagd](figure/asfsagd-1.pdf)
+```
+## Error in rect.hclust(d.hc, 3): object 'd.hc' not found
+```
 
    
 
@@ -10591,23 +10614,24 @@ Norwegian. It's the number of first letters that are different.
 
 ```r
 english <- lang.long %>% filter(language == "en")
+```
+
+```
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
+```
+
+```r
 english
 ```
 
 ```
-## # A tibble: 10 x 4
-##    number language name  first
-##     <int> <chr>    <chr> <chr>
-##  1      1 en       one   o    
-##  2      2 en       two   t    
-##  3      3 en       three t    
-##  4      4 en       four  f    
-##  5      5 en       five  f    
-##  6      6 en       six   s    
-##  7      7 en       seven s    
-##  8      8 en       eight e    
-##  9      9 en       nine  n    
-## 10     10 en       ten   t
+## Error in eval(expr, envir, enclos): object 'english' not found
 ```
 
      
@@ -10618,23 +10642,24 @@ english
 
 ```r
 norwegian <- lang.long %>% filter(language == "no")
+```
+
+```
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
+```
+
+```r
 norwegian
 ```
 
 ```
-## # A tibble: 10 x 4
-##    number language name  first
-##     <int> <chr>    <chr> <chr>
-##  1      1 no       en    e    
-##  2      2 no       to    t    
-##  3      3 no       tre   t    
-##  4      4 no       fire  f    
-##  5      5 no       fem   f    
-##  6      6 no       seks  s    
-##  7      7 no       sju   s    
-##  8      8 no       atte  a    
-##  9      9 no       ni    n    
-## 10     10 no       ti    t
+## Error in eval(expr, envir, enclos): object 'norwegian' not found
 ```
 
    
@@ -10654,19 +10679,7 @@ english %>% left_join(norwegian, by = "number")
 ```
 
 ```
-## # A tibble: 10 x 7
-##    number language.x name.x first.x language.y name.y first.y
-##     <int> <chr>      <chr>  <chr>   <chr>      <chr>  <chr>  
-##  1      1 en         one    o       no         en     e      
-##  2      2 en         two    t       no         to     t      
-##  3      3 en         three  t       no         tre    t      
-##  4      4 en         four   f       no         fire   f      
-##  5      5 en         five   f       no         fem    f      
-##  6      6 en         six    s       no         seks   s      
-##  7      7 en         seven  s       no         sju    s      
-##  8      8 en         eight  e       no         atte   a      
-##  9      9 en         nine   n       no         ni     n      
-## 10     10 en         ten    t       no         ti     t
+## Error in eval(lhs, parent, parent): object 'english' not found
 ```
 
    
@@ -10686,10 +10699,7 @@ english %>%
 ```
 
 ```
-## # A tibble: 1 x 1
-##    diff
-##   <int>
-## 1     2
+## Error in eval(lhs, parent, parent): object 'english' not found
 ```
 
    
@@ -10720,7 +10730,13 @@ countdiff("en", "no", lang.long)
 ```
 
 ```
-## [1] 2
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 
  
@@ -10786,22 +10802,13 @@ thediffs <- pairs %>%
 ```
 
 ```
-## # A tibble: 121 x 3
-##    lang  lang2  diff
-##    <chr> <chr> <int>
-##  1 de    de        0
-##  2 de    dk        5
-##  3 de    en        6
-##  4 de    es        7
-##  5 de    fi        9
-##  6 de    fr        7
-##  7 de    hu        9
-##  8 de    it        7
-##  9 de    nl        5
-## 10 de    no        4
-## 11 de    pl        8
-## 12 dk    de        5
-## # … with 109 more rows
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 
    
@@ -10817,21 +10824,7 @@ thediffs %>% spread(lang2, diff)
 ```
 
 ```
-## # A tibble: 11 x 12
-##    lang     de    dk    en    es    fi    fr    hu    it
-##    <chr> <int> <int> <int> <int> <int> <int> <int> <int>
-##  1 de        0     5     6     7     9     7     9     7
-##  2 dk        5     0     2     5     9     6     8     5
-##  3 en        6     2     0     6     9     6     9     6
-##  4 es        7     5     6     0     9     2    10     1
-##  5 fi        9     9     9     9     0     9     8     9
-##  6 fr        7     6     6     2     9     0    10     1
-##  7 hu        9     8     9    10     8    10     0    10
-##  8 it        7     5     6     1     9     1    10     0
-##  9 nl        5     6     7     9     9     9     8     9
-## 10 no        4     1     2     6     9     6     8     6
-## 11 pl        8     6     7     3     9     5    10     4
-## # … with 3 more variables: nl <int>, no <int>, pl <int>
+## Error in eval(lhs, parent, parent): object 'thediffs' not found
 ```
 
    
@@ -10950,13 +10943,24 @@ asking for 3 clusters:
 
 ```r
 vital.km3 <- vital.s %>% select(-4) %>% kmeans(3)
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 names(vital.km3)
 ```
 
 ```
-## [1] "cluster"      "centers"      "totss"       
-## [4] "withinss"     "tot.withinss" "betweenss"   
-## [7] "size"         "iter"         "ifault"
+## Error in eval(expr, envir, enclos): object 'vital.km3' not found
 ```
 
    
@@ -10972,7 +10976,7 @@ vital.km3$size
 ```
 
 ```
-## [1] 29 44 24
+## Error in eval(expr, envir, enclos): object 'vital.km3' not found
 ```
 def 
 
@@ -10984,10 +10988,7 @@ vital.km3$centers
 ```
 
 ```
-##        birth      death     infant
-## 1  0.4737967 -0.4878149  0.2466440
-## 2 -0.9593341 -0.4322350 -0.8904328
-## 3  1.1862748  1.3818738  1.3344318
+## Error in eval(expr, envir, enclos): object 'vital.km3' not found
 ```
 def 
 
@@ -11004,7 +11005,7 @@ vital.km3$withinss
 ```
 
 ```
-## [1] 14.96356 25.13922 26.78049
+## Error in eval(expr, envir, enclos): object 'vital.km3' not found
 ```
 def 
 
@@ -11016,10 +11017,7 @@ vital.km3$cluster
 ```
 
 ```
-##  [1] 2 2 2 2 2 2 3 2 1 1 2 3 2 2 2 2 2 2 2 2 2 3 1 2 2 1 1 3
-## [29] 2 1 2 1 1 2 2 1 1 1 3 3 1 1 3 3 1 3 3 3 1 2 2 2 2 2 2 1
-## [57] 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 2 3 2 1 1 3 1 2 1
-## [85] 3 3 3 3 1 3 3 3 3 3 1 3 3
+## Error in eval(expr, envir, enclos): object 'vital.km3' not found
 ```
 def 
 
@@ -11032,6 +11030,10 @@ vital.3 <- tibble(
   country = vital.s$country,
   cluster = vital.km3$cluster
 )
+```
+
+```
+## Error in eval_tidy(xs[[i]], unique_output): object 'vital.km3' not found
 ```
 
    
@@ -11058,28 +11060,7 @@ get_countries(2, vital.3)
 ```
 
 ```
-##  [1] "Albania"              "Czechoslovakia"      
-##  [3] "Hungary"              "Romania"             
-##  [5] "USSR"                 "Ukrainian_SSR"       
-##  [7] "Chile"                "Uruguay"             
-##  [9] "Finland"              "France"              
-## [11] "Greece"               "Italy"               
-## [13] "Norway"               "Spain"               
-## [15] "Switzerland"          "Austria"             
-## [17] "Canada"               "Israel"              
-## [19] "Kuwait"               "China"               
-## [21] "Korea"                "Singapore"           
-## [23] "Thailand"             "Bulgaria"            
-## [25] "Former_E._Germany"    "Poland"              
-## [27] "Yugoslavia"           "Byelorussia_SSR"     
-## [29] "Argentina"            "Venezuela"           
-## [31] "Belgium"              "Denmark"             
-## [33] "Germany"              "Ireland"             
-## [35] "Netherlands"          "Portugal"            
-## [37] "Sweden"               "U.K."                
-## [39] "Japan"                "U.S.A."              
-## [41] "Bahrain"              "United_Arab_Emirates"
-## [43] "Hong_Kong"            "Sri_Lanka"
+## Error in eval(lhs, parent, parent): object 'vital.3' not found
 ```
 
    
@@ -11093,14 +11074,7 @@ get_countries(3, vital.3)
 ```
 
 ```
-##  [1] "Bolivia"      "Mexico"       "Afghanistan" 
-##  [4] "Bangladesh"   "Gabon"        "Ghana"       
-##  [7] "Namibia"      "Sierra_Leone" "Swaziland"   
-## [10] "Uganda"       "Zaire"        "Cambodia"    
-## [13] "Nepal"        "Angola"       "Congo"       
-## [16] "Ethiopia"     "Gambia"       "Malawi"      
-## [19] "Mozambique"   "Nigeria"      "Somalia"     
-## [22] "Sudan"        "Tanzania"     "Zambia"
+## Error in eval(lhs, parent, parent): object 'vital.3' not found
 ```
 
    
@@ -11114,16 +11088,7 @@ get_countries(1, vital.3)
 ```
 
 ```
-##  [1] "Ecuador"      "Paraguay"     "Iran"        
-##  [4] "Oman"         "Turkey"       "India"       
-##  [7] "Mongolia"     "Pakistan"     "Algeria"     
-## [10] "Botswana"     "Egypt"        "Libya"       
-## [13] "Morocco"      "South_Africa" "Zimbabwe"    
-## [16] "Brazil"       "Columbia"     "Guyana"      
-## [19] "Peru"         "Iraq"         "Jordan"      
-## [22] "Lebanon"      "Saudi_Arabia" "Indonesia"   
-## [25] "Malaysia"     "Philippines"  "Vietnam"     
-## [28] "Kenya"        "Tunisia"
+## Error in eval(lhs, parent, parent): object 'vital.3' not found
 ```
 
    
@@ -11142,6 +11107,19 @@ be different from another run.
 
 ```r
 vital.km3a <- vital.s %>% select(-4) %>% kmeans(3)
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 table(
   first = vital.km3$cluster,
   second = vital.km3a$cluster
@@ -11149,11 +11127,7 @@ table(
 ```
 
 ```
-##      second
-## first  1  2  3
-##     1  1  0 28
-##     2  0 40  4
-##     3 24  0  0
+## Error in table(first = vital.km3$cluster, second = vital.km3a$cluster): object 'vital.km3' not found
 ```
 
 
@@ -11228,10 +11202,10 @@ ssd <- tibble(clusters = 2:20) %>%
 ##  4        5  37.5
 ##  5        6  28.7
 ##  6        7  24.7
-##  7        8  22.3
-##  8        9  19.6
-##  9       10  17.5
-## 10       11  16.2
+##  7        8  22.0
+##  8        9  19.5
+##  9       10  18.1
+## 10       11  16.1
 ## # … with 9 more rows
 ```
 
@@ -11275,11 +11249,24 @@ ggplot(ssd, aes(x = clusters, y = wss)) + geom_point() +
 vital.km6 <- vital.s %>%
   select(-4) %>%
   kmeans(6, nstart = 20)
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 vital.km6$size
 ```
 
 ```
-## [1] 24  8 30 15 18  2
+## Error in eval(expr, envir, enclos): object 'vital.km6' not found
 ```
 
 ```r
@@ -11287,13 +11274,7 @@ vital.km6$centers
 ```
 
 ```
-##        birth      death     infant
-## 1  0.4160993 -0.5169988  0.2648754
-## 2  1.3043848  2.1896567  1.9470306
-## 3 -1.1737104 -0.1856375 -0.9534370
-## 4 -0.4357690 -1.1438599 -0.7281108
-## 5  1.2092406  0.7441347  1.0278003
-## 6 -0.2199722  2.1116577 -0.4544435
+## Error in eval(expr, envir, enclos): object 'vital.km6' not found
 ```
 
 ```r
@@ -11301,6 +11282,10 @@ vital.6 <- tibble(
   country = vital.s$country,
   cluster = vital.km6$cluster
 )
+```
+
+```
+## Error in eval_tidy(xs[[i]], unique_output): object 'vital.km6' not found
 ```
 
    
@@ -11314,14 +11299,7 @@ get_countries(1, vital.6)
 ```
 
 ```
-##  [1] "Ecuador"      "Paraguay"     "Oman"        
-##  [4] "Turkey"       "India"        "Mongolia"    
-##  [7] "Pakistan"     "Algeria"      "Egypt"       
-## [10] "Libya"        "Morocco"      "South_Africa"
-## [13] "Zimbabwe"     "Brazil"       "Guyana"      
-## [16] "Peru"         "Iraq"         "Jordan"      
-## [19] "Lebanon"      "Saudi_Arabia" "Indonesia"   
-## [22] "Philippines"  "Vietnam"      "Tunisia"
+## Error in eval(lhs, parent, parent): object 'vital.6' not found
 ```
 
    
@@ -11334,9 +11312,7 @@ get_countries(2, vital.6)
 ```
 
 ```
-## [1] "Afghanistan"  "Sierra_Leone" "Angola"      
-## [4] "Ethiopia"     "Gambia"       "Malawi"      
-## [7] "Mozambique"   "Somalia"
+## Error in eval(lhs, parent, parent): object 'vital.6' not found
 ```
 
    
@@ -11349,21 +11325,7 @@ get_countries(3, vital.6)
 ```
 
 ```
-##  [1] "Czechoslovakia"    "Hungary"          
-##  [3] "Romania"           "USSR"             
-##  [5] "Ukrainian_SSR"     "Uruguay"          
-##  [7] "Finland"           "France"           
-##  [9] "Greece"            "Italy"            
-## [11] "Norway"            "Spain"            
-## [13] "Switzerland"       "Austria"          
-## [15] "Canada"            "Bulgaria"         
-## [17] "Former_E._Germany" "Poland"           
-## [19] "Yugoslavia"        "Byelorussia_SSR"  
-## [21] "Belgium"           "Denmark"          
-## [23] "Germany"           "Ireland"          
-## [25] "Netherlands"       "Portugal"         
-## [27] "Sweden"            "U.K."             
-## [29] "Japan"             "U.S.A."
+## Error in eval(lhs, parent, parent): object 'vital.6' not found
 ```
 
    
@@ -11376,14 +11338,7 @@ get_countries(4, vital.6)
 ```
 
 ```
-##  [1] "Albania"              "Chile"               
-##  [3] "Israel"               "Kuwait"              
-##  [5] "China"                "Singapore"           
-##  [7] "Thailand"             "Argentina"           
-##  [9] "Columbia"             "Venezuela"           
-## [11] "Bahrain"              "United_Arab_Emirates"
-## [13] "Hong_Kong"            "Malaysia"            
-## [15] "Sri_Lanka"
+## Error in eval(lhs, parent, parent): object 'vital.6' not found
 ```
 
    
@@ -11396,12 +11351,7 @@ get_countries(5, vital.6)
 ```
 
 ```
-##  [1] "Bolivia"    "Iran"       "Bangladesh"
-##  [4] "Botswana"   "Gabon"      "Ghana"     
-##  [7] "Namibia"    "Swaziland"  "Uganda"    
-## [10] "Zaire"      "Cambodia"   "Nepal"     
-## [13] "Congo"      "Kenya"      "Nigeria"   
-## [16] "Sudan"      "Tanzania"   "Zambia"
+## Error in eval(lhs, parent, parent): object 'vital.6' not found
 ```
 
    
@@ -11414,7 +11364,7 @@ get_countries(6, vital.6)
 ```
 
 ```
-## [1] "Mexico" "Korea"
+## Error in eval(lhs, parent, parent): object 'vital.6' not found
 ```
 
    
@@ -11427,11 +11377,7 @@ table(three = vital.km3$cluster, six = vital.km6$cluster)
 ```
 
 ```
-##      six
-## three  1  2  3  4  5  6
-##     1 24  0  0  2  3  0
-##     2  0  0 30 13  0  1
-##     3  0  8  0  0 15  1
+## Error in table(three = vital.km3$cluster, six = vital.km6$cluster): object 'vital.km3' not found
 ```
 
    
@@ -11470,21 +11416,40 @@ standardized), plus `cf` (cluster as factor).
 
 ```r
 v <- vital.s %>% select(-4) %>% as.matrix()
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 cf <- as.factor(vital.km6$cluster)
+```
+
+```
+## Error in is.factor(x): object 'vital.km6' not found
+```
+
+```r
 vital.manova <- manova(v ~ cf)
+```
+
+```
+## Error in eval(predvars, data, env): object 'v' not found
+```
+
+```r
 summary(vital.manova)
 ```
 
 ```
-##           Df Pillai approx F num Df den Df
-## cf         5 1.9215   32.427     15    273
-## Residuals 91                              
-##              Pr(>F)    
-## cf        < 2.2e-16 ***
-## Residuals              
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Error in summary(vital.manova): object 'vital.manova' not found
 ```
 def 
 
@@ -11501,11 +11466,18 @@ Oh yes.
 
 ```r
 vital.lda <- lda(cf ~ birth + death + infant, data = vital.s)
+```
+
+```
+## Error in eval(predvars, data, env): object 'cf' not found
+```
+
+```r
 vital.lda$svd
 ```
 
 ```
-## [1] 21.687195  8.851811  1.773006
+## Error in eval(expr, envir, enclos): object 'vital.lda' not found
 ```
 
 ```r
@@ -11513,10 +11485,7 @@ vital.lda$scaling
 ```
 
 ```
-##              LD1        LD2        LD3
-## birth  2.6879695  1.1224202  1.9483853
-## death  0.6652712 -2.7213044  0.6049358
-## infant 2.1111801  0.7650912 -2.3542296
+## Error in eval(expr, envir, enclos): object 'vital.lda' not found
 ```
 def 
 
@@ -11534,21 +11503,36 @@ def
 
 ```r
 vital.pred <- predict(vital.lda)
+```
+
+```
+## Error in predict(vital.lda): object 'vital.lda' not found
+```
+
+```r
 d <- data.frame(
   country = vital.s$country,
   cluster = vital.km6$cluster, vital.pred$x
 )
+```
+
+```
+## Error in data.frame(country = vital.s$country, cluster = vital.km6$cluster, : object 'vital.km6' not found
+```
+
+```r
 glimpse(d)
 ```
 
 ```
-## Observations: 97
-## Variables: 5
-## $ country <fct> Albania, Czechoslovakia, Hungar…
-## $ cluster <int> 4, 3, 3, 3, 3, 3, 5, 4, 1, 1, 3…
-## $ LD1     <dbl> -2.74034473, -5.01874312, -4.97…
-## $ LD2     <dbl> 2.2311427, -2.5427640, -3.62910…
-## $ LD3     <dbl> -0.086392118, 0.067491502, -0.1…
+## Observations: 8
+## Variables: 6
+## $ fertilizer <chr> "low", "low", "low", "low", …
+## $ yield      <dbl> 34, 29, 35, 32, 33, 38, 34, …
+## $ weight     <dbl> 10, 14, 11, 13, 14, 12, 13, …
+## $ LD1        <dbl> 3.0931414, 1.9210963, 1.0751…
+## $ high       <dbl> 0.0000, 0.0012, 0.0232, 0.04…
+## $ low        <dbl> 1.0000, 0.9988, 0.9768, 0.95…
 ```
 $ %$ %$
 
@@ -11575,7 +11559,11 @@ g <- ggplot(d, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-381](figure/unnamed-chunk-381-1.pdf)
+```
+## Error in FUN(X[[i]], ...): object 'LD2' not found
+```
+
+![plot of chunk unnamed-chunk-384](figure/unnamed-chunk-384-1.pdf)
 
    
 
@@ -11610,7 +11598,24 @@ An Ontario hockey league has teams in 21 cities. How can we arrange those teams 
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
 ontario <- read_csv(my_url)
 ontario.d <- ontario %>% select(-1) %>% as.dist()
+```
+
+```
+## [conflicted] `select` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 ontario.hc <- hclust(ontario.d, method = "ward.D")
+```
+
+```
+## Error in hclust(ontario.d, method = "ward.D"): object 'ontario.d' not found
 ```
 
    
@@ -11620,10 +11625,19 @@ ontario.hc <- hclust(ontario.d, method = "ward.D")
 
 ```r
 plot(ontario.hc)
+```
+
+```
+## Error in plot(ontario.hc): object 'ontario.hc' not found
+```
+
+```r
 rect.hclust(ontario.hc, 4)
 ```
 
-![plot of chunk unnamed-chunk-383](figure/unnamed-chunk-383-1.pdf)
+```
+## Error in rect.hclust(ontario.hc, 4): object 'ontario.hc' not found
+```
 
    
 
@@ -11643,10 +11657,19 @@ rect.hclust(ontario.hc, 4)
 
 ```r
 plot(ontario.hc)
+```
+
+```
+## Error in plot(ontario.hc): object 'ontario.hc' not found
+```
+
+```r
 rect.hclust(ontario.hc, 7)
 ```
 
-![plot of chunk unnamed-chunk-384](figure/unnamed-chunk-384-1.pdf)
+```
+## Error in rect.hclust(ontario.hc, 7): object 'ontario.hc' not found
+```
 
    
 
@@ -11887,18 +11910,34 @@ into `dist` with `as.dist`.
 
 ```r
 europe.d <- europe %>% select(-1) %>% as.dist()
+```
+
+```
+## [conflicted] `select` found in 3 packages.
+## Either pick the one you want with `::` 
+## * shapes::select
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
+```r
 europe.scale <- cmdscale(europe.d)
+```
+
+```
+## Error in cmdscale(europe.d): object 'europe.d' not found
+```
+
+```r
 head(europe.scale)
 ```
 
 ```
-##                   [,1]      [,2]
-## Amsterdam  -348.162277  528.2657
-## Athens     2528.610410 -509.5208
-## Barcelona  -695.970779 -984.6093
-## Berlin      384.178025  634.5239
-## Cologne       5.153446  356.7230
-## Copenhagen -187.104072 1142.5926
+## Error in head(europe.scale): object 'europe.scale' not found
 ```
 
    
@@ -11919,36 +11958,16 @@ europe_coord <- europe.scale %>%
 ```
 
 ```
-## Warning: `as_tibble.matrix()` requires a matrix with column names or a `.name_repair` argument. Using compatibility `.name_repair`.
-## This warning is displayed once per session.
-```
-
-```
-## Warning: Unknown or uninitialised column: 'City'.
-```
-
-```
-## # A tibble: 16 x 2
-##          V1      V2
-##       <dbl>   <dbl>
-##  1  -348.     528. 
-##  2  2529.    -510. 
-##  3  -696.    -985. 
-##  4   384.     635. 
-##  5     5.15   357. 
-##  6  -187.    1143. 
-##  7  -882.     894. 
-##  8  -161.    -330. 
-##  9  -434.     427. 
-## 10 -1364.   -1069. 
-## 11  -390.    -706. 
-## 12   345.     -66.8
-## # … with 4 more rows
+## Error in eval(lhs, parent, parent): object 'europe.scale' not found
 ```
 
 ```r
 g <- ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
   geom_point() + geom_text_repel()
+```
+
+```
+## Error in ggplot(europe_coord, aes(x = V1, y = V2, label = city)): object 'europe_coord' not found
 ```
 
    
@@ -11961,10 +11980,10 @@ g
 ```
 
 ```
-## Error in FUN(X[[i]], ...): object 'city' not found
+## Error in FUN(X[[i]], ...): object 'LD2' not found
 ```
 
-![plot of chunk unnamed-chunk-392](figure/unnamed-chunk-392-1.pdf)
+![plot of chunk unnamed-chunk-395](figure/unnamed-chunk-395-1.pdf)
 
    
 
@@ -12010,7 +12029,12 @@ data frame, acquires headers `V1` and `V2`.
 mds_map("europe.csv")
 ```
 
-![plot of chunk unnamed-chunk-394](figure/unnamed-chunk-394-1.pdf)
+```
+## Warning: `as_tibble.matrix()` requires a matrix with column names or a `.name_repair` argument. Using compatibility `.name_repair`.
+## This warning is displayed once per session.
+```
+
+![plot of chunk unnamed-chunk-397](figure/unnamed-chunk-397-1.pdf)
 
    
 
@@ -12040,7 +12064,7 @@ D,1.4,1  ,1  ,0
 mds_map("square.csv")
 ```
 
-![plot of chunk unnamed-chunk-395](figure/unnamed-chunk-395-1.pdf)
+![plot of chunk unnamed-chunk-398](figure/unnamed-chunk-398-1.pdf)
 
        
 
@@ -12127,7 +12151,7 @@ g2 <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-401](figure/unnamed-chunk-401-1.pdf)
+![plot of chunk unnamed-chunk-404](figure/unnamed-chunk-404-1.pdf)
 
    
 
@@ -12135,10 +12159,10 @@ g2
 ## Compare our scaling map
 
 ```
-## Error in FUN(X[[i]], ...): object 'city' not found
+## Error in FUN(X[[i]], ...): object 'LD2' not found
 ```
 
-![plot of chunk unnamed-chunk-402](figure/unnamed-chunk-402-1.pdf)
+![plot of chunk unnamed-chunk-405](figure/unnamed-chunk-405-1.pdf)
 
    
 
@@ -12190,7 +12214,7 @@ g <- mds_map("ontario-road-distances.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-404](figure/unnamed-chunk-404-1.pdf)
+![plot of chunk unnamed-chunk-407](figure/unnamed-chunk-407-1.pdf)
 
    
 
@@ -12291,18 +12315,13 @@ square %>%
 ```
 
 ```
-## # A tibble: 9 x 3
-##   x     point distance
-##   <chr> <chr>    <dbl>
-## 1 A     A          0  
-## 2 B     A          1  
-## 3 D     A          1.4
-## 4 A     B          1  
-## 5 B     B          0  
-## 6 D     B          1  
-## 7 A     D          1.4
-## 8 B     D          1  
-## 9 D     D          0
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 
    
@@ -12316,20 +12335,32 @@ noc <- square %>%
   gather(point, distance, -1) %>%
   filter(x != "C", point != "C") %>%
   spread(point, distance)
+```
+
+```
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
+```
+
+```r
 noc
 ```
 
 ```
-## # A tibble: 3 x 4
-##   x         A     B     D
-##   <chr> <dbl> <dbl> <dbl>
-## 1 A       0       1   1.4
-## 2 B       1       0   1  
-## 3 D       1.4     1   0
+## Error in eval(expr, envir, enclos): object 'noc' not found
 ```
 
 ```r
 noc %>% write_csv("no-c.csv")
+```
+
+```
+## Error in eval(lhs, parent, parent): object 'noc' not found
 ```
 
    
@@ -12341,7 +12372,7 @@ noc %>% write_csv("no-c.csv")
 mds_map("no-c.csv")
 ```
 
-![plot of chunk unnamed-chunk-409](figure/unnamed-chunk-409-1.pdf)
+![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
 
    
 
@@ -12352,7 +12383,7 @@ mds_map("no-c.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-410](figure/unnamed-chunk-410-1.pdf)
+![plot of chunk unnamed-chunk-413](figure/unnamed-chunk-413-1.pdf)
 
    
 
@@ -12376,39 +12407,13 @@ ontario2 <- read_csv(my_url) %>%
 ```
 
 ```
-## Warning in (~x != "Thunder Bay") & ~place != "Thunder Bay":
-## longer object length is not a multiple of shorter object length
-```
-
-```
-## Warning in (~x != "Thunder Bay") & ~place != "Thunder Bay" & ~x !
-## = "Sault Ste Marie": longer object length is not a multiple of
-## shorter object length
-```
-
-```
-## Each row of output must be identified by a unique combination of keys.
-## Keys are shared for 399 rows:
-## * 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
-## * 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42
-## * 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63
-## * 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84
-## * 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105
-## * 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126
-## * 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147
-## * 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168
-## * 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189
-## * 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210
-## * 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231
-## * 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252
-## * 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273
-## * 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294
-## * 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315
-## * 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336
-## * 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357
-## * 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378
-## * 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399
-## Do you need to create unique ID with tibble::rowid_to_column()?
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 
    
@@ -12421,7 +12426,7 @@ g <- mds_map("southern-ontario.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
+![plot of chunk unnamed-chunk-415](figure/unnamed-chunk-415-1.pdf)
 
    
 
@@ -12538,7 +12543,7 @@ gmap <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-418](figure/unnamed-chunk-418-1.pdf)
+![plot of chunk unnamed-chunk-421](figure/unnamed-chunk-421-1.pdf)
 
      
 
@@ -12547,7 +12552,7 @@ g2
 gmap
 ```
 
-![plot of chunk unnamed-chunk-419](figure/unnamed-chunk-419-1.pdf)
+![plot of chunk unnamed-chunk-422](figure/unnamed-chunk-422-1.pdf)
 
  
 \end{multicols}
@@ -12919,7 +12924,7 @@ $ %$ %$
 g
 ```
 
-![plot of chunk unnamed-chunk-433](figure/unnamed-chunk-433-1.pdf)
+![plot of chunk unnamed-chunk-436](figure/unnamed-chunk-436-1.pdf)
 
    
 
@@ -12980,8 +12985,15 @@ cube.d <- cube %>% select(-1) %>% as.dist()
 ```
 
 ```
-## Warning in storage.mode(m) <- "numeric": NAs introduced by
-## coercion
+## [conflicted] `select` found in 3 packages.
+## Either pick the one you want with `::` 
+## * shapes::select
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
 ```r
@@ -12989,14 +13001,7 @@ cube.d
 ```
 
 ```
-##        a   b   c   d   e    f   g
-##   b  1.0                         
-##   c  1.0 1.0                     
-##   d  1.4 1.0 1.0                 
-##   e  1.0 1.4 1.4 1.7             
-##    f 1.4 1.0 1.7 1.4 1.0         
-##  g   1.4 1.7 1.0 1.4 1.0  1.4    
-##   h  1.7 1.4 1.4 1.0 1.4  1.0 1.0
+## Error in eval(expr, envir, enclos): object 'cube.d' not found
 ```
 
  
@@ -13013,6 +13018,10 @@ cube.d
 cube.2 <- cube.d %>% cmdscale(eig = T)
 ```
 
+```
+## Error in eval(lhs, parent, parent): object 'cube.d' not found
+```
+
    
 
 
@@ -13023,6 +13032,10 @@ cube.2 <- cube.d %>% cmdscale(eig = T)
 d <- cube.2$points %>%
   as_tibble() %>%
   mutate(corners = cube$x)
+```
+
+```
+## Error in eval(lhs, parent, parent): object 'cube.2' not found
 ```
 
    
@@ -13038,6 +13051,11 @@ g <- ggplot(d, aes(x = V1, y = V2, label = corners)) +
 
 
 ## The "cube"
+
+```
+## Error in FUN(X[[i]], ...): object 'V1' not found
+```
+
 ![plot of chunk bianconeri](figure/bianconeri-1.pdf)
 
  
@@ -13048,11 +13066,18 @@ Not good.
 
 ```r
 cube.3 <- cube.d %>% cmdscale(3, eig = T)
+```
+
+```
+## Error in eval(lhs, parent, parent): object 'cube.d' not found
+```
+
+```r
 cube.2$GOF
 ```
 
 ```
-## [1] 0.639293 0.664332
+## Error in eval(expr, envir, enclos): object 'cube.2' not found
 ```
 
 ```r
@@ -13060,7 +13085,7 @@ cube.3$GOF
 ```
 
 ```
-## [1] 0.9143532 0.9501654
+## Error in eval(expr, envir, enclos): object 'cube.3' not found
 ```
 
    
@@ -13265,26 +13290,47 @@ cube.d <- cube %>% select(-x) %>% as.dist(cube)
 ```
 
 ```
-## Warning in storage.mode(m) <- "numeric": NAs introduced
-## by coercion
+## [conflicted] `select` found in 3 packages.
+## Either pick the one you want with `::` 
+## * shapes::select
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
 ```r
 cube.2 <- isoMDS(cube.d, trace = F)
+```
+
+```
+## Error in isoMDS(cube.d, trace = F): object 'cube.d' not found
+```
+
+```r
 cube.2$stress
 ```
 
 ```
-## [1] 17.97392
+## Error in eval(expr, envir, enclos): object 'cube.2' not found
 ```
 
 ```r
 cube.3 <- isoMDS(cube.d, k = 3, trace = F)
+```
+
+```
+## Error in isoMDS(cube.d, k = 3, trace = F): object 'cube.d' not found
+```
+
+```r
 cube.3$stress
 ```
 
 ```
-## [1] 0.007819523
+## Error in eval(expr, envir, enclos): object 'cube.3' not found
 ```
 
    
@@ -13299,11 +13345,36 @@ cube.3$stress
 
 ```r
 cube2.sh <- Shepard(cube.d, cube.2$points)
+```
+
+```
+## Error in nrow(x): object 'cube.2' not found
+```
+
+```r
 g2 <- ggplot(as.data.frame(cube2.sh), aes(x = x, y = y)) +
   geom_point()
+```
+
+```
+## Error in as.data.frame(cube2.sh): object 'cube2.sh' not found
+```
+
+```r
 cube3.sh <- Shepard(cube.d, cube.3$points)
+```
+
+```
+## Error in nrow(x): object 'cube.3' not found
+```
+
+```r
 g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
   geom_point()
+```
+
+```
+## Error in as.data.frame(cube3.sh): object 'cube3.sh' not found
 ```
 
    
@@ -13317,7 +13388,7 @@ g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-446](figure/unnamed-chunk-446-1.pdf)
+![plot of chunk unnamed-chunk-449](figure/unnamed-chunk-449-1.pdf)
 
    
 
@@ -13330,7 +13401,9 @@ Poor correspondence (not much trend).
 g3
 ```
 
-![plot of chunk unnamed-chunk-447](figure/unnamed-chunk-447-1.pdf)
+```
+## Error in eval(expr, envir, enclos): object 'g3' not found
+```
 
  
 Almost perfect: all actual $x=1$ go with smallest mapped distances; almost
@@ -13577,7 +13650,7 @@ variables measured on same scale and expect similar variability.)
 ggscreeplot(test12.pc)
 ```
 
-![plot of chunk unnamed-chunk-454](figure/unnamed-chunk-454-1.pdf)
+![plot of chunk unnamed-chunk-457](figure/unnamed-chunk-457-1.pdf)
 
    
 
@@ -13761,18 +13834,18 @@ track %>% sample_n(12)
 ## # A tibble: 12 x 9
 ##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1  10.4  20.8  46.8  1.79  3.6   13.3   27.7     136. at     
-##  2  10.0  19.7  45.3  1.73  3.6   13.2   27.5     131. it     
-##  3  10.3  20.6  46.0  1.77  3.62  13.5   28.4     133. hu     
-##  4  10.2  20.2  45.7  1.76  3.63  13.6   28.1     130. ca     
-##  5  10.4  21.0  45.9  1.76  3.64  13.2   27.7     132. ro     
-##  6  10.2  20.2  45.4  1.76  3.6   13.3   27.9     132. pl     
-##  7  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. pg     
-##  8  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se     
-##  9  10.3  20.1  44.8  1.74  3.57  13.3   27.7     128. au     
-## 10  10.1  20.3  44.9  1.73  3.56  13.2   27.4     130. dee    
-## 11  10.4  21.0  46.1  1.82  3.74  13.5   27.9     131. co     
-## 12  10.4  21.3  46.1  1.8   3.65  13.5   28.0     129. mx
+##  1  10.4  20.9  46.3  1.82  3.8   14.6   31.0     154. my     
+##  2  10.4  20.6  45.6  1.76  3.58  13.4   28.2     134. cz     
+##  3  10.5  21.0  47.3  1.81  3.73  13.9   29.1     134. cn     
+##  4  10.4  20.7  45.5  1.74  3.61  13.3   27.5     131. fi     
+##  5  10.4  21.1  47.9  1.83  3.84  15.2   32.6     150. th     
+##  6  10.2  20.2  45.7  1.76  3.63  13.6   28.1     130. ca     
+##  7  10.0  19.7  45.3  1.73  3.6   13.2   27.5     131. it     
+##  8  10.4  20.8  46.0  1.76  3.55  13.3   27.7     132. es     
+##  9  10.5  20.9  46.1  1.74  3.54  13.2   27.7     129. nz     
+## 10  10.9  21.9  48.7  1.87  3.84  14.0   28.8     137. cr     
+## 11  10.3  20.9  46.9  1.79  3.77  14.0   29.2     136. kr     
+## 12  10.3  20.6  45.9  1.8   3.75  14.7   30.6     147. bm
 ```
 
  
@@ -14067,13 +14140,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
+## [conflicted] `select` found in 3 packages.
 ## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
+## * shapes::select
+## * dplyr::select
+## * MASS::select
 ## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -14090,13 +14165,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
+## [conflicted] `select` found in 3 packages.
 ## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
+## * shapes::select
+## * dplyr::select
+## * MASS::select
 ## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -14113,13 +14190,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
+## [conflicted] `select` found in 3 packages.
 ## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
+## * shapes::select
+## * dplyr::select
+## * MASS::select
 ## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -14136,13 +14215,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
+## [conflicted] `select` found in 3 packages.
 ## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
+## * shapes::select
+## * dplyr::select
+## * MASS::select
 ## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -14158,13 +14239,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `arrange` found in 2 packages.
+## [conflicted] `select` found in 3 packages.
 ## Either pick the one you want with `::` 
-## * plyr::arrange
-## * dplyr::arrange
+## * shapes::select
+## * dplyr::select
+## * MASS::select
 ## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("arrange", "plyr")
-## * conflict_prefer("arrange", "dplyr")
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -14186,6 +14269,18 @@ g <- d %>%
 ## character vector, coercing into character vector
 ```
 
+```
+## [conflicted] `select` found in 3 packages.
+## Either pick the one you want with `::` 
+## * shapes::select
+## * dplyr::select
+## * MASS::select
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("select", "shapes")
+## * conflict_prefer("select", "dplyr")
+## * conflict_prefer("select", "MASS")
+```
+
    
 
 
@@ -14196,7 +14291,7 @@ g <- d %>%
 g
 ```
 
-![plot of chunk unnamed-chunk-468](figure/unnamed-chunk-468-1.pdf)
+![plot of chunk unnamed-chunk-471](figure/unnamed-chunk-471-1.pdf)
 
    
 
@@ -14433,7 +14528,7 @@ kids.pc <- kids %>%
 ggscreeplot(kids.pc)
 ```
 
-![plot of chunk unnamed-chunk-474](figure/unnamed-chunk-474-1.pdf)
+![plot of chunk unnamed-chunk-477](figure/unnamed-chunk-477-1.pdf)
 
    
 
@@ -14650,7 +14745,7 @@ kids.f1$PVAL
 g2
 ```
 
-![plot of chunk unnamed-chunk-481](figure/unnamed-chunk-481-1.pdf)
+![plot of chunk unnamed-chunk-484](figure/unnamed-chunk-484-1.pdf)
 
    
 
@@ -15215,7 +15310,13 @@ loadings %>% filter(abs(Factor1) > 0.4)
 ```
 
 ```
-## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 
 
@@ -15228,7 +15329,13 @@ loadings %>% filter(abs(Factor2) > 0.4)
 ```
 
 ```
-## Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"
+## [conflicted] `filter` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::filter
+## * stats::filter
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("filter", "dplyr")
+## * conflict_prefer("filter", "stats")
 ```
 
    
@@ -16439,7 +16546,7 @@ ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-538](figure/unnamed-chunk-538-1.pdf)
+![plot of chunk unnamed-chunk-541](figure/unnamed-chunk-541-1.pdf)
 
 
 Examining trend
@@ -16621,7 +16728,7 @@ ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-547](figure/unnamed-chunk-547-1.pdf)
+![plot of chunk unnamed-chunk-550](figure/unnamed-chunk-550-1.pdf)
 
 Look at pre-1970 and post-1970:
 
@@ -16873,7 +16980,7 @@ Time plot
 autoplot(ny.ts)
 ```
 
-![](figure/unnamed-chunk-553-1.pdf)
+![](figure/unnamed-chunk-556-1.pdf)
 
 Comments on time plot
 
@@ -16891,7 +16998,7 @@ ny.diff.ts=diff(ny.ts)
 autoplot(ny.diff.ts)
 ```
 
-![plot of chunk unnamed-chunk-554](figure/unnamed-chunk-554-1.pdf)
+![plot of chunk unnamed-chunk-557](figure/unnamed-chunk-557-1.pdf)
 
 Looks stationary, but some regular spikes.
 
@@ -16906,7 +17013,7 @@ A visual (using original data):
 decompose(ny.ts) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-555](figure/unnamed-chunk-555-1.pdf)
+![plot of chunk unnamed-chunk-558](figure/unnamed-chunk-558-1.pdf)
 
 Decomposition bits
 
@@ -16962,18 +17069,24 @@ This means moving a time series one (or more) steps back in time:
 ```r
 x=rnorm(5)
 tibble(x) %>% mutate(x_lagged=lag(x)) -> with_lagged
+```
+
+```
+## [conflicted] `lag` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::lag
+## * stats::lag
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("lag", "dplyr")
+## * conflict_prefer("lag", "stats")
+```
+
+```r
 with_lagged
 ```
 
 ```
-## # A tibble: 5 x 2
-##         x x_lagged
-##     <dbl>    <dbl>
-## 1 -2.04     NA    
-## 2 -0.579    -2.04 
-## 3  0.608    -0.579
-## 4  0.118     0.608
-## 5  0.0563    0.118
+## Error in eval(expr, envir, enclos): object 'with_lagged' not found
 ```
 
 Gain a missing because there is nothing before the first observation.
@@ -16983,32 +17096,32 @@ Lagging white noise
 
 ```r
 tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
+```
+
+```
+## [conflicted] `lag` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::lag
+## * stats::lag
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("lag", "dplyr")
+## * conflict_prefer("lag", "stats")
+```
+
+```r
 ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
 ```
 
 ```
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
+## Error in ggplot(wn_with_lagged, aes(y = wn, x = wn_lagged)): object 'wn_with_lagged' not found
 ```
-
-![plot of chunk unnamed-chunk-559](figure/unnamed-chunk-559-1.pdf)
 
 ```r
 with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
 ```
 
 ```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  wn and wn_lagged
-## t = -0.16512, df = 97, p-value = 0.8692
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.213468  0.181249
-## sample estimates:
-##         cor 
-## -0.01676257
+## Error in with(wn_with_lagged, cor.test(wn, wn_lagged, use = "c")): object 'wn_with_lagged' not found
 ```
 
 
@@ -17023,21 +17136,24 @@ On the other hand, this:
 ```r
 tibble(age=kings$X1) %>% 
   mutate(age_lagged=lag(age)) -> kings_with_lagged
+```
+
+```
+## [conflicted] `lag` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::lag
+## * stats::lag
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("lag", "dplyr")
+## * conflict_prefer("lag", "stats")
+```
+
+```r
 with(kings_with_lagged, cor.test(age, age_lagged))
 ```
 
 ```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  age and age_lagged
-## t = 2.7336, df = 39, p-value = 0.00937
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.1064770 0.6308209
-## sample estimates:
-##       cor 
-## 0.4009919
+## Error in with(kings_with_lagged, cor.test(age, age_lagged)): object 'kings_with_lagged' not found
 ```
 
 If one value larger, the next value (a bit) more likely to be larger:
@@ -17048,11 +17164,8 @@ ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + geom_point()
 ```
 
 ```
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
+## Error in ggplot(kings_with_lagged, aes(x = age_lagged, y = age)): object 'kings_with_lagged' not found
 ```
-
-![plot of chunk unnamed-chunk-561](figure/unnamed-chunk-561-1.pdf)
 
 Two steps back:
 
@@ -17064,17 +17177,7 @@ kings_with_lagged %>%
 ```
 
 ```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  age and age_lag_2
-## t = 1.5623, df = 38, p-value = 0.1265
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.07128917  0.51757510
-## sample estimates:
-##      cor 
-## 0.245676
+## Error in eval(lhs, parent, parent): object 'kings_with_lagged' not found
 ```
 
 Still a correlation two steps back, but smaller (and no longer significant).
@@ -17090,7 +17193,7 @@ White noise:
 acf(wn.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-563](figure/unnamed-chunk-563-1.pdf)
+![plot of chunk unnamed-chunk-566](figure/unnamed-chunk-566-1.pdf)
 
 No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
 
@@ -17103,7 +17206,7 @@ Kings, differenced
 acf(kings.diff.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-564](figure/unnamed-chunk-564-1.pdf)
+![plot of chunk unnamed-chunk-567](figure/unnamed-chunk-567-1.pdf)
 
 Comments on autocorrelations of kings series
 
@@ -17119,7 +17222,7 @@ NY births, differenced
 acf(ny.diff.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-565](figure/unnamed-chunk-565-1.pdf)
+![plot of chunk unnamed-chunk-568](figure/unnamed-chunk-568-1.pdf)
 
 Lots of stuff:
 
@@ -17183,7 +17286,7 @@ Plot of souvenir sales
 autoplot(souv.ts)
 ```
 
-![plot of chunk unnamed-chunk-567](figure/unnamed-chunk-567-1.pdf)
+![plot of chunk unnamed-chunk-570](figure/unnamed-chunk-570-1.pdf)
 
 Several problems:
 
@@ -17201,7 +17304,7 @@ souv.log.ts=log(souv.ts)
 autoplot(souv.log.ts)
 ```
 
-![plot of chunk unnamed-chunk-568](figure/unnamed-chunk-568-1.pdf)
+![plot of chunk unnamed-chunk-571](figure/unnamed-chunk-571-1.pdf)
 
 Mean still not constant, so try taking differences:
 
@@ -17211,7 +17314,7 @@ souv.log.diff.ts=diff(souv.log.ts)
 autoplot(souv.log.diff.ts)
 ```
 
-![plot of chunk unnamed-chunk-569](figure/unnamed-chunk-569-1.pdf)
+![plot of chunk unnamed-chunk-572](figure/unnamed-chunk-572-1.pdf)
 
 * Now stationary
 * but clear seasonal effect.
@@ -17224,7 +17327,7 @@ souv.d=decompose(souv.log.diff.ts)
 autoplot(souv.d)
 ```
 
-![plot of chunk unnamed-chunk-570](figure/unnamed-chunk-570-1.pdf)
+![plot of chunk unnamed-chunk-573](figure/unnamed-chunk-573-1.pdf)
 
 **Big** drop in one month's differences. Look at seasonal component to see which:
 
@@ -17269,7 +17372,7 @@ Autocorrelations:
 acf(souv.log.diff.ts, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-572](figure/unnamed-chunk-572-1.pdf)
+![plot of chunk unnamed-chunk-575](figure/unnamed-chunk-575-1.pdf)
 
 * Big positive autocorrelation at 1 year (strong seasonal effect)
 * Small negative autocorrelation at 1 and 2 months.
@@ -17288,24 +17391,38 @@ tibble(e=rnorm(100)) %>%
   mutate(e_lag=lag(e)) %>% 
   mutate(y=e+beta*e_lag) %>% 
   mutate(y=ifelse(is.na(y), 0, y)) -> ma
+```
+
+```
+## [conflicted] `lag` found in 2 packages.
+## Either pick the one you want with `::` 
+## * dplyr::lag
+## * stats::lag
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("lag", "dplyr")
+## * conflict_prefer("lag", "stats")
+```
+
+```r
 ma
 ```
 
 ```
-## # A tibble: 100 x 3
-##         e   e_lag      y
-##     <dbl>   <dbl>  <dbl>
-##  1  0.991  NA      0    
-##  2  0.469   0.991  1.46 
-##  3  0.535   0.469  1.00 
-##  4 -0.244   0.535  0.291
-##  5  1.17   -0.244  0.928
-##  6 -0.473   1.17   0.699
-##  7  1.56   -0.473  1.08 
-##  8 -0.355   1.56   1.20 
-##  9 -0.400  -0.355 -0.755
-## 10 -2.10   -0.400 -2.50 
-## # … with 90 more rows
+## function (x, order, centre = TRUE) 
+## {
+##     if (abs(order - round(order)) > 1e-08) {
+##         stop("order must be an integer")
+##     }
+##     if (order%%2 == 0 && centre) {
+##         w <- c(0.5, rep(1, order - 1), 0.5)/order
+##     }
+##     else {
+##         w <- rep(1, order)/order
+##     }
+##     return(filter(x, w))
+## }
+## <bytecode: 0x56104c3d6e70>
+## <environment: namespace:forecast>
 ```
 
 
@@ -17323,7 +17440,9 @@ ACF for MA(1) process
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-574](figure/unnamed-chunk-574-1.pdf)
+```
+## Error in ma$y: object of type 'closure' is not subsettable
+```
 
 Everything beyond lag 1 appears to be just chance.
 
@@ -17386,7 +17505,7 @@ ACF for AR(1) series:
 acf(x, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-576](figure/unnamed-chunk-576-1.pdf)
+![plot of chunk unnamed-chunk-579](figure/unnamed-chunk-579-1.pdf)
 
 ### Partial autocorrelation function
 
@@ -17397,7 +17516,7 @@ This cuts off for an AR series:
 pacf(x, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-577](figure/unnamed-chunk-577-1.pdf)
+![plot of chunk unnamed-chunk-580](figure/unnamed-chunk-580-1.pdf)
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -17408,7 +17527,9 @@ PACF for an MA series decays slowly:
 pacf(ma$y, plot=F) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-578](figure/unnamed-chunk-578-1.pdf)
+```
+## Error in ma$y: object of type 'closure' is not subsettable
+```
 
 ### The old way of doing time series analysis
 
@@ -17438,16 +17559,7 @@ auto.arima(ma$y)
 ```
 
 ```
-## Series: ma$y 
-## ARIMA(0,0,1) with zero mean 
-## 
-## Coefficients:
-##          ma1
-##       0.9070
-## s.e.  0.0617
-## 
-## sigma^2 estimated as 0.9878:  log likelihood=-141.64
-## AIC=287.29   AICc=287.41   BIC=292.5
+## Error in ma$y: object of type 'closure' is not subsettable
 ```
 
 * ARIMA part tells you what kind of series you are estimated to have:
@@ -17467,35 +17579,7 @@ auto.arima(ma$y,trace=T)
 ```
 
 ```
-## 
-##  ARIMA(2,0,2) with non-zero mean : Inf
-##  ARIMA(0,0,0) with non-zero mean : 345.2328
-##  ARIMA(1,0,0) with non-zero mean : 313.9535
-##  ARIMA(0,0,1) with non-zero mean : 287.9463
-##  ARIMA(0,0,0) with zero mean     : 346.0889
-##  ARIMA(1,0,1) with non-zero mean : 290.112
-##  ARIMA(0,0,2) with non-zero mean : 290.1128
-##  ARIMA(1,0,2) with non-zero mean : 291.7865
-##  ARIMA(0,0,1) with zero mean     : 287.4124
-##  ARIMA(1,0,1) with zero mean     : 289.4909
-##  ARIMA(0,0,2) with zero mean     : 289.4993
-##  ARIMA(1,0,0) with zero mean     : 312.7625
-##  ARIMA(1,0,2) with zero mean     : 290.6071
-## 
-##  Best model: ARIMA(0,0,1) with zero mean
-```
-
-```
-## Series: ma$y 
-## ARIMA(0,0,1) with zero mean 
-## 
-## Coefficients:
-##          ma1
-##       0.9070
-## s.e.  0.0617
-## 
-## sigma^2 estimated as 0.9878:  log likelihood=-141.64
-## AIC=287.29   AICc=287.41   BIC=292.5
+## Error in ma$y: object of type 'closure' is not subsettable
 ```
 
 Also possible were MA(2) and ARMA(1,1), both with AICc=273.7.
@@ -17550,24 +17634,26 @@ Forecasts all 0, since the past doesn't help to predict future.
 
 ```r
 y.aa=auto.arima(ma$y)
+```
+
+```
+## Error in ma$y: object of type 'closure' is not subsettable
+```
+
+```r
 y.aa
 ```
 
 ```
-## Series: ma$y 
-## ARIMA(0,0,1) with zero mean 
-## 
-## Coefficients:
-##          ma1
-##       0.9070
-## s.e.  0.0617
-## 
-## sigma^2 estimated as 0.9878:  log likelihood=-141.64
-## AIC=287.29   AICc=287.41   BIC=292.5
+## Error in eval(expr, envir, enclos): object 'y.aa' not found
 ```
 
 ```r
 y.f=forecast(y.aa)
+```
+
+```
+## Error in forecast(y.aa): object 'y.aa' not found
 ```
 
 Plotting the forecasts for MA(1):
@@ -17577,7 +17663,9 @@ Plotting the forecasts for MA(1):
 autoplot(y.f)
 ```
 
-![plot of chunk unnamed-chunk-584](figure/unnamed-chunk-584-1.pdf)
+```
+## Error in autoplot(y.f): object 'y.f' not found
+```
 
 
 #### AR(1)
@@ -17631,7 +17719,7 @@ Forecasts for `x`:
 forecast(x.arima) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-587](figure/unnamed-chunk-587-1.pdf)
+![plot of chunk unnamed-chunk-590](figure/unnamed-chunk-590-1.pdf)
 
 Comparing wrong model:
 
@@ -17640,7 +17728,7 @@ Comparing wrong model:
 forecast(x.aa) %>% autoplot()
 ```
 
-![plot of chunk unnamed-chunk-588](figure/unnamed-chunk-588-1.pdf)
+![plot of chunk unnamed-chunk-591](figure/unnamed-chunk-591-1.pdf)
 
 
 #### Kings
@@ -17693,7 +17781,7 @@ Kings forecasts, plotted:
 autoplot(kings.f) + labs(x="index", y= "age at death")
 ```
 
-![plot of chunk unnamed-chunk-591](figure/unnamed-chunk-591-1.pdf)
+![plot of chunk unnamed-chunk-594](figure/unnamed-chunk-594-1.pdf)
 
 
 
@@ -17784,7 +17872,7 @@ Plotting the forecasts:
 autoplot(ny.f)+labs(x="time", y="births")
 ```
 
-![plot of chunk unnamed-chunk-594](figure/unnamed-chunk-594-1.pdf)
+![plot of chunk unnamed-chunk-597](figure/unnamed-chunk-597-1.pdf)
 
 
 #### Log-souvenir sales
@@ -18107,7 +18195,7 @@ Plotting the forecasts
 autoplot(souv.f)
 ```
 
-![plot of chunk unnamed-chunk-597](figure/unnamed-chunk-597-1.pdf)
+![plot of chunk unnamed-chunk-600](figure/unnamed-chunk-600-1.pdf)
 
 
 #### Global mean temperatures, revisited
@@ -18140,7 +18228,7 @@ temp.f=forecast(temp.aa)
 autoplot(temp.f)+labs(x="year", y="temperature")
 ```
 
-![plot of chunk unnamed-chunk-599](figure/unnamed-chunk-599-1.pdf)
+![plot of chunk unnamed-chunk-602](figure/unnamed-chunk-602-1.pdf)
 
 
 
