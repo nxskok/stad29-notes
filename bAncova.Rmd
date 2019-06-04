@@ -13,8 +13,7 @@
 * Simple example: two treatments (drugs) (`a` and `b`), with before and after scores. 
 
 
-* 
-Does knowing before score and/or treatment help to predict after score?
+* Does knowing before score and/or treatment help to predict after score?
 
 * Is after score different by treatment/before score?
 
@@ -24,13 +23,11 @@ Does knowing before score and/or treatment help to predict after score?
 
 ## Data
 
-Treatment, before, after:
-
-\begin{multicols}{2}
+Treatment, before, after: 
 
 
+\scriptsize
 ```
-
 a 5 20
 a 10 23
 a 12 30
@@ -51,50 +48,36 @@ b 26 34
 b 21 28
 b 14 23
 b 9 22
-
 ```
-
-\end{multicols}
-
+\normalsize
 
 
 ## Packages
 `tidyverse` and `broom`:
-```{r }
+```{r, eval=FALSE }
 library(tidyverse)
 library(broom)
 ```
 
-   
+## Read in data
+
+```{r, message=F}
+url <- "http://www.utsc.utoronto.ca/~butler/d29/ancova.txt"
+prepost <- read_delim(url, " ")
+prepost %>% sample_n(9) # randomly chosen rows
+```
+
 
 
 ## Making a plot
-```{r size="small"}
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ancova.txt"
-prepost <- read_delim(my_url, " ")
-glimpse(prepost)
-g <- ggplot(prepost, aes(x = before, y = after, colour = drug)) +
+```{r ancova-plot, fig.height=3.5}
+ggplot(prepost, aes(x = before, y = after, colour = drug)) +
   geom_point()
 ```
-def 
 
 
-## The plot
-```{r spizzo,fig.height=3.5}
-g
-```
-def 
 
-
-## Comments
-
-```{r fig.height=2.5}
-g
-```
-
-   
-
-
+## Comments 
 
 * As before score goes up, after score goes up.
 
@@ -113,14 +96,14 @@ prepost %>%
     after_mean = mean(after)
   )
 ```
-def 
+ 
 
 
 * Mean "after" score slightly higher for treatment A.
 
 * Mean "before" score much higher for treatment B.
 
-* Greater {\em improvement} on treatment A. 
+* Greater *improvement* on treatment A. 
 
 
 
@@ -129,14 +112,14 @@ def
 prepost.1 <- lm(after ~ before * drug, data = prepost)
 anova(prepost.1)
 ```
-def 
+ 
 
 
 * Interaction not significant. Will remove later.
 
 
 ## Predictions, with interaction included
-\begin{multicols}{2}
+
 Make combinations of before score and drug:
 ```{r }
 new <- crossing(
@@ -148,7 +131,7 @@ new
 
    
 
-Do predictions:
+## Do predictions: 
 
 ```{r size="small"}
 pred <- predict(prepost.1, new)
@@ -157,21 +140,25 @@ preds
 ```
 
  
-\end{multicols}
 
 
 
 ## Making a plot with lines for each `drug`
 ```{r AJHSA}
-g <- ggplot(
-  prepost,
-  aes(x = before, y = after, colour = drug)
-) +
-  geom_point() +
-  geom_line(data = preds, aes(y = pred))
+g <- ggplot(prepost,
+  aes(x = before, y = after, colour = drug)) +
+  geom_point() + geom_line(data = preds, aes(y = pred))
 ```
-def 
+ 
+* Here, final line:
 
+
+  *   joins points by lines \emph{for different data
+set} (`preds` rather than `prepost`),
+
+  *   *different $y$* (`pred` rather than `after`),
+
+  * but same $x$ (`x=before` inherited from first `aes`).
 
 * Last line could (more easily) be 
 
@@ -179,43 +166,36 @@ def
 geom_smooth(method = "lm", se = F)
 ```
 
- 
-
 which would work here, but not for later plot.
 
-* Here, final line:
 
-
-*   joins points by lines \emph{for different data
-set} (`preds` rather than `prepost`),
-
-*   *different $y$* (`pred` rather than `after`),
-
-* but same $x$ (`x=before` inherited from first `aes`).
 
 
 
 
 ## The plot
-```{r nachwazzo,fig.height=3.5}
-g
-```
-def 
 
- 
 * Lines almost parallel, but not quite.
  
-* Non-parallelism (interaction) not significant.
+* Non-parallelism (interaction) not significant:
+
+```{r nachwazzo, fig.height=3.5, echo=F}
+g
+```
+ 
+
+ 
+
  
 
 ## Taking out interaction
-{\small
+\small
 ```{r }
 prepost.2 <- update(prepost.1, . ~ . - before:drug)
 anova(prepost.2)
 ```
-def 
-}
+ 
+\normalsize
 
 
 * Take out non-significant interaction.
@@ -247,7 +227,7 @@ g <- ggplot(
   geom_point() +
   geom_line(data = preds, aes(y = pred))
 ```
-def 
+ 
 Exactly same as before, but using new predictions.
 
 
@@ -255,7 +235,7 @@ Exactly same as before, but using new predictions.
 ```{r cabazzo,fig.height=3}
 g
 ```
-def 
+ 
 Lines now *parallel*. No-interaction model forces them
 to have the same slope. 
 
@@ -268,22 +248,25 @@ to have the same slope.
 before score and of drug, but doesn't help with interpretation.
 
 * `summary(prepost.2)` views as regression with slopes:
-\begin{scriptsize}
+
+\scriptsize
 ```{r }
 summary(prepost.2)
 ```
 
-       
-\end{scriptsize}
+\normalsize       
+
 
 
 
 ## Understanding those slopes
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 tidy(prepost.2)
 ```
 
-     
+\normalsize
 
 
 
@@ -302,9 +285,6 @@ before score increases by 1 (usual slope)
 score for being on drug B rather than drug A. Same for *any*
 before score (no interaction).
 
-* In `summary(prepost.1)`, `before:drugb` would be change in
-*slope* for being on drug B rather than A.
-
 
 
 ## Summary
@@ -322,14 +302,4 @@ allows different slopes for each line.
 
 * With parallel lines, groups have consistent effect regardless
 of value of covariate.
-
-
-```{r echo=F, warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
-
-   
-
 

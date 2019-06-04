@@ -1,22 +1,40 @@
-\frametitle{General procedure}
-\protect\hypertarget{general-procedure}{}
+\frametitle{Understanding those slopes}
+\protect\hypertarget{understanding-those-slopes}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tidy}\NormalTok{(prepost}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)   18.4      1.51       12.1  8.35e-10
+## 2 before         0.827    0.0955      8.66 1.21e- 7
+## 3 drugb         -5.15     1.29       -4.00 9.21e- 4
+\end{verbatim}
+
+\normalsize
 
 \begin{itemize}
 \item
-  Start with ``complete model'' including all possible interactions.
+  \texttt{before} ordinary numerical variable; \texttt{drug}
+  categorical.
 \item
-  \texttt{drop1} gives highest-order interaction(s) remaining, remove
-  least non-significant.
+  \texttt{lm} uses first category \texttt{druga} as baseline.
 \item
-  Repeat as necessary until everything significant.
+  Intercept is prediction of after score for before score 0 and
+  \emph{drug A}.
 \item
-  Look at subtables of significant interactions.
+  \texttt{before} slope is predicted change in after score when before
+  score increases by 1 (usual slope)
 \item
-  Main effects not usually very interesting.
-\item
-  Interactions with ``response'' usually of most interest: show
-  association with response.
+  Slope for \texttt{drugb} is \emph{change} in predicted after score for
+  being on drug B rather than drug A. Same for \emph{any} before score
+  (no interaction).
 \end{itemize}
-
-make DONE slide
 

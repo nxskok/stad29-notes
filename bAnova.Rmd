@@ -5,7 +5,7 @@
 ## Analysis of variance 
 
 
-* Analysis of variance used with: xxx
+* Analysis of variance used with: 
 
 
   * counted/measured response
@@ -305,12 +305,12 @@ Use $\alpha=0.05$.
 
   * Times third smallest by $4/3$: $0.03*4/3=0.04<0.05$, reject.
 
-  * Times fourth smallest by $4/4$: $0.06*4/4=0.06>0.05$, do not reject. Stop. xxx
+  * Times fourth smallest by $4/4$: $0.06*4/4=0.06>0.05$, do not reject. Stop. 
 
 
 
 
-## `pairwise.t.test` xxx
+## `pairwise.t.test` 
 
 \tiny
 ```{r }
@@ -320,7 +320,7 @@ pairwise.t.test(pain, hair, p.adj = "holm")
 ```
 \normalsize
 
-## `pairwise.t.test` part 2 xxx
+## `pairwise.t.test` part 2 
 
 \tiny
 ```{r }
@@ -400,7 +400,7 @@ ggplot(vitaminb, aes(
 ## What's going on?
 
 
-* Calculate group means: xxx
+* Calculate group means: 
 
 \footnotesize
 ```{r }
@@ -457,7 +457,7 @@ g <- ggplot(summary, aes(
 
 
 
-## The interaction plot xxx
+## The interaction plot 
 ```{r fig.height=3.7}
 g
 ```
@@ -497,7 +497,7 @@ pollution. However, questions had been raised about the effects of
 filter silencing. He referred to the data included in the report
 (and below) as evidence
 that the silencing properties of the Octel filter were at least
-equal to those of standard silencers. xxx
+equal to those of standard silencers. 
 ```{r }
 u <- "http://www.utsc.utoronto.ca/~butler/d29/autonoise.txt"
 autonoise <- read_table(u)
@@ -569,7 +569,7 @@ on 6 obs each.
 
 
 
-## Tukey: ouch! xxx
+## Tukey: ouch! 
 \scriptsize
 ```{r}
 autonoise.2 <- TukeyHSD(autonoise.1)
@@ -619,11 +619,11 @@ g
 
 
 ## If you don't like that\ldots
-\ldots then compute the means first, in a pipeline: xxx
+\ldots then compute the means first, in a pipeline: 
 
 \footnotesize
 
-```{r fig.height=2.3}
+```{r fig.height=2.2}
 autonoise %>%
   group_by(size, type) %>%
   summarize(mean_noise = mean(noise)) %>%
@@ -727,7 +727,12 @@ autonoise %>%
 
 * No significant difference again. 
 
-## Or\ldots xxx
+## Or\ldots 
+
+```{r, echo=F}
+options(width=60)
+```
+
 
 use `glance` from `broom`:
 
@@ -740,7 +745,7 @@ autonoise %>%
 ```
 \normalsize
 
-   
+- P-value same as from `summary` output.
 
 
 ## All at once, using split/apply/combine
@@ -1130,19 +1135,17 @@ contrasts are called **orthogonal**.
 ## Orthogonal contrasts (2)
 
 
-* Compare these: xxx
+* Compare these:
 
-\small
+\normalsize
 ```{r }
 c1 <- c(1, -1, 0)
-c1
 c2 <- c(0, 1, -1)
-c2
-c1 * c2
+sum(c1 * c2)
 ```
 \normalsize
  
-Does not add up to zero, so `c1` and `c2` are *not*
+Not zero, so `c1` and `c2` are *not*
 orthogonal.
 
 * Orthogonal contrasts are much easier to deal with. 
@@ -1152,11 +1155,11 @@ orthogonal.
 (beyond us).
 
 
-## Read in data xxx
-\footnotesize
+## Read in data
+\small
 ```{r, message=F}
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"
-chain.wide <- read_table(my_url)
+url <- "http://www.utsc.utoronto.ca/~butler/d29/chainsaw.txt"
+chain.wide <- read_table(url)
 chain.wide
 ```
 
@@ -1178,7 +1181,7 @@ chain <- gather(chain.wide, model, kickback, A:D,
 
 
 ## Starting the analysis (2)
-The proper data frame: xxx
+The proper data frame (tiny):
 
 \tiny
 ```{r }

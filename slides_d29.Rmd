@@ -49,53 +49,5 @@ output:
 
  
 
-```{r bManova, child="bManova.Rmd"}
-
-```
 
  
-
-```{r bProfile, child="bProfile.Rmd"}
-
-```
-
- 
-
-```{r bDiscrim, child="bDiscrim.Rmd"}
-
-```
-
- 
-
-```{r bCluster, child="bCluster.Rmd"}
-
-```
-
- 
-
-```{r bMDS, child="bMDS.Rmd"}
-
-```
- 
-```{r bPrincomp, child="bPrincomp.Rmd"}
-
-```
-
- 
-
-```{r bFactor, child="bFactor.Rmd"}
-
-```
-
-time series notes need tidying
-
-```{r time-series, child="time-series.Rmd"}
-```
-
-```{r bMultiway, child="bMultiway.Rmd"}
-
-```
-
-make DONE slide
-
-
