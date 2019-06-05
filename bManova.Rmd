@@ -30,10 +30,10 @@ library(tidyverse)
 
 * Data (fertilizer, yield, seed weight):
 ```{r }
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
-hilo <- read_delim(my_url, " ")
+url <- "http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
+hilo <- read_delim(url, " ")
 ```
-def 
+ 
 
 * 2 responses, yield and seed weight.
 
@@ -51,7 +51,7 @@ hilo
 ```{r ferto,size="small",fig.height=3}
 ggplot(hilo, aes(x = fertilizer, y = yield)) + geom_boxplot()
 ```
-def 
+ 
 Yields overlap for fertilizer groups.
 
 
@@ -59,42 +59,33 @@ Yields overlap for fertilizer groups.
 ```{r casteldisangro,size="small",fig.height=3}
 ggplot(hilo, aes(x = fertilizer, y = weight)) + geom_boxplot()
 ```
-def 
+ 
 
 Weights overlap for fertilizer groups.
 
 
 ## ANOVAs for yield and weight
 
-{\small
+\small
 ```{r }
 hilo.y <- aov(yield ~ fertilizer, data = hilo)
 summary(hilo.y)
 hilo.w <- aov(weight ~ fertilizer, data = hilo)
 summary(hilo.w)
 ```
-def 
-}
+ 
+\normalsize
 
 Neither response depends significantly on fertilizer. But\ldots
 
 
 ## Plotting both responses at once
 
-Have two response variables (not more), so can plot the
+- Have two response variables (not more), so can plot the
 response variables against *each other*, labelling points by
 which fertilizer group they're from.
 
-```{r }
-g <- ggplot(hilo, aes(
-  x = yield, y = weight,
-  colour = fertilizer
-)) + geom_point()
-```
-
- 
-
-Want line through points $(31,14)$ and $(38,10)$ (why? Later):
+- First, create data frame with points $(31,14)$ and $(38,10)$ (why? Later):
 
 ```{r size="footnotesize"}
 d <- tribble(
@@ -102,46 +93,39 @@ d <- tribble(
   31, 14,
   38, 10
 )
-g <- g + geom_line(data = d, aes(
-  x = line_x, y = line_y,
-  colour = NULL
-))
 ```
 
- 
+- Then plot data as points, and add line through points in `d`:
 
-\begin{small}
-Fitting regression line through points in `d`. 
-Adding to previous `ggplot`, so `geom_smooth` 
-inherits `colour` from first one. This data frame has
-no `fertilizer` (previous `colour`), so have to unset.
-\end{small}
+```{r }
+g <- ggplot(hilo, aes(x = yield, y = weight,
+                      colour = fertilizer)) + geom_point() +
+  geom_line(data = d,
+            aes(x = line_x, y = line_y, colour = NULL))
+```
 
 
 ## The plot
-```{r charlecombe,fig.height=3.5}
-g
-```
-def 
-
-
-## MANOVA
-```{r fig.height=2.5}
+```{r charlecombe, echo=F, fig.height=4}
 g
 ```
 
-   
+## Comments
 
-\begin{small}
+- Graph construction:
+  - Joining points in `d` by line.
+  - `geom_line` 
+inherits `colour` from `aes` in `ggplot`.
+  - Data frame `d` has
+no `fertilizer` (previous `colour`), so have to unset.
 
+- Results:
+  * High-fertilizer plants have both yield and weight high.
 
-* High-fertilizer plants have both yield and weight high.
+  * True even though no sig difference in yield or weight individually.
 
-* True even though no sig difference in yield or weight individually.
+  * Drew line separating highs from lows on plot.
 
-* Drew line separating highs from lows on plot.
-
-\end{small}
 
 
 ## MANOVA finds multivariate differences
@@ -153,7 +137,7 @@ response <- with(hilo, cbind(yield, weight))
 hilo.1 <- manova(response ~ fertilizer, data = hilo)
 summary(hilo.1)
 ```
-def 
+ 
 
 * Yes! Difference between groups is *diagonally*, not just up/down
 (weight) or left-right (yield). The *yield-weight combination* matters.
@@ -174,7 +158,7 @@ responses, using `cbind`.
 
 * If MANOVA test significant, cannot use Tukey. What then?
 
-* Use {\em discriminant analysis} (of which more later).
+* Use *discriminant analysis* (of which more later).
 
 
 
@@ -184,11 +168,11 @@ Install (once) and load package `car`:
 ```{r eval=F}
 library(car)
 ```
-def 
+ 
 
 
 ## Another way\ldots
-
+  
 ```{r size="footnotesize"}
 hilo.2.lm <- lm(response ~ fertilizer, data = hilo)
 hilo.2 <- Manova(hilo.2.lm)
@@ -216,12 +200,19 @@ locations.
 * Three response variables: `y`, `smk` and
 `w`.
 
-```{r message=F,size="footnotesize"}
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
-(peanuts.orig <- read_delim(my_url, " "))
+```{r size="footnotesize"}
+u <- "http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
+peanuts.orig <- read_delim(u, " ")
 ```
-def 
+ 
+## The data
 
+\small
+```{r}
+peanuts.orig
+```
+
+\normalsize
 
 ## Setup for analysis
 
@@ -234,18 +225,20 @@ peanuts <- peanuts.orig %>%
 response <- with(peanuts, cbind(y, smk, w))
 head(response)
 ```
-def 
+ 
 
 
 ## Analysis (using `Manova)`
 
-```{r size="scriptsize"}
+\small
+```{r}
 peanuts.1 <- lm(response ~ location * variety, data = peanuts)
 peanuts.2 <- Manova(peanuts.1)
 peanuts.2
 ```
-def 
-
+\normalsize 
+ 
+## Comments
 
 
 * Interaction not quite significant, but main effects are.
@@ -257,13 +250,5 @@ on location and on variety
 
 * Understanding that dependence beyond our scope right now.
 
-
-```{r echo=F, warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
-
-   
 
 

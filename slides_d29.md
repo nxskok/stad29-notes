@@ -3351,16 +3351,16 @@ probs.long %>% sample_n(10)
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    24 1     3         0.00279
-##  2    32 0     2         0.408  
-##  3    32 0     1         0.405  
-##  4    38 1     3         0.732  
-##  5    38 0     2         0.239  
-##  6    38 1     1         0.0162 
-##  7    24 0     2         0.0502 
-##  8    35 0     2         0.397  
-##  9    28 0     3         0.0236 
-## 10    24 0     3         0.00181
+##  1    28 0     1          0.793 
+##  2    32 0     1          0.405 
+##  3    38 0     1          0.0260
+##  4    24 1     2          0.0819
+##  5    32 1     3          0.214 
+##  6    35 1     3          0.484 
+##  7    24 1     1          0.915 
+##  8    35 0     3          0.472 
+##  9    35 1     1          0.0840
+## 10    32 0     2          0.408
 ```
 \normalsize
 
@@ -6500,15 +6500,15 @@ prepost %>% sample_n(9) # randomly chosen rows
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 b         18    30
+## 1 a         13    31
 ## 2 a          9    25
-## 3 a         21    40
-## 4 b          7    19
-## 5 b         12    26
-## 6 b         27    33
+## 3 a         18    38
+## 4 b         12    26
+## 5 b         27    33
+## 6 a         14    27
 ## 7 a         10    23
-## 8 a         18    38
-## 9 b         26    34
+## 8 b          9    22
+## 9 a          5    20
 ```
 
 
@@ -6867,6 +6867,1225 @@ of value of covariate.
 
 
  
+
+
+
+# Multivariate ANOVA
+
+## Multivariate analysis of variance
+
+
+* Standard ANOVA has just one response variable.
+
+* What if you have more than one response?
+
+* Try an ANOVA on each response separately.
+
+* But might miss some kinds of interesting dependence between the responses that distinguish the groups.
+
+
+
+## Packages
+
+```r
+library(car)
+library(tidyverse)
+```
+
+   
+
+
+## Small example
+
+
+* Measure yield and seed weight of plants grown under 2 conditions: low and high amounts of fertilizer.
+
+* Data (fertilizer, yield, seed weight):
+
+```r
+url <- "http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
+hilo <- read_delim(url, " ")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   fertilizer = col_character(),
+##   yield = col_double(),
+##   weight = col_double()
+## )
+```
+ 
+
+* 2 responses, yield and seed weight.
+
+
+
+## The data
+
+```r
+hilo
+```
+
+```
+## # A tibble: 8 x 3
+##   fertilizer yield weight
+##   <chr>      <dbl>  <dbl>
+## 1 low           34     10
+## 2 low           29     14
+## 3 low           35     11
+## 4 low           32     13
+## 5 high          33     14
+## 6 high          38     12
+## 7 high          34     13
+## 8 high          35     14
+```
+
+   
+
+
+## Boxplot for yield for each fertilizer group
+
+```r
+ggplot(hilo, aes(x = fertilizer, y = yield)) + geom_boxplot()
+```
+
+![plot of chunk ferto](figure/ferto-1.pdf)
+ 
+Yields overlap for fertilizer groups.
+
+
+## Boxplot for weight for each fertilizer group
+
+```r
+ggplot(hilo, aes(x = fertilizer, y = weight)) + geom_boxplot()
+```
+
+![plot of chunk casteldisangro](figure/casteldisangro-1.pdf)
+ 
+
+Weights overlap for fertilizer groups.
+
+
+## ANOVAs for yield and weight
+
+\small
+
+```r
+hilo.y <- aov(yield ~ fertilizer, data = hilo)
+summary(hilo.y)
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## fertilizer   1   12.5  12.500   2.143  0.194
+## Residuals    6   35.0   5.833
+```
+
+```r
+hilo.w <- aov(weight ~ fertilizer, data = hilo)
+summary(hilo.w)
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(>F)
+## fertilizer   1  3.125   3.125   1.471  0.271
+## Residuals    6 12.750   2.125
+```
+ 
+\normalsize
+
+Neither response depends significantly on fertilizer. But\ldots
+
+
+## Plotting both responses at once
+
+- Have two response variables (not more), so can plot the
+response variables against *each other*, labelling points by
+which fertilizer group they're from.
+
+- First, create data frame with points $(31,14)$ and $(38,10)$ (why? Later):
+
+
+```r
+d <- tribble(
+  ~line_x, ~line_y,
+  31, 14,
+  38, 10
+)
+```
+
+- Then plot data as points, and add line through points in `d`:
+
+
+```r
+g <- ggplot(hilo, aes(x = yield, y = weight,
+                      colour = fertilizer)) + geom_point() +
+  geom_line(data = d,
+            aes(x = line_x, y = line_y, colour = NULL))
+```
+
+
+## The plot
+![plot of chunk charlecombe](figure/charlecombe-1.pdf)
+
+## Comments
+
+- Graph construction:
+  - Joining points in `d` by line.
+  - `geom_line` 
+inherits `colour` from `aes` in `ggplot`.
+  - Data frame `d` has
+no `fertilizer` (previous `colour`), so have to unset.
+
+- Results:
+  * High-fertilizer plants have both yield and weight high.
+
+  * True even though no sig difference in yield or weight individually.
+
+  * Drew line separating highs from lows on plot.
+
+
+
+## MANOVA finds multivariate differences
+
+
+* Is difference found by diagonal line significant? MANOVA finds out.
+
+```r
+response <- with(hilo, cbind(yield, weight))
+hilo.1 <- manova(response ~ fertilizer, data = hilo)
+summary(hilo.1)
+```
+
+```
+##            Df  Pillai approx F num Df den Df  Pr(>F)  
+## fertilizer  1 0.80154   10.097      2      5 0.01755 *
+## Residuals   6                                         
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+ 
+
+* Yes! Difference between groups is *diagonally*, not just up/down
+(weight) or left-right (yield). The *yield-weight combination* matters.
+
+
+
+
+## Strategy
+
+
+
+* Create new response variable by gluing together columns of
+responses, using `cbind`.
+
+* Use `manova` with new response, looks like `lm` otherwise.
+
+* With more than 2 responses, cannot draw graph. What then?
+
+* If MANOVA test significant, cannot use Tukey. What then?
+
+* Use *discriminant analysis* (of which more later).
+
+
+
+
+## Another way to do MANOVA
+Install (once) and load package `car`:
+
+```r
+library(car)
+```
+ 
+
+
+## Another way\ldots
+  
+
+```r
+hilo.2.lm <- lm(response ~ fertilizer, data = hilo)
+hilo.2 <- Manova(hilo.2.lm)
+hilo.2
+```
+
+```
+## 
+## Type II MANOVA Tests: Pillai test statistic
+##            Df test stat approx F num Df den Df  Pr(>F)  
+## fertilizer  1   0.80154   10.097      2      5 0.01755 *
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+
+
+* Same result as small-m `manova`.
+
+* `Manova` will also do *repeated measures*, coming up
+later.
+
+
+
+
+## Another example: peanuts
+
+
+*  Three different varieties
+of peanuts (mysteriously, 5, 6 and 8) planted in two different
+locations.
+
+* Three response variables: `y`, `smk` and
+`w`.
+
+
+```r
+u <- "http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
+peanuts.orig <- read_delim(u, " ")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   obs = col_double(),
+##   location = col_double(),
+##   variety = col_double(),
+##   y = col_double(),
+##   smk = col_double(),
+##   w = col_double()
+## )
+```
+ 
+## The data
+
+\small
+
+```r
+peanuts.orig
+```
+
+```
+## # A tibble: 12 x 6
+##      obs location variety     y   smk     w
+##    <dbl>    <dbl>   <dbl> <dbl> <dbl> <dbl>
+##  1     1        1       5  195.  153.  51.4
+##  2     2        1       5  194.  168.  53.7
+##  3     3        2       5  190.  140.  55.5
+##  4     4        2       5  180.  121.  44.4
+##  5     5        1       6  203   157.  49.8
+##  6     6        1       6  196.  166   45.8
+##  7     7        2       6  203.  166.  60.4
+##  8     8        2       6  198.  162.  54.1
+##  9     9        1       8  194.  164.  57.8
+## 10    10        1       8  187   165.  58.6
+## 11    11        2       8  202.  167.  65  
+## 12    12        2       8  200   174.  67.2
+```
+
+\normalsize
+
+## Setup for analysis
+
+
+```r
+peanuts <- peanuts.orig %>%
+  mutate(
+    location = factor(location),
+    variety = factor(variety)
+  )
+response <- with(peanuts, cbind(y, smk, w))
+head(response)
+```
+
+```
+##          y   smk    w
+## [1,] 195.3 153.1 51.4
+## [2,] 194.3 167.7 53.7
+## [3,] 189.7 139.5 55.5
+## [4,] 180.4 121.1 44.4
+## [5,] 203.0 156.8 49.8
+## [6,] 195.9 166.0 45.8
+```
+ 
+
+
+## Analysis (using `Manova)`
+
+\small
+
+```r
+peanuts.1 <- lm(response ~ location * variety, data = peanuts)
+peanuts.2 <- Manova(peanuts.1)
+peanuts.2
+```
+
+```
+## 
+## Type II MANOVA Tests: Pillai test statistic
+##                  Df test stat approx F num Df den Df
+## location          1   0.89348  11.1843      3      4
+## variety           2   1.70911   9.7924      6     10
+## location:variety  2   1.29086   3.0339      6     10
+##                    Pr(>F)   
+## location         0.020502 * 
+## variety          0.001056 **
+## location:variety 0.058708 . 
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+\normalsize 
+ 
+## Comments
+
+
+* Interaction not quite significant, but main effects are.
+
+* Combined response variable `(y,smk,w)` definitely depends
+on location and on variety
+
+* Weak dependence of `(y,smk,w)` on the location-variety *combination.*
+
+* Understanding that dependence beyond our scope right now.
+
+
+
+
+
+
+# Repeated measures by profile analysis
+
+## Repeated measures by profile analysis 
+
+
+* More than one response *measurement* for each subject. Might be
+
+
+* measurements of the same thing at different times
+
+* measurements of different but related things
+
+
+* Generalization of matched pairs ("matched triples", etc.).
+
+* Variation: each subject does several different treatments at different times (called *crossover design*).
+
+* Expect measurements on same subject to be correlated, so
+assumptions of independence will fail.
+
+* Called *repeated measures*. Different approaches, but *profile analysis* uses `Manova` (set up right way).
+
+* Another approach uses *mixed models* (random effects).
+
+
+
+## Packages
+
+```r
+library(car)
+library(tidyverse)
+```
+
+   
+
+## Example: histamine in dogs
+
+
+* 8 dogs take part in experiment.
+
+* Dogs randomized to one of 2 different drugs.
+
+* Response: log of blood concentration of histamine 0, 1, 3 and 5 minutes after taking drug. (Repeated measures.)
+
+* Data in `dogs.txt`, column-aligned.
+
+
+
+
+## Read in data
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/dogs.txt"
+dogs <- read_table(my_url)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   dog = col_character(),
+##   drug = col_character(),
+##   x = col_character(),
+##   lh0 = col_double(),
+##   lh1 = col_double(),
+##   lh3 = col_double(),
+##   lh5 = col_double()
+## )
+```
+
+   
+
+
+## Setting things up
+
+```r
+dogs
+```
+
+```
+## # A tibble: 8 x 7
+##   dog   drug         x       lh0   lh1   lh3   lh5
+##   <chr> <chr>        <chr> <dbl> <dbl> <dbl> <dbl>
+## 1 A     Morphine     N     -3.22 -1.61 -2.3  -2.53
+## 2 B     Morphine     N     -3.91 -2.81 -3.91 -3.91
+## 3 C     Morphine     N     -2.66  0.34 -0.73 -1.43
+## 4 D     Morphine     N     -1.77 -0.56 -1.05 -1.43
+## 5 E     Trimethaphan N     -3.51 -0.48 -1.17 -1.51
+## 6 F     Trimethaphan N     -3.51  0.05 -0.31 -0.51
+## 7 G     Trimethaphan N     -2.66 -0.19  0.07 -0.22
+## 8 H     Trimethaphan N     -2.41  1.14  0.72  0.21
+```
+
+```r
+response <- with(dogs, cbind(lh0, lh1, lh3, lh5))
+dogs.1 <- lm(response ~ drug, data = dogs)
+```
+ 
+
+
+## The repeated measures MANOVA
+
+Get list of response variable names; we call them `times`. Save
+in data frame.
+
+\footnotesize 
+
+```r
+times <- colnames(response)
+times.df <- data.frame(times)
+dogs.2 <- Manova(dogs.1,
+  idata = times.df,
+  idesign = ~times
+)
+dogs.2
+```
+
+```
+## 
+## Type II Repeated Measures MANOVA Tests: Pillai test statistic
+##             Df test stat approx F num Df den Df   Pr(>F)   
+## (Intercept)  1   0.76347  19.3664      1      6 0.004565 **
+## drug         1   0.34263   3.1272      1      6 0.127406   
+## times        1   0.94988  25.2690      3      4 0.004631 **
+## drug:times   1   0.89476  11.3362      3      4 0.020023 * 
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+ 
+\normalsize
+
+
+
+## Wide and long format
+
+- Interaction significant. Pattern of response over time different
+for the two drugs.
+
+
+* Want to investigate interaction.
+
+## The wrong shape
+
+* But data frame has several observations per line ("wide format"):
+
+\scriptsize
+
+```r
+dogs %>% slice(1:6)
+```
+
+```
+## # A tibble: 6 x 7
+##   dog   drug         x       lh0   lh1   lh3   lh5
+##   <chr> <chr>        <chr> <dbl> <dbl> <dbl> <dbl>
+## 1 A     Morphine     N     -3.22 -1.61 -2.3  -2.53
+## 2 B     Morphine     N     -3.91 -2.81 -3.91 -3.91
+## 3 C     Morphine     N     -2.66  0.34 -0.73 -1.43
+## 4 D     Morphine     N     -1.77 -0.56 -1.05 -1.43
+## 5 E     Trimethaphan N     -3.51 -0.48 -1.17 -1.51
+## 6 F     Trimethaphan N     -3.51  0.05 -0.31 -0.51
+```
+ 
+\normalsize
+
+* Plotting works with data in "long format":
+one response per line.
+
+* The responses are log-histamine at different times, labelled
+`lh`-something. Call them all `lh` and put them in
+one column, with the time they belong to labelled.
+
+
+## Running `gather`, try 1
+
+\footnotesize
+
+
+```r
+dogs %>% gather(time, lh, lh0:lh5) 
+```
+
+```
+## # A tibble: 32 x 5
+##    dog   drug         x     time     lh
+##    <chr> <chr>        <chr> <chr> <dbl>
+##  1 A     Morphine     N     lh0   -3.22
+##  2 B     Morphine     N     lh0   -3.91
+##  3 C     Morphine     N     lh0   -2.66
+##  4 D     Morphine     N     lh0   -1.77
+##  5 E     Trimethaphan N     lh0   -3.51
+##  6 F     Trimethaphan N     lh0   -3.51
+##  7 G     Trimethaphan N     lh0   -2.66
+##  8 H     Trimethaphan N     lh0   -2.41
+##  9 A     Morphine     N     lh1   -1.61
+## 10 B     Morphine     N     lh1   -2.81
+## # … with 22 more rows
+```
+
+\normalsize
+
+   
+
+
+## Getting the times
+Not quite right: for the times, we want just the numbers, not the
+letters `lh` every time. Want new variable
+containing just number in `time`:
+`parse_number`. 
+
+\footnotesize
+
+
+```r
+dogs %>%
+  gather(timex, lh, lh0:lh5) %>%
+  mutate(time = parse_number(timex)) 
+```
+
+```
+## # A tibble: 32 x 6
+##    dog   drug         x     timex    lh  time
+##    <chr> <chr>        <chr> <chr> <dbl> <dbl>
+##  1 A     Morphine     N     lh0   -3.22     0
+##  2 B     Morphine     N     lh0   -3.91     0
+##  3 C     Morphine     N     lh0   -2.66     0
+##  4 D     Morphine     N     lh0   -1.77     0
+##  5 E     Trimethaphan N     lh0   -3.51     0
+##  6 F     Trimethaphan N     lh0   -3.51     0
+##  7 G     Trimethaphan N     lh0   -2.66     0
+##  8 H     Trimethaphan N     lh0   -2.41     0
+##  9 A     Morphine     N     lh1   -1.61     1
+## 10 B     Morphine     N     lh1   -2.81     1
+## # … with 22 more rows
+```
+
+\normalsize
+
+
+
+## What I did differently
+
+
+* I realized that `gather` was going to produce something
+like `lh1`, which I needed to do something further with, so
+this time I gave it a temporary name `timex`.
+
+* This enabled me to use the name `time` for the actual
+numeric time.
+
+* This works now, so next save into a new data frame `dogs.long`.
+
+
+
+## Saving the pipelined results
+
+```r
+dogs %>%
+  gather(timex, lh, lh0:lh5) %>%
+  mutate(time = parse_number(timex)) -> dogs.long
+```
+
+ 
+
+This says:
+
+
+
+* Take data frame dogs, and then:
+
+* Combine the columns `lh0` through `lh5` into one
+column called `lh`, with the column that each `lh`
+value originally came from labelled by `timex`, and then:
+
+* Pull out numeric values in `timex`, saving in `time` and then:
+
+* save the result in a data frame `dogs.long`.
+
+
+
+## Interaction plot
+
+\small
+
+```r
+ggplot(dogs.long, aes(x = time, y = lh, 
+                      colour = drug, group = drug)) +
+  stat_summary(fun.y = mean, geom = "point") +
+  stat_summary(fun.y = mean, geom = "line")
+```
+
+![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-1.pdf)
+\normalsize
+   
+
+## Comments
+
+
+* Plot mean `lh` value at each time, joining points on same
+drug by lines.
+
+* drugs same at time 0
+
+* after that, Trimethaphan higher than Morphine.
+
+* Effect of drug not consistent over time: significant interaction.
+
+
+
+## Take out time zero
+
+
+* Lines on interaction plot would then be parallel, and so interaction should
+no longer be significant.
+
+* Go back to original "wide" `dogs` data frame.
+
+
+```r
+response <- with(dogs, cbind(lh1, lh3, lh5)) # excl time 0
+dogs.1 <- lm(response ~ drug, data = dogs)
+times <- colnames(response)
+times.df <- data.frame(times)
+dogs.2 <- Manova(dogs.1,
+  idata = times.df,
+  idesign = ~times
+)
+```
+ 
+
+
+## Results and comments
+
+\footnotesize
+
+```r
+dogs.2
+```
+
+```
+## 
+## Type II Repeated Measures MANOVA Tests: Pillai test statistic
+##             Df test stat approx F num Df den Df   Pr(>F)   
+## (Intercept)  1   0.54582   7.2106      1      6 0.036281 * 
+## drug         1   0.44551   4.8207      1      6 0.070527 . 
+## times        1   0.85429  14.6569      2      5 0.008105 **
+## drug:times   1   0.43553   1.9289      2      5 0.239390   
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+ 
+\normalsize
+
+
+
+
+* Correct: interaction no longer significant.
+
+* Significant effect of time.
+
+* Drug effect not quite significant (some variety among dogs
+within drug).
+
+
+
+## Is the non-significant drug effect reasonable?
+
+
+* Plot *actual data*: `lh` against `days`,
+labelling observations by drug: "spaghetti plot".
+
+* Uses long data frame (confusing, yes I know):
+
+* Plot (time,lh) points coloured  by drug
+
+* and connecting measurements for each *dog* by lines.
+
+* This time, we want `group=dog` (want the measurements for each
+*dog* joined by lines), but `colour=drug`:
+
+```r
+g <- ggplot(dogs.long, aes(
+  x = time, y = lh,
+  colour = drug, group = dog
+)) +
+  geom_point() + geom_line()
+```
+
+   
+
+
+
+## The spaghetti plot
+
+```r
+g
+```
+
+![plot of chunk hoverla](figure/hoverla-1.pdf)
+
+   
+
+
+## Comments
+
+
+* For each dog over time, there is a strong increase and gradual
+decrease in log-histamine. This
+explains the significant time effect.
+
+* The pattern is more or less the same for each dog, regardless
+of drug. This explains the non-significant interaction.
+
+* Most of the trimethaphan dogs (blue) have higher log-histamine
+throughout (time 1 and after), and some of the morphine dogs have
+lower.
+
+* *But* two of the morphine dogs have log-histamine
+profiles like the trimethaphan dogs. This ambiguity is probably
+why the `drug` effect is not quite significant.
+
+
+## The exercise data
+
+
+* 30 people took part in an exercise study.
+
+* Each subject was
+randomly assigned to one of two diets ("low fat" or ``non-low
+fat'') and to one of three exercise programs ("at rest",
+"walking", "running").
+
+* There are $2\times3 = 6$ experimental treatments, and thus
+each one is replicated $30/6=5$ times.
+
+* Nothing unusual so far.
+
+* However, each subject had their pulse rate measured at three
+different times (1, 15 and 30 minutes after starting their
+exercise), so have repeated measures.
+
+
+
+## Reading the data
+Separated by *tabs*:  
+
+```r
+url <- "http://www.utsc.utoronto.ca/~butler/d29/exercise.txt"
+exercise.long <- read_tsv(url)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   id = col_double(),
+##   diet = col_character(),
+##   exertype = col_character(),
+##   pulse = col_double(),
+##   time = col_character()
+## )
+```
+
+   
+
+
+## The data
+
+\footnotesize
+
+```r
+exercise.long %>% slice(1:8)
+```
+
+```
+## # A tibble: 8 x 5
+##      id diet      exertype pulse time 
+##   <dbl> <chr>     <chr>    <dbl> <chr>
+## 1     1 nonlowfat atrest      85 min01
+## 2     1 nonlowfat atrest      85 min15
+## 3     1 nonlowfat atrest      88 min30
+## 4     2 nonlowfat atrest      90 min01
+## 5     2 nonlowfat atrest      92 min15
+## 6     2 nonlowfat atrest      93 min30
+## 7     3 nonlowfat atrest      97 min01
+## 8     3 nonlowfat atrest      97 min15
+```
+\normalsize
+   
+
+
+
+* This is "long format", which is usually what we want.
+
+* But for repeated measures analysis, we want *wide* format!
+
+* "undo" gather: `spread`.
+
+
+
+## Making wide format
+
+
+* `spread` needs: a column that is
+going to be split, and the column to make the values out of:
+
+\footnotesize
+
+```r
+exercise.long %>% spread(time, pulse) -> exercise.wide
+exercise.wide %>% sample_n(5)
+```
+
+```
+## # A tibble: 5 x 6
+##      id diet      exertype min01 min15 min30
+##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
+## 1    17 lowfat    walking    103   109    90
+## 2    27 lowfat    running    100   126   140
+## 3     7 lowfat    atrest      87    88    90
+## 4     1 nonlowfat atrest      85    85    88
+## 5     6 lowfat    atrest      83    83    84
+```
+\normalsize
+
+
+* Normally `gather` \texttt{min01, min15,
+min30} into one column called `pulse` labelled by the
+number of minutes. But `Manova` needs it the other way.
+
+
+
+## Setting up the repeated-measures analysis
+
+
+* Make a response variable consisting of `min01, min15, min30`:
+
+\small
+
+```r
+response <- with(exercise.wide, cbind(min01, min15, min30))
+```
+\normalsize
+
+
+* Predict that from `diet` and `exertype` and
+interaction using `lm`:
+
+\small
+
+```r
+exercise.1 <- lm(response ~ diet * exertype,
+  data = exercise.wide
+)
+```
+\normalsize
+   
+
+
+
+* Run this through `Manova`:
+
+\small
+
+```r
+times <- colnames(response)
+times.df <- data.frame(times)
+exercise.2 <- Manova(exercise.1, 
+                     idata = times.df, 
+                     idesign = ~times)
+```
+\normalsize
+   
+
+
+
+## Results
+
+
+
+\scriptsize
+
+```r
+exercise.2
+```
+
+```
+## 
+## Type II Repeated Measures MANOVA Tests: Pillai test statistic
+##                     Df test stat approx F num Df den Df    Pr(>F)    
+## (Intercept)          1   0.99767  10296.7      1     24 < 2.2e-16 ***
+## diet                 1   0.37701     14.5      1     24 0.0008483 ***
+## exertype             2   0.79972     47.9      2     24 4.166e-09 ***
+## diet:exertype        2   0.28120      4.7      2     24 0.0190230 *  
+## times                1   0.78182     41.2      2     23 2.491e-08 ***
+## diet:times           1   0.25153      3.9      2     23 0.0357258 *  
+## exertype:times       2   0.83557      8.6      4     48 2.538e-05 ***
+## diet:exertype:times  2   0.51750      4.2      4     48 0.0054586 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+\normalsize
+
+
+
+* Three-way interaction significant, so cannot remove anything.
+
+* Pulse rate depends on diet and exercise type *combination*,
+and *that* is different for each time.
+
+
+
+## Making some graphs
+
+
+* Three-way  interactions are difficult to understand. To make
+an attempt, look at some graphs.
+
+* Plot time trace of pulse rates for each individual, joined by
+lines, and make *separate* plots for each
+`diet-exertype` combo.
+
+* `ggplot` again. Using *long* data frame:
+
+
+```r
+g <- ggplot(exercise.long, aes(
+  x = time, y = pulse,
+  group = id
+)) + geom_point() + geom_line() +
+  facet_grid(diet ~ exertype)
+```
+
+ 
+
+
+* `facet_grid(diet~exertype)`: do a separate plot for each
+combination of diet and exercise type, with diets going down the
+page and exercise types going across. (Graphs are usually landscape,
+so have the factor `exertype` with more levels going across.)
+
+
+
+## The graph(s)
+
+```r
+g
+```
+
+![plot of chunk unnamed-chunk-262](figure/unnamed-chunk-262-1.pdf)
+
+   
+
+
+## Comments on graphs
+
+
+* For subjects who were at rest, no change in pulse rate over
+time, for both diet groups.
+
+* For walking subjects, not much change in pulse rates over
+time. Maybe a small increase on average between 1 and 15 minutes.
+
+* For both running groups, an overall increase in pulse rate
+over time, but the increase is stronger for the `lowfat`
+group.
+
+* No consistent effect of diet over all exercise groups.
+
+* No consistent effect of exercise type over both diet groups.
+
+* No consistent effect of time over all diet-exercise type combos.
+
+
+
+## "Simple effects" of diet for the subjects who ran
+
+
+* Looks as if there is only any substantial time effect for the
+runners. For them, does diet have an effect?
+
+* Pull out only the runners from the wide data:
+
+```r
+exercise.wide %>%
+  filter(exertype == "running") -> runners.wide
+```
+
+     
+
+* Create response variable and do MANOVA. Some of this looks like
+before, but I have different data now:
+
+\footnotesize
+
+```r
+response <- with(runners.wide, cbind(min01, min15, min30))
+runners.1 <- lm(response ~ diet, data = runners.wide)
+times <- colnames(response)
+times.df <- data.frame(times)
+runners.2 <- Manova(runners.1,
+  idata = times.df,
+  idesign = ~times
+)
+```
+\normalsize
+   
+
+
+
+## Results
+
+
+
+\scriptsize
+
+```r
+runners.2
+```
+
+```
+## 
+## Type II Repeated Measures MANOVA Tests: Pillai test statistic
+##             Df test stat approx F num Df den Df    Pr(>F)    
+## (Intercept)  1   0.99912   9045.3      1      8 1.668e-13 ***
+## diet         1   0.84986     45.3      1      8 0.0001482 ***
+## times        1   0.92493     43.1      2      7 0.0001159 ***
+## diet:times   1   0.68950      7.8      2      7 0.0166807 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+\normalsize
+   
+text under 
+
+* The `diet` by `time` interaction is still
+significant (at $\alpha=0.05$): the effect of time on pulse rates is different for
+the two diets.
+
+* At $\alpha=0.01$, the interaction is not significant, and then
+we have only two (very) significant main effects of `diet`
+and `time`. 
+
+
+
+## How is the effect of diet different over time?
+
+
+* Table of means. Only I need long data for this, so make it (in
+a pipeline):
+
+```r
+runners.wide %>%
+  gather(time, pulse, min01:min30) %>%
+  group_by(time, diet) %>%
+  summarize(
+    mean = mean(pulse),
+    sd = sd(pulse)
+  ) -> summ
+```
+
+ 
+
+
+* Result of `summarize` is data frame, so can save it (and
+do more with it if needed).
+
+
+
+## Understanding diet-time interaction
+
+
+* The summary:
+
+\footnotesize
+
+```r
+summ
+```
+
+```
+## # A tibble: 6 x 4
+## # Groups:   time [3]
+##   time  diet       mean    sd
+##   <chr> <chr>     <dbl> <dbl>
+## 1 min01 lowfat     98.2  3.70
+## 2 min01 nonlowfat  94    4.53
+## 3 min15 lowfat    124.   8.62
+## 4 min15 nonlowfat 110.  13.1 
+## 5 min30 lowfat    141.   7.20
+## 6 min30 nonlowfat 111.   7.92
+```
+\normalsize
+   
+
+* Pulse rates at any given time higher for `lowfat` (diet
+effect),
+
+* Pulse rates increase over time of exercise (time effect),
+
+* but the *amount by which pulse rate higher* for a diet depends on
+time: `diet` by `time` interaction.
+
+
+## Interaction plot
+
+
+* We went to trouble of finding means by group, so making
+interaction plot is now mainly easy:
+
+```r
+ggplot(summ, aes(x = time, y = mean, colour = diet,
+                 group = diet)) + geom_point() + geom_line()
+```
+
+![plot of chunk unnamed-chunk-268](figure/unnamed-chunk-268-1.pdf)
+
+   
+## Comment on interaction plot
+
+* The lines are not parallel, so there is interaction between diet
+and time for the runners.
+- The effect of time on pulse rate is different for the two diets, even though all the subjects here were running.
+
+
+
+   
+
+
+
 
 
  

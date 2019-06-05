@@ -20,7 +20,8 @@ slides_d29.tex: slides_d29.md
                 --pdf-engine xelatex --self-contained 
 
 
-slides_d29.md: slides_d29.Rmd bRegression.Rmd bLogistic.Rmd bSurvival.Rmd bAnova.Rmd bAncova.Rmd bManova.Rmd
+slides_d29.md: slides_d29.Rmd bRegression.Rmd bLogistic.Rmd bSurvival.Rmd bAnova.Rmd bAncova.Rmd bManova.Rmd bProfile.Rmd\
+               bDiscrim.Rmd
 	Rscript -e "knitr::knit('slides_d29.Rmd')"
 
 %.R: %.Rmd

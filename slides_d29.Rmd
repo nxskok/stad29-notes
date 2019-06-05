@@ -49,5 +49,13 @@ output:
 
  
 
+```{r bManova, child="bManova.Rmd"}
+
+```
+
+```{r bProfile, child="bProfile.Rmd"}
+
+```
+
 
  

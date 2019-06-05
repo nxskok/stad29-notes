@@ -1,40 +1,23 @@
-\frametitle{Understanding those slopes}
-\protect\hypertarget{understanding-those-slopes}{}
+\frametitle{Interaction plot}
+\protect\hypertarget{interaction-plot-4}{}
 
-\footnotesize
+\begin{itemize}
+\tightlist
+\item
+  We went to trouble of finding means by group, so making interaction
+  plot is now mainly easy:
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{tidy}\NormalTok{(prepost}\FloatTok{.2}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(summ, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{colour =}\NormalTok{ diet,}
+                 \DataTypeTok{group =}\NormalTok{ diet)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_line}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 3 x 5
-##   term        estimate std.error statistic  p.value
-##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)   18.4      1.51       12.1  8.35e-10
-## 2 before         0.827    0.0955      8.66 1.21e- 7
-## 3 drugb         -5.15     1.29       -4.00 9.21e- 4
-\end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\item
-  \texttt{before} ordinary numerical variable; \texttt{drug}
-  categorical.
-\item
-  \texttt{lm} uses first category \texttt{druga} as baseline.
-\item
-  Intercept is prediction of after score for before score 0 and
-  \emph{drug A}.
-\item
-  \texttt{before} slope is predicted change in after score when before
-  score increases by 1 (usual slope)
-\item
-  Slope for \texttt{drugb} is \emph{change} in predicted after score for
-  being on drug B rather than drug A. Same for \emph{any} before score
-  (no interaction).
-\end{itemize}
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-268-1.pdf}
+\caption{plot of chunk unnamed-chunk-268}
+\end{figure}
 

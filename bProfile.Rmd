@@ -1,10 +1,10 @@
 
 # Repeated measures by profile analysis
 
-## Repeated measures by profile analysis
+## Repeated measures by profile analysis 
 
 
-* More than one response {\em measurement} for each subject. Might be
+* More than one response *measurement* for each subject. Might be
 
 
 * measurements of the same thing at different times
@@ -14,20 +14,19 @@
 
 * Generalization of matched pairs ("matched triples", etc.).
 
-* Variation: each subject does several different treatments at different times (called {\em crossover design}).
+* Variation: each subject does several different treatments at different times (called *crossover design*).
 
 * Expect measurements on same subject to be correlated, so
 assumptions of independence will fail.
 
-* Called {\em repeated measures}. Different approaches, but {\em
-profile analysis} uses `Manova` (set up right way).
+* Called *repeated measures*. Different approaches, but *profile analysis* uses `Manova` (set up right way).
 
 * Another approach uses *mixed models* (random effects).
 
 
 
 ## Packages
-```{r }
+```{r, eval=F}
 library(car)
 library(tidyverse)
 ```
@@ -61,9 +60,9 @@ dogs <- read_table(my_url)
 ```{r size="small"}
 dogs
 response <- with(dogs, cbind(lh0, lh1, lh3, lh5))
-dogs.lm <- lm(response ~ drug, data = dogs)
+dogs.1 <- lm(response ~ drug, data = dogs)
 ```
-def 
+ 
 
 
 ## The repeated measures MANOVA
@@ -71,33 +70,39 @@ def
 Get list of response variable names; we call them `times`. Save
 in data frame.
 
-{\footnotesize
+\footnotesize 
 ```{r }
 times <- colnames(response)
 times.df <- data.frame(times)
-dogs.manova <- Manova(dogs.lm,
+dogs.2 <- Manova(dogs.1,
   idata = times.df,
   idesign = ~times
 )
-dogs.manova
+dogs.2
 ```
-def 
-}
+ 
+\normalsize
 
-Interaction significant. Pattern of response over time different
-for the two drugs.
 
 
 ## Wide and long format
 
+- Interaction significant. Pattern of response over time different
+for the two drugs.
+
 
 * Want to investigate interaction.
 
+## The wrong shape
+
 * But data frame has several observations per line ("wide format"):
-```{r size="scriptsize"}
-dogs %>% print(n = 5)
+
+\scriptsize
+```{r }
+dogs %>% slice(1:6)
 ```
-def 
+ 
+\normalsize
 
 * Plotting works with data in "long format":
 one response per line.
@@ -107,10 +112,15 @@ one response per line.
 one column, with the time they belong to labelled.
 
 
-## Running `gather, try 1`
+## Running `gather`, try 1
+
+\footnotesize
+
 ```{r size="footnotesize"}
-dogs %>% gather(time, lh, lh0:lh5) %>% print(n = 12)
+dogs %>% gather(time, lh, lh0:lh5) 
 ```
+
+\normalsize
 
    
 
@@ -121,14 +131,15 @@ letters `lh` every time. Want new variable
 containing just number in `time`:
 `parse_number`. 
 
-```{r size="footnotesize"}
+\footnotesize
+
+```{r}
 dogs %>%
   gather(timex, lh, lh0:lh5) %>%
-  mutate(time = parse_number(timex)) %>%
-  print(n = 10)
+  mutate(time = parse_number(timex)) 
 ```
 
- 
+\normalsize
 
 
 
@@ -146,11 +157,11 @@ numeric time.
 
 
 
-## Saving the chained results
+## Saving the pipelined results
 ```{r }
-dogs.long <- dogs %>%
+dogs %>%
   gather(timex, lh, lh0:lh5) %>%
-  mutate(time = parse_number(timex))
+  mutate(time = parse_number(timex)) -> dogs.long
 ```
 
  
@@ -169,53 +180,18 @@ value originally came from labelled by `timex`, and then:
 
 * save the result in a data frame `dogs.long`.
 
-## `reshape`
-
-  
-  
-* Converts between wide and long format.
-  
-* Need to tell R what our repeated-measures responses are.
-  
-* Convenient variable naming: all responses are `lh`
-    followed by a number representing time.
-  
-* Like this:
-  
-
- 
-<<>>=
-detach(dogs)
-d2=reshape(dogs,varying=3:6,sep="",
-    direction="long")
-@ %def 
-
-
-
-## Long data frame, top 12 lines
-
- 
-<<>>=
-head(d2,n=12)
-@ %def 
-  
-
-`id`  labels dog, `time` labels time. Perfect for
-interaction plot.
-  
-
 
 
 ## Interaction plot
-```{r fig.height=4,size="small"}
-ggplot(dogs.long, aes(
-  x = time, y = lh,
-  colour = drug, group = drug
-)) +
+
+\small
+```{r fig.height=3}
+ggplot(dogs.long, aes(x = time, y = lh, 
+                      colour = drug, group = drug)) +
   stat_summary(fun.y = mean, geom = "point") +
   stat_summary(fun.y = mean, geom = "line")
 ```
-
+\normalsize
    
 
 ## Comments
@@ -241,23 +217,27 @@ no longer be significant.
 * Go back to original "wide" `dogs` data frame.
 
 ```{r size="footnotesize"}
-response <- with(dogs, cbind(lh1, lh3, lh5)) # excluding time zero
-dogs.lm <- lm(response ~ drug, data = dogs)
+response <- with(dogs, cbind(lh1, lh3, lh5)) # excl time 0
+dogs.1 <- lm(response ~ drug, data = dogs)
 times <- colnames(response)
 times.df <- data.frame(times)
-dogs.manova <- Manova(dogs.lm,
+dogs.2 <- Manova(dogs.1,
   idata = times.df,
   idesign = ~times
 )
 ```
-def 
+ 
 
 
 ## Results and comments
-```{r size="footnotesize"}
-dogs.manova
+
+\footnotesize
+```{r}
+dogs.2
 ```
-def 
+ 
+\normalsize
+
 
 
 
@@ -297,7 +277,7 @@ g <- ggplot(dogs.long, aes(
 
 
 ## The spaghetti plot
-```{r hoverla,fig.height=3.5}
+```{r hoverla,fig.height=3.7}
 g
 ```
 
@@ -347,8 +327,8 @@ exercise), so have repeated measures.
 ## Reading the data
 Separated by *tabs*:  
 ```{r }
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/exercise.txt"
-exercise.long <- read_tsv(my_url)
+url <- "http://www.utsc.utoronto.ca/~butler/d29/exercise.txt"
+exercise.long <- read_tsv(url)
 ```
 
    
@@ -356,10 +336,11 @@ exercise.long <- read_tsv(my_url)
 
 ## The data
 
-```{r size="small"}
-exercise.long %>% print(n = 8)
+\footnotesize
+```{r}
+exercise.long %>% slice(1:8)
 ```
-
+\normalsize
    
 
 
@@ -375,18 +356,20 @@ exercise.long %>% print(n = 8)
 ## Making wide format
 
 
-* Spread needs three things: a data frame, a column that is
+* `spread` needs: a column that is
 going to be split, and the column to make the values out of:
-```{r size="footnotesize"}
-exercise.wide <- spread(exercise.long, time, pulse)
-exercise.wide %>% print(n = 6)
+
+\footnotesize
+```{r}
+exercise.long %>% spread(time, pulse) -> exercise.wide
+exercise.wide %>% sample_n(5)
 ```
+\normalsize
 
 
-
-* See how we would normally `gather` \texttt{min01, min15,
+* Normally `gather` \texttt{min01, min15,
 min30} into one column called `pulse` labelled by the
-number of minutes? But `Manova` needs it the other way.
+number of minutes. But `Manova` needs it the other way.
 
 
 
@@ -394,48 +377,54 @@ number of minutes? But `Manova` needs it the other way.
 
 
 * Make a response variable consisting of `min01, min15, min30`:
-```{r }
-response <- with(
-  exercise.wide,
-  cbind(min01, min15, min30)
-)
-```
 
+\small
+```{r }
+response <- with(exercise.wide, cbind(min01, min15, min30))
+```
+\normalsize
 
 
 * Predict that from `diet` and `exertype` and
 interaction using `lm`:
+
+\small
 ```{r }
 exercise.1 <- lm(response ~ diet * exertype,
   data = exercise.wide
 )
 ```
-
+\normalsize
    
 
 
+
 * Run this through `Manova`:
+
+\small
 ```{r }
 times <- colnames(response)
 times.df <- data.frame(times)
-exercise.2 <- Manova(exercise.1,
-  idata = times.df,
-  idesign = ~times
-)
+exercise.2 <- Manova(exercise.1, 
+                     idata = times.df, 
+                     idesign = ~times)
 ```
-
+\normalsize
    
 
 
 
 ## Results
-\begin{scriptsize}
+
+```{r, echo=F}
+options(width=70)
+```
+
+\scriptsize
 ```{r }
 exercise.2
 ```
-
-       
-\end{scriptsize}
+\normalsize
 
 
 
@@ -477,7 +466,7 @@ so have the factor `exertype` with more levels going across.)
 
 
 ## The graph(s)
-```{r fig.height=3.5}
+```{r fig.height=3.7}
 g
 ```
 
@@ -513,15 +502,17 @@ runners. For them, does diet have an effect?
 
 * Pull out only the runners from the wide data:
 ```{r }
-runners.wide <- exercise.wide %>%
-  filter(exertype == "running")
+exercise.wide %>%
+  filter(exertype == "running") -> runners.wide
 ```
 
      
 
 * Create response variable and do MANOVA. Some of this looks like
 before, but I have different data now:
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 response <- with(runners.wide, cbind(min01, min15, min30))
 runners.1 <- lm(response ~ diet, data = runners.wide)
 times <- colnames(response)
@@ -531,20 +522,22 @@ runners.2 <- Manova(runners.1,
   idesign = ~times
 )
 ```
-
+\normalsize
    
 
 
 
 ## Results
-{\footnotesize
+
+
+
+\scriptsize
 ```{r }
 runners.2
 ```
-
+\normalsize
    
-}
-
+text under 
 
 * The `diet` by `time` interaction is still
 significant (at $\alpha=0.05$): the effect of time on pulse rates is different for
@@ -560,15 +553,15 @@ and `time`.
 
 
 * Table of means. Only I need long data for this, so make it (in
-a pipe):
+a pipeline):
 ```{r }
-summ <- runners.wide %>%
+runners.wide %>%
   gather(time, pulse, min01:min30) %>%
   group_by(time, diet) %>%
   summarize(
     mean = mean(pulse),
     sd = sd(pulse)
-  )
+  ) -> summ
 ```
 
  
@@ -583,14 +576,16 @@ do more with it if needed).
 
 
 * The summary:
-```{r size="small"}
+
+\footnotesize
+```{r}
 summ
 ```
-
+\normalsize
    
 
 * Pulse rates at any given time higher for `lowfat` (diet
-effect), 
+effect),
 
 * Pulse rates increase over time of exercise (time effect),
 
@@ -603,25 +598,19 @@ time: `diet` by `time` interaction.
 
 * We went to trouble of finding means by group, so making
 interaction plot is now mainly easy:
-```{r fig.height=2.5}
-ggplot(summ, aes(
-  x = time, y = mean, colour = diet,
-  group = diet
-)) + geom_point() + geom_line()
+```{r fig.height=2.7}
+ggplot(summ, aes(x = time, y = mean, colour = diet,
+                 group = diet)) + geom_point() + geom_line()
 ```
 
    
-
+## Comment on interaction plot
 
 * The lines are not parallel, so there is interaction between diet
-and time.
+and time for the runners.
+- The effect of time on pulse rate is different for the two diets, even though all the subjects here were running.
 
 
-```{r echo=F, warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
 
    
 

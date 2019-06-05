@@ -4,3 +4,5 @@
 \beamer@sectionintoc {4}{Survival analysis}{178}{0}{4}
 \beamer@sectionintoc {5}{Analysis of variance}{221}{0}{5}
 \beamer@sectionintoc {6}{Analysis of covariance}{292}{0}{6}
+\beamer@sectionintoc {7}{Multivariate ANOVA}{312}{0}{7}
+\beamer@sectionintoc {8}{Repeated measures by profile analysis}{332}{0}{8}
