@@ -4,11 +4,7 @@
 
  
 
-```{r bDiscrim, child="bDiscrim.Rmd"}
 
-```
-
- 
 
 ```{r bCluster, child="bCluster.Rmd"}
 

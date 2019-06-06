@@ -1,23 +1,26 @@
-\frametitle{Interaction plot}
-\protect\hypertarget{interaction-plot-4}{}
+\frametitle{The right way around}
+\protect\hypertarget{the-right-way-around}{}
 
 \begin{itemize}
-\tightlist
 \item
-  We went to trouble of finding means by group, so making interaction
-  plot is now mainly easy:
+  \emph{First}, do a MANOVA to see whether any of the groups differ
+  significantly on any of the variables.
+\item
+  \emph{If the MANOVA is significant}, do a discriminant analysis in the
+  hopes of understanding how the groups are different.
+\item
+  For remote-sensing data (without Clover):
+\item
+  LD1 a fair bit more important than LD2 (definitely ignore LD3).
+\item
+  LD1 depends mostly on \texttt{x1}, on which Cotton was high and Corn
+  was low.
+\item
+  Discriminant analysis in MANOVA plays the same kind of role that Tukey
+  does in ANOVA.
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(summ, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{colour =}\NormalTok{ diet,}
-                 \DataTypeTok{group =}\NormalTok{ diet)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_line}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-268-1.pdf}
-\caption{plot of chunk unnamed-chunk-268}
-\end{figure}
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+\end{verbatim}
 

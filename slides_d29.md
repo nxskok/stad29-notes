@@ -3351,16 +3351,16 @@ probs.long %>% sample_n(10)
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    28 0     1          0.793 
-##  2    32 0     1          0.405 
-##  3    38 0     1          0.0260
-##  4    24 1     2          0.0819
-##  5    32 1     3          0.214 
-##  6    35 1     3          0.484 
-##  7    24 1     1          0.915 
-##  8    35 0     3          0.472 
-##  9    35 1     1          0.0840
-## 10    32 0     2          0.408
+##  1    38 1     1         0.0162 
+##  2    35 1     3         0.484  
+##  3    24 0     2         0.0502 
+##  4    24 1     3         0.00279
+##  5    32 1     3         0.214  
+##  6    35 1     2         0.432  
+##  7    28 1     2         0.271  
+##  8    38 0     2         0.239  
+##  9    38 0     1         0.0260 
+## 10    38 1     2         0.252
 ```
 \normalsize
 
@@ -3422,19 +3422,24 @@ brandpref %>%
   group_by(age, sex, brand) %>%
   summarize(Freq = n()) %>%
   ungroup() -> b
+```
+
+```
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+```
+
+```r
 b %>% slice(1:6)
 ```
 
 ```
-## # A tibble: 6 x 4
-##     age sex   brand  Freq
-##   <dbl> <fct> <fct> <int>
-## 1    24 0     1         1
-## 2    26 0     1         2
-## 3    27 0     1         4
-## 4    27 1     1         4
-## 5    27 1     3         1
-## 6    28 0     1         4
+## Error in eval(lhs, parent, parent): object 'b' not found
 ```
 
    
@@ -3456,8 +3461,26 @@ on each line!
 b %>%
   mutate(sex = factor(sex)) %>%
   mutate(brand = factor(brand)) -> bf
+```
+
+```
+## Error in eval(lhs, parent, parent): object 'b' not found
+```
+
+```r
 b.1 <- multinom(brand ~ age + sex, data = bf, weights = Freq)
+```
+
+```
+## Error in is.data.frame(data): object 'bf' not found
+```
+
+```r
 b.2 <- multinom(brand ~ age, data = bf, weights = Freq)
+```
+
+```
+## Error in is.data.frame(data): object 'bf' not found
 ```
 \normalsize
 
@@ -3472,12 +3495,7 @@ anova(b.2, b.1)
 ```
 
 ```
-## Likelihood ratio tests of Multinomial Models
-## 
-## Response: brand
-##       Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
-## 1       age       126   1413.593                                 
-## 2 age + sex       124   1405.941 1 vs 2     2 7.651236 0.02180495
+## Error in anova(b.2, b.1): object 'b.2' not found
 ```
 \normalsize
 
@@ -3500,23 +3518,7 @@ b %>%
 ```
 
 ```
-## # A tibble: 14 x 2
-##      age total
-##    <dbl> <int>
-##  1    24     1
-##  2    26     2
-##  3    27     9
-##  4    28    15
-##  5    29    19
-##  6    30    23
-##  7    31    40
-##  8    32   333
-##  9    33    55
-## 10    34    64
-## 11    35    35
-## 12    36    85
-## 13    37    22
-## 14    38    32
+## Error in eval(lhs, parent, parent): object 'b' not found
 ```
 \normalsize
 
@@ -3535,6 +3537,10 @@ b %>%
   mutate(proportion = Freq / sum(Freq)) -> brands
 ```
 
+```
+## Error in eval(lhs, parent, parent): object 'b' not found
+```
+
      
 
 
@@ -3548,16 +3554,7 @@ brands %>% filter(age == 32)
 ```
 
 ```
-## # A tibble: 6 x 5
-## # Groups:   age, sex [2]
-##     age sex   brand  Freq proportion
-##   <dbl> <fct> <fct> <int>      <dbl>
-## 1    32 0     1        48      0.407
-## 2    32 0     2        51      0.432
-## 3    32 0     3        19      0.161
-## 4    32 1     1        62      0.288
-## 5    32 1     2       117      0.544
-## 6    32 1     3        36      0.167
+## Error in eval(lhs, parent, parent): object 'brands' not found
 ```
 \normalsize
    
@@ -3591,6 +3588,10 @@ g <- ggplot(probs.long, aes(
 )) +
   geom_line(aes(linetype = sex)) +
   geom_point(data = brands, aes(y = proportion))
+```
+
+```
+## Error in fortify(data): object 'brands' not found
 ```
 
      
@@ -3637,6 +3638,10 @@ g <- ggplot(probs.long, aes(
     aes(y = proportion, size = Freq)
   )
 ```
+
+```
+## Error in fortify(data): object 'brands' not found
+```
 \normalsize
      
 
@@ -3665,12 +3670,7 @@ b.4 <- update(b.1, . ~ . + age:sex)
 ```
 
 ```
-## # weights:  15 (8 variable)
-## initial  value 807.480032 
-## iter  10 value 704.811229
-## iter  20 value 702.582802
-## final  value 702.582761 
-## converged
+## Error in update(b.1, . ~ . + age:sex): object 'b.1' not found
 ```
 
 ```r
@@ -3678,15 +3678,7 @@ anova(b.1, b.4)
 ```
 
 ```
-## Likelihood ratio tests of Multinomial Models
-## 
-## Response: brand
-##                 Model Resid. df Resid. Dev   Test    Df
-## 1           age + sex       124   1405.941             
-## 2 age + sex + age:sex       122   1405.166 1 vs 2     2
-##    LR stat.  Pr(Chi)
-## 1                   
-## 2 0.7758861 0.678451
+## Error in anova(b.1, b.4): object 'b.1' not found
 ```
 
    
@@ -4757,13 +4749,13 @@ hairpain %>%
 ```
 
 ```
-## # A tibble: 4 x 4
-##   hair           n  xbar     s
-##   <chr>      <int> <dbl> <dbl>
-## 1 darkblond      5  51.2  9.28
-## 2 darkbrown      5  37.4  8.32
-## 3 lightblond     5  59.2  8.53
-## 4 lightbrown     4  42.5  5.45
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 ```
 \normalsize
 
@@ -5210,18 +5202,27 @@ ggplot(vitaminb, aes(
 summary <- vitaminb %>%
   group_by(ratsize, diet) %>%
   summarize(mean = mean(kidneyweight))
+```
+
+```
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+```
+
+```r
 summary
 ```
 
 ```
-## # A tibble: 4 x 3
-## # Groups:   ratsize [2]
-##   ratsize diet      mean
-##   <chr>   <chr>    <dbl>
-## 1 lean    regular   1.64
-## 2 lean    vitaminb  1.53
-## 3 obese   regular   2.64
-## 4 obese   vitaminb  2.67
+## function (object, ...) 
+## UseMethod("summary")
+## <bytecode: 0x561d8d5b3e20>
+## <environment: namespace:base>
 ```
 \normalsize
    
@@ -5274,6 +5275,11 @@ g <- ggplot(summary, aes(
   colour = diet, group = diet
 )) +
   geom_point() + geom_line()
+```
+
+```
+## Error: You're passing a function as global data.
+## Have you misspelled the `data` argument in `ggplot()`
 ```
 
     
@@ -5541,7 +5547,15 @@ autonoise %>%
   )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-1.pdf)
+```
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+```
 
 \normalsize
 
@@ -5633,11 +5647,13 @@ autonoise %>%
 ```
 
 ```
-## # A tibble: 2 x 2
-##   type      m
-##   <chr> <dbl>
-## 1 Octel  822.
-## 2 Std    846.
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 ```
 
 * Octel filters produce *less* noise for medium cars.
@@ -6403,13 +6419,13 @@ chain %>%
 ```
 
 ```
-## # A tibble: 4 x 2
-##   model mean.kick
-##   <fct>     <dbl>
-## 1 C          49  
-## 2 B          43  
-## 3 A          33  
-## 4 D          28.8
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 ```
 \normalsize
  
@@ -6500,15 +6516,15 @@ prepost %>% sample_n(9) # randomly chosen rows
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 a         13    31
-## 2 a          9    25
-## 3 a         18    38
-## 4 b         12    26
-## 5 b         27    33
+## 1 b         24    35
+## 2 b          7    19
+## 3 b         18    30
+## 4 a         21    40
+## 5 b         12    26
 ## 6 a         14    27
-## 7 a         10    23
-## 8 b          9    22
-## 9 a          5    20
+## 7 b         22    31
+## 8 b         14    23
+## 9 a         12    30
 ```
 
 
@@ -6546,11 +6562,13 @@ prepost %>%
 ```
 
 ```
-## # A tibble: 2 x 3
-##   drug  before_mean after_mean
-##   <chr>       <dbl>      <dbl>
-## 1 a            13.1       29.2
-## 2 b            18         28.1
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 ```
  
 
@@ -7773,11 +7791,11 @@ exercise.wide %>% sample_n(5)
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    17 lowfat    walking    103   109    90
-## 2    27 lowfat    running    100   126   140
-## 3     7 lowfat    atrest      87    88    90
-## 4     1 nonlowfat atrest      85    85    88
-## 5     6 lowfat    atrest      83    83    84
+## 1    25 nonlowfat running     94   110   116
+## 2    15 nonlowfat walking     89    96    95
+## 3    19 lowfat    walking     97    98   100
+## 4     8 lowfat    atrest      92    94    95
+## 5     2 nonlowfat atrest      90    92    93
 ```
 \normalsize
 
@@ -8017,6 +8035,16 @@ runners.wide %>%
   ) -> summ
 ```
 
+```
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+```
+
  
 
 
@@ -8037,16 +8065,7 @@ summ
 ```
 
 ```
-## # A tibble: 6 x 4
-## # Groups:   time [3]
-##   time  diet       mean    sd
-##   <chr> <chr>     <dbl> <dbl>
-## 1 min01 lowfat     98.2  3.70
-## 2 min01 nonlowfat  94    4.53
-## 3 min15 lowfat    124.   8.62
-## 4 min15 nonlowfat 110.  13.1 
-## 5 min30 lowfat    141.   7.20
-## 6 min30 nonlowfat 111.   7.92
+## Error in eval(expr, envir, enclos): object 'summ' not found
 ```
 \normalsize
    
@@ -8071,7 +8090,9 @@ ggplot(summ, aes(x = time, y = mean, colour = diet,
                  group = diet)) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-268](figure/unnamed-chunk-268-1.pdf)
+```
+## Error in ggplot(summ, aes(x = time, y = mean, colour = diet, group = diet)): object 'summ' not found
+```
 
    
 ## Comment on interaction plot
@@ -8087,5 +8108,1537 @@ and time for the runners.
 
 
 
+
+
+# Discriminant analysis
+
+## Discriminant analysis
+
+
+* ANOVA and MANOVA: predict a (counted/measured) response from group membership.
+
+* Discriminant analysis: predict group membership based on counted/measured variables.
+
+* Covers same ground as logistic regression (and its variations), but emphasis on classifying observed data into correct groups.
+
+* Does so by searching for linear combination of original variables that best separates data into groups (canonical variables).
+
+* Assumption here that groups are known (for data we have). If trying to "best separate" data into unknown groups, see *cluster analysis* xxx.
+
+* Examples: revisit seed yield and weight data, peanut data,
+professions/activities data; remote-sensing data.
+
+
+
+## Packages xxx
+
+```r
+library(MASS)
+library(tidyverse)
+library(ggrepel)
+library(ggbiplot)
+```
+
+   
+
+`ggrepel` allows labelling points on a plot so they don't
+overwrite each other.
+
+
+## About `select`
+
+
+* Both `dplyr` (in `tidyverse`) and `MASS`
+have a function called `select`, and \emph{they do
+different things}.
+
+* How do you know which `select` is going to get called? 
+
+* With `library`, the one loaded *last* is visible,
+and others are not.
+
+* Thus we can access the `select` in `dplyr` but
+not the one in `MASS`. If we wanted that one, we'd have to
+say `MASS::select`.
+
+* I loaded `MASS` before
+`tidyverse`. If I had done it the other way around, the
+`tidyverse` `select`, which I want to use, would have
+been the invisible one.  
+
+- xxx Alternative: load `conflicted` package. Any time you load two packages containing functions with same name, you get error and have to choose between them. 
+
+## Example 1: seed yields and weights xxx
+\small
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
+hilo <- read_delim(my_url, " ")
+g <- ggplot(hilo, aes(
+  x = yield, y = weight,
+  colour = fertilizer
+)) + geom_point(size = 4)
+```
+\normalsize
+ 
+
+ 
+
+\begin{minipage}[t]{0.6\linewidth}
+xxx
+\includegraphics[width=0.6\textwidth]{berzani}
+   
+\end{minipage}
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0.1\textheight}
+Recall data from MANOVA: needed a multivariate analysis to find
+difference in seed yield and weight based on whether they were high
+or low fertilizer.
+\end{minipage}
+
+## Basic discriminant analysis
+
+
+```r
+hilo.1 <- lda(fertilizer ~ yield + weight, data = hilo)
+```
+
+ 
+
+
+
+* Uses `lda` from package MASS.
+
+* "Predicting" group membership from measured variables.
+
+
+
+
+## Output
+
+\small
+
+```r
+hilo.1
+```
+
+```
+## Call:
+## lda(fertilizer ~ yield + weight, data = hilo)
+## 
+## Prior probabilities of groups:
+## high  low 
+##  0.5  0.5 
+## 
+## Group means:
+##      yield weight
+## high  35.0  13.25
+## low   32.5  12.00
+## 
+## Coefficients of linear discriminants:
+##               LD1
+## yield  -0.7666761
+## weight -1.2513563
+```
+\normalsize
+ 
+
+
+
+## Things to take from output
+
+
+* Group means: high-fertilizer plants have (slightly) higher
+mean yield and weight than low-fertilizer plants.
+
+* "Coefficients of linear discriminants": \texttt{LD1,
+LD2,}\ldots are scores constructed from observed variables that
+best separate the groups.
+
+
+* For any plant, get LD1 score by taking $-0.76$ times yield
+plus $-1.25$ times weight, add up, standardize.
+
+- the LD1 coefficients are like slopes: 
+  - if yield higher, LD1 score for a plant lower
+  - if weight higher, LD1 score for a plant lower
+
+* High-fertilizer plants have higher yield and weight, thus
+low (negative) LD1 score. Low-fertilizer plants have low yield and
+weight, thus high (positive) LD1 score. xxx
+
+* One LD1 score for each observation. Plot with actual groups.
+
+
+
+
+## How many linear discriminants?
+
+
+* Smaller of these: xxx
+
+  * Number of variables
+
+  * Number of groups *minus 1*
+
+
+* Seed yield and weight: 2 variables, 2 groups,
+$\min(2,2-1)=1$. 
+
+
+
+## Getting LD scores xxx
+Feed output from LDA into `predict`:
+
+
+```r
+hilo.pred <- predict(hilo.1)
+```
+
+ 
+
+Component $x$ contains LD score(s), here in descending order:
+
+\footnotesize
+
+```r
+d <- cbind(hilo, hilo.pred$x) %>% arrange(desc(LD1))
+d
+```
+
+```
+##   fertilizer yield weight        LD1
+## 1        low    34     10  3.0931414
+## 2        low    29     14  1.9210963
+## 3        low    35     11  1.0751090
+## 4        low    32     13  0.8724245
+## 5       high    34     13 -0.6609276
+## 6       high    33     14 -1.1456079
+## 7       high    38     12 -2.4762756
+## 8       high    35     14 -2.6789600
+```
+\normalsize
+ 
+
+xxx High fertilizer have yield and weight high, negative LD1 scores.
+
+
+## Plotting LD1 scores
+With one LD score, plot against (true) groups, eg. boxplot: xxx
+
+```r
+ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
+```
+
+![plot of chunk unnamed-chunk-276](figure/unnamed-chunk-276-1.pdf)
+
+   
+
+
+## Potentially misleading
+
+
+* These are like regression slopes: xxx
+
+\footnotesize
+
+```r
+hilo.1$scaling
+```
+
+```
+##               LD1
+## yield  -0.7666761
+## weight -1.2513563
+```
+\normalsize
+     
+
+
+* Reflect change in LD1 score for 1-unit change in variables.
+
+* But one-unit change in variables might not be comparable:
+
+\footnotesize
+
+```r
+summary(hilo)
+```
+
+```
+##   fertilizer            yield           weight     
+##  Length:8           Min.   :29.00   Min.   :10.00  
+##  Class :character   1st Qu.:32.75   1st Qu.:11.75  
+##  Mode  :character   Median :34.00   Median :13.00  
+##                     Mean   :33.75   Mean   :12.62  
+##                     3rd Qu.:35.00   3rd Qu.:14.00  
+##                     Max.   :38.00   Max.   :14.00
+```
+\normalsize
+   
+* xxx Here, IQRs *identical*, so 1-unit change in each variable
+means same thing.
+
+
+
+## What else is in `hilo.pred?`
+
+\small
+
+```r
+names(hilo.pred)
+```
+
+```
+## [1] "class"     "posterior" "x"
+```
+\normalsize
+     
+
+
+
+* `class`: predicted fertilizer level (based on values of
+`yield` and `weight`).
+
+* `posterior`: predicted probability of being low or high
+fertilizer given `yield` and `weight`.
+ 
+
+
+## Predictions and predicted groups
+\ldots based on `yield` and `weight`: xxx
+
+\footnotesize
+
+```r
+cbind(hilo, predicted = hilo.pred$class)
+```
+
+```
+##   fertilizer yield weight predicted
+## 1        low    34     10       low
+## 2        low    29     14       low
+## 3        low    35     11       low
+## 4        low    32     13       low
+## 5       high    33     14      high
+## 6       high    38     12      high
+## 7       high    34     13      high
+## 8       high    35     14      high
+```
+
+```r
+table(obs = hilo$fertilizer, pred = hilo.pred$class)
+```
+
+```
+##       pred
+## obs    high low
+##   high    4   0
+##   low     0   4
+```
+\normalsize
+ 
+
+
+## Understanding the predicted groups
+
+
+* Each predicted fertilizer level is exactly same as observed
+one (perfect prediction).
+
+* Table shows no errors: all values on top-left to bottom-right
+diagonal. 
+
+
+
+## Posterior probabilities
+show how clear-cut the classification decisions were:
+
+\small
+
+```r
+pp <- round(hilo.pred$posterior, 4)
+d <- cbind(hilo, hilo.pred$x, pp)
+d
+```
+
+```
+##   fertilizer yield weight        LD1   high    low
+## 1        low    34     10  3.0931414 0.0000 1.0000
+## 2        low    29     14  1.9210963 0.0012 0.9988
+## 3        low    35     11  1.0751090 0.0232 0.9768
+## 4        low    32     13  0.8724245 0.0458 0.9542
+## 5       high    33     14 -1.1456079 0.9818 0.0182
+## 6       high    38     12 -2.4762756 0.9998 0.0002
+## 7       high    34     13 -0.6609276 0.9089 0.0911
+## 8       high    35     14 -2.6789600 0.9999 0.0001
+```
+\normalsize
+
+Only obs.\ 7 has any doubt: `yield` low for a high-fertilizer,
+but high `weight` makes up for it.
+ 
+
+
+## Example 2: the peanuts xxx
+
+\scriptsize
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
+peanuts <- read_delim(my_url, " ")
+peanuts
+```
+
+```
+## # A tibble: 12 x 6
+##      obs location variety     y   smk     w
+##    <dbl>    <dbl>   <dbl> <dbl> <dbl> <dbl>
+##  1     1        1       5  195.  153.  51.4
+##  2     2        1       5  194.  168.  53.7
+##  3     3        2       5  190.  140.  55.5
+##  4     4        2       5  180.  121.  44.4
+##  5     5        1       6  203   157.  49.8
+##  6     6        1       6  196.  166   45.8
+##  7     7        2       6  203.  166.  60.4
+##  8     8        2       6  198.  162.  54.1
+##  9     9        1       8  194.  164.  57.8
+## 10    10        1       8  187   165.  58.6
+## 11    11        2       8  202.  167.  65  
+## 12    12        2       8  200   174.  67.2
+```
+\normalsize
+ 
+
+- Recall: `location` and `variety` both significant in
+MANOVA. Make combo of them (over):
+
+
+## Location-variety combos xxx
+
+\footnotesize
+
+```r
+peanuts %>% unite(combo, c(variety, location)) ->
+peanuts.combo
+peanuts.combo
+```
+
+```
+## # A tibble: 12 x 5
+##      obs combo     y   smk     w
+##    <dbl> <chr> <dbl> <dbl> <dbl>
+##  1     1 5_1    195.  153.  51.4
+##  2     2 5_1    194.  168.  53.7
+##  3     3 5_2    190.  140.  55.5
+##  4     4 5_2    180.  121.  44.4
+##  5     5 6_1    203   157.  49.8
+##  6     6 6_1    196.  166   45.8
+##  7     7 6_2    203.  166.  60.4
+##  8     8 6_2    198.  162.  54.1
+##  9     9 8_1    194.  164.  57.8
+## 10    10 8_1    187   165.  58.6
+## 11    11 8_2    202.  167.  65  
+## 12    12 8_2    200   174.  67.2
+```
+*\1* xxx xxx
+\normalsize
+
+## Discriminant analysis
+
+\small
+
+```r
+peanuts.1 <- lda(combo ~ y + smk + w, data = peanuts.combo)
+peanuts.1$scaling
+```
+
+```
+##            LD1         LD2         LD3
+## y   -0.4027356 -0.02967881  0.18839237
+## smk -0.1727459  0.06794271 -0.09386294
+## w    0.5792456  0.16300221  0.07341123
+```
+
+```r
+peanuts.1$svd
+```
+
+```
+## [1] 6.141323 2.428396 1.075589
+```
+\normalsize
+   
+
+
+
+* Now 3 LDs (3 variables, 6 groups, $\min(3,6-1)=3$).
+
+## Comments xxx
+
+* First: relationship of LDs to original variables. Look for
+coeffs far from zero: here,
+
+
+*   high `LD1` mainly high `w`
+or low `y`.
+
+* high `LD2` mainly high `w`.
+
+
+* `svd` values show relative importance of LDs:
+`LD1` much more important than `LD2`.
+
+
+
+## Group means by variable xxx
+
+```r
+peanuts.1$means
+```
+
+```
+##          y    smk     w
+## 5_1 194.80 160.40 52.55
+## 5_2 185.05 130.30 49.95
+## 6_1 199.45 161.40 47.80
+## 6_2 200.15 163.95 57.25
+## 8_1 190.25 164.80 58.20
+## 8_2 200.75 170.30 66.10
+```
+
+
+* `5_2` clearly smallest on `y`, `smk`, near
+smallest on `w`
+
+* `8_2` clearly biggest on `smk`, `w`, also
+largest on `y`
+
+* `8_1` large on `w`, small on `y`.
+
+
+## The predictions and misclassification
+
+```r
+peanuts.pred <- predict(peanuts.1)
+table(
+  obs = peanuts.combo$combo,
+  pred = peanuts.pred$class
+)
+```
+
+```
+##      pred
+## obs   5_1 5_2 6_1 6_2 8_1 8_2
+##   5_1   2   0   0   0   0   0
+##   5_2   0   2   0   0   0   0
+##   6_1   0   0   2   0   0   0
+##   6_2   1   0   0   1   0   0
+##   8_1   0   0   0   0   2   0
+##   8_2   0   0   0   0   0   2
+```
+
+Actually classified very well. Only one `6_2` classified as a
+`5_1`, rest all correct.
+
+
+## Posterior probabilities xxx
+
+\scriptsize
+
+```r
+pp <- round(peanuts.pred$posterior, 2)
+peanuts.combo %>%
+  select(-c(y, smk, w)) %>%
+  cbind(., pred = peanuts.pred$class, pp)
+```
+
+```
+##    obs combo pred  5_1 5_2 6_1  6_2  8_1  8_2
+## 1    1   5_1  5_1 0.69   0   0 0.31 0.00 0.00
+## 2    2   5_1  5_1 0.73   0   0 0.27 0.00 0.00
+## 3    3   5_2  5_2 0.00   1   0 0.00 0.00 0.00
+## 4    4   5_2  5_2 0.00   1   0 0.00 0.00 0.00
+## 5    5   6_1  6_1 0.00   0   1 0.00 0.00 0.00
+## 6    6   6_1  6_1 0.00   0   1 0.00 0.00 0.00
+## 7    7   6_2  6_2 0.13   0   0 0.87 0.00 0.00
+## 8    8   6_2  5_1 0.53   0   0 0.47 0.00 0.00
+## 9    9   8_1  8_1 0.02   0   0 0.02 0.75 0.21
+## 10  10   8_1  8_1 0.00   0   0 0.00 0.99 0.01
+## 11  11   8_2  8_2 0.00   0   0 0.00 0.03 0.97
+## 12  12   8_2  8_2 0.00   0   0 0.00 0.06 0.94
+```
+\normalsize
+   
+
+*Some* doubt about which combo each plant belongs in, but not too
+much. The one misclassified plant was a close call.
+
+
+## Discriminant scores, again
+
+
+* How are discriminant scores related to original variables?
+
+* Construct data frame with original data and discriminant
+scores side by side: xxx
+
+\footnotesize
+
+```r
+peanuts.1$scaling
+```
+
+```
+##            LD1         LD2         LD3
+## y   -0.4027356 -0.02967881  0.18839237
+## smk -0.1727459  0.06794271 -0.09386294
+## w    0.5792456  0.16300221  0.07341123
+```
+
+```r
+lds <- round(peanuts.pred$x, 2)
+mm <- with(peanuts.combo,
+           data.frame(combo, y, smk, w, lds))
+```
+\normalsize
+   
+
+* xxx LD1 positive if `w` large and/or `y` small.
+
+* LD2 positive if `w` large.    
+
+
+
+
+
+## Discriminant scores for data
+
+\footnotesize
+
+```r
+mm
+```
+
+```
+##    combo     y   smk    w   LD1   LD2   LD3
+## 1    5_1 195.3 153.1 51.4 -1.42 -1.01  0.26
+## 2    5_1 194.3 167.7 53.7 -2.20  0.38 -1.13
+## 3    5_2 189.7 139.5 55.5  5.56 -1.10  0.79
+## 4    5_2 180.4 121.1 44.4  6.06 -3.89 -0.05
+## 5    6_1 203.0 156.8 49.8 -6.08 -1.25  1.25
+## 6    6_1 195.9 166.0 45.8 -7.13 -1.07 -1.24
+## 7    6_2 202.7 166.1 60.4 -1.43  1.12  1.10
+## 8    6_2 197.6 161.8 54.1 -2.28 -0.05  0.08
+## 9    8_1 193.5 164.5 57.8  1.05  0.86 -0.67
+## 10   8_1 187.0 165.1 58.6  4.02  1.22 -1.90
+## 11   8_2 201.5 166.8 65.0  1.60  1.95  1.15
+## 12   8_2 200.0 173.8 67.2  2.27  2.83  0.37
+```
+\normalsize
+   
+
+
+* Obs.\ 5 and 6 have most negative `LD1`: large `y`,
+small `w`.
+
+* Obs.\ 4 has most negative `LD2`: small `w`.
+
+
+
+## Predict typical LD1 scores
+First and third quartiles for three response variables:
+
+```r
+quartiles <- peanuts %>%
+  select(y:w) %>%
+  map_df(quantile, c(0.25, 0.75))
+quartiles
+```
+
+```
+## # A tibble: 2 x 3
+##       y   smk     w
+##   <dbl> <dbl> <dbl>
+## 1  193.  156.  51  
+## 2  200.  166.  59.0
+```
+
+```r
+new <- with(quartiles, crossing(y, smk, w))
+```
+
+   
+
+
+## The combinations
+
+```r
+new
+```
+
+```
+## # A tibble: 8 x 3
+##       y   smk     w
+##   <dbl> <dbl> <dbl>
+## 1  193.  156.  51  
+## 2  193.  156.  59.0
+## 3  193.  166.  51  
+## 4  193.  166.  59.0
+## 5  200.  156.  51  
+## 6  200.  156.  59.0
+## 7  200.  166.  51  
+## 8  200.  166.  59.0
+```
+
+```r
+pp <- predict(peanuts.1, new)
+```
+
+   
+
+
+## Predicted typical LD1 scores
+
+\footnotesize
+
+```r
+cbind(new, pp$x) %>% arrange(LD1)
+```
+
+```
+##         y     smk     w        LD1        LD2         LD3
+## 1 200.375 166.275 51.00 -5.9688625 -0.3330095 -0.04523828
+## 2 200.375 155.875 51.00 -4.1723048 -1.0396138  0.93093630
+## 3 192.550 166.275 51.00 -2.8174566 -0.1007728 -1.51940856
+## 4 200.375 166.275 59.05 -1.3059358  0.9791583  0.54572212
+## 5 192.550 155.875 51.00 -1.0208989 -0.8073770 -0.54323399
+## 6 200.375 155.875 59.05  0.4906219  0.2725540  1.52189670
+## 7 192.550 166.275 59.05  1.8454701  1.2113950 -0.92844817
+## 8 192.550 155.875 59.05  3.6420278  0.5047907  0.04772641
+```
+\normalsize
+   
+
+
+
+* Very negative LD1 score with large `y` and small
+`w`
+
+* `smk` doesn't contribute much to LD1
+
+* Very positive LD1 score with small `y` and large
+`w`.
+
+* Same as we saw from Coefficients of Linear Discriminants.
+
+
+## Plot LD1 vs.\ LD2, labelling by combo
+
+```r
+g <- ggplot(mm, aes(x = LD1, y = LD2, colour = combo, 
+                    label = combo)) + geom_point() +
+  geom_text_repel() + guides(colour = F)
+g
+```
+
+![plot of chunk unnamed-chunk-292](figure/unnamed-chunk-292-1.pdf)
+
+   
+
+
+## "Bi-plot" from `ggbiplot` xxx
+
+
+```r
+ggbiplot(peanuts.1,
+  groups = factor(peanuts.combo$combo)
+)
+```
+
+![plot of chunk unnamed-chunk-293](figure/unnamed-chunk-293-1.pdf)
+
+
+## Installing `ggbiplot`
+
+
+* `ggbiplot` not on CRAN, so usual
+`install.packages` will not work.
+
+* Install package `devtools` first (once):
+
+```r
+install.packages("devtools")
+```
+
+     
+
+* Then install `ggbiplot` (once):
+
+```r
+library(devtools)
+install_github("vqv/ggbiplot")
+```
+
+     
+
+
+## Cross-validation
+
+
+* So far, have predicted group membership from same data used to
+form the groups --- dishonest!
+
+* Better: *cross-validation*: form groups from all
+observations *except one*, then predict group membership for
+that left-out observation.
+
+* No longer cheating!
+
+* Illustrate with peanuts data again.
+
+
+
+## Misclassifications
+
+
+* Fitting and prediction all in one go: xxx text under
+
+\small
+
+```r
+peanuts.cv <- lda(combo ~ y + smk + w,
+  data = peanuts.combo, CV = T
+)
+table(
+  obs = peanuts.combo$combo,
+  pred = peanuts.cv$class
+)
+```
+
+```
+##      pred
+## obs   5_1 5_2 6_1 6_2 8_1 8_2
+##   5_1   0   0   0   2   0   0
+##   5_2   0   1   0   0   1   0
+##   6_1   0   0   2   0   0   0
+##   6_2   1   0   0   1   0   0
+##   8_1   0   1   0   0   0   1
+##   8_2   0   0   0   0   0   2
+```
+\normalsize
+   
+
+
+* Some more misclassification this time.
+
+
+
+
+## Repeat of LD plot xxx
+
+```r
+g
+```
+
+![plot of chunk graziani](figure/graziani-1.pdf)
+
+   
+
+
+## Posterior probabilities
+
+\footnotesize
+
+```r
+pp <- round(peanuts.cv$posterior, 3)
+data.frame(
+  obs = peanuts.combo$combo,
+  pred = peanuts.cv$class, pp
+)
+```
+
+```
+##    obs pred  X5_1 X5_2  X6_1  X6_2  X8_1  X8_2
+## 1  5_1  6_2 0.162 0.00 0.000 0.838 0.000 0.000
+## 2  5_1  6_2 0.200 0.00 0.000 0.799 0.000 0.000
+## 3  5_2  8_1 0.000 0.18 0.000 0.000 0.820 0.000
+## 4  5_2  5_2 0.000 1.00 0.000 0.000 0.000 0.000
+## 5  6_1  6_1 0.194 0.00 0.669 0.137 0.000 0.000
+## 6  6_1  6_1 0.000 0.00 1.000 0.000 0.000 0.000
+## 7  6_2  6_2 0.325 0.00 0.000 0.667 0.001 0.008
+## 8  6_2  5_1 0.821 0.00 0.000 0.179 0.000 0.000
+## 9  8_1  8_2 0.000 0.00 0.000 0.000 0.000 1.000
+## 10 8_1  5_2 0.000 1.00 0.000 0.000 0.000 0.000
+## 11 8_2  8_2 0.001 0.00 0.000 0.004 0.083 0.913
+## 12 8_2  8_2 0.000 0.00 0.000 0.000 0.167 0.833
+```
+\normalsize
+   
+
+
+## Why more misclassification?
+
+
+* When predicting group membership for one observation, only
+uses the *other one* in that group.
+
+* So if two in a pair are far apart, or if two groups overlap,
+great potential for misclassification.
+
+* Groups `5_1` and `6_2` overlap.
+
+* `5_2` closest to `8_1`s looks more like an
+`8_1` than a `5_2` (other one far away).
+
+* `8_1`s relatively far apart and close to other things,
+so one appears to be a `5_2` and the other an `8_2`.
+
+
+## Example 3: professions and leisure activities
+
+
+* 15 individuals from three different professions (politicians,
+administrators and belly dancers) each participate in four
+different leisure activities: reading, dancing, TV watching and
+skiing. After each activity they rate it on a 0--10 scale.
+
+* Some of the data: xxx
+
+\small
+```
+bellydancer 7 10 6 5
+bellydancer 8 9 5 7
+bellydancer 5 10 5 8
+politician 5 5 5 6
+politician 4 5 6 5
+admin 4 2 2 5
+admin 7 1 2 4
+admin 6 3 3 3
+```
+\normalsize
+
+* How can we best use the scores on the activities to predict a person's profession?
+
+* Or, what combination(s) of scores best separate data into profession groups?
+
+
+
+
+## Discriminant analysis xxx
+
+\small
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/profile.txt"
+active <- read_delim(my_url, " ")
+active.1 <- lda(job ~ reading + dance + tv + ski, data = active)
+active.1$svd
+```
+
+```
+## [1] 9.856638 3.434555
+```
+
+```r
+active.1$scaling
+```
+
+```
+##                 LD1        LD2
+## reading -0.01297465  0.4748081
+## dance   -0.95212396  0.4614976
+## tv      -0.47417264 -1.2446327
+## ski      0.04153684  0.2033122
+```
+\normalsize
+   
+
+* Two discriminants, first fair bit more important than second.
+
+* `LD1` depends (negatively) most on `dance`, a bit
+on `tv`. xxx
+
+* `LD2` depends mostly on `tv`.
+
+
+
+## Misclassification
+
+```r
+active.pred <- predict(active.1)
+table(obs = active$job, pred = active.pred$class)
+```
+
+```
+##              pred
+## obs           admin bellydancer politician
+##   admin           5           0          0
+##   bellydancer     0           5          0
+##   politician      0           0          5
+```
+
+   
+
+Everyone correctly classified.
+
+
+## Plotting LDs xxx
+
+\small
+
+```r
+mm <- data.frame(job = active$job, active.pred$x, person = 1:15)
+g <- ggplot(mm, aes(x = LD1, y = LD2, colour = job, 
+                    label = job)) + 
+  geom_point() + geom_text_repel() + guides(colour = F)
+g
+```
+
+![plot of chunk unnamed-chunk-300](figure/unnamed-chunk-300-1.pdf)
+\normalsize
+   
+
+
+## Biplot xxx
+
+```r
+ggbiplot(active.1, groups = active$job)
+```
+
+![plot of chunk unnamed-chunk-301](figure/unnamed-chunk-301-1.pdf)
+
+   
+
+
+## Comments on plot
+
+
+* Groups well separated: bellydancers top left, administrators
+top right, politicians lower middle.
+
+* Bellydancers most negative on `LD1`: like dancing most.
+
+* Administrators most positive on `LD1`: like dancing least.
+
+* Politicians most negative on `LD2`: like TV-watching most.
+
+
+
+## Plotting individual `persons` xxx
+Make `label` be identifier of person. Now need legend:
+
+
+```r
+ggplot(mm, aes(x = LD1, y = LD2,  colour = job, 
+               label = person)) + 
+  geom_point() + geom_text_repel()
+```
+
+![plot of chunk unnamed-chunk-302](figure/unnamed-chunk-302-1.pdf)
+
+   
+
+
+## Posterior probabilities
+
+\scriptsize
+
+```r
+pp <- round(active.pred$posterior, 3)
+data.frame(obs = active$job, pred = active.pred$class, pp)
+```
+
+```
+##            obs        pred admin bellydancer politician
+## 1  bellydancer bellydancer 0.000       1.000      0.000
+## 2  bellydancer bellydancer 0.000       1.000      0.000
+## 3  bellydancer bellydancer 0.000       1.000      0.000
+## 4  bellydancer bellydancer 0.000       1.000      0.000
+## 5  bellydancer bellydancer 0.000       0.997      0.003
+## 6   politician  politician 0.003       0.000      0.997
+## 7   politician  politician 0.000       0.000      1.000
+## 8   politician  politician 0.000       0.000      1.000
+## 9   politician  politician 0.000       0.002      0.998
+## 10  politician  politician 0.000       0.000      1.000
+## 11       admin       admin 1.000       0.000      0.000
+## 12       admin       admin 1.000       0.000      0.000
+## 13       admin       admin 1.000       0.000      0.000
+## 14       admin       admin 1.000       0.000      0.000
+## 15       admin       admin 0.982       0.000      0.018
+```
+\normalsize
+   
+Not much doubt.
+
+
+## Cross-validating the jobs-activities data
+Recall: no need for `predict`. Just pull out `class` and
+make a table:  
+
+```r
+active.cv <- lda(job ~ reading + dance + tv + ski,
+  data = active, CV = T
+)
+table(obs = active$job, pred = active.cv$class)
+```
+
+```
+##              pred
+## obs           admin bellydancer politician
+##   admin           5           0          0
+##   bellydancer     0           4          1
+##   politician      0           0          5
+```
+
+   
+
+This time one of the bellydancers was classified as a politician.
+
+
+## and look at the posterior probabilities
+picking out the ones where things are not certain:
+
+\footnotesize
+
+```r
+pp <- round(active.cv$posterior, 3)
+data.frame(obs = active$job, pred = active.cv$class, pp) %>%
+  mutate(max = pmax(admin, bellydancer, politician)) %>%
+  filter(max < 0.9995)
+```
+
+```
+##           obs       pred admin bellydancer politician   max
+## 1 bellydancer politician 0.000       0.001      0.999 0.999
+## 2  politician politician 0.006       0.000      0.994 0.994
+## 3  politician politician 0.001       0.000      0.999 0.999
+## 4  politician politician 0.000       0.009      0.991 0.991
+## 5       admin      admin 0.819       0.000      0.181 0.819
+```
+\normalsize
+
+
+* Bellydancer was "definitely" a politician!
+
+* One of the administrators might have been a politician too.
+
+
+## Why did things get misclassified?
+
+
+
+
+\begin{minipage}[t]{0.7\linewidth}
+
+\includegraphics[width=0.7\textwidth]{nesta}
+
+       
+\end{minipage}
+\begin{minipage}[t]{0.28\linewidth}
+
+
+* Go back to plot of discriminant scores:
+
+* one bellydancer much closer to the politicians,
+
+* one administrator a bit closer to the politicians.
+
+\end{minipage}
+
+## Example 4: remote-sensing data xxx from here
+
+
+* View 38 crops from air, measure 4 variables `x1-x4`.
+
+* Go back and record what each crop was.
+
+* Can we use the 4 variables to distinguish crops?
+
+
+
+## Reading in
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"
+crops <- read_table(my_url)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   crop = col_character(),
+##   x1 = col_double(),
+##   x2 = col_double(),
+##   x3 = col_double(),
+##   x4 = col_double(),
+##   cr = col_character()
+## )
+```
+
+   
+
+## Starting off: number of LDs
+
+```r
+crops.lda <- lda(crop ~ x1 + x2 + x3 + x4, data = crops)
+crops.lda$svd
+```
+
+```
+## [1] 2.2858251 1.1866352 0.6394041 0.2303634
+```
+
+ 
+
+
+
+* 4 LDs (four variables, six groups).
+
+* 1st one important, maybe 2nd as well.
+
+
+## Connecting original variables and LDs
+
+```r
+crops.lda$means
+```
+
+```
+##                  x1       x2       x3       x4
+## Clover     46.36364 32.63636 34.18182 36.63636
+## Corn       15.28571 22.71429 27.42857 33.14286
+## Cotton     34.50000 32.66667 35.00000 39.16667
+## Soybeans   21.00000 27.00000 23.50000 29.66667
+## Sugarbeets 31.00000 32.16667 20.00000 40.50000
+```
+
+```r
+round(crops.lda$scaling, 3)
+```
+
+```
+##       LD1    LD2    LD3    LD4
+## x1 -0.061  0.009 -0.030 -0.015
+## x2 -0.025  0.043  0.046  0.055
+## x3  0.016 -0.079  0.020  0.009
+## x4  0.000 -0.014  0.054 -0.026
+```
+
+   
+
+
+
+* Links groups to original variables to LDs.
+
+
+
+## `LD1 and texttt{LD2`}
+
+```r
+round(crops.lda$scaling, 3)
+```
+
+```
+##       LD1    LD2    LD3    LD4
+## x1 -0.061  0.009 -0.030 -0.015
+## x2 -0.025  0.043  0.046  0.055
+## x3  0.016 -0.079  0.020  0.009
+## x4  0.000 -0.014  0.054 -0.026
+```
+$
+
+
+* `LD1` mostly `x1` (minus), so clover low on
+`LD1`, corn high.
+
+* `LD2` `x3` (minus), `x2` (plus), so
+sugarbeets should be high on `LD2`.
+
+
+
+## Predictions
+
+
+* Thus:
+
+\footnotesize
+
+```r
+crops.pred <- predict(crops.lda)
+table(obs = crops$crop, pred = crops.pred$class)
+```
+
+```
+##             pred
+## obs          Clover Corn Cotton Soybeans Sugarbeets
+##   Clover          6    0      3        0          2
+##   Corn            0    6      0        1          0
+##   Cotton          3    0      1        2          0
+##   Soybeans        0    1      1        3          1
+##   Sugarbeets      1    1      0        2          2
+```
+\normalsize
+   
+
+* Not very good, eg. only 6 of 11 `Clover` classified correctly.
+
+* Set up for plot:
+
+```r
+mm <- data.frame(crop = crops$crop, crops.pred$x)
+```
+
+   
+
+
+## Plotting the LDs
+
+```r
+ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
+  geom_point()
+```
+
+![plot of chunk piacentini](figure/piacentini-1.pdf)
+
+   
+
+
+## Biplot
+
+```r
+ggbiplot(crops.lda, groups = crops$crop)
+```
+
+![plot of chunk unnamed-chunk-313](figure/unnamed-chunk-313-1.pdf)
+
+   
+
+
+\begin{frame}[figure]{Comments}
+
+
+* Corn high on LD1 (right).
+
+* Clover all over the place, but mostly low on LD1 (left).
+
+* Sugarbeets tend to be high on LD2.
+
+* Cotton tends to be low on LD2.
+
+* Very mixed up.
+
+
+
+## Try removing Clover
+
+
+* the `dplyr` way:
+
+```r
+crops %>% filter(crop != "Clover") -> crops2
+crops2.lda <- lda(crop ~ x1 + x2 + x3 + x4, data = crops2)
+```
+
+   
+
+
+* LDs for `crops2` will be different from before.
+
+* Concentrate on plot and posterior probs.
+
+
+```r
+crops2.pred <- predict(crops2.lda)
+mm <- data.frame(crop = crops2$crop, crops2.pred$x)
+```
+
+   
+
+
+## `lda output`
+Different from before:
+
+\footnotesize
+
+```r
+crops2.lda$means
+```
+
+```
+##                  x1       x2       x3       x4
+## Corn       15.28571 22.71429 27.42857 33.14286
+## Cotton     34.50000 32.66667 35.00000 39.16667
+## Soybeans   21.00000 27.00000 23.50000 29.66667
+## Sugarbeets 31.00000 32.16667 20.00000 40.50000
+```
+
+```r
+crops2.lda$svd
+```
+
+```
+## [1] 3.3639389 1.6054750 0.4180292
+```
+
+```r
+crops2.lda$scaling
+```
+
+```
+##            LD1          LD2           LD3
+## x1  0.14077479  0.007780184 -0.0312610362
+## x2  0.03006972  0.007318386  0.0085401510
+## x3 -0.06363974 -0.099520895 -0.0005309869
+## x4 -0.00677414 -0.035612707  0.0577718649
+```
+\normalsize
+
+
+## Plot
+
+A bit more clustered:
+
+```r
+ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
+  geom_point()
+```
+
+![plot of chunk nedved](figure/nedved-1.pdf)
+
+   
+
+
+
+## Biplot
+
+```r
+ggbiplot(crops2.lda, groups = crops2$crop)
+```
+
+![plot of chunk unnamed-chunk-317](figure/unnamed-chunk-317-1.pdf)
+
+   
+
+
+## Quality of classification
+
+\small
+
+```r
+table(obs = crops2$crop, pred = crops2.pred$class)
+```
+
+```
+##             pred
+## obs          Corn Cotton Soybeans Sugarbeets
+##   Corn          6      0        1          0
+##   Cotton        0      4        2          0
+##   Soybeans      2      0        3          1
+##   Sugarbeets    0      0        3          3
+```
+\normalsize
+   
+
+Better.
+
+
+## Posterior probs, the wrong ones
+
+*\1* xxx 
+{\footnotesize  
+
+```r
+post <- round(crops2.pred$posterior, 3)
+data.frame(obs = crops2$crop, pred = crops2.pred$class, post) %>%
+  filter(obs != pred)
+```
+
+```
+##          obs       pred  Corn Cotton Soybeans Sugarbeets
+## 1       Corn   Soybeans 0.443  0.034    0.494      0.029
+## 2   Soybeans Sugarbeets 0.010  0.107    0.299      0.584
+## 3   Soybeans       Corn 0.684  0.009    0.296      0.011
+## 4   Soybeans       Corn 0.467  0.199    0.287      0.047
+## 5     Cotton   Soybeans 0.056  0.241    0.379      0.324
+## 6     Cotton   Soybeans 0.066  0.138    0.489      0.306
+## 7 Sugarbeets   Soybeans 0.381  0.146    0.395      0.078
+## 8 Sugarbeets   Soybeans 0.106  0.144    0.518      0.232
+## 9 Sugarbeets   Soybeans 0.088  0.207    0.489      0.216
+```
+
+   
+}
+
+
+
+* These were the misclassified ones, but the posterior probability
+of being correct was not usually too low.
+
+* The correctly-classified ones are not very clear-cut either.
+
+
+
+
+## MANOVA
+Began discriminant analysis as a followup to MANOVA. Do our variables
+significantly separate the crops (excluding Clover)?
+
+
+```r
+response <- with(crops2, cbind(x1, x2, x3, x4))
+crops2.manova <- manova(response ~ crop, data = crops2)
+summary(crops2.manova)
+```
+
+```
+##           Df Pillai approx F num Df den Df  Pr(>F)  
+## crop       3 0.9113   2.1815     12     60 0.02416 *
+## Residuals 21                                        
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+ 
+
+Yes, at least one of the crops differs (in means) from the others. So
+it is worth doing this analysis.
+
+We did this the wrong way around, though!
+
+
+## The right way around
+
+
+* *First*, do a MANOVA to see whether any of the groups
+differ significantly on any of the variables.
+
+* *If the MANOVA is significant*, do a discriminant
+analysis in the hopes of understanding how the groups are different.
+
+* For remote-sensing data (without Clover):
+
+
+* LD1 a fair bit more important than LD2 (definitely ignore LD3).
+
+* LD1 depends mostly on `x1`, on which Cotton was high
+and Corn was low. 
+
+
+* Discriminant analysis in MANOVA plays the same kind of role
+that Tukey does in ANOVA.
+
+
+```
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+```
+
+   
+
+
+
+
+ 
 
  

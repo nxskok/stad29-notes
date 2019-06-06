@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2019.4.30)  5 JUN 2019 16:47
+This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2019.4.30)  5 JUN 2019 22:54
  restricted system commands enabled.
 **slides_d29
 (./slides_d29.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.277 seconds
+luaotfload | main : initialization completed in 0.130 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2018/02/20 v3.50 A class for typesetting presentations
@@ -2127,7 +2127,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/suggo-1.pdf, id=211, 505.89pt x 274.02374pt>
+<figure/suggo-1.pdf, id=215, 505.89pt x 274.02374pt>
 File: figure/suggo-1.pdf Graphic file (type pdf)
 <use figure/suggo-1.pdf>
 Package luatex.def Info: figure/suggo-1.pdf  used on input line 12.
@@ -2169,7 +2169,7 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 13--13
 
  []
 
-<figure/icko-1.pdf, id=246, 505.89pt x 216.81pt>
+<figure/icko-1.pdf, id=250, 505.89pt x 216.81pt>
 File: figure/icko-1.pdf Graphic file (type pdf)
 <use figure/icko-1.pdf>
 Package luatex.def Info: figure/icko-1.pdf  used on input line 17.
@@ -2316,7 +2316,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-17-1.pdf, id=359, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-17-1.pdf, id=363, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-17-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-17-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-17-1.pdf  used on input line 16.
@@ -2342,7 +2342,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/akjhkadjfhjahnkkk-1.pdf, id=390, 505.89pt x 244.915pt>
+<figure/akjhkadjfhjahnkkk-1.pdf, id=394, 505.89pt x 244.915pt>
 File: figure/akjhkadjfhjahnkkk-1.pdf Graphic file (type pdf)
 <use figure/akjhkadjfhjahnkkk-1.pdf>
 Package luatex.def Info: figure/akjhkadjfhjahnkkk-1.pdf  used on input line 14.
@@ -2370,7 +2370,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-18-1.pdf, id=416, 505.89pt x 274.02374pt>
+<figure/unnamed-chunk-18-1.pdf, id=420, 505.89pt x 274.02374pt>
 File: figure/unnamed-chunk-18-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-18-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-18-1.pdf  used on input line 12.
@@ -2398,7 +2398,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/altoadige-1.pdf, id=442, 505.89pt x 274.02374pt>
+<figure/altoadige-1.pdf, id=446, 505.89pt x 274.02374pt>
 File: figure/altoadige-1.pdf Graphic file (type pdf)
 <use figure/altoadige-1.pdf>
 Package luatex.def Info: figure/altoadige-1.pdf  used on input line 12.
@@ -2444,7 +2444,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-23-1.pdf, id=486, 505.89pt x 244.915pt>
+<figure/unnamed-chunk-23-1.pdf, id=490, 505.89pt x 244.915pt>
 File: figure/unnamed-chunk-23-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-23-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-23-1.pdf  used on input line 14.
@@ -2503,7 +2503,7 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 13--13
 
  []
 
-<figure/dsljhsdjlhf-1.pdf, id=533, 505.89pt x 230.8625pt>
+<figure/dsljhsdjlhf-1.pdf, id=537, 505.89pt x 230.8625pt>
 File: figure/dsljhsdjlhf-1.pdf Graphic file (type pdf)
 <use figure/dsljhsdjlhf-1.pdf>
 Package luatex.def Info: figure/dsljhsdjlhf-1.pdf  used on input line 17.
@@ -2529,7 +2529,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [46
 
 ]
-<figure/trento-1.pdf, id=562, 505.89pt x 289.08pt>
+<figure/trento-1.pdf, id=566, 505.89pt x 289.08pt>
 File: figure/trento-1.pdf Graphic file (type pdf)
 <use figure/trento-1.pdf>
 Package luatex.def Info: figure/trento-1.pdf  used on input line 1219.
@@ -2555,7 +2555,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-26-1.pdf, id=588, 505.89pt x 230.8625pt>
+<figure/unnamed-chunk-26-1.pdf, id=592, 505.89pt x 230.8625pt>
 File: figure/unnamed-chunk-26-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-26-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-26-1.pdf  used on input line 19.
@@ -2673,7 +2673,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/iffy8-1.pdf, id=702, 505.89pt x 252.945pt>
+<figure/iffy8-1.pdf, id=706, 505.89pt x 252.945pt>
 File: figure/iffy8-1.pdf Graphic file (type pdf)
 <use figure/iffy8-1.pdf>
 Package luatex.def Info: figure/iffy8-1.pdf  used on input line 12.
@@ -2699,7 +2699,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-34-1.pdf, id=729, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-34-1.pdf, id=733, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-34-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-34-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-34-1.pdf  used on input line 12.
@@ -2725,7 +2725,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [63
 
 ]
-<figure/unnamed-chunk-36-1.pdf, id=756, 505.89pt x 310.15875pt>
+<figure/unnamed-chunk-36-1.pdf, id=760, 505.89pt x 310.15875pt>
 File: figure/unnamed-chunk-36-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-36-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-36-1.pdf  used on input line 1621.
@@ -2761,7 +2761,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [66
 
 ]
-<figure/unnamed-chunk-38-1.pdf, id=794, 505.89pt x 325.215pt>
+<figure/unnamed-chunk-38-1.pdf, id=798, 505.89pt x 325.215pt>
 File: figure/unnamed-chunk-38-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-38-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-38-1.pdf  used on input line 1687.
@@ -2790,7 +2790,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-40-1.pdf, id=820, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-40-1.pdf, id=824, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-40-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-40-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-40-1.pdf  used on input line 15.
@@ -2843,7 +2843,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-43-1.pdf, id=875, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-43-1.pdf, id=879, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-43-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-43-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-43-1.pdf  used on input line 13.
@@ -2862,7 +2862,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./figure/unnamed-chunk-43-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-44-1.pdf, id=892, 505.89pt x 274.02374pt>
+<figure/unnamed-chunk-44-1.pdf, id=896, 505.89pt x 274.02374pt>
 File: figure/unnamed-chunk-44-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-44-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-44-1.pdf  used on input line 12.
@@ -2881,7 +2881,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./figure/unnamed-chunk-44-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-45-1.pdf, id=909, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-45-1.pdf, id=913, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-45-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-45-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-45-1.pdf  used on input line 13.
@@ -3029,7 +3029,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/basingstoke-1.pdf, id=1057, 505.89pt x 252.945pt>
+<figure/basingstoke-1.pdf, id=1061, 505.89pt x 252.945pt>
 File: figure/basingstoke-1.pdf Graphic file (type pdf)
 <use figure/basingstoke-1.pdf>
 Package luatex.def Info: figure/basingstoke-1.pdf  used on input line 13.
@@ -3311,7 +3311,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/virtusentella-1.pdf, id=1341, 505.89pt x 244.915pt>
+<figure/virtusentella-1.pdf, id=1345, 505.89pt x 244.915pt>
 File: figure/virtusentella-1.pdf Graphic file (type pdf)
 <use figure/virtusentella-1.pdf>
 Package luatex.def Info: figure/virtusentella-1.pdf  used on input line 13.
@@ -3453,7 +3453,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-85-1.pdf, id=1496, 505.89pt x 252.945pt>
+<figure/unnamed-chunk-85-1.pdf, id=1500, 505.89pt x 252.945pt>
 File: figure/unnamed-chunk-85-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-85-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-85-1.pdf  used on input line 14.
@@ -3495,7 +3495,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-90-1.pdf, id=1540, 505.89pt x 234.8775pt>
+<figure/unnamed-chunk-90-1.pdf, id=1544, 505.89pt x 234.8775pt>
 File: figure/unnamed-chunk-90-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-90-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-90-1.pdf  used on input line 14.
@@ -3590,7 +3590,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-101-1.pdf, id=1631, 505.89pt x 274.02374pt>
+<figure/unnamed-chunk-101-1.pdf, id=1635, 505.89pt x 274.02374pt>
 File: figure/unnamed-chunk-101-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-101-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-101-1.pdf  used on input line 12.
@@ -3732,7 +3732,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-116-1.pdf, id=1768, 505.89pt x 201.75375pt>
+<figure/unnamed-chunk-116-1.pdf, id=1772, 505.89pt x 201.75375pt>
 File: figure/unnamed-chunk-116-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-116-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-116-1.pdf  used on input line 16.
@@ -3794,10 +3794,6 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (12.38113pt too high) detected at line 4511
- []
-
-
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -3834,13 +3830,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-123-1.pdf, id=1868, 505.89pt x 266.9975pt>
+<figure/unnamed-chunk-123-1.pdf, id=1872, 505.89pt x 266.9975pt>
 File: figure/unnamed-chunk-123-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-123-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-123-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 180.65959pt.
 )
-Overfull \vbox (26.85619pt too high) detected at line 4618
+Overfull \vbox (26.85619pt too high) detected at line 4625
  []
 
 
@@ -3853,6 +3849,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./figure/unnamed-chunk-123-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
+Overfull \vbox (8.82516pt too high) detected at line 4665
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -3862,13 +3862,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-125-1.pdf, id=1894, 505.89pt x 266.9975pt>
+<figure/unnamed-chunk-125-1.pdf, id=1898, 505.89pt x 266.9975pt>
 File: figure/unnamed-chunk-125-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-125-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-125-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 180.65959pt.
 )
-Overfull \vbox (26.85619pt too high) detected at line 4671
+Overfull \vbox (26.85619pt too high) detected at line 4682
  []
 
 
@@ -3997,13 +3997,13 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 14--14
 
  []
 
-<figure/unnamed-chunk-134-1.pdf, id=2031, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-134-1.pdf, id=2035, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-134-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-134-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-134-1.pdf  used on input line 18.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (36.39133pt too high) detected at line 5051
+Overfull \vbox (36.39133pt too high) detected at line 5049
  []
 
 
@@ -4034,7 +4034,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.19504pt too high) detected at line 5167
+Overfull \vbox (4.19504pt too high) detected at line 5165
  []
 
 
@@ -4047,13 +4047,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/survival-plot-1.pdf, id=2079, 505.89pt x 274.02374pt>
+<figure/survival-plot-1.pdf, id=2083, 505.89pt x 274.02374pt>
 File: figure/survival-plot-1.pdf Graphic file (type pdf)
 <use figure/survival-plot-1.pdf>
 Package luatex.def Info: figure/survival-plot-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 185.4138pt.
 )
-Overfull \vbox (31.6104pt too high) detected at line 5184
+Overfull \vbox (31.6104pt too high) detected at line 5182
  []
 
 
@@ -4080,10 +4080,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [196
 
 ]
-<lung-cancer-data.png, id=2113, 526.96875pt x 280.04625pt>
+<lung-cancer-data.png, id=2117, 526.96875pt x 280.04625pt>
 File: lung-cancer-data.png Graphic file (type png)
 <use lung-cancer-data.png>
-Package luatex.def Info: lung-cancer-data.png  used on input line 5236.
+Package luatex.def Info: lung-cancer-data.png  used on input line 5234.
 (luatex.def)             Requested size: 342.30852pt x 181.91252pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -4135,8 +4135,8 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
 Overfull \hbox (82.95518pt too wide) in paragraph at lines 15--15
-[]\TU/lmtt/m/n/9 ##  [1] "inst"      "time"      "status"    "age"       "sex" 
-      "ph.ecog"   "ph.karno"[] 
+[]\remove@tlig ##  [1] "inst"      "time"      "status"    "age"       "sex"   
+    "ph.ecog"   "ph.karno"[] 
  []
 
 )
@@ -4240,13 +4240,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-155-1.pdf, id=2255, 505.89pt x 274.02374pt>
+<figure/unnamed-chunk-155-1.pdf, id=2259, 505.89pt x 274.02374pt>
 File: figure/unnamed-chunk-155-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-155-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-155-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 185.4138pt.
 )
-Overfull \vbox (34.3041pt too high) detected at line 5704
+Overfull \vbox (34.3041pt too high) detected at line 5702
  []
 
 
@@ -4282,13 +4282,13 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 14--14
 
  []
 
-<figure/unnamed-chunk-157-1.pdf, id=2289, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-157-1.pdf, id=2293, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-157-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-157-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-157-1.pdf  used on input line 18.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (36.45703pt too high) detected at line 5780
+Overfull \vbox (36.45703pt too high) detected at line 5778
  []
 
 
@@ -4319,13 +4319,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-160-1.pdf, id=2327, 505.89pt x 244.915pt>
+<figure/unnamed-chunk-160-1.pdf, id=2331, 505.89pt x 244.915pt>
 File: figure/unnamed-chunk-160-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-160-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-160-1.pdf  used on input line 14.
 (luatex.def)             Requested size: 342.3024pt x 165.71782pt.
 )
-Overfull \vbox (35.06287pt too high) detected at line 5862
+Overfull \vbox (35.06287pt too high) detected at line 5860
  []
 
 
@@ -4347,13 +4347,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-162-1.pdf, id=2356, 505.89pt x 230.8625pt>
+<figure/unnamed-chunk-162-1.pdf, id=2360, 505.89pt x 230.8625pt>
 File: figure/unnamed-chunk-162-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-162-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-162-1.pdf  used on input line 14.
 (luatex.def)             Requested size: 342.3024pt x 156.20943pt.
 )
-Overfull \vbox (25.55447pt too high) detected at line 5909
+Overfull \vbox (25.55447pt too high) detected at line 5907
  []
 
 
@@ -4371,7 +4371,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [221
 
 ]
-Overfull \vbox (1.64488pt too high) detected at line 5948
+Overfull \vbox (1.64488pt too high) detected at line 5946
  []
 
 
@@ -4418,13 +4418,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/tartuffo-1.pdf, id=2432, 505.89pt x 252.945pt>
+<figure/tartuffo-1.pdf, id=2436, 505.89pt x 252.945pt>
 File: figure/tartuffo-1.pdf Graphic file (type pdf)
 <use figure/tartuffo-1.pdf>
 Package luatex.def Info: figure/tartuffo-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 171.1512pt.
 )
-Overfull \vbox (20.09624pt too high) detected at line 6068
+Overfull \vbox (20.09624pt too high) detected at line 6066
  []
 
 
@@ -4486,7 +4486,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (0.83397pt too high) detected at line 6260
+Overfull \vbox (0.83397pt too high) detected at line 6258
  []
 
 
@@ -4545,7 +4545,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (87.98305pt too high) detected at line 6500
+Overfull \vbox (87.98305pt too high) detected at line 6498
  []
 
 
@@ -4567,13 +4567,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-172-1.pdf, id=2578, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-172-1.pdf, id=2582, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-172-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-172-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-172-1.pdf  used on input line 15.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (36.39133pt too high) detected at line 6548
+Overfull \vbox (36.39133pt too high) detected at line 6546
  []
 
 
@@ -4586,7 +4586,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./figure/unnamed-chunk-172-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (2.9806pt too high) detected at line 6592
+Overfull \vbox (48.78362pt too high) detected at line 6601
  []
 
 
@@ -4623,13 +4623,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-176-1.pdf, id=2623, 505.89pt x 266.9975pt>
+<figure/unnamed-chunk-176-1.pdf, id=2627, 505.89pt x 266.9975pt>
 File: figure/unnamed-chunk-176-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-176-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-176-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 180.65959pt.
 )
-Overfull \vbox (47.4519pt too high) detected at line 6671
+Overfull \vbox (47.4519pt too high) detected at line 6685
  []
 
 
@@ -4651,7 +4651,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (2.02747pt too high) detected at line 6736
+Overfull \vbox (2.02747pt too high) detected at line 6750
  []
 
 
@@ -4682,13 +4682,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-181-1.pdf, id=2676, 505.89pt x 194.7275pt>
+<figure/unnamed-chunk-181-1.pdf, id=2679, 505.89pt x 194.7275pt>
 File: figure/unnamed-chunk-181-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-181-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-181-1.pdf  used on input line 20.
 (luatex.def)             Requested size: 342.3024pt x 131.75925pt.
 )
-Overfull \vbox (32.35587pt too high) detected at line 6809
+Overfull \vbox (32.35587pt too high) detected at line 6823
  []
 
 
@@ -4728,13 +4728,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-185-1.pdf, id=2721, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-185-1.pdf, id=2724, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-185-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-185-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-185-1.pdf  used on input line 15.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (26.89763pt too high) detected at line 6925
+Overfull \vbox (26.89763pt too high) detected at line 6939
  []
 
 
@@ -4746,24 +4746,14 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 <./figure/unnamed-chunk-185-1.pdf>]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-186-1.pdf, id=2738, 505.89pt x 158.5925pt>
-File: figure/unnamed-chunk-186-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-186-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-186-1.pdf  used on input line 22.
-(luatex.def)             Requested size: 342.3024pt x 107.30907pt.
-)
-Overfull \vbox (32.9932pt too high) detected at line 6954
- []
-
-
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [256
 
-<./figure/unnamed-chunk-186-1.pdf>]
+]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -4854,7 +4844,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (33.44316pt too high) detected at line 7331
+Overfull \vbox (33.44316pt too high) detected at line 7351
  []
 
 
@@ -4979,7 +4969,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 7641.
+(amsmath)                 on input line 7661.
 
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5054,7 +5044,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (8.59312pt too high) detected at line 7919
+Overfull \vbox (8.59312pt too high) detected at line 7939
  []
 
 
@@ -5128,13 +5118,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/ancova-plot-1.pdf, id=3125, 505.89pt x 252.945pt>
+<figure/ancova-plot-1.pdf, id=3120, 505.89pt x 252.945pt>
 File: figure/ancova-plot-1.pdf Graphic file (type pdf)
 <use figure/ancova-plot-1.pdf>
 Package luatex.def Info: figure/ancova-plot-1.pdf  used on input line 13.
 (luatex.def)             Requested size: 342.3024pt x 171.1512pt.
 )
-Overfull \vbox (33.6415pt too high) detected at line 8111
+Overfull \vbox (33.6415pt too high) detected at line 8131
  []
 
 
@@ -5154,7 +5144,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (2.38881pt too high) detected at line 8159
+Overfull \vbox (29.58882pt too high) detected at line 8181
  []
 
 
@@ -5201,13 +5191,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [303
 
 ]
-<figure/nachwazzo-1.pdf, id=3198, 505.89pt x 252.945pt>
+<figure/nachwazzo-1.pdf, id=3193, 505.89pt x 252.945pt>
 File: figure/nachwazzo-1.pdf Graphic file (type pdf)
 <use figure/nachwazzo-1.pdf>
-Package luatex.def Info: figure/nachwazzo-1.pdf  used on input line 8302.
+Package luatex.def Info: figure/nachwazzo-1.pdf  used on input line 8324.
 (luatex.def)             Requested size: 342.3024pt x 171.1512pt.
 
-Overfull \vbox (37.20035pt too high) detected at line 8302
+Overfull \vbox (37.20035pt too high) detected at line 8324
  []
 
 
@@ -5247,13 +5237,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/cabazzo-1.pdf, id=3242, 505.89pt x 216.81pt>
+<figure/cabazzo-1.pdf, id=3237, 505.89pt x 216.81pt>
 File: figure/cabazzo-1.pdf Graphic file (type pdf)
 <use figure/cabazzo-1.pdf>
 Package luatex.def Info: figure/cabazzo-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (26.96193pt too high) detected at line 8406
+Overfull \vbox (26.96193pt too high) detected at line 8428
  []
 
 
@@ -5266,7 +5256,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./figure/cabazzo-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (43.99315pt too high) detected at line 8452
+Overfull \vbox (43.99315pt too high) detected at line 8474
  []
 
 
@@ -5336,13 +5326,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/ferto-1.pdf, id=3333, 505.89pt x 216.81pt>
+<figure/ferto-1.pdf, id=3328, 505.89pt x 216.81pt>
 File: figure/ferto-1.pdf Graphic file (type pdf)
 <use figure/ferto-1.pdf>
 Package luatex.def Info: figure/ferto-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (16.24178pt too high) detected at line 8626
+Overfull \vbox (16.24178pt too high) detected at line 8648
  []
 
 
@@ -5355,13 +5345,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./figure/ferto-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/casteldisangro-1.pdf, id=3349, 505.89pt x 216.81pt>
+<figure/casteldisangro-1.pdf, id=3344, 505.89pt x 216.81pt>
 File: figure/casteldisangro-1.pdf Graphic file (type pdf)
 <use figure/casteldisangro-1.pdf>
 Package luatex.def Info: figure/casteldisangro-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 146.70102pt.
 )
-Overfull \vbox (16.25273pt too high) detected at line 8645
+Overfull \vbox (16.25273pt too high) detected at line 8667
  []
 
 
@@ -5383,7 +5373,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (3.58232pt too high) detected at line 8722
+Overfull \vbox (3.58232pt too high) detected at line 8744
  []
 
 
@@ -5394,13 +5384,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [320
 
 ]
-<figure/charlecombe-1.pdf, id=3383, 505.89pt x 289.08pt>
+<figure/charlecombe-1.pdf, id=3378, 505.89pt x 289.08pt>
 File: figure/charlecombe-1.pdf Graphic file (type pdf)
 <use figure/charlecombe-1.pdf>
-Package luatex.def Info: figure/charlecombe-1.pdf  used on input line 8733.
+Package luatex.def Info: figure/charlecombe-1.pdf  used on input line 8755.
 (luatex.def)             Requested size: 342.3024pt x 195.60136pt.
 
-Overfull \vbox (20.8505pt too high) detected at line 8733
+Overfull \vbox (20.8505pt too high) detected at line 8755
  []
 
 
@@ -5555,7 +5545,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.38614pt too high) detected at line 9164
+Overfull \vbox (10.38614pt too high) detected at line 9186
  []
 
 
@@ -5593,7 +5583,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (23.80614pt too high) detected at line 9289
+Overfull \vbox (23.80614pt too high) detected at line 9311
  []
 
 
@@ -5624,7 +5614,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-250-1.pdf, id=3612, 505.89pt x 216.81pt>
+<figure/unnamed-chunk-250-1.pdf, id=3607, 505.89pt x 216.81pt>
 File: figure/unnamed-chunk-250-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-250-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-250-1.pdf  used on input line 15.
@@ -5675,13 +5665,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/hoverla-1.pdf, id=3666, 505.89pt x 266.9975pt>
+<figure/hoverla-1.pdf, id=3661, 505.89pt x 266.9975pt>
 File: figure/hoverla-1.pdf Graphic file (type pdf)
 <use figure/hoverla-1.pdf>
 Package luatex.def Info: figure/hoverla-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 180.65959pt.
 )
-Overfull \vbox (26.85619pt too high) detected at line 9481
+Overfull \vbox (26.85619pt too high) detected at line 9503
  []
 
 
@@ -5755,7 +5745,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.62262pt too high) detected at line 9766
+Overfull \vbox (4.62262pt too high) detected at line 9788
  []
 
 
@@ -5768,13 +5758,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-262-1.pdf, id=3756, 505.89pt x 266.9975pt>
+<figure/unnamed-chunk-262-1.pdf, id=3751, 505.89pt x 266.9975pt>
 File: figure/unnamed-chunk-262-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-262-1.pdf>
 Package luatex.def Info: figure/unnamed-chunk-262-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 180.65959pt.
 )
-Overfull \vbox (26.85619pt too high) detected at line 9783
+Overfull \vbox (26.85619pt too high) detected at line 9805
  []
 
 
@@ -5814,6 +5804,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
+Overfull \vbox (50.60204pt too high) detected at line 9954
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -5823,10 +5817,6 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (3.42992pt too high) detected at line 9967
- []
-
-
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -5836,28 +5826,744 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-268-1.pdf, id=3820, 505.89pt x 194.7275pt>
-File: figure/unnamed-chunk-268-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-268-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-268-1.pdf  used on input line 20.
-(luatex.def)             Requested size: 342.3024pt x 131.75925pt.
-)
-Overfull \vbox (28.31526pt too high) detected at line 9992
+Overfull \hbox (249.82576pt too wide) in paragraph at lines 20--20
+[]\remove@tlig ## Error in ggplot(summ, aes(x = time, y = mean, colour = diet, 
+group = diet)): object 'summ' not found[] 
  []
 
-
+)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [365
 
-<./figure/unnamed-chunk-268-1.pdf>]
+]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [366
+
+]
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[367
+
+]
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[368
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[369
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[370
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<berzani.pdf, id=3869, 504.88625pt x 360.34625pt>
+File: berzani.pdf Graphic file (type pdf)
+<use berzani.pdf>
+Package luatex.def Info: berzani.pdf  used on input line 21.
+(luatex.def)             Requested size: 123.22441pt x 87.94745pt.
+)
+Overfull \vbox (52.01207pt too high) detected at line 10136
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[371
+
+<./berzani.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[372
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[373
+
+]
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[374
+
+]
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[375
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[376
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-276-1.pdf, id=3933, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-276-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-276-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-276-1.pdf  used on input line 14.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+)
+Overfull \vbox (40.49625pt too high) detected at line 10300
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[377
+
+<./figure/unnamed-chunk-276-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (33.76888pt too high) detected at line 10361
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[378
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[379
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[380
+
+]
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[381
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[382
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[383
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 32.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmsan
+s9-oblique.luc))
+Overfull \vbox (9.88313pt too high) detected at line 10556
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[384
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[385
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[386
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[387
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (0.40688pt too high) detected at line 10674
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[388
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[389
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[390
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[391
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[392
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[393
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[394
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-292-1.pdf, id=4106, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-292-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-292-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-292-1.pdf  used on input line 15.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+)
+Overfull \vbox (60.90721pt too high) detected at line 10914
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[395
+
+<./figure/unnamed-chunk-292-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-293-1.pdf, id=4124, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-293-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-293-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-293-1.pdf  used on input line 14.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+)
+Overfull \vbox (45.69756pt too high) detected at line 10933
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[396
+
+<./figure/unnamed-chunk-293-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[397
+
+]
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[398
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (9.79005pt too high) detected at line 11028
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[399
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/graziani-1.pdf, id=4168, 505.89pt x 266.9975pt>
+File: figure/graziani-1.pdf Graphic file (type pdf)
+<use figure/graziani-1.pdf>
+Package luatex.def Info: figure/graziani-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 180.65959pt.
+)
+Overfull \vbox (26.85619pt too high) detected at line 11045
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[400
+
+<./figure/graziani-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[401
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[402
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (28.8449pt too high) detected at line 11141
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[403
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (0.1939pt too high) detected at line 11187
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[404
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[405
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-300-1.pdf, id=4232, 505.89pt x 216.81pt>
+File: figure/unnamed-chunk-300-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-300-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-300-1.pdf  used on input line 16.
+(luatex.def)             Requested size: 342.3024pt x 146.70102pt.
+)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[406
+
+<./figure/unnamed-chunk-300-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-301-1.pdf, id=4249, 505.89pt x 310.15875pt>
+File: figure/unnamed-chunk-301-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-301-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-301-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 209.86397pt.
+)
+Overfull \vbox (58.81996pt too high) detected at line 11245
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[407
+
+<./figure/unnamed-chunk-301-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[408
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-302-1.pdf, id=4275, 505.89pt x 201.75375pt>
+File: figure/unnamed-chunk-302-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-302-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-302-1.pdf  used on input line 16.
+(luatex.def)             Requested size: 342.3024pt x 136.51346pt.
+)
+Overfull \vbox (33.00377pt too high) detected at line 11283
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[409
+
+<./figure/unnamed-chunk-302-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[410
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[411
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[412
+
+]
+<nesta.pdf, id=4320, 504.88625pt x 360.34625pt>
+File: nesta.pdf Graphic file (type pdf)
+<use nesta.pdf>
+Package luatex.def Info: nesta.pdf  used on input line 11405.
+(luatex.def)             Requested size: 167.72234pt x 119.70639pt.
+
+Underfull \hbox (badness 8038) in paragraph at lines 11405--11405
+[]\TU/lmss/m/n/10.95 * one bel-ly-dancer
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[413
+
+<./nesta.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[414
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[415
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[416
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (7.36006pt too high) detected at line 11506
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[417
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[418
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[419
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/piacentini-1.pdf, id=4392, 505.89pt x 223.83624pt>
+File: figure/piacentini-1.pdf Graphic file (type pdf)
+<use figure/piacentini-1.pdf>
+Package luatex.def Info: figure/piacentini-1.pdf  used on input line 13.
+(luatex.def)             Requested size: 342.3024pt x 151.45522pt.
+)
+Overfull \vbox (13.94551pt too high) detected at line 11599
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[420
+
+<./figure/piacentini-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-313-1.pdf, id=4409, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-313-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-313-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-313-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+)
+Overfull \vbox (142.692pt too high) detected at line 11631
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[421
+
+<./figure/unnamed-chunk-313-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[422
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[423
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/nedved-1.pdf, id=4445, 505.89pt x 223.83624pt>
+File: figure/nedved-1.pdf Graphic file (type pdf)
+<use figure/nedved-1.pdf>
+Package luatex.def Info: figure/nedved-1.pdf  used on input line 15.
+(luatex.def)             Requested size: 342.3024pt x 151.45522pt.
+)
+Overfull \vbox (34.34552pt too high) detected at line 11732
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[424
+
+<./figure/nedved-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/unnamed-chunk-317-1.pdf, id=4462, 505.89pt x 259.97125pt>
+File: figure/unnamed-chunk-317-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-317-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-317-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 175.9054pt.
+)
+Overfull \vbox (24.86139pt too high) detected at line 11749
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[425
+
+<./figure/unnamed-chunk-317-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[426
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (15.47813pt too high) detected at line 11813
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[427
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (4.07512pt too high) detected at line 11843
+ []
+
+
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[428
+
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \hbox (15.73341pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[429
 
 ]
 \tf@nav=\write7
@@ -5869,45 +6575,46 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 \tf@snm=\write9
 
 \openout9 = slides_d29.snm
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 10009.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 10009.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 11873.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 11873.
  (./slides_d29.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 10009.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 10009.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 11873.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 11873.
 
 Package rerunfilecheck Info: File `slides_d29.out' has not changed.
-(rerunfilecheck)             Checksum: 954FE8F9CAA82D8B50447A688C226D60;1432.
+(rerunfilecheck)             Checksum: D3D8B5426BC0B7FB8A34D2CBD2DC82E1;1583.
 )
 
 Here is how much of LuaTeX's memory you used:
- 42815 strings out of 494480
+ 43811 strings out of 494480
  100000,1373583 words of node,token memory allocated
- 3835 words of node memory still in use:
-   44 hlist, 11 vlist, 11 rule, 17 disc, 7 local_par, 103 glue, 13 kern, 24 pena
-lty, 2 margin_kern, 216 glyph, 77 attribute, 69 glue_spec, 77 attribute_list, 1 
-shape, 4 write, 1 pdf_dest, 30 pdf_colorstack nodes
-   avail lists: 1:2,2:563,3:1933,4:228,5:401,6:2120,7:2056,8:54,9:284,10:18,11:2
-08
- 41269 multiletter control sequences out of 65536+600000
- 104 fonts using 28683463 bytes
- 61i,15n,117p,941b,772s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/share/texmf/fonts/opentype/public/lm/lmsans9-regular.otf></usr/share/texmf
-/fonts/opentype/public/lm/lmsans12-oblique.otf></usr/share/texmf/fonts/opentype/
-public/lm/lmmono12-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono
-9-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf><
-/usr/share/texmf/fonts/opentype/public/lm/lmmono8-regular.otf></usr/share/texmf/
-fonts/opentype/public/lm/lmmono10-italic.otf></usr/share/texmf/fonts/opentype/pu
-blic/lm/lmmonolt10-bold.otf></usr/share/texmf/fonts/opentype/public/lm-math/lati
-nmodern-math.otf></usr/share/texmf/fonts/opentype/public/lm-math/latinmodern-mat
-h.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans10-oblique.otf></usr/shar
-e/texmf/fonts/opentype/public/lm/lmsans10-bold.otf></usr/share/texmf/fonts/opent
-ype/public/lm/lmmono10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lm
-sans8-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans10-regular.ot
-f></usr/share/texmf/fonts/opentype/public/lm/lmsans12-regular.otf>
-Output written on slides_d29.pdf (366 pages, 832750 bytes).
+ 7330 words of node memory still in use:
+   70 hlist, 11 vlist, 15 rule, 32 disc, 12 local_par, 212 glue, 39 kern, 49 pen
+alty, 8 margin_kern, 511 glyph, 127 attribute, 69 glue_spec, 127 attribute_list,
+ 1 shape, 4 write, 1 pdf_dest, 48 pdf_colorstack nodes
+   avail lists: 1:2,2:555,3:1908,4:226,5:417,6:1820,7:1947,8:50,9:258,10:18,11:1
+93
+ 41446 multiletter control sequences out of 65536+600000
+ 105 fonts using 28845407 bytes
+ 61i,15n,117p,941b,901s stack positions out of 5000i,500n,10000p,200000b,100000s
+</usr/share/texmf/fonts/opentype/public/lm/lmsans9-oblique.otf></usr/share/texmf
+/fonts/opentype/public/lm/lmsans9-regular.otf></usr/share/texmf/fonts/opentype/p
+ublic/lm/lmsans12-oblique.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono1
+2-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono9-regular.otf></u
+sr/share/texmf/fonts/opentype/public/lm/lmroman10-regular.otf></usr/share/texmf/
+fonts/opentype/public/lm/lmmono8-regular.otf></usr/share/texmf/fonts/opentype/pu
+blic/lm/lmmono10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmmonolt1
+0-bold.otf></usr/share/texmf/fonts/opentype/public/lm-math/latinmodern-math.otf>
+</usr/share/texmf/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/share
+/texmf/fonts/opentype/public/lm/lmsans10-oblique.otf></usr/share/texmf/fonts/ope
+ntype/public/lm/lmsans10-bold.otf></usr/share/texmf/fonts/opentype/public/lm/lmm
+ono10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans8-regular.otf
+></usr/share/texmf/fonts/opentype/public/lm/lmsans10-regular.otf></usr/share/tex
+mf/fonts/opentype/public/lm/lmsans12-regular.otf>
+Output written on slides_d29.pdf (429 pages, 967451 bytes).
 
-PDF statistics: 3990 PDF objects out of 4296 (max. 8388607)
- 3432 compressed objects within 35 object streams
- 1098 named destinations out of 1200 (max. 131072)
- 98 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 4673 PDF objects out of 5155 (max. 8388607)
+ 4021 compressed objects within 41 object streams
+ 1287 named destinations out of 1440 (max. 131072)
+ 106 words of extra memory for PDF output out of 10000 (max. 100000000)
 

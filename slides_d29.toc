@@ -6,3 +6,4 @@
 \beamer@sectionintoc {6}{Analysis of covariance}{292}{0}{6}
 \beamer@sectionintoc {7}{Multivariate ANOVA}{312}{0}{7}
 \beamer@sectionintoc {8}{Repeated measures by profile analysis}{332}{0}{8}
+\beamer@sectionintoc {9}{Discriminant analysis}{367}{0}{9}

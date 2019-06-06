@@ -12,15 +12,15 @@
 
 * Does so by searching for linear combination of original variables that best separates data into groups (canonical variables).
 
-* Assumption here that groups are known (for data we have). If trying to "best separate" data into unknown groups, see {\em cluster analysis}.
+* Assumption here that groups are known (for data we have). If trying to "best separate" data into unknown groups, see *cluster analysis* xxx.
 
 * Examples: revisit seed yield and weight data, peanut data,
 professions/activities data; remote-sensing data.
 
 
 
-## Packages
-```{r size="small"}
+## Packages xxx
+```{r eval=F}
 library(MASS)
 library(tidyverse)
 library(ggrepel)
@@ -49,15 +49,16 @@ and others are not.
 not the one in `MASS`. If we wanted that one, we'd have to
 say `MASS::select`.
 
-* This is why I loaded `MASS` before
+* I loaded `MASS` before
 `tidyverse`. If I had done it the other way around, the
 `tidyverse` `select`, which I want to use, would have
 been the invisible one.  
 
+- xxx Alternative: load `conflicted` package. Any time you load two packages containing functions with same name, you get error and have to choose between them. 
 
-
-## Example 1: seed yields and weights
-```{r size="small",message=F}
+## Example 1: seed yields and weights xxx
+\small
+```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"
 hilo <- read_delim(my_url, " ")
 g <- ggplot(hilo, aes(
@@ -65,14 +66,16 @@ g <- ggplot(hilo, aes(
   colour = fertilizer
 )) + geom_point(size = 4)
 ```
-
+\normalsize
+ 
+```{r, include=F, message=F}
+ggsave("berzani.pdf", g, device="pdf")
+```
  
 
 \begin{minipage}[t]{0.6\linewidth}
-```{r berzani, fig.height=4}
-g
-```
-
+xxx
+\includegraphics[width=0.6\textwidth]{berzani}
    
 \end{minipage}
 \begin{minipage}[t]{0.38\linewidth}
@@ -100,10 +103,12 @@ hilo.1 <- lda(fertilizer ~ yield + weight, data = hilo)
 
 
 ## Output
-```{r size="small"}
+
+\small
+```{r}
 hilo.1
 ```
-
+\normalsize
  
 
 
@@ -122,15 +127,13 @@ best separate the groups.
 * For any plant, get LD1 score by taking $-0.76$ times yield
 plus $-1.25$ times weight, add up, standardize.
 
-* Understand by pretending all variables standardized (mean 0,
-$+$ above mean, $-$ below mean). If yield and weight high (above
-average), contribute a $+$ to LD1 score, so LD1
-*negative*. If yield and weight low (think $-$), LD1 score
-*positive*.
+- the LD1 coefficients are like slopes: 
+  - if yield higher, LD1 score for a plant lower
+  - if weight higher, LD1 score for a plant lower
 
 * High-fertilizer plants have higher yield and weight, thus
-negative LD1 score. Low-fertilizer plants have low yield and
-weight, thus positive LD1 score.
+low (negative) LD1 score. Low-fertilizer plants have low yield and
+weight, thus high (positive) LD1 score. xxx
 
 * One LD1 score for each observation. Plot with actual groups.
 
@@ -140,18 +143,19 @@ weight, thus positive LD1 score.
 ## How many linear discriminants?
 
 
-* Number of variables
+* Smaller of these: xxx
 
-* Number of groups *minus 1*
+  * Number of variables
 
-* Smaller of these
+  * Number of groups *minus 1*
+
 
 * Seed yield and weight: 2 variables, 2 groups,
 $\min(2,2-1)=1$. 
 
 
 
-## Getting LD scores
+## Getting LD scores xxx
 Feed output from LDA into `predict`:
 
 ```{r }
@@ -162,19 +166,20 @@ hilo.pred <- predict(hilo.1)
 
 Component $x$ contains LD score(s), here in descending order:
 
-```{r size="small"}
+\footnotesize
+```{r}
 d <- cbind(hilo, hilo.pred$x) %>% arrange(desc(LD1))
 d
 ```
-
+\normalsize
  
 
-High fertilizer have yield and weight high, negative LD1 scores.
+xxx High fertilizer have yield and weight high, negative LD1 scores.
 
 
 ## Plotting LD1 scores
-With one LD score, plot against (true) groups, eg. boxplot:
-```{r fig.height=3}
+With one LD score, plot against (true) groups, eg. boxplot: xxx
+```{r fig.height=3.5}
 ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ```
 
@@ -184,34 +189,38 @@ ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ## Potentially misleading
 
 
-* These are like regression slopes:
-```{r size="small"}
+* These are like regression slopes: xxx
+
+\footnotesize
+```{r}
 hilo.1$scaling
 ```
-
+\normalsize
      
 
 
 * Reflect change in LD1 score for 1-unit change in variables.
 
 * But one-unit change in variables might not be comparable:
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 summary(hilo)
 ```
-
+\normalsize
    
-
-
-* Here, IQRs *identical*, so 1-unit change in each variable
+* xxx Here, IQRs *identical*, so 1-unit change in each variable
 means same thing.
 
 
 
 ## What else is in `hilo.pred?`
-```{r size="small"}
+
+\small
+```{r}
 names(hilo.pred)
 ```
-
+\normalsize
      
 
 
@@ -225,13 +234,14 @@ fertilizer given `yield` and `weight`.
 
 
 ## Predictions and predicted groups
-\ldots based on `yield` and `weight`:
+\ldots based on `yield` and `weight`: xxx
 
-```{r size="small"}
+\footnotesize
+```{r}
 cbind(hilo, predicted = hilo.pred$class)
 table(obs = hilo$fertilizer, pred = hilo.pred$class)
 ```
-
+\normalsize
  
 
 
@@ -248,95 +258,62 @@ diagonal.
 
 ## Posterior probabilities
 show how clear-cut the classification decisions were:
-```{r size="small"}
+
+\small
+```{r}
 pp <- round(hilo.pred$posterior, 4)
 d <- cbind(hilo, hilo.pred$x, pp)
 d
 ```
-$
+\normalsize
+
 Only obs.\ 7 has any doubt: `yield` low for a high-fertilizer,
 but high `weight` makes up for it.
  
-## Contour plot of `LD1`
-
-First, get some new yield and weight values for prediction. Then
-predict `LD1` for them:
-  
-<<>>=
-yy=seq(29,38,0.5)
-ww=seq(10,14,0.5)
-hilo.new=expand.grid(yield=yy,weight=ww)
-hilo.pred=predict(hilo.lda,hilo.new)
-@ 
-
-Then: plot original data, and overlay contours showing value of
-`LD1` for each `yield` and `weight` (over):
-  
 
 
-## Contour plot
+## Example 2: the peanuts xxx
 
-  \begin{minipage}[t]{0.7\linewidth}
-    
-<<santini,fig.height=5>>=
-plot(yield,weight,col=fno,pch=fno)
-z=matrix(hilo.pred$x,length(yy),
-  length(ww),byrow=F)
-contour(yy,ww,z,add=T)
-@   
-  \end{minipage}
-  \begin{minipage}[t]{0.25\linewidth}
-    
-    
-* `LD1` $<0$: top right
-    
-* `LD1` $>0$: bottom left
-    
-* `LD1=0`: boundary between high and low
-    
-  \end{minipage}
-  
-<<echo=FALSE>>=
-detach(hilo)
-@   
-  
-
-
-## Example 2: the peanuts
-
-```{r message=F,size="footnotesize"}
+\scriptsize
+```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"
 peanuts <- read_delim(my_url, " ")
 peanuts
 ```
-
+\normalsize
  
 
-Recall: `location` and `variety` both significant in
+- Recall: `location` and `variety` both significant in
 MANOVA. Make combo of them (over):
 
 
-## Location-variety combos
-```{r combos,size="small"}
+## Location-variety combos xxx
+
+\footnotesize
+```{r combos}
 peanuts %>% unite(combo, c(variety, location)) ->
 peanuts.combo
 peanuts.combo
 ```
-def 
-
+*\1* xxx xxx
+\normalsize
 
 ## Discriminant analysis
-```{r size="small"}
+
+\small
+```{r}
 peanuts.1 <- lda(combo ~ y + smk + w, data = peanuts.combo)
 peanuts.1$scaling
 peanuts.1$svd
 ```
-
+\normalsize
    
 
 
 
 * Now 3 LDs (3 variables, 6 groups, $\min(3,6-1)=3$).
+
+## Comments xxx
 
 * First: relationship of LDs to original variables. Look for
 coeffs far from zero: here,
@@ -353,11 +330,10 @@ or low `y`.
 
 
 
-## Group means by variable
+## Group means by variable xxx
 ```{r }
 peanuts.1$means
 ```
-$
 
 
 * `5_2` clearly smallest on `y`, `smk`, near
@@ -368,11 +344,6 @@ largest on `y`
 
 * `8_1` large on `w`, small on `y`.
 
-* `scaling` links LDs with original variables,
-`means` links original variables with groups.
-
-* Implies: link between groups and LDs.
-
 
 ## The predictions and misclassification
 ```{r }
@@ -382,25 +353,25 @@ table(
   pred = peanuts.pred$class
 )
 ```
-$
+
 Actually classified very well. Only one `6_2` classified as a
 `5_1`, rest all correct.
 
 
-## Posterior probabilities
+## Posterior probabilities xxx
 
-```{r size="footnotesize"}
+\scriptsize
+```{r}
 pp <- round(peanuts.pred$posterior, 2)
 peanuts.combo %>%
   select(-c(y, smk, w)) %>%
   cbind(., pred = peanuts.pred$class, pp)
 ```
-
+\normalsize
    
 
 *Some* doubt about which combo each plant belongs in, but not too
 much. The one misclassified plant was a close call.
-$
 
 
 ## Discriminant scores, again
@@ -409,33 +380,33 @@ $
 * How are discriminant scores related to original variables?
 
 * Construct data frame with original data and discriminant
-scores side by side:
-```{r size="small"}
+scores side by side: xxx
+
+\footnotesize
+```{r}
 peanuts.1$scaling
 lds <- round(peanuts.pred$x, 2)
-mm <- with(
-  peanuts.combo,
-  data.frame(combo, y, smk, w, lds)
-)
+mm <- with(peanuts.combo,
+           data.frame(combo, y, smk, w, lds))
 ```
-
+\normalsize
    
 
-* LD1 positive if `w` large and/or `y` small.
+* xxx LD1 positive if `w` large and/or `y` small.
 
 * LD2 positive if `w` large.    
 
-* But, what if `y, smk, w` differ in spread?
 
 
 
 
 ## Discriminant scores for data
 
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 mm
 ```
-
+\normalsize
    
 
 
@@ -447,7 +418,7 @@ small `w`.
 
 
 ## Predict typical LD1 scores
-First and third quartiles for three response variables (reading down):
+First and third quartiles for three response variables:
 ```{r }
 quartiles <- peanuts %>%
   select(y:w) %>%
@@ -469,10 +440,12 @@ pp <- predict(peanuts.1, new)
 
 
 ## Predicted typical LD1 scores
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 cbind(new, pp$x) %>% arrange(LD1)
 ```
-
+\normalsize
    
 
 
@@ -490,10 +463,8 @@ cbind(new, pp$x) %>% arrange(LD1)
 
 ## Plot LD1 vs.\ LD2, labelling by combo
 ```{r fig.height=3.5}
-g <- ggplot(mm, aes(
-  x = LD1, y = LD2, colour = combo,
-  label = combo
-)) + geom_point() +
+g <- ggplot(mm, aes(x = LD1, y = LD2, colour = combo, 
+                    label = combo)) + geom_point() +
   geom_text_repel() + guides(colour = F)
 g
 ```
@@ -501,23 +472,13 @@ g
    
 
 
-## "Bi-plot" from `ggbiplot`
- <<echo=F,message=F>>=
- library(plyr)
- library(tidyverse)
- library(ggbiplot)
- @   
- 
- <<eval=F>>=
- library(ggbiplot)
- @ 
- 
+## "Bi-plot" from `ggbiplot` xxx
+
 ```{r fig.height=3.5}
 ggbiplot(peanuts.1,
   groups = factor(peanuts.combo$combo)
 )
 ```
-$ %$ %$
 
 
 ## Installing `ggbiplot`
@@ -561,7 +522,9 @@ that left-out observation.
 ## Misclassifications
 
 
-* Fitting and prediction all in one go:
+* Fitting and prediction all in one go: xxx text under
+
+\small
 ```{r }
 peanuts.cv <- lda(combo ~ y + smk + w,
   data = peanuts.combo, CV = T
@@ -571,7 +534,7 @@ table(
   pred = peanuts.cv$class
 )
 ```
-
+\normalsize
    
 
 
@@ -580,8 +543,8 @@ table(
 
 
 
-## Repeat of LD plot
-```{r graziani,fig.height=3.5}
+## Repeat of LD plot xxx
+```{r graziani,fig.height=3.7}
 g
 ```
 
@@ -589,14 +552,16 @@ g
 
 
 ## Posterior probabilities
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 pp <- round(peanuts.cv$posterior, 3)
 data.frame(
   obs = peanuts.combo$combo,
   pred = peanuts.cv$class, pp
 )
 ```
-
+\normalsize
    
 
 
@@ -626,11 +591,10 @@ administrators and belly dancers) each participate in four
 different leisure activities: reading, dancing, TV watching and
 skiing. After each activity they rate it on a 0--10 scale.
 
-* Some of the data:
+* Some of the data: xxx
 
-
+\small
 ```
-
 bellydancer 7 10 6 5
 bellydancer 8 9 5 7
 bellydancer 5 10 5 8
@@ -639,9 +603,8 @@ politician 4 5 6 5
 admin 4 2 2 5
 admin 7 1 2 4
 admin 6 3 3 3
-
 ```
-
+\normalsize
 
 * How can we best use the scores on the activities to predict a person's profession?
 
@@ -650,8 +613,9 @@ admin 6 3 3 3
 
 
 
-## Discriminant analysis
+## Discriminant analysis xxx
 
+\small
 ```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/profile.txt"
 active <- read_delim(my_url, " ")
@@ -659,15 +623,13 @@ active.1 <- lda(job ~ reading + dance + tv + ski, data = active)
 active.1$svd
 active.1$scaling
 ```
-
+\normalsize
    
-
-
 
 * Two discriminants, first fair bit more important than second.
 
 * `LD1` depends (negatively) most on `dance`, a bit
-on `tv`.
+on `tv`. xxx
 
 * `LD2` depends mostly on `tv`.
 
@@ -684,22 +646,22 @@ table(obs = active$job, pred = active.pred$class)
 Everyone correctly classified.
 
 
-## Plotting LDs
-```{r fig.height=3,size="small"}
+## Plotting LDs xxx
+
+\small
+```{r fig.height=3}
 mm <- data.frame(job = active$job, active.pred$x, person = 1:15)
-g <- ggplot(mm, aes(
-  x = LD1, y = LD2,
-  colour = job, label = job
-)) + geom_point() +
-  geom_text_repel() + guides(colour = F)
+g <- ggplot(mm, aes(x = LD1, y = LD2, colour = job, 
+                    label = job)) + 
+  geom_point() + geom_text_repel() + guides(colour = F)
 g
 ```
-
+\normalsize
    
 
 
-## Biplot
-```{r fig.height=4.5}
+## Biplot xxx
+```{r fig.height=4.3}
 ggbiplot(active.1, groups = active$job)
 ```
 
@@ -720,15 +682,13 @@ top right, politicians lower middle.
 
 
 
-## Plotting individual `persons`
+## Plotting individual `persons` xxx
 Make `label` be identifier of person. Now need legend:
 
 ```{r fig.height=2.8}
-ggplot(mm, aes(
-  x = LD1, y = LD2,
-  colour = job, label = person
-)) + geom_point() +
-  geom_text_repel()
+ggplot(mm, aes(x = LD1, y = LD2,  colour = job, 
+               label = person)) + 
+  geom_point() + geom_text_repel()
 ```
 
    
@@ -736,11 +696,12 @@ ggplot(mm, aes(
 
 ## Posterior probabilities
 
-```{r size="footnotesize"}
+\scriptsize
+```{r}
 pp <- round(active.pred$posterior, 3)
 data.frame(obs = active$job, pred = active.pred$class, pp)
 ```
-
+\normalsize
    
 Not much doubt.
 
@@ -763,13 +724,14 @@ This time one of the bellydancers was classified as a politician.
 ## and look at the posterior probabilities
 picking out the ones where things are not certain:
 
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 pp <- round(active.cv$posterior, 3)
 data.frame(obs = active$job, pred = active.cv$class, pp) %>%
   mutate(max = pmax(admin, bellydancer, politician)) %>%
   filter(max < 0.9995)
 ```
-$
+\normalsize
 
 
 * Bellydancer was "definitely" a politician!
@@ -778,10 +740,15 @@ $
 
 
 ## Why did things get misclassified?
-\begin{minipage}[t]{0.7\linewidth}
-```{r nesta, fig.height=4.5, echo=F}
-g
+
+```{r include=F, message=F}
+ggsave("nesta.pdf", g, "pdf")
 ```
+
+
+\begin{minipage}[t]{0.7\linewidth}
+
+\includegraphics[width=0.7\textwidth]{nesta}
 
        
 \end{minipage}
@@ -796,7 +763,7 @@ g
 
 \end{minipage}
 
-## Example 4: remote-sensing data
+## Example 4: remote-sensing data xxx from here
 
 
 * View 38 crops from air, measure 4 variables `x1-x4`.
@@ -863,11 +830,13 @@ sugarbeets should be high on `LD2`.
 
 
 * Thus:
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 crops.pred <- predict(crops.lda)
 table(obs = crops$crop, pred = crops.pred$class)
 ```
-
+\normalsize
    
 
 * Not very good, eg. only 6 of 11 `Clover` classified correctly.
@@ -939,12 +908,13 @@ mm <- data.frame(crop = crops2$crop, crops2.pred$x)
 ## `lda output`
 Different from before:
 
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 crops2.lda$means
 crops2.lda$svd
 crops2.lda$scaling
 ```
-def 
+\normalsize
 
 
 ## Plot
@@ -968,10 +938,12 @@ ggbiplot(crops2.lda, groups = crops2$crop)
 
 
 ## Quality of classification
-```{r size="small"}
+
+\small
+```{r}
 table(obs = crops2$crop, pred = crops2.pred$class)
 ```
-
+\normalsize
    
 
 Better.
@@ -981,7 +953,7 @@ Better.
 ```{r echo=F}
 options(width = 60)
 ```
-def 
+*\1* xxx 
 {\footnotesize  
 ```{r }
 post <- round(crops2.pred$posterior, 3)

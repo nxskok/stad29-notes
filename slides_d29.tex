@@ -4307,16 +4307,16 @@ or
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    28 0     1          0.793 
-##  2    32 0     1          0.405 
-##  3    38 0     1          0.0260
-##  4    24 1     2          0.0819
-##  5    32 1     3          0.214 
-##  6    35 1     3          0.484 
-##  7    24 1     1          0.915 
-##  8    35 0     3          0.472 
-##  9    35 1     1          0.0840
-## 10    32 0     2          0.408
+##  1    38 1     1         0.0162 
+##  2    35 1     3         0.484  
+##  3    24 0     2         0.0502 
+##  4    24 1     3         0.00279
+##  5    32 1     3         0.214  
+##  6    35 1     2         0.432  
+##  7    28 1     2         0.271  
+##  8    38 0     2         0.239  
+##  9    38 0     1         0.0260 
+## 10    38 1     2         0.252
 \end{verbatim}
 
 \normalsize
@@ -4394,20 +4394,27 @@ Whole data set in 65 lines not 735! But how?
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(age, sex, brand) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Freq =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() ->}\StringTok{ }\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{b }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 4
-##     age sex   brand  Freq
-##   <dbl> <fct> <fct> <int>
-## 1    24 0     1         1
-## 2    26 0     1         2
-## 3    27 0     1         4
-## 4    27 1     1         4
-## 5    27 1     3         1
-## 6    28 0     1         4
+## Error in eval(lhs, parent, parent): object 'b' not found
 \end{verbatim}
 
 \end{frame}
@@ -4431,10 +4438,32 @@ Whole data set in 65 lines not 735! But how?
 \NormalTok{b }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sex =} \KeywordTok{factor}\NormalTok{(sex)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{brand =} \KeywordTok{factor}\NormalTok{(brand)) ->}\StringTok{ }\NormalTok{bf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in eval(lhs, parent, parent): object 'b' not found
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{b}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{multinom}\NormalTok{(brand }\OperatorTok{~}\StringTok{ }\NormalTok{age }\OperatorTok{+}\StringTok{ }\NormalTok{sex, }\DataTypeTok{data =}\NormalTok{ bf, }\DataTypeTok{weights =}\NormalTok{ Freq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in is.data.frame(data): object 'bf' not found
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{b}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{multinom}\NormalTok{(brand }\OperatorTok{~}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ bf, }\DataTypeTok{weights =}\NormalTok{ Freq)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Error in is.data.frame(data): object 'bf' not found
+\end{verbatim}
 
 \normalsize
 
@@ -4452,12 +4481,7 @@ Whole data set in 65 lines not 735! But how?
 \end{Shaded}
 
 \begin{verbatim}
-## Likelihood ratio tests of Multinomial Models
-## 
-## Response: brand
-##       Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
-## 1       age       126   1413.593                                 
-## 2 age + sex       124   1405.941 1 vs 2     2 7.651236 0.02180495
+## Error in anova(b.2, b.1): object 'b.2' not found
 \end{verbatim}
 
 \normalsize
@@ -4487,23 +4511,7 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 14 x 2
-##      age total
-##    <dbl> <int>
-##  1    24     1
-##  2    26     2
-##  3    27     9
-##  4    28    15
-##  5    29    19
-##  6    30    23
-##  7    31    40
-##  8    32   333
-##  9    33    55
-## 10    34    64
-## 11    35    35
-## 12    36    85
-## 13    37    22
-## 14    38    32
+## Error in eval(lhs, parent, parent): object 'b' not found
 \end{verbatim}
 
 \normalsize
@@ -4529,6 +4537,10 @@ Same P-value as before, so we haven't changed anything important.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Error in eval(lhs, parent, parent): object 'b' not found
+\end{verbatim}
+
 \end{frame}
 
 \begin{frame}[fragile]{Checking proportions for age 32}
@@ -4543,16 +4555,7 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 5
-## # Groups:   age, sex [2]
-##     age sex   brand  Freq proportion
-##   <dbl> <fct> <fct> <int>      <dbl>
-## 1    32 0     1        48      0.407
-## 2    32 0     2        51      0.432
-## 3    32 0     3        19      0.161
-## 4    32 1     1        62      0.288
-## 5    32 1     2       117      0.544
-## 6    32 1     3        36      0.167
+## Error in eval(lhs, parent, parent): object 'brands' not found
 \end{verbatim}
 
 \normalsize
@@ -4591,6 +4594,10 @@ Same P-value as before, so we haven't changed anything important.
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ brands, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ proportion))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Error in fortify(data): object 'brands' not found
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -4649,6 +4656,10 @@ Same P-value as before, so we haven't changed anything important.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Error in fortify(data): object 'brands' not found
+\end{verbatim}
+
 \normalsize
 
 \end{frame}
@@ -4682,12 +4693,7 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## # weights:  15 (8 variable)
-## initial  value 807.480032 
-## iter  10 value 704.811229
-## iter  20 value 702.582802
-## final  value 702.582761 
-## converged
+## Error in update(b.1, . ~ . + age:sex): object 'b.1' not found
 \end{verbatim}
 
 \begin{Shaded}
@@ -4697,15 +4703,7 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## Likelihood ratio tests of Multinomial Models
-## 
-## Response: brand
-##                 Model Resid. df Resid. Dev   Test    Df
-## 1           age + sex       124   1405.941             
-## 2 age + sex + age:sex       122   1405.166 1 vs 2     2
-##    LR stat.  Pr(Chi)
-## 1                   
-## 2 0.7758861 0.678451
+## Error in anova(b.1, b.4): object 'b.1' not found
 \end{verbatim}
 
 \normalsize
@@ -6035,13 +6033,13 @@ darkbrown 35
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 4 x 4
-##   hair           n  xbar     s
-##   <chr>      <int> <dbl> <dbl>
-## 1 darkblond      5  51.2  9.28
-## 2 darkbrown      5  37.4  8.32
-## 3 lightblond     5  59.2  8.53
-## 4 lightbrown     4  42.5  5.45
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 \end{verbatim}
 
 \normalsize
@@ -6563,19 +6561,30 @@ darkbrown lightbrown  darkblond lightblond
 \NormalTok{summary <-}\StringTok{ }\NormalTok{vitaminb }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(ratsize, diet) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(kidneyweight))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{summary}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 4 x 3
-## # Groups:   ratsize [2]
-##   ratsize diet      mean
-##   <chr>   <chr>    <dbl>
-## 1 lean    regular   1.64
-## 2 lean    vitaminb  1.53
-## 3 obese   regular   2.64
-## 4 obese   vitaminb  2.67
+## function (object, ...) 
+## UseMethod("summary")
+## <bytecode: 0x561d8d5b3e20>
+## <environment: namespace:base>
 \end{verbatim}
 
 \normalsize
@@ -6642,6 +6651,11 @@ darkbrown lightbrown  darkblond lightblond
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_line}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Error: You're passing a function as global data.
+## Have you misspelled the `data` argument in `ggplot()`
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -6943,11 +6957,15 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-186-1.pdf}
-\caption{plot of chunk unnamed-chunk-186}
-\end{figure}
+\begin{verbatim}
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+\end{verbatim}
 
 \normalsize
 
@@ -7055,11 +7073,13 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 2 x 2
-##   type      m
-##   <chr> <dbl>
-## 1 Octel  822.
-## 2 Std    846.
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 \end{verbatim}
 
 \begin{itemize}
@@ -7969,13 +7989,13 @@ The proper data frame (tiny):
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 4 x 2
-##   model mean.kick
-##   <fct>     <dbl>
-## 1 C          49  
-## 2 B          43  
-## 3 A          33  
-## 4 D          28.8
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 \end{verbatim}
 
 \normalsize
@@ -8079,15 +8099,15 @@ b 9 22
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 a         13    31
-## 2 a          9    25
-## 3 a         18    38
-## 4 b         12    26
-## 5 b         27    33
+## 1 b         24    35
+## 2 b          7    19
+## 3 b         18    30
+## 4 a         21    40
+## 5 b         12    26
 ## 6 a         14    27
-## 7 a         10    23
-## 8 b          9    22
-## 9 a          5    20
+## 7 b         22    31
+## 8 b         14    23
+## 9 a         12    30
 \end{verbatim}
 
 \end{frame}
@@ -8140,11 +8160,13 @@ b 9 22
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 2 x 3
-##   drug  before_mean after_mean
-##   <chr>       <dbl>      <dbl>
-## 1 a            13.1       29.2
-## 2 b            18         28.1
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
 \end{verbatim}
 
 \begin{itemize}
@@ -9611,11 +9633,11 @@ Separated by \emph{tabs}:
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    17 lowfat    walking    103   109    90
-## 2    27 lowfat    running    100   126   140
-## 3     7 lowfat    atrest      87    88    90
-## 4     1 nonlowfat atrest      85    85    88
-## 5     6 lowfat    atrest      83    83    84
+## 1    25 nonlowfat running     94   110   116
+## 2    15 nonlowfat walking     89    96    95
+## 3    19 lowfat    walking     97    98   100
+## 4     8 lowfat    atrest      92    94    95
+## 5     2 nonlowfat atrest      90    92    93
 \end{verbatim}
 
 \normalsize
@@ -9912,6 +9934,16 @@ text under
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## [conflicted] `summarize` found in 2 packages.
+## Either pick the one you want with `::` 
+## * plyr::summarize
+## * dplyr::summarize
+## Or declare a preference with `conflict_prefer()`
+## * conflict_prefer("summarize", "plyr")
+## * conflict_prefer("summarize", "dplyr")
+\end{verbatim}
+
 \begin{itemize}
 \tightlist
 \item
@@ -9939,16 +9971,7 @@ text under
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 4
-## # Groups:   time [3]
-##   time  diet       mean    sd
-##   <chr> <chr>     <dbl> <dbl>
-## 1 min01 lowfat     98.2  3.70
-## 2 min01 nonlowfat  94    4.53
-## 3 min15 lowfat    124.   8.62
-## 4 min15 nonlowfat 110.  13.1 
-## 5 min30 lowfat    141.   7.20
-## 6 min30 nonlowfat 111.   7.92
+## Error in eval(expr, envir, enclos): object 'summ' not found
 \end{verbatim}
 
 \normalsize
@@ -9983,11 +10006,9 @@ text under
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-268-1.pdf}
-\caption{plot of chunk unnamed-chunk-268}
-\end{figure}
+\begin{verbatim}
+## Error in ggplot(summ, aes(x = time, y = mean, colour = diet, group = diet)): object 'summ' not found
+\end{verbatim}
 
 \end{frame}
 
@@ -10003,6 +10024,1849 @@ text under
   The effect of time on pulse rate is different for the two diets, even
   though all the subjects here were running.
 \end{itemize}
+
+\end{frame}
+
+\hypertarget{discriminant-analysis}{%
+\section{Discriminant analysis}\label{discriminant-analysis}}
+
+\begin{frame}{Discriminant analysis}
+\protect\hypertarget{discriminant-analysis-1}{}
+
+\begin{itemize}
+\item
+  ANOVA and MANOVA: predict a (counted/measured) response from group
+  membership.
+\item
+  Discriminant analysis: predict group membership based on
+  counted/measured variables.
+\item
+  Covers same ground as logistic regression (and its variations), but
+  emphasis on classifying observed data into correct groups.
+\item
+  Does so by searching for linear combination of original variables that
+  best separates data into groups (canonical variables).
+\item
+  Assumption here that groups are known (for data we have). If trying to
+  ``best separate'' data into unknown groups, see \emph{cluster
+  analysis} xxx.
+\item
+  Examples: revisit seed yield and weight data, peanut data,
+  professions/activities data; remote-sensing data.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages xxx}
+\protect\hypertarget{packages-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggrepel)}
+\KeywordTok{library}\NormalTok{(ggbiplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{ggrepel} allows labelling points on a plot so they don't
+overwrite each other.
+
+\end{frame}
+
+\begin{frame}[fragile]{About \texttt{select}}
+\protect\hypertarget{about-select}{}
+
+\begin{itemize}
+\item
+  Both \texttt{dplyr} (in \texttt{tidyverse}) and \texttt{MASS} have a
+  function called \texttt{select}, and \emph{they do
+  different things}.
+\item
+  How do you know which \texttt{select} is going to get called?
+\item
+  With \texttt{library}, the one loaded \emph{last} is visible, and
+  others are not.
+\item
+  Thus we can access the \texttt{select} in \texttt{dplyr} but not the
+  one in \texttt{MASS}. If we wanted that one, we'd have to say
+  \texttt{MASS::select}.
+\item
+  I loaded \texttt{MASS} before \texttt{tidyverse}. If I had done it the
+  other way around, the \texttt{tidyverse} \texttt{select}, which I want
+  to use, would have been the invisible one.
+\item
+  xxx Alternative: load \texttt{conflicted} package. Any time you load
+  two packages containing functions with same name, you get error and
+  have to choose between them.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example 1: seed yields and weights xxx}
+\protect\hypertarget{example-1-seed-yields-and-weights-xxx}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/manova1.txt"}
+\NormalTok{hilo <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(my_url, }\StringTok{" "}\NormalTok{)}
+\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(hilo, }\KeywordTok{aes}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ yield, }\DataTypeTok{y =}\NormalTok{ weight,}
+  \DataTypeTok{colour =}\NormalTok{ fertilizer}
+\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\normalsize
+
+\begin{minipage}[t]{0.6\linewidth}
+xxx
+\includegraphics[width=0.6\textwidth]{berzani}
+   
+\end{minipage}
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0.1\textheight}
+Recall data from MANOVA: needed a multivariate analysis to find
+difference in seed yield and weight based on whether they were high
+or low fertilizer.
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Basic discriminant analysis}
+\protect\hypertarget{basic-discriminant-analysis}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hilo}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(fertilizer }\OperatorTok{~}\StringTok{ }\NormalTok{yield }\OperatorTok{+}\StringTok{ }\NormalTok{weight, }\DataTypeTok{data =}\NormalTok{ hilo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Uses \texttt{lda} from package MASS.
+\item
+  ``Predicting'' group membership from measured variables.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Output}
+\protect\hypertarget{output-3}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hilo}\FloatTok{.1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(fertilizer ~ yield + weight, data = hilo)
+## 
+## Prior probabilities of groups:
+## high  low 
+##  0.5  0.5 
+## 
+## Group means:
+##      yield weight
+## high  35.0  13.25
+## low   32.5  12.00
+## 
+## Coefficients of linear discriminants:
+##               LD1
+## yield  -0.7666761
+## weight -1.2513563
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}{Things to take from output}
+\protect\hypertarget{things-to-take-from-output}{}
+
+\begin{itemize}
+\item
+  Group means: high-fertilizer plants have (slightly) higher mean yield
+  and weight than low-fertilizer plants.
+\item
+  ``Coefficients of linear discriminants'': \texttt{LD1,
+  LD2,}\ldots are scores constructed from observed variables that best
+  separate the groups.
+\item
+  For any plant, get LD1 score by taking \(-0.76\) times yield plus
+  \(-1.25\) times weight, add up, standardize.
+\item
+  the LD1 coefficients are like slopes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    if yield higher, LD1 score for a plant lower
+  \item
+    if weight higher, LD1 score for a plant lower
+  \end{itemize}
+\item
+  High-fertilizer plants have higher yield and weight, thus low
+  (negative) LD1 score. Low-fertilizer plants have low yield and weight,
+  thus high (positive) LD1 score. xxx
+\item
+  One LD1 score for each observation. Plot with actual groups.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{How many linear discriminants?}
+\protect\hypertarget{how-many-linear-discriminants}{}
+
+\begin{itemize}
+\item
+  Smaller of these: xxx
+
+  \begin{itemize}
+  \item
+    Number of variables
+  \item
+    Number of groups \emph{minus 1}
+  \end{itemize}
+\item
+  Seed yield and weight: 2 variables, 2 groups, \(\min(2,2-1)=1\).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Getting LD scores xxx}
+\protect\hypertarget{getting-ld-scores-xxx}{}
+
+Feed output from LDA into \texttt{predict}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hilo.pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(hilo}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Component \(x\) contains LD score(s), here in descending order:
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(hilo, hilo.pred}\OperatorTok{$}\NormalTok{x) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(LD1))}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   fertilizer yield weight        LD1
+## 1        low    34     10  3.0931414
+## 2        low    29     14  1.9210963
+## 3        low    35     11  1.0751090
+## 4        low    32     13  0.8724245
+## 5       high    34     13 -0.6609276
+## 6       high    33     14 -1.1456079
+## 7       high    38     12 -2.4762756
+## 8       high    35     14 -2.6789600
+\end{verbatim}
+
+\normalsize
+
+xxx High fertilizer have yield and weight high, negative LD1 scores.
+
+\end{frame}
+
+\begin{frame}[fragile]{Plotting LD1 scores}
+\protect\hypertarget{plotting-ld1-scores}{}
+
+With one LD score, plot against (true) groups, eg. boxplot: xxx
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fertilizer, }\DataTypeTok{y =}\NormalTok{ LD1)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-276-1.pdf}
+\caption{plot of chunk unnamed-chunk-276}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Potentially misleading}
+\protect\hypertarget{potentially-misleading}{}
+
+\begin{itemize}
+\tightlist
+\item
+  These are like regression slopes: xxx
+\end{itemize}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hilo}\FloatTok{.1}\OperatorTok{$}\NormalTok{scaling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               LD1
+## yield  -0.7666761
+## weight -1.2513563
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  Reflect change in LD1 score for 1-unit change in variables.
+\item
+  But one-unit change in variables might not be comparable:
+\end{itemize}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(hilo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   fertilizer            yield           weight     
+##  Length:8           Min.   :29.00   Min.   :10.00  
+##  Class :character   1st Qu.:32.75   1st Qu.:11.75  
+##  Mode  :character   Median :34.00   Median :13.00  
+##                     Mean   :33.75   Mean   :12.62  
+##                     3rd Qu.:35.00   3rd Qu.:14.00  
+##                     Max.   :38.00   Max.   :14.00
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\tightlist
+\item
+  xxx Here, IQRs \emph{identical}, so 1-unit change in each variable
+  means same thing.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{What else is in \texttt{hilo.pred?}}
+\protect\hypertarget{what-else-is-in-hilo.pred}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(hilo.pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "class"     "posterior" "x"
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  \texttt{class}: predicted fertilizer level (based on values of
+  \texttt{yield} and \texttt{weight}).
+\item
+  \texttt{posterior}: predicted probability of being low or high
+  fertilizer given \texttt{yield} and \texttt{weight}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Predictions and predicted groups}
+\protect\hypertarget{predictions-and-predicted-groups}{}
+
+\ldots based on \texttt{yield} and \texttt{weight}: xxx
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(hilo, }\DataTypeTok{predicted =}\NormalTok{ hilo.pred}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   fertilizer yield weight predicted
+## 1        low    34     10       low
+## 2        low    29     14       low
+## 3        low    35     11       low
+## 4        low    32     13       low
+## 5       high    33     14      high
+## 6       high    38     12      high
+## 7       high    34     13      high
+## 8       high    35     14      high
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ hilo}\OperatorTok{$}\NormalTok{fertilizer, }\DataTypeTok{pred =}\NormalTok{ hilo.pred}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       pred
+## obs    high low
+##   high    4   0
+##   low     0   4
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}{Understanding the predicted groups}
+\protect\hypertarget{understanding-the-predicted-groups}{}
+
+\begin{itemize}
+\item
+  Each predicted fertilizer level is exactly same as observed one
+  (perfect prediction).
+\item
+  Table shows no errors: all values on top-left to bottom-right
+  diagonal.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Posterior probabilities}
+\protect\hypertarget{posterior-probabilities}{}
+
+show how clear-cut the classification decisions were:
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pp <-}\StringTok{ }\KeywordTok{round}\NormalTok{(hilo.pred}\OperatorTok{$}\NormalTok{posterior, }\DecValTok{4}\NormalTok{)}
+\NormalTok{d <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(hilo, hilo.pred}\OperatorTok{$}\NormalTok{x, pp)}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   fertilizer yield weight        LD1   high    low
+## 1        low    34     10  3.0931414 0.0000 1.0000
+## 2        low    29     14  1.9210963 0.0012 0.9988
+## 3        low    35     11  1.0751090 0.0232 0.9768
+## 4        low    32     13  0.8724245 0.0458 0.9542
+## 5       high    33     14 -1.1456079 0.9818 0.0182
+## 6       high    38     12 -2.4762756 0.9998 0.0002
+## 7       high    34     13 -0.6609276 0.9089 0.0911
+## 8       high    35     14 -2.6789600 0.9999 0.0001
+\end{verbatim}
+
+\normalsize
+
+Only obs.~7 has any doubt: \texttt{yield} low for a high-fertilizer, but
+high \texttt{weight} makes up for it.
+
+\end{frame}
+
+\begin{frame}[fragile]{Example 2: the peanuts xxx}
+\protect\hypertarget{example-2-the-peanuts-xxx}{}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/peanuts.txt"}
+\NormalTok{peanuts <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(my_url, }\StringTok{" "}\NormalTok{)}
+\NormalTok{peanuts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 6
+##      obs location variety     y   smk     w
+##    <dbl>    <dbl>   <dbl> <dbl> <dbl> <dbl>
+##  1     1        1       5  195.  153.  51.4
+##  2     2        1       5  194.  168.  53.7
+##  3     3        2       5  190.  140.  55.5
+##  4     4        2       5  180.  121.  44.4
+##  5     5        1       6  203   157.  49.8
+##  6     6        1       6  196.  166   45.8
+##  7     7        2       6  203.  166.  60.4
+##  8     8        2       6  198.  162.  54.1
+##  9     9        1       8  194.  164.  57.8
+## 10    10        1       8  187   165.  58.6
+## 11    11        2       8  202.  167.  65  
+## 12    12        2       8  200   174.  67.2
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\tightlist
+\item
+  Recall: \texttt{location} and \texttt{variety} both significant in
+  MANOVA. Make combo of them (over):
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Location-variety combos xxx}
+\protect\hypertarget{location-variety-combos-xxx}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts }\OperatorTok{%>%}\StringTok{ }\KeywordTok{unite}\NormalTok{(combo, }\KeywordTok{c}\NormalTok{(variety, location)) ->}
+\NormalTok{peanuts.combo}
+\NormalTok{peanuts.combo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 5
+##      obs combo     y   smk     w
+##    <dbl> <chr> <dbl> <dbl> <dbl>
+##  1     1 5_1    195.  153.  51.4
+##  2     2 5_1    194.  168.  53.7
+##  3     3 5_2    190.  140.  55.5
+##  4     4 5_2    180.  121.  44.4
+##  5     5 6_1    203   157.  49.8
+##  6     6 6_1    196.  166   45.8
+##  7     7 6_2    203.  166.  60.4
+##  8     8 6_2    198.  162.  54.1
+##  9     9 8_1    194.  164.  57.8
+## 10    10 8_1    187   165.  58.6
+## 11    11 8_2    202.  167.  65  
+## 12    12 8_2    200   174.  67.2
+\end{verbatim}
+
+\emph{\textbackslash{}1} xxx xxx \normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant analysis}
+\protect\hypertarget{discriminant-analysis-2}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(combo }\OperatorTok{~}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\NormalTok{smk }\OperatorTok{+}\StringTok{ }\NormalTok{w, }\DataTypeTok{data =}\NormalTok{ peanuts.combo)}
+\NormalTok{peanuts}\FloatTok{.1}\OperatorTok{$}\NormalTok{scaling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            LD1         LD2         LD3
+## y   -0.4027356 -0.02967881  0.18839237
+## smk -0.1727459  0.06794271 -0.09386294
+## w    0.5792456  0.16300221  0.07341123
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts}\FloatTok{.1}\OperatorTok{$}\NormalTok{svd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.141323 2.428396 1.075589
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\tightlist
+\item
+  Now 3 LDs (3 variables, 6 groups, \(\min(3,6-1)=3\)).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments xxx}
+\protect\hypertarget{comments-xxx}{}
+
+\begin{itemize}
+\item
+  First: relationship of LDs to original variables. Look for coeffs far
+  from zero: here,
+\item
+  high \texttt{LD1} mainly high \texttt{w} or low \texttt{y}.
+\item
+  high \texttt{LD2} mainly high \texttt{w}.
+\item
+  \texttt{svd} values show relative importance of LDs: \texttt{LD1} much
+  more important than \texttt{LD2}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Group means by variable xxx}
+\protect\hypertarget{group-means-by-variable-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts}\FloatTok{.1}\OperatorTok{$}\NormalTok{means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          y    smk     w
+## 5_1 194.80 160.40 52.55
+## 5_2 185.05 130.30 49.95
+## 6_1 199.45 161.40 47.80
+## 6_2 200.15 163.95 57.25
+## 8_1 190.25 164.80 58.20
+## 8_2 200.75 170.30 66.10
+\end{verbatim}
+
+\begin{itemize}
+\item
+  \texttt{5\_2} clearly smallest on \texttt{y}, \texttt{smk}, near
+  smallest on \texttt{w}
+\item
+  \texttt{8\_2} clearly biggest on \texttt{smk}, \texttt{w}, also
+  largest on \texttt{y}
+\item
+  \texttt{8\_1} large on \texttt{w}, small on \texttt{y}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{The predictions and misclassification}
+\protect\hypertarget{the-predictions-and-misclassification}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts.pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(peanuts}\FloatTok{.1}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(}
+  \DataTypeTok{obs =}\NormalTok{ peanuts.combo}\OperatorTok{$}\NormalTok{combo,}
+  \DataTypeTok{pred =}\NormalTok{ peanuts.pred}\OperatorTok{$}\NormalTok{class}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      pred
+## obs   5_1 5_2 6_1 6_2 8_1 8_2
+##   5_1   2   0   0   0   0   0
+##   5_2   0   2   0   0   0   0
+##   6_1   0   0   2   0   0   0
+##   6_2   1   0   0   1   0   0
+##   8_1   0   0   0   0   2   0
+##   8_2   0   0   0   0   0   2
+\end{verbatim}
+
+Actually classified very well. Only one \texttt{6\_2} classified as a
+\texttt{5\_1}, rest all correct.
+
+\end{frame}
+
+\begin{frame}[fragile]{Posterior probabilities xxx}
+\protect\hypertarget{posterior-probabilities-xxx}{}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pp <-}\StringTok{ }\KeywordTok{round}\NormalTok{(peanuts.pred}\OperatorTok{$}\NormalTok{posterior, }\DecValTok{2}\NormalTok{)}
+\NormalTok{peanuts.combo }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(y, smk, w)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{cbind}\NormalTok{(., }\DataTypeTok{pred =}\NormalTok{ peanuts.pred}\OperatorTok{$}\NormalTok{class, pp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    obs combo pred  5_1 5_2 6_1  6_2  8_1  8_2
+## 1    1   5_1  5_1 0.69   0   0 0.31 0.00 0.00
+## 2    2   5_1  5_1 0.73   0   0 0.27 0.00 0.00
+## 3    3   5_2  5_2 0.00   1   0 0.00 0.00 0.00
+## 4    4   5_2  5_2 0.00   1   0 0.00 0.00 0.00
+## 5    5   6_1  6_1 0.00   0   1 0.00 0.00 0.00
+## 6    6   6_1  6_1 0.00   0   1 0.00 0.00 0.00
+## 7    7   6_2  6_2 0.13   0   0 0.87 0.00 0.00
+## 8    8   6_2  5_1 0.53   0   0 0.47 0.00 0.00
+## 9    9   8_1  8_1 0.02   0   0 0.02 0.75 0.21
+## 10  10   8_1  8_1 0.00   0   0 0.00 0.99 0.01
+## 11  11   8_2  8_2 0.00   0   0 0.00 0.03 0.97
+## 12  12   8_2  8_2 0.00   0   0 0.00 0.06 0.94
+\end{verbatim}
+
+\normalsize
+
+\emph{Some} doubt about which combo each plant belongs in, but not too
+much. The one misclassified plant was a close call.
+
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant scores, again}
+\protect\hypertarget{discriminant-scores-again}{}
+
+\begin{itemize}
+\item
+  How are discriminant scores related to original variables?
+\item
+  Construct data frame with original data and discriminant scores side
+  by side: xxx
+\end{itemize}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts}\FloatTok{.1}\OperatorTok{$}\NormalTok{scaling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            LD1         LD2         LD3
+## y   -0.4027356 -0.02967881  0.18839237
+## smk -0.1727459  0.06794271 -0.09386294
+## w    0.5792456  0.16300221  0.07341123
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lds <-}\StringTok{ }\KeywordTok{round}\NormalTok{(peanuts.pred}\OperatorTok{$}\NormalTok{x, }\DecValTok{2}\NormalTok{)}
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{with}\NormalTok{(peanuts.combo,}
+           \KeywordTok{data.frame}\NormalTok{(combo, y, smk, w, lds))}
+\end{Highlighting}
+\end{Shaded}
+
+\normalsize
+
+\begin{itemize}
+\item
+  xxx LD1 positive if \texttt{w} large and/or \texttt{y} small.
+\item
+  LD2 positive if \texttt{w} large.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant scores for data}
+\protect\hypertarget{discriminant-scores-for-data}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    combo     y   smk    w   LD1   LD2   LD3
+## 1    5_1 195.3 153.1 51.4 -1.42 -1.01  0.26
+## 2    5_1 194.3 167.7 53.7 -2.20  0.38 -1.13
+## 3    5_2 189.7 139.5 55.5  5.56 -1.10  0.79
+## 4    5_2 180.4 121.1 44.4  6.06 -3.89 -0.05
+## 5    6_1 203.0 156.8 49.8 -6.08 -1.25  1.25
+## 6    6_1 195.9 166.0 45.8 -7.13 -1.07 -1.24
+## 7    6_2 202.7 166.1 60.4 -1.43  1.12  1.10
+## 8    6_2 197.6 161.8 54.1 -2.28 -0.05  0.08
+## 9    8_1 193.5 164.5 57.8  1.05  0.86 -0.67
+## 10   8_1 187.0 165.1 58.6  4.02  1.22 -1.90
+## 11   8_2 201.5 166.8 65.0  1.60  1.95  1.15
+## 12   8_2 200.0 173.8 67.2  2.27  2.83  0.37
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  Obs.~5 and 6 have most negative \texttt{LD1}: large \texttt{y}, small
+  \texttt{w}.
+\item
+  Obs.~4 has most negative \texttt{LD2}: small \texttt{w}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Predict typical LD1 scores}
+\protect\hypertarget{predict-typical-ld1-scores}{}
+
+First and third quartiles for three response variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{quartiles <-}\StringTok{ }\NormalTok{peanuts }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(y}\OperatorTok{:}\NormalTok{w) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{map_df}\NormalTok{(quantile, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.75}\NormalTok{))}
+\NormalTok{quartiles}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##       y   smk     w
+##   <dbl> <dbl> <dbl>
+## 1  193.  156.  51  
+## 2  200.  166.  59.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new <-}\StringTok{ }\KeywordTok{with}\NormalTok{(quartiles, }\KeywordTok{crossing}\NormalTok{(y, smk, w))}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{The combinations}
+\protect\hypertarget{the-combinations}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 3
+##       y   smk     w
+##   <dbl> <dbl> <dbl>
+## 1  193.  156.  51  
+## 2  193.  156.  59.0
+## 3  193.  166.  51  
+## 4  193.  166.  59.0
+## 5  200.  156.  51  
+## 6  200.  156.  59.0
+## 7  200.  166.  51  
+## 8  200.  166.  59.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pp <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(peanuts}\FloatTok{.1}\NormalTok{, new)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Predicted typical LD1 scores}
+\protect\hypertarget{predicted-typical-ld1-scores}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(new, pp}\OperatorTok{$}\NormalTok{x) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{arrange}\NormalTok{(LD1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         y     smk     w        LD1        LD2         LD3
+## 1 200.375 166.275 51.00 -5.9688625 -0.3330095 -0.04523828
+## 2 200.375 155.875 51.00 -4.1723048 -1.0396138  0.93093630
+## 3 192.550 166.275 51.00 -2.8174566 -0.1007728 -1.51940856
+## 4 200.375 166.275 59.05 -1.3059358  0.9791583  0.54572212
+## 5 192.550 155.875 51.00 -1.0208989 -0.8073770 -0.54323399
+## 6 200.375 155.875 59.05  0.4906219  0.2725540  1.52189670
+## 7 192.550 166.275 59.05  1.8454701  1.2113950 -0.92844817
+## 8 192.550 155.875 59.05  3.6420278  0.5047907  0.04772641
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  Very negative LD1 score with large \texttt{y} and small \texttt{w}
+\item
+  \texttt{smk} doesn't contribute much to LD1
+\item
+  Very positive LD1 score with small \texttt{y} and large \texttt{w}.
+\item
+  Same as we saw from Coefficients of Linear Discriminants.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plot LD1 vs.~LD2, labelling by combo}
+\protect\hypertarget{plot-ld1-vs.ld2-labelling-by-combo}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mm, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ LD1, }\DataTypeTok{y =}\NormalTok{ LD2, }\DataTypeTok{colour =}\NormalTok{ combo, }
+                    \DataTypeTok{label =}\NormalTok{ combo)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ F)}
+\NormalTok{g}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-292-1.pdf}
+\caption{plot of chunk unnamed-chunk-292}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{``Bi-plot'' from \texttt{ggbiplot} xxx}
+\protect\hypertarget{bi-plot-from-ggbiplot-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggbiplot}\NormalTok{(peanuts}\FloatTok{.1}\NormalTok{,}
+  \DataTypeTok{groups =} \KeywordTok{factor}\NormalTok{(peanuts.combo}\OperatorTok{$}\NormalTok{combo)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-293-1.pdf}
+\caption{plot of chunk unnamed-chunk-293}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Installing \texttt{ggbiplot}}
+\protect\hypertarget{installing-ggbiplot}{}
+
+\begin{itemize}
+\item
+  \texttt{ggbiplot} not on CRAN, so usual \texttt{install.packages} will
+  not work.
+\item
+  Install package \texttt{devtools} first (once):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Then install \texttt{ggbiplot} (once):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(devtools)}
+\KeywordTok{install_github}\NormalTok{(}\StringTok{"vqv/ggbiplot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}{Cross-validation}
+\protect\hypertarget{cross-validation}{}
+
+\begin{itemize}
+\item
+  So far, have predicted group membership from same data used to form
+  the groups --- dishonest!
+\item
+  Better: \emph{cross-validation}: form groups from all observations
+  \emph{except one}, then predict group membership for that left-out
+  observation.
+\item
+  No longer cheating!
+\item
+  Illustrate with peanuts data again.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Misclassifications}
+\protect\hypertarget{misclassifications}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Fitting and prediction all in one go: xxx text under
+\end{itemize}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{peanuts.cv <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(combo }\OperatorTok{~}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\NormalTok{smk }\OperatorTok{+}\StringTok{ }\NormalTok{w,}
+  \DataTypeTok{data =}\NormalTok{ peanuts.combo, }\DataTypeTok{CV =}\NormalTok{ T}
+\NormalTok{)}
+\KeywordTok{table}\NormalTok{(}
+  \DataTypeTok{obs =}\NormalTok{ peanuts.combo}\OperatorTok{$}\NormalTok{combo,}
+  \DataTypeTok{pred =}\NormalTok{ peanuts.cv}\OperatorTok{$}\NormalTok{class}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      pred
+## obs   5_1 5_2 6_1 6_2 8_1 8_2
+##   5_1   0   0   0   2   0   0
+##   5_2   0   1   0   0   1   0
+##   6_1   0   0   2   0   0   0
+##   6_2   1   0   0   1   0   0
+##   8_1   0   1   0   0   0   1
+##   8_2   0   0   0   0   0   2
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\tightlist
+\item
+  Some more misclassification this time.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Repeat of LD plot xxx}
+\protect\hypertarget{repeat-of-ld-plot-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/graziani-1.pdf}
+\caption{plot of chunk graziani}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Posterior probabilities}
+\protect\hypertarget{posterior-probabilities-1}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pp <-}\StringTok{ }\KeywordTok{round}\NormalTok{(peanuts.cv}\OperatorTok{$}\NormalTok{posterior, }\DecValTok{3}\NormalTok{)}
+\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{obs =}\NormalTok{ peanuts.combo}\OperatorTok{$}\NormalTok{combo,}
+  \DataTypeTok{pred =}\NormalTok{ peanuts.cv}\OperatorTok{$}\NormalTok{class, pp}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    obs pred  X5_1 X5_2  X6_1  X6_2  X8_1  X8_2
+## 1  5_1  6_2 0.162 0.00 0.000 0.838 0.000 0.000
+## 2  5_1  6_2 0.200 0.00 0.000 0.799 0.000 0.000
+## 3  5_2  8_1 0.000 0.18 0.000 0.000 0.820 0.000
+## 4  5_2  5_2 0.000 1.00 0.000 0.000 0.000 0.000
+## 5  6_1  6_1 0.194 0.00 0.669 0.137 0.000 0.000
+## 6  6_1  6_1 0.000 0.00 1.000 0.000 0.000 0.000
+## 7  6_2  6_2 0.325 0.00 0.000 0.667 0.001 0.008
+## 8  6_2  5_1 0.821 0.00 0.000 0.179 0.000 0.000
+## 9  8_1  8_2 0.000 0.00 0.000 0.000 0.000 1.000
+## 10 8_1  5_2 0.000 1.00 0.000 0.000 0.000 0.000
+## 11 8_2  8_2 0.001 0.00 0.000 0.004 0.083 0.913
+## 12 8_2  8_2 0.000 0.00 0.000 0.000 0.167 0.833
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{Why more misclassification?}
+\protect\hypertarget{why-more-misclassification}{}
+
+\begin{itemize}
+\item
+  When predicting group membership for one observation, only uses the
+  \emph{other one} in that group.
+\item
+  So if two in a pair are far apart, or if two groups overlap, great
+  potential for misclassification.
+\item
+  Groups \texttt{5\_1} and \texttt{6\_2} overlap.
+\item
+  \texttt{5\_2} closest to \texttt{8\_1}s looks more like an
+  \texttt{8\_1} than a \texttt{5\_2} (other one far away).
+\item
+  \texttt{8\_1}s relatively far apart and close to other things, so one
+  appears to be a \texttt{5\_2} and the other an \texttt{8\_2}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example 3: professions and leisure activities}
+\protect\hypertarget{example-3-professions-and-leisure-activities}{}
+
+\begin{itemize}
+\item
+  15 individuals from three different professions (politicians,
+  administrators and belly dancers) each participate in four different
+  leisure activities: reading, dancing, TV watching and skiing. After
+  each activity they rate it on a 0--10 scale.
+\item
+  Some of the data: xxx
+\end{itemize}
+
+\small
+
+\begin{verbatim}
+bellydancer 7 10 6 5
+bellydancer 8 9 5 7
+bellydancer 5 10 5 8
+politician 5 5 5 6
+politician 4 5 6 5
+admin 4 2 2 5
+admin 7 1 2 4
+admin 6 3 3 3
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  How can we best use the scores on the activities to predict a person's
+  profession?
+\item
+  Or, what combination(s) of scores best separate data into profession
+  groups?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant analysis xxx}
+\protect\hypertarget{discriminant-analysis-xxx}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/profile.txt"}
+\NormalTok{active <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(my_url, }\StringTok{" "}\NormalTok{)}
+\NormalTok{active}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(job }\OperatorTok{~}\StringTok{ }\NormalTok{reading }\OperatorTok{+}\StringTok{ }\NormalTok{dance }\OperatorTok{+}\StringTok{ }\NormalTok{tv }\OperatorTok{+}\StringTok{ }\NormalTok{ski, }\DataTypeTok{data =}\NormalTok{ active)}
+\NormalTok{active}\FloatTok{.1}\OperatorTok{$}\NormalTok{svd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9.856638 3.434555
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{active}\FloatTok{.1}\OperatorTok{$}\NormalTok{scaling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 LD1        LD2
+## reading -0.01297465  0.4748081
+## dance   -0.95212396  0.4614976
+## tv      -0.47417264 -1.2446327
+## ski      0.04153684  0.2033122
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  Two discriminants, first fair bit more important than second.
+\item
+  \texttt{LD1} depends (negatively) most on \texttt{dance}, a bit on
+  \texttt{tv}. xxx
+\item
+  \texttt{LD2} depends mostly on \texttt{tv}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Misclassification}
+\protect\hypertarget{misclassification}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{active.pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(active}\FloatTok{.1}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ active}\OperatorTok{$}\NormalTok{job, }\DataTypeTok{pred =}\NormalTok{ active.pred}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              pred
+## obs           admin bellydancer politician
+##   admin           5           0          0
+##   bellydancer     0           5          0
+##   politician      0           0          5
+\end{verbatim}
+
+Everyone correctly classified.
+
+\end{frame}
+
+\begin{frame}[fragile]{Plotting LDs xxx}
+\protect\hypertarget{plotting-lds-xxx}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{job =}\NormalTok{ active}\OperatorTok{$}\NormalTok{job, active.pred}\OperatorTok{$}\NormalTok{x, }\DataTypeTok{person =} \DecValTok{1}\OperatorTok{:}\DecValTok{15}\NormalTok{)}
+\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mm, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ LD1, }\DataTypeTok{y =}\NormalTok{ LD2, }\DataTypeTok{colour =}\NormalTok{ job, }
+                    \DataTypeTok{label =}\NormalTok{ job)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ F)}
+\NormalTok{g}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/unnamed-chunk-300-1.pdf} \normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{Biplot xxx}
+\protect\hypertarget{biplot-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggbiplot}\NormalTok{(active}\FloatTok{.1}\NormalTok{, }\DataTypeTok{groups =}\NormalTok{ active}\OperatorTok{$}\NormalTok{job)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-301-1.pdf}
+\caption{plot of chunk unnamed-chunk-301}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments on plot}
+\protect\hypertarget{comments-on-plot}{}
+
+\begin{itemize}
+\item
+  Groups well separated: bellydancers top left, administrators top
+  right, politicians lower middle.
+\item
+  Bellydancers most negative on \texttt{LD1}: like dancing most.
+\item
+  Administrators most positive on \texttt{LD1}: like dancing least.
+\item
+  Politicians most negative on \texttt{LD2}: like TV-watching most.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plotting individual \texttt{persons} xxx}
+\protect\hypertarget{plotting-individual-persons-xxx}{}
+
+Make \texttt{label} be identifier of person. Now need legend:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mm, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ LD1, }\DataTypeTok{y =}\NormalTok{ LD2,  }\DataTypeTok{colour =}\NormalTok{ job, }
+               \DataTypeTok{label =}\NormalTok{ person)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-302-1.pdf}
+\caption{plot of chunk unnamed-chunk-302}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Posterior probabilities}
+\protect\hypertarget{posterior-probabilities-2}{}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pp <-}\StringTok{ }\KeywordTok{round}\NormalTok{(active.pred}\OperatorTok{$}\NormalTok{posterior, }\DecValTok{3}\NormalTok{)}
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ active}\OperatorTok{$}\NormalTok{job, }\DataTypeTok{pred =}\NormalTok{ active.pred}\OperatorTok{$}\NormalTok{class, pp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            obs        pred admin bellydancer politician
+## 1  bellydancer bellydancer 0.000       1.000      0.000
+## 2  bellydancer bellydancer 0.000       1.000      0.000
+## 3  bellydancer bellydancer 0.000       1.000      0.000
+## 4  bellydancer bellydancer 0.000       1.000      0.000
+## 5  bellydancer bellydancer 0.000       0.997      0.003
+## 6   politician  politician 0.003       0.000      0.997
+## 7   politician  politician 0.000       0.000      1.000
+## 8   politician  politician 0.000       0.000      1.000
+## 9   politician  politician 0.000       0.002      0.998
+## 10  politician  politician 0.000       0.000      1.000
+## 11       admin       admin 1.000       0.000      0.000
+## 12       admin       admin 1.000       0.000      0.000
+## 13       admin       admin 1.000       0.000      0.000
+## 14       admin       admin 1.000       0.000      0.000
+## 15       admin       admin 0.982       0.000      0.018
+\end{verbatim}
+
+\normalsize
+
+Not much doubt.
+
+\end{frame}
+
+\begin{frame}[fragile]{Cross-validating the jobs-activities data}
+\protect\hypertarget{cross-validating-the-jobs-activities-data}{}
+
+Recall: no need for \texttt{predict}. Just pull out \texttt{class} and
+make a table:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{active.cv <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(job }\OperatorTok{~}\StringTok{ }\NormalTok{reading }\OperatorTok{+}\StringTok{ }\NormalTok{dance }\OperatorTok{+}\StringTok{ }\NormalTok{tv }\OperatorTok{+}\StringTok{ }\NormalTok{ski,}
+  \DataTypeTok{data =}\NormalTok{ active, }\DataTypeTok{CV =}\NormalTok{ T}
+\NormalTok{)}
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ active}\OperatorTok{$}\NormalTok{job, }\DataTypeTok{pred =}\NormalTok{ active.cv}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              pred
+## obs           admin bellydancer politician
+##   admin           5           0          0
+##   bellydancer     0           4          1
+##   politician      0           0          5
+\end{verbatim}
+
+This time one of the bellydancers was classified as a politician.
+
+\end{frame}
+
+\begin{frame}[fragile]{and look at the posterior probabilities}
+\protect\hypertarget{and-look-at-the-posterior-probabilities}{}
+
+picking out the ones where things are not certain:
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pp <-}\StringTok{ }\KeywordTok{round}\NormalTok{(active.cv}\OperatorTok{$}\NormalTok{posterior, }\DecValTok{3}\NormalTok{)}
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ active}\OperatorTok{$}\NormalTok{job, }\DataTypeTok{pred =}\NormalTok{ active.cv}\OperatorTok{$}\NormalTok{class, pp) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{max =} \KeywordTok{pmax}\NormalTok{(admin, bellydancer, politician)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(max }\OperatorTok{<}\StringTok{ }\FloatTok{0.9995}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           obs       pred admin bellydancer politician   max
+## 1 bellydancer politician 0.000       0.001      0.999 0.999
+## 2  politician politician 0.006       0.000      0.994 0.994
+## 3  politician politician 0.001       0.000      0.999 0.999
+## 4  politician politician 0.000       0.009      0.991 0.991
+## 5       admin      admin 0.819       0.000      0.181 0.819
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  Bellydancer was ``definitely'' a politician!
+\item
+  One of the administrators might have been a politician too.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Why did things get misclassified?}
+\protect\hypertarget{why-did-things-get-misclassified}{}
+
+\begin{minipage}[t]{0.7\linewidth}
+
+\includegraphics[width=0.7\textwidth]{nesta}
+
+       
+\end{minipage}
+\begin{minipage}[t]{0.28\linewidth}
+
+
+* Go back to plot of discriminant scores:
+
+* one bellydancer much closer to the politicians,
+
+* one administrator a bit closer to the politicians.
+
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example 4: remote-sensing data xxx from here}
+\protect\hypertarget{example-4-remote-sensing-data-xxx-from-here}{}
+
+\begin{itemize}
+\item
+  View 38 crops from air, measure 4 variables \texttt{x1-x4}.
+\item
+  Go back and record what each crop was.
+\item
+  Can we use the 4 variables to distinguish crops?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Reading in}
+\protect\hypertarget{reading-in-1}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"}
+\NormalTok{crops <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   crop = col_character(),
+##   x1 = col_double(),
+##   x2 = col_double(),
+##   x3 = col_double(),
+##   x4 = col_double(),
+##   cr = col_character()
+## )
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Starting off: number of LDs}
+\protect\hypertarget{starting-off-number-of-lds}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops.lda <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(crop }\OperatorTok{~}\StringTok{ }\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{x3 }\OperatorTok{+}\StringTok{ }\NormalTok{x4, }\DataTypeTok{data =}\NormalTok{ crops)}
+\NormalTok{crops.lda}\OperatorTok{$}\NormalTok{svd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.2858251 1.1866352 0.6394041 0.2303634
+\end{verbatim}
+
+\begin{itemize}
+\item
+  4 LDs (four variables, six groups).
+\item
+  1st one important, maybe 2nd as well.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Connecting original variables and LDs}
+\protect\hypertarget{connecting-original-variables-and-lds}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops.lda}\OperatorTok{$}\NormalTok{means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  x1       x2       x3       x4
+## Clover     46.36364 32.63636 34.18182 36.63636
+## Corn       15.28571 22.71429 27.42857 33.14286
+## Cotton     34.50000 32.66667 35.00000 39.16667
+## Soybeans   21.00000 27.00000 23.50000 29.66667
+## Sugarbeets 31.00000 32.16667 20.00000 40.50000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(crops.lda}\OperatorTok{$}\NormalTok{scaling, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       LD1    LD2    LD3    LD4
+## x1 -0.061  0.009 -0.030 -0.015
+## x2 -0.025  0.043  0.046  0.055
+## x3  0.016 -0.079  0.020  0.009
+## x4  0.000 -0.014  0.054 -0.026
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Links groups to original variables to LDs.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{LD1\ and\ texttt\{LD2}\}}
+\protect\hypertarget{ld1-and-textttld2}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(crops.lda}\OperatorTok{$}\NormalTok{scaling, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       LD1    LD2    LD3    LD4
+## x1 -0.061  0.009 -0.030 -0.015
+## x2 -0.025  0.043  0.046  0.055
+## x3  0.016 -0.079  0.020  0.009
+## x4  0.000 -0.014  0.054 -0.026
+\end{verbatim}
+
+\$
+
+\begin{itemize}
+\item
+  \texttt{LD1} mostly \texttt{x1} (minus), so clover low on
+  \texttt{LD1}, corn high.
+\item
+  \texttt{LD2} \texttt{x3} (minus), \texttt{x2} (plus), so sugarbeets
+  should be high on \texttt{LD2}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Predictions}
+\protect\hypertarget{predictions}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Thus:
+\end{itemize}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops.pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(crops.lda)}
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ crops}\OperatorTok{$}\NormalTok{crop, }\DataTypeTok{pred =}\NormalTok{ crops.pred}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             pred
+## obs          Clover Corn Cotton Soybeans Sugarbeets
+##   Clover          6    0      3        0          2
+##   Corn            0    6      0        1          0
+##   Cotton          3    0      1        2          0
+##   Soybeans        0    1      1        3          1
+##   Sugarbeets      1    1      0        2          2
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\item
+  Not very good, eg. only 6 of 11 \texttt{Clover} classified correctly.
+\item
+  Set up for plot:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{crop =}\NormalTok{ crops}\OperatorTok{$}\NormalTok{crop, crops.pred}\OperatorTok{$}\NormalTok{x)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plotting the LDs}
+\protect\hypertarget{plotting-the-lds}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mm, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ LD1, }\DataTypeTok{y =}\NormalTok{ LD2, }\DataTypeTok{colour =}\NormalTok{ crop)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/piacentini-1.pdf}
+\caption{plot of chunk piacentini}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Biplot}
+\protect\hypertarget{biplot}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggbiplot}\NormalTok{(crops.lda, }\DataTypeTok{groups =}\NormalTok{ crops}\OperatorTok{$}\NormalTok{crop)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-313-1.pdf}
+\caption{plot of chunk unnamed-chunk-313}
+\end{figure}
+
+\textbackslash{}begin\{frame\}{[}figure{]}\{Comments\}
+
+\begin{itemize}
+\item
+  Corn high on LD1 (right).
+\item
+  Clover all over the place, but mostly low on LD1 (left).
+\item
+  Sugarbeets tend to be high on LD2.
+\item
+  Cotton tends to be low on LD2.
+\item
+  Very mixed up.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Try removing Clover}
+\protect\hypertarget{try-removing-clover}{}
+
+\begin{itemize}
+\tightlist
+\item
+  the \texttt{dplyr} way:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(crop }\OperatorTok{!=}\StringTok{ "Clover"}\NormalTok{) ->}\StringTok{ }\NormalTok{crops2}
+\NormalTok{crops2.lda <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(crop }\OperatorTok{~}\StringTok{ }\NormalTok{x1 }\OperatorTok{+}\StringTok{ }\NormalTok{x2 }\OperatorTok{+}\StringTok{ }\NormalTok{x3 }\OperatorTok{+}\StringTok{ }\NormalTok{x4, }\DataTypeTok{data =}\NormalTok{ crops2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  LDs for \texttt{crops2} will be different from before.
+\item
+  Concentrate on plot and posterior probs.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops2.pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(crops2.lda)}
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{crop =}\NormalTok{ crops2}\OperatorTok{$}\NormalTok{crop, crops2.pred}\OperatorTok{$}\NormalTok{x)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{lda\ output}}
+\protect\hypertarget{lda-output}{}
+
+Different from before:
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops2.lda}\OperatorTok{$}\NormalTok{means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  x1       x2       x3       x4
+## Corn       15.28571 22.71429 27.42857 33.14286
+## Cotton     34.50000 32.66667 35.00000 39.16667
+## Soybeans   21.00000 27.00000 23.50000 29.66667
+## Sugarbeets 31.00000 32.16667 20.00000 40.50000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops2.lda}\OperatorTok{$}\NormalTok{svd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.3639389 1.6054750 0.4180292
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crops2.lda}\OperatorTok{$}\NormalTok{scaling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            LD1          LD2           LD3
+## x1  0.14077479  0.007780184 -0.0312610362
+## x2  0.03006972  0.007318386  0.0085401510
+## x3 -0.06363974 -0.099520895 -0.0005309869
+## x4 -0.00677414 -0.035612707  0.0577718649
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{Plot}
+\protect\hypertarget{plot}{}
+
+A bit more clustered:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mm, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ LD1, }\DataTypeTok{y =}\NormalTok{ LD2, }\DataTypeTok{colour =}\NormalTok{ crop)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/nedved-1.pdf}
+\caption{plot of chunk nedved}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Biplot}
+\protect\hypertarget{biplot-1}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggbiplot}\NormalTok{(crops2.lda, }\DataTypeTok{groups =}\NormalTok{ crops2}\OperatorTok{$}\NormalTok{crop)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-317-1.pdf}
+\caption{plot of chunk unnamed-chunk-317}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Quality of classification}
+\protect\hypertarget{quality-of-classification}{}
+
+\small
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ crops2}\OperatorTok{$}\NormalTok{crop, }\DataTypeTok{pred =}\NormalTok{ crops2.pred}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             pred
+## obs          Corn Cotton Soybeans Sugarbeets
+##   Corn          6      0        1          0
+##   Cotton        0      4        2          0
+##   Soybeans      2      0        3          1
+##   Sugarbeets    0      0        3          3
+\end{verbatim}
+
+\normalsize
+
+Better.
+
+\end{frame}
+
+\begin{frame}[fragile]{Posterior probs, the wrong ones}
+\protect\hypertarget{posterior-probs-the-wrong-ones}{}
+
+\emph{\textbackslash{}1} xxx \{\footnotesize  
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{post <-}\StringTok{ }\KeywordTok{round}\NormalTok{(crops2.pred}\OperatorTok{$}\NormalTok{posterior, }\DecValTok{3}\NormalTok{)}
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ crops2}\OperatorTok{$}\NormalTok{crop, }\DataTypeTok{pred =}\NormalTok{ crops2.pred}\OperatorTok{$}\NormalTok{class, post) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(obs }\OperatorTok{!=}\StringTok{ }\NormalTok{pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          obs       pred  Corn Cotton Soybeans Sugarbeets
+## 1       Corn   Soybeans 0.443  0.034    0.494      0.029
+## 2   Soybeans Sugarbeets 0.010  0.107    0.299      0.584
+## 3   Soybeans       Corn 0.684  0.009    0.296      0.011
+## 4   Soybeans       Corn 0.467  0.199    0.287      0.047
+## 5     Cotton   Soybeans 0.056  0.241    0.379      0.324
+## 6     Cotton   Soybeans 0.066  0.138    0.489      0.306
+## 7 Sugarbeets   Soybeans 0.381  0.146    0.395      0.078
+## 8 Sugarbeets   Soybeans 0.106  0.144    0.518      0.232
+## 9 Sugarbeets   Soybeans 0.088  0.207    0.489      0.216
+\end{verbatim}
+
+\}
+
+\begin{itemize}
+\item
+  These were the misclassified ones, but the posterior probability of
+  being correct was not usually too low.
+\item
+  The correctly-classified ones are not very clear-cut either.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{MANOVA}
+\protect\hypertarget{manova}{}
+
+Began discriminant analysis as a followup to MANOVA. Do our variables
+significantly separate the crops (excluding Clover)?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{response <-}\StringTok{ }\KeywordTok{with}\NormalTok{(crops2, }\KeywordTok{cbind}\NormalTok{(x1, x2, x3, x4))}
+\NormalTok{crops2.manova <-}\StringTok{ }\KeywordTok{manova}\NormalTok{(response }\OperatorTok{~}\StringTok{ }\NormalTok{crop, }\DataTypeTok{data =}\NormalTok{ crops2)}
+\KeywordTok{summary}\NormalTok{(crops2.manova)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Df Pillai approx F num Df den Df  Pr(>F)  
+## crop       3 0.9113   2.1815     12     60 0.02416 *
+## Residuals 21                                        
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Yes, at least one of the crops differs (in means) from the others. So it
+is worth doing this analysis.
+
+We did this the wrong way around, though!
+
+\end{frame}
+
+\begin{frame}[fragile]{The right way around}
+\protect\hypertarget{the-right-way-around}{}
+
+\begin{itemize}
+\item
+  \emph{First}, do a MANOVA to see whether any of the groups differ
+  significantly on any of the variables.
+\item
+  \emph{If the MANOVA is significant}, do a discriminant analysis in the
+  hopes of understanding how the groups are different.
+\item
+  For remote-sensing data (without Clover):
+\item
+  LD1 a fair bit more important than LD2 (definitely ignore LD3).
+\item
+  LD1 depends mostly on \texttt{x1}, on which Cotton was high and Corn
+  was low.
+\item
+  Discriminant analysis in MANOVA plays the same kind of role that Tukey
+  does in ANOVA.
+\end{itemize}
+
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+\end{verbatim}
 
 \end{frame}
 

@@ -57,5 +57,10 @@ output:
 
 ```
 
+```{r bDiscrim, child="bDiscrim.Rmd"}
+
+```
+
+ 
 
  
