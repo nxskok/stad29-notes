@@ -1,13 +1,13 @@
 # Cluster analysis
 
-## Cluster Analysis
+## Cluster Analysis xxx from here
 
 
 * One side-effect of discriminant analysis: could draw picture of data (if 1st 2s `LD`s told most of story) and see which individuals "close" to each other.
 
 * Discriminant analysis requires knowledge of groups.
 
-* Without knowledge of groups, use {\em cluster analysis}: see which individuals close, which groups suggested by data.
+* Without knowledge of groups, use *cluster analysis* xxx: see which individuals close, which groups suggested by data.
 
 * Idea: see how individuals group into "clusters" of nearby individuals.
 
@@ -19,9 +19,10 @@
 
 
 ## Packages
-```{r }
+```{r, eval=F}
 library(MASS) # for lda later
 library(tidyverse)
+library(spatstat) # for crossdist later
 library(ggrepel)
 ```
 
@@ -120,9 +121,9 @@ ones?
 
 
 ## Single-linkage distance
-Find the red point and the blue point that are closest together:
+Find the red point and the blue point that are closest together: xxx
 ```{r echo=F,fig.height=3.1}
-distances <- spatstat::crossdist(a$x, a$y, b$x, b$y)
+distances <- crossdist(a$x, a$y, b$x, b$y)
 wm1 <- which.min(apply(distances, 1, min))
 wm2 <- which.min(apply(distances, 2, min))
 closest <- bind_rows(a = a[wm1, ], b = b[wm2, ], .id = "cluster")
@@ -179,7 +180,7 @@ ggplot(ddd, aes(x = x, y = y, colour = cluster)) +
 
    
 
-(i) Work out sum of squared distances of points from means.
+Work out (i) sum of squared distances of points from means.
 
 
 ## Ward's method part 2
@@ -210,13 +211,13 @@ ggplot(ddd, aes(x = x, y = y, colour = cluster)) +
 ```
 
    
-(ii) Calc sum of squared distances of points to combined mean.
+Calc sum of squared distances (ii) of points to combined mean.
 
 
 ## Ward's method part 3
 
 
-* (ii) will be bigger than (i) (points closer to own cluster
+* Sum of squares (ii) will be bigger than (i) (points closer to own cluster
 mean than combined mean).
 
 * Ward's distance is (ii) minus (i).
@@ -255,13 +256,14 @@ clusters can be very different apart from two closest points.
 
 
 ## Dissimilarity data in R
-Dissimilarities for language data <a name="p:numberd">*</a> were how many
+Dissimilarities for language data xxx were how many
 number names had *different* first letter:
 
+\small
 ```{r include=F}
 options(width = 60)
 ```
-
+\normalsize
  
 
 ```{r size="scriptsize",message=F}
@@ -312,40 +314,30 @@ everything else.
 
 
 
-## Clustering process
-\begin{minipage}[t]{0.45\linewidth}
+## Clustering process xxx
 
-```{r echo=F}
-options(width = 25)
-```
-def 
-{\small    
+
+
 ```{r }
 d.hc$labels
 d.hc$merge
 ```
 
+## Comments xxx
  
-}
-\end{minipage}
-\begin{minipage}[t]{0.5\linewidth}
-\vspace{0.5in}
-
-
 * Lines of `merge` show what was combined
 
-* First, languages 2 and 3 (`no` and `dk`)
+  * First, languages 2 and 3 (`no` and `dk`)
 
-* Then languages 6 and 8 (`fr` and `it`)
+  * Then languages 6 and 8 (`fr` and `it`)
 
-* Then \#7 combined with cluster formed at step 2 (`es`
+  * Then \#7 combined with cluster formed at step 2 (`es`
 joined to `fr` and `it`).
 
-* Then `en` joined to `no` and `dk` \ldots
+  * Then `en` joined to `no` and `dk` \ldots
 
-* Finally `fi` joined to all others.
+  * Finally `fi` joined to all others.
 
-\end{minipage}
 
 
 
@@ -400,16 +392,13 @@ rect.hclust(d.hc, 3)
 
 Original data:
 
-```{r echo=F}
-options(width = 60)
-```
-def 
-```{r message=F, size="footnotesize"}
+\footnotesize
+```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/one-ten.txt"
 lang <- read_delim(my_url, " ")
 lang
 ```
-
+\normalsize
  
 
 It would be a lot easier to extract the first letter if the number
@@ -417,14 +406,15 @@ names were all in one column.
 
 
 ## Tidy, and extract first letter
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 lang.long <- lang %>%
   mutate(number = row_number()) %>%
   gather(language, name, -number) %>%
   mutate(first = str_sub(name, 1, 1))
 lang.long %>% print(n = 12)
 ```
-
+\normalsize
    
 
 
@@ -435,21 +425,23 @@ lang.long %>% print(n = 12)
 Norwegian. It's the number of first letters that are different.
 
 * First get the lines for English:
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 english <- lang.long %>% filter(language == "en")
 english
 ```
-
+\normalsize
      
 
 
 
 ## And then the lines for Norwegian
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 norwegian <- lang.long %>% filter(language == "no")
 norwegian
 ```
-
+\normalsize
    
 
 And now we want to put them side by side, matched by number. This is
@@ -458,15 +450,13 @@ one table using another.)
 
 
 ## The join
-```{r include=F}
-options(width = 70)
-```
 
    
-```{r size="scriptsize"}
+\scriptsize
+```{r}
 english %>% left_join(norwegian, by = "number")
 ```
-
+\normalsize
    
 
 `first.x` is 1st letter of English word, `first.y` 1st
@@ -552,7 +542,7 @@ thediffs <- pairs %>%
 ```{r echo=F}
 options(width = 60)
 ```
-def 
+ 
 ```{r size="scriptsize"}
 thediffs %>% spread(lang2, diff)
 ```
@@ -657,14 +647,14 @@ A lot of output, so look at these individually.
 ```{r }
 vital.km3$size
 ```
-def 
+ 
 
 
 * Cluster centres:
 ```{r }
 vital.km3$centers
 ```
-def 
+ 
 
 
 * Cluster 2 has lower than average rates on everything; cluster 3
@@ -676,14 +666,14 @@ has much higher than average.
 ```{r }
 vital.km3$withinss
 ```
-def 
+ 
 
 Cluster 1 compact relative to others (countries in cluster 1  more similar).
 
 ```{r size="scriptsize"}
 vital.km3$cluster
 ```
-def 
+ 
 
 The cluster membership for each of the 97 countries.
 
@@ -958,7 +948,7 @@ cf <- as.factor(vital.km6$cluster)
 vital.manova <- manova(v ~ cf)
 summary(vital.manova)
 ```
-def 
+ 
 
 Oh yes.
 
@@ -975,7 +965,7 @@ vital.lda <- lda(cf ~ birth + death + infant, data = vital.s)
 vital.lda$svd
 vital.lda$scaling
 ```
-def 
+ 
 
 * LD1 is some of everything, but not so much death rate
 (high=poor, low=rich).

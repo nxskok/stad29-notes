@@ -4307,16 +4307,16 @@ or
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    38 1     1         0.0162 
-##  2    35 1     3         0.484  
-##  3    24 0     2         0.0502 
-##  4    24 1     3         0.00279
-##  5    32 1     3         0.214  
-##  6    35 1     2         0.432  
-##  7    28 1     2         0.271  
-##  8    38 0     2         0.239  
-##  9    38 0     1         0.0260 
-## 10    38 1     2         0.252
+##  1    28 0     2         0.183  
+##  2    28 0     1         0.793  
+##  3    38 1     1         0.0162 
+##  4    32 1     1         0.291  
+##  5    28 1     2         0.271  
+##  6    38 1     2         0.252  
+##  7    38 0     3         0.735  
+##  8    35 1     3         0.484  
+##  9    38 1     3         0.732  
+## 10    24 1     3         0.00279
 \end{verbatim}
 
 \normalsize
@@ -4394,27 +4394,20 @@ Whole data set in 65 lines not 735! But how?
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(age, sex, brand) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Freq =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() ->}\StringTok{ }\NormalTok{b}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{b }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(lhs, parent, parent): object 'b' not found
+## # A tibble: 6 x 4
+##     age sex   brand  Freq
+##   <dbl> <fct> <fct> <int>
+## 1    24 0     1         1
+## 2    26 0     1         2
+## 3    27 0     1         4
+## 4    27 1     1         4
+## 5    27 1     3         1
+## 6    28 0     1         4
 \end{verbatim}
 
 \end{frame}
@@ -4438,32 +4431,10 @@ Whole data set in 65 lines not 735! But how?
 \NormalTok{b }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sex =} \KeywordTok{factor}\NormalTok{(sex)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{brand =} \KeywordTok{factor}\NormalTok{(brand)) ->}\StringTok{ }\NormalTok{bf}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Error in eval(lhs, parent, parent): object 'b' not found
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{b}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{multinom}\NormalTok{(brand }\OperatorTok{~}\StringTok{ }\NormalTok{age }\OperatorTok{+}\StringTok{ }\NormalTok{sex, }\DataTypeTok{data =}\NormalTok{ bf, }\DataTypeTok{weights =}\NormalTok{ Freq)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Error in is.data.frame(data): object 'bf' not found
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{b}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{multinom}\NormalTok{(brand }\OperatorTok{~}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ bf, }\DataTypeTok{weights =}\NormalTok{ Freq)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Error in is.data.frame(data): object 'bf' not found
-\end{verbatim}
 
 \normalsize
 
@@ -4481,7 +4452,12 @@ Whole data set in 65 lines not 735! But how?
 \end{Shaded}
 
 \begin{verbatim}
-## Error in anova(b.2, b.1): object 'b.2' not found
+## Likelihood ratio tests of Multinomial Models
+## 
+## Response: brand
+##       Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
+## 1       age       126   1413.593                                 
+## 2 age + sex       124   1405.941 1 vs 2     2 7.651236 0.02180495
 \end{verbatim}
 
 \normalsize
@@ -4511,7 +4487,23 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(lhs, parent, parent): object 'b' not found
+## # A tibble: 14 x 2
+##      age total
+##    <dbl> <int>
+##  1    24     1
+##  2    26     2
+##  3    27     9
+##  4    28    15
+##  5    29    19
+##  6    30    23
+##  7    31    40
+##  8    32   333
+##  9    33    55
+## 10    34    64
+## 11    35    35
+## 12    36    85
+## 13    37    22
+## 14    38    32
 \end{verbatim}
 
 \normalsize
@@ -4537,10 +4529,6 @@ Same P-value as before, so we haven't changed anything important.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Error in eval(lhs, parent, parent): object 'b' not found
-\end{verbatim}
-
 \end{frame}
 
 \begin{frame}[fragile]{Checking proportions for age 32}
@@ -4555,7 +4543,16 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(lhs, parent, parent): object 'brands' not found
+## # A tibble: 6 x 5
+## # Groups:   age, sex [2]
+##     age sex   brand  Freq proportion
+##   <dbl> <fct> <fct> <int>      <dbl>
+## 1    32 0     1        48      0.407
+## 2    32 0     2        51      0.432
+## 3    32 0     3        19      0.161
+## 4    32 1     1        62      0.288
+## 5    32 1     2       117      0.544
+## 6    32 1     3        36      0.167
 \end{verbatim}
 
 \normalsize
@@ -4594,10 +4591,6 @@ Same P-value as before, so we haven't changed anything important.
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ brands, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ proportion))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Error in fortify(data): object 'brands' not found
-\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -4656,10 +4649,6 @@ Same P-value as before, so we haven't changed anything important.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Error in fortify(data): object 'brands' not found
-\end{verbatim}
-
 \normalsize
 
 \end{frame}
@@ -4693,7 +4682,12 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## Error in update(b.1, . ~ . + age:sex): object 'b.1' not found
+## # weights:  15 (8 variable)
+## initial  value 807.480032 
+## iter  10 value 704.811229
+## iter  20 value 702.582802
+## final  value 702.582761 
+## converged
 \end{verbatim}
 
 \begin{Shaded}
@@ -4703,7 +4697,15 @@ Same P-value as before, so we haven't changed anything important.
 \end{Shaded}
 
 \begin{verbatim}
-## Error in anova(b.1, b.4): object 'b.1' not found
+## Likelihood ratio tests of Multinomial Models
+## 
+## Response: brand
+##                 Model Resid. df Resid. Dev   Test    Df
+## 1           age + sex       124   1405.941             
+## 2 age + sex + age:sex       122   1405.166 1 vs 2     2
+##    LR stat.  Pr(Chi)
+## 1                   
+## 2 0.7758861 0.678451
 \end{verbatim}
 
 \normalsize
@@ -6033,13 +6035,13 @@ darkbrown 35
 \end{Shaded}
 
 \begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 4 x 4
+##   hair           n  xbar     s
+##   <chr>      <int> <dbl> <dbl>
+## 1 darkblond      5  51.2  9.28
+## 2 darkbrown      5  37.4  8.32
+## 3 lightblond     5  59.2  8.53
+## 4 lightbrown     4  42.5  5.45
 \end{verbatim}
 
 \normalsize
@@ -6561,30 +6563,19 @@ darkbrown lightbrown  darkblond lightblond
 \NormalTok{summary <-}\StringTok{ }\NormalTok{vitaminb }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(ratsize, diet) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(kidneyweight))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{summary}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## function (object, ...) 
-## UseMethod("summary")
-## <bytecode: 0x561d8d5b3e20>
-## <environment: namespace:base>
+## # A tibble: 4 x 3
+## # Groups:   ratsize [2]
+##   ratsize diet      mean
+##   <chr>   <chr>    <dbl>
+## 1 lean    regular   1.64
+## 2 lean    vitaminb  1.53
+## 3 obese   regular   2.64
+## 4 obese   vitaminb  2.67
 \end{verbatim}
 
 \normalsize
@@ -6651,11 +6642,6 @@ darkbrown lightbrown  darkblond lightblond
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_line}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Error: You're passing a function as global data.
-## Have you misspelled the `data` argument in `ggplot()`
-\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -6957,15 +6943,11 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-186-1.pdf}
+\caption{plot of chunk unnamed-chunk-186}
+\end{figure}
 
 \normalsize
 
@@ -7073,13 +7055,11 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 \end{Shaded}
 
 \begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 2 x 2
+##   type      m
+##   <chr> <dbl>
+## 1 Octel  822.
+## 2 Std    846.
 \end{verbatim}
 
 \begin{itemize}
@@ -7989,13 +7969,13 @@ The proper data frame (tiny):
 \end{Shaded}
 
 \begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 4 x 2
+##   model mean.kick
+##   <fct>     <dbl>
+## 1 C          49  
+## 2 B          43  
+## 3 A          33  
+## 4 D          28.8
 \end{verbatim}
 
 \normalsize
@@ -8099,15 +8079,15 @@ b 9 22
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 b         24    35
-## 2 b          7    19
-## 3 b         18    30
-## 4 a         21    40
-## 5 b         12    26
-## 6 a         14    27
-## 7 b         22    31
+## 1 b         27    33
+## 2 a         10    23
+## 3 a          5    20
+## 4 b         12    26
+## 5 a         13    31
+## 6 b         26    34
+## 7 a         23    34
 ## 8 b         14    23
-## 9 a         12    30
+## 9 a         18    38
 \end{verbatim}
 
 \end{frame}
@@ -8160,13 +8140,11 @@ b 9 22
 \end{Shaded}
 
 \begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 2 x 3
+##   drug  before_mean after_mean
+##   <chr>       <dbl>      <dbl>
+## 1 a            13.1       29.2
+## 2 b            18         28.1
 \end{verbatim}
 
 \begin{itemize}
@@ -9633,11 +9611,11 @@ Separated by \emph{tabs}:
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    25 nonlowfat running     94   110   116
-## 2    15 nonlowfat walking     89    96    95
-## 3    19 lowfat    walking     97    98   100
-## 4     8 lowfat    atrest      92    94    95
-## 5     2 nonlowfat atrest      90    92    93
+## 1    24 nonlowfat running     87   132   120
+## 2    21 nonlowfat running     93    98   110
+## 3    16 lowfat    walking     84    86    89
+## 4    11 nonlowfat walking     86    86    84
+## 5     7 lowfat    atrest      87    88    90
 \end{verbatim}
 
 \normalsize
@@ -9934,16 +9912,6 @@ text under
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-\end{verbatim}
-
 \begin{itemize}
 \tightlist
 \item
@@ -9971,7 +9939,16 @@ text under
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(expr, envir, enclos): object 'summ' not found
+## # A tibble: 6 x 4
+## # Groups:   time [3]
+##   time  diet       mean    sd
+##   <chr> <chr>     <dbl> <dbl>
+## 1 min01 lowfat     98.2  3.70
+## 2 min01 nonlowfat  94    4.53
+## 3 min15 lowfat    124.   8.62
+## 4 min15 nonlowfat 110.  13.1 
+## 5 min30 lowfat    141.   7.20
+## 6 min30 nonlowfat 111.   7.92
 \end{verbatim}
 
 \normalsize
@@ -10006,9 +9983,11 @@ text under
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Error in ggplot(summ, aes(x = time, y = mean, colour = diet, group = diet)): object 'summ' not found
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-268-1.pdf}
+\caption{plot of chunk unnamed-chunk-268}
+\end{figure}
 
 \end{frame}
 
@@ -10049,7 +10028,7 @@ text under
 \item
   Assumption here that groups are known (for data we have). If trying to
   ``best separate'' data into unknown groups, see \emph{cluster
-  analysis} xxx.
+  analysis}.
 \item
   Examples: revisit seed yield and weight data, peanut data,
   professions/activities data; remote-sensing data.
@@ -10057,8 +10036,8 @@ text under
 
 \end{frame}
 
-\begin{frame}[fragile]{Packages xxx}
-\protect\hypertarget{packages-xxx}{}
+\begin{frame}[fragile]{Packages}
+\protect\hypertarget{packages-6}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10096,15 +10075,15 @@ overwrite each other.
   other way around, the \texttt{tidyverse} \texttt{select}, which I want
   to use, would have been the invisible one.
 \item
-  xxx Alternative: load \texttt{conflicted} package. Any time you load
-  two packages containing functions with same name, you get error and
-  have to choose between them.
+  Alternative: load \texttt{conflicted} package. Any time you load two
+  packages containing functions with same name, you get error and have
+  to choose between them.
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{Example 1: seed yields and weights xxx}
-\protect\hypertarget{example-1-seed-yields-and-weights-xxx}{}
+\begin{frame}[fragile]{Example 1: seed yields and weights}
+\protect\hypertarget{example-1-seed-yields-and-weights}{}
 
 \small
 
@@ -10121,16 +10100,14 @@ overwrite each other.
 
 \normalsize
 
-\begin{minipage}[t]{0.6\linewidth}
-xxx
-\includegraphics[width=0.6\textwidth]{berzani}
-   
-\end{minipage}
 \begin{minipage}[t]{0.38\linewidth}
 \vspace{0.1\textheight}
 Recall data from MANOVA: needed a multivariate analysis to find
 difference in seed yield and weight based on whether they were high
 or low fertilizer.
+\end{minipage}\hfill
+\begin{minipage}[t][][b]{0.55\textwidth}
+\includegraphics[width=0.9\textwidth, valign=t]{berzani}
 \end{minipage}
 
 \end{frame}
@@ -10214,7 +10191,7 @@ or low fertilizer.
 \item
   High-fertilizer plants have higher yield and weight, thus low
   (negative) LD1 score. Low-fertilizer plants have low yield and weight,
-  thus high (positive) LD1 score. xxx
+  thus high (positive) LD1 score.
 \item
   One LD1 score for each observation. Plot with actual groups.
 \end{itemize}
@@ -10226,7 +10203,7 @@ or low fertilizer.
 
 \begin{itemize}
 \item
-  Smaller of these: xxx
+  Smaller of these:
 
   \begin{itemize}
   \item
@@ -10240,8 +10217,8 @@ or low fertilizer.
 
 \end{frame}
 
-\begin{frame}[fragile]{Getting LD scores xxx}
-\protect\hypertarget{getting-ld-scores-xxx}{}
+\begin{frame}[fragile]{Getting LD scores}
+\protect\hypertarget{getting-ld-scores}{}
 
 Feed output from LDA into \texttt{predict}:
 
@@ -10251,7 +10228,7 @@ Feed output from LDA into \texttt{predict}:
 \end{Highlighting}
 \end{Shaded}
 
-Component \(x\) contains LD score(s), here in descending order:
+Component \texttt{x} contains LD score(s), here in descending order:
 
 \footnotesize
 
@@ -10276,14 +10253,14 @@ Component \(x\) contains LD score(s), here in descending order:
 
 \normalsize
 
-xxx High fertilizer have yield and weight high, negative LD1 scores.
+High fertilizer have yield and weight high, negative LD1 scores.
 
 \end{frame}
 
 \begin{frame}[fragile]{Plotting LD1 scores}
 \protect\hypertarget{plotting-ld1-scores}{}
 
-With one LD score, plot against (true) groups, eg. boxplot: xxx
+With one LD score, plot against (true) groups, eg. boxplot:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10302,14 +10279,6 @@ With one LD score, plot against (true) groups, eg. boxplot: xxx
 \begin{frame}[fragile]{Potentially misleading}
 \protect\hypertarget{potentially-misleading}{}
 
-\begin{itemize}
-\tightlist
-\item
-  These are like regression slopes: xxx
-\end{itemize}
-
-\footnotesize
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{hilo}\FloatTok{.1}\OperatorTok{$}\NormalTok{scaling}
@@ -10322,40 +10291,44 @@ With one LD score, plot against (true) groups, eg. boxplot: xxx
 ## weight -1.2513563
 \end{verbatim}
 
-\normalsize
-
 \begin{itemize}
+\tightlist
 \item
-  Reflect change in LD1 score for 1-unit change in variables.
-\item
-  But one-unit change in variables might not be comparable:
+  These are like regression slopes: change in LD1 score for 1-unit
+  change in variables.
 \end{itemize}
 
-\footnotesize
+\end{frame}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(hilo)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   fertilizer            yield           weight     
-##  Length:8           Min.   :29.00   Min.   :10.00  
-##  Class :character   1st Qu.:32.75   1st Qu.:11.75  
-##  Mode  :character   Median :34.00   Median :13.00  
-##                     Mean   :33.75   Mean   :12.62  
-##                     3rd Qu.:35.00   3rd Qu.:14.00  
-##                     Max.   :38.00   Max.   :14.00
-\end{verbatim}
-
-\normalsize
+\begin{frame}[fragile]{But\ldots}
+\protect\hypertarget{but-2}{}
 
 \begin{itemize}
 \tightlist
 \item
-  xxx Here, IQRs \emph{identical}, so 1-unit change in each variable
-  means same thing.
+  One-unit change in variables might not be comparable:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hilo }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{fertilizer) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{   }\KeywordTok{map_df}\NormalTok{(}\OperatorTok{~}\KeywordTok{quantile}\NormalTok{(., }\KeywordTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.75}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   yield weight
+##   <dbl>  <dbl>
+## 1  32.8   11.8
+## 2  35     14
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Here, IQRs both 2.2, \emph{identical}, so 1-unit change in each
+  variable means same thing.
 \end{itemize}
 
 \end{frame}
@@ -10391,7 +10364,7 @@ With one LD score, plot against (true) groups, eg. boxplot: xxx
 \begin{frame}[fragile]{Predictions and predicted groups}
 \protect\hypertarget{predictions-and-predicted-groups}{}
 
-\ldots based on \texttt{yield} and \texttt{weight}: xxx
+\ldots based on \texttt{yield} and \texttt{weight}:
 
 \footnotesize
 
@@ -10478,8 +10451,8 @@ high \texttt{weight} makes up for it.
 
 \end{frame}
 
-\begin{frame}[fragile]{Example 2: the peanuts xxx}
-\protect\hypertarget{example-2-the-peanuts-xxx}{}
+\begin{frame}[fragile]{Example 2: the peanuts}
+\protect\hypertarget{example-2-the-peanuts}{}
 
 \scriptsize
 
@@ -10520,15 +10493,15 @@ high \texttt{weight} makes up for it.
 
 \end{frame}
 
-\begin{frame}[fragile]{Location-variety combos xxx}
-\protect\hypertarget{location-variety-combos-xxx}{}
+\begin{frame}[fragile]{Location-variety combos}
+\protect\hypertarget{location-variety-combos}{}
 
 \footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{peanuts }\OperatorTok{%>%}\StringTok{ }\KeywordTok{unite}\NormalTok{(combo, }\KeywordTok{c}\NormalTok{(variety, location)) ->}
-\NormalTok{peanuts.combo}
+\NormalTok{peanuts }\OperatorTok{%>%}
+\StringTok{   }\KeywordTok{unite}\NormalTok{(combo, }\KeywordTok{c}\NormalTok{(variety, location)) ->}\StringTok{ }\NormalTok{peanuts.combo}
 \NormalTok{peanuts.combo}
 \end{Highlighting}
 \end{Shaded}
@@ -10551,7 +10524,7 @@ high \texttt{weight} makes up for it.
 ## 12    12 8_2    200   174.  67.2
 \end{verbatim}
 
-\emph{\textbackslash{}1} xxx xxx \normalsize
+\normalsize
 
 \end{frame}
 
@@ -10594,17 +10567,20 @@ high \texttt{weight} makes up for it.
 
 \end{frame}
 
-\begin{frame}[fragile]{Comments xxx}
-\protect\hypertarget{comments-xxx}{}
+\begin{frame}[fragile]{Comments}
+\protect\hypertarget{comments-22}{}
 
 \begin{itemize}
 \item
   First: relationship of LDs to original variables. Look for coeffs far
   from zero: here,
-\item
-  high \texttt{LD1} mainly high \texttt{w} or low \texttt{y}.
-\item
-  high \texttt{LD2} mainly high \texttt{w}.
+
+  \begin{itemize}
+  \item
+    high \texttt{LD1} mainly high \texttt{w} or low \texttt{y}.
+  \item
+    high \texttt{LD2} mainly high \texttt{w}.
+  \end{itemize}
 \item
   \texttt{svd} values show relative importance of LDs: \texttt{LD1} much
   more important than \texttt{LD2}.
@@ -10612,8 +10588,8 @@ high \texttt{weight} makes up for it.
 
 \end{frame}
 
-\begin{frame}[fragile]{Group means by variable xxx}
-\protect\hypertarget{group-means-by-variable-xxx}{}
+\begin{frame}[fragile]{Group means by variable}
+\protect\hypertarget{group-means-by-variable}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10673,8 +10649,8 @@ Actually classified very well. Only one \texttt{6\_2} classified as a
 
 \end{frame}
 
-\begin{frame}[fragile]{Posterior probabilities xxx}
-\protect\hypertarget{posterior-probabilities-xxx}{}
+\begin{frame}[fragile]{Posterior probabilities}
+\protect\hypertarget{posterior-probabilities-1}{}
 
 \scriptsize
 
@@ -10718,7 +10694,7 @@ much. The one misclassified plant was a close call.
   How are discriminant scores related to original variables?
 \item
   Construct data frame with original data and discriminant scores side
-  by side: xxx
+  by side:
 \end{itemize}
 
 \footnotesize
@@ -10748,7 +10724,7 @@ much. The one misclassified plant was a close call.
 
 \begin{itemize}
 \item
-  xxx LD1 positive if \texttt{w} large and/or \texttt{y} small.
+  LD1 positive if \texttt{w} large and/or \texttt{y} small.
 \item
   LD2 positive if \texttt{w} large.
 \end{itemize}
@@ -10913,8 +10889,8 @@ First and third quartiles for three response variables:
 
 \end{frame}
 
-\begin{frame}[fragile]{``Bi-plot'' from \texttt{ggbiplot} xxx}
-\protect\hypertarget{bi-plot-from-ggbiplot-xxx}{}
+\begin{frame}[fragile]{``Bi-plot'' from \texttt{ggbiplot}}
+\protect\hypertarget{bi-plot-from-ggbiplot}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10989,7 +10965,7 @@ First and third quartiles for three response variables:
 \begin{itemize}
 \tightlist
 \item
-  Fitting and prediction all in one go: xxx text under
+  Fitting and prediction all in one go:
 \end{itemize}
 
 \small
@@ -10997,12 +10973,9 @@ First and third quartiles for three response variables:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{peanuts.cv <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(combo }\OperatorTok{~}\StringTok{ }\NormalTok{y }\OperatorTok{+}\StringTok{ }\NormalTok{smk }\OperatorTok{+}\StringTok{ }\NormalTok{w,}
-  \DataTypeTok{data =}\NormalTok{ peanuts.combo, }\DataTypeTok{CV =}\NormalTok{ T}
-\NormalTok{)}
-\KeywordTok{table}\NormalTok{(}
-  \DataTypeTok{obs =}\NormalTok{ peanuts.combo}\OperatorTok{$}\NormalTok{combo,}
-  \DataTypeTok{pred =}\NormalTok{ peanuts.cv}\OperatorTok{$}\NormalTok{class}
-\NormalTok{)}
+  \DataTypeTok{data =}\NormalTok{ peanuts.combo, }\DataTypeTok{CV =}\NormalTok{ T)}
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{obs =}\NormalTok{ peanuts.combo}\OperatorTok{$}\NormalTok{combo,}
+      \DataTypeTok{pred =}\NormalTok{ peanuts.cv}\OperatorTok{$}\NormalTok{class)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -11027,8 +11000,8 @@ First and third quartiles for three response variables:
 
 \end{frame}
 
-\begin{frame}[fragile]{Repeat of LD plot xxx}
-\protect\hypertarget{repeat-of-ld-plot-xxx}{}
+\begin{frame}[fragile]{Repeat of LD plot}
+\protect\hypertarget{repeat-of-ld-plot}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11045,7 +11018,7 @@ First and third quartiles for three response variables:
 \end{frame}
 
 \begin{frame}[fragile]{Posterior probabilities}
-\protect\hypertarget{posterior-probabilities-1}{}
+\protect\hypertarget{posterior-probabilities-2}{}
 
 \footnotesize
 
@@ -11111,10 +11084,10 @@ First and third quartiles for three response variables:
   leisure activities: reading, dancing, TV watching and skiing. After
   each activity they rate it on a 0--10 scale.
 \item
-  Some of the data: xxx
+  Some of the data:
 \end{itemize}
 
-\small
+\normalsize
 
 \begin{verbatim}
 bellydancer 7 10 6 5
@@ -11129,6 +11102,11 @@ admin 6 3 3 3
 
 \normalsize
 
+\end{frame}
+
+\begin{frame}{Questions}
+\protect\hypertarget{questions}{}
+
 \begin{itemize}
 \item
   How can we best use the scores on the activities to predict a person's
@@ -11140,8 +11118,8 @@ admin 6 3 3 3
 
 \end{frame}
 
-\begin{frame}[fragile]{Discriminant analysis xxx}
-\protect\hypertarget{discriminant-analysis-xxx}{}
+\begin{frame}[fragile]{Discriminant analysis}
+\protect\hypertarget{discriminant-analysis-3}{}
 
 \small
 
@@ -11179,7 +11157,7 @@ admin 6 3 3 3
   Two discriminants, first fair bit more important than second.
 \item
   \texttt{LD1} depends (negatively) most on \texttt{dance}, a bit on
-  \texttt{tv}. xxx
+  \texttt{tv}.
 \item
   \texttt{LD2} depends mostly on \texttt{tv}.
 \end{itemize}
@@ -11208,8 +11186,8 @@ Everyone correctly classified.
 
 \end{frame}
 
-\begin{frame}[fragile]{Plotting LDs xxx}
-\protect\hypertarget{plotting-lds-xxx}{}
+\begin{frame}[fragile]{Plotting LDs}
+\protect\hypertarget{plotting-lds}{}
 
 \small
 
@@ -11227,8 +11205,8 @@ Everyone correctly classified.
 
 \end{frame}
 
-\begin{frame}[fragile]{Biplot xxx}
-\protect\hypertarget{biplot-xxx}{}
+\begin{frame}[fragile]{Biplot}
+\protect\hypertarget{biplot}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11261,8 +11239,8 @@ Everyone correctly classified.
 
 \end{frame}
 
-\begin{frame}[fragile]{Plotting individual \texttt{persons} xxx}
-\protect\hypertarget{plotting-individual-persons-xxx}{}
+\begin{frame}[fragile]{Plotting individual \texttt{persons}}
+\protect\hypertarget{plotting-individual-persons}{}
 
 Make \texttt{label} be identifier of person. Now need legend:
 
@@ -11283,7 +11261,7 @@ Make \texttt{label} be identifier of person. Now need legend:
 \end{frame}
 
 \begin{frame}[fragile]{Posterior probabilities}
-\protect\hypertarget{posterior-probabilities-2}{}
+\protect\hypertarget{posterior-probabilities-3}{}
 
 \scriptsize
 
@@ -11385,27 +11363,27 @@ picking out the ones where things are not certain:
 \begin{frame}{Why did things get misclassified?}
 \protect\hypertarget{why-did-things-get-misclassified}{}
 
-\begin{minipage}[t]{0.7\linewidth}
+\begin{minipage}[t]{0.3\linewidth}
 
-\includegraphics[width=0.7\textwidth]{nesta}
+\begin{itemize}
 
+\item Go back to plot of discriminant scores: xxx
+
+\item one bellydancer much closer to the politicians,
+
+\item one administrator a bit closer to the politicians.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t][][b]{0.68\linewidth}
+
+\includegraphics[width=0.9\textwidth, valign=t]{nesta}
        
-\end{minipage}
-\begin{minipage}[t]{0.28\linewidth}
-
-
-* Go back to plot of discriminant scores:
-
-* one bellydancer much closer to the politicians,
-
-* one administrator a bit closer to the politicians.
-
 \end{minipage}
 
 \end{frame}
 
-\begin{frame}[fragile]{Example 4: remote-sensing data xxx from here}
-\protect\hypertarget{example-4-remote-sensing-data-xxx-from-here}{}
+\begin{frame}[fragile]{Example 4: remote-sensing data}
+\protect\hypertarget{example-4-remote-sensing-data}{}
 
 \begin{itemize}
 \item
@@ -11421,9 +11399,12 @@ picking out the ones where things are not certain:
 \begin{frame}[fragile]{Reading in}
 \protect\hypertarget{reading-in-1}{}
 
+\small
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"}
+\NormalTok{my_url <-}\StringTok{ }
+\StringTok{   "http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"}
 \NormalTok{crops <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
 \end{Highlighting}
 \end{Shaded}
@@ -11439,6 +11420,8 @@ picking out the ones where things are not certain:
 ##   cr = col_character()
 ## )
 \end{verbatim}
+
+\normalsize
 
 \end{frame}
 
@@ -11467,6 +11450,8 @@ picking out the ones where things are not certain:
 
 \begin{frame}[fragile]{Connecting original variables and LDs}
 \protect\hypertarget{connecting-original-variables-and-lds}{}
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11497,6 +11482,8 @@ picking out the ones where things are not certain:
 ## x4  0.000 -0.014  0.054 -0.026
 \end{verbatim}
 
+\normalsize
+
 \begin{itemize}
 \tightlist
 \item
@@ -11505,8 +11492,8 @@ picking out the ones where things are not certain:
 
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{LD1\ and\ texttt\{LD2}\}}
-\protect\hypertarget{ld1-and-textttld2}{}
+\begin{frame}[fragile]{\texttt{LD1} and \texttt{LD2}}
+\protect\hypertarget{ld1-and-ld2}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11521,8 +11508,6 @@ picking out the ones where things are not certain:
 ## x3  0.016 -0.079  0.020  0.009
 ## x4  0.000 -0.014  0.054 -0.026
 \end{verbatim}
-
-\$
 
 \begin{itemize}
 \item
@@ -11599,7 +11584,7 @@ picking out the ones where things are not certain:
 \end{frame}
 
 \begin{frame}[fragile]{Biplot}
-\protect\hypertarget{biplot}{}
+\protect\hypertarget{biplot-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11732,7 +11717,7 @@ A bit more clustered:
 \end{frame}
 
 \begin{frame}[fragile]{Biplot}
-\protect\hypertarget{biplot-1}{}
+\protect\hypertarget{biplot-2}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11777,7 +11762,7 @@ Better.
 \begin{frame}[fragile]{Posterior probs, the wrong ones}
 \protect\hypertarget{posterior-probs-the-wrong-ones}{}
 
-\emph{\textbackslash{}1} xxx \{\footnotesize  
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -11800,7 +11785,7 @@ Better.
 ## 9 Sugarbeets   Soybeans 0.088  0.207    0.489      0.216
 \end{verbatim}
 
-\}
+\normalsize
 
 \begin{itemize}
 \item
@@ -11863,6 +11848,1843 @@ We did this the wrong way around, though!
   Discriminant analysis in MANOVA plays the same kind of role that Tukey
   does in ANOVA.
 \end{itemize}
+
+\end{frame}
+
+\hypertarget{cluster-analysis}{%
+\section{Cluster analysis}\label{cluster-analysis}}
+
+\begin{frame}[fragile]{Cluster Analysis xxx from here}
+\protect\hypertarget{cluster-analysis-xxx-from-here}{}
+
+\begin{itemize}
+\item
+  One side-effect of discriminant analysis: could draw picture of data
+  (if 1st 2s \texttt{LD}s told most of story) and see which individuals
+  ``close'' to each other.
+\item
+  Discriminant analysis requires knowledge of groups.
+\item
+  Without knowledge of groups, use \emph{cluster analysis} xxx: see
+  which individuals close, which groups suggested by data.
+\item
+  Idea: see how individuals group into ``clusters'' of nearby
+  individuals.
+\item
+  Base on ``dissimilarities'' between individuals.
+\item
+  Or base on standard deviations and correlations between variables
+  (assesses dissimilarity behind scenes).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Packages}
+\protect\hypertarget{packages-7}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS) }\CommentTok{# for lda later}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(spatstat) }\CommentTok{# for crossdist later}
+\KeywordTok{library}\NormalTok{(ggrepel)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}{One to ten in 11 languages}
+\protect\hypertarget{one-to-ten-in-11-languages}{}
+
+\begin{tabular}{lcccccc}
+& English & Norwegian & Danish & Dutch & German\\
+\hline
+1 & one & en & en & een & eins\\
+2 & two & to & to & twee & zwei\\
+3 & three & tre & tre & drie & drei\\
+4 & four & fire & fire & vier & vier\\
+5 & five & fem & fem & vijf & funf\\
+6 & six & seks & seks & zes & sechs\\
+7 & seven & sju & syv & zeven & sieben\\
+8 & eight & atte & otte & acht & acht\\
+9 & nine & ni & ni & negen & neun\\
+10 & ten & ti & ti & tien & zehn\\
+\hline
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}{One to ten}
+\protect\hypertarget{one-to-ten}{}
+
+\begin{small}
+\begin{tabular}{lcccccc}
+& French & Spanish & Italian & Polish & Hungarian & Finnish\\
+\hline
+1 & un & uno & uno & jeden & egy & yksi\\
+2 & deux & dos & due & dwa & ketto & kaksi\\
+3 & trois & tres & tre & trzy &  harom & kolme\\
+4 & quatre & cuatro & quattro & cztery & negy & nelja\\
+5 & cinq & cinco & cinque & piec & ot & viisi\\
+6 & six & seis & sei & szesc & hat & kuusi\\
+7 & sept & siete & sette & siedem & het & seitseman \\
+8 & huit & ocho & otto & osiem & nyolc & kahdeksan\\
+9 & neuf & nueve & nove & dziewiec & kilenc & yhdeksan \\
+10 & dix & diez & dieci & dziesiec & tiz & kymmenen\\
+\hline
+\end{tabular}
+\end{small}
+
+\end{frame}
+
+\begin{frame}{Dissimilarities and languages example}
+\protect\hypertarget{dissimilarities-and-languages-example}{}
+
+\begin{itemize}
+\item
+  Can define dissimilarities how you like (whatever makes sense in
+  application).
+\item
+  Sometimes defining ``similarity'' makes more sense; can turn this into
+  dissimilarity by subtracting from some maximum.
+\item
+  Example: numbers 1--10 in various European languages. Define
+  similarity between two languages by counting how often the same number
+  has a name starting with the same letter (and dissimilarity by how
+  often number has names starting with different letter).
+\item
+  Crude (doesn't even look at most of the words), but see how effective.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Two kinds of cluster analysis}
+\protect\hypertarget{two-kinds-of-cluster-analysis}{}
+
+\begin{itemize}
+\item
+  Looking at process of forming clusters (of similar languages):
+  \textbf{hierarchical cluster analysis} (\texttt{hclust}).
+\item
+  Start with each individual in cluster by itself.
+\item
+  Join ``closest'' clusters one by one until all individuals in one
+  cluster.
+\item
+  How to define closeness of two \emph{clusters}? Not obvious,
+  investigate in a moment.
+\item
+  Know how many clusters: which division into that many clusters is
+  ``best'' for individuals? \textbf{K-means clustering}
+  (\texttt{kmeans}).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Two made-up clusters}
+\protect\hypertarget{two-made-up-clusters}{}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-323-1.pdf}
+\caption{plot of chunk unnamed-chunk-323}
+\end{figure}
+
+How to measure distance between set of red points and set of blue ones?
+
+\end{frame}
+
+\begin{frame}{Single-linkage distance}
+\protect\hypertarget{single-linkage-distance}{}
+
+Find the red point and the blue point that are closest together: xxx
+\includegraphics{figure/unnamed-chunk-324-1.pdf}
+
+Single-linkage distance between 2 clusters is distance between their
+closest points.
+
+\end{frame}
+
+\begin{frame}{Complete linkage}
+\protect\hypertarget{complete-linkage}{}
+
+Find the red and blue points that are farthest apart:
+\includegraphics{figure/unnamed-chunk-325-1.pdf}
+
+Complete-linkage distance is distance between farthest points.
+
+\end{frame}
+
+\begin{frame}{Ward's method}
+\protect\hypertarget{wards-method}{}
+
+Work out mean of each cluster and join point to its mean:
+\includegraphics{figure/unnamed-chunk-326-1.pdf}
+
+Work out (i) sum of squared distances of points from means.
+
+\end{frame}
+
+\begin{frame}{Ward's method part 2}
+\protect\hypertarget{wards-method-part-2}{}
+
+Now imagine combining the two clusters and working out overall mean.
+Join each point to this mean:
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-327-1.pdf}
+\caption{plot of chunk unnamed-chunk-327}
+\end{figure}
+
+Calc sum of squared distances (ii) of points to combined mean.
+
+\end{frame}
+
+\begin{frame}{Ward's method part 3}
+\protect\hypertarget{wards-method-part-3}{}
+
+\begin{itemize}
+\item
+  Sum of squares (ii) will be bigger than (i) (points closer to own
+  cluster mean than combined mean).
+\item
+  Ward's distance is (ii) minus (i).
+\item
+  Think of as ``cost'' of combining clusters:
+\item
+  if clusters close together, (ii) only a little larger than
+\end{itemize}
+
+\begin{enumerate}
+[(i)]
+\item
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  if clusters far apart, (ii) a lot larger than (i) (as in example).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Hierarchical clustering revisited}
+\protect\hypertarget{hierarchical-clustering-revisited}{}
+
+\begin{itemize}
+\item
+  Single linkage, complete linkage, Ward are ways of measuring closeness
+  of clusters.
+\item
+  Use them, starting with each observation in own cluster, to repeatedly
+  combine two closest clusters until all points in one cluster.
+\item
+  They will give different answers (clustering stories).
+\item
+  Single linkage tends to make ``stringy'' clusters because clusters can
+  be very different apart from two closest points.
+\item
+  Complete linkage insists on whole clusters being similar.
+\item
+  Ward tends to form many small clusters first.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Dissimilarity data in R}
+\protect\hypertarget{dissimilarity-data-in-r}{}
+
+Dissimilarities for language data xxx were how many number names had
+\emph{different} first letter:
+
+\small
+
+\normalsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/languages.txt"}
+\NormalTok{number.d <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
+\NormalTok{number.d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11 x 12
+##    la       en    no    dk    nl    de    fr    es    it
+##    <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 en        0     2     2     7     6     6     6     6
+##  2 no        2     0     1     5     4     6     6     6
+##  3 dk        2     1     0     6     5     6     5     5
+##  4 nl        7     5     6     0     5     9     9     9
+##  5 de        6     4     5     5     0     7     7     7
+##  6 fr        6     6     6     9     7     0     2     1
+##  7 es        6     6     5     9     7     2     0     1
+##  8 it        6     6     5     9     7     1     1     0
+##  9 pl        7     7     6    10     8     5     3     4
+## 10 hu        9     8     8     8     9    10    10    10
+## 11 fi        9     9     9     9     9     9     9     8
+## # … with 3 more variables: pl <dbl>, hu <dbl>, fi <dbl>
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Making a distance object}
+\protect\hypertarget{making-a-distance-object}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d <-}\StringTok{ }\NormalTok{number.d }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{la) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as.dist}\NormalTok{()}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    en no dk nl de fr es it pl hu
+## no  2                           
+## dk  2  1                        
+## nl  7  5  6                     
+## de  6  4  5  5                  
+## fr  6  6  6  9  7               
+## es  6  6  5  9  7  2            
+## it  6  6  5  9  7  1  1         
+## pl  7  7  6 10  8  5  3  4      
+## hu  9  8  8  8  9 10 10 10 10   
+## fi  9  9  9  9  9  9  9  8  9  8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "dist"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster analysis and dendrogram}
+\protect\hypertarget{cluster-analysis-and-dendrogram}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d.hc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(d, }\DataTypeTok{method =} \StringTok{"single"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(d.hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-331-1.pdf}
+\caption{plot of chunk unnamed-chunk-331}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Comments}
+\protect\hypertarget{comments-23}{}
+
+\begin{itemize}
+\item
+  Tree shows how languages combined into clusters.
+\item
+  First (bottom), Spanish, French, Italian joined into one cluster,
+  Norwegian and Danish into another.
+\item
+  Later, English joined to Norse languages, Polish to Romance group.
+\item
+  Then German, Dutch make a Germanic group.
+\item
+  Finally, Hungarian and Finnish joined to each other and everything
+  else.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Clustering process xxx}
+\protect\hypertarget{clustering-process-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d.hc}\OperatorTok{$}\NormalTok{labels}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "en" "no" "dk" "nl" "de" "fr" "es" "it" "pl" "hu" "fi"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d.hc}\OperatorTok{$}\NormalTok{merge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1] [,2]
+##  [1,]   -2   -3
+##  [2,]   -6   -8
+##  [3,]   -7    2
+##  [4,]   -1    1
+##  [5,]   -9    3
+##  [6,]   -5    4
+##  [7,]   -4    6
+##  [8,]    5    7
+##  [9,]  -10    8
+## [10,]  -11    9
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments xxx}
+\protect\hypertarget{comments-xxx}{}
+
+\begin{itemize}
+\item
+  Lines of \texttt{merge} show what was combined
+
+  \begin{itemize}
+  \item
+    First, languages 2 and 3 (\texttt{no} and \texttt{dk})
+  \item
+    Then languages 6 and 8 (\texttt{fr} and \texttt{it})
+  \item
+    Then \#7 combined with cluster formed at step 2 (\texttt{es} joined
+    to \texttt{fr} and \texttt{it}).
+  \item
+    Then \texttt{en} joined to \texttt{no} and \texttt{dk} \ldots
+  \item
+    Finally \texttt{fi} joined to all others.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Complete linkage}
+\protect\hypertarget{complete-linkage-1}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d.hc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(d, }\DataTypeTok{method =} \StringTok{"complete"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(d.hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-333-1.pdf}
+\caption{plot of chunk unnamed-chunk-333}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ward}
+\protect\hypertarget{ward}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d.hc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(d, }\DataTypeTok{method =} \StringTok{"ward.D"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(d.hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/wardo-1.pdf}
+\caption{plot of chunk wardo}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Chopping the tree}
+\protect\hypertarget{chopping-the-tree}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Three clusters (from Ward) looks good:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cutree}\NormalTok{(d.hc, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## en no dk nl de fr es it pl hu fi 
+##  1  1  1  1  1  2  2  2  2  3  3
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Drawing those clusters on the tree}
+\protect\hypertarget{drawing-those-clusters-on-the-tree}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(d.hc)}
+\KeywordTok{rect.hclust}\NormalTok{(d.hc, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/asfsagd-1.pdf}
+\caption{plot of chunk asfsagd}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Comparing single-linkage and Ward}
+\protect\hypertarget{comparing-single-linkage-and-ward}{}
+
+\begin{itemize}
+\item
+  In Ward, Dutch and German get joined earlier (before joining to
+  Germanic cluster).
+\item
+  Also Hungarian and Finnish get combined earlier.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Making those dissimilarities}
+\protect\hypertarget{making-those-dissimilarities}{}
+
+Original data:
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/one-ten.txt"}
+\NormalTok{lang <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(my_url, }\StringTok{" "}\NormalTok{)}
+\NormalTok{lang}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 11
+##    en    no    dk    nl    de     fr     es    it     pl    
+##    <chr> <chr> <chr> <chr> <chr>  <chr>  <chr> <chr>  <chr> 
+##  1 one   en    en    een   eins   un     uno   uno    jeden 
+##  2 two   to    to    twee  zwei   deux   dos   due    dwa   
+##  3 three tre   tre   drie  drei   trois  tres  tre    trzy  
+##  4 four  fire  fire  vier  vier   quatre cuat… quatt… cztery
+##  5 five  fem   fem   vijf  funf   cinq   cinco cinque piec  
+##  6 six   seks  seks  zes   sechs  six    seis  sei    szesc 
+##  7 seven sju   syv   zeven sieben sept   siete sette  siedem
+##  8 eight atte  otte  acht  acht   huit   ocho  otto   osiem 
+##  9 nine  ni    ni    negen neun   neuf   nueve nove   dziew…
+## 10 ten   ti    ti    tien  zehn   dix    diez  dieci  dzies…
+## # … with 2 more variables: hu <chr>, fi <chr>
+\end{verbatim}
+
+\normalsize
+
+It would be a lot easier to extract the first letter if the number names
+were all in one column.
+
+\end{frame}
+
+\begin{frame}[fragile]{Tidy, and extract first letter}
+\protect\hypertarget{tidy-and-extract-first-letter}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lang.long <-}\StringTok{ }\NormalTok{lang }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{number =} \KeywordTok{row_number}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(language, name, }\OperatorTok{-}\NormalTok{number) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{first =} \KeywordTok{str_sub}\NormalTok{(name, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{lang.long }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 110 x 4
+##    number language name  first
+##     <int> <chr>    <chr> <chr>
+##  1      1 en       one   o    
+##  2      2 en       two   t    
+##  3      3 en       three t    
+##  4      4 en       four  f    
+##  5      5 en       five  f    
+##  6      6 en       six   s    
+##  7      7 en       seven s    
+##  8      8 en       eight e    
+##  9      9 en       nine  n    
+## 10     10 en       ten   t    
+## 11      1 no       en    e    
+## 12      2 no       to    t    
+## # … with 98 more rows
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{Calculating dissimilarity}
+\protect\hypertarget{calculating-dissimilarity}{}
+
+\begin{itemize}
+\item
+  Suppose we wanted dissimilarity between English and Norwegian. It's
+  the number of first letters that are different.
+\item
+  First get the lines for English: \footnotesize
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{english <-}\StringTok{ }\NormalTok{lang.long }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(language }\OperatorTok{==}\StringTok{ "en"}\NormalTok{)}
+\NormalTok{english}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 4
+##    number language name  first
+##     <int> <chr>    <chr> <chr>
+##  1      1 en       one   o    
+##  2      2 en       two   t    
+##  3      3 en       three t    
+##  4      4 en       four  f    
+##  5      5 en       five  f    
+##  6      6 en       six   s    
+##  7      7 en       seven s    
+##  8      8 en       eight e    
+##  9      9 en       nine  n    
+## 10     10 en       ten   t
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{And then the lines for Norwegian}
+\protect\hypertarget{and-then-the-lines-for-norwegian}{}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{norwegian <-}\StringTok{ }\NormalTok{lang.long }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(language }\OperatorTok{==}\StringTok{ "no"}\NormalTok{)}
+\NormalTok{norwegian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 4
+##    number language name  first
+##     <int> <chr>    <chr> <chr>
+##  1      1 no       en    e    
+##  2      2 no       to    t    
+##  3      3 no       tre   t    
+##  4      4 no       fire  f    
+##  5      5 no       fem   f    
+##  6      6 no       seks  s    
+##  7      7 no       sju   s    
+##  8      8 no       atte  a    
+##  9      9 no       ni    n    
+## 10     10 no       ti    t
+\end{verbatim}
+
+\normalsize
+
+And now we want to put them side by side, matched by number. This is
+what \texttt{left\_join} does. (A ``join'' is a lookup of values in one
+table using another.)
+
+\end{frame}
+
+\begin{frame}[fragile]{The join}
+\protect\hypertarget{the-join}{}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{english }\OperatorTok{%>%}\StringTok{ }\KeywordTok{left_join}\NormalTok{(norwegian, }\DataTypeTok{by =} \StringTok{"number"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 7
+##    number language.x name.x first.x language.y name.y
+##     <int> <chr>      <chr>  <chr>   <chr>      <chr> 
+##  1      1 en         one    o       no         en    
+##  2      2 en         two    t       no         to    
+##  3      3 en         three  t       no         tre   
+##  4      4 en         four   f       no         fire  
+##  5      5 en         five   f       no         fem   
+##  6      6 en         six    s       no         seks  
+##  7      7 en         seven  s       no         sju   
+##  8      8 en         eight  e       no         atte  
+##  9      9 en         nine   n       no         ni    
+## 10     10 en         ten    t       no         ti    
+## # … with 1 more variable: first.y <chr>
+\end{verbatim}
+
+\normalsize
+
+\texttt{first.x} is 1st letter of English word, \texttt{first.y} 1st
+letter of Norwegian word.
+
+\end{frame}
+
+\begin{frame}[fragile]{Counting the different ones}
+\protect\hypertarget{counting-the-different-ones}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{english }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(norwegian, }\DataTypeTok{by =} \StringTok{"number"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{different =}\NormalTok{ (first.x }\OperatorTok{!=}\StringTok{ }\NormalTok{first.y)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{diff =} \KeywordTok{sum}\NormalTok{(different))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##    diff
+##   <int>
+## 1     2
+\end{verbatim}
+
+Words for 1 and 8 start with different letter; rest are same.
+
+\end{frame}
+
+\begin{frame}[fragile]{Function to do this for any two languages}
+\protect\hypertarget{function-to-do-this-for-any-two-languages}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{countdiff <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(lang}\FloatTok{.1}\NormalTok{, lang}\FloatTok{.2}\NormalTok{, d) \{}
+\NormalTok{  lang1d <-}\StringTok{ }\NormalTok{d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(language }\OperatorTok{==}\StringTok{ }\NormalTok{lang}\FloatTok{.1}\NormalTok{)}
+\NormalTok{  lang2d <-}\StringTok{ }\NormalTok{d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(language }\OperatorTok{==}\StringTok{ }\NormalTok{lang}\FloatTok{.2}\NormalTok{)}
+\NormalTok{  lang1d }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{left_join}\NormalTok{(lang2d, }\DataTypeTok{by =} \StringTok{"number"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{different =}\NormalTok{ (first.x }\OperatorTok{!=}\StringTok{ }\NormalTok{first.y)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{diff =} \KeywordTok{sum}\NormalTok{(different)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{pull}\NormalTok{(diff)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{countdiff}\NormalTok{(}\StringTok{"en"}\NormalTok{, }\StringTok{"no"}\NormalTok{, lang.long)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{For all pairs of languages?}
+\protect\hypertarget{for-all-pairs-of-languages}{}
+
+\begin{itemize}
+\tightlist
+\item
+  First need all the languages:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{languages <-}\StringTok{ }\KeywordTok{names}\NormalTok{(lang)}
+\NormalTok{languages}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "en" "no" "dk" "nl" "de" "fr" "es" "it" "pl"
+## [10] "hu" "fi"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  and then all \emph{pairs} of languages:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pairs <-}\StringTok{ }\KeywordTok{crossing}\NormalTok{(}\DataTypeTok{lang =}\NormalTok{ languages, }\DataTypeTok{lang2 =}\NormalTok{ languages) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 121 x 2
+##    lang  lang2
+##    <chr> <chr>
+##  1 de    de   
+##  2 de    dk   
+##  3 de    en   
+##  4 de    es   
+##  5 de    fi   
+##  6 de    fr   
+##  7 de    hu   
+##  8 de    it   
+##  9 de    nl   
+## 10 de    no   
+## 11 de    pl   
+## 12 dk    de   
+## # … with 109 more rows
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Run
+\texttt{countdiff\ for\ all\ those\ language\ pairs}}
+\protect\hypertarget{run-countdiff-for-all-those-language-pairs}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thediffs <-}\StringTok{ }\NormalTok{pairs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{diff =} \KeywordTok{map2_int}\NormalTok{(lang, lang2, countdiff, lang.long)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 121 x 3
+##    lang  lang2  diff
+##    <chr> <chr> <int>
+##  1 de    de        0
+##  2 de    dk        5
+##  3 de    en        6
+##  4 de    es        7
+##  5 de    fi        9
+##  6 de    fr        7
+##  7 de    hu        9
+##  8 de    it        7
+##  9 de    nl        5
+## 10 de    no        4
+## 11 de    pl        8
+## 12 dk    de        5
+## # … with 109 more rows
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Make square table of these}
+\protect\hypertarget{make-square-table-of-these}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thediffs }\OperatorTok{%>%}\StringTok{ }\KeywordTok{spread}\NormalTok{(lang2, diff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11 x 12
+##    lang     de    dk    en    es    fi    fr    hu    it
+##    <chr> <int> <int> <int> <int> <int> <int> <int> <int>
+##  1 de        0     5     6     7     9     7     9     7
+##  2 dk        5     0     2     5     9     6     8     5
+##  3 en        6     2     0     6     9     6     9     6
+##  4 es        7     5     6     0     9     2    10     1
+##  5 fi        9     9     9     9     0     9     8     9
+##  6 fr        7     6     6     2     9     0    10     1
+##  7 hu        9     8     9    10     8    10     0    10
+##  8 it        7     5     6     1     9     1    10     0
+##  9 nl        5     6     7     9     9     9     8     9
+## 10 no        4     1     2     6     9     6     8     6
+## 11 pl        8     6     7     3     9     5    10     4
+## # … with 3 more variables: nl <int>, no <int>, pl <int>
+\end{verbatim}
+
+and that was where we began.
+
+\end{frame}
+
+\begin{frame}[fragile]{Another example}
+\protect\hypertarget{another-example}{}
+
+Birth, death and infant mortality rates for 97 countries (variables not
+dissimilarities):
+
+\{\scriptsize
+
+\begin{verbatim}
+
+24.7  5.7  30.8 Albania         12.5 11.9  14.4 Bulgaria
+13.4 11.7  11.3 Czechoslovakia  12   12.4   7.6 Former_E._Germany
+11.6 13.4  14.8 Hungary         14.3 10.2    16 Poland
+13.6 10.7  26.9 Romania           14    9  20.2 Yugoslavia
+17.7   10    23 USSR            15.2  9.5  13.1 Byelorussia_SSR
+13.4 11.6    13 Ukrainian_SSR   20.7  8.4  25.7 Argentina
+46.6   18   111 Bolivia         28.6  7.9    63 Brazil
+23.4  5.8  17.1 Chile           27.4  6.1    40 Columbia
+32.9  7.4    63 Ecuador         28.3  7.3    56 Guyana
+...
+\end{verbatim}
+
+\}
+
+\begin{itemize}
+\item
+  Want to find groups of similar countries (and how many groups, which
+  countries in each group).
+\item
+  Tree would be unwieldy with 97 countries.
+\item
+  More automatic way of finding given number of clusters?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Reading in}
+\protect\hypertarget{reading-in-2}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/birthrate.txt"}
+\NormalTok{vital <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   birth = col_double(),
+##   death = col_double(),
+##   infant = col_double(),
+##   country = col_character()
+## )
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{The data}
+\protect\hypertarget{the-data-12}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 97 x 4
+##    birth death infant country       
+##    <dbl> <dbl>  <dbl> <chr>         
+##  1  24.7   5.7   30.8 Albania       
+##  2  13.4  11.7   11.3 Czechoslovakia
+##  3  11.6  13.4   14.8 Hungary       
+##  4  13.6  10.7   26.9 Romania       
+##  5  17.7  10     23   USSR          
+##  6  13.4  11.6   13   Ukrainian_SSR 
+##  7  46.6  18    111   Bolivia       
+##  8  23.4   5.8   17.1 Chile         
+##  9  32.9   7.4   63   Ecuador       
+## 10  34.8   6.6   42   Paraguay      
+## # … with 87 more rows
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Standardizing}
+\protect\hypertarget{standardizing}{}
+
+\begin{itemize}
+\item
+  Infant mortality rate numbers bigger than others, consequence of
+  measurement scale (arbitrary).
+\item
+  Standardize (numerical) columns of data frame to have mean 0, SD 1,
+  done by \texttt{scale}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.s <-}\StringTok{ }\NormalTok{vital }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate_if}\NormalTok{(is.numeric, scale)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Three clusters}
+\protect\hypertarget{three-clusters}{}
+
+Pretend we know 3 clusters is good. Take off the 4th column (of
+countries) and run \texttt{kmeans} on the resulting data frame, asking
+for 3 clusters:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3 <-}\StringTok{ }\NormalTok{vital.s }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(vital.km3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "cluster"      "centers"      "totss"       
+## [4] "withinss"     "tot.withinss" "betweenss"   
+## [7] "size"         "iter"         "ifault"
+\end{verbatim}
+
+A lot of output, so look at these individually.
+
+\end{frame}
+
+\begin{frame}[fragile]{What's in the output?}
+\protect\hypertarget{whats-in-the-output}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Cluster sizes:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3}\OperatorTok{$}\NormalTok{size}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 29 44 24
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Cluster centres:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3}\OperatorTok{$}\NormalTok{centers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        birth      death     infant
+## 1  0.4737967 -0.4878149  0.2466440
+## 2 -0.9593341 -0.4322350 -0.8904328
+## 3  1.1862748  1.3818738  1.3344318
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Cluster 2 has lower than average rates on everything; cluster 3 has
+  much higher than average.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster sums of squares and membership}
+\protect\hypertarget{cluster-sums-of-squares-and-membership}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3}\OperatorTok{$}\NormalTok{withinss}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 14.96356 25.13922 26.78049
+\end{verbatim}
+
+Cluster 1 compact relative to others (countries in cluster 1 more
+similar).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3}\OperatorTok{$}\NormalTok{cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 2 2 2 2 2 2 3 2 1 1 2 3 2 2 2 2 2 2 2 2 2 3 1 2 2 1 1 3
+## [29] 2 1 2 1 1 2 2 1 1 1 3 3 1 1 3 3 1 3 3 3 1 2 2 2 2 2 2 1
+## [57] 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 2 3 2 1 1 3 1 2 1
+## [85] 3 3 3 3 1 3 3 3 3 3 1 3 3
+\end{verbatim}
+
+The cluster membership for each of the 97 countries.
+
+\end{frame}
+
+\begin{frame}[fragile]{Store countries and clusters to which they
+belong}
+\protect\hypertarget{store-countries-and-clusters-to-which-they-belong}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital}\FloatTok{.3}\NormalTok{ <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}
+  \DataTypeTok{country =}\NormalTok{ vital.s}\OperatorTok{$}\NormalTok{country,}
+  \DataTypeTok{cluster =}\NormalTok{ vital.km3}\OperatorTok{$}\NormalTok{cluster}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, which countries in which cluster?
+
+Write function to extract them:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{get_countries <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(i, d) \{}
+\NormalTok{  d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(cluster }\OperatorTok{==}\StringTok{ }\NormalTok{i) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{(country)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster membership: cluster 2}
+\protect\hypertarget{cluster-membership-cluster-2}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{2}\NormalTok{, vital}\FloatTok{.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Albania"              "Czechoslovakia"      
+##  [3] "Hungary"              "Romania"             
+##  [5] "USSR"                 "Ukrainian_SSR"       
+##  [7] "Chile"                "Uruguay"             
+##  [9] "Finland"              "France"              
+## [11] "Greece"               "Italy"               
+## [13] "Norway"               "Spain"               
+## [15] "Switzerland"          "Austria"             
+## [17] "Canada"               "Israel"              
+## [19] "Kuwait"               "China"               
+## [21] "Korea"                "Singapore"           
+## [23] "Thailand"             "Bulgaria"            
+## [25] "Former_E._Germany"    "Poland"              
+## [27] "Yugoslavia"           "Byelorussia_SSR"     
+## [29] "Argentina"            "Venezuela"           
+## [31] "Belgium"              "Denmark"             
+## [33] "Germany"              "Ireland"             
+## [35] "Netherlands"          "Portugal"            
+## [37] "Sweden"               "U.K."                
+## [39] "Japan"                "U.S.A."              
+## [41] "Bahrain"              "United_Arab_Emirates"
+## [43] "Hong_Kong"            "Sri_Lanka"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 3}
+\protect\hypertarget{cluster-3}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{3}\NormalTok{, vital}\FloatTok{.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Bolivia"      "Mexico"       "Afghanistan" 
+##  [4] "Bangladesh"   "Gabon"        "Ghana"       
+##  [7] "Namibia"      "Sierra_Leone" "Swaziland"   
+## [10] "Uganda"       "Zaire"        "Cambodia"    
+## [13] "Nepal"        "Angola"       "Congo"       
+## [16] "Ethiopia"     "Gambia"       "Malawi"      
+## [19] "Mozambique"   "Nigeria"      "Somalia"     
+## [22] "Sudan"        "Tanzania"     "Zambia"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 1}
+\protect\hypertarget{cluster-1}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{1}\NormalTok{, vital}\FloatTok{.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Ecuador"      "Paraguay"     "Iran"        
+##  [4] "Oman"         "Turkey"       "India"       
+##  [7] "Mongolia"     "Pakistan"     "Algeria"     
+## [10] "Botswana"     "Egypt"        "Libya"       
+## [13] "Morocco"      "South_Africa" "Zimbabwe"    
+## [16] "Brazil"       "Columbia"     "Guyana"      
+## [19] "Peru"         "Iraq"         "Jordan"      
+## [22] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [25] "Malaysia"     "Philippines"  "Vietnam"     
+## [28] "Kenya"        "Tunisia"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Problem!}
+\protect\hypertarget{problem}{}
+
+\begin{itemize}
+\item
+  \texttt{kmeans} uses randomization. So result of one run might be
+  different from another run.
+\item
+  Example: just run again on 3 clusters, \texttt{table} of results:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3a <-}\StringTok{ }\NormalTok{vital.s }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(}
+  \DataTypeTok{first =}\NormalTok{ vital.km3}\OperatorTok{$}\NormalTok{cluster,}
+  \DataTypeTok{second =}\NormalTok{ vital.km3a}\OperatorTok{$}\NormalTok{cluster}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      second
+## first  1  2  3
+##     1  1  0 28
+##     2  0 40  4
+##     3 24  0  0
+\end{verbatim}
+
+\begin{itemize}
+\item
+  Clusters are similar but \emph{not same}.
+\item
+  Solution: \texttt{nstart} option on \texttt{kmeans} runs that many
+  times, takes best. Should be same every time:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km3b <-}\StringTok{ }\NormalTok{vital.s }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kmeans}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DataTypeTok{nstart =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{How many clusters?}
+\protect\hypertarget{how-many-clusters}{}
+
+\begin{itemize}
+\item
+  Three was just a guess.
+\item
+  Idea: try a whole bunch of \#clusters (say 2--20), obtain measure of
+  goodness of fit for each, make plot.
+\item
+  Appropriate measure is \texttt{tot.withinss}.
+\item
+  Use loop to run \texttt{kmeans} for each \#clusters, keep track of
+  \texttt{tot.withinss}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Function to get \texttt{tot.withinss}}
+\protect\hypertarget{function-to-get-tot.withinss}{}
+
+\ldots for an input number of clusters, taking only numeric columns of
+input data frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ss <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(i, d) \{}
+\NormalTok{  km <-}\StringTok{ }\NormalTok{d }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{kmeans}\NormalTok{(i, }\DataTypeTok{nstart =} \DecValTok{20}\NormalTok{)}
+\NormalTok{  km}\OperatorTok{$}\NormalTok{tot.withinss}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Note: writing function to be as general as possible, so that we can
+re-use it later.
+
+\end{frame}
+
+\begin{frame}[fragile]{Constructing within-cluster SS}
+\protect\hypertarget{constructing-within-cluster-ss}{}
+
+Make a data frame with desired numbers of clusters, and fill it with the
+total within-group sums of squares.
+`\texttt{For\ each\ number\ of\ clusters,\ run}ss\texttt{\textquotesingle{}\textquotesingle{},\ so}map\_dbl`.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ssd <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{clusters =} \DecValTok{2}\OperatorTok{:}\DecValTok{20}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{wss =} \KeywordTok{map_dbl}\NormalTok{(clusters, ss, vital.s)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 19 x 2
+##    clusters   wss
+##       <int> <dbl>
+##  1        2 117. 
+##  2        3  66.9
+##  3        4  51.4
+##  4        5  37.5
+##  5        6  28.7
+##  6        7  24.7
+##  7        8  22.3
+##  8        9  19.6
+##  9       10  17.5
+## 10       11  16.2
+## # … with 9 more rows
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Scree plot}
+\protect\hypertarget{scree-plot}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(ssd, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ clusters, }\DataTypeTok{y =}\NormalTok{ wss)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/favalli-1.pdf}
+\caption{plot of chunk favalli}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Interpreting scree plot}
+\protect\hypertarget{interpreting-scree-plot}{}
+
+\begin{itemize}
+\item
+  Lower \texttt{wss} better.
+\item
+  But lower for larger \#clusters, harder to explain.
+\item
+  Compromise: low-ish \texttt{wss} and low-ish \#clusters.
+\item
+  Look for ``elbow'' in plot.
+\item
+  Idea: this is where \texttt{wss} decreases fast then slow.
+\item
+  On our plot, small elbow at 6 clusters. Try this many clusters.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Six clusters, using \texttt{nstart}}
+\protect\hypertarget{six-clusters-using-nstart}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km6 <-}\StringTok{ }\NormalTok{vital.s }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kmeans}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DataTypeTok{nstart =} \DecValTok{20}\NormalTok{)}
+\NormalTok{vital.km6}\OperatorTok{$}\NormalTok{size}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 24  8 30 15 18  2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.km6}\OperatorTok{$}\NormalTok{centers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        birth      death     infant
+## 1  0.4160993 -0.5169988  0.2648754
+## 2  1.3043848  2.1896567  1.9470306
+## 3 -1.1737104 -0.1856375 -0.9534370
+## 4 -0.4357690 -1.1438599 -0.7281108
+## 5  1.2092406  0.7441347  1.0278003
+## 6 -0.2199722  2.1116577 -0.4544435
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital}\FloatTok{.6}\NormalTok{ <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}
+  \DataTypeTok{country =}\NormalTok{ vital.s}\OperatorTok{$}\NormalTok{country,}
+  \DataTypeTok{cluster =}\NormalTok{ vital.km6}\OperatorTok{$}\NormalTok{cluster}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 1}
+\protect\hypertarget{cluster-1-1}{}
+
+Below-average death rate, though other rates a little higher than
+average:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{1}\NormalTok{, vital}\FloatTok{.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Ecuador"      "Paraguay"     "Oman"        
+##  [4] "Turkey"       "India"        "Mongolia"    
+##  [7] "Pakistan"     "Algeria"      "Egypt"       
+## [10] "Libya"        "Morocco"      "South_Africa"
+## [13] "Zimbabwe"     "Brazil"       "Guyana"      
+## [16] "Peru"         "Iraq"         "Jordan"      
+## [19] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [22] "Philippines"  "Vietnam"      "Tunisia"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 2}
+\protect\hypertarget{cluster-2}{}
+
+High on everything:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{2}\NormalTok{, vital}\FloatTok{.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Afghanistan"  "Sierra_Leone" "Angola"      
+## [4] "Ethiopia"     "Gambia"       "Malawi"      
+## [7] "Mozambique"   "Somalia"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 3}
+\protect\hypertarget{cluster-3-1}{}
+
+Low on everything, though death rate close to average:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{3}\NormalTok{, vital}\FloatTok{.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Czechoslovakia"    "Hungary"          
+##  [3] "Romania"           "USSR"             
+##  [5] "Ukrainian_SSR"     "Uruguay"          
+##  [7] "Finland"           "France"           
+##  [9] "Greece"            "Italy"            
+## [11] "Norway"            "Spain"            
+## [13] "Switzerland"       "Austria"          
+## [15] "Canada"            "Bulgaria"         
+## [17] "Former_E._Germany" "Poland"           
+## [19] "Yugoslavia"        "Byelorussia_SSR"  
+## [21] "Belgium"           "Denmark"          
+## [23] "Germany"           "Ireland"          
+## [25] "Netherlands"       "Portugal"         
+## [27] "Sweden"            "U.K."             
+## [29] "Japan"             "U.S.A."
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 4}
+\protect\hypertarget{cluster-4}{}
+
+Low on everything, especially death rate:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{4}\NormalTok{, vital}\FloatTok{.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Albania"              "Chile"               
+##  [3] "Israel"               "Kuwait"              
+##  [5] "China"                "Singapore"           
+##  [7] "Thailand"             "Argentina"           
+##  [9] "Columbia"             "Venezuela"           
+## [11] "Bahrain"              "United_Arab_Emirates"
+## [13] "Hong_Kong"            "Malaysia"            
+## [15] "Sri_Lanka"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 5}
+\protect\hypertarget{cluster-5}{}
+
+Higher than average on everything, though not the highest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{5}\NormalTok{, vital}\FloatTok{.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Bolivia"    "Iran"       "Bangladesh"
+##  [4] "Botswana"   "Gabon"      "Ghana"     
+##  [7] "Namibia"    "Swaziland"  "Uganda"    
+## [10] "Zaire"      "Cambodia"   "Nepal"     
+## [13] "Congo"      "Kenya"      "Nigeria"   
+## [16] "Sudan"      "Tanzania"   "Zambia"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Cluster 6}
+\protect\hypertarget{cluster-6}{}
+
+Very high death rate, just below average on all else:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{get_countries}\NormalTok{(}\DecValTok{6}\NormalTok{, vital}\FloatTok{.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Mexico" "Korea"
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comparing our 3 and 6-cluster solutions}
+\protect\hypertarget{comparing-our-3-and-6-cluster-solutions}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{three =}\NormalTok{ vital.km3}\OperatorTok{$}\NormalTok{cluster, }\DataTypeTok{six =}\NormalTok{ vital.km6}\OperatorTok{$}\NormalTok{cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      six
+## three  1  2  3  4  5  6
+##     1 24  0  0  2  3  0
+##     2  0  0 30 13  0  1
+##     3  0  8  0  0 15  1
+\end{verbatim}
+
+Compared to 3-cluster solution:
+
+\begin{itemize}
+\item
+  most of cluster 1 gone to (new) cluster 1
+\item
+  cluster 2 split into clusters 3 and 4 (two types of ``richer''
+  countries)
+\item
+  cluster 3 split into clusters 2 and 5 (two types of ``poor''
+  countries, divided by death rate).
+\item
+  cluster 6 (Mexico and Korea) was split before.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Getting a picture from \texttt{kmeans}}
+\protect\hypertarget{getting-a-picture-from-kmeans}{}
+
+\begin{itemize}
+\item
+  Use multidimensional scaling (later)
+\item
+  Use discriminant analysis on clusters found, treating them as
+  ``known'' groups.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{MANOVA and discriminant analysis}
+\protect\hypertarget{manova-and-discriminant-analysis}{}
+
+\begin{itemize}
+\item
+  Go back to 1st 3 columns of \texttt{vital.s} (variables,
+  standardized), plus \texttt{cf} (cluster as factor). \texttt{clus} (6
+  clusters).
+\item
+  First, do they actually differ by group? (MANOVA):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v <-}\StringTok{ }\NormalTok{vital.s }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{()}
+\NormalTok{cf <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(vital.km6}\OperatorTok{$}\NormalTok{cluster)}
+\NormalTok{vital.manova <-}\StringTok{ }\KeywordTok{manova}\NormalTok{(v }\OperatorTok{~}\StringTok{ }\NormalTok{cf)}
+\KeywordTok{summary}\NormalTok{(vital.manova)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Df Pillai approx F num Df den Df
+## cf         5 1.9215   32.427     15    273
+## Residuals 91                              
+##              Pr(>F)    
+## cf        < 2.2e-16 ***
+## Residuals              
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Oh yes.
+
+\end{frame}
+
+\begin{frame}[fragile]{Discriminant analysis}
+\protect\hypertarget{discriminant-analysis-4}{}
+
+\begin{itemize}
+\item
+  So what makes the groups different?
+\item
+  Uses package \texttt{MASS} (loaded):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.lda <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(cf }\OperatorTok{~}\StringTok{ }\NormalTok{birth }\OperatorTok{+}\StringTok{ }\NormalTok{death }\OperatorTok{+}\StringTok{ }\NormalTok{infant, }\DataTypeTok{data =}\NormalTok{ vital.s)}
+\NormalTok{vital.lda}\OperatorTok{$}\NormalTok{svd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 21.687195  8.851811  1.773006
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.lda}\OperatorTok{$}\NormalTok{scaling}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              LD1        LD2        LD3
+## birth  2.6879695  1.1224202  1.9483853
+## death  0.6652712 -2.7213044  0.6049358
+## infant 2.1111801  0.7650912 -2.3542296
+\end{verbatim}
+
+\begin{itemize}
+\item
+  LD1 is some of everything, but not so much death rate (high=poor,
+  low=rich).
+\item
+  LD2 mainly death rate, high or low.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{To make a plot}
+\protect\hypertarget{to-make-a-plot}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Get predictions first:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vital.pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(vital.lda)}
+\NormalTok{d <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{country =}\NormalTok{ vital.s}\OperatorTok{$}\NormalTok{country,}
+  \DataTypeTok{cluster =}\NormalTok{ vital.km6}\OperatorTok{$}\NormalTok{cluster, vital.pred}\OperatorTok{$}\NormalTok{x}
+\NormalTok{)}
+\KeywordTok{glimpse}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Observations: 97
+## Variables: 5
+## $ country <fct> Albania, Czechoslovakia, Hungar…
+## $ cluster <int> 4, 3, 3, 3, 3, 3, 5, 4, 1, 1, 3…
+## $ LD1     <dbl> -2.74034473, -5.01874312, -4.97…
+## $ LD2     <dbl> 2.2311427, -2.5427640, -3.62910…
+## $ LD3     <dbl> -0.086392118, 0.067491502, -0.1…
+\end{verbatim}
+
+\$ \%\$ \%\$
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{d} contains country names, cluster memberships and
+  discriminant scores. Plot \texttt{LD1} against \texttt{LD2}, colouring
+  points by cluster and labelling by country:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(d, }\KeywordTok{aes}\NormalTok{(}
+  \DataTypeTok{x =}\NormalTok{ LD1, }\DataTypeTok{y =}\NormalTok{ LD2, }\DataTypeTok{colour =} \KeywordTok{factor}\NormalTok{(cluster),}
+  \DataTypeTok{label =}\NormalTok{ country}
+\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{The plot}
+\protect\hypertarget{the-plot-7}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-380-1.pdf}
+\caption{plot of chunk unnamed-chunk-380}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Final example: a hockey league}
+\protect\hypertarget{final-example-a-hockey-league}{}
+
+\begin{itemize}
+\item
+  An Ontario hockey league has teams in 21 cities. How can we arrange
+  those teams into 4 geographical divisions?
+\item
+  Distance data in spreadsheet.
+\item
+  Take out spaces in team names.
+\item
+  Save as ``text/csv''.
+\item
+  Distances, so back to \texttt{hclust}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{A map}
+\protect\hypertarget{a-map}{}
+
+\includegraphics{map1.png}
+
+\end{frame}
+
+\begin{frame}[fragile]{Attempt 1}
+\protect\hypertarget{attempt-1}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
+\NormalTok{ontario <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url)}
+\NormalTok{ontario.d <-}\StringTok{ }\NormalTok{ontario }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{()}
+\NormalTok{ontario.hc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(ontario.d, }\DataTypeTok{method =} \StringTok{"ward.D"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Plot, with 4 clusters}
+\protect\hypertarget{plot-with-4-clusters}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(ontario.hc)}
+\KeywordTok{rect.hclust}\NormalTok{(ontario.hc, }\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-382-1.pdf}
+\caption{plot of chunk unnamed-chunk-382}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Comments}
+\protect\hypertarget{comments-24}{}
+
+\begin{itemize}
+\item
+  Can't have divisions of 1 team!
+\item
+  ``Southern'' divisions way too big!
+\item
+  Try splitting into more. I found 7 to be good:
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Seven clusters}
+\protect\hypertarget{seven-clusters}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(ontario.hc)}
+\KeywordTok{rect.hclust}\NormalTok{(ontario.hc, }\DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-383-1.pdf}
+\caption{plot of chunk unnamed-chunk-383}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Divisions now}
+\protect\hypertarget{divisions-now}{}
+
+\begin{itemize}
+\item
+  I want to put Huntsville and North Bay together with northern teams.
+\item
+  I'll put the Eastern teams together. Gives:
+\item
+  North: Sault Ste Marie, Sudbury, Huntsville, North Bay
+\item
+  East: Brockville, Cornwall, Ottawa, Peterborough, Belleville, Kingston
+\item
+  West: Windsor, London, Sarnia
+\item
+  Central: Owen Sound, Barrie, Toronto, Niagara Falls, St Catharines,
+  Brantford, Hamilton, Kitchener
+\item
+  Getting them same size beyond us!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Another map}
+\protect\hypertarget{another-map}{}
+
+\includegraphics{map2.png}
 
 \begin{verbatim}
 ## Error in FUN(X[[i]], ...): invalid 'name' argument

@@ -1,24 +1,7 @@
-\frametitle{The right way around}
-\protect\hypertarget{the-right-way-around}{}
+\frametitle{Another map}
+\protect\hypertarget{another-map}{}
 
-\begin{itemize}
-\item
-  \emph{First}, do a MANOVA to see whether any of the groups differ
-  significantly on any of the variables.
-\item
-  \emph{If the MANOVA is significant}, do a discriminant analysis in the
-  hopes of understanding how the groups are different.
-\item
-  For remote-sensing data (without Clover):
-\item
-  LD1 a fair bit more important than LD2 (definitely ignore LD3).
-\item
-  LD1 depends mostly on \texttt{x1}, on which Cotton was high and Corn
-  was low.
-\item
-  Discriminant analysis in MANOVA plays the same kind of role that Tukey
-  does in ANOVA.
-\end{itemize}
+\includegraphics{map2.png}
 
 \begin{verbatim}
 ## Error in FUN(X[[i]], ...): invalid 'name' argument

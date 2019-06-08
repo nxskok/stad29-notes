@@ -61,6 +61,11 @@ output:
 
 ```
 
+
+
+```{r bCluster, child="bCluster.Rmd"}
+
+```
  
 
  

@@ -3351,16 +3351,16 @@ probs.long %>% sample_n(10)
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    38 1     1         0.0162 
-##  2    35 1     3         0.484  
-##  3    24 0     2         0.0502 
-##  4    24 1     3         0.00279
-##  5    32 1     3         0.214  
-##  6    35 1     2         0.432  
-##  7    28 1     2         0.271  
-##  8    38 0     2         0.239  
-##  9    38 0     1         0.0260 
-## 10    38 1     2         0.252
+##  1    28 0     2         0.183  
+##  2    28 0     1         0.793  
+##  3    38 1     1         0.0162 
+##  4    32 1     1         0.291  
+##  5    28 1     2         0.271  
+##  6    38 1     2         0.252  
+##  7    38 0     3         0.735  
+##  8    35 1     3         0.484  
+##  9    38 1     3         0.732  
+## 10    24 1     3         0.00279
 ```
 \normalsize
 
@@ -3422,24 +3422,19 @@ brandpref %>%
   group_by(age, sex, brand) %>%
   summarize(Freq = n()) %>%
   ungroup() -> b
-```
-
-```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-```
-
-```r
 b %>% slice(1:6)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'b' not found
+## # A tibble: 6 x 4
+##     age sex   brand  Freq
+##   <dbl> <fct> <fct> <int>
+## 1    24 0     1         1
+## 2    26 0     1         2
+## 3    27 0     1         4
+## 4    27 1     1         4
+## 5    27 1     3         1
+## 6    28 0     1         4
 ```
 
    
@@ -3461,26 +3456,8 @@ on each line!
 b %>%
   mutate(sex = factor(sex)) %>%
   mutate(brand = factor(brand)) -> bf
-```
-
-```
-## Error in eval(lhs, parent, parent): object 'b' not found
-```
-
-```r
 b.1 <- multinom(brand ~ age + sex, data = bf, weights = Freq)
-```
-
-```
-## Error in is.data.frame(data): object 'bf' not found
-```
-
-```r
 b.2 <- multinom(brand ~ age, data = bf, weights = Freq)
-```
-
-```
-## Error in is.data.frame(data): object 'bf' not found
 ```
 \normalsize
 
@@ -3495,7 +3472,12 @@ anova(b.2, b.1)
 ```
 
 ```
-## Error in anova(b.2, b.1): object 'b.2' not found
+## Likelihood ratio tests of Multinomial Models
+## 
+## Response: brand
+##       Model Resid. df Resid. Dev   Test    Df LR stat.    Pr(Chi)
+## 1       age       126   1413.593                                 
+## 2 age + sex       124   1405.941 1 vs 2     2 7.651236 0.02180495
 ```
 \normalsize
 
@@ -3518,7 +3500,23 @@ b %>%
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'b' not found
+## # A tibble: 14 x 2
+##      age total
+##    <dbl> <int>
+##  1    24     1
+##  2    26     2
+##  3    27     9
+##  4    28    15
+##  5    29    19
+##  6    30    23
+##  7    31    40
+##  8    32   333
+##  9    33    55
+## 10    34    64
+## 11    35    35
+## 12    36    85
+## 13    37    22
+## 14    38    32
 ```
 \normalsize
 
@@ -3537,10 +3535,6 @@ b %>%
   mutate(proportion = Freq / sum(Freq)) -> brands
 ```
 
-```
-## Error in eval(lhs, parent, parent): object 'b' not found
-```
-
      
 
 
@@ -3554,7 +3548,16 @@ brands %>% filter(age == 32)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'brands' not found
+## # A tibble: 6 x 5
+## # Groups:   age, sex [2]
+##     age sex   brand  Freq proportion
+##   <dbl> <fct> <fct> <int>      <dbl>
+## 1    32 0     1        48      0.407
+## 2    32 0     2        51      0.432
+## 3    32 0     3        19      0.161
+## 4    32 1     1        62      0.288
+## 5    32 1     2       117      0.544
+## 6    32 1     3        36      0.167
 ```
 \normalsize
    
@@ -3588,10 +3591,6 @@ g <- ggplot(probs.long, aes(
 )) +
   geom_line(aes(linetype = sex)) +
   geom_point(data = brands, aes(y = proportion))
-```
-
-```
-## Error in fortify(data): object 'brands' not found
 ```
 
      
@@ -3638,10 +3637,6 @@ g <- ggplot(probs.long, aes(
     aes(y = proportion, size = Freq)
   )
 ```
-
-```
-## Error in fortify(data): object 'brands' not found
-```
 \normalsize
      
 
@@ -3670,7 +3665,12 @@ b.4 <- update(b.1, . ~ . + age:sex)
 ```
 
 ```
-## Error in update(b.1, . ~ . + age:sex): object 'b.1' not found
+## # weights:  15 (8 variable)
+## initial  value 807.480032 
+## iter  10 value 704.811229
+## iter  20 value 702.582802
+## final  value 702.582761 
+## converged
 ```
 
 ```r
@@ -3678,7 +3678,15 @@ anova(b.1, b.4)
 ```
 
 ```
-## Error in anova(b.1, b.4): object 'b.1' not found
+## Likelihood ratio tests of Multinomial Models
+## 
+## Response: brand
+##                 Model Resid. df Resid. Dev   Test    Df
+## 1           age + sex       124   1405.941             
+## 2 age + sex + age:sex       122   1405.166 1 vs 2     2
+##    LR stat.  Pr(Chi)
+## 1                   
+## 2 0.7758861 0.678451
 ```
 
    
@@ -4749,13 +4757,13 @@ hairpain %>%
 ```
 
 ```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 4 x 4
+##   hair           n  xbar     s
+##   <chr>      <int> <dbl> <dbl>
+## 1 darkblond      5  51.2  9.28
+## 2 darkbrown      5  37.4  8.32
+## 3 lightblond     5  59.2  8.53
+## 4 lightbrown     4  42.5  5.45
 ```
 \normalsize
 
@@ -5202,27 +5210,18 @@ ggplot(vitaminb, aes(
 summary <- vitaminb %>%
   group_by(ratsize, diet) %>%
   summarize(mean = mean(kidneyweight))
-```
-
-```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-```
-
-```r
 summary
 ```
 
 ```
-## function (object, ...) 
-## UseMethod("summary")
-## <bytecode: 0x561d8d5b3e20>
-## <environment: namespace:base>
+## # A tibble: 4 x 3
+## # Groups:   ratsize [2]
+##   ratsize diet      mean
+##   <chr>   <chr>    <dbl>
+## 1 lean    regular   1.64
+## 2 lean    vitaminb  1.53
+## 3 obese   regular   2.64
+## 4 obese   vitaminb  2.67
 ```
 \normalsize
    
@@ -5275,11 +5274,6 @@ g <- ggplot(summary, aes(
   colour = diet, group = diet
 )) +
   geom_point() + geom_line()
-```
-
-```
-## Error: You're passing a function as global data.
-## Have you misspelled the `data` argument in `ggplot()`
 ```
 
     
@@ -5547,15 +5541,7 @@ autonoise %>%
   )) + geom_point() + geom_line()
 ```
 
-```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-```
+![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-1.pdf)
 
 \normalsize
 
@@ -5647,13 +5633,11 @@ autonoise %>%
 ```
 
 ```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 2 x 2
+##   type      m
+##   <chr> <dbl>
+## 1 Octel  822.
+## 2 Std    846.
 ```
 
 * Octel filters produce *less* noise for medium cars.
@@ -6419,13 +6403,13 @@ chain %>%
 ```
 
 ```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 4 x 2
+##   model mean.kick
+##   <fct>     <dbl>
+## 1 C          49  
+## 2 B          43  
+## 3 A          33  
+## 4 D          28.8
 ```
 \normalsize
  
@@ -6516,15 +6500,15 @@ prepost %>% sample_n(9) # randomly chosen rows
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 b         24    35
-## 2 b          7    19
-## 3 b         18    30
-## 4 a         21    40
-## 5 b         12    26
-## 6 a         14    27
-## 7 b         22    31
+## 1 b         27    33
+## 2 a         10    23
+## 3 a          5    20
+## 4 b         12    26
+## 5 a         13    31
+## 6 b         26    34
+## 7 a         23    34
 ## 8 b         14    23
-## 9 a         12    30
+## 9 a         18    38
 ```
 
 
@@ -6562,13 +6546,11 @@ prepost %>%
 ```
 
 ```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
+## # A tibble: 2 x 3
+##   drug  before_mean after_mean
+##   <chr>       <dbl>      <dbl>
+## 1 a            13.1       29.2
+## 2 b            18         28.1
 ```
  
 
@@ -7791,11 +7773,11 @@ exercise.wide %>% sample_n(5)
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    25 nonlowfat running     94   110   116
-## 2    15 nonlowfat walking     89    96    95
-## 3    19 lowfat    walking     97    98   100
-## 4     8 lowfat    atrest      92    94    95
-## 5     2 nonlowfat atrest      90    92    93
+## 1    24 nonlowfat running     87   132   120
+## 2    21 nonlowfat running     93    98   110
+## 3    16 lowfat    walking     84    86    89
+## 4    11 nonlowfat walking     86    86    84
+## 5     7 lowfat    atrest      87    88    90
 ```
 \normalsize
 
@@ -8035,16 +8017,6 @@ runners.wide %>%
   ) -> summ
 ```
 
-```
-## [conflicted] `summarize` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::summarize
-## * dplyr::summarize
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("summarize", "plyr")
-## * conflict_prefer("summarize", "dplyr")
-```
-
  
 
 
@@ -8065,7 +8037,16 @@ summ
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'summ' not found
+## # A tibble: 6 x 4
+## # Groups:   time [3]
+##   time  diet       mean    sd
+##   <chr> <chr>     <dbl> <dbl>
+## 1 min01 lowfat     98.2  3.70
+## 2 min01 nonlowfat  94    4.53
+## 3 min15 lowfat    124.   8.62
+## 4 min15 nonlowfat 110.  13.1 
+## 5 min30 lowfat    141.   7.20
+## 6 min30 nonlowfat 111.   7.92
 ```
 \normalsize
    
@@ -8090,9 +8071,7 @@ ggplot(summ, aes(x = time, y = mean, colour = diet,
                  group = diet)) + geom_point() + geom_line()
 ```
 
-```
-## Error in ggplot(summ, aes(x = time, y = mean, colour = diet, group = diet)): object 'summ' not found
-```
+![plot of chunk unnamed-chunk-268](figure/unnamed-chunk-268-1.pdf)
 
    
 ## Comment on interaction plot
@@ -8123,14 +8102,14 @@ and time for the runners.
 
 * Does so by searching for linear combination of original variables that best separates data into groups (canonical variables).
 
-* Assumption here that groups are known (for data we have). If trying to "best separate" data into unknown groups, see *cluster analysis* xxx.
+* Assumption here that groups are known (for data we have). If trying to "best separate" data into unknown groups, see *cluster analysis*.
 
 * Examples: revisit seed yield and weight data, peanut data,
 professions/activities data; remote-sensing data.
 
 
 
-## Packages xxx
+## Packages
 
 ```r
 library(MASS)
@@ -8166,9 +8145,9 @@ say `MASS::select`.
 `tidyverse` `select`, which I want to use, would have
 been the invisible one.  
 
-- xxx Alternative: load `conflicted` package. Any time you load two packages containing functions with same name, you get error and have to choose between them. 
+- Alternative: load `conflicted` package. Any time you load two packages containing functions with same name, you get error and have to choose between them. 
 
-## Example 1: seed yields and weights xxx
+## Example 1: seed yields and weights
 \small
 
 ```r
@@ -8184,16 +8163,14 @@ g <- ggplot(hilo, aes(
 
  
 
-\begin{minipage}[t]{0.6\linewidth}
-xxx
-\includegraphics[width=0.6\textwidth]{berzani}
-   
-\end{minipage}
 \begin{minipage}[t]{0.38\linewidth}
 \vspace{0.1\textheight}
 Recall data from MANOVA: needed a multivariate analysis to find
 difference in seed yield and weight based on whether they were high
 or low fertilizer.
+\end{minipage}\hfill
+\begin{minipage}[t][][b]{0.55\textwidth}
+\includegraphics[width=0.9\textwidth, valign=t]{berzani}
 \end{minipage}
 
 ## Basic discriminant analysis
@@ -8265,7 +8242,7 @@ plus $-1.25$ times weight, add up, standardize.
 
 * High-fertilizer plants have higher yield and weight, thus
 low (negative) LD1 score. Low-fertilizer plants have low yield and
-weight, thus high (positive) LD1 score. xxx
+weight, thus high (positive) LD1 score.
 
 * One LD1 score for each observation. Plot with actual groups.
 
@@ -8275,7 +8252,7 @@ weight, thus high (positive) LD1 score. xxx
 ## How many linear discriminants?
 
 
-* Smaller of these: xxx
+* Smaller of these:
 
   * Number of variables
 
@@ -8287,7 +8264,7 @@ $\min(2,2-1)=1$.
 
 
 
-## Getting LD scores xxx
+## Getting LD scores
 Feed output from LDA into `predict`:
 
 
@@ -8297,7 +8274,7 @@ hilo.pred <- predict(hilo.1)
 
  
 
-Component $x$ contains LD score(s), here in descending order:
+Component `x` contains LD score(s), here in descending order:
 
 \footnotesize
 
@@ -8319,12 +8296,11 @@ d
 ```
 \normalsize
  
-
-xxx High fertilizer have yield and weight high, negative LD1 scores.
+High fertilizer have yield and weight high, negative LD1 scores.
 
 
 ## Plotting LD1 scores
-With one LD score, plot against (true) groups, eg. boxplot: xxx
+With one LD score, plot against (true) groups, eg. boxplot: 
 
 ```r
 ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
@@ -8338,9 +8314,8 @@ ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ## Potentially misleading
 
 
-* These are like regression slopes: xxx
 
-\footnotesize
+
 
 ```r
 hilo.1$scaling
@@ -8351,32 +8326,30 @@ hilo.1$scaling
 ## yield  -0.7666761
 ## weight -1.2513563
 ```
-\normalsize
-     
 
 
-* Reflect change in LD1 score for 1-unit change in variables.
+* These are like regression slopes: 
+change in LD1 score for 1-unit change in variables. 
 
-* But one-unit change in variables might not be comparable:
+## But\ldots
 
-\footnotesize
+* One-unit change in variables might not be comparable: 
+
 
 ```r
-summary(hilo)
+hilo %>% select(-fertilizer) %>% 
+   map_df(~quantile(., c(0.25, 0.75)))
 ```
 
 ```
-##   fertilizer            yield           weight     
-##  Length:8           Min.   :29.00   Min.   :10.00  
-##  Class :character   1st Qu.:32.75   1st Qu.:11.75  
-##  Mode  :character   Median :34.00   Median :13.00  
-##                     Mean   :33.75   Mean   :12.62  
-##                     3rd Qu.:35.00   3rd Qu.:14.00  
-##                     Max.   :38.00   Max.   :14.00
+## # A tibble: 2 x 2
+##   yield weight
+##   <dbl>  <dbl>
+## 1  32.8   11.8
+## 2  35     14
 ```
-\normalsize
-   
-* xxx Here, IQRs *identical*, so 1-unit change in each variable
+
+* Here, IQRs both 2.2, *identical*, so 1-unit change in each variable
 means same thing.
 
 
@@ -8406,7 +8379,7 @@ fertilizer given `yield` and `weight`.
 
 
 ## Predictions and predicted groups
-\ldots based on `yield` and `weight`: xxx
+\ldots based on `yield` and `weight`: 
 
 \footnotesize
 
@@ -8480,7 +8453,7 @@ but high `weight` makes up for it.
  
 
 
-## Example 2: the peanuts xxx
+## Example 2: the peanuts 
 
 \scriptsize
 
@@ -8514,13 +8487,13 @@ peanuts
 MANOVA. Make combo of them (over):
 
 
-## Location-variety combos xxx
+## Location-variety combos
 
 \footnotesize
 
 ```r
-peanuts %>% unite(combo, c(variety, location)) ->
-peanuts.combo
+peanuts %>%
+   unite(combo, c(variety, location)) -> peanuts.combo
 peanuts.combo
 ```
 
@@ -8541,7 +8514,7 @@ peanuts.combo
 ## 11    11 8_2    202.  167.  65  
 ## 12    12 8_2    200   174.  67.2
 ```
-*\1* xxx xxx
+
 \normalsize
 
 ## Discriminant analysis
@@ -8574,16 +8547,16 @@ peanuts.1$svd
 
 * Now 3 LDs (3 variables, 6 groups, $\min(3,6-1)=3$).
 
-## Comments xxx
+## Comments
 
 * First: relationship of LDs to original variables. Look for
 coeffs far from zero: here,
 
 
-*   high `LD1` mainly high `w`
+   *   high `LD1` mainly high `w`
 or low `y`.
 
-* high `LD2` mainly high `w`.
+   * high `LD2` mainly high `w`.
 
 
 * `svd` values show relative importance of LDs:
@@ -8591,7 +8564,7 @@ or low `y`.
 
 
 
-## Group means by variable xxx
+## Group means by variable
 
 ```r
 peanuts.1$means
@@ -8642,7 +8615,7 @@ Actually classified very well. Only one `6_2` classified as a
 `5_1`, rest all correct.
 
 
-## Posterior probabilities xxx
+## Posterior probabilities
 
 \scriptsize
 
@@ -8681,7 +8654,7 @@ much. The one misclassified plant was a close call.
 * How are discriminant scores related to original variables?
 
 * Construct data frame with original data and discriminant
-scores side by side: xxx
+scores side by side:
 
 \footnotesize
 
@@ -8704,7 +8677,7 @@ mm <- with(peanuts.combo,
 \normalsize
    
 
-* xxx LD1 positive if `w` large and/or `y` small.
+* LD1 positive if `w` large and/or `y` small.
 
 * LD2 positive if `w` large.    
 
@@ -8847,7 +8820,7 @@ g
    
 
 
-## "Bi-plot" from `ggbiplot` xxx
+## "Bi-plot" from `ggbiplot`
 
 
 ```r
@@ -8902,18 +8875,15 @@ that left-out observation.
 ## Misclassifications
 
 
-* Fitting and prediction all in one go: xxx text under
+* Fitting and prediction all in one go:
 
 \small
 
 ```r
 peanuts.cv <- lda(combo ~ y + smk + w,
-  data = peanuts.combo, CV = T
-)
-table(
-  obs = peanuts.combo$combo,
-  pred = peanuts.cv$class
-)
+  data = peanuts.combo, CV = T)
+table(obs = peanuts.combo$combo,
+      pred = peanuts.cv$class)
 ```
 
 ```
@@ -8928,14 +8898,12 @@ table(
 ```
 \normalsize
    
-
-
 * Some more misclassification this time.
 
 
 
 
-## Repeat of LD plot xxx
+## Repeat of LD plot
 
 ```r
 g
@@ -9003,9 +8971,9 @@ administrators and belly dancers) each participate in four
 different leisure activities: reading, dancing, TV watching and
 skiing. After each activity they rate it on a 0--10 scale.
 
-* Some of the data: xxx
+* Some of the data:
 
-\small
+\normalsize
 ```
 bellydancer 7 10 6 5
 bellydancer 8 9 5 7
@@ -9018,6 +8986,8 @@ admin 6 3 3 3
 ```
 \normalsize
 
+## Questions
+
 * How can we best use the scores on the activities to predict a person's profession?
 
 * Or, what combination(s) of scores best separate data into profession groups?
@@ -9025,7 +8995,7 @@ admin 6 3 3 3
 
 
 
-## Discriminant analysis xxx
+## Discriminant analysis
 
 \small
 
@@ -9057,7 +9027,7 @@ active.1$scaling
 * Two discriminants, first fair bit more important than second.
 
 * `LD1` depends (negatively) most on `dance`, a bit
-on `tv`. xxx
+on `tv`.
 
 * `LD2` depends mostly on `tv`.
 
@@ -9083,7 +9053,7 @@ table(obs = active$job, pred = active.pred$class)
 Everyone correctly classified.
 
 
-## Plotting LDs xxx
+## Plotting LDs 
 
 \small
 
@@ -9100,7 +9070,7 @@ g
    
 
 
-## Biplot xxx
+## Biplot 
 
 ```r
 ggbiplot(active.1, groups = active$job)
@@ -9125,7 +9095,7 @@ top right, politicians lower middle.
 
 
 
-## Plotting individual `persons` xxx
+## Plotting individual `persons`
 Make `label` be identifier of person. Now need legend:
 
 
@@ -9229,24 +9199,24 @@ data.frame(obs = active$job, pred = active.cv$class, pp) %>%
 
 
 
-\begin{minipage}[t]{0.7\linewidth}
+\begin{minipage}[t]{0.3\linewidth}
 
-\includegraphics[width=0.7\textwidth]{nesta}
+\begin{itemize}
 
+\item Go back to plot of discriminant scores: xxx
+
+\item one bellydancer much closer to the politicians,
+
+\item one administrator a bit closer to the politicians.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t][][b]{0.68\linewidth}
+
+\includegraphics[width=0.9\textwidth, valign=t]{nesta}
        
 \end{minipage}
-\begin{minipage}[t]{0.28\linewidth}
 
-
-* Go back to plot of discriminant scores:
-
-* one bellydancer much closer to the politicians,
-
-* one administrator a bit closer to the politicians.
-
-\end{minipage}
-
-## Example 4: remote-sensing data xxx from here
+## Example 4: remote-sensing data
 
 
 * View 38 crops from air, measure 4 variables `x1-x4`.
@@ -9258,9 +9228,11 @@ data.frame(obs = active$job, pred = active.cv$class, pp) %>%
 
 
 ## Reading in
+\small
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"
+my_url <- 
+   "http://www.utsc.utoronto.ca/~butler/d29/remote-sensing.txt"
 crops <- read_table(my_url)
 ```
 
@@ -9275,7 +9247,7 @@ crops <- read_table(my_url)
 ##   cr = col_character()
 ## )
 ```
-
+\normalsize
    
 
 ## Starting off: number of LDs
@@ -9299,6 +9271,7 @@ crops.lda$svd
 
 
 ## Connecting original variables and LDs
+\small
 
 ```r
 crops.lda$means
@@ -9324,7 +9297,7 @@ round(crops.lda$scaling, 3)
 ## x3  0.016 -0.079  0.020  0.009
 ## x4  0.000 -0.014  0.054 -0.026
 ```
-
+\normalsize
    
 
 
@@ -9333,7 +9306,7 @@ round(crops.lda$scaling, 3)
 
 
 
-## `LD1 and texttt{LD2`}
+## `LD1` and `LD2`
 
 ```r
 round(crops.lda$scaling, 3)
@@ -9346,7 +9319,7 @@ round(crops.lda$scaling, 3)
 ## x3  0.016 -0.079  0.020  0.009
 ## x4  0.000 -0.014  0.054 -0.026
 ```
-$
+
 
 
 * `LD1` mostly `x1` (minus), so clover low on
@@ -9392,7 +9365,7 @@ mm <- data.frame(crop = crops$crop, crops.pred$x)
    
 
 
-## Plotting the LDs
+## Plotting the LDs 
 
 ```r
 ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
@@ -9545,8 +9518,8 @@ Better.
 
 ## Posterior probs, the wrong ones
 
-*\1* xxx 
-{\footnotesize  
+
+\footnotesize  
 
 ```r
 post <- round(crops2.pred$posterior, 3)
@@ -9566,14 +9539,12 @@ data.frame(obs = crops2$crop, pred = crops2.pred$class, post) %>%
 ## 8 Sugarbeets   Soybeans 0.106  0.144    0.518      0.232
 ## 9 Sugarbeets   Soybeans 0.088  0.207    0.489      0.216
 ```
-
-   
-}
+\normalsize
 
 
 
 * These were the misclassified ones, but the posterior probability
-of being correct was not usually too low.
+of being correct was not usually too low. 
 
 * The correctly-classified ones are not very clear-cut either.
 
@@ -9628,6 +9599,1590 @@ and Corn was low.
 
 * Discriminant analysis in MANOVA plays the same kind of role
 that Tukey does in ANOVA.
+
+
+   
+
+
+
+
+
+
+
+# Cluster analysis
+
+## Cluster Analysis xxx from here
+
+
+* One side-effect of discriminant analysis: could draw picture of data (if 1st 2s `LD`s told most of story) and see which individuals "close" to each other.
+
+* Discriminant analysis requires knowledge of groups.
+
+* Without knowledge of groups, use *cluster analysis* xxx: see which individuals close, which groups suggested by data.
+
+* Idea: see how individuals group into "clusters" of nearby individuals.
+
+* Base on "dissimilarities" between individuals.
+
+* Or base on standard deviations and correlations between variables (assesses dissimilarity behind scenes).
+
+
+
+
+## Packages
+
+```r
+library(MASS) # for lda later
+library(tidyverse)
+library(spatstat) # for crossdist later
+library(ggrepel)
+```
+
+   
+
+
+## One to ten in 11 languages
+\begin{tabular}{lcccccc}
+& English & Norwegian & Danish & Dutch & German\\
+\hline
+1 & one & en & en & een & eins\\
+2 & two & to & to & twee & zwei\\
+3 & three & tre & tre & drie & drei\\
+4 & four & fire & fire & vier & vier\\
+5 & five & fem & fem & vijf & funf\\
+6 & six & seks & seks & zes & sechs\\
+7 & seven & sju & syv & zeven & sieben\\
+8 & eight & atte & otte & acht & acht\\
+9 & nine & ni & ni & negen & neun\\
+10 & ten & ti & ti & tien & zehn\\
+\hline
+\end{tabular}
+
+
+## One to ten
+\begin{small}
+\begin{tabular}{lcccccc}
+& French & Spanish & Italian & Polish & Hungarian & Finnish\\
+\hline
+1 & un & uno & uno & jeden & egy & yksi\\
+2 & deux & dos & due & dwa & ketto & kaksi\\
+3 & trois & tres & tre & trzy &  harom & kolme\\
+4 & quatre & cuatro & quattro & cztery & negy & nelja\\
+5 & cinq & cinco & cinque & piec & ot & viisi\\
+6 & six & seis & sei & szesc & hat & kuusi\\
+7 & sept & siete & sette & siedem & het & seitseman \\
+8 & huit & ocho & otto & osiem & nyolc & kahdeksan\\
+9 & neuf & nueve & nove & dziewiec & kilenc & yhdeksan \\
+10 & dix & diez & dieci & dziesiec & tiz & kymmenen\\
+\hline
+\end{tabular}
+\end{small}
+
+
+## Dissimilarities and languages example
+
+
+* Can define dissimilarities how you like (whatever makes sense in application).
+
+* Sometimes defining "similarity" makes more sense; can turn this into dissimilarity by subtracting from some maximum.
+
+* Example: numbers 1--10 in various European languages. Define
+similarity between two languages by counting how often the same
+number has a name starting with the same letter (and dissimilarity
+by how often number has names starting with different letter).
+
+* Crude (doesn't even look at most of the words), but see how effective.
+
+
+
+## Two kinds of cluster analysis
+
+
+* Looking at process of forming clusters (of similar languages):
+**hierarchical cluster analysis** (`hclust`).
+
+
+* Start with each individual in cluster by itself.
+
+* Join "closest" clusters one by one until all individuals in one cluster.
+
+* How to define closeness of two *clusters*? Not obvious,
+investigate in a moment.
+
+
+* Know how many clusters: which division into that many clusters
+is "best" for individuals? **K-means clustering** (`kmeans`).
+
+
+
+## Two made-up clusters
+![plot of chunk unnamed-chunk-323](figure/unnamed-chunk-323-1.pdf)
+
+   
+
+How to measure distance between set of red points and set of blue
+ones? 
+
+
+## Single-linkage distance
+Find the red point and the blue point that are closest together: xxx
+![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
+
+   
+
+Single-linkage distance between 2 clusters is distance between their
+closest points.
+
+
+## Complete linkage
+Find the red and blue points that are farthest apart:
+![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
+
+
+
+Complete-linkage distance is distance between farthest points. 
+
+
+## Ward's method
+Work out mean of each cluster and join point to its mean:
+![plot of chunk unnamed-chunk-326](figure/unnamed-chunk-326-1.pdf)
+
+   
+
+Work out (i) sum of squared distances of points from means.
+
+
+## Ward's method part 2
+Now imagine combining the two clusters and working out overall
+mean. Join each point to this mean:
+
+![plot of chunk unnamed-chunk-327](figure/unnamed-chunk-327-1.pdf)
+
+   
+Calc sum of squared distances (ii) of points to combined mean.
+
+
+## Ward's method part 3
+
+
+* Sum of squares (ii) will be bigger than (i) (points closer to own cluster
+mean than combined mean).
+
+* Ward's distance is (ii) minus (i).
+
+* Think of as "cost" of combining clusters:
+
+
+* if clusters close together, (ii) only a little larger than
+(i)
+
+* if clusters far apart, (ii) a lot larger than (i) (as in
+example). 
+
+
+
+
+## Hierarchical clustering revisited
+
+
+* Single linkage, complete linkage, Ward are ways of measuring
+closeness of clusters.
+
+* Use them, starting with each observation in own cluster, to
+repeatedly combine two closest clusters until all points in one
+cluster.
+
+* They will give different answers (clustering stories). 
+
+* Single linkage tends to make "stringy" clusters because
+clusters can be very different apart from two closest points.
+
+* Complete linkage insists on whole clusters being similar.
+
+* Ward tends to form many small clusters first.
+
+
+
+## Dissimilarity data in R
+Dissimilarities for language data xxx were how many
+number names had *different* first letter:
+
+\small
+
+\normalsize
+ 
+
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
+number.d <- read_table(my_url)
+number.d
+```
+
+```
+## # A tibble: 11 x 12
+##    la       en    no    dk    nl    de    fr    es    it
+##    <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 en        0     2     2     7     6     6     6     6
+##  2 no        2     0     1     5     4     6     6     6
+##  3 dk        2     1     0     6     5     6     5     5
+##  4 nl        7     5     6     0     5     9     9     9
+##  5 de        6     4     5     5     0     7     7     7
+##  6 fr        6     6     6     9     7     0     2     1
+##  7 es        6     6     5     9     7     2     0     1
+##  8 it        6     6     5     9     7     1     1     0
+##  9 pl        7     7     6    10     8     5     3     4
+## 10 hu        9     8     8     8     9    10    10    10
+## 11 fi        9     9     9     9     9     9     9     8
+## # … with 3 more variables: pl <dbl>, hu <dbl>, fi <dbl>
+```
+
+ 
+
+
+
+## Making a distance object
+
+```r
+d <- number.d %>%
+  select(-la) %>%
+  as.dist()
+d
+```
+
+```
+##    en no dk nl de fr es it pl hu
+## no  2                           
+## dk  2  1                        
+## nl  7  5  6                     
+## de  6  4  5  5                  
+## fr  6  6  6  9  7               
+## es  6  6  5  9  7  2            
+## it  6  6  5  9  7  1  1         
+## pl  7  7  6 10  8  5  3  4      
+## hu  9  8  8  8  9 10 10 10 10   
+## fi  9  9  9  9  9  9  9  8  9  8
+```
+
+```r
+class(d)
+```
+
+```
+## [1] "dist"
+```
+
+   
+
+
+## Cluster analysis and dendrogram
+
+```r
+d.hc <- hclust(d, method = "single")
+plot(d.hc)
+```
+
+![plot of chunk unnamed-chunk-331](figure/unnamed-chunk-331-1.pdf)
+
+   
+
+
+## Comments
+
+
+* Tree shows how languages combined into clusters.
+
+* First (bottom), Spanish, French, Italian joined into one
+cluster, Norwegian and Danish into another.
+
+* Later, English joined to Norse languages, Polish to Romance group.
+
+* Then German, Dutch make a Germanic group.
+
+* Finally, Hungarian and Finnish joined to each other and
+everything else.
+
+
+
+## Clustering process xxx
+
+
+
+
+```r
+d.hc$labels
+```
+
+```
+##  [1] "en" "no" "dk" "nl" "de" "fr" "es" "it" "pl" "hu" "fi"
+```
+
+```r
+d.hc$merge
+```
+
+```
+##       [,1] [,2]
+##  [1,]   -2   -3
+##  [2,]   -6   -8
+##  [3,]   -7    2
+##  [4,]   -1    1
+##  [5,]   -9    3
+##  [6,]   -5    4
+##  [7,]   -4    6
+##  [8,]    5    7
+##  [9,]  -10    8
+## [10,]  -11    9
+```
+
+## Comments xxx
+ 
+* Lines of `merge` show what was combined
+
+  * First, languages 2 and 3 (`no` and `dk`)
+
+  * Then languages 6 and 8 (`fr` and `it`)
+
+  * Then \#7 combined with cluster formed at step 2 (`es`
+joined to `fr` and `it`).
+
+  * Then `en` joined to `no` and `dk` \ldots
+
+  * Finally `fi` joined to all others.
+
+
+
+
+## Complete linkage
+
+```r
+d.hc <- hclust(d, method = "complete")
+plot(d.hc)
+```
+
+![plot of chunk unnamed-chunk-333](figure/unnamed-chunk-333-1.pdf)
+
+  
+
+
+## Ward
+
+```r
+d.hc <- hclust(d, method = "ward.D")
+plot(d.hc)
+```
+
+![plot of chunk wardo](figure/wardo-1.pdf)
+
+   
+
+
+## Chopping the tree
+
+
+* Three clusters (from Ward) looks good:
+
+```r
+cutree(d.hc, 3)
+```
+
+```
+## en no dk nl de fr es it pl hu fi 
+##  1  1  1  1  1  2  2  2  2  3  3
+```
+
+     
+
+
+
+## Drawing those clusters on the tree
+
+```r
+plot(d.hc)
+rect.hclust(d.hc, 3)
+```
+
+![plot of chunk asfsagd](figure/asfsagd-1.pdf)
+
+   
+
+
+## Comparing single-linkage and Ward
+
+
+* In Ward, Dutch and German get joined earlier (before joining to Germanic cluster).
+
+* Also Hungarian and Finnish get combined earlier.
+
+
+## Making those dissimilarities
+
+Original data:
+
+\footnotesize
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/one-ten.txt"
+lang <- read_delim(my_url, " ")
+lang
+```
+
+```
+## # A tibble: 10 x 11
+##    en    no    dk    nl    de     fr     es    it     pl    
+##    <chr> <chr> <chr> <chr> <chr>  <chr>  <chr> <chr>  <chr> 
+##  1 one   en    en    een   eins   un     uno   uno    jeden 
+##  2 two   to    to    twee  zwei   deux   dos   due    dwa   
+##  3 three tre   tre   drie  drei   trois  tres  tre    trzy  
+##  4 four  fire  fire  vier  vier   quatre cuat… quatt… cztery
+##  5 five  fem   fem   vijf  funf   cinq   cinco cinque piec  
+##  6 six   seks  seks  zes   sechs  six    seis  sei    szesc 
+##  7 seven sju   syv   zeven sieben sept   siete sette  siedem
+##  8 eight atte  otte  acht  acht   huit   ocho  otto   osiem 
+##  9 nine  ni    ni    negen neun   neuf   nueve nove   dziew…
+## 10 ten   ti    ti    tien  zehn   dix    diez  dieci  dzies…
+## # … with 2 more variables: hu <chr>, fi <chr>
+```
+\normalsize
+ 
+
+It would be a lot easier to extract the first letter if the number
+names were all in one column.
+
+
+## Tidy, and extract first letter
+\footnotesize
+
+```r
+lang.long <- lang %>%
+  mutate(number = row_number()) %>%
+  gather(language, name, -number) %>%
+  mutate(first = str_sub(name, 1, 1))
+lang.long %>% print(n = 12)
+```
+
+```
+## # A tibble: 110 x 4
+##    number language name  first
+##     <int> <chr>    <chr> <chr>
+##  1      1 en       one   o    
+##  2      2 en       two   t    
+##  3      3 en       three t    
+##  4      4 en       four  f    
+##  5      5 en       five  f    
+##  6      6 en       six   s    
+##  7      7 en       seven s    
+##  8      8 en       eight e    
+##  9      9 en       nine  n    
+## 10     10 en       ten   t    
+## 11      1 no       en    e    
+## 12      2 no       to    t    
+## # … with 98 more rows
+```
+\normalsize
+   
+
+
+## Calculating dissimilarity
+
+
+* Suppose we wanted dissimilarity between English and
+Norwegian. It's the number of first letters that are different.
+
+* First get the lines for English:
+\footnotesize
+
+```r
+english <- lang.long %>% filter(language == "en")
+english
+```
+
+```
+## # A tibble: 10 x 4
+##    number language name  first
+##     <int> <chr>    <chr> <chr>
+##  1      1 en       one   o    
+##  2      2 en       two   t    
+##  3      3 en       three t    
+##  4      4 en       four  f    
+##  5      5 en       five  f    
+##  6      6 en       six   s    
+##  7      7 en       seven s    
+##  8      8 en       eight e    
+##  9      9 en       nine  n    
+## 10     10 en       ten   t
+```
+\normalsize
+     
+
+
+
+## And then the lines for Norwegian
+\footnotesize
+
+```r
+norwegian <- lang.long %>% filter(language == "no")
+norwegian
+```
+
+```
+## # A tibble: 10 x 4
+##    number language name  first
+##     <int> <chr>    <chr> <chr>
+##  1      1 no       en    e    
+##  2      2 no       to    t    
+##  3      3 no       tre   t    
+##  4      4 no       fire  f    
+##  5      5 no       fem   f    
+##  6      6 no       seks  s    
+##  7      7 no       sju   s    
+##  8      8 no       atte  a    
+##  9      9 no       ni    n    
+## 10     10 no       ti    t
+```
+\normalsize
+   
+
+And now we want to put them side by side, matched by number. This is
+what `left_join` does. (A "join" is a lookup of values in
+one table using another.)
+
+
+## The join
+
+   
+\scriptsize
+
+```r
+english %>% left_join(norwegian, by = "number")
+```
+
+```
+## # A tibble: 10 x 7
+##    number language.x name.x first.x language.y name.y
+##     <int> <chr>      <chr>  <chr>   <chr>      <chr> 
+##  1      1 en         one    o       no         en    
+##  2      2 en         two    t       no         to    
+##  3      3 en         three  t       no         tre   
+##  4      4 en         four   f       no         fire  
+##  5      5 en         five   f       no         fem   
+##  6      6 en         six    s       no         seks  
+##  7      7 en         seven  s       no         sju   
+##  8      8 en         eight  e       no         atte  
+##  9      9 en         nine   n       no         ni    
+## 10     10 en         ten    t       no         ti    
+## # … with 1 more variable: first.y <chr>
+```
+\normalsize
+   
+
+`first.x` is 1st letter of English word, `first.y` 1st
+letter of Norwegian word.
+
+
+
+## Counting the different ones
+
+```r
+english %>%
+  left_join(norwegian, by = "number") %>%
+  mutate(different = (first.x != first.y)) %>%
+  summarize(diff = sum(different))
+```
+
+```
+## # A tibble: 1 x 1
+##    diff
+##   <int>
+## 1     2
+```
+
+   
+
+Words for 1 and 8 start with different letter; rest are same.
+
+
+## Function to do this for any two languages
+
+```r
+countdiff <- function(lang.1, lang.2, d) {
+  lang1d <- d %>% filter(language == lang.1)
+  lang2d <- d %>% filter(language == lang.2)
+  lang1d %>%
+    left_join(lang2d, by = "number") %>%
+    mutate(different = (first.x != first.y)) %>%
+    summarize(diff = sum(different)) %>%
+    pull(diff)
+}
+```
+
+   
+Test:
+
+
+```r
+countdiff("en", "no", lang.long)
+```
+
+```
+## [1] 2
+```
+
+ 
+
+
+
+## For all pairs of languages?
+
+
+* First need all the languages:
+
+
+     
+
+```r
+languages <- names(lang)
+languages
+```
+
+```
+##  [1] "en" "no" "dk" "nl" "de" "fr" "es" "it" "pl"
+## [10] "hu" "fi"
+```
+
+     
+
+
+* and then all *pairs* of languages:
+
+```r
+pairs <- crossing(lang = languages, lang2 = languages) %>% print(n = 12)
+```
+
+```
+## # A tibble: 121 x 2
+##    lang  lang2
+##    <chr> <chr>
+##  1 de    de   
+##  2 de    dk   
+##  3 de    en   
+##  4 de    es   
+##  5 de    fi   
+##  6 de    fr   
+##  7 de    hu   
+##  8 de    it   
+##  9 de    nl   
+## 10 de    no   
+## 11 de    pl   
+## 12 dk    de   
+## # … with 109 more rows
+```
+
+   
+
+
+
+## Run `countdiff for all those language pairs`
+
+```r
+thediffs <- pairs %>%
+  mutate(diff = map2_int(lang, lang2, countdiff, lang.long)) %>%
+  print(n = 12)
+```
+
+```
+## # A tibble: 121 x 3
+##    lang  lang2  diff
+##    <chr> <chr> <int>
+##  1 de    de        0
+##  2 de    dk        5
+##  3 de    en        6
+##  4 de    es        7
+##  5 de    fi        9
+##  6 de    fr        7
+##  7 de    hu        9
+##  8 de    it        7
+##  9 de    nl        5
+## 10 de    no        4
+## 11 de    pl        8
+## 12 dk    de        5
+## # … with 109 more rows
+```
+
+   
+
+
+## Make square table of these
+
+
+ 
+
+```r
+thediffs %>% spread(lang2, diff)
+```
+
+```
+## # A tibble: 11 x 12
+##    lang     de    dk    en    es    fi    fr    hu    it
+##    <chr> <int> <int> <int> <int> <int> <int> <int> <int>
+##  1 de        0     5     6     7     9     7     9     7
+##  2 dk        5     0     2     5     9     6     8     5
+##  3 en        6     2     0     6     9     6     9     6
+##  4 es        7     5     6     0     9     2    10     1
+##  5 fi        9     9     9     9     0     9     8     9
+##  6 fr        7     6     6     2     9     0    10     1
+##  7 hu        9     8     9    10     8    10     0    10
+##  8 it        7     5     6     1     9     1    10     0
+##  9 nl        5     6     7     9     9     9     8     9
+## 10 no        4     1     2     6     9     6     8     6
+## 11 pl        8     6     7     3     9     5    10     4
+## # … with 3 more variables: nl <int>, no <int>, pl <int>
+```
+
+   
+
+and that was where we began.
+
+## Another example
+
+Birth, death and infant mortality rates for 97 countries (variables not dissimilarities):
+
+{\scriptsize
+
+```
+
+24.7  5.7  30.8 Albania         12.5 11.9  14.4 Bulgaria
+13.4 11.7  11.3 Czechoslovakia  12   12.4   7.6 Former_E._Germany
+11.6 13.4  14.8 Hungary         14.3 10.2    16 Poland
+13.6 10.7  26.9 Romania           14    9  20.2 Yugoslavia
+17.7   10    23 USSR            15.2  9.5  13.1 Byelorussia_SSR
+13.4 11.6    13 Ukrainian_SSR   20.7  8.4  25.7 Argentina
+46.6   18   111 Bolivia         28.6  7.9    63 Brazil
+23.4  5.8  17.1 Chile           27.4  6.1    40 Columbia
+32.9  7.4    63 Ecuador         28.3  7.3    56 Guyana
+...
+
+```
+
+}
+
+
+
+* Want to find groups of similar countries (and how many groups, which countries in each group).
+
+* Tree would be unwieldy with 97 countries.
+
+* More automatic way of finding given number of clusters?
+
+
+
+## Reading in
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/birthrate.txt"
+vital <- read_table(my_url)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   birth = col_double(),
+##   death = col_double(),
+##   infant = col_double(),
+##   country = col_character()
+## )
+```
+
+ 
+
+
+
+## The data
+
+
+```r
+vital
+```
+
+```
+## # A tibble: 97 x 4
+##    birth death infant country       
+##    <dbl> <dbl>  <dbl> <chr>         
+##  1  24.7   5.7   30.8 Albania       
+##  2  13.4  11.7   11.3 Czechoslovakia
+##  3  11.6  13.4   14.8 Hungary       
+##  4  13.6  10.7   26.9 Romania       
+##  5  17.7  10     23   USSR          
+##  6  13.4  11.6   13   Ukrainian_SSR 
+##  7  46.6  18    111   Bolivia       
+##  8  23.4   5.8   17.1 Chile         
+##  9  32.9   7.4   63   Ecuador       
+## 10  34.8   6.6   42   Paraguay      
+## # … with 87 more rows
+```
+
+   
+
+
+
+## Standardizing
+
+
+* Infant mortality rate numbers bigger than others, consequence of
+measurement scale (arbitrary).
+
+* Standardize (numerical) columns of data frame to have mean 0, SD
+1, done by `scale`.
+
+
+
+```r
+vital.s <- vital %>% mutate_if(is.numeric, scale)
+```
+
+   
+
+
+## Three clusters
+Pretend we know 3 clusters is good. Take off the 4th column (of
+countries) and run `kmeans` on the resulting data frame,
+asking for 3 clusters:
+
+
+
+   
+
+
+```r
+vital.km3 <- vital.s %>% select(-4) %>% kmeans(3)
+names(vital.km3)
+```
+
+```
+## [1] "cluster"      "centers"      "totss"       
+## [4] "withinss"     "tot.withinss" "betweenss"   
+## [7] "size"         "iter"         "ifault"
+```
+
+   
+A lot of output, so look at these individually.
+
+## What's in the output?
+
+
+* Cluster sizes:
+
+```r
+vital.km3$size
+```
+
+```
+## [1] 29 44 24
+```
+ 
+
+
+* Cluster centres:
+
+```r
+vital.km3$centers
+```
+
+```
+##        birth      death     infant
+## 1  0.4737967 -0.4878149  0.2466440
+## 2 -0.9593341 -0.4322350 -0.8904328
+## 3  1.1862748  1.3818738  1.3344318
+```
+ 
+
+
+* Cluster 2 has lower than average rates on everything; cluster 3
+has much higher than average.
+
+
+
+## Cluster sums of squares and membership
+
+```r
+vital.km3$withinss
+```
+
+```
+## [1] 14.96356 25.13922 26.78049
+```
+ 
+
+Cluster 1 compact relative to others (countries in cluster 1  more similar).
+
+
+```r
+vital.km3$cluster
+```
+
+```
+##  [1] 2 2 2 2 2 2 3 2 1 1 2 3 2 2 2 2 2 2 2 2 2 3 1 2 2 1 1 3
+## [29] 2 1 2 1 1 2 2 1 1 1 3 3 1 1 3 3 1 3 3 3 1 2 2 2 2 2 2 1
+## [57] 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 2 3 2 1 1 3 1 2 1
+## [85] 3 3 3 3 1 3 3 3 3 3 1 3 3
+```
+ 
+
+The cluster membership for each of the 97 countries.
+
+## Store countries and clusters to which they belong
+
+```r
+vital.3 <- tibble(
+  country = vital.s$country,
+  cluster = vital.km3$cluster
+)
+```
+
+   
+
+Next, which countries in which cluster? 
+
+Write function to extract them:
+
+
+```r
+get_countries <- function(i, d) {
+  d %>% filter(cluster == i) %>% pull(country)
+}
+```
+
+ 
+
+
+
+## Cluster membership: cluster 2
+
+```r
+get_countries(2, vital.3)
+```
+
+```
+##  [1] "Albania"              "Czechoslovakia"      
+##  [3] "Hungary"              "Romania"             
+##  [5] "USSR"                 "Ukrainian_SSR"       
+##  [7] "Chile"                "Uruguay"             
+##  [9] "Finland"              "France"              
+## [11] "Greece"               "Italy"               
+## [13] "Norway"               "Spain"               
+## [15] "Switzerland"          "Austria"             
+## [17] "Canada"               "Israel"              
+## [19] "Kuwait"               "China"               
+## [21] "Korea"                "Singapore"           
+## [23] "Thailand"             "Bulgaria"            
+## [25] "Former_E._Germany"    "Poland"              
+## [27] "Yugoslavia"           "Byelorussia_SSR"     
+## [29] "Argentina"            "Venezuela"           
+## [31] "Belgium"              "Denmark"             
+## [33] "Germany"              "Ireland"             
+## [35] "Netherlands"          "Portugal"            
+## [37] "Sweden"               "U.K."                
+## [39] "Japan"                "U.S.A."              
+## [41] "Bahrain"              "United_Arab_Emirates"
+## [43] "Hong_Kong"            "Sri_Lanka"
+```
+
+   
+
+
+
+## Cluster 3
+
+```r
+get_countries(3, vital.3)
+```
+
+```
+##  [1] "Bolivia"      "Mexico"       "Afghanistan" 
+##  [4] "Bangladesh"   "Gabon"        "Ghana"       
+##  [7] "Namibia"      "Sierra_Leone" "Swaziland"   
+## [10] "Uganda"       "Zaire"        "Cambodia"    
+## [13] "Nepal"        "Angola"       "Congo"       
+## [16] "Ethiopia"     "Gambia"       "Malawi"      
+## [19] "Mozambique"   "Nigeria"      "Somalia"     
+## [22] "Sudan"        "Tanzania"     "Zambia"
+```
+
+   
+
+
+## Cluster 1
+
+
+```r
+get_countries(1, vital.3)
+```
+
+```
+##  [1] "Ecuador"      "Paraguay"     "Iran"        
+##  [4] "Oman"         "Turkey"       "India"       
+##  [7] "Mongolia"     "Pakistan"     "Algeria"     
+## [10] "Botswana"     "Egypt"        "Libya"       
+## [13] "Morocco"      "South_Africa" "Zimbabwe"    
+## [16] "Brazil"       "Columbia"     "Guyana"      
+## [19] "Peru"         "Iraq"         "Jordan"      
+## [22] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [25] "Malaysia"     "Philippines"  "Vietnam"     
+## [28] "Kenya"        "Tunisia"
+```
+
+   
+
+
+## Problem!
+
+
+* `kmeans` uses randomization. So result of one run might
+be different from another run.
+
+* Example: just run again on 3 clusters, `table` of results:
+
+
+ 
+
+```r
+vital.km3a <- vital.s %>% select(-4) %>% kmeans(3)
+table(
+  first = vital.km3$cluster,
+  second = vital.km3a$cluster
+)
+```
+
+```
+##      second
+## first  1  2  3
+##     1  1  0 28
+##     2  0 40  4
+##     3 24  0  0
+```
+
+
+
+* Clusters are similar but *not same*.
+
+* Solution: `nstart` option on `kmeans` runs that
+many times, takes best. Should be same every time:
+
+```r
+vital.km3b <- vital.s %>%
+  select(-4) %>%
+  kmeans(3, nstart = 20)
+```
+
+   
+
+
+
+## How many clusters?
+
+
+* Three was just a guess.
+
+* Idea: try a whole bunch of \#clusters (say 2--20), obtain measure of
+goodness of fit for each, make plot.
+
+* Appropriate measure is `tot.withinss`.
+
+* Use loop to run `kmeans` for each \#clusters, keep
+track of `tot.withinss`.
+
+
+
+## Function to get `tot.withinss`
+\ldots for an input number of clusters, taking only numeric columns
+of input data frame:
+
+```r
+ss <- function(i, d) {
+  km <- d %>%
+    select_if(is.numeric) %>%
+    kmeans(i, nstart = 20)
+  km$tot.withinss
+}
+```
+
+  
+
+Note: writing function to be as general as possible, so that we can
+re-use it later.
+
+
+## Constructing within-cluster SS
+Make a data frame with desired numbers of clusters, and fill it with
+the total within-group sums of squares. ``For each number of
+clusters, run `ss`'', so `map_dbl`.
+
+```r
+ssd <- tibble(clusters = 2:20) %>%
+  mutate(wss = map_dbl(clusters, ss, vital.s)) %>%
+  print(n = 10)
+```
+
+```
+## # A tibble: 19 x 2
+##    clusters   wss
+##       <int> <dbl>
+##  1        2 117. 
+##  2        3  66.9
+##  3        4  51.4
+##  4        5  37.5
+##  5        6  28.7
+##  6        7  24.7
+##  7        8  22.3
+##  8        9  19.6
+##  9       10  17.5
+## 10       11  16.2
+## # … with 9 more rows
+```
+
+   
+
+
+
+## Scree plot
+
+
+```r
+ggplot(ssd, aes(x = clusters, y = wss)) + geom_point() +
+  geom_line()
+```
+
+![plot of chunk favalli](figure/favalli-1.pdf)
+
+   
+
+
+## Interpreting scree plot
+
+
+* Lower `wss` better.
+
+* But lower for larger \#clusters, harder to explain.
+
+* Compromise: low-ish `wss` and low-ish \#clusters.
+
+* Look for "elbow" in plot.
+
+* Idea: this is where `wss` decreases fast then slow.
+
+* On our plot, small elbow at 6 clusters. Try this many clusters.
+
+
+
+## Six clusters, using `nstart`
+
+```r
+vital.km6 <- vital.s %>%
+  select(-4) %>%
+  kmeans(6, nstart = 20)
+vital.km6$size
+```
+
+```
+## [1] 24  8 30 15 18  2
+```
+
+```r
+vital.km6$centers
+```
+
+```
+##        birth      death     infant
+## 1  0.4160993 -0.5169988  0.2648754
+## 2  1.3043848  2.1896567  1.9470306
+## 3 -1.1737104 -0.1856375 -0.9534370
+## 4 -0.4357690 -1.1438599 -0.7281108
+## 5  1.2092406  0.7441347  1.0278003
+## 6 -0.2199722  2.1116577 -0.4544435
+```
+
+```r
+vital.6 <- tibble(
+  country = vital.s$country,
+  cluster = vital.km6$cluster
+)
+```
+
+   
+
+
+## Cluster 1
+Below-average death rate, though other rates a little higher than average:
+
+```r
+get_countries(1, vital.6)
+```
+
+```
+##  [1] "Ecuador"      "Paraguay"     "Oman"        
+##  [4] "Turkey"       "India"        "Mongolia"    
+##  [7] "Pakistan"     "Algeria"      "Egypt"       
+## [10] "Libya"        "Morocco"      "South_Africa"
+## [13] "Zimbabwe"     "Brazil"       "Guyana"      
+## [16] "Peru"         "Iraq"         "Jordan"      
+## [19] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [22] "Philippines"  "Vietnam"      "Tunisia"
+```
+
+   
+
+## Cluster 2
+High on everything:
+
+```r
+get_countries(2, vital.6)
+```
+
+```
+## [1] "Afghanistan"  "Sierra_Leone" "Angola"      
+## [4] "Ethiopia"     "Gambia"       "Malawi"      
+## [7] "Mozambique"   "Somalia"
+```
+
+   
+
+## Cluster 3
+Low on everything, though death rate close to average:
+
+```r
+get_countries(3, vital.6)
+```
+
+```
+##  [1] "Czechoslovakia"    "Hungary"          
+##  [3] "Romania"           "USSR"             
+##  [5] "Ukrainian_SSR"     "Uruguay"          
+##  [7] "Finland"           "France"           
+##  [9] "Greece"            "Italy"            
+## [11] "Norway"            "Spain"            
+## [13] "Switzerland"       "Austria"          
+## [15] "Canada"            "Bulgaria"         
+## [17] "Former_E._Germany" "Poland"           
+## [19] "Yugoslavia"        "Byelorussia_SSR"  
+## [21] "Belgium"           "Denmark"          
+## [23] "Germany"           "Ireland"          
+## [25] "Netherlands"       "Portugal"         
+## [27] "Sweden"            "U.K."             
+## [29] "Japan"             "U.S.A."
+```
+
+   
+
+## Cluster 4
+Low on everything, especially death rate:
+
+```r
+get_countries(4, vital.6)
+```
+
+```
+##  [1] "Albania"              "Chile"               
+##  [3] "Israel"               "Kuwait"              
+##  [5] "China"                "Singapore"           
+##  [7] "Thailand"             "Argentina"           
+##  [9] "Columbia"             "Venezuela"           
+## [11] "Bahrain"              "United_Arab_Emirates"
+## [13] "Hong_Kong"            "Malaysia"            
+## [15] "Sri_Lanka"
+```
+
+   
+
+## Cluster 5
+Higher than average on everything, though not the highest:
+
+```r
+get_countries(5, vital.6)
+```
+
+```
+##  [1] "Bolivia"    "Iran"       "Bangladesh"
+##  [4] "Botswana"   "Gabon"      "Ghana"     
+##  [7] "Namibia"    "Swaziland"  "Uganda"    
+## [10] "Zaire"      "Cambodia"   "Nepal"     
+## [13] "Congo"      "Kenya"      "Nigeria"   
+## [16] "Sudan"      "Tanzania"   "Zambia"
+```
+
+   
+
+## Cluster 6
+Very high death rate, just below average on all else:
+
+```r
+get_countries(6, vital.6)
+```
+
+```
+## [1] "Mexico" "Korea"
+```
+
+   
+
+
+## Comparing our 3 and 6-cluster solutions
+
+```r
+table(three = vital.km3$cluster, six = vital.km6$cluster)
+```
+
+```
+##      six
+## three  1  2  3  4  5  6
+##     1 24  0  0  2  3  0
+##     2  0  0 30 13  0  1
+##     3  0  8  0  0 15  1
+```
+
+   
+
+Compared to 3-cluster solution:
+
+
+
+* most of cluster 1 gone to (new) cluster 1
+
+* cluster 2 split into clusters 3 and 4 (two types of "richer" countries)
+
+* cluster 3 split into clusters 2 and 5 (two types of "poor"
+countries, divided by death rate).
+
+* cluster 6 (Mexico and Korea) was split before.
+
+
+## Getting a picture from `kmeans`
+
+
+* Use multidimensional scaling (later)
+
+* Use discriminant analysis on clusters found, treating them as
+"known" groups.
+
+
+## MANOVA and discriminant analysis
+
+
+* Go back to 1st 3 columns of `vital.s` (variables,
+standardized), plus `cf` (cluster as factor).
+`clus` (6 clusters).
+
+* First, do they actually differ by group? (MANOVA):
+
+```r
+v <- vital.s %>% select(-4) %>% as.matrix()
+cf <- as.factor(vital.km6$cluster)
+vital.manova <- manova(v ~ cf)
+summary(vital.manova)
+```
+
+```
+##           Df Pillai approx F num Df den Df
+## cf         5 1.9215   32.427     15    273
+## Residuals 91                              
+##              Pr(>F)    
+## cf        < 2.2e-16 ***
+## Residuals              
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+ 
+
+Oh yes.
+
+
+
+## Discriminant analysis
+
+
+* So what makes the groups different?
+
+* Uses package `MASS` (loaded):
+
+```r
+vital.lda <- lda(cf ~ birth + death + infant, data = vital.s)
+vital.lda$svd
+```
+
+```
+## [1] 21.687195  8.851811  1.773006
+```
+
+```r
+vital.lda$scaling
+```
+
+```
+##              LD1        LD2        LD3
+## birth  2.6879695  1.1224202  1.9483853
+## death  0.6652712 -2.7213044  0.6049358
+## infant 2.1111801  0.7650912 -2.3542296
+```
+ 
+
+* LD1 is some of everything, but not so much death rate
+(high=poor, low=rich).
+
+* LD2 mainly death rate, high or low.
+
+
+
+## To make a plot
+
+
+* Get predictions first:
+
+```r
+vital.pred <- predict(vital.lda)
+d <- data.frame(
+  country = vital.s$country,
+  cluster = vital.km6$cluster, vital.pred$x
+)
+glimpse(d)
+```
+
+```
+## Observations: 97
+## Variables: 5
+## $ country <fct> Albania, Czechoslovakia, Hungar…
+## $ cluster <int> 4, 3, 3, 3, 3, 3, 5, 4, 1, 1, 3…
+## $ LD1     <dbl> -2.74034473, -5.01874312, -4.97…
+## $ LD2     <dbl> 2.2311427, -2.5427640, -3.62910…
+## $ LD3     <dbl> -0.086392118, 0.067491502, -0.1…
+```
+$ %$ %$
+
+
+* `d` contains country names, cluster memberships and
+discriminant scores. Plot `LD1` against `LD2`,
+colouring points by cluster and labelling by country:
+
+```r
+g <- ggplot(d, aes(
+  x = LD1, y = LD2, colour = factor(cluster),
+  label = country
+)) + geom_point() +
+  geom_text_repel(size = 2) + guides(colour = F)
+```
+
+   
+
+
+
+## The plot
+
+```r
+g
+```
+
+![plot of chunk unnamed-chunk-380](figure/unnamed-chunk-380-1.pdf)
+
+   
+
+
+## Final example: a hockey league
+
+
+* 
+An Ontario hockey league has teams in 21 cities. How can we arrange those teams into 4 geographical divisions?
+
+* Distance data in spreadsheet.
+
+* Take out spaces in team names.
+
+* Save as "text/csv".
+
+* Distances, so back to `hclust`.
+
+
+
+## A map
+
+
+![](map1.png)
+
+
+
+## Attempt 1
+
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario <- read_csv(my_url)
+ontario.d <- ontario %>% select(-1) %>% as.dist()
+ontario.hc <- hclust(ontario.d, method = "ward.D")
+```
+
+   
+
+
+## Plot, with 4 clusters
+
+```r
+plot(ontario.hc)
+rect.hclust(ontario.hc, 4)
+```
+
+![plot of chunk unnamed-chunk-382](figure/unnamed-chunk-382-1.pdf)
+
+   
+
+
+## Comments
+
+
+* Can't have divisions of 1 team!
+
+* "Southern" divisions way too big!
+
+* Try splitting into more. I found 7 to be good:
+
+
+
+## Seven clusters
+
+```r
+plot(ontario.hc)
+rect.hclust(ontario.hc, 7)
+```
+
+![plot of chunk unnamed-chunk-383](figure/unnamed-chunk-383-1.pdf)
+
+   
+
+
+## Divisions now
+
+
+* I want to put Huntsville and North Bay together with northern teams.
+
+* I'll put the Eastern teams together. Gives:
+
+
+* North: Sault Ste Marie, Sudbury, Huntsville, North Bay
+
+* East: Brockville, Cornwall, Ottawa, Peterborough,
+Belleville, Kingston
+
+* West:  Windsor, London, Sarnia
+
+* Central: Owen Sound, Barrie, Toronto, Niagara Falls, St
+Catharines, Brantford, Hamilton, Kitchener
+
+
+* Getting them same size beyond us!
+
+
+
+## Another map
+
+
+![](map2.png)
 
 
 ```
