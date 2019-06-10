@@ -10,11 +10,11 @@
 individuals so that distances (or order of distances) as close
 together as possible. (Or maybe 3 with `rgl`.)
 
-* If want to preserve actual distances, called {\em metric
-multidimensional scaling} (in R, `cmdscale`).
+* If want to preserve actual distances, called
+*metric multidimensional scaling* xxx (in R, `cmdscale`).
 
-* If only want to preserve order of distances, called {\em
-non-metric multidimensional scaling} (in R, `isoMDS` in
+* If only want to preserve order of distances, called *non-metric multidimensional scaling* xxx
+(in R, `isoMDS` in
 package `MASS`).
 
 * Metric scaling has solution that can be worked out exactly.
@@ -29,15 +29,16 @@ failure.)
 
 
 ## Packages
-The usual, plus a new one:
-```{r size="footnotesize", message=F}
+The usual, plus some new stuff xxx:
+
+
+```{r eval=F, message=F}
 library(MASS)
 library(tidyverse)
 library(ggrepel)
 library(ggmap)
 library(shapes)
 ```
-
    
 
 ## Metric scaling: European cities
@@ -51,20 +52,21 @@ options(width = 65)
 ```
 
  
-
-```{r size="scriptsize"}
+\scriptsize
+```{r}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/europe.csv"
 europe <- read_csv(my_url)
 ```
-
+\normalsize
  
 
 
-## The data
-```{r size="scriptsize"}
+## The data xxx
+\scriptsize
+```{r, echo=F}
 europe
 ```
-
+\normalsize
    
 
 ## Multidimensional scaling
@@ -89,8 +91,10 @@ head(europe.scale)
 
 
 ## As a data frame; make picture
-We know how to plot data frames, so make one first.  
-```{r size="scriptsize"}
+We know how to plot data frames, so make one first.  xxx
+
+\scriptsize
+```{r}
 europe_coord <- europe.scale %>%
   as_tibble() %>%
   mutate(city = europe$City) %>%
@@ -98,7 +102,7 @@ europe_coord <- europe.scale %>%
 g <- ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
   geom_point() + geom_text_repel()
 ```
-
+\normalsize
    
 
 
@@ -114,8 +118,10 @@ g
 
 
 * Idea: given input distance matrix (as stored in a CSV file),
-output a map (like the one on the previous page).
-```{r size="footnotesize"}
+output a map (like the one on the previous page). xxx
+
+\footnotesize
+```{r}
 mds_map <- function(filename) {
   x <- read_csv(filename)
   dist <- x %>%
@@ -130,7 +136,7 @@ mds_map <- function(filename) {
     coord_fixed()
 }
 ```
-
+\normalsize
      
 
 
@@ -186,19 +192,24 @@ mds_map("square.csv")
 * Works with package `ggmap`.
 
 * First find latitudes and longitudes of our cities, called
-*geocoding*:
-```{r cache=T,size="small",message=F, eval=F}
+*geocoding*: xxx
+
+\small
+```{r cache=T, message=F, eval=F}
 latlong <- geocode(europe$City)
 latlong <- bind_cols(city = europe$City, latlong)
 latlong %>% print(n = 6)
 ```
-$ %$ %$
+\normalsize
 
-```{r echo=F,size="small"}
+xxx
+
+\small
+```{r echo=F}
 latlong <- readRDS("euro_latlong.rds")
-latlong %>% print(n = 6)
+latlong %>% slice(1:6)
 ```
-
+\normalsize
  
 
 
@@ -353,11 +364,13 @@ square
    
 
 
-## Make tidy
-```{r size="footnotesize"}
+## Make tidy xxx
+
+\footnotesize
+```{r}
 square %>% gather(point, distance, -1)
 ```
-
+\normalsize
    
 
 
@@ -404,8 +417,10 @@ g
 Get rid of Thunder Bay and Sault Ste Marie.
 
 
-## Tidy, remove, untidy
-```{r message=F,size="footnotesize"}
+## Tidy, remove, untidy xxx
+
+\footnotesize
+```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
 ontario2 <- read_csv(my_url) %>%
   gather(place, distance, -1) %>%
@@ -418,7 +433,7 @@ ontario2 <- read_csv(my_url) %>%
   spread(place, distance) %>%
   write_csv("southern-ontario.csv")
 ```
-
+\normalsize
    
 
 
@@ -441,12 +456,13 @@ Came out geographically about right.
 * "Zoom in" on area between $-150$ and $-100$ on $x$ axis, $-50$ to 0 on
 $y$ axis.
 
-* Code below overrides the `coord_fixed` we had before.
+* Code below overrides the `coord_fixed` we had before. xxx
 
-```{r zoom, size="small"}
+\small
+```{r zoom}
 g2 <- g + coord_fixed(xlim = c(-150, -100), ylim = c(-50, 0))
 ```
-
+\normalsize
  
 
 
@@ -465,8 +481,10 @@ g2
 
 * Get a Google map of the area, with the points labelled.
 
-* First geocode the cities of interest:
-```{r message=F, size="footnotesize",cache=T, eval=F}
+* First geocode the cities of interest: xxx
+
+\footnotesize
+```{r message=F, cache=T, eval=F}
 cities <- c(
   "Kitchener ON", "Hamilton ON", "Niagara Falls ON",
   "St Catharines ON", "Brantford ON"
@@ -474,7 +492,7 @@ cities <- c(
 latlong <- geocode(cities)
 latlong <- bind_cols(city = cities, latlong) %>% print()
 ```
-
+\normalsize
      
 
 ```{r echo=F}
@@ -549,9 +567,10 @@ ontario2 <- read_csv(my_url)
 
      
 
-* Calling `cmdscale` with `eig=T` gives more info:
+* Calling `cmdscale` with `eig=T` gives more info: xxx
 
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 ontario2.2 <- ontario2 %>%
   select_if(is.numeric) %>%
   cmdscale(eig = T)
@@ -562,7 +581,7 @@ ontario2.3 <- ontario2 %>%
   cmdscale(3, eig = T)
 ontario2.3$GOF
 ```
-
+\normalsize
    
 
 
@@ -581,13 +600,15 @@ than 2, presumably to accommodate St Catharines and Niagara Falls?
 
 
 
-## 3-dimensional coordinates, cities attached
-```{r size="scriptsize"}
+## 3-dimensional coordinates, cities attached xxx
+
+\scriptsize
+```{r}
 ontario2.3$points %>%
   as_tibble() %>%
   mutate(city = ontario2$x)
 ```
-
+\normalsize
    
 
 
@@ -622,20 +643,24 @@ should be''?
 
 
 * Get latitudes and longitudes of cities by geocoding, as
-before. Glue "ON" onto city names to make sure we get right ones:
-```{r size="footnotesize", message=F, cache=T, eval=F}
+before. Glue "ON" onto city names to make sure we get right ones: xxx
+
+\footnotesize
+```{r message=F, cache=T, eval=F}
 lookup <- str_c(ontario2$x, " ON")
 latlong <- geocode(lookup)
 latlong <- bind_cols(city = ontario2$x, latlong) %>% print(n = 4)
 ```
+\normalsize
+    
+xxx
 
-     
-
-```{r echo=F, size="footnotesize"}
+\footnotesize
+```{r echo=F}
 latlong <- readRDS("ontario_all.rds")
 latlong %>% print(n = 4)
 ```
-
+\normalsize
  
 
 * Not $(x,y)$ coordinates: one degree of latitude is always
@@ -668,11 +693,13 @@ mult
 
 
 * Create "true" coords by multiplying the longitudes by
-that. This needs to be R `matrix`, not data frame:
-```{r size="footnotesize"}
+that. This needs to be R `matrix`, not data frame: xxx
+
+\footnotesize
+```{r}
 truecoord <- with(latlong, cbind(V1 = lon * mult, V2 = lat))
 ```
-
+\normalsize
    
 
 
@@ -695,15 +722,17 @@ coordinates, second MDS coordinates.
 
 
 * `Ahat` and `Bhat` coordinates supposed to
-match as well as possible.
-```{r message=F,size="footnotesize"}
+match as well as possible. xxx
+
+\footnotesize
+```{r message=F}
 ontario.pro <- procOPA(
   truecoord,
   ontario2.2$points
 )
 names(ontario.pro)
 ```
-
+\normalsize
      
 
 
@@ -711,8 +740,10 @@ names(ontario.pro)
 
 
 * Two sets of coordinates, `Ahat` are actual,
-`Bhat` are from MDS.
-```{r size="scriptsize"}
+`Bhat` are from MDS. xxx
+
+\scriptsize
+```{r}
 A <- ontario.pro$Ahat %>%
   as_tibble() %>%
   mutate(which = "actual", city = ontario2$x)
@@ -722,20 +753,26 @@ B <- ontario.pro$Bhat %>%
 dp <- bind_rows(A, B)
 dp %>% sample_n(6)
 ```
- ## `procOPA, part 2: plotting`
+\normalsize
+
+ ## `procOPA`, part 2: plotting
  
    
      
-* Make data frames of each, glue together:
- <<size="small",warning=F>>=
- A=with(ontario.pro,data.frame(x=Ahat[,1],
+* Make data frames of each, glue together: xxx
+
+\small
+```{r, warning=F}
+A=with(ontario.pro,data.frame(x=Ahat[,1],
    y=Ahat[,2],which="actual",city=ontario2$x)) 
  B=with(ontario.pro,data.frame(x=Bhat[,1],
    y=Bhat[,2],which="MDS",city=ontario2$x))
  dp=bind_rows(A,B)
  dp %>% sample_n(6)
- @   
  
+```
+\normalsize
+
    
  
 
@@ -749,8 +786,10 @@ appropriate colour.
 
 * I realized it
 was actually easy to join the two instances of a city by a line
-(in green, here, 3rd line) by setting `group=city`:
-```{r size="footnotesize"}
+(in green, here, 3rd line) by setting `group=city`: xxx
+
+\footnotesize
+```{r}
 g_opa <- ggplot(dp, aes(
   x = V1, y = V2, colour = which,
   label = city
@@ -758,7 +797,7 @@ g_opa <- ggplot(dp, aes(
   geom_line(aes(group = city), colour = "green") +
   geom_text_repel(size = 2)
 ```
-
+\normalsize
      
 
 * On plot, look to see whether points that are same city are
@@ -838,13 +877,15 @@ Try MDS on this obviously 3-dimensional data.
 
 
 
-## Cube data as distances
-```{r f, message=F, size="footnotesize"}
+## Cube data as distances xxx
+
+\footnotesize
+```{r f, message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/cube.txt"
 cube <- read_delim(my_url, " ")
 cube
 ```
-
+\normalsize
    
 
 
@@ -931,19 +972,22 @@ names, without requiring that 1 is "eight times better" than 8.
 ## The languages
 
 
-* Recall language data (from cluster analysis): 1--10, measure dissimilarity between two languages by how many number names {\em differ} in first letter:
+* Recall language data (from cluster analysis): 1--10, measure dissimilarity between two languages by how many number names *differ* xxx in first letter:
 
 ```{r include=F}
 options(width = 55)
 ```
 
-     
-```{r message=F, size="scriptsize"}
+xxx
+
+
+\scriptsize     
+```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
 number.d <- read_table(my_url)
 number.d
 ```
-
+\normalsize
  
 
 
@@ -956,15 +1000,17 @@ number.d
 * Run through `isoMDS` from `MASS` package; works
 like `cmdscale`.
 
-* Map only reproduces {\em relative} closeness of languages.
-```{r size="small"}
+* Map only reproduces *relative* xxx closeness of languages. xxx
+
+\small
+```{r}
 d <- number.d %>%
   select_if(is.numeric) %>%
   as.dist()
 number.nm <- d %>% isoMDS()
 names(number.nm)
 ```
-
+\normalsize
    
 
 
@@ -1058,15 +1104,17 @@ Shepard(d, number.nm$points) %>%
 Actual dissimilarity $x$ between higher: mapped distance $y$ from
 MDS higher too. (MDS working well.)
 
-## Cube, revisited
-```{r size="small"}
+## Cube, revisited xxx
+
+\small
+```{r}
 cube.d <- cube %>% select(-x) %>% as.dist(cube)
 cube.2 <- isoMDS(cube.d, trace = F)
 cube.2$stress
 cube.3 <- isoMDS(cube.d, k = 3, trace = F)
 cube.3$stress
 ```
-
+\normalsize
    
 
 
@@ -1075,8 +1123,10 @@ cube.3$stress
 
 * Three dimensions correct, two dimensions bad.
 
-* Shepard diagrams for these:
-```{r size="footnotesize"}
+* Shepard diagrams for these: xxx
+
+\footnotesize
+```{r}
 cube2.sh <- Shepard(cube.d, cube.2$points)
 g2 <- ggplot(as.data.frame(cube2.sh), aes(x = x, y = y)) +
   geom_point()
@@ -1084,7 +1134,7 @@ cube3.sh <- Shepard(cube.d, cube.3$points)
 g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
   geom_point()
 ```
-
+\normalsize
    
 
 
@@ -1127,18 +1177,10 @@ More than 20 & Poor: may be dangerous to interpret\\
 
 * Languages: stress in "good" range.
 
-* Cube: 
+* Cube: xxx
 
 
-*   2 dimensions "fair", almost "poor";
+  *   2 dimensions "fair", almost "poor";
 
-* 3 dimensions, "excellent".
- <<echo=F, warning=F>>=
- pkgs = names(sessionInfo()$otherPkgs) 
- pkgs=paste('package:', pkgs, sep = "")
- x=lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
- @   
-
-
-
+  * 3 dimensions, "excellent".
 

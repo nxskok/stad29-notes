@@ -743,7 +743,7 @@ ggsave("nesta.pdf", g, "pdf")
 
 \begin{itemize}
 
-\item Go back to plot of discriminant scores: xxx
+\item Go back to plot of discriminant scores:
 
 \item one bellydancer much closer to the politicians,
 

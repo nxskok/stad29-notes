@@ -32,3 +32,15 @@ bindrcpp
 magrittr
 ggpubr
 carData
+readxl
+devtools
+usethis
+smmr
+PMCMRplus
+leaps
+lubridate
+spatstat.data
+nlme
+rpart
+spatstat
+conflicted

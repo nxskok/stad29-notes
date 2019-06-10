@@ -1,9 +1,18 @@
-\frametitle{Another map}
-\protect\hypertarget{another-map}{}
+\frametitle{Shepard diagram for 3-dimensional cube}
+\protect\hypertarget{shepard-diagram-for-3-dimensional-cube}{}
 
-\includegraphics{map2.png}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g3}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{figure/unnamed-chunk-65-1.pdf}
+\caption{plot of chunk unnamed-chunk-65}
+\end{figure}
+
+Almost perfect: all actual \(x=1\) go with smallest mapped distances;
+almost all \(x=1.7\) go with largest.
 

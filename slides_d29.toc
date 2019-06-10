@@ -1,10 +1,1 @@
-\beamer@sectionintoc {1}{Course Outline}{2}{0}{1}
-\beamer@sectionintoc {2}{Review of (multiple) regression}{12}{0}{2}
-\beamer@sectionintoc {3}{Logistic regression (ordinal/nominal response)}{95}{0}{3}
-\beamer@sectionintoc {4}{Survival analysis}{178}{0}{4}
-\beamer@sectionintoc {5}{Analysis of variance}{221}{0}{5}
-\beamer@sectionintoc {6}{Analysis of covariance}{292}{0}{6}
-\beamer@sectionintoc {7}{Multivariate ANOVA}{312}{0}{7}
-\beamer@sectionintoc {8}{Repeated measures by profile analysis}{332}{0}{8}
-\beamer@sectionintoc {9}{Discriminant analysis}{367}{0}{9}
-\beamer@sectionintoc {10}{Cluster analysis}{432}{0}{10}
+\beamer@sectionintoc {1}{Multidimensional scaling}{2}{0}{1}
