@@ -36,10 +36,10 @@ individuals so that distances (or order of distances) as close
 together as possible. (Or maybe 3 with `rgl`.)
 
 * If want to preserve actual distances, called
-*metric multidimensional scaling* xxx (in R, `cmdscale`).
+*metric multidimensional scaling* (in R, `cmdscale`).
 
-* If only want to preserve order of distances, called {\em
-non-metric multidimensional scaling} (in R, `isoMDS` in
+* If only want to preserve order of distances, called *non-metric multidimensional scaling*
+(in R, `isoMDS` in
 package `MASS`).
 
 * Metric scaling has solution that can be worked out exactly.
@@ -54,9 +54,9 @@ failure.)
 
 
 ## Packages
-The usual, plus some new stuff xxx:
+The usual, plus some new stuff:
 
-\footnotesize
+
 
 ```r
 library(MASS)
@@ -65,7 +65,6 @@ library(ggrepel)
 library(ggmap)
 library(shapes)
 ```
-\normalsize
    
 
 ## Metric scaling: European cities
@@ -77,7 +76,7 @@ Read in data:
 
 
  
-\scriptsize xxx
+\scriptsize
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/europe.csv"
@@ -85,13 +84,9 @@ europe <- read_csv(my_url)
 ```
 
 ```
-## Warning: Missing column names filled in: 'X1' [1]
-```
-
-```
 ## Parsed with column specification:
 ## cols(
-##   X1 = col_character(),
+##   City = col_character(),
 ##   Amsterdam = col_double(),
 ##   Athens = col_double(),
 ##   Barcelona = col_double(),
@@ -115,15 +110,15 @@ europe <- read_csv(my_url)
 
 
 ## The data
-\scriptsize
 
-```r
-europe
-```
+
+
+
+\scriptsize
 
 ```
 ## # A tibble: 16 x 17
-##    X1    Amsterdam Athens Barcelona Berlin Cologne Copenhagen
+##    City  Amsterdam Athens Barcelona Berlin Cologne Copenhagen
 ##    <chr>     <dbl>  <dbl>     <dbl>  <dbl>   <dbl>      <dbl>
 ##  1 Amst…         0   3082      1639    649     280        904
 ##  2 Athe…      3082      0      3312   2552    2562       3414
@@ -155,10 +150,10 @@ europe
 `europe`. `europe` has distances in it already, so make
 into `dist` with `as.dist`.
 
-* Then run multidimensional scaling and look at result:
+* Then run multidimensional scaling and look at result: xxx
 
 ```r
-europe.d <- europe %>% select(-1) %>% as.dist()
+europe %>% select(-City) %>% as.dist() -> europe.d
 europe.scale <- cmdscale(europe.d)
 head(europe.scale)
 ```
@@ -183,62 +178,26 @@ head(europe.scale)
 ## As a data frame; make picture
 We know how to plot data frames, so make one first.  xxx
 
-\scriptsize
+\normalsize
 
 ```r
-europe_coord <- europe.scale %>%
+europe.scale %>%
   as_tibble() %>%
-  mutate(city = europe$City) %>%
-  print(n = 12)
-```
-
-```
-## Warning: `as_tibble.matrix()` requires a matrix with column names or a `.name_repair` argument. Using compatibility `.name_repair`.
-## This warning is displayed once per session.
-```
-
-```
-## Warning: Unknown or uninitialised column: 'City'.
-```
-
-```
-## # A tibble: 16 x 2
-##          V1      V2
-##       <dbl>   <dbl>
-##  1  -348.     528. 
-##  2  2529.    -510. 
-##  3  -696.    -985. 
-##  4   384.     635. 
-##  5     5.15   357. 
-##  6  -187.    1143. 
-##  7  -882.     894. 
-##  8  -161.    -330. 
-##  9  -434.     427. 
-## 10 -1364.   -1069. 
-## 11  -390.    -706. 
-## 12   345.     -66.8
-## # … with 4 more rows
-```
-
-```r
+  mutate(city = europe$City) -> europe_coord
 g <- ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
-  geom_point() + geom_text_repel()
+  geom_point() + geom_text_repel() 
 ```
 \normalsize
    
 
 
-## The map
+## The map xxx
 
 ```r
 g
 ```
 
-```
-## Error in FUN(X[[i]], ...): object 'city' not found
-```
-
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.pdf)
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.pdf)
 
    
 
@@ -249,7 +208,7 @@ g
 * Idea: given input distance matrix (as stored in a CSV file),
 output a map (like the one on the previous page). xxx
 
-\footnotesize
+\scriptsize
 
 ```r
 mds_map <- function(filename) {
@@ -286,41 +245,37 @@ data frame, acquires headers `V1` and `V2`.
 mds_map("europe.csv")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.pdf)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.pdf)
 
    
 
 
-## A square
-\begin{multicols}{2}
+## A square xxx
 
+\begin{minipage}[t]{0.5\textwidth}
 
-* The data, in `square.csv`:
+The data, in `square.csv`:
 \begin{small}
 
 ```
-
 x,A  ,B  ,C  ,D
 A,0  ,1  ,1  ,1.4
 B,1  ,0  ,1.4,1
 C,1  ,1.4,0  ,1
 D,1.4,1  ,1  ,0
-
 ```
-
 \end{small}
-
+\end{minipage}\hfill
+\begin{minipage}[t][][b]{0.48\textwidth}
 * The map (on right):
 
 ```r
 mds_map("square.csv")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.pdf)
-
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.pdf)
+\end{minipage}
        
-
-\end{multicols}
 
 ## Drawing a map of the real Europe
 
@@ -335,7 +290,7 @@ mds_map("square.csv")
 ```r
 latlong <- geocode(europe$City)
 latlong <- bind_cols(city = europe$City, latlong)
-latlong %>% print(n = 6)
+latlong %>% slice(1:6)
 ```
 \normalsize
 
@@ -407,18 +362,13 @@ g2 <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.pdf)
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.pdf)
 
    
 
 
 ## Compare our scaling map
-
-```
-## Error in FUN(X[[i]], ...): object 'city' not found
-```
-
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.pdf)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.pdf)
 
    
 
@@ -462,15 +412,17 @@ text3d(es.2, text = d$city)
 
 
 ## Ontario, the same way
-\ldots using our function:
+\ldots using our function: xxx
 
 
 ```r
-g <- mds_map("ontario-road-distances.csv")
+url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+g <- mds_map(url)
 g
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.pdf)
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.pdf)
 
    
 
@@ -532,10 +484,10 @@ square
 
 ## Make tidy xxx
 
-\footnotesize
+\scriptsize
 
 ```r
-square %>% gather(point, distance, -1)
+square %>% gather(point, distance, -x)
 ```
 
 ```
@@ -564,7 +516,9 @@ square %>% gather(point, distance, -1)
 
 
 ## Remove all references to point C
-In column `x` or `point`:
+In column `x` or `point`: xxx
+
+\small
 
 ```r
 square %>%
@@ -586,7 +540,7 @@ square %>%
 ## 8 B     D          1  
 ## 9 D     D          0
 ```
-
+\normalsize
    
 
 
@@ -623,7 +577,7 @@ noc %>% write_csv("no-c.csv")
 mds_map("no-c.csv")
 ```
 
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.pdf)
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.pdf)
 
    
 
@@ -634,7 +588,7 @@ mds_map("no-c.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27-1.pdf)
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28-1.pdf)
 
    
 
@@ -646,21 +600,19 @@ Get rid of Thunder Bay and Sault Ste Marie.
 \footnotesize
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
-ontario2 <- read_csv(my_url) %>%
-  gather(place, distance, -1) %>%
+my_url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario2 <- read_csv(my_url) 
+ontario2 %>%
+  gather(city, distance, -1) %>%
   filter(
-    x != "Thunder Bay",
+    city != "Thunder Bay",
     place != "Thunder Bay",
-    x != "Sault Ste Marie",
+    city != "Sault Ste Marie",
     place != "Sault Ste Marie"
   ) %>%
   spread(place, distance) %>%
   write_csv("southern-ontario.csv")
-```
-
-```
-## Error in ~x != "Thunder Bay": object 'x' not found
 ```
 \normalsize
    
@@ -673,7 +625,7 @@ g <- mds_map("southern-ontario.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29-1.pdf)
+![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30-1.pdf)
 
    
 
@@ -733,7 +685,6 @@ cities <- c(
 latlong <- geocode(cities)
 latlong <- bind_cols(city = cities, latlong) %>% print()
 ```
-\normalsize
      
 
 
@@ -748,6 +699,7 @@ latlong <- bind_cols(city = cities, latlong) %>% print()
 ## 5 Brantford ON     -80.3  43.1
 ```
 
+\normalsize
  
 
 
@@ -771,7 +723,7 @@ map <- get_map("Hamilton ON", zoom = 8)
 Plot the map, plus the cities, plus labels for the cities:
 
 ```r
-gmap <- ggmap(map) +
+ggmap(map) +
   geom_point(
     data = latlong,
     aes(x = lon, y = lat),
@@ -780,7 +732,7 @@ gmap <- ggmap(map) +
   geom_text_repel(
     data = latlong,
     aes(label = city)
-  )
+  ) -> gmap
 ```
 
    
@@ -793,7 +745,7 @@ gmap <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35-1.pdf)
+![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
 
      
 
@@ -802,7 +754,7 @@ g2
 gmap
 ```
 
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.pdf)
 
  
 \end{multicols}
@@ -1082,14 +1034,14 @@ dp %>% sample_n(6)
 
 ```
 ## # A tibble: 6 x 4
-##        V1     V2 which  city         
-##     <dbl>  <dbl> <chr>  <chr>        
-## 1 -1.22   -1.09  MDS    London       
-## 2 -1.33    0.551 actual Owen Sound   
-## 3 -0.802  -0.588 MDS    Niagara Falls
-## 4 -0.0836  2.55  MDS    North Bay    
-## 5  3.13    1.00  actual Cornwall     
-## 6 -1.43    0.331 MDS    Owen Sound
+##       V1     V2 which  city        
+##    <dbl>  <dbl> <chr>  <chr>       
+## 1  1.87   0.213 actual Kingston    
+## 2  0.556  0.298 MDS    Peterborough
+## 3  2.45   0.571 actual Brockville  
+## 4 -0.848 -0.879 actual Brantford   
+## 5  2.39   0.348 MDS    Brockville  
+## 6 -0.284  1.56  MDS    Huntsville
 ```
 \normalsize
 
@@ -1111,13 +1063,13 @@ A=with(ontario.pro,data.frame(x=Ahat[,1],
 ```
 
 ```
-##            x          y  which          city
-## 1  2.4368356  1.4030183 actual        Ottawa
-## 2 -2.3879946 -1.0439753 actual        Sarnia
-## 3 -0.8475311 -0.8791246 actual     Brantford
-## 4 -0.7323875 -0.5312579    MDS St Catharines
-## 5 -2.2119941 -2.1651132    MDS       Windsor
-## 6 -0.7760164 -0.5385999    MDS     Kitchener
+##            x          y  which         city
+## 1  0.5509169  0.2905467 actual Peterborough
+## 2 -0.2835104  1.5604378    MDS   Huntsville
+## 3 -2.2119941 -2.1651132    MDS      Windsor
+## 4 -1.8786981 -1.3312467    MDS       Sarnia
+## 5  3.0548188  0.7152199    MDS     Cornwall
+## 6  1.2243796  0.1442476 actual   Belleville
 ```
 \normalsize
 
@@ -1210,7 +1162,7 @@ $ %$ %$
 g
 ```
 
-![plot of chunk unnamed-chunk-51](figure/unnamed-chunk-51-1.pdf)
+![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52-1.pdf)
 
    
 
@@ -1273,8 +1225,7 @@ cube.d <- cube %>% select(-1) %>% as.dist()
 ```
 
 ```
-## Warning in storage.mode(m) <- "numeric": NAs introduced by
-## coercion
+## Warning in storage.mode(m) <- "numeric": NAs introduced by coercion
 ```
 
 ```r
@@ -1619,7 +1570,7 @@ g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-64](figure/unnamed-chunk-64-1.pdf)
+![plot of chunk unnamed-chunk-65](figure/unnamed-chunk-65-1.pdf)
 
    
 
@@ -1632,7 +1583,7 @@ Poor correspondence (not much trend).
 g3
 ```
 
-![plot of chunk unnamed-chunk-65](figure/unnamed-chunk-65-1.pdf)
+![plot of chunk unnamed-chunk-66](figure/unnamed-chunk-66-1.pdf)
 
  
 Almost perfect: all actual $x=1$ go with smallest mapped distances; almost

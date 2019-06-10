@@ -158,11 +158,11 @@
   (Or maybe 3 with \texttt{rgl}.)
 \item
   If want to preserve actual distances, called \emph{metric
-  multidimensional scaling} xxx (in R, \texttt{cmdscale}).
+  multidimensional scaling} (in R, \texttt{cmdscale}).
 \item
-  If only want to preserve order of distances, called \{\em
-  non-metric multidimensional scaling\} (in R, \texttt{isoMDS} in
-  package \texttt{MASS}).
+  If only want to preserve order of distances, called \emph{non-metric
+  multidimensional scaling} (in R, \texttt{isoMDS} in package
+  \texttt{MASS}).
 \item
   Metric scaling has solution that can be worked out exactly.
 \item
@@ -177,9 +177,7 @@
 \begin{frame}[fragile]{Packages}
 \protect\hypertarget{packages}{}
 
-The usual, plus some new stuff xxx:
-
-\footnotesize
+The usual, plus some new stuff:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -191,8 +189,6 @@ The usual, plus some new stuff xxx:
 \end{Highlighting}
 \end{Shaded}
 
-\normalsize
-
 \end{frame}
 
 \begin{frame}[fragile]{Metric scaling: European cities}
@@ -203,7 +199,7 @@ European cities. Can we reproduce a map of Europe from these distances?
 
 Read in data:
 
-\scriptsize xxx
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -213,13 +209,9 @@ Read in data:
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Missing column names filled in: 'X1' [1]
-\end{verbatim}
-
-\begin{verbatim}
 ## Parsed with column specification:
 ## cols(
-##   X1 = col_character(),
+##   City = col_character(),
 ##   Amsterdam = col_double(),
 ##   Athens = col_double(),
 ##   Barcelona = col_double(),
@@ -248,15 +240,9 @@ Read in data:
 
 \scriptsize
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{europe}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## # A tibble: 16 x 17
-##    X1    Amsterdam Athens Barcelona Berlin Cologne Copenhagen
+##    City  Amsterdam Athens Barcelona Berlin Cologne Copenhagen
 ##    <chr>     <dbl>  <dbl>     <dbl>  <dbl>   <dbl>      <dbl>
 ##  1 Amst…         0   3082      1639    649     280        904
 ##  2 Athe…      3082      0      3312   2552    2562       3414
@@ -292,12 +278,12 @@ Read in data:
   \texttt{europe}. \texttt{europe} has distances in it already, so make
   into \texttt{dist} with \texttt{as.dist}.
 \item
-  Then run multidimensional scaling and look at result:
+  Then run multidimensional scaling and look at result: xxx
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{europe.d <-}\StringTok{ }\NormalTok{europe }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{()}
+\NormalTok{europe }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{City) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{() ->}\StringTok{ }\NormalTok{europe.d}
 \NormalTok{europe.scale <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(europe.d)}
 \KeywordTok{head}\NormalTok{(europe.scale)}
 \end{Highlighting}
@@ -326,49 +312,15 @@ Read in data:
 
 We know how to plot data frames, so make one first. xxx
 
-\scriptsize
+\normalsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{europe_coord <-}\StringTok{ }\NormalTok{europe.scale }\OperatorTok{%>%}
+\NormalTok{europe.scale }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{12}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: `as_tibble.matrix()` requires a matrix with column names or a `.name_repair` argument. Using compatibility `.name_repair`.
-## This warning is displayed once per session.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Unknown or uninitialised column: 'City'.
-\end{verbatim}
-
-\begin{verbatim}
-## # A tibble: 16 x 2
-##          V1      V2
-##       <dbl>   <dbl>
-##  1  -348.     528. 
-##  2  2529.    -510. 
-##  3  -696.    -985. 
-##  4   384.     635. 
-##  5     5.15   357. 
-##  6  -187.    1143. 
-##  7  -882.     894. 
-##  8  -161.    -330. 
-##  9  -434.     427. 
-## 10 -1364.   -1069. 
-## 11  -390.    -706. 
-## 12   345.     -66.8
-## # … with 4 more rows
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City) ->}\StringTok{ }\NormalTok{europe_coord}
 \NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(europe_coord, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ city)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{() }
 \end{Highlighting}
 \end{Shaded}
 
@@ -376,8 +328,8 @@ We know how to plot data frames, so make one first. xxx
 
 \end{frame}
 
-\begin{frame}[fragile]{The map}
-\protect\hypertarget{the-map}{}
+\begin{frame}[fragile]{The map xxx}
+\protect\hypertarget{the-map-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -385,14 +337,10 @@ We know how to plot data frames, so make one first. xxx
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): object 'city' not found
-\end{verbatim}
-
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-9-1.pdf}
-\caption{plot of chunk unnamed-chunk-9}
+\includegraphics{figure/unnamed-chunk-10-1.pdf}
+\caption{plot of chunk unnamed-chunk-10}
 \end{figure}
 
 \end{frame}
@@ -407,7 +355,7 @@ We know how to plot data frames, so make one first. xxx
   map (like the one on the previous page). xxx
 \end{itemize}
 
-\footnotesize
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -453,39 +401,32 @@ We know how to plot data frames, so make one first. xxx
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-11-1.pdf}
-\caption{plot of chunk unnamed-chunk-11}
+\includegraphics{figure/unnamed-chunk-12-1.pdf}
+\caption{plot of chunk unnamed-chunk-12}
 \end{figure}
 
 \end{frame}
 
-\begin{frame}[fragile]{A square}
-\protect\hypertarget{a-square}{}
+\begin{frame}[fragile]{A square xxx}
+\protect\hypertarget{a-square-xxx}{}
 
-\textbackslash{}begin\{multicols\}\{2\}
+\begin{minipage}[t]{0.5\textwidth}
 
-\begin{itemize}
-\tightlist
-\item
-  The data, in \texttt{square.csv}: \textbackslash{}begin\{small\}
-\end{itemize}
+The data, in `square.csv`:
+\begin{small}
 
-\begin{verbatim}
-
+```
 x,A  ,B  ,C  ,D
 A,0  ,1  ,1  ,1.4
 B,1  ,0  ,1.4,1
 C,1  ,1.4,0  ,1
 D,1.4,1  ,1  ,0
-\end{verbatim}
+```
+\end{small}
+\end{minipage}\hfill
 
-\textbackslash{}end\{small\}
-
-\begin{itemize}
-\tightlist
-\item
-  The map (on right):
-\end{itemize}
+\textbackslash{}begin\{minipage\}{[}t{]}{[}{]}{[}b{]}\{0.48\textwidth\}
+* The map (on right):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -493,13 +434,8 @@ D,1.4,1  ,1  ,0
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-12-1.pdf}
-\caption{plot of chunk unnamed-chunk-12}
-\end{figure}
-
-\textbackslash{}end\{multicols\}
+\includegraphics{figure/unnamed-chunk-13-1.pdf}
+\textbackslash{}end\{minipage\}
 
 \end{frame}
 
@@ -520,7 +456,7 @@ D,1.4,1  ,1  ,0
 \begin{Highlighting}[]
 \NormalTok{latlong <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(europe}\OperatorTok{$}\NormalTok{City)}
 \NormalTok{latlong <-}\StringTok{ }\KeywordTok{bind_cols}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City, latlong)}
-\NormalTok{latlong }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{6}\NormalTok{)}
+\NormalTok{latlong }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -608,23 +544,19 @@ xxx
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-18-1.pdf}
-\caption{plot of chunk unnamed-chunk-18}
+\includegraphics{figure/unnamed-chunk-19-1.pdf}
+\caption{plot of chunk unnamed-chunk-19}
 \end{figure}
 
 \end{frame}
 
-\begin{frame}[fragile]{Compare our scaling map}
+\begin{frame}{Compare our scaling map}
 \protect\hypertarget{compare-our-scaling-map}{}
-
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): object 'city' not found
-\end{verbatim}
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-19-1.pdf}
-\caption{plot of chunk unnamed-chunk-19}
+\includegraphics{figure/unnamed-chunk-20-1.pdf}
+\caption{plot of chunk unnamed-chunk-20}
 \end{figure}
 
 \end{frame}
@@ -680,19 +612,21 @@ xxx
 \begin{frame}[fragile]{Ontario, the same way}
 \protect\hypertarget{ontario-the-same-way}{}
 
-\ldots using our function:
+\ldots using our function: xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(}\StringTok{"ontario-road-distances.csv"}\NormalTok{)}
+\NormalTok{url <-}\StringTok{ }
+\StringTok{  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
+\NormalTok{g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(url)}
 \NormalTok{g}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-21-1.pdf}
-\caption{plot of chunk unnamed-chunk-21}
+\includegraphics{figure/unnamed-chunk-22-1.pdf}
+\caption{plot of chunk unnamed-chunk-22}
 \end{figure}
 
 Thunder Bay and Sault Ste Marie dominate the picture since they are so
@@ -754,11 +688,11 @@ geom\_text\_repel() @
 \begin{frame}[fragile]{Make tidy xxx}
 \protect\hypertarget{make-tidy-xxx}{}
 
-\footnotesize
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{square }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(point, distance, }\DecValTok{-1}\NormalTok{)}
+\NormalTok{square }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(point, distance, }\OperatorTok{-}\NormalTok{x)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -791,7 +725,9 @@ geom\_text\_repel() @
 \begin{frame}[fragile]{Remove all references to point C}
 \protect\hypertarget{remove-all-references-to-point-c}{}
 
-In column \texttt{x} or \texttt{point}:
+In column \texttt{x} or \texttt{point}: xxx
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -815,6 +751,8 @@ In column \texttt{x} or \texttt{point}:
 ## 8 B     D          1  
 ## 9 D     D          0
 \end{verbatim}
+
+\normalsize
 
 \end{frame}
 
@@ -861,8 +799,8 @@ and save as .csv when we are happy:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-26-1.pdf}
-\caption{plot of chunk unnamed-chunk-26}
+\includegraphics{figure/unnamed-chunk-27-1.pdf}
+\caption{plot of chunk unnamed-chunk-27}
 \end{figure}
 
 \end{frame}
@@ -878,8 +816,8 @@ and save as .csv when we are happy:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-27-1.pdf}
-\caption{plot of chunk unnamed-chunk-27}
+\includegraphics{figure/unnamed-chunk-28-1.pdf}
+\caption{plot of chunk unnamed-chunk-28}
 \end{figure}
 
 Get rid of Thunder Bay and Sault Ste Marie.
@@ -893,23 +831,21 @@ Get rid of Thunder Bay and Sault Ste Marie.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
-\NormalTok{ontario2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{gather}\NormalTok{(place, distance, }\DecValTok{-1}\NormalTok{) }\OperatorTok{%>%}
+\NormalTok{my_url <-}\StringTok{ }
+\StringTok{  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
+\NormalTok{ontario2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url) }
+\NormalTok{ontario2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(city, distance, }\DecValTok{-1}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{filter}\NormalTok{(}
-\NormalTok{    x }\OperatorTok{!=}\StringTok{ "Thunder Bay"}\NormalTok{,}
+\NormalTok{    city }\OperatorTok{!=}\StringTok{ "Thunder Bay"}\NormalTok{,}
 \NormalTok{    place }\OperatorTok{!=}\StringTok{ "Thunder Bay"}\NormalTok{,}
-\NormalTok{    x }\OperatorTok{!=}\StringTok{ "Sault Ste Marie"}\NormalTok{,}
+\NormalTok{    city }\OperatorTok{!=}\StringTok{ "Sault Ste Marie"}\NormalTok{,}
 \NormalTok{    place }\OperatorTok{!=}\StringTok{ "Sault Ste Marie"}
 \NormalTok{  ) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{spread}\NormalTok{(place, distance) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{write_csv}\NormalTok{(}\StringTok{"southern-ontario.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Error in ~x != "Thunder Bay": object 'x' not found
-\end{verbatim}
 
 \normalsize
 
@@ -927,8 +863,8 @@ Get rid of Thunder Bay and Sault Ste Marie.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-29-1.pdf}
-\caption{plot of chunk unnamed-chunk-29}
+\includegraphics{figure/unnamed-chunk-30-1.pdf}
+\caption{plot of chunk unnamed-chunk-30}
 \end{figure}
 
 Came out geographically about right.
@@ -1006,8 +942,6 @@ Ignore the arrows to points off the map:
 \end{Highlighting}
 \end{Shaded}
 
-\normalsize
-
 \begin{verbatim}
 ## # A tibble: 5 x 3
 ##   city               lon   lat
@@ -1018,6 +952,8 @@ Ignore the arrows to points off the map:
 ## 4 St Catharines ON -79.2  43.2
 ## 5 Brantford ON     -80.3  43.1
 \end{verbatim}
+
+\normalsize
 
 \begin{itemize}
 \tightlist
@@ -1048,7 +984,7 @@ Plot the map, plus the cities, plus labels for the cities:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gmap <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(map) }\OperatorTok{+}
+\KeywordTok{ggmap}\NormalTok{(map) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
     \DataTypeTok{data =}\NormalTok{ latlong,}
     \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat),}
@@ -1057,7 +993,7 @@ Plot the map, plus the cities, plus labels for the cities:
 \StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}
     \DataTypeTok{data =}\NormalTok{ latlong,}
     \KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ city)}
-\NormalTok{  )}
+\NormalTok{  ) ->}\StringTok{ }\NormalTok{gmap}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1070,7 +1006,7 @@ Google map\}
 g2
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35-1.pdf)
+![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
 
      
 
@@ -1079,7 +1015,7 @@ g2
 gmap
 ```
 
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.pdf)
 
  
 \end{multicols}
@@ -1419,14 +1355,14 @@ xxx
 
 \begin{verbatim}
 ## # A tibble: 6 x 4
-##        V1     V2 which  city         
-##     <dbl>  <dbl> <chr>  <chr>        
-## 1 -1.22   -1.09  MDS    London       
-## 2 -1.33    0.551 actual Owen Sound   
-## 3 -0.802  -0.588 MDS    Niagara Falls
-## 4 -0.0836  2.55  MDS    North Bay    
-## 5  3.13    1.00  actual Cornwall     
-## 6 -1.43    0.331 MDS    Owen Sound
+##       V1     V2 which  city        
+##    <dbl>  <dbl> <chr>  <chr>       
+## 1  1.87   0.213 actual Kingston    
+## 2  0.556  0.298 MDS    Peterborough
+## 3  2.45   0.571 actual Brockville  
+## 4 -0.848 -0.879 actual Brantford   
+## 5  2.39   0.348 MDS    Brockville  
+## 6 -0.284  1.56  MDS    Huntsville
 \end{verbatim}
 
 \normalsize
@@ -1453,13 +1389,13 @@ xxx
 \end{Shaded}
 
 \begin{verbatim}
-##            x          y  which          city
-## 1  2.4368356  1.4030183 actual        Ottawa
-## 2 -2.3879946 -1.0439753 actual        Sarnia
-## 3 -0.8475311 -0.8791246 actual     Brantford
-## 4 -0.7323875 -0.5312579    MDS St Catharines
-## 5 -2.2119941 -2.1651132    MDS       Windsor
-## 6 -0.7760164 -0.5385999    MDS     Kitchener
+##            x          y  which         city
+## 1  0.5509169  0.2905467 actual Peterborough
+## 2 -0.2835104  1.5604378    MDS   Huntsville
+## 3 -2.2119941 -2.1651132    MDS      Windsor
+## 4 -1.8786981 -1.3312467    MDS       Sarnia
+## 5  3.0548188  0.7152199    MDS     Cornwall
+## 6  1.2243796  0.1442476 actual   Belleville
 \end{verbatim}
 
 \normalsize
@@ -1577,8 +1513,8 @@ Rotation angle \(\theta\) such that \(\cos\theta=0.885\),
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-51-1.pdf}
-\caption{plot of chunk unnamed-chunk-51}
+\includegraphics{figure/unnamed-chunk-52-1.pdf}
+\caption{plot of chunk unnamed-chunk-52}
 \end{figure}
 
 23 degrees counterclockwise seems about right.
@@ -1648,8 +1584,7 @@ Try MDS on this obviously 3-dimensional data.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in storage.mode(m) <- "numeric": NAs introduced by
-## coercion
+## Warning in storage.mode(m) <- "numeric": NAs introduced by coercion
 \end{verbatim}
 
 \begin{Shaded}
@@ -2078,8 +2013,8 @@ MDS higher too. (MDS working well.)
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-64-1.pdf}
-\caption{plot of chunk unnamed-chunk-64}
+\includegraphics{figure/unnamed-chunk-65-1.pdf}
+\caption{plot of chunk unnamed-chunk-65}
 \end{figure}
 
 Poor correspondence (not much trend).
@@ -2097,8 +2032,8 @@ Poor correspondence (not much trend).
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-65-1.pdf}
-\caption{plot of chunk unnamed-chunk-65}
+\includegraphics{figure/unnamed-chunk-66-1.pdf}
+\caption{plot of chunk unnamed-chunk-66}
 \end{figure}
 
 Almost perfect: all actual \(x=1\) go with smallest mapped distances;

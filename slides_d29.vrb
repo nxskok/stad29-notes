@@ -9,8 +9,8 @@
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-65-1.pdf}
-\caption{plot of chunk unnamed-chunk-65}
+\includegraphics{figure/unnamed-chunk-66-1.pdf}
+\caption{plot of chunk unnamed-chunk-66}
 \end{figure}
 
 Almost perfect: all actual \(x=1\) go with smallest mapped distances;

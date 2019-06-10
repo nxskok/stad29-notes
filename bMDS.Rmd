@@ -11,9 +11,9 @@ individuals so that distances (or order of distances) as close
 together as possible. (Or maybe 3 with `rgl`.)
 
 * If want to preserve actual distances, called
-*metric multidimensional scaling* xxx (in R, `cmdscale`).
+*metric multidimensional scaling* (in R, `cmdscale`).
 
-* If only want to preserve order of distances, called *non-metric multidimensional scaling* xxx
+* If only want to preserve order of distances, called *non-metric multidimensional scaling*
 (in R, `isoMDS` in
 package `MASS`).
 
@@ -29,7 +29,7 @@ failure.)
 
 
 ## Packages
-The usual, plus some new stuff xxx:
+The usual, plus some new stuff:
 
 
 ```{r eval=F, message=F}
@@ -61,7 +61,13 @@ europe <- read_csv(my_url)
  
 
 
-## The data xxx
+## The data
+
+```{r, echo=F}
+options(width=70)
+```
+
+
 \scriptsize
 ```{r, echo=F}
 europe
@@ -78,7 +84,7 @@ into `dist` with `as.dist`.
 
 * Then run multidimensional scaling and look at result:
 ```{r }
-europe.d <- europe %>% select(-1) %>% as.dist()
+europe %>% select(-City) %>% as.dist() -> europe.d
 europe.scale <- cmdscale(europe.d)
 head(europe.scale)
 ```
@@ -91,23 +97,22 @@ head(europe.scale)
 
 
 ## As a data frame; make picture
-We know how to plot data frames, so make one first.  xxx
+We know how to plot data frames, so make one first. This gives a warning that you can ignore: xxx
 
-\scriptsize
-```{r}
-europe_coord <- europe.scale %>%
+\normalsize
+```{r, warning=F}
+europe.scale %>%
   as_tibble() %>%
-  mutate(city = europe$City) %>%
-  print(n = 12)
-g <- ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
-  geom_point() + geom_text_repel()
+  mutate(city = europe$City) -> europe_coord
+ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
+  geom_point() + geom_text_repel() -> g
 ```
 \normalsize
    
 
 
-## The map
-```{r fig.height=3.6}
+## The map xxx
+```{r fig.height=3.8}
 g
 ```
 
@@ -120,7 +125,7 @@ g
 * Idea: given input distance matrix (as stored in a CSV file),
 output a map (like the one on the previous page). xxx
 
-\footnotesize
+\scriptsize
 ```{r}
 mds_map <- function(filename) {
   x <- read_csv(filename)
@@ -139,15 +144,15 @@ mds_map <- function(filename) {
 \normalsize
      
 
-
+\small
 * Use `select_if` to pick out all the numerical columns
 (no text), whichever they are.
 
 * `x.scale` is matrix with no column headers. Turn into
-data frame, acquires headers `V1` and `V2`.
+data frame, acquires headers `V1` and `V2`. xxx 1 more
 
 * Get place names from `cmdscale` output.
-
+\normalsize
 
 
 ## Does it work?
@@ -158,33 +163,25 @@ mds_map("europe.csv")
    
 
 
-## A square
-\begin{multicols}{2}
+## A square xxx
 
 
-* The data, in `square.csv`:
+The data, in `square.csv`:
 \begin{small}
 
 ```
-
 x,A  ,B  ,C  ,D
 A,0  ,1  ,1  ,1.4
 B,1  ,0  ,1.4,1
 C,1  ,1.4,0  ,1
 D,1.4,1  ,1  ,0
-
 ```
-
 \end{small}
-
-* The map (on right):
-```{r message=F,fig.height=3,fig.width=3}
+* The map: xxx
+```{r message=F,fig.height=2,fig.width=2}
 mds_map("square.csv")
 ```
 
-       
-
-\end{multicols}
 
 ## Drawing a map of the real Europe
 
@@ -192,17 +189,15 @@ mds_map("square.csv")
 * Works with package `ggmap`.
 
 * First find latitudes and longitudes of our cities, called
-*geocoding*: xxx
+*geocoding*: 
 
 \small
 ```{r cache=T, message=F, eval=F}
 latlong <- geocode(europe$City)
 latlong <- bind_cols(city = europe$City, latlong)
-latlong %>% print(n = 6)
+latlong %>% slice(1:6)
 ```
 \normalsize
-
-xxx
 
 \small
 ```{r echo=F}
@@ -298,7 +293,7 @@ to 1).
 library(rgl)
 es.2 <- cbind(europe.scale, 1)
 plot3d(es.2, zlim = c(-1000, 1000))
-text3d(es.2, text = d$city)
+text3d(es.2, text = europe$City)
 ```
 
      
@@ -310,27 +305,22 @@ text3d(es.2, text = d$city)
 
 
 ## Ontario, the same way
-\ldots using our function:
+\ldots using our function: xxx
 
-```{r message=F,fig.height=4}
-g <- mds_map("ontario-road-distances.csv")
-g
+\small
+```{r message=F,fig.height=3.5}
+url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+(g <- mds_map(url))
 ```
+\normalsize
 
+## Comment
    
 
-Thunder Bay and Sault Ste Marie dominate the picture since they are
+- Thunder Bay and Sault Ste Marie dominate the picture since they are
 so far away from everywhere else.
- <<ontario>>=
- ontario=read.csv("ontario-road-distances.csv",header=T)
- ontario.d=as.dist(ontario)
- ontario.scale=cmdscale(ontario.d)
- d=data.frame(ontario.scale,city=colnames(ontario))
- g=ggplot(d,aes(x=X1,y=X2,label=city))+
-   geom_point()+coord_fixed()+
-   geom_text_repel()
- @ 
- 
+- Remove them and just look at everywhere else.
 
 ## Removing points
 
@@ -341,16 +331,16 @@ those cities, then remove just those rows and columns.
 * Better: 
 
 
-* "tidy" the distance matrix
+  * "tidy" the distance matrix
 
-* then remove rows we don't need
+  * then remove rows we don't need
 
-* then "untidy" it again
+  * then "untidy" it again
 
-* save into .csv file
+  * save into .csv file
 
 
-* Illustrate with square data first (easier to see).
+* Illustrate with easier data first. xxx
 
 
 
@@ -364,34 +354,36 @@ square
    
 
 
-## Make tidy xxx
+## Make tidy
 
-\footnotesize
+\scriptsize
 ```{r}
-square %>% gather(point, distance, -1)
+square %>% gather(point, distance, -x)
 ```
 \normalsize
    
 
 
 ## Remove all references to point C
-In column `x` or `point`:
+In column `x` or `point`: xxx
+
+\small
 ```{r }
 square %>%
   gather(point, distance, -1) %>%
   filter(x != "C", point != "C")
 ```
-
+\normalsize
    
 
 
-## Put back as distance matrix
+## Put back as distance matrix  xxx
 and save as .csv when we are happy:
 ```{r }
-noc <- square %>%
+square %>%
   gather(point, distance, -1) %>%
   filter(x != "C", point != "C") %>%
-  spread(point, distance)
+  spread(point, distance) -> noc
 noc
 noc %>% write_csv("no-c.csv")
 ```
@@ -421,13 +413,15 @@ Get rid of Thunder Bay and Sault Ste Marie.
 
 \footnotesize
 ```{r message=F}
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
-ontario2 <- read_csv(my_url) %>%
-  gather(place, distance, -1) %>%
+my_url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario2 <- read_csv(my_url) 
+ontario2 %>%
+  gather(city, distance, -1) %>%
   filter(
-    x != "Thunder Bay",
+    city != "Thunder Bay",
     place != "Thunder Bay",
-    x != "Sault Ste Marie",
+    city != "Sault Ste Marie",
     place != "Sault Ste Marie"
   ) %>%
   spread(place, distance) %>%
@@ -437,15 +431,14 @@ ontario2 <- read_csv(my_url) %>%
    
 
 
-## Map of Southern Ontario
-```{r fig.height=4, message=F}
-g <- mds_map("southern-ontario.csv")
-g
+## Map of Southern Ontario xxx
+```{r fig.height=3.5, message=F}
+(g <- mds_map("southern-ontario.csv"))
 ```
 
    
 
-Came out geographically about right.
+Geographically about right.
 
 
 ## What about that cluster of points?
@@ -492,7 +485,6 @@ cities <- c(
 latlong <- geocode(cities)
 latlong <- bind_cols(city = cities, latlong) %>% print()
 ```
-\normalsize
      
 
 ```{r echo=F}
@@ -500,14 +492,14 @@ latlong <- readRDS("ontario_trouble.rds")
 latlong %>% print()
 ```
 
+\normalsize
  
-
+## Get Google map xxx
 
 * Get a Google map of the area (experiment with zoom):
 ```{r message=F, eval=F}
 map <- get_map("Hamilton ON", zoom = 8)
 ```
- get from file
 
 ```{r echo=F}
 map <- readRDS("hamilton_map.rds")
@@ -516,14 +508,14 @@ map <- readRDS("hamilton_map.rds")
  
 
 
-* Plot map with cities marked.
+* Plot map with cities marked. xxx
 
 
 
-## Making the Google map
+## Making the R Google map
 Plot the map, plus the cities, plus labels for the cities:
 ```{r }
-gmap <- ggmap(map) +
+ggmap(map) +
   geom_point(
     data = latlong,
     aes(x = lon, y = lat),
@@ -532,26 +524,28 @@ gmap <- ggmap(map) +
   geom_text_repel(
     data = latlong,
     aes(label = city)
-  )
+  ) -> gmap
 ```
 
    
+## The MDS map and Google map side by side
 
-
-\begin{frame}[frame]{The `mds` map and Google map}
-\begin{multicols}{2}
-```{r fig.height=5.5}
-g2
+```{r, echo=F}
+ggsave(g2, "g2.pdf", "pdf")
+ggsave(gmap, "gmap.pdf", "pdf")
 ```
 
-     
+\begin{minipage}[t]{0.48\textwidth}
 
-```{r fig.height=5.5, warning=F}
-gmap
-```
+\includegraphics[width=0.9\textwidth]{g2}
 
- 
-\end{multicols}
+\end{minipage}\hfill
+\begin{minipage}[t][][b]{0.48\textwidth}
+
+\includegraphics[width=0.9\textwidth]{gmap}
+
+\end{minipage}
+
 St Catharines and Niagara Falls should be the *other* side of
 Hamilton! 
 
@@ -560,10 +554,13 @@ Hamilton!
 
 
 * Read in "southern Ontario" data set from file:
+
+\footnotesize
 ```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"
 ontario2 <- read_csv(my_url)
 ```
+\normalsize
 
      
 
@@ -602,7 +599,7 @@ than 2, presumably to accommodate St Catharines and Niagara Falls?
 
 ## 3-dimensional coordinates, cities attached xxx
 
-\scriptsize
+\tiny
 ```{r}
 ontario2.3$points %>%
   as_tibble() %>%
@@ -622,8 +619,7 @@ text3d(ontario.3, text = d2$city)
  
 
 
-\begin{frame}[fragile]{Comparing MDS solution with "reality":
-Procrustes rotation}
+## Comparing MDS solution with "reality": Procrustes rotation
 
 
 * How to tell that an MDS map makes a good correspondence with ``what
