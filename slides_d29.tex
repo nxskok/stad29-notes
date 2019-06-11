@@ -278,7 +278,7 @@ Read in data:
   \texttt{europe}. \texttt{europe} has distances in it already, so make
   into \texttt{dist} with \texttt{as.dist}.
 \item
-  Then run multidimensional scaling and look at result: xxx
+  Then run multidimensional scaling and look at result:
 \end{itemize}
 
 \begin{Shaded}
@@ -310,7 +310,8 @@ Read in data:
 \begin{frame}[fragile]{As a data frame; make picture}
 \protect\hypertarget{as-a-data-frame-make-picture}{}
 
-We know how to plot data frames, so make one first. xxx
+We know how to plot data frames, so make one first. This gives a warning
+that you can ignore: xxx
 
 \normalsize
 
@@ -319,8 +320,8 @@ We know how to plot data frames, so make one first. xxx
 \NormalTok{europe.scale }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City) ->}\StringTok{ }\NormalTok{europe_coord}
-\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(europe_coord, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ city)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{() }
+\KeywordTok{ggplot}\NormalTok{(europe_coord, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ city)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{() ->}\StringTok{ }\NormalTok{g}
 \end{Highlighting}
 \end{Shaded}
 
@@ -377,15 +378,17 @@ We know how to plot data frames, so make one first. xxx
 
 \normalsize
 
+\small
+
 \begin{itemize}
 \item
   Use \texttt{select\_if} to pick out all the numerical columns (no
   text), whichever they are.
 \item
   \texttt{x.scale} is matrix with no column headers. Turn into data
-  frame, acquires headers \texttt{V1} and \texttt{V2}.
+  frame, acquires headers \texttt{V1} and \texttt{V2}. xxx 1 more
 \item
-  Get place names from \texttt{cmdscale} output.
+  Get place names from \texttt{cmdscale} output. \normalsize
 \end{itemize}
 
 \end{frame}
@@ -410,9 +413,8 @@ We know how to plot data frames, so make one first. xxx
 \begin{frame}[fragile]{A square xxx}
 \protect\hypertarget{a-square-xxx}{}
 
-\begin{minipage}[t]{0.5\textwidth}
+The data, in \texttt{square.csv}:
 
-The data, in `square.csv`:
 \begin{small}
 
 ```
@@ -423,10 +425,12 @@ C,1  ,1.4,0  ,1
 D,1.4,1  ,1  ,0
 ```
 \end{small}
-\end{minipage}\hfill
 
-\textbackslash{}begin\{minipage\}{[}t{]}{[}{]}{[}b{]}\{0.48\textwidth\}
-* The map (on right):
+\begin{itemize}
+\tightlist
+\item
+  The map: xxx
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -434,8 +438,11 @@ D,1.4,1  ,1  ,0
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+\centering
 \includegraphics{figure/unnamed-chunk-13-1.pdf}
-\textbackslash{}end\{minipage\}
+\caption{plot of chunk unnamed-chunk-13}
+\end{figure}
 
 \end{frame}
 
@@ -447,7 +454,7 @@ D,1.4,1  ,1  ,0
   Works with package \texttt{ggmap}.
 \item
   First find latitudes and longitudes of our cities, called
-  \emph{geocoding}: xxx
+  \emph{geocoding}:
 \end{itemize}
 
 \small
@@ -461,8 +468,6 @@ D,1.4,1  ,1  ,0
 \end{Shaded}
 
 \normalsize
-
-xxx
 
 \small
 
@@ -595,7 +600,7 @@ xxx
 \KeywordTok{library}\NormalTok{(rgl)}
 \NormalTok{es}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(europe.scale, }\DecValTok{1}\NormalTok{)}
 \KeywordTok{plot3d}\NormalTok{(es}\FloatTok{.2}\NormalTok{, }\DataTypeTok{zlim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1000}\NormalTok{, }\DecValTok{1000}\NormalTok{))}
-\KeywordTok{text3d}\NormalTok{(es}\FloatTok{.2}\NormalTok{, }\DataTypeTok{text =}\NormalTok{ d}\OperatorTok{$}\NormalTok{city)}
+\KeywordTok{text3d}\NormalTok{(es}\FloatTok{.2}\NormalTok{, }\DataTypeTok{text =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -614,28 +619,31 @@ xxx
 
 \ldots using our function: xxx
 
+\small
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{url <-}\StringTok{ }
 \StringTok{  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
-\NormalTok{g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(url)}
-\NormalTok{g}
+\NormalTok{(g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(url))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-22-1.pdf}
-\caption{plot of chunk unnamed-chunk-22}
-\end{figure}
+\includegraphics{figure/unnamed-chunk-22-1.pdf} \normalsize
 
-Thunder Bay and Sault Ste Marie dominate the picture since they are so
-far away from everywhere else. \textless{}\textgreater{}=
-ontario=read.csv(``ontario-road-distances.csv'',header=T)
-ontario.d=as.dist(ontario) ontario.scale=cmdscale(ontario.d)
-d=data.frame(ontario.scale,city=colnames(ontario))
-g=ggplot(d,aes(x=X1,y=X2,label=city))+ geom\_point()+coord\_fixed()+
-geom\_text\_repel() @
+\end{frame}
+
+\begin{frame}{Comment}
+\protect\hypertarget{comment}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Thunder Bay and Sault Ste Marie dominate the picture since they are so
+  far away from everywhere else.
+\item
+  Remove them and just look at everywhere else.
+\end{itemize}
 
 \end{frame}
 
@@ -648,16 +656,19 @@ geom\_text\_repel() @
   remove just those rows and columns.
 \item
   Better:
+
+  \begin{itemize}
+  \item
+    ``tidy'' the distance matrix
+  \item
+    then remove rows we don't need
+  \item
+    then ``untidy'' it again
+  \item
+    save into .csv file
+  \end{itemize}
 \item
-  ``tidy'' the distance matrix
-\item
-  then remove rows we don't need
-\item
-  then ``untidy'' it again
-\item
-  save into .csv file
-\item
-  Illustrate with square data first (easier to see).
+  Illustrate with easier data first. xxx
 \end{itemize}
 
 \end{frame}
@@ -685,8 +696,8 @@ geom\_text\_repel() @
 
 \end{frame}
 
-\begin{frame}[fragile]{Make tidy xxx}
-\protect\hypertarget{make-tidy-xxx}{}
+\begin{frame}[fragile]{Make tidy}
+\protect\hypertarget{make-tidy}{}
 
 \scriptsize
 
@@ -756,17 +767,17 @@ In column \texttt{x} or \texttt{point}: xxx
 
 \end{frame}
 
-\begin{frame}[fragile]{Put back as distance matrix}
-\protect\hypertarget{put-back-as-distance-matrix}{}
+\begin{frame}[fragile]{Put back as distance matrix xxx}
+\protect\hypertarget{put-back-as-distance-matrix-xxx}{}
 
 and save as .csv when we are happy:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{noc <-}\StringTok{ }\NormalTok{square }\OperatorTok{%>%}
+\NormalTok{square }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{gather}\NormalTok{(point, distance, }\DecValTok{-1}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{filter}\NormalTok{(x }\OperatorTok{!=}\StringTok{ "C"}\NormalTok{, point }\OperatorTok{!=}\StringTok{ "C"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{spread}\NormalTok{(point, distance)}
+\StringTok{  }\KeywordTok{spread}\NormalTok{(point, distance) ->}\StringTok{ }\NormalTok{noc}
 \NormalTok{noc}
 \end{Highlighting}
 \end{Shaded}
@@ -851,13 +862,12 @@ Get rid of Thunder Bay and Sault Ste Marie.
 
 \end{frame}
 
-\begin{frame}[fragile]{Map of Southern Ontario}
-\protect\hypertarget{map-of-southern-ontario}{}
+\begin{frame}[fragile]{Map of Southern Ontario xxx}
+\protect\hypertarget{map-of-southern-ontario-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(}\StringTok{"southern-ontario.csv"}\NormalTok{)}
-\NormalTok{g}
+\NormalTok{(g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(}\StringTok{"southern-ontario.csv"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -867,7 +877,7 @@ Get rid of Thunder Bay and Sault Ste Marie.
 \caption{plot of chunk unnamed-chunk-30}
 \end{figure}
 
-Came out geographically about right.
+Geographically about right.
 
 \end{frame}
 
@@ -955,6 +965,11 @@ Ignore the arrows to points off the map:
 
 \normalsize
 
+\end{frame}
+
+\begin{frame}[fragile]{Get Google map xxx}
+\protect\hypertarget{get-google-map-xxx}{}
+
 \begin{itemize}
 \tightlist
 \item
@@ -967,18 +982,16 @@ Ignore the arrows to points off the map:
 \end{Highlighting}
 \end{Shaded}
 
-get from file
-
 \begin{itemize}
 \tightlist
 \item
-  Plot map with cities marked.
+  Plot map with cities marked. xxx
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{Making the Google map}
-\protect\hypertarget{making-the-google-map}{}
+\begin{frame}[fragile]{Making the R Google map}
+\protect\hypertarget{making-the-r-google-map}{}
 
 Plot the map, plus the cities, plus labels for the cities:
 
@@ -997,28 +1010,13 @@ Plot the map, plus the cities, plus labels for the cities:
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash{}begin\{frame\}{[}frame{]}\{The \texttt{mds} map and
-Google map\}
+\end{frame}
 
-\begin{multicols}{2}
+\begin{frame}{MDS and Google map side by side xxx}
+\protect\hypertarget{mds-and-google-map-side-by-side-xxx}{}
 
-```r
-g2
-```
-
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
-
-     
-
-
-```r
-gmap
-```
-
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.pdf)
-
- 
-\end{multicols}
+\includegraphics[width=0.48\textwidth,height=\textheight]{g2.png}
+\includegraphics[width=0.48\textwidth,height=\textheight]{gmap.png}
 
 St Catharines and Niagara Falls should be the \emph{other} side of
 Hamilton!
@@ -1031,26 +1029,16 @@ Hamilton!
 \begin{itemize}
 \tightlist
 \item
-  Read in ``southern Ontario'' data set from file:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"}
-\NormalTok{ontario2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Calling \texttt{cmdscale} with \texttt{eig=T} gives more info: xxx
+  Read in ``southern Ontario'' data set from file. Calling
+  \texttt{cmdscale} with \texttt{eig=T} gives more info: xxx
 \end{itemize}
 
 \footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"}
+\NormalTok{ontario2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url)}
 \NormalTok{ontario2}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\NormalTok{ontario2 }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{eig =}\NormalTok{ T)}
@@ -1108,7 +1096,7 @@ Hamilton!
 \begin{frame}[fragile]{3-dimensional coordinates, cities attached xxx}
 \protect\hypertarget{dimensional-coordinates-cities-attached-xxx}{}
 
-\scriptsize
+\tiny
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1153,376 +1141,15 @@ Hamilton!
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(rgl)}
-\KeywordTok{plot3d}\NormalTok{(ontario}\FloatTok{.3}\NormalTok{)}
-\KeywordTok{text3d}\NormalTok{(ontario}\FloatTok{.3}\NormalTok{, }\DataTypeTok{text =}\NormalTok{ d2}\OperatorTok{$}\NormalTok{city)}
+\KeywordTok{plot3d}\NormalTok{(ontario2}\FloatTok{.3}\OperatorTok{$}\NormalTok{points)}
+\KeywordTok{text3d}\NormalTok{(ontario2}\FloatTok{.3}\OperatorTok{$}\NormalTok{points, }\DataTypeTok{text =}\NormalTok{ ontario2}\OperatorTok{$}\NormalTok{x)}
 \end{Highlighting}
 \end{Shaded}
-
-\textbackslash{}begin\{frame\}{[}fragile{]}\{Comparing MDS solution with
-``reality'': Procrustes rotation\}
-
-\begin{itemize}
-\item
-  How to tell that an MDS map makes a good correspondence with ``what
-  should be''?
-\item
-  Problem: MDS map might be rotated/scaled/reflected from reality.
-\item
-  How to find rotation/scaling/reflection that best matches reality?
-\item
-  Answer: \textbf{Procrustes rotation}.
-\item
-  In R: \texttt{procOPA} in package \texttt{shapes}.
-\end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{``True'' coordinates}
-\protect\hypertarget{true-coordinates}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Get latitudes and longitudes of cities by geocoding, as before. Glue
-  ``ON'' onto city names to make sure we get right ones: xxx
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lookup <-}\StringTok{ }\KeywordTok{str_c}\NormalTok{(ontario2}\OperatorTok{$}\NormalTok{x, }\StringTok{" ON"}\NormalTok{)}
-\NormalTok{latlong <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(lookup)}
-\NormalTok{latlong <-}\StringTok{ }\KeywordTok{bind_cols}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ ontario2}\OperatorTok{$}\NormalTok{x, latlong) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{(}\DataTypeTok{n =} \DecValTok{4}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-xxx
-
-\footnotesize
-
-\begin{verbatim}
-## # A tibble: 19 x 3
-##   city         lon   lat
-##   <chr>      <dbl> <dbl>
-## 1 Barrie     -79.7  44.4
-## 2 Belleville -77.4  44.2
-## 3 Brantford  -80.3  43.1
-## 4 Brockville -75.7  44.6
-## # … with 15 more rows
-\end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  Not \((x,y)\) coordinates: one degree of latitude is always 110.25 km,
-  but one degree of longitude is only that at the equator (less than
-  that as you move further north, down to 0 km at north pole).
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{``True'' coordinates part 2}
-\protect\hypertarget{true-coordinates-part-2}{}
-
-\begin{itemize}
-\item
-  Make coordinates by multiplying by cosine of ``typical'' latitude.
-\item
-  Find mean latitude:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{m <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(latlong}\OperatorTok{$}\NormalTok{lat)}
-\NormalTok{m}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 44.01851
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Turn into radians and find its cosine:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mult <-}\StringTok{ }\KeywordTok{cos}\NormalTok{(m }\OperatorTok{*}\StringTok{ }\NormalTok{pi }\OperatorTok{/}\StringTok{ }\DecValTok{180}\NormalTok{)}
-\NormalTok{mult}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.7191153
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Create ``true'' coords by multiplying the longitudes by that. This
-  needs to be R \texttt{matrix}, not data frame: xxx
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{truecoord <-}\StringTok{ }\KeywordTok{with}\NormalTok{(latlong, }\KeywordTok{cbind}\NormalTok{(}\DataTypeTok{V1 =}\NormalTok{ lon }\OperatorTok{*}\StringTok{ }\NormalTok{mult, }\DataTypeTok{V2 =}\NormalTok{ lat))}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Using \texttt{procOPA}}
-\protect\hypertarget{using-procopa}{}
-
-\begin{itemize}
-\item
-  Feed 2 things into \texttt{procOPA}: first, ``true'' coordinates,
-  second MDS coordinates.
-\item
-  Get out:
-\item
-\begin{verbatim}
-(centred and scaled) first set of coordinates `Ahat`
-\end{verbatim}
-\item
-  (centred and scaled) second set of coordinates \texttt{Bhat}
-\item
-  sum of squared differences between two sets of coordinates
-  \texttt{OSS}
-\item
-  Rotation matrix \texttt{R}
-\item
-  \texttt{Ahat} and \texttt{Bhat} coordinates supposed to match as well
-  as possible. xxx
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ontario.pro <-}\StringTok{ }\KeywordTok{procOPA}\NormalTok{(}
-\NormalTok{  truecoord,}
-\NormalTok{  ontario2}\FloatTok{.2}\OperatorTok{$}\NormalTok{points}
-\NormalTok{)}
-\KeywordTok{names}\NormalTok{(ontario.pro)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "R"    "s"    "Ahat" "Bhat" "OSS"  "rmsd"
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Make data frames of output, glue together}
-\protect\hypertarget{make-data-frames-of-output-glue-together}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Two sets of coordinates, \texttt{Ahat} are actual, \texttt{Bhat} are
-  from MDS. xxx
-\end{itemize}
-
-\scriptsize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{A <-}\StringTok{ }\NormalTok{ontario.pro}\OperatorTok{$}\NormalTok{Ahat }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{which =} \StringTok{"actual"}\NormalTok{, }\DataTypeTok{city =}\NormalTok{ ontario2}\OperatorTok{$}\NormalTok{x)}
-\NormalTok{B <-}\StringTok{ }\NormalTok{ontario.pro}\OperatorTok{$}\NormalTok{Bhat }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{which =} \StringTok{"MDS"}\NormalTok{, }\DataTypeTok{city =}\NormalTok{ ontario2}\OperatorTok{$}\NormalTok{x)}
-\NormalTok{dp <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(A, B)}
-\NormalTok{dp }\OperatorTok{%>%}\StringTok{ }\KeywordTok{sample_n}\NormalTok{(}\DecValTok{6}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 6 x 4
-##       V1     V2 which  city        
-##    <dbl>  <dbl> <chr>  <chr>       
-## 1  1.87   0.213 actual Kingston    
-## 2  0.556  0.298 MDS    Peterborough
-## 3  2.45   0.571 actual Brockville  
-## 4 -0.848 -0.879 actual Brantford   
-## 5  2.39   0.348 MDS    Brockville  
-## 6 -0.284  1.56  MDS    Huntsville
-\end{verbatim}
-
-\normalsize
-
-\#\# \texttt{procOPA}, part 2: plotting
-
-\begin{itemize}
-\tightlist
-\item
-  Make data frames of each, glue together: xxx
-\end{itemize}
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{A=}\KeywordTok{with}\NormalTok{(ontario.pro,}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Ahat[,}\DecValTok{1}\NormalTok{],}
-   \DataTypeTok{y=}\NormalTok{Ahat[,}\DecValTok{2}\NormalTok{],}\DataTypeTok{which=}\StringTok{"actual"}\NormalTok{,}\DataTypeTok{city=}\NormalTok{ontario2}\OperatorTok{$}\NormalTok{x)) }
-\NormalTok{ B=}\KeywordTok{with}\NormalTok{(ontario.pro,}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Bhat[,}\DecValTok{1}\NormalTok{],}
-   \DataTypeTok{y=}\NormalTok{Bhat[,}\DecValTok{2}\NormalTok{],}\DataTypeTok{which=}\StringTok{"MDS"}\NormalTok{,}\DataTypeTok{city=}\NormalTok{ontario2}\OperatorTok{$}\NormalTok{x))}
-\NormalTok{ dp=}\KeywordTok{bind_rows}\NormalTok{(A,B)}
-\NormalTok{ dp }\OperatorTok{%>%}\StringTok{ }\KeywordTok{sample_n}\NormalTok{(}\DecValTok{6}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##            x          y  which         city
-## 1  0.5509169  0.2905467 actual Peterborough
-## 2 -0.2835104  1.5604378    MDS   Huntsville
-## 3 -2.2119941 -2.1651132    MDS      Windsor
-## 4 -1.8786981 -1.3312467    MDS       Sarnia
-## 5  3.0548188  0.7152199    MDS     Cornwall
-## 6  1.2243796  0.1442476 actual   Belleville
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Procrustes rotation plot}
-\protect\hypertarget{procrustes-rotation-plot}{}
-
-\begin{itemize}
-\item
-  Strategy: plot all the locations, and colour them by whether they were
-  the true location (red) or the MDS one (blue), which is in
-  \texttt{which}. Label each location with the city name in the
-  appropriate colour.
-\item
-  I realized it was actually easy to join the two instances of a city by
-  a line (in green, here, 3rd line) by setting \texttt{group=city}: xxx
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g_opa <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(dp, }\KeywordTok{aes}\NormalTok{(}
-  \DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{colour =}\NormalTok{ which,}
-  \DataTypeTok{label =}\NormalTok{ city}
-\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ city), }\DataTypeTok{colour =} \StringTok{"green"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  On plot, look to see whether points that are same city are joined by a
-  short green line (good) or a long one (bad).
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{The maps}
-\protect\hypertarget{the-maps}{}
-
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): object 'V1' not found
-\end{verbatim}
-
-\begin{figure}
-\centering
-\includegraphics{figure/prosesto-1.pdf}
-\caption{plot of chunk prosesto}
-\end{figure}
-
-\includegraphics{bMDS-ont-proc.png}
-
-\end{frame}
-
-\begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-2}{}
-
-\begin{itemize}
-\item
-  True locations red, MDS locations blue
-\item
-  Most things in roughly right place (esp.~relative to other things)
-\item
-  Extreme cities off by a bit, but OK relative to neighbours.
-\item
-  St Catharines, Niagara Falls off by most.
-\item
-  Sarnia, Windsor also off noticeably.
-\item
-  These four cities had largest ``third dimension'' in 3D representation
-  \texttt{ontario2.3}.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Rotation matrix}
-\protect\hypertarget{rotation-matrix}{}
-
-Shows how MDS map needs to be rotated to get best match with actual
-coordinates:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ontario.pro}\OperatorTok{$}\NormalTok{R}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##            [,1]      [,2]
-## [1,]  0.8845749 0.4663981
-## [2,] -0.4663981 0.8845749
-\end{verbatim}
-
-Rotation angle \(\theta\) such that \(\cos\theta=0.885\),
-\(\sin\theta=0.466\): \(\theta=23\) degrees (counterclockwise). \$ \%\$
-\%\$
-
-\end{frame}
-
-\begin{frame}[fragile]{Is that right? Look at MDS map again}
-\protect\hypertarget{is-that-right-look-at-mds-map-again}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-52-1.pdf}
-\caption{plot of chunk unnamed-chunk-52}
-\end{figure}
-
-23 degrees counterclockwise seems about right.
-
-\end{frame}
-
-\begin{frame}[fragile]{A cube}
-\protect\hypertarget{a-cube}{}
+\begin{frame}[fragile]{A cube xxx}
+\protect\hypertarget{a-cube-xxx}{}
 
 \begin{verbatim}
 
@@ -1531,8 +1158,8 @@ a-----b
 | c---- d
 | |   | |
 e-|---f |
-\|    \|
-g-----h
+ \|    \|
+  g-----h
 \end{verbatim}
 
 Cube has side length 1, so distance across diagonal on same face is
@@ -1551,23 +1178,23 @@ Try MDS on this obviously 3-dimensional data.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/cube.txt"}
-\NormalTok{cube <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(my_url, }\StringTok{" "}\NormalTok{)}
+\NormalTok{cube <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
 \NormalTok{cube}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## # A tibble: 8 x 9
-##   x     `  a` `  b` `  c` `  d` `  e` `   f` ` g`  `  h`
-##   <chr> <chr> <chr> <chr> <chr> <chr> <chr>  <chr> <chr>
-## 1 a     "  0" " NA" " NA" " NA" " NA" "  NA" <NA>  " NA"
-## 2 b     "  1" "  0" " NA" " NA" " NA" "  NA" <NA>  " NA"
-## 3 c     "  1" "  1" "  0" " NA" " NA" "  NA" <NA>  " NA"
-## 4 d     1.4   "  1" "  1" "  0" " NA" "  NA" <NA>  " NA"
-## 5 e     "  1" 1.4   1.4   1.7   "  0" "  NA" <NA>  " NA"
-## 6 f     1.4   "  1" 1.7   1.4   "  1" "   0" <NA>  " NA"
-## 7 g     1.4   1.7   "  1" 1.4   "  1" " 1.4" " 0"  " NA"
-## 8 h     1.7   1.4   1.4   "  1" 1.4   "   1" " 1"  "  0"
+##   x         a     b     c     d     e     f     g     h
+##   <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+## 1 a       0    NA    NA    NA    NA    NA      NA    NA
+## 2 b       1     0    NA    NA    NA    NA      NA    NA
+## 3 c       1     1     0    NA    NA    NA      NA    NA
+## 4 d       1.4   1     1     0    NA    NA      NA    NA
+## 5 e       1     1.4   1.4   1.7   0    NA      NA    NA
+## 6 f       1.4   1     1.7   1.4   1     0      NA    NA
+## 7 g       1.4   1.7   1     1.4   1     1.4     0    NA
+## 8 h       1.7   1.4   1.4   1     1.4   1       1     0
 \end{verbatim}
 
 \normalsize
@@ -1580,28 +1207,19 @@ Try MDS on this obviously 3-dimensional data.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{cube.d <-}\StringTok{ }\NormalTok{cube }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in storage.mode(m) <- "numeric": NAs introduced by coercion
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{cube.d}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##        a   b   c   d   e    f   g
-##   b  1.0                         
-##   c  1.0 1.0                     
-##   d  1.4 1.0 1.0                 
-##   e  1.0 1.4 1.4 1.7             
-##    f 1.4 1.0 1.7 1.4 1.0         
-##  g   1.4 1.7 1.0 1.4 1.0  1.4    
-##   h  1.7 1.4 1.4 1.0 1.4  1.0 1.0
+##     a   b   c   d   e   f   g
+## b 1.0                        
+## c 1.0 1.0                    
+## d 1.4 1.0 1.0                
+## e 1.0 1.4 1.4 1.7            
+## f 1.4 1.0 1.7 1.4 1.0        
+## g 1.4 1.7 1.0 1.4 1.0 1.4    
+## h 1.7 1.4 1.4 1.0 1.4 1.0 1.0
 \end{verbatim}
 
 \end{frame}
@@ -1877,7 +1495,7 @@ xxx
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-3}{}
+\protect\hypertarget{comments-2}{}
 
 \begin{itemize}
 \item
@@ -1944,16 +1562,6 @@ MDS higher too. (MDS working well.)
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{cube.d <-}\StringTok{ }\NormalTok{cube }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{x) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{(cube)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in storage.mode(m) <- "numeric": NAs introduced
-## by coercion
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{cube}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{isoMDS}\NormalTok{(cube.d, }\DataTypeTok{trace =}\NormalTok{ F)}
 \NormalTok{cube}\FloatTok{.2}\OperatorTok{$}\NormalTok{stress}
 \end{Highlighting}
@@ -2013,8 +1621,8 @@ MDS higher too. (MDS working well.)
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-65-1.pdf}
-\caption{plot of chunk unnamed-chunk-65}
+\includegraphics{figure/unnamed-chunk-52-1.pdf}
+\caption{plot of chunk unnamed-chunk-52}
 \end{figure}
 
 Poor correspondence (not much trend).
@@ -2032,8 +1640,8 @@ Poor correspondence (not much trend).
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-66-1.pdf}
-\caption{plot of chunk unnamed-chunk-66}
+\includegraphics{figure/unnamed-chunk-53-1.pdf}
+\caption{plot of chunk unnamed-chunk-53}
 \end{figure}
 
 Almost perfect: all actual \(x=1\) go with smallest mapped distances;

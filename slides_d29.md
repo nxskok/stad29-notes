@@ -150,7 +150,7 @@ europe <- read_csv(my_url)
 `europe`. `europe` has distances in it already, so make
 into `dist` with `as.dist`.
 
-* Then run multidimensional scaling and look at result: xxx
+* Then run multidimensional scaling and look at result:
 
 ```r
 europe %>% select(-City) %>% as.dist() -> europe.d
@@ -176,7 +176,7 @@ head(europe.scale)
 
 
 ## As a data frame; make picture
-We know how to plot data frames, so make one first.  xxx
+We know how to plot data frames, so make one first. This gives a warning that you can ignore: xxx
 
 \normalsize
 
@@ -184,8 +184,8 @@ We know how to plot data frames, so make one first.  xxx
 europe.scale %>%
   as_tibble() %>%
   mutate(city = europe$City) -> europe_coord
-g <- ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
-  geom_point() + geom_text_repel() 
+ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
+  geom_point() + geom_text_repel() -> g
 ```
 \normalsize
    
@@ -228,15 +228,15 @@ mds_map <- function(filename) {
 \normalsize
      
 
-
+\small
 * Use `select_if` to pick out all the numerical columns
 (no text), whichever they are.
 
 * `x.scale` is matrix with no column headers. Turn into
-data frame, acquires headers `V1` and `V2`.
+data frame, acquires headers `V1` and `V2`. xxx 1 more
 
 * Get place names from `cmdscale` output.
-
+\normalsize
 
 
 ## Does it work?
@@ -252,7 +252,6 @@ mds_map("europe.csv")
 
 ## A square xxx
 
-\begin{minipage}[t]{0.5\textwidth}
 
 The data, in `square.csv`:
 \begin{small}
@@ -265,17 +264,14 @@ C,1  ,1.4,0  ,1
 D,1.4,1  ,1  ,0
 ```
 \end{small}
-\end{minipage}\hfill
-\begin{minipage}[t][][b]{0.48\textwidth}
-* The map (on right):
+* The map: xxx
 
 ```r
 mds_map("square.csv")
 ```
 
 ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.pdf)
-\end{minipage}
-       
+
 
 ## Drawing a map of the real Europe
 
@@ -283,7 +279,7 @@ mds_map("square.csv")
 * Works with package `ggmap`.
 
 * First find latitudes and longitudes of our cities, called
-*geocoding*: xxx
+*geocoding*: 
 
 \small
 
@@ -293,8 +289,6 @@ latlong <- bind_cols(city = europe$City, latlong)
 latlong %>% slice(1:6)
 ```
 \normalsize
-
-xxx
 
 \small
 
@@ -400,7 +394,7 @@ to 1).
 library(rgl)
 es.2 <- cbind(europe.scale, 1)
 plot3d(es.2, zlim = c(-1000, 1000))
-text3d(es.2, text = d$city)
+text3d(es.2, text = europe$City)
 ```
 
      
@@ -414,30 +408,23 @@ text3d(es.2, text = d$city)
 ## Ontario, the same way
 \ldots using our function: xxx
 
+\small
 
 ```r
 url <- 
   "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
-g <- mds_map(url)
-g
+(g <- mds_map(url))
 ```
 
 ![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.pdf)
+\normalsize
 
+## Comment
    
 
-Thunder Bay and Sault Ste Marie dominate the picture since they are
+- Thunder Bay and Sault Ste Marie dominate the picture since they are
 so far away from everywhere else.
- <<ontario>>=
- ontario=read.csv("ontario-road-distances.csv",header=T)
- ontario.d=as.dist(ontario)
- ontario.scale=cmdscale(ontario.d)
- d=data.frame(ontario.scale,city=colnames(ontario))
- g=ggplot(d,aes(x=X1,y=X2,label=city))+
-   geom_point()+coord_fixed()+
-   geom_text_repel()
- @ 
- 
+- Remove them and just look at everywhere else.
 
 ## Removing points
 
@@ -448,16 +435,16 @@ those cities, then remove just those rows and columns.
 * Better: 
 
 
-* "tidy" the distance matrix
+  * "tidy" the distance matrix
 
-* then remove rows we don't need
+  * then remove rows we don't need
 
-* then "untidy" it again
+  * then "untidy" it again
 
-* save into .csv file
+  * save into .csv file
 
 
-* Illustrate with square data first (easier to see).
+* Illustrate with easier data first. xxx
 
 
 
@@ -482,7 +469,7 @@ square
    
 
 
-## Make tidy xxx
+## Make tidy
 
 \scriptsize
 
@@ -544,14 +531,14 @@ square %>%
    
 
 
-## Put back as distance matrix
+## Put back as distance matrix  xxx
 and save as .csv when we are happy:
 
 ```r
-noc <- square %>%
+square %>%
   gather(point, distance, -1) %>%
   filter(x != "C", point != "C") %>%
-  spread(point, distance)
+  spread(point, distance) -> noc
 noc
 ```
 
@@ -618,18 +605,17 @@ ontario2 %>%
    
 
 
-## Map of Southern Ontario
+## Map of Southern Ontario xxx
 
 ```r
-g <- mds_map("southern-ontario.csv")
-g
+(g <- mds_map("southern-ontario.csv"))
 ```
 
 ![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30-1.pdf)
 
    
 
-Came out geographically about right.
+Geographically about right.
 
 
 ## What about that cluster of points?
@@ -701,25 +687,24 @@ latlong <- bind_cols(city = cities, latlong) %>% print()
 
 \normalsize
  
-
+## Get Google map xxx
 
 * Get a Google map of the area (experiment with zoom):
 
 ```r
 map <- get_map("Hamilton ON", zoom = 8)
 ```
- get from file
 
 
 
  
 
 
-* Plot map with cities marked.
+* Plot map with cities marked. xxx
 
 
 
-## Making the Google map
+## Making the R Google map
 Plot the map, plus the cities, plus labels for the cities:
 
 ```r
@@ -735,29 +720,13 @@ ggmap(map) +
   ) -> gmap
 ```
 
+## MDS and Google map side by side xxx
+
+
+
+![](g2.png){width=48%}
+![](gmap.png){width=48%}
    
-
-
-\begin{frame}[frame]{The `mds` map and Google map}
-\begin{multicols}{2}
-
-```r
-g2
-```
-
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
-
-     
-
-
-```r
-gmap
-```
-
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37-1.pdf)
-
- 
-\end{multicols}
 St Catharines and Niagara Falls should be the *other* side of
 Hamilton! 
 
@@ -765,20 +734,13 @@ Hamilton!
 ## Quality of fit
 
 
-* Read in "southern Ontario" data set from file:
-
-```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"
-ontario2 <- read_csv(my_url)
-```
-
-     
-
-* Calling `cmdscale` with `eig=T` gives more info: xxx
+* Read in "southern Ontario" data set from file. Calling `cmdscale` with `eig=T` gives more info: xxx
 
 \footnotesize
 
 ```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"
+ontario2 <- read_csv(my_url)
 ontario2.2 <- ontario2 %>%
   select_if(is.numeric) %>%
   cmdscale(eig = T)
@@ -828,7 +790,7 @@ than 2, presumably to accommodate St Catharines and Niagara Falls?
 
 ## 3-dimensional coordinates, cities attached xxx
 
-\scriptsize
+\tiny
 
 ```r
 ontario2.3$points %>%
@@ -868,308 +830,14 @@ ontario2.3$points %>%
 
 ```r
 library(rgl)
-plot3d(ontario.3)
-text3d(ontario.3, text = d2$city)
+plot3d(ontario2.3$points)
+text3d(ontario2.3$points, text = ontario2$x)
 ```
 
  
 
 
-\begin{frame}[fragile]{Comparing MDS solution with "reality":
-Procrustes rotation}
-
-
-* How to tell that an MDS map makes a good correspondence with ``what
-should be''?
-
-* Problem: MDS map might be rotated/scaled/reflected from reality.
-
-* How to find rotation/scaling/reflection that best matches reality?
-
-* Answer: **Procrustes rotation**.
-
-* In R: `procOPA` in package `shapes`.
-
-
-
-## "True" coordinates
-
-
-* Get latitudes and longitudes of cities by geocoding, as
-before. Glue "ON" onto city names to make sure we get right ones: xxx
-
-\footnotesize
-
-```r
-lookup <- str_c(ontario2$x, " ON")
-latlong <- geocode(lookup)
-latlong <- bind_cols(city = ontario2$x, latlong) %>% print(n = 4)
-```
-\normalsize
-    
-xxx
-
-\footnotesize
-
-```
-## # A tibble: 19 x 3
-##   city         lon   lat
-##   <chr>      <dbl> <dbl>
-## 1 Barrie     -79.7  44.4
-## 2 Belleville -77.4  44.2
-## 3 Brantford  -80.3  43.1
-## 4 Brockville -75.7  44.6
-## # … with 15 more rows
-```
-\normalsize
- 
-
-* Not $(x,y)$ coordinates: one degree of latitude is always
-110.25 km, but one degree of longitude is only that at the equator
-(less than that as you move further north, down to 0 km at north
-pole).
-
-
-## "True" coordinates part 2
-
-
-* Make coordinates by multiplying by cosine of "typical" latitude.
-
-* Find mean latitude:
-
-```r
-m <- mean(latlong$lat)
-m
-```
-
-```
-## [1] 44.01851
-```
-
-     
-
-
-* Turn into radians and find its cosine:
-
-```r
-mult <- cos(m * pi / 180)
-mult
-```
-
-```
-## [1] 0.7191153
-```
-
-   
-
-
-* Create "true" coords by multiplying the longitudes by
-that. This needs to be R `matrix`, not data frame: xxx
-
-\footnotesize
-
-```r
-truecoord <- with(latlong, cbind(V1 = lon * mult, V2 = lat))
-```
-\normalsize
-   
-
-
-## Using `procOPA`
-
-
-* Feed 2 things into `procOPA`: first, "true"
-coordinates, second MDS coordinates.
-
-* Get out: 
-
-
-*     (centred and scaled) first set of coordinates `Ahat`
-
-* (centred and scaled) second set of coordinates `Bhat`
-
-* sum of squared differences between two sets of coordinates `OSS`
-
-* Rotation matrix `R`
-
-
-* `Ahat` and `Bhat` coordinates supposed to
-match as well as possible. xxx
-
-\footnotesize
-
-```r
-ontario.pro <- procOPA(
-  truecoord,
-  ontario2.2$points
-)
-names(ontario.pro)
-```
-
-```
-## [1] "R"    "s"    "Ahat" "Bhat" "OSS"  "rmsd"
-```
-\normalsize
-     
-
-
-## Make data frames of output, glue together
-
-
-* Two sets of coordinates, `Ahat` are actual,
-`Bhat` are from MDS. xxx
-
-\scriptsize
-
-```r
-A <- ontario.pro$Ahat %>%
-  as_tibble() %>%
-  mutate(which = "actual", city = ontario2$x)
-B <- ontario.pro$Bhat %>%
-  as_tibble() %>%
-  mutate(which = "MDS", city = ontario2$x)
-dp <- bind_rows(A, B)
-dp %>% sample_n(6)
-```
-
-```
-## # A tibble: 6 x 4
-##       V1     V2 which  city        
-##    <dbl>  <dbl> <chr>  <chr>       
-## 1  1.87   0.213 actual Kingston    
-## 2  0.556  0.298 MDS    Peterborough
-## 3  2.45   0.571 actual Brockville  
-## 4 -0.848 -0.879 actual Brantford   
-## 5  2.39   0.348 MDS    Brockville  
-## 6 -0.284  1.56  MDS    Huntsville
-```
-\normalsize
-
- ## `procOPA`, part 2: plotting
- 
-   
-     
-* Make data frames of each, glue together: xxx
-
-\small
-
-```r
-A=with(ontario.pro,data.frame(x=Ahat[,1],
-   y=Ahat[,2],which="actual",city=ontario2$x)) 
- B=with(ontario.pro,data.frame(x=Bhat[,1],
-   y=Bhat[,2],which="MDS",city=ontario2$x))
- dp=bind_rows(A,B)
- dp %>% sample_n(6)
-```
-
-```
-##            x          y  which         city
-## 1  0.5509169  0.2905467 actual Peterborough
-## 2 -0.2835104  1.5604378    MDS   Huntsville
-## 3 -2.2119941 -2.1651132    MDS      Windsor
-## 4 -1.8786981 -1.3312467    MDS       Sarnia
-## 5  3.0548188  0.7152199    MDS     Cornwall
-## 6  1.2243796  0.1442476 actual   Belleville
-```
-\normalsize
-
-   
- 
-
-## Procrustes rotation plot
-
-
-* Strategy: plot all the locations, and colour them by whether
-they were the true location (red) or the MDS one (blue), which is
-in `which`. Label each location with the city name in the
-appropriate colour.
-
-* I realized it
-was actually easy to join the two instances of a city by a line
-(in green, here, 3rd line) by setting `group=city`: xxx
-
-\footnotesize
-
-```r
-g_opa <- ggplot(dp, aes(
-  x = V1, y = V2, colour = which,
-  label = city
-)) + geom_point() +
-  geom_line(aes(group = city), colour = "green") +
-  geom_text_repel(size = 2)
-```
-\normalsize
-     
-
-* On plot, look to see whether points that are same city are
-joined by a short green line (good) or a long one (bad).
-
-
-
-## The maps
-
-```
-## Error in FUN(X[[i]], ...): object 'V1' not found
-```
-
-![plot of chunk prosesto](figure/prosesto-1.pdf)
-  
-![](bMDS-ont-proc.png)
-
-
-
-## Comments
-
-
-* True locations red, MDS locations blue
-
-* Most things in roughly right place (esp.\ relative to other things)
-
-* Extreme cities off by a bit, but OK relative to neighbours.
-
-* St Catharines, Niagara Falls off by most.
-
-* Sarnia, Windsor also off noticeably.
-
-* These four cities had largest "third dimension" in 3D
-representation  `ontario2.3`.
-
-
-
-## Rotation matrix
-Shows how MDS map needs to be rotated to get best match with actual coordinates:
-
-```r
-ontario.pro$R
-```
-
-```
-##            [,1]      [,2]
-## [1,]  0.8845749 0.4663981
-## [2,] -0.4663981 0.8845749
-```
-
-   
-
-Rotation angle $\theta$ such that $\cos\theta=0.885$,
-$\sin\theta=0.466$: $\theta=23$ degrees (counterclockwise). 
-$ %$ %$
-
-
-## Is that right? Look at MDS map again
-
-```r
-g
-```
-
-![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52-1.pdf)
-
-   
-
-23 degrees counterclockwise seems about right.
-
-
-## A cube
+## A cube xxx
 
 ```
 
@@ -1178,8 +846,8 @@ a-----b
 | c---- d
 | |   | |
 e-|---f |
-\|    \|
-g-----h
+ \|    \|
+  g-----h
 
 ```
 
@@ -1197,22 +865,22 @@ Try MDS on this obviously 3-dimensional data.
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/cube.txt"
-cube <- read_delim(my_url, " ")
+cube <- read_table(my_url)
 cube
 ```
 
 ```
 ## # A tibble: 8 x 9
-##   x     `  a` `  b` `  c` `  d` `  e` `   f` ` g`  `  h`
-##   <chr> <chr> <chr> <chr> <chr> <chr> <chr>  <chr> <chr>
-## 1 a     "  0" " NA" " NA" " NA" " NA" "  NA" <NA>  " NA"
-## 2 b     "  1" "  0" " NA" " NA" " NA" "  NA" <NA>  " NA"
-## 3 c     "  1" "  1" "  0" " NA" " NA" "  NA" <NA>  " NA"
-## 4 d     1.4   "  1" "  1" "  0" " NA" "  NA" <NA>  " NA"
-## 5 e     "  1" 1.4   1.4   1.7   "  0" "  NA" <NA>  " NA"
-## 6 f     1.4   "  1" 1.7   1.4   "  1" "   0" <NA>  " NA"
-## 7 g     1.4   1.7   "  1" 1.4   "  1" " 1.4" " 0"  " NA"
-## 8 h     1.7   1.4   1.4   "  1" 1.4   "   1" " 1"  "  0"
+##   x         a     b     c     d     e     f     g     h
+##   <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+## 1 a       0    NA    NA    NA    NA    NA      NA    NA
+## 2 b       1     0    NA    NA    NA    NA      NA    NA
+## 3 c       1     1     0    NA    NA    NA      NA    NA
+## 4 d       1.4   1     1     0    NA    NA      NA    NA
+## 5 e       1     1.4   1.4   1.7   0    NA      NA    NA
+## 6 f       1.4   1     1.7   1.4   1     0      NA    NA
+## 7 g       1.4   1.7   1     1.4   1     1.4     0    NA
+## 8 h       1.7   1.4   1.4   1     1.4   1       1     0
 ```
 \normalsize
    
@@ -1222,25 +890,18 @@ cube
 
 ```r
 cube.d <- cube %>% select(-1) %>% as.dist()
-```
-
-```
-## Warning in storage.mode(m) <- "numeric": NAs introduced by coercion
-```
-
-```r
 cube.d
 ```
 
 ```
-##        a   b   c   d   e    f   g
-##   b  1.0                         
-##   c  1.0 1.0                     
-##   d  1.4 1.0 1.0                 
-##   e  1.0 1.4 1.4 1.7             
-##    f 1.4 1.0 1.7 1.4 1.0         
-##  g   1.4 1.7 1.0 1.4 1.0  1.4    
-##   h  1.7 1.4 1.4 1.0 1.4  1.0 1.0
+##     a   b   c   d   e   f   g
+## b 1.0                        
+## c 1.0 1.0                    
+## d 1.4 1.0 1.0                
+## e 1.0 1.4 1.4 1.7            
+## f 1.4 1.0 1.7 1.4 1.0        
+## g 1.4 1.7 1.0 1.4 1.0 1.4    
+## h 1.7 1.4 1.4 1.0 1.4 1.0 1.0
 ```
 
  
@@ -1513,14 +1174,6 @@ MDS higher too. (MDS working well.)
 
 ```r
 cube.d <- cube %>% select(-x) %>% as.dist(cube)
-```
-
-```
-## Warning in storage.mode(m) <- "numeric": NAs introduced
-## by coercion
-```
-
-```r
 cube.2 <- isoMDS(cube.d, trace = F)
 cube.2$stress
 ```
@@ -1570,7 +1223,7 @@ g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-65](figure/unnamed-chunk-65-1.pdf)
+![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52-1.pdf)
 
    
 
@@ -1583,7 +1236,7 @@ Poor correspondence (not much trend).
 g3
 ```
 
-![plot of chunk unnamed-chunk-66](figure/unnamed-chunk-66-1.pdf)
+![plot of chunk unnamed-chunk-53](figure/unnamed-chunk-53-1.pdf)
 
  
 Almost perfect: all actual $x=1$ go with smallest mapped distances; almost
