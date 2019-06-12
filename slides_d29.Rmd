@@ -18,8 +18,8 @@ output:
 ```
 
 
-```{r bMDS, child="bMDS.Rmd"}
+```{r bPrincomp, child="bPrincomp.Rmd"}
 
-``` 
+```
 
  

@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2019.4.30)  10 JUN 2019 21:42
+This is LuaTeX, Version 1.0.4 (TeX Live 2017/Debian)  (format=lualatex 2019.4.30)  11 JUN 2019 15:43
  restricted system commands enabled.
 **slides_d29
 (./slides_d29.tex
@@ -34,7 +34,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.189 seconds
+luaotfload | main : initialization completed in 0.186 seconds
 Babel <3.18> and hyphenation patterns for 1 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
 Document Class: beamer 2018/02/20 v3.50 A class for typesetting presentations
@@ -1970,9 +1970,6 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [2
 
 ]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/gene
-ric/fonts/otl/lmmono10-regular.luc))
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1980,12 +1977,6 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [3
 
 ]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8.
-(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmmon
-olt10-bold.luc))
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1995,14 +1986,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/gene
-ric/fonts/otl/lmmono8-regular.luc)
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 14.
-)
-Overfull \vbox (52.42114pt too high) detected at line 236
- []
-
-
+ric/fonts/otl/lmmono10-regular.luc)
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 9.
+(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmmon
+olt10-bold.luc)(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/generic/
+fonts/otl/lmmono10-italic.luc))
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2011,7 +2000,8 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb)(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/gen
+eric/fonts/otl/lmmono12-regular.luc)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2020,11 +2010,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
-Overfull \vbox (4.06416pt too high) detected at line 308
- []
-
-
+ (./slides_d29.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 9.
+)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2033,40 +2022,35 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb
+<figure/ff2-1.pdf, id=91, 505.89pt x 274.02374pt>
+File: figure/ff2-1.pdf Graphic file (type pdf)
+<use figure/ff2-1.pdf>
+Package luatex.def Info: figure/ff2-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 185.4138pt.
+)
+Overfull \vbox (34.3698pt too high) detected at line 290
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [8
 
-]
+<./figure/ff2-1.pdf>]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-10-1.pdf, id=100, 505.89pt x 274.02374pt>
-File: figure/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-10-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-10-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 185.4138pt.
-)
-Overfull \vbox (31.6104pt too high) detected at line 347
- []
-
-
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [9
 
-<./figure/unnamed-chunk-10-1.pdf>]
+]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb(load luc: /home/ken/.texliv
-e2017/texmf-var/luatex-cache/generic/fonts/otl/lmmono10-italic.luc))
-Overfull \vbox (24.24515pt too high) detected at line 394
- []
-
-
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2075,33 +2059,23 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-12-1.pdf, id=127, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-12-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-12-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-12-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
-)
-Overfull \vbox (44.4807pt too high) detected at line 411
- []
-
-
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [11
 
-<./figure/unnamed-chunk-12-1.pdf>]
+]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-13-1.pdf, id=146, 144.54pt x 144.54pt>
-File: figure/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-13-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-13-1.pdf  used on input line 31.
-(luatex.def)             Requested size: 144.54623pt x 144.54623pt.
+<figure/unnamed-chunk-8-1.pdf, id=136, 505.89pt x 252.945pt>
+File: figure/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-8-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-8-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
 )
-Overfull \vbox (41.02559pt too high) detected at line 447
+Overfull \vbox (54.71901pt too high) detected at line 390
  []
 
 
@@ -2111,13 +2085,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [12
 
-<./figure/unnamed-chunk-13-1.pdf>]
+<./figure/unnamed-chunk-8-1.pdf>]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 16.
-)
-Overfull \vbox (11.75665pt too high) detected at line 495
+ (./slides_d29.vrb)
+Overfull \vbox (5.92345pt too high) detected at line 425
  []
 
 
@@ -2130,6 +2101,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
+Overfull \vbox (22.28513pt too high) detected at line 460
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2139,13 +2114,30 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-19-1.pdf, id=181, 505.89pt x 259.97125pt>
-File: figure/unnamed-chunk-19-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-19-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-19-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 175.9054pt.
+<figure/score-plot-1.pdf, id=172, 505.89pt x 252.945pt>
+File: figure/score-plot-1.pdf Graphic file (type pdf)
+<use figure/score-plot-1.pdf>
+Package luatex.def Info: figure/score-plot-1.pdf  used on input line 13.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+
+
+LaTeX Warning: File `bPrincomp-score-plot.png' not found on input line 17.
+
+
+! Package luatex.def Error: File `bPrincomp-score-plot.png' not found: using dr
+aft setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \includegraphics{bPrincomp-score-plot.png}
+                                             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 )
-Overfull \vbox (24.07298pt too high) detected at line 556
+Overfull \vbox (113.71478pt too high) detected at line 480
  []
 
 
@@ -2155,14 +2147,16 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [15
 
-<./figure/unnamed-chunk-19-1.pdf>]
-<figure/unnamed-chunk-20-1.pdf, id=198, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-20-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-20-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-20-1.pdf  used on input line 567.
-(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
-
-Overfull \vbox (20.8505pt too high) detected at line 567
+<./figure/score-plot-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+<figure/eqsc2-1.pdf, id=189, 505.89pt x 144.54pt>
+File: figure/eqsc2-1.pdf Graphic file (type pdf)
+<use figure/eqsc2-1.pdf>
+Package luatex.def Info: figure/eqsc2-1.pdf  used on input line 33.
+(luatex.def)             Requested size: 342.3024pt x 97.80067pt.
+)
+Overfull \vbox (55.33766pt too high) detected at line 518
  []
 
 
@@ -2172,7 +2166,9 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [16
 
-<./figure/unnamed-chunk-20-1.pdf>]
+<./figure/eqsc2-1.pdf>]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2180,34 +2176,139 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [17
 
 ]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+<figure/ff3-1.pdf, id=215, 505.89pt x 289.08pt>
+File: figure/ff3-1.pdf Graphic file (type pdf)
+<use figure/ff3-1.pdf>
+Package luatex.def Info: figure/ff3-1.pdf  used on input line 554.
+(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
+
+
+LaTeX Warning: File `bPrincomp-test-biplot.png' not found on input line 554.
+
+
+! Package luatex.def Error: File `bPrincomp-test-biplot.png' not found: using d
+raft setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.554 \end{frame}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \vbox (100.92378pt too high) detected at line 554
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [18
 
-]
+<./figure/ff3-1.pdf>]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-22-1.pdf, id=233, 505.89pt x 252.945pt>
-File: figure/unnamed-chunk-22-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-22-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-22-1.pdf  used on input line 16.
-(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
-)
-Overfull \vbox (17.94032pt too high) detected at line 634
- []
-
-
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [19
 
-<./figure/unnamed-chunk-22-1.pdf>]
+]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb
+Overfull \hbox (31.3733pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##     m100  m200  m400  m800 m1500 m5000 m10000 marathon 
+country[] 
+ []
+
+
+Overfull \hbox (19.87581pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> 
+<chr>[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  1  12.2  23.2  52.9  2.02  4.24  16.7   35.4     165. 
+ck[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  2  10.1  20    44.6  1.75  3.59  13.2   27.5     131. 
+ru[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  3  10.6  20.5  45.9  1.78  3.61  13.5   28.1     131. 
+dk[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  4  10.3  20.9  46.9  1.79  3.77  14.0   29.2     136. 
+kr[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  5  10.6  21.5  47.8  1.84  3.92  14.7   30.8     149. 
+id[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  6  10.6  21.3  46.8  1.79  3.77  14.1   30.1     139. 
+tw[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  7  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. 
+pg[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  8  10.2  20.7  46.6  1.78  3.64  14.6   28.4     135. 
+gr[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ##  9  10.8  21.6  46.2  1.81  3.83  14.7   30.6     145. 
+ph[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ## 10  10.3  20.1  44.8  1.74  3.57  13.3   27.7     128. 
+au[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ## 11  10.1  20.2  44.9  1.7   3.51  13.0   27.5     129. 
+uk[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 38--38
+[]\TU/lmtt/m/n/10.95 ## 12  10.4  20.9  46.3  1.82  3.8   14.6   31.0     154. 
+my[] 
+ []
+
+)
+Overfull \vbox (85.85036pt too high) detected at line 620
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2215,6 +2316,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [20
 
 ]
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
+Overfull \vbox (40.31995pt too high) detected at line 652
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2222,8 +2329,6 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [21
 
 ]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2233,6 +2338,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
+Overfull \vbox (65.45033pt too high) detected at line 702
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2241,14 +2350,24 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb
+<figure/scree-b-1.pdf, id=278, 505.89pt x 252.945pt>
+File: figure/scree-b-1.pdf Graphic file (type pdf)
+<use figure/scree-b-1.pdf>
+Package luatex.def Info: figure/scree-b-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+)
+Overfull \vbox (20.04149pt too high) detected at line 719
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [24
 
-]
+<./figure/scree-b-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2260,13 +2379,51 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-27-1.pdf, id=308, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-27-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-27-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-27-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp
+.7[] 
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## m100      0.318  0.567  0.332  0.128  0.263  0.594  0.1
+36[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## m200      0.337  0.462  0.361 -0.259 -0.154 -0.656 -
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## m800      0.369        -0.532 -0.480  0.540        -
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## m1500     0.373 -0.140 -0.153 -0.405 -0.488  0.158  0.6
+10[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## m5000     0.364 -0.312  0.190        -0.254  0.141 -
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## m10000    0.367 -0.307  0.182        -0.133  0.219 -
+ []
+
+
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 42--42
+[]\TU/lmtt/m/n/10.95 ## marathon  0.342 -0.439  0.263  0.300  0.498 -0.315  0.3
+99[] 
+ []
+
 )
-Overfull \vbox (44.41501pt too high) detected at line 817
+Overfull \vbox (273.99474pt too high) detected at line 789
  []
 
 
@@ -2276,34 +2433,22 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [26
 
-<./figure/unnamed-chunk-27-1.pdf>]
+]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-28-1.pdf, id=325, 505.89pt x 289.08pt>
-File: figure/unnamed-chunk-28-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-28-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-28-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
-)
-Overfull \vbox (62.38272pt too high) detected at line 836
- []
-
-
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [27
 
-<./figure/unnamed-chunk-28-1.pdf>]
+]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb(load luc: /home/ken/.texliv
-e2017/texmf-var/luatex-cache/generic/fonts/otl/lmsans9-regular.luc)(load luc: /h
-ome/ken/.texlive2017/texmf-var/luatex-cache/generic/fonts/otl/lmmono9-regular.lu
-c)
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 10.
-)
+ (./slides_d29.vrb)
+Overfull \vbox (26.53363pt too high) detected at line 862
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2313,13 +2458,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/unnamed-chunk-30-1.pdf, id=352, 505.89pt x 252.945pt>
-File: figure/unnamed-chunk-30-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-30-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-30-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+<figure/lecce-1.pdf, id=331, 505.89pt x 281.05pt>
+File: figure/lecce-1.pdf Graphic file (type pdf)
+<use figure/lecce-1.pdf>
+Package luatex.def Info: figure/lecce-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 190.168pt.
 )
-Overfull \vbox (40.70291pt too high) detected at line 882
+Overfull \vbox (38.33559pt too high) detected at line 879
  []
 
 
@@ -2329,15 +2474,9 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [29
 
-<./figure/unnamed-chunk-30-1.pdf>]
+<./figure/lecce-1.pdf>]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-Overfull \hbox (203.70464pt too wide) in paragraph at lines 24--24
-[]\TU/lmtt/m/n/10 ## Coordinate system already present. Adding new coordinate s
-ystem, which will replace the existing one.[] 
- []
-
-)
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2347,13 +2486,30 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<figure/spal-1.pdf, id=378, 505.89pt x 252.945pt>
-File: figure/spal-1.pdf Graphic file (type pdf)
-<use figure/spal-1.pdf>
-Package luatex.def Info: figure/spal-1.pdf  used on input line 14.
+<figure/biplot2-1.pdf, id=357, 505.89pt x 252.945pt>
+File: figure/biplot2-1.pdf Graphic file (type pdf)
+<use figure/biplot2-1.pdf>
+Package luatex.def Info: figure/biplot2-1.pdf  used on input line 12.
 (luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+
+
+LaTeX Warning: File `bPrincomp-biplot.png' not found on input line 16.
+
+
+! Package luatex.def Error: File `bPrincomp-biplot.png' not found: using draft 
+setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \includegraphics{bPrincomp-biplot.png}
+                                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 )
-Overfull \vbox (39.7188pt too high) detected at line 930
+Overfull \vbox (99.39207pt too high) detected at line 918
  []
 
 
@@ -2363,9 +2519,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [31
 
-<./figure/spal-1.pdf>]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+<./figure/biplot2-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2375,6 +2529,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
+Overfull \vbox (16.37207pt too high) detected at line 969
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2391,30 +2549,17 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [34
 
 ]
-<g2.png, id=424, 505.6491pt x 361.1091pt>
-File: g2.png Graphic file (type png)
-<use g2.png>
-Package luatex.def Info: g2.png  used on input line 1024.
-(luatex.def)             Requested size: 164.29543pt x 117.33151pt.
-<gmap.png, id=425, 505.6491pt x 361.1091pt>
-File: gmap.png Graphic file (type png)
-<use gmap.png>
-Package luatex.def Info: gmap.png  used on input line 1024.
-(luatex.def)             Requested size: 164.29543pt x 117.33151pt.
-
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [35
 
-<./g2.png><./gmap.png>]
+]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.24313pt too high) detected at line 1078
- []
-
-
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2424,6 +2569,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
+Overfull \vbox (7.18497pt too high) detected at line 1079
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2432,10 +2581,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <6> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8.
-)
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2444,16 +2590,36 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb
+<figure/unnamed-chunk-22-1.pdf, id=438, 505.89pt x 397.485pt>
+File: figure/unnamed-chunk-22-1.pdf Graphic file (type pdf)
+<use figure/unnamed-chunk-22-1.pdf>
+Package luatex.def Info: figure/unnamed-chunk-22-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 317.46957pt x 249.44038pt.
+)
+Overfull \vbox (82.03697pt too high) detected at line 1117
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [39
 
-]
+<./figure/unnamed-chunk-22-1.pdf>]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb
+! Undefined control sequence.
+l.4 Create data file like this: \verbatiminput
+                                            {cov.txt} and read in like
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2471,17 +2637,418 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)(load luc: /home/ken/.texlive2017/texmf-var/luatex-cache/gen
-eric/fonts/otl/lmmono12-regular.luc)
+ (./slides_d29.vrb
+<figure/palermo-1.pdf, id=474, 505.89pt x 252.945pt>
+File: figure/palermo-1.pdf Graphic file (type pdf)
+<use figure/palermo-1.pdf>
+Package luatex.def Info: figure/palermo-1.pdf  used on input line 12.
+(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
+
+
+LaTeX Warning: File `bPrincomp-pc-cov.png' not found on input line 16.
+
+
+! Package luatex.def Error: File `bPrincomp-pc-cov.png' not found: using draft 
+setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \includegraphics{bPrincomp-pc-cov.png}
+                                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
+Overfull \vbox (100.11478pt too high) detected at line 1183
+ []
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [42
 
-]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+<./figure/palermo-1.pdf>]
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \iterate.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \beamer@doifinframe.
+<to be read again> 
+ 
+l.1242 \end{frame}
+                
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...ar ```r mat ``` \par ``` ##
+                                                   ## A tibble: 3 x 3 ## X1 ...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...```r mat ``` \par ``` ## ##
+                                                   A tibble: 3 x 3 ## X1 X2 ...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...`` ## ## A tibble: 3 x 3 ##
+                                                   X1 X2 X3 ## <dbl> <dbl> <...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...ibble: 3 x 3 ## X1 X2 X3 ##
+                                                   <dbl> <dbl> <dbl> ## 1 1 ...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ... X3 ## <dbl> <dbl> <dbl> ##
+                                                   1 1 0.970 -0.96 ## 2 0.97...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...<dbl> ## 1 1 0.970 -0.96 ##
+                                                   2 0.970 1 -0.998 ## 3 -0....
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...0.96 ## 2 0.970 1 -0.998 ##
+                                                   3 -0.96 -0.998 1 ``` \par...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+$
+l.1242 \end{frame}
+                
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...pc$loadings ``` \par ``` ##
+                                                   ## Loadings: ## Comp.1 Co...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...loadings ``` \par ``` ## ##
+                                                   Loadings: ## Comp.1 Comp....
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...\par ``` ## ## Loadings: ##
+                                                   Comp.1 Comp.2 Comp.3 ## X...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ... ## Comp.1 Comp.2 Comp.3 ##
+                                                   X1 0.573 0.812 0.112 ## X...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ... ## X1 0.573 0.812 0.112 ##
+                                                   X2 0.581 -0.306 -0.755 ##...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...# X2 0.581 -0.306 -0.755 ##
+                                                   X3 -0.578 0.498 -0.646 ##...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...# X3 -0.578 0.498 -0.646 ##
+                                                   ## Comp.1 Comp.2 Comp.3 #...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...3 -0.578 0.498 -0.646 ## ##
+                                                   Comp.1 Comp.2 Comp.3 ## S...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ... ## Comp.1 Comp.2 Comp.3 ##
+                                                   SS loadings 1.000 1.000 1...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...adings 1.000 1.000 1.000 ##
+                                                   Proportion Var 0.333 0.33...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! You can't use `macro parameter character #' in horizontal mode.
+\beamer@doifinframe ...on Var 0.333 0.333 0.333 ##
+                                                   Cumulative Var 0.333 0.66...
+l.1242 \end{frame}
+                
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn''t ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+$
+l.1242 \end{frame}
+                
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2489,180 +3056,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [43
 
 ]
-<figure/bianconeri-1.pdf, id=511, 505.89pt x 289.08pt>
-File: figure/bianconeri-1.pdf Graphic file (type pdf)
-<use figure/bianconeri-1.pdf>
-Package luatex.def Info: figure/bianconeri-1.pdf  used on input line 1283.
-(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
-
-Overfull \vbox (41.44621pt too high) detected at line 1283
- []
-
-
+\openout4 = slides_d29.vrb
+ (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [44
-
-<./figure/bianconeri-1.pdf>]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[45
-
-]
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[46
-
-]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
-Overfull \vbox (36.19315pt too high) detected at line 1380
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[47
-
-]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
-Overfull \vbox (19.62668pt too high) detected at line 1433
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[48
-
-]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[49
-
-]
-<figure/padova-1.pdf, id=574, 505.89pt x 289.08pt>
-File: figure/padova-1.pdf Graphic file (type pdf)
-<use figure/padova-1.pdf>
-Package luatex.def Info: figure/padova-1.pdf  used on input line 1495.
-(luatex.def)             Requested size: 342.3024pt x 195.60136pt.
-
-Overfull \vbox (20.8505pt too high) detected at line 1495
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[50
-
-<./figure/padova-1.pdf>]
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[51
-
-]
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[52
-
-]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/parma-1.pdf, id=610, 505.89pt x 252.945pt>
-File: figure/parma-1.pdf Graphic file (type pdf)
-<use figure/parma-1.pdf>
-Package luatex.def Info: figure/parma-1.pdf  used on input line 14.
-(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
-)
-Overfull \vbox (81.97377pt too high) detected at line 1555
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[53
-
-<./figure/parma-1.pdf>]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb)
-Overfull \vbox (22.74216pt too high) detected at line 1611
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[54
-
-]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-52-1.pdf, id=637, 505.89pt x 252.945pt>
-File: figure/unnamed-chunk-52-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-52-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-52-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
-)
-Overfull \vbox (40.3963pt too high) detected at line 1630
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[55
-
-<./figure/unnamed-chunk-52-1.pdf>]
-\openout4 = slides_d29.vrb
- (./slides_d29.vrb
-<figure/unnamed-chunk-53-1.pdf, id=654, 505.89pt x 252.945pt>
-File: figure/unnamed-chunk-53-1.pdf Graphic file (type pdf)
-<use figure/unnamed-chunk-53-1.pdf>
-Package luatex.def Info: figure/unnamed-chunk-53-1.pdf  used on input line 12.
-(luatex.def)             Requested size: 342.3024pt x 171.1512pt.
-)
-Overfull \vbox (53.51451pt too high) detected at line 1650
- []
-
-
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[56
-
-<./figure/unnamed-chunk-53-1.pdf>]
-Overfull \hbox (15.73341pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[57
 
 ]
 \tf@nav=\write7
@@ -2674,41 +3074,40 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 \tf@snm=\write9
 
 \openout9 = slides_d29.snm
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1683.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1683.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1262.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1262.
  (./slides_d29.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1683.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1683.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1262.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1262.
 Package rerunfilecheck Info: File `slides_d29.out' has not changed.
-(rerunfilecheck)             Checksum: 05E91C0ADE4035C3C6ED4DAFF43C6CD5;166.
+(rerunfilecheck)             Checksum: 7CFCF5D9DC4F6EEF1E23ACE909700394;146.
 )
 
 Here is how much of LuaTeX's memory you used:
- 38105 strings out of 494480
+ 37903 strings out of 494480
  100000,1144653 words of node,token memory allocated
- 7165 words of node memory still in use:
-   84 hlist, 17 vlist, 25 rule, 37 disc, 16 local_par, 2 math, 211 glue, 34 kern
-, 43 penalty, 6 margin_kern, 439 glyph, 128 attribute, 69 glue_spec, 128 attribu
-te_list, 1 shape, 4 write, 1 pdf_dest, 40 pdf_colorstack nodes
-   avail lists: 1:2,2:621,3:1486,4:316,5:195,6:1776,7:1561,8:38,9:204,10:19,11:1
-09
- 40289 multiletter control sequences out of 65536+600000
- 67 fonts using 16900423 bytes
- 61i,15n,117p,941b,582s stack positions out of 5000i,500n,10000p,200000b,100000s
-</usr/share/texmf/fonts/opentype/public/lm/lmsans10-bold.otf></usr/share/texmf/f
-onts/opentype/public/lm/lmmono12-regular.otf></usr/share/texmf/fonts/opentype/pu
-blic/lm/lmmono9-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono10-
-italic.otf></usr/share/texmf/fonts/opentype/public/lm-math/latinmodern-math.otf>
-</usr/share/texmf/fonts/opentype/public/lm/lmmono8-regular.otf></usr/share/texmf
-/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texmf/fonts/opentype/p
-ublic/lm/lmsans10-oblique.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono1
-0-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans8-regular.otf></u
-sr/share/texmf/fonts/opentype/public/lm/lmsans10-regular.otf></usr/share/texmf/f
-onts/opentype/public/lm/lmsans12-regular.otf>
-Output written on slides_d29.pdf (57 pages, 2907733 bytes).
+ 3689 words of node memory still in use:
+   51 hlist, 11 vlist, 12 rule, 11 disc, 9 local_par, 112 glue, 11 kern, 36 pena
+lty, 1 margin_kern, 160 glyph, 93 attribute, 69 glue_spec, 93 attribute_list, 1 
+shape, 4 write, 1 pdf_dest, 36 pdf_colorstack nodes
+   avail lists: 1:2,2:544,3:944,4:231,5:149,6:2087,7:1132,8:35,9:289,10:16,11:10
+5
+ 40213 multiletter control sequences out of 65536+600000
+ 60 fonts using 16013303 bytes
+ 61i,15n,117p,941b,591s stack positions out of 5000i,500n,10000p,200000b,100000s
+</usr/share/texmf/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/share
+/texmf/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/share/texmf/font
+s/opentype/public/lm/lmmono12-regular.otf></usr/share/texmf/fonts/opentype/publi
+c/lm/lmmono10-italic.otf></usr/share/texmf/fonts/opentype/public/lm/lmmono10-reg
+ular.otf></usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/sh
+are/texmf/fonts/opentype/public/lm/lmsans10-oblique.otf></usr/share/texmf/fonts/
+opentype/public/lm/lmsans8-regular.otf></usr/share/texmf/fonts/opentype/public/l
+m/lmsans10-regular.otf></usr/share/texmf/fonts/opentype/public/lm/lmsans12-regul
+ar.otf>
+Output written on slides_d29.pdf (44 pages, 140093 bytes).
 
-PDF statistics: 764 PDF objects out of 1000 (max. 8388607)
- 619 compressed objects within 7 object streams
- 171 named destinations out of 1000 (max. 131072)
- 42 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 582 PDF objects out of 1000 (max. 8388607)
+ 473 compressed objects within 5 object streams
+ 132 named destinations out of 1000 (max. 131072)
+ 33 words of extra memory for PDF output out of 10000 (max. 100000000)
 

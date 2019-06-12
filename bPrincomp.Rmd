@@ -8,7 +8,7 @@
 
 * Question: can we describe data using fewer variables (because original variables correlated in some way)?
 
-* Look for direction (linear combination of original variables) in which values {\em most spread out}. This is {\em first principal component}.
+* Look for direction (linear combination of original variables) in which values *most spread out*. This is *first principal component*.
 
 * Second principal component then direction uncorrelated with this in which values then most spread out. And so on.
 
@@ -30,15 +30,7 @@
 
 
 
-## Packages
-```{r size="scriptsize",echo=F,message=F}
-library(plyr) # for annoying technical reasons (here)
-library(ggbiplot)
-library(tidyverse)
-library(ggrepel)
-```
-
-   
+## xxx  Packages
 
 You might not have installed the first of these. See over for
 instructions. 
@@ -52,11 +44,11 @@ library(ggrepel)
  
 
 
-## Installing `ggbiplot`
+## xxx  Installing `ggbiplot`
 
 
 * `ggbiplot` not on CRAN, so usual
-`install.packages` will not work.
+`install.packages` will not work. This is same procedure you used for `smmr` in C32:
 
 * Install package `devtools` first (once):
 ```{r eval=F}
@@ -75,14 +67,14 @@ install_github("vqv/ggbiplot")
 
 
 
-## Small example: 2 test scores for 8 people
+## xxx  Small example: 2 test scores for 8 people
 
-```{r testt,message=F,size="small"}
+\small
+```{r testt,message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/test12.txt"
 test12 <- read_table2(my_url)
 test12
 ```
-
 
 
 ```{r ff1}
@@ -90,43 +82,40 @@ g <- ggplot(test12, aes(x = first, y = second, label = id)) +
   geom_point() + geom_text_repel()
 ```
 
+\normalsize
  
 
 
-## The plot
+## xxx  The plot
 
-```{r ff2,fig.height=4}
+```{r ff2,fig.height=3.8}
 g + geom_smooth(method = "lm", se = F)
 ```
 
-![](bPrincomp-testt.png)
-  
 
-
-## Principal component analysis
+## xxx  Principal component analysis
 
 
 * Grab just the numeric columns:
-```{r size="small"}
-test12_numbers <- test12 %>% select_if(is.numeric)
+```{r}
+test12 %>% select_if(is.numeric) -> test12_numbers
 ```
-
      
 
 
 * Strongly correlated, so data nearly 1-dimensional:
 
-```{r size="small"}
+```{r}
 cor(test12_numbers)
 ```
 
  
-
+## Finding principal components xxx
 
 * Make a score summarizing this one dimension. Like this:
 
-```{r plot12,size="small"}
-test12.pc <- test12_numbers %>% princomp(cor = T)
+```{r plot12}
+test12.pc <- princomp(test12_numbers, cor = T)
 summary(test12.pc)
 ```
 
@@ -151,7 +140,7 @@ because variables measured on different scales. (Only omit if
 variables measured on same scale and expect similar variability.)
 
 
-## Scree plot
+##   Scree plot xxx
 ```{r fig.height=3.5}
 ggscreeplot(test12.pc)
 ```
@@ -162,13 +151,15 @@ Imagine scree plot continues at zero, so 2 components is a *big*
 elbow (take one component).
 
 
-## Component loadings
+## xxx  Component loadings
 explain how each principal component depends on (standardized)
 original variables (test scores):
+
+\small
 ```{r }
 test12.pc$loadings
 ```
-
+\normalsize
    
 
 First component basically negative sum of (standardized) test
@@ -176,13 +167,13 @@ scores. That is, person tends to score similarly on two tests, and a
 composite score would summarize performance.
 
 
-## Component scores
+## xxx  Component scores
 
 ```{r }
 d <- data.frame(test12, test12.pc$scores)
 d
 ```
-$
+
 
 
 
@@ -197,7 +188,7 @@ $
 
 
 
-## Plot of scores
+## xxx  Plot of scores
 
 ```{r score-plot,fig.height=3.5,}
 ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
@@ -208,7 +199,7 @@ ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
 
 
 
-## Comments
+## xxx  Comments
 
 
 * Vertical scale exaggerates importance of `comp.2`.
@@ -232,7 +223,7 @@ g
 
 
 
-## The biplot
+## xxx  The biplot
 
 
 * Plotting variables and individuals on one plot.
@@ -251,7 +242,7 @@ g <- ggbiplot(test12.pc, labels = test12$id)
 
 
 
-## The biplot
+## xxx  The biplot
 ```{r ff3,fig.height=4,echo=F}
 g
 ```
@@ -260,7 +251,7 @@ g
 
 
 
-## Comments
+## xxx  Comments
 
 
 * Variables point almost same direction (left). Thus very
@@ -284,7 +275,7 @@ relative to first.
 
 
 
-## Track running data
+## xxx  Track running data
 
 (1984) track running records for distances 100m to marathon, arranged
 by country. Countries labelled by (mostly) Internet domain names (ISO
@@ -306,7 +297,7 @@ track %>% sample_n(12)
  
 
 
-## Country names
+## xxx  Country names
 Also read in a table to look country names up in later:
 
 ```{r message=F, size="small"}
@@ -318,7 +309,7 @@ iso
  
 
 
-## Data and aims
+## xxx  Data and aims
 
 
 * 
@@ -331,7 +322,7 @@ Times in seconds 100m--400m, in minutes for rest (800m up).
 * In particular, if 2 components tell most of story, what do we see in a plot?
 
 
-## Fit and examine principal components
+## xxx  Fit and examine principal components
 ```{r echo=FALSE}
 options(width = 50)
 ```
@@ -346,7 +337,7 @@ summary(track.pc)
  
 
 
-## Scree plot
+## xxx  Scree plot
 
 ```{r scree-b,fig.height=3.5,}
 ggscreeplot(track.pc)
@@ -355,7 +346,7 @@ ggscreeplot(track.pc)
  
 
 
-## How many components?
+## xxx  How many components?
 
 
 * As for discriminant analysis, look for "elbow" in scree plot.
@@ -377,7 +368,7 @@ components tell almost whole story.
 
 
 
-## How do components depend on original variables?
+## xxx  How do components depend on original variables?
 Loadings:
 
 ```{r size="footnotesize",echo=2}
@@ -388,7 +379,7 @@ track.pc$loadings
    
 
 
-## Comments
+## xxx  Comments
 
 
 * `comp.1` loads about equally (has equal weight) on
@@ -411,7 +402,7 @@ distance running *negative* on `comp.2`.
 
 
 
-## Commands for plots
+## xxx  Commands for plots
 
 
 * Principal component scores (first two). Also need country names.
@@ -440,7 +431,7 @@ g2 <- ggbiplot(track.pc, labels = track$country)
 
 
 
-## Principal components plot
+## xxx  Principal components plot
 
 ```{r lecce,fig.height=3.9}
 g1
@@ -449,7 +440,7 @@ g1
      
 
 
-## Comments on principal components plot
+## xxx  Comments on principal components plot
 
 
 * Good running countries at right of plot: US, UK, Italy,
@@ -466,7 +457,7 @@ Turkey, Ireland, New Zealand, Mexico. `ke` is Kenya.
 
 
 
-## Biplot
+## xxx  Biplot
 
 ```{r biplot2,fig.height=3.5}
 g2
@@ -476,7 +467,7 @@ g2
 
 
 
-## Comments on biplot
+## xxx  Comments on biplot
 
 
 * Had to do some pre-work to interpret PC plot. Biplot more self-contained.
@@ -494,7 +485,7 @@ sprinting.
 
 
 
-## How do I know which country is which?
+## xxx  How do I know which country is which?
 Need to look up two-letter abbreviations in ISO table, eg. for best
 8 running countries:
 ```{r size="footnotesize",warning=F}
@@ -508,7 +499,7 @@ d %>%
    
 
 
-## Best 8 running countries
+## xxx  Best 8 running countries
 ```{r size="footnotesize",warning=F}
 d %>%
   arrange(Comp.1) %>%
@@ -520,7 +511,7 @@ d %>%
    
 
 
-## Worst 8 running countries
+## xxx  Worst 8 running countries
 ```{r "footnotesize", warning=F}
 d %>%
   arrange(desc(Comp.1)) %>%
@@ -532,7 +523,7 @@ d %>%
    
 
 
-## Better at distance running
+## xxx  Better at distance running
 ```{r size="footnotesize",warning=F}
 d %>%
   arrange(desc(Comp.2)) %>%
@@ -543,7 +534,7 @@ d %>%
 
    
 
-## Better at sprinting
+## xxx  Better at sprinting
 ```{r size="footnotesize",warning=F}
 d %>%
   arrange(Comp.2) %>%
@@ -555,7 +546,7 @@ d %>%
    
 
 
-## Plot with country names
+## xxx  Plot with country names
 ```{r }
 g <- d %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
@@ -568,7 +559,7 @@ g <- d %>%
    
 
 
-## The plot
+## xxx  The plot
 
 ```{r fig.height=5.5, warning=F}
 g
@@ -578,7 +569,7 @@ g
 
 
 
-## Principal components from correlation matrix
+## xxx  Principal components from correlation matrix
 Create data file like this:
 \verbatiminput{cov.txt}
 and read in like this:
@@ -591,7 +582,7 @@ mat
    
 
 
-## Pre-processing
+## xxx  Pre-processing
 A little pre-processing required:
 
 
@@ -608,7 +599,7 @@ mat.pc <- mat %>%
    
 
 
-## Scree plot: one component fine
+## xxx  Scree plot: one component fine
 
 ```{r palermo,fig.height=3.5}
 ggscreeplot(mat.pc)
@@ -618,7 +609,7 @@ ggscreeplot(mat.pc)
     
 
 
-## Component loadings
+## xxx  Component loadings
 \begin{minipage}[t]{0.6\linewidth}
 Compare correlation matrix:
 
@@ -648,7 +639,7 @@ $
 
 \end{minipage}
 
-## No scores
+## xxx  No scores
 
 
 * With correlation matrix rather than data, no component scores

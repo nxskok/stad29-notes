@@ -51,6 +51,10 @@
 
 ```
 
+```{r bMDS, child="bMDS.Rmd"}
+
+``` 
+
  
 
 
@@ -64,9 +68,6 @@ current
 after
 ------------------------------
  
-```{r bPrincomp, child="bPrincomp.Rmd"}
-
-```
 
  
 

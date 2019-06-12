@@ -1,1 +1,1 @@
-\beamer@sectionintoc {1}{Multidimensional scaling}{2}{0}{1}
+\beamer@sectionintoc {1}{Principal components}{2}{0}{1}

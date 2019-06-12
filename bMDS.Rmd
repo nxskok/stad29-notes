@@ -125,17 +125,17 @@ g
 * Idea: given input distance matrix (as stored in a CSV file),
 output a map (like the one on the previous page).
 
-\scriptsize
+\footnotesize
 ```{r}
 mds_map <- function(filename) {
   x <- read_csv(filename)
-  dist <- x %>%
+  x %>%
     select_if(is.numeric) %>%
-    as.dist()
+    as.dist() -> dist 
   x.scale <- cmdscale(dist) # this is a matrix
-  x_coord <- x.scale %>%
-    as_tibble() %>%
-    mutate(place = row.names(x.scale))
+  x.scale %>%
+    as_tibble() %>% # cols called V1 and V2
+    mutate(place = row.names(x.scale)) -> x_coord
   ggplot(x_coord, aes(x = V1, y = V2, label = place)) +
     geom_point() + geom_text_repel() +
     coord_fixed()
@@ -143,14 +143,14 @@ mds_map <- function(filename) {
 ```
 \normalsize
      
-## Comments xxx
+## Comments
 
 
 * Use `select_if` to pick out all the numerical columns
 (no text), whichever they are.
 
 * `x.scale` is matrix with no column headers. Turn into
-data frame, acquires headers `V1` and `V2`. xxx 1 more
+data frame, acquires headers `V1` and `V2`.
 
 * Get place names from `cmdscale` output.
 
@@ -163,12 +163,12 @@ mds_map("europe.csv")
    
 
 
-## A square xxx
+## A square
 
 
-The data, in `square.csv`:
-\begin{small}
+- The data, in `square.csv`:
 
+\footnotesize
 ```
 x,A  ,B  ,C  ,D
 A,0  ,1  ,1  ,1.4
@@ -176,9 +176,10 @@ B,1  ,0  ,1.4,1
 C,1  ,1.4,0  ,1
 D,1.4,1  ,1  ,0
 ```
-\end{small}
-* The map: xxx
-```{r message=F,fig.height=2,fig.width=2}
+\normalsize
+
+* The map:
+```{r message=F,fig.height=1.8,fig.width=1.6}
 mds_map("square.csv")
 ```
 
@@ -305,12 +306,16 @@ text3d(es.2, text = europe$City)
 
 
 ## Ontario, the same way
-\ldots using our function: xxx
+
+\footnotesize
+```{r}
+url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+
+```
 
 \small
 ```{r message=F,fig.height=3.5}
-url <- 
-  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
 (g <- mds_map(url))
 ```
 \normalsize
@@ -340,7 +345,7 @@ those cities, then remove just those rows and columns.
   * save into .csv file
 
 
-* Illustrate with easier data first. xxx
+* Illustrate with easier data first.
 
 
 
@@ -365,7 +370,7 @@ square %>% gather(point, distance, -x)
 
 
 ## Remove all references to point C
-In column `x` or `point`: xxx
+In column `x` or `point`:
 
 \small
 ```{r }
@@ -377,7 +382,7 @@ square %>%
    
 
 
-## Put back as distance matrix  xxx
+## Put back as distance matrix
 and save as .csv when we are happy:
 ```{r }
 square %>%
@@ -409,7 +414,7 @@ g
 Get rid of Thunder Bay and Sault Ste Marie.
 
 
-## Tidy, remove, untidy xxx
+## Tidy, remove, untidy
 
 \footnotesize
 ```{r message=F}
@@ -431,7 +436,7 @@ ontario2 %>%
    
 
 
-## Map of Southern Ontario xxx
+## Map of Southern Ontario
 ```{r fig.height=3.5, message=F}
 (g <- mds_map("southern-ontario.csv"))
 ```
@@ -449,7 +454,7 @@ Geographically about right.
 * "Zoom in" on area between $-150$ and $-100$ on $x$ axis, $-50$ to 0 on
 $y$ axis.
 
-* Code below overrides the `coord_fixed` we had before. xxx
+* Code below overrides the `coord_fixed` we had before.
 
 \small
 ```{r zoom}
@@ -474,7 +479,7 @@ g2
 
 * Get a Google map of the area, with the points labelled.
 
-* First geocode the cities of interest: xxx
+* First geocode the cities of interest:
 
 \footnotesize
 ```{r message=F, cache=T, eval=F}
@@ -494,7 +499,7 @@ latlong %>% print()
 
 \normalsize
  
-## Get Google map xxx
+## Get Google map
 
 * Get a Google map of the area (experiment with zoom):
 ```{r message=F, eval=F}
@@ -508,7 +513,7 @@ map <- readRDS("hamilton_map.rds")
  
 
 
-* Plot map with cities marked. xxx
+* Plot map with cities marked.
 
 
 
@@ -527,7 +532,7 @@ ggmap(map) +
   ) -> gmap
 ```
 
-## MDS and Google map side by side xxx
+## MDS and Google map side by side
 
 ```{r, include=F, warning=F}
 ggsave("g2.png", g2, "png")
@@ -544,7 +549,7 @@ Hamilton!
 ## Quality of fit
 
 
-* Read in "southern Ontario" data set from file. Calling `cmdscale` with `eig=T` gives more info: xxx
+* Read in "southern Ontario" data set from file. Calling `cmdscale` with `eig=T` gives more info:
 
 \footnotesize
 ```{r message=F}
@@ -579,7 +584,7 @@ than 2, presumably to accommodate St Catharines and Niagara Falls?
 
 
 
-## 3-dimensional coordinates, cities attached xxx
+## 3-dimensional coordinates, cities attached
 
 \tiny
 ```{r}
@@ -601,7 +606,7 @@ text3d(ontario2.3$points, text = ontario2$x)
  
 
 
-## A cube xxx
+## A cube
 
 ```
 
@@ -623,7 +628,7 @@ Try MDS on this obviously 3-dimensional data.
 
 
 
-## Cube data as distances xxx
+## Cube data as distances
 
 \footnotesize
 ```{r f, message=F}
@@ -718,14 +723,11 @@ names, without requiring that 1 is "eight times better" than 8.
 ## The languages
 
 
-* Recall language data (from cluster analysis): 1--10, measure dissimilarity between two languages by how many number names *differ* xxx in first letter:
+* Recall language data (from cluster analysis): 1--10, measure dissimilarity between two languages by how many number names *differ* in first letter:
 
 ```{r include=F}
-options(width = 55)
+options(width = 65)
 ```
-
-xxx
-
 
 \scriptsize     
 ```{r message=F}
@@ -746,19 +748,16 @@ number.d
 * Run through `isoMDS` from `MASS` package; works
 like `cmdscale`.
 
-* Map only reproduces *relative* xxx closeness of languages. xxx
+* Map only reproduces *relative* closeness of languages.
 
 \small
 ```{r}
-d <- number.d %>%
+number.d %>%
   select_if(is.numeric) %>%
-  as.dist()
-number.nm <- d %>% isoMDS()
-names(number.nm)
+  as.dist() -> d
+d %>% isoMDS() -> number.nm
 ```
 \normalsize
-   
-
 
 * `points` for plotting, `stress` measure of fit
 (lower better).
@@ -773,7 +772,6 @@ names(number.nm)
 ```{r }
 number.nm$stress
 ```
-$ %$ %$
 
 
 * Familiar process: make a data frame to plot. Use name
@@ -850,7 +848,7 @@ Shepard(d, number.nm$points) %>%
 Actual dissimilarity $x$ between higher: mapped distance $y$ from
 MDS higher too. (MDS working well.)
 
-## Cube, revisited xxx
+## Cube, revisited
 
 \small
 ```{r}
@@ -869,9 +867,9 @@ cube.3$stress
 
 * Three dimensions correct, two dimensions bad.
 
-* Shepard diagrams for these: xxx
+## Shepard diagrams
 
-\footnotesize
+\normalsize
 ```{r}
 cube2.sh <- Shepard(cube.d, cube.2$points)
 g2 <- ggplot(as.data.frame(cube2.sh), aes(x = x, y = y)) +
@@ -887,7 +885,7 @@ g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
 
 ## Shepard diagram for 2-dimensional cube
 
-```{r fig.height=3.5}
+```{r fig.height=3.6}
 g2
 ```
 
@@ -897,7 +895,7 @@ Poor correspondence (not much trend).
 
 
 ## Shepard diagram for 3-dimensional cube
-```{r fig.height=3.5}
+```{r fig.height=3.6}
 g3
 ```
 
@@ -923,7 +921,7 @@ More than 20 & Poor: may be dangerous to interpret\\
 
 * Languages: stress in "good" range.
 
-* Cube: xxx
+* Cube:
 
 
   *   2 dimensions "fair", almost "poor";

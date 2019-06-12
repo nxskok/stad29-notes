@@ -1,18 +1,16 @@
-\frametitle{Shepard diagram for 3-dimensional cube}
-\protect\hypertarget{shepard-diagram-for-3-dimensional-cube}{}
+\frametitle{xxx No scores}
+\protect\hypertarget{xxx-no-scores}{}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g3}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\item
+  With correlation matrix rather than data, no component scores
+\item
+  So no principal component plot
+\item
+  and no biplot.
+\end{itemize}
 
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-53-1.pdf}
-\caption{plot of chunk unnamed-chunk-53}
-\end{figure}
-
-Almost perfect: all actual \(x=1\) go with smallest mapped distances;
-almost all \(x=1.7\) go with largest.
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+\end{verbatim}
 
