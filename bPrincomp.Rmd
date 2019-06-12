@@ -44,7 +44,7 @@ library(ggrepel)
  
 
 
-## xxx  Installing `ggbiplot`
+##   Installing `ggbiplot`
 
 
 * `ggbiplot` not on CRAN, so usual
@@ -67,9 +67,9 @@ install_github("vqv/ggbiplot")
 
 
 
-## xxx  Small example: 2 test scores for 8 people
+##  Small example: 2 test scores for 8 people
 
-\small
+xxx \small
 ```{r testt,message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/test12.txt"
 test12 <- read_table2(my_url)
@@ -86,14 +86,14 @@ g <- ggplot(test12, aes(x = first, y = second, label = id)) +
  
 
 
-## xxx  The plot
+##  The plot
 
 ```{r ff2,fig.height=3.8}
 g + geom_smooth(method = "lm", se = F)
 ```
 
 
-## xxx  Principal component analysis
+##  Principal component analysis
 
 
 * Grab just the numeric columns:
@@ -110,7 +110,7 @@ cor(test12_numbers)
 ```
 
  
-## Finding principal components xxx
+## Finding principal components
 
 * Make a score summarizing this one dimension. Like this:
 
@@ -140,7 +140,7 @@ because variables measured on different scales. (Only omit if
 variables measured on same scale and expect similar variability.)
 
 
-##   Scree plot xxx
+##   Scree plot
 ```{r fig.height=3.5}
 ggscreeplot(test12.pc)
 ```
@@ -155,24 +155,26 @@ elbow (take one component).
 explain how each principal component depends on (standardized)
 original variables (test scores):
 
-\small
+xxx \footnotesize
 ```{r }
 test12.pc$loadings
 ```
 \normalsize
    
 
-First component basically negative sum of (standardized) test
+First component basically xxx negative sum of (standardized) test
 scores. That is, person tends to score similarly on two tests, and a
 composite score would summarize performance.
 
 
 ## xxx  Component scores
 
+xxx \small
 ```{r }
 d <- data.frame(test12, test12.pc$scores)
 d
 ```
+\normalsize
 
 
 
@@ -188,7 +190,7 @@ d
 
 
 
-## xxx  Plot of scores
+##  Plot of scores
 
 ```{r score-plot,fig.height=3.5,}
 ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
@@ -199,7 +201,7 @@ ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
 
 
 
-## xxx  Comments
+##  Comments
 
 
 * Vertical scale exaggerates importance of `comp.2`.
@@ -223,7 +225,7 @@ g
 
 
 
-## xxx  The biplot
+##  The biplot
 
 
 * Plotting variables and individuals on one plot.
@@ -242,7 +244,7 @@ g <- ggbiplot(test12.pc, labels = test12$id)
 
 
 
-## xxx  The biplot
+##  The biplot
 ```{r ff3,fig.height=4,echo=F}
 g
 ```
@@ -251,7 +253,7 @@ g
 
 
 
-## xxx  Comments
+##  Comments
 
 
 * Variables point almost same direction (left). Thus very
@@ -277,7 +279,7 @@ relative to first.
 
 ## xxx  Track running data
 
-(1984) track running records for distances 100m to marathon, arranged
+Track running records (1984) for distances 100m to marathon, arranged
 by country. Countries labelled by (mostly) Internet domain names (ISO
 2-letter codes):
 
@@ -288,24 +290,26 @@ options(width = w + 10)
 
  
 
-```{r size="scriptsize",message=F}
+xxx \scriptsize
+```{r, message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
 track <- read_table(my_url)
-track %>% sample_n(12)
+track %>% sample_n(8)
 ```
-
+\normalsize
  
 
 
 ## xxx  Country names
 Also read in a table to look country names up in later:
 
-```{r message=F, size="small"}
+xxx \small
+```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/isocodes.csv"
 iso <- read_csv(my_url)
 iso
 ```
-
+\normalsize
  
 
 
@@ -327,13 +331,13 @@ Times in seconds 100m--400m, in minutes for rest (800m up).
 options(width = 50)
 ```
 
-   
-```{r scree-a,size="footnotesize"}
+xxx \footnotesize
+```{r scree-a}
 track_num <- track %>% select_if(is.numeric)
 track.pc <- princomp(track_num, cor = T)
 summary(track.pc)
 ```
-
+\normalsize
  
 
 
@@ -371,11 +375,12 @@ components tell almost whole story.
 ## xxx  How do components depend on original variables?
 Loadings:
 
-```{r size="footnotesize",echo=2}
+xxx \footnotesize
+```{r, echo=2}
 options(width = 60)
 track.pc$loadings
 ```
-
+\normalsize
    
 
 
@@ -488,61 +493,71 @@ sprinting.
 ## xxx  How do I know which country is which?
 Need to look up two-letter abbreviations in ISO table, eg. for best
 8 running countries:
-```{r size="footnotesize",warning=F}
+
+xxx \footnotesize
+```{r, warning=F}
 d %>%
   arrange(desc(Comp.1)) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Comp.1, country, Country) %>%
   slice(1:8)
 ```
-
+\normalsize
    
 
 
 ## xxx  Best 8 running countries
-```{r size="footnotesize",warning=F}
+
+xxx \footnotesize
+```{r,warning=F}
 d %>%
   arrange(Comp.1) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Comp.1, country, Country) %>%
   slice(1:8)
 ```
-
+\normalsize
    
 
 
 ## xxx  Worst 8 running countries
-```{r "footnotesize", warning=F}
+
+xxx \footnotesize
+```{r, warning=F}
 d %>%
   arrange(desc(Comp.1)) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Comp.1, country, Country) %>%
   slice(1:8)
 ```
-
+\normalsize
    
 
 
 ## xxx  Better at distance running
-```{r size="footnotesize",warning=F}
+
+xxx \footnotesize
+```{r, warning=F}
 d %>%
   arrange(desc(Comp.2)) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Comp.2, country, Country) %>%
   slice(1:8)
 ```
-
+\normalsize
    
 
 ## xxx  Better at sprinting
-```{r size="footnotesize",warning=F}
+
+xxx \footnotesize
+```{r, warning=F}
 d %>%
   arrange(Comp.2) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Comp.2, country, Country) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 
@@ -613,18 +628,21 @@ ggscreeplot(mat.pc)
 \begin{minipage}[t]{0.6\linewidth}
 Compare correlation matrix:
 
-```{r size="scriptsize"}
+xxx \scriptsize
+```{r}
 mat
 ```
-
+\normalsize
   
 
 with component loadings
 
-```{r size="scriptsize"}
+xxx \scriptsize
+```{r}
 mat.pc$loadings
 ```
-$
+\normalsize
+
 \end{minipage}
 \begin{minipage}[t]{0.37\linewidth}
 
