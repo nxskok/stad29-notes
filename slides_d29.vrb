@@ -1,16 +1,14 @@
-\frametitle{xxx No scores}
-\protect\hypertarget{xxx-no-scores}{}
+\frametitle{Comments xxx for sign}
+\protect\hypertarget{comments-xxx-for-sign}{}
 
 \begin{itemize}
 \item
-  With correlation matrix rather than data, no component scores
+  When X1 large, X2 also large, X3 small.
 \item
-  So no principal component plot
+  Then \texttt{comp.1} \emph{negative}.
 \item
-  and no biplot.
+  When X1 small, X2 small, X3 large.
+\item
+  Then \texttt{comp.1} \emph{positive}.
 \end{itemize}
-
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-\end{verbatim}
 

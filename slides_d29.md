@@ -55,7 +55,7 @@ output:
 
 
 
-## xxx  Packages
+##  Packages
 
 You might not have installed the first of these. See over for
 instructions. 
@@ -70,7 +70,7 @@ library(ggrepel)
  
 
 
-## xxx  Installing `ggbiplot`
+##   Installing `ggbiplot`
 
 
 * `ggbiplot` not on CRAN, so usual
@@ -95,7 +95,7 @@ install_github("vqv/ggbiplot")
 
 
 
-## xxx  Small example: 2 test scores for 8 people
+##  Small example: 2 test scores for 8 people xxx
 
 \small
 
@@ -130,7 +130,7 @@ g <- ggplot(test12, aes(x = first, y = second, label = id)) +
  
 
 
-## xxx  The plot
+##  The plot
 
 
 ```r
@@ -140,7 +140,7 @@ g + geom_smooth(method = "lm", se = F)
 ![plot of chunk ff2](figure/ff2-1.pdf)
 
 
-## xxx  Principal component analysis
+##  Principal component analysis
 
 
 * Grab just the numeric columns:
@@ -165,7 +165,7 @@ cor(test12_numbers)
 ```
 
  
-## Finding principal components xxx
+## Finding principal components
 
 * Make a score summarizing this one dimension. Like this:
 
@@ -204,7 +204,7 @@ because variables measured on different scales. (Only omit if
 variables measured on same scale and expect similar variability.)
 
 
-##   Scree plot xxx
+##   Scree plot
 
 ```r
 ggscreeplot(test12.pc)
@@ -222,7 +222,7 @@ elbow (take one component).
 explain how each principal component depends on (standardized)
 original variables (test scores):
 
-\small
+\footnotesize
 
 ```r
 test12.pc$loadings
@@ -243,13 +243,14 @@ test12.pc$loadings
 \normalsize
    
 
-First component basically negative sum of (standardized) test
+First component basically sum of (standardized) test
 scores. That is, person tends to score similarly on two tests, and a
 composite score would summarize performance.
 
 
 ## xxx  Component scores
 
+\small
 
 ```r
 d <- data.frame(test12, test12.pc$scores)
@@ -267,6 +268,7 @@ d
 ## 7    10     27  G  0.111909141 -0.111909141
 ## 8    12     30  H  0.568313864 -0.013613668
 ```
+\normalsize
 
 
 
@@ -282,7 +284,7 @@ d
 
 
 
-## xxx  Plot of scores
+##  Plot of scores
 
 
 ```r
@@ -296,7 +298,7 @@ ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
 
 
 
-## xxx  Comments
+##  Comments
 
 
 * Vertical scale exaggerates importance of `comp.2`.
@@ -324,7 +326,7 @@ g
 
 
 
-## xxx  The biplot
+##  The biplot
 
 
 * Plotting variables and individuals on one plot.
@@ -344,14 +346,14 @@ g <- ggbiplot(test12.pc, labels = test12$id)
 
 
 
-## xxx  The biplot
+##  The biplot
 ![plot of chunk ff3](figure/ff3-1.pdf)
   
 ![](bPrincomp-test-biplot.png)
 
 
 
-## xxx  Comments
+##  Comments
 
 
 * Variables point almost same direction (left). Thus very
@@ -377,7 +379,7 @@ relative to first.
 
 ## xxx  Track running data
 
-(1984) track running records for distances 100m to marathon, arranged
+Track running records (1984) for distances 100m to marathon, arranged
 by country. Countries labelled by (mostly) Internet domain names (ISO
 2-letter codes):
 
@@ -385,37 +387,35 @@ by country. Countries labelled by (mostly) Internet domain names (ISO
 
  
 
+\scriptsize
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
 track <- read_table(my_url)
-track %>% sample_n(12)
+track %>% sample_n(8)
 ```
 
 ```
-## # A tibble: 12 x 9
-##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
-##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1  12.2  23.2  52.9  2.02  4.24  16.7   35.4     165. ck     
-##  2  10.1  20    44.6  1.75  3.59  13.2   27.5     131. ru     
-##  3  10.6  20.5  45.9  1.78  3.61  13.5   28.1     131. dk     
-##  4  10.3  20.9  46.9  1.79  3.77  14.0   29.2     136. kr     
-##  5  10.6  21.5  47.8  1.84  3.92  14.7   30.8     149. id     
-##  6  10.6  21.3  46.8  1.79  3.77  14.1   30.1     139. tw     
-##  7  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. pg     
-##  8  10.2  20.7  46.6  1.78  3.64  14.6   28.4     135. gr     
-##  9  10.8  21.6  46.2  1.81  3.83  14.7   30.6     145. ph     
-## 10  10.3  20.1  44.8  1.74  3.57  13.3   27.7     128. au     
-## 11  10.1  20.2  44.9  1.7   3.51  13.0   27.5     129. uk     
-## 12  10.4  20.9  46.3  1.82  3.8   14.6   31.0     154. my
+## # A tibble: 8 x 9
+##    m100  m200  m400  m800 m1500 m5000 m10000 marathon country
+##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
+## 1  10.8  21.9  49    2.02  4.24  16.3   34.7     162. ws     
+## 2  10.3  20.7  45.0  1.73  3.6   13.2   27.4     130. be     
+## 3  10.4  20.6  45.6  1.76  3.58  13.4   28.2     134. cz     
+## 4  10.3  20.8  45.9  1.79  3.64  13.4   27.7     129. jp     
+## 5  10.6  21.5  47.8  1.84  3.92  14.7   30.8     149. id     
+## 6  10.4  20.8  46.8  1.81  3.7   14.0   29.4     138. ar     
+## 7  10.3  20.1  44.8  1.74  3.57  13.3   27.7     128. au     
+## 8  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se
 ```
-
+\normalsize
  
 
 
 ## xxx  Country names
 Also read in a table to look country names up in later:
 
+\footnotesize
 
 ```r
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/isocodes.csv"
@@ -439,11 +439,11 @@ iso
 ## 10 Antarctica     aq    ata      10
 ## # … with 241 more rows
 ```
-
+\normalsize
  
 
 
-## xxx  Data and aims
+##  Data and aims
 
 
 * 
@@ -459,7 +459,7 @@ Times in seconds 100m--400m, in minutes for rest (800m up).
 ## xxx  Fit and examine principal components
 
 
-   
+\footnotesize
 
 ```r
 track_num <- track %>% select_if(is.numeric)
@@ -486,11 +486,11 @@ summary(track.pc)
 ## Proportion of Variance 0.005802441 0.002825012
 ## Cumulative Proportion  0.997174988 1.000000000
 ```
-
+\normalsize
  
 
 
-## xxx  Scree plot
+##   Scree plot
 
 
 ```r
@@ -502,7 +502,7 @@ ggscreeplot(track.pc)
  
 
 
-## xxx  How many components?
+##  How many components?
 
 
 * As for discriminant analysis, look for "elbow" in scree plot.
@@ -527,6 +527,7 @@ components tell almost whole story.
 ## xxx  How do components depend on original variables?
 Loadings:
 
+\footnotesize
 
 ```r
 track.pc$loadings
@@ -535,35 +536,26 @@ track.pc$loadings
 ```
 ## 
 ## Loadings:
-##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
-## m100      0.318  0.567  0.332  0.128  0.263  0.594  0.136
-## m200      0.337  0.462  0.361 -0.259 -0.154 -0.656 -0.113
-## m400      0.356  0.248 -0.560  0.652 -0.218 -0.157       
-## m800      0.369        -0.532 -0.480  0.540        -0.238
-## m1500     0.373 -0.140 -0.153 -0.405 -0.488  0.158  0.610
-## m5000     0.364 -0.312  0.190        -0.254  0.141 -0.591
-## m10000    0.367 -0.307  0.182        -0.133  0.219 -0.177
-## marathon  0.342 -0.439  0.263  0.300  0.498 -0.315  0.399
-##          Comp.8
-## m100      0.106
-## m200           
-## m400           
-## m800           
-## m1500     0.139
-## m5000     0.547
-## m10000   -0.797
-## marathon  0.158
+##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8
+## m100      0.318  0.567  0.332  0.128  0.263  0.594  0.136  0.106
+## m200      0.337  0.462  0.361 -0.259 -0.154 -0.656 -0.113       
+## m400      0.356  0.248 -0.560  0.652 -0.218 -0.157              
+## m800      0.369        -0.532 -0.480  0.540        -0.238       
+## m1500     0.373 -0.140 -0.153 -0.405 -0.488  0.158  0.610  0.139
+## m5000     0.364 -0.312  0.190        -0.254  0.141 -0.591  0.547
+## m10000    0.367 -0.307  0.182        -0.133  0.219 -0.177 -0.797
+## marathon  0.342 -0.439  0.263  0.300  0.498 -0.315  0.399  0.158
 ## 
-##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6
-## SS loadings     1.000  1.000  1.000  1.000  1.000  1.000
-## Proportion Var  0.125  0.125  0.125  0.125  0.125  0.125
-## Cumulative Var  0.125  0.250  0.375  0.500  0.625  0.750
-##                Comp.7 Comp.8
-## SS loadings     1.000  1.000
-## Proportion Var  0.125  0.125
-## Cumulative Var  0.875  1.000
+##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
+## SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000
+## Proportion Var  0.125  0.125  0.125  0.125  0.125  0.125  0.125
+## Cumulative Var  0.125  0.250  0.375  0.500  0.625  0.750  0.875
+##                Comp.8
+## SS loadings     1.000
+## Proportion Var  0.125
+## Cumulative Var  1.000
 ```
-
+\normalsize
    
 
 
@@ -573,20 +565,20 @@ track.pc$loadings
 * `comp.1` loads about equally (has equal weight) on
 times over all distances.
 
-* `comp.2` has large positive loading for long
-distances, large negative for short ones.
+* `comp.2` has large positive loading for short
+distances, large negative for long ones.
 
 * `comp.3`: large negative for middle distance, large
 positive especially for short distances.
 
 * Country overall good at running will have lower than average record
 times at all distances, so `comp.1`
-*large*. Conversely, for countries bad at running,
-`comp.1` very negative.
+*small*. Conversely, for countries bad at running,
+`comp.1` very positive.
 
 * Countries relatively better at sprinting (low times) will be
-*positive* on `comp.2`; countries relatively better at
-distance running *negative* on `comp.2`.
+*negative* on `comp.2`; countries relatively better at
+distance running *positive* on `comp.2`.
 
 
 
@@ -603,17 +595,14 @@ names(d)
 ```
 
 ```
-## [1] "Comp.1"  "Comp.2"  "Comp.3"  "Comp.4"  "Comp.5" 
-## [6] "Comp.6"  "Comp.7"  "Comp.8"  "country"
+## [1] "Comp.1"  "Comp.2"  "Comp.3"  "Comp.4"  "Comp.5"  "Comp.6" 
+## [7] "Comp.7"  "Comp.8"  "country"
 ```
 
 ```r
-g1 <- ggplot(d, aes(
-  x = Comp.1, y = Comp.2,
-  label = country
-)) +
-  geom_point() + geom_text_repel() +
-  coord_fixed()
+g1 <- ggplot(d, aes(x = Comp.1, y = Comp.2,
+  label = country)) +
+  geom_point() + geom_text_repel() + coord_fixed()
 ```
 
      
@@ -644,10 +633,10 @@ g1
 ## xxx  Comments on principal components plot
 
 
-* Good running countries at right of plot: US, UK, Italy,
+* Good running countries at left of plot: US, UK, Italy,
 Russia, East and West Germany.
 
-* Bad running countries at left: Western Samoa, Cook Islands.
+* Bad running countries at right: Western Samoa, Cook Islands.
 
 * Better sprinting countries at bottom: US, Italy, Russia,
 Brazil, Greece. `do` is Dominican Republic, where sprinting
@@ -667,7 +656,6 @@ g2
 
 ![plot of chunk biplot2](figure/biplot2-1.pdf)
   
-![](bPrincomp-biplot.png)
 
 
 
@@ -676,47 +664,26 @@ g2
 
 * Had to do some pre-work to interpret PC plot. Biplot more self-contained.
 
-* All variable arrows point left; countries on left have large
-(bad) record times overall, countries on right good overall.
+* All variable arrows point right; countries on right have large
+(bad) record times overall, countries on left good overall.
 
-* Variable arrows extend negatively as well. Top left = bad at
-distance running, bottom right = good at distance running.
+* Imagine that variable arrows extend negatively as well. Bottom right = bad at
+distance running, top left = good at distance running.
 
-* Bottom left = bad at sprinting, top right = good at
+* Top right = bad at sprinting, bottom left = good at
 sprinting.
 
 * Doesn't require so much pre-interpretation of components.
 
 
 
-## xxx  How do I know which country is which?
-Need to look up two-letter abbreviations in ISO table, eg. for best
-8 running countries:
-
-```r
-d %>%
-  arrange(desc(Comp.1)) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Comp.1, country, Country) %>%
-  slice(1:8)
-```
-
-```
-##      Comp.1 country          Country
-## 1 10.652914      ck     Cook Islands
-## 2  7.297865      ws            Samoa
-## 3  4.297909      mt            Malta
-## 4  3.945224      pg Papua New Guinea
-## 5  3.150886      sg        Singapore
-## 6  2.787273      th         Thailand
-## 7  2.773125      id        Indonesia
-## 8  2.697066      gu             Guam
-```
-
-   
 
 
 ## xxx  Best 8 running countries
+
+Need to look up two-letter abbreviations in ISO table:
+
+xxx \footnotesize
 
 ```r
 d %>%
@@ -737,11 +704,13 @@ d %>%
 ## 7 -2.468919      au                Australia
 ## 8 -2.191917      fr                   France
 ```
-
+\normalsize
    
 
 
 ## xxx  Worst 8 running countries
+
+\footnotesize
 
 ```r
 d %>%
@@ -762,35 +731,41 @@ d %>%
 ## 7  2.773125      id        Indonesia
 ## 8  2.697066      gu             Guam
 ```
-
+\normalsize
    
 
 
 ## xxx  Better at distance running
+
+\footnotesize
 
 ```r
 d %>%
   arrange(desc(Comp.2)) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Comp.2, country, Country) %>%
-  slice(1:8)
+  slice(1:10)
 ```
 
 ```
-##      Comp.2 country                   Country
-## 1 1.6860391      cr                Costa Rica
-## 2 1.5791490      kp             Korea (North)
-## 3 1.5226742      ck              Cook Islands
-## 4 1.3957839      tr                    Turkey
-## 5 1.3167578      pt                  Portugal
-## 6 1.2829272      gu                      Guam
-## 7 1.0663756      no                    Norway
-## 8 0.9547437      ir Iran, Islamic Republic of
+##       Comp.2 country                   Country
+## 1  1.6860391      cr                Costa Rica
+## 2  1.5791490      kp             Korea (North)
+## 3  1.5226742      ck              Cook Islands
+## 4  1.3957839      tr                    Turkey
+## 5  1.3167578      pt                  Portugal
+## 6  1.2829272      gu                      Guam
+## 7  1.0663756      no                    Norway
+## 8  0.9547437      ir Iran, Islamic Republic of
+## 9  0.9318729      nz               New Zealand
+## 10 0.8495104      mx                    Mexico
 ```
-
+\normalsize
    
 
 ## xxx  Better at sprinting
+
+\footnotesize
 
 ```r
 d %>%
@@ -813,11 +788,11 @@ d %>%
 ## 9  -0.7639385      ru       Russian Federation
 ## 10 -0.6470634      br                   Brazil
 ```
-
+\normalsize
    
 
 
-## xxx  Plot with country names
+##  Plot with country names
 
 ```r
 g <- d %>%
@@ -829,14 +804,14 @@ g <- d %>%
 ```
 
 ```
-## Warning: Column `country`/`ISO2` joining factor and
-## character vector, coercing into character vector
+## Warning: Column `country`/`ISO2` joining factor and character
+## vector, coercing into character vector
 ```
 
    
 
 
-## xxx  The plot
+##  The plot
 
 
 ```r
@@ -851,7 +826,13 @@ g
 
 ## xxx  Principal components from correlation matrix
 Create data file like this:
-\verbatiminput{cov.txt}
+
+```
+ 1        0.9705 -0.9600
+ 0.9705   1      -0.9980
+-0.9600  -0.9980  1
+```
+
 and read in like this:
 
 ```r
@@ -872,7 +853,7 @@ mat
    
 
 
-## xxx  Pre-processing
+##  Pre-processing
 A little pre-processing required:
 
 
@@ -890,7 +871,7 @@ mat.pc <- mat %>%
    
 
 
-## xxx  Scree plot: one component fine
+##  Scree plot: one component fine
 
 
 ```r
@@ -899,14 +880,13 @@ ggscreeplot(mat.pc)
 
 ![plot of chunk palermo](figure/palermo-1.pdf)
   
-![](bPrincomp-pc-cov.png)
-    
+
 
 
 ## xxx  Component loadings
-\begin{minipage}[t]{0.6\linewidth}
 Compare correlation matrix:
 
+\scriptsize
 
 ```r
 mat
@@ -920,11 +900,12 @@ mat
 ## 2  0.970  1     -0.998
 ## 3 -0.96  -0.998  1
 ```
-
+\normalsize
   
 
 with component loadings
 
+\scriptsize
 
 ```r
 mat.pc$loadings
@@ -943,10 +924,9 @@ mat.pc$loadings
 ## Proportion Var  0.333  0.333  0.333
 ## Cumulative Var  0.333  0.667  1.000
 ```
-$
-\end{minipage}
-\begin{minipage}[t]{0.37\linewidth}
+\normalsize
 
+## Comments xxx for sign
 
 * When X1 large, X2 also large, X3 small.
 
@@ -956,7 +936,6 @@ $
 
 * Then `comp.1` *positive*.
 
-\end{minipage}
 
 ## xxx  No scores
 
@@ -969,11 +948,6 @@ $
 
 
 
-```
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-```
-
-   
 
 
 
