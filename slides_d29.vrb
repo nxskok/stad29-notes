@@ -1,14 +1,39 @@
-\frametitle{Comments xxx for sign}
-\protect\hypertarget{comments-xxx-for-sign}{}
+\frametitle{Comparing the two models}
+\protect\hypertarget{comparing-the-two-models}{}
 
 \begin{itemize}
+\tightlist
 \item
-  When X1 large, X2 also large, X3 small.
+  Second model doesn't fit well, but is it better than first?
+\end{itemize}
+
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(track}\FloatTok{.1}\NormalTok{, track}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Chi Square Difference Test
+##
+##         Df    AIC    BIC  Chisq Chisq diff Df diff
+## track.2 17 535.49 573.63 40.089
+## track.1 19 579.01 613.13 87.608     47.519       2
+##         Pr(>Chisq)
+## track.2
+## track.1  4.802e-11 ***
+## ---
+## Signif. codes:
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\normalsize
+
+\begin{itemize}
+\tightlist
 \item
-  Then \texttt{comp.1} \emph{negative}.
-\item
-  When X1 small, X2 small, X3 large.
-\item
-  Then \texttt{comp.1} \emph{positive}.
+  Oh yes, a lot better.
 \end{itemize}
 

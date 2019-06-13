@@ -55,7 +55,7 @@
 
 ``` 
 
- 
+
 
 
 ------------------------------- 
@@ -71,9 +71,6 @@ after
 
  
 
-```{r bFactor, child="bFactor.Rmd"}
-
-```
 
 time series notes need tidying
 

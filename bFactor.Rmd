@@ -1,33 +1,33 @@
 # Exploratory factor analysis
 
-## Principal components and factor analysis
+##  Principal components and factor analysis
 
 
 * Principal components: 
 
 
-* Purely mathematical.
+  * Purely mathematical.
 
-* Find eigenvalues, eigenvectors of correlation matrix.
+  * Find eigenvalues, eigenvectors of correlation matrix.
 
-* No testing whether observed components reproducible, or even probability model behind it.
+  * No testing whether observed components reproducible, or even probability model behind it.
 
 
 * Factor analysis: 
 
 
-* some way towards fixing this (get test of appropriateness)
+  * some way towards fixing this (get test of appropriateness)
 
-* In factor analysis, each variable modelled as: "common factor" (eg. verbal ability) and "specific factor" (left over).
+  * In factor analysis, each variable modelled as: "common factor" (eg. verbal ability) and "specific factor" (left over).
 
-* Choose the common factors to "best" reproduce pattern seen in correlation matrix.
+  * Choose the common factors to "best" reproduce pattern seen in correlation matrix.
 
-* Iterative procedure, different answer from principal components.
+  * Iterative procedure, different answer from principal components.
 
 
 
-## Packages
-```{r warning=F, message=F}
+##  Packages
+```{r eval=F, warning=F, message=F}
 library(lavaan) # for confirmatory, later
 library(ggbiplot)
 library(tidyverse)
@@ -36,7 +36,7 @@ library(tidyverse)
    
 
 
-## Example
+##  Example
 
 
 * 
@@ -61,25 +61,29 @@ dots 0.095 0.181 0.113 0.585 1
 
 
 
-## To start: principal components
+##  To start: principal components
 
-Using correlation matrix:
+Using correlation matrix. Read that first:
 
 ```{r kids-scree,message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rex2.txt"
 kids <- read_delim(my_url, " ")
 kids
-kids.pc <- kids %>%
-  select_if(is.numeric) %>%
-  as.matrix() %>%
-  princomp(covmat = .)
 ```
 
- 
+## Principal components on correlation matrix
+
+```{r}
+kids %>%
+  select_if(is.numeric) %>%
+  as.matrix() %>%
+  princomp(covmat = .) -> kids.pc
+```
 
 
 
-## Scree plot
+
+##  Scree plot
 ```{r fig.height=3.5}
 ggscreeplot(kids.pc)
 ```
@@ -87,16 +91,18 @@ ggscreeplot(kids.pc)
    
 
 
-## Principal component results
+##  Principal component results
 
 
 * Need 2 components. Loadings:
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 kids.pc$loadings
 ```
+\normalsize
 
-
-
+## Comments
 
 * First component has a bit of everything, though especially the
 first three tests.
@@ -106,7 +112,7 @@ first three tests.
 * No scores, plots since no actual data.
 
 
-## Factor analysis
+##  Factor analysis
 
 
 * Specify number of factors first, get solution with exactly
@@ -123,7 +129,7 @@ interpretation of loadings (factor-variable relation) easier.
 
 
 
-## Factor analysis for the kids data
+##  Factor analysis for the kids data
 
 
 * Create "covariance list" to include number of children who
@@ -143,37 +149,35 @@ kids.f2 <- factanal(factors = 2, covmat = km2)
 
 
 
-## Uniquenesses
+##  Uniquenesses
 
 ```{r }
 kids.f2$uniquenesses
 ```
-$
 
 
 * Uniquenesses say how "unique" a variable is (size of
 specific factor). Small
 uniqueness means that the variable is summarized by a factor (good).
 
-* Mildly worried by how large `add`'s uniqueness is.
+* Very large uniquenesses are bad; `add`'s uniqueness is largest but not large enough to be worried about.
 
-* Also see "communality" for this, where *large* is good.
+* Also see "communality" for this idea, where *large* is good and *small* is bad.
 
 
 
-## Loadings
-\begin{minipage}[t]{0.58\linewidth}
+##  Loadings
 
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 kids.f2$loadings
 ```
-$
-\end{minipage}
-\begin{minipage}[t]{0.40\linewidth}
-
+\normalsize
 
 * Loadings show how each factor depends on variables. Blanks
 indicate "small", less than 0.1.
+
+## Comments xxx
 
 * Factor 1 clearly the "linguistic" tasks, factor 2 clearly
 the "mathematical" ones.
@@ -181,9 +185,9 @@ the "mathematical" ones.
 * Two factors together explain 68\% of variability (like
 regression R-squared).
     
-\end{minipage}
+- Which variables belong to which factor is *much* clearer than with principal components.
 
-## Are 2 factors enough?
+##  Are 2 factors enough? xxx
 ```{r }
 kids.f2$STATISTIC
 kids.f2$dof
@@ -195,7 +199,7 @@ kids.f2$PVAL
 P-value not small, so 2 factors OK.
 
 
-## 1 factor
+##  1 factor
 
 ```{r }
 kids.f1 <- factanal(factors = 1, covmat = km2)
@@ -209,9 +213,21 @@ kids.f1$PVAL
 1 factor rejected (P-value small). Definitely need more than 1.
 
 
-## Track running records revisited
+##  Track running records revisited
 
-```{r fig.height=3.5}
+Read the data, run principal components, get biplot: 
+
+```{r, message=FALSE}
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
+track <- read_table(my_url)
+track %>% select_if(is.numeric) -> track_num
+track.pc <- princomp(track_num, cor = T)
+g2 <- ggbiplot(track.pc, labels = track$country)
+```
+
+## The biplot
+
+```{r fig.height=3.7}
 g2
 ```
 
@@ -219,16 +235,16 @@ g2
 
 
 
-## Benefit of rotation
+##  Benefit of rotation
 
 
 * 100m and marathon arrows almost perpendicular, but components
 don't match anything much:
 
 
-* sprinting: top left and bottom right
+* sprinting: bottom left and top right
 
-* distance running: bottom left and top right.
+* distance running: top left and bottom right.
 
 
 * Can we arrange things so that components (factors) correspond
@@ -236,21 +252,22 @@ to something meaningful?
 
 
 
-## Track records by factor analysis
-Obtain factor scores (have actual data):
-```{r track-factor-biplot,size="footnotesize"}
-track
-track.f <- track %>%
-  select_if(is.numeric) %>%
-  factanal(2, scores = "r")
-```
+## xxx  Track records by factor analysis
+Obtain factor scores (have actual data): xxx
 
+\normalsize
+```{r track-factor-biplot}
+track %>%
+  select_if(is.numeric) %>%
+  factanal(2, scores = "r") -> track.f
+```
+\normalsize
    
 
 
-## Track data biplot
+##  Track data biplot
 Not so nice-looking:  
-```{r siracusa,fig.height=4}
+```{r siracusa,fig.height=3.5}
 biplot(track.f$scores, track.f$loadings,
   xlabs = track$country
 )
@@ -259,7 +276,7 @@ biplot(track.f$scores, track.f$loadings,
    
 
 
-## Comments
+##  Comments
 
 
 * This time 100m "up" (factor 2), marathon "right" (factor 1).
@@ -270,17 +287,16 @@ biplot(track.f$scores, track.f$loadings,
 
 
 
-## Rotated factor loadings
-{\small
+##  Rotated factor loadings
+\small
 ```{r }
 track.f$loadings
 ```
-def 
-}
+\normalsize
 
 
-\begin{frame}[fragile]{Which countries are good at sprinting or
-distance running?}
+## Which countries are good at sprinting or distance running?
+
 Make a data frame with the countries and scores in:
 
 ```{r }
@@ -294,34 +310,36 @@ scores %>% slice(1:6)
  
 
 
-## The best sprinting countries
-Most negative on factor 2:  
+##  The best sprinting countries
+Most negative on factor 2:
 
-```{r warning=F,size="footnotesize"}
+\footnotesize
+```{r, warning=F}
 scores %>%
   arrange(Factor2) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Country, Factor1, Factor2) %>%
   slice(1:10)
 ```
-
+\normalsize
  
 
 
-## The best distance-running countries
+##  The best distance-running countries
 Most negative on factor 1:
 
-```{r warning=F, size="footnotesize"}
+\footnotesize
+```{r, warning=F}
 scores %>%
   arrange(Factor1) %>%
   left_join(iso, by = c("country" = "ISO2")) %>%
   select(Country, Factor1, Factor2) %>%
   slice(1:10)
 ```
-
+\normalsize
  
 
-## A bigger example: BEM sex role inventory
+##  A bigger example: BEM sex role inventory
 
 
 * 369 women asked to rate themselves on 60 traits, like "self-reliant" or "shy".
@@ -336,26 +354,28 @@ of factors that capture aspects of personality?
 
 
 
-## The whole inventory
+## xxx  The whole inventory
 
 
-![](bem.png)
+![](bem.png){width=5}
 
 
 
 
-## Some of the data
+##  Some of the data
 
-```{r bem-scree,size="scriptsize",message=F}
+
+\scriptsize
+```{r bem-scree, message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/factor.txt"
 bem <- read_tsv(my_url)
 bem
 ```
-
+\normalsize
    
 
 
-## Principal components first
+##  Principal components first
 \ldots to decide on number of factors:
 ```{r }
 bem.pc <- bem %>%
@@ -366,10 +386,9 @@ bem.pc <- bem %>%
    
 
 
-## The scree plot
-```{r genoa,fig.height=3.5}
-g <- ggscreeplot(bem.pc)
-g
+## xxx  The scree plot
+```{r genoa,fig.height=3.7}
+(g <- ggscreeplot(bem.pc))
 ```
 
  
@@ -377,32 +396,32 @@ g
 
 * No obvious elbow.
   
-![](bFactor-bem-scree.png)
 
 
 
-## Zoom in to search for elbow
-```{r bem-scree-two,fig.height=3.5,warning=F}
+##  Zoom in to search for elbow xxx
+
+Possible elbows at 3 (2 factors) and 6 (5):
+
+```{r bem-scree-two,fig.height=3.3,warning=F}
 g + scale_x_continuous(limits = c(0, 8))
 ```
 
 
 
-Possible elbows at 3 (2 factors) and 6 (5).
 
 
-## but is 2 really good?
-{\scriptsize
+##  but is 2 really good?
+
+\scriptsize
 ```{r }
 summary(bem.pc)
 ```
-
-   
-}
+\normalsize
 
 
 
-## Comments
+##  Comments
 
 
 * Want overall fraction of variance explained (``cumulative
@@ -417,16 +436,16 @@ proportion'') to be reasonably high.
 
 
 
-## Biplot
+##  Biplot
 
-```{r bem-biplot,fig.height=3.5,}
+```{r bem-biplot,fig.height=3.5}
 ggbiplot(bem.pc, alpha = 0.3)
 ```
   
 ![](bFactor-bem-biplot.png)
 
 
-## Comments
+##  Comments
 
 
 * Ignore individuals for now.
@@ -450,88 +469,95 @@ bem.2 <- bem %>%
 
 
 
-## Uniquenesses
-```{r echo=-1,size="scriptsize"}
+##  Uniquenesses, sorted
+
+\scriptsize
+```{r, echo=-1}
 options(width = 60)
-bem.2$uniquenesses
+sort(bem.2$uniquenesses)
 ```
-
+\normalsize
    
-
-
+## Comments xxx
 
 * Mostly high or very high (bad).
 
-* Some smaller, eg.:
-Leadership ability (0.409),
+* Some smaller, eg.: Leadership ability (0.409),
 Acts like leader (0.417),
 Warm (0.476),
 Tender (0.493).
 
 * Smaller uniquenesses captured by one of our two factors.
 
+- Larger uniquenesses are not: need more factors to capture them.
 
 
-## Factor loadings, some
 
-```{r size="scriptsize"}
+##  Factor loadings, some
+
+\scriptsize
+```{r}
 bem.2$loadings
 ```
+\normalsize
 
 
 
-
-## Making a data frame
-There are too many to read easily, so make a data frame. This is a
+##  Making a data frame
+There are too many to read easily, so make a data frame. A
 bit tricky:
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 loadings <- as.data.frame(unclass(bem.2$loadings)) %>%
   mutate(trait = rownames(bem.2$loadings))
-loadings %>% slice(1:10)
+loadings %>% slice(1:12)
 ```
-
+\normalsize
    
 
 
-## Pick out the big ones on factor 1
+##  Pick out the big ones on factor 1
 
 Arbitrarily defining $>0.4$ or $<-0.4$ as "big":
-```{r size="footnotesize"}
-loadings %>% filter(abs(Factor1) > 0.4)
+
+\scriptsize
+```{r}
+loadings %>% filter(abs(Factor1) > 0.4) 
 ```
+\normalsize
 
 
 
+##  Factor 2, the big ones
 
-## Factor 2, the big ones
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 loadings %>% filter(abs(Factor2) > 0.4)
 ```
-
+\normalsize
    
 
 
-## Plotting the two factors
-A bi-plot, this time with the variables reduced in size. Looking for
+## xxx  Plotting the two factors
+- A bi-plot, this time with the variables reduced in size. Looking for
 unusual individuals.
 
-Have to run `factanal` again to get factor scores for plotting.
+- Have to run `factanal` again to get factor scores for plotting.
 
-```{r biplot-two-again,fig.height=5,eval=F}
-bem.2a <- factanal(bem[, -1], factors = 2, scores = "r")
+```{r biplot-two-again, eval=F}
+bem %>% select(-subno) %>% factanal(,. factors=2, scores="r") -> bem.2a
 biplot(bem.2a$scores, bem.2a$loadings, cex = c(0.5, 0.5))
 ```
 
  
 
-Numbers on plot are row numbers of `bem`
+- Numbers on plot are row numbers of `bem`
 data frame.
 
 
-## The (awful) biplot
+##  The (awful) biplot
 
-![](bFactor-biplot-two-again.png)
- 
 ```{r biplot-two-ag,fig.height=4,echo=F}
 bem.2a <- factanal(bem[, -1], factors = 2, scores = "r")
 biplot(bem.2a$scores, bem.2a$loadings, cex = c(0.5, 0.5))
@@ -540,7 +566,7 @@ biplot(bem.2a$scores, bem.2a$loadings, cex = c(0.5, 0.5))
  
 
 
-## Comments
+##  Comments
 
 
 * Variables mostly up ("feminine") and right ("masculine"),
@@ -553,41 +579,46 @@ accomplished by rotation.
 
 
 
-## Individual 366
-\begin{multicols}{2}
-```{r size="tiny"}
+##  Individual 366
+
+\tiny
+```{r}
 bem %>% slice(366) %>% glimpse()
 ```
+\normalsize
 
- 
+## Comments xxx
 
 
 
-* High on factor 2, but hard to see which traits should have high scores
+* Individual 366 high on factor 2, but hard to see which traits should have high scores
 (unless we remember).
 
 * Idea: *tidy* original data frame to make easier to look
 things up.
 
-\end{multicols}
 
 
-## Tidying original data
-```{r size="scriptsize"}
+##  Tidying original data
+
+\scriptsize
+```{r}
 bem_tidy <- bem %>%
   mutate(row = row_number()) %>%
   gather(trait, score, c(-subno, -row))
 bem_tidy
 ```
-
+\normalsize
    
 
 
-## Recall data frame of loadings
-```{r size="footnotesize"}
+##  Recall data frame of loadings
+
+\footnotesize
+```{r}
 loadings %>% slice(1:10)
 ```
-
+\normalsize
    
 
 Want to add the factor scores for each trait to our tidy data frame
@@ -595,47 +626,53 @@ Want to add the factor scores for each trait to our tidy data frame
 `trait` that is in both data frames (thus, the default):
 
 
-## Looking up loadings
-```{r size="scriptsize"}
-bem_tidy <- bem_tidy %>% left_join(loadings)
+##  Looking up loadings
+
+\scriptsize
+```{r}
+bem_tidy %>% left_join(loadings) -> bem_tidy
 bem_tidy %>% sample_n(12)
 ```
-
+\normalsize
    
 
 
-## Individual 366, high on Factor 2
+##  Individual 366, high on Factor 2
 So now pick out the rows of the tidy data frame that belong to
 individual 366 (`row=366`) and for which the `Factor2`
 score exceeds 0.4 in absolute value (our "big" from before):
 
-```{r size="footnotesize"}
+\scriptsize
+```{r}
 bem_tidy %>% filter(row == 366, abs(Factor2) > 0.4)
 ```
-
+\normalsize
  
 As expected, high scorer on these.
 
 
-## Several individuals
+##  Several individuals
 Rows 311 and 214 were *low* on Factor 2, so their scores should
 be low. Can we do them all at once?
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 bem_tidy %>% filter(
   row %in% c(366, 311, 214),
   abs(Factor2) > 0.4
 )
 ```
-
+\normalsize
    
 
 Can we display each individual in own column?
 
 
-## Individual by column
+##  Individual by column
 Un-`tidy`, that is, `spread`:
 
-```{r size="scriptsize"}
+\tiny
+```{r}
 bem_tidy %>%
   filter(
     row %in% c(366, 311, 214),
@@ -644,24 +681,26 @@ bem_tidy %>%
   select(-subno, -Factor1, -Factor2) %>%
   spread(row, score)
 ```
-
+\normalsize
  
 366 high, 311 middling, 214 (sometimes) low.
 
 
-## Individuals 230, 258, 359
+##  Individuals 230, 258, 359
 These were high, low, low on factor 1. Adapt code:
-```{r size="scriptsize"}
+
+\tiny
+```{r}
 bem_tidy %>%
   filter(row %in% c(359, 258, 230), abs(Factor1) > 0.4) %>%
   select(-subno, -Factor1, -Factor2) %>%
   spread(row, score)
 ```
-
+\normalsize
  
 
 
-## Is 2 factors enough?
+##  Is 2 factors enough?
 Suspect not:
 ```{r }
 bem.2$PVAL
@@ -687,83 +726,95 @@ Let's have a look at the important things in those 15 factors.
 
 
 
-## Get factor loadings
+##  Get 15-factor loadings
 into a data frame, as before:  
-```{r size="small"}
+
+\small
+```{r}
 loadings <- as.data.frame(unclass(bem.15$loadings)) %>%
   mutate(trait = rownames(bem.15$loadings))
 ```
-
+\normalsize
    
 
 then show the highest few loadings on each factor.
 
 
 
-## Factor 1
-```{r size="footnotesize"}
+##  Factor 1 (of 15)
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor1))) %>%
   select(Factor1, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 Compassionate, understanding, sympathetic, soothing: thoughtful of
 others. 
 
 
 
-## Factor 2
-```{r size="footnotesize"}
+##  Factor 2
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor2))) %>%
   select(Factor2, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Strong personality, forceful, assertive, dominant: getting ahead. 
 
 
 
-## Factor 3
-```{r size="footnotesize"}
+##  Factor 3
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor3))) %>%
   select(Factor3, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Self-reliant, self-sufficient, independent: going it alone.
 
 
 
-## Factor 4
-```{r size="footnotesize"}
+##  Factor 4
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor4))) %>%
   select(Factor4, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Gentle, tender, warm (affectionate): caring for others.
 
 
 
-## Factor 5
-```{r size="footnotesize"}
+##  Factor 5
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor5))) %>%
   select(Factor5, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Ambitious, competitive (with a bit of risk-taking and individualism):
@@ -771,14 +822,16 @@ Being the best.
 
 
 
-## Factor 6
-```{r size="footnotesize"}
+##  Factor 6
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor6))) %>%
   select(Factor6, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Acts like a leader, leadership ability (with a bit of Dominant):
@@ -786,14 +839,16 @@ Taking charge.
 
 
 
-## Factor 7
-```{r size="footnotesize"}
+##  Factor 7
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor7))) %>%
   select(Factor7, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Acts like a leader, leadership ability (with a bit of Dominant):
@@ -801,40 +856,47 @@ Taking charge.
 
 
 
-## Factor 8
-```{r size="footnotesize"}
+##  Factor 8
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor8))) %>%
   select(Factor8, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 Affectionate, flattering: Making others feel good.
 
 
 
-## Factor 9
-```{r size="footnotesize"}
+##  Factor 9
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor9))) %>%
   select(Factor9, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Taking a stand.
 
 
 
-## Factor 10
-```{r size="footnotesize"}
+##  Factor 10
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor10))) %>%
   select(Factor10, trait) %>%
   slice(1:10)
 ```
+\normalsize
 
    
 
@@ -842,83 +904,93 @@ Feminine. (A little bit of not-masculine!)
 
 
 
-## Factor 11
-```{r size="footnotesize"}
+##  Factor 11
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor11))) %>%
   select(Factor11, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Loyal.
 
 
 
-## Factor 12
-```{r size="footnotesize"}
+##  Factor 12
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor12))) %>%
   select(Factor12, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Childlike. (With a bit of moody, shy, not-self-sufficient, not-conscientious.)
 
 
 
-## Factor 13
-```{r size="footnotesize"}
+##  Factor 13
+
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor13))) %>%
   select(Factor13, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Truthful. (With a bit of happy and not-gullible.)
 
 
 
-## Factor 14
-```{r size="footnotesize"}
+##  Factor 14
+\footnotesize
+
+```{r}
 loadings %>%
   arrange(desc(abs(Factor14))) %>%
   select(Factor14, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Decisive. (With a bit of self-sufficient and not-soft-spoken.)
 
 
 
-## Factor 15
-```{r size="footnotesize"}
+##  Factor 15
+\footnotesize
+```{r}
 loadings %>%
   arrange(desc(abs(Factor15))) %>%
   select(Factor15, trait) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Not-compassionate, athletic, sensitive: A mixed bag. ("Cares about self"?)
 
 
-## Anything left out? Uniquenesses
-```{r size="scriptsize"}
-data.frame(uniq = bem.15$uniquenesses) %>%
-  rownames_to_column() %>%
+##  Anything left out? Uniquenesses
+
+\scriptsize
+```{r}
+enframe(bem.15$uniquenesses, name="quality", value="uniq") %>%
   arrange(desc(uniq)) %>%
   slice(1:10)
 ```
-
+\normalsize
    
 
 Uses foul language especially, also loves children and analytical. So
@@ -927,15 +999,15 @@ could use even more factors.
 
 # Confirmatory factor analysis}
 
-## Confirmatory factor analysis
+##  Confirmatory factor analysis
 
 
 * Exploratory: what do data suggest as hidden underlying factors (in terms of variables observed)?
 
-* Confirmatory: have {\em theory} about how underlying factors depend on observed variables; test whether theory supported by data:
+* Confirmatory: have *theory* about how underlying factors depend on observed variables; test whether theory supported by data:
 
 
-* does theory provide {\em some} explanation (better than nothing)
+* does theory provide *some* explanation (better than nothing)
 
 * can we do better?
 
@@ -944,7 +1016,7 @@ could use even more factors.
 
 
 
-## Children and tests again
+##  Children and tests again
 
 
 
@@ -954,7 +1026,7 @@ children):
 ```{r }
 km
 ```
-def 
+ 
 
 
 * Will use package `lavaan` for confirmatory analysis.
@@ -966,7 +1038,7 @@ def
 
 
 
-## Two or three steps
+##  Two or three steps
 
 
 * Make sure correlation matrix (if needed) is handy.
@@ -977,7 +1049,7 @@ def
 
 
 
-## Specifying a factor model
+## xxx  Specifying a factor model
 
 
 * Jargon: thing you cannot observe called **latent variable**.
@@ -990,7 +1062,7 @@ def
 ```{r }
 test.model.1 <- "ability=~para+sent+word+add+dots"
 ```
-def 
+ 
 
 
 * and a model that we really believe, that there are two factors,
@@ -998,7 +1070,7 @@ a verbal and a mathematical:
 ```{r }
 test.model.2 <- "\nverbal=~para+sent+word\nmath=~add+dots"
 ```
-def 
+ 
 
 * Note the format: really all one line between single quotes, but
 putting it on several lines makes the layout clearer.
@@ -1008,7 +1080,7 @@ variable depends on these observed variables''.
 
 
 
-## Fitting a 1-factor model
+##  Fitting a 1-factor model
 
 
 * Need to specify model, correlation matrix, $n$ like this:
@@ -1019,25 +1091,29 @@ fit1 <- cfa(test.model.1,
   sample.nobs = 145
 )
 ```
-def 
+ 
 
 
 * Has `summary`, or briefer version like this:
-```{r size="scriptsize"}
+
+\scriptsize
+```{r}
 fit1
 ```
-def 
+\normalsize
 
 * Test of fit: null "model fits" *rejected*. We can do better.
 
 
 
-## Two-factor model
-```{r size="scriptsize"}
+##  Two-factor model
+
+\scriptsize
+```{r}
 fit2 <- cfa(test.model.2, sample.cov = km, sample.nobs = 145)
 fit2
 ```
-def 
+\normalsize
 
 
 
@@ -1049,15 +1125,16 @@ def
 
 
 
-## Comparing models
+##  Comparing models
 
 
 * Use `anova` as if this were a regression:
 
-```{r size="scriptsize"}
+\scriptsize
+```{r}
 anova(fit1, fit2)
 ```
-def 
+\normalsize
 
 
 * 2-factor model fits significantly better than 1-factor.
@@ -1066,39 +1143,42 @@ def
 
 
 
-## Track and field data, yet again
+## xxx  Track and field data, yet again
 
 
 * `cfa` works easier on actual data, such as the running records:
-{\small 
 
-```{r size="footnotesize"}
+\footnotesize
+```{r}
 track %>% print(n = 6)
 ```
-def 
-}
+\normalsize
 
 
 * Specify factor model. Factors seemed to be "sprinting" (up to
 800m) and "distance running" (beyond):
-```{r size="footnotesize"}
+
+\footnotesize
+```{r}
 track.model <- "\nsprint=~m100+m200+m400+m800\ndistance=~m1500+m5000+m10000+marathon"
 ```
-def 
+\normalsize
 
 
-## Fit and examine the model
+##  Fit and examine the model
 
 
 * Fit the model. The observed variables are on different
 scales, so we should standardize them first via `std.ov`:
-```{r size="scriptsize"}
+
+\scriptsize
+```{r}
 track.1 <- track %>%
   select(-country) %>%
   cfa(track.model, data = ., std.ov = T)
 track.1
 ```
-def 
+\normalsize
 
 
 * This fits badly. Can we do better?
@@ -1106,7 +1186,7 @@ def
 * Idea: move middle distance races (800m, 1500m) into a third factor.
 
 
-## Factor model 2
+## xxx  Factor model 2
 
 
 * Define factor model:
@@ -1114,46 +1194,39 @@ def
 ```{r }
 track.model.2 <- "\nsprint=~m100+m200+m400\nmiddle=~m800+m1500\ndistance=~m5000+m10000+marathon"
 ```
-def 
+ 
 
 
 * Fit and examine:
-```{r size="scriptsize"}
+
+\scriptsize
+```{r}
 track.2 <- track %>%
   select(-country) %>%
   cfa(track.model.2, data = ., std.ov = T)
 track.2
 ```
-def 
+\normalsize
 
 
 * Fits  marginally better, though still badly.
 
 
 
-## Comparing the two models
+##  Comparing the two models
 
 
 * Second model doesn't fit well, but is it better than first?
-{\small    
 
-```{r size="footnotesize"}
-
+\footnotesize
+```{r}
 anova(track.1, track.2)
 ```
-def
-}
+\normalsize
 
 * Oh yes, a lot better.
 
 
-```{r echo=F, warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
-
-   
 
 
 

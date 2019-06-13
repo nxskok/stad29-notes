@@ -17,8 +17,12 @@ output:
 ```{r child="preliminaries.Rmd", echo=F}
 ```
 
-
 ```{r bPrincomp, child="bPrincomp.Rmd"}
+
+```
+
+
+```{r bFactor, child="bFactor.Rmd"}
 
 ```
 

@@ -277,7 +277,7 @@ relative to first.
 
 
 
-## xxx  Track running data
+##  Track running data
 
 Track running records (1984) for distances 100m to marathon, arranged
 by country. Countries labelled by (mostly) Internet domain names (ISO
@@ -300,7 +300,7 @@ track %>% sample_n(10)
  
 
 
-## xxx  Country names
+##  Country names
 Also read in a table to look country names up in later:
 
 \footnotesize
@@ -333,7 +333,7 @@ options(width = 50)
 
 \footnotesize
 ```{r scree-a}
-track_num <- track %>% select_if(is.numeric)
+track %>% select_if(is.numeric) -> track_num
 track.pc <- princomp(track_num, cor = T)
 summary(track.pc)
 ```
@@ -384,7 +384,7 @@ track.pc$loadings
    
 
 
-## xxx  Comments
+##  Comments
 
 
 * `comp.1` loads about equally (has equal weight) on
@@ -407,7 +407,7 @@ distance running *positive* on `comp.2`.
 
 
 
-## xxx  Commands for plots
+##  Commands for plots
 
 
 * Principal component scores (first two). Also need country IDs.
@@ -631,7 +631,7 @@ mat.pc$loadings
 ```
 \normalsize
 
-## Comments xxx
+## Comments
 
 * When X1 large, X2 also large, X3 small.
 
@@ -642,7 +642,7 @@ mat.pc$loadings
   * Then `comp.1` *negative*.
 
 
-## xxx  No scores
+##  No scores
 
 
 * With correlation matrix rather than data, no component scores
