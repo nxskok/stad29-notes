@@ -55,6 +55,15 @@
 
 ``` 
 
+```{r bPrincomp, child="bPrincomp.Rmd"}
+
+```
+
+
+```{r bFactor, child="bFactor.Rmd"}
+
+```
+
 
 
 
@@ -74,12 +83,6 @@ after
 
 time series notes need tidying
 
-```{r time-series, child="time-series.Rmd"}
-```
-
-```{r bMultiway, child="bMultiway.Rmd"}
-
-```
 
 make DONE slide
 

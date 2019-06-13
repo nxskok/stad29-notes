@@ -177,7 +177,7 @@ kids.f2$loadings
 * Loadings show how each factor depends on variables. Blanks
 indicate "small", less than 0.1.
 
-## Comments xxx
+## Comments
 
 * Factor 1 clearly the "linguistic" tasks, factor 2 clearly
 the "mathematical" ones.
@@ -187,7 +187,7 @@ regression R-squared).
     
 - Which variables belong to which factor is *much* clearer than with principal components.
 
-##  Are 2 factors enough? xxx
+##  Are 2 factors enough? 
 ```{r }
 kids.f2$STATISTIC
 kids.f2$dof
@@ -252,8 +252,8 @@ to something meaningful?
 
 
 
-## xxx  Track records by factor analysis
-Obtain factor scores (have actual data): xxx
+##  Track records by factor analysis
+Obtain factor scores (have actual data):
 
 \normalsize
 ```{r track-factor-biplot}
@@ -354,10 +354,10 @@ of factors that capture aspects of personality?
 
 
 
-## xxx  The whole inventory
+##  The whole inventory
 
 
-![](bem.png){width=5}
+![](bem.png){width=450px}
 
 
 
@@ -386,7 +386,7 @@ bem.pc <- bem %>%
    
 
 
-## xxx  The scree plot
+##  The scree plot
 ```{r genoa,fig.height=3.7}
 (g <- ggscreeplot(bem.pc))
 ```
@@ -399,7 +399,7 @@ bem.pc <- bem %>%
 
 
 
-##  Zoom in to search for elbow xxx
+##  Zoom in to search for elbow
 
 Possible elbows at 3 (2 factors) and 6 (5):
 
@@ -478,7 +478,7 @@ sort(bem.2$uniquenesses)
 ```
 \normalsize
    
-## Comments xxx
+## Comments
 
 * Mostly high or very high (bad).
 
@@ -539,14 +539,15 @@ loadings %>% filter(abs(Factor2) > 0.4)
    
 
 
-## xxx  Plotting the two factors
+##  Plotting the two factors
 - A bi-plot, this time with the variables reduced in size. Looking for
 unusual individuals.
 
 - Have to run `factanal` again to get factor scores for plotting.
 
 ```{r biplot-two-again, eval=F}
-bem %>% select(-subno) %>% factanal(,. factors=2, scores="r") -> bem.2a
+bem %>% select(-subno) %>% 
+  factanal(factors = 2, scores = "r") -> bem.2a
 biplot(bem.2a$scores, bem.2a$loadings, cex = c(0.5, 0.5))
 ```
 
@@ -587,7 +588,7 @@ bem %>% slice(366) %>% glimpse()
 ```
 \normalsize
 
-## Comments xxx
+## Comments
 
 
 
@@ -1047,16 +1048,21 @@ km
 
 * Fit factor model: does it fit acceptably? 
 
+## Terminology
 
-
-## xxx  Specifying a factor model
-
-
-* Jargon: thing you cannot observe called **latent variable**.
+* Thing you cannot observe called **latent variable**.
 
 * Thing you *can* observe called **manifest variable**.
 
 * Model predicts latent variables from manifest variables.
+  - asserts a relationship between latent and manifest.
+
+- We need to invent names for the latent variables.
+
+
+##  Specifying a factor model
+
+
 
 * Model with one factor including all the tests:
 ```{r }
@@ -1068,14 +1074,15 @@ test.model.1 <- "ability=~para+sent+word+add+dots"
 * and a model that we really believe, that there are two factors,
 a verbal and a mathematical:
 ```{r }
-test.model.2 <- "\nverbal=~para+sent+word\nmath=~add+dots"
+test.model.2 <- "verbal=~para+sent+word
+                 math=~add+dots"
 ```
  
 
 * Note the format: really all one line between single quotes, but
 putting it on several lines makes the layout clearer.
 
-* Also note special notation `=textasciitilde` for ``this latent
+* Also note special notation `=~` for ``this latent
 variable depends on these observed variables''.  
 
 
@@ -1143,7 +1150,7 @@ anova(fit1, fit2)
 
 
 
-## xxx  Track and field data, yet again
+##  Track and field data, yet again
 
 
 * `cfa` works easier on actual data, such as the running records:
@@ -1160,7 +1167,8 @@ track %>% print(n = 6)
 
 \footnotesize
 ```{r}
-track.model <- "\nsprint=~m100+m200+m400+m800\ndistance=~m1500+m5000+m10000+marathon"
+track.model <- "sprint=~m100+m200+m400+m800
+                distance=~m1500+m5000+m10000+marathon"
 ```
 \normalsize
 
@@ -1186,27 +1194,32 @@ track.1
 * Idea: move middle distance races (800m, 1500m) into a third factor.
 
 
-## xxx  Factor model 2
+##  Factor model 2
 
 
 * Define factor model:
 
 ```{r }
-track.model.2 <- "\nsprint=~m100+m200+m400\nmiddle=~m800+m1500\ndistance=~m5000+m10000+marathon"
+track.model.2 <- "sprint=~m100+m200+m400
+                  middle=~m800+m1500
+                  distance=~m5000+m10000+marathon"
 ```
  
 
 
-* Fit and examine:
+* Fit:
 
-\scriptsize
 ```{r}
-track.2 <- track %>%
+track %>%
   select(-country) %>%
-  cfa(track.model.2, data = ., std.ov = T)
+  cfa(track.model.2, data = ., std.ov = T) -> track.2
+```
+
+## Examine
+
+```{r}
 track.2
 ```
-\normalsize
 
 
 * Fits  marginally better, though still badly.

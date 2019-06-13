@@ -398,16 +398,16 @@ track %>% sample_n(10)
 ## # A tibble: 10 x 9
 ##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1  10.6  21.5  47.8  1.84  3.92  14.7   30.8     149. id     
-##  2  10.3  20.8  46.2  1.79  3.71  13.6   29.3     134. cl     
-##  3  10.4  20.7  45.5  1.74  3.61  13.3   27.5     131. fi     
-##  4  10.9  21.9  47.3  1.85  3.77  14.1   29.7     131. kp     
-##  5  10.8  21.9  49    2.02  4.24  16.3   34.7     162. ws     
-##  6  10.6  20.5  45.9  1.78  3.61  13.5   28.1     131. dk     
-##  7  10.4  20.8  46.8  1.81  3.7   14.0   29.4     138. ar     
-##  8  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se     
-##  9  10.1  20.4  45.3  1.73  3.57  13.3   28.0     132. fr     
-## 10  10.5  21.0  45.1  1.74  3.62  13.4   27.6     129. nl
+##  1  12.2  23.2  52.9  2.02  4.24  16.7   35.4     165. ck     
+##  2  10.2  20.7  46.6  1.78  3.64  14.6   28.4     135. gr     
+##  3  10.8  21.9  49    2.02  4.24  16.3   34.7     162. ws     
+##  4  10.3  20.9  46.9  1.79  3.77  14.0   29.2     136. kr     
+##  5  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se     
+##  6  10.4  21.3  46.1  1.8   3.65  13.5   28.0     129. mx     
+##  7  10.1  20.2  44.9  1.7   3.51  13.0   27.5     129. uk     
+##  8  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. pg     
+##  9  10.2  20.2  45.4  1.76  3.6   13.3   27.9     132. pl     
+## 10  10.4  20.6  45.6  1.76  3.58  13.4   28.2     134. cz
 ```
 \normalsize
  
@@ -1191,7 +1191,7 @@ kids.f2$loadings
 * Loadings show how each factor depends on variables. Blanks
 indicate "small", less than 0.1.
 
-## Comments xxx
+## Comments
 
 * Factor 1 clearly the "linguistic" tasks, factor 2 clearly
 the "mathematical" ones.
@@ -1201,7 +1201,7 @@ regression R-squared).
     
 - Which variables belong to which factor is *much* clearer than with principal components.
 
-##  Are 2 factors enough? xxx
+##  Are 2 factors enough? 
 
 ```r
 kids.f2$STATISTIC
@@ -1312,8 +1312,8 @@ to something meaningful?
 
 
 
-## xxx  Track records by factor analysis
-Obtain factor scores (have actual data): xxx
+##  Track records by factor analysis
+Obtain factor scores (have actual data):
 
 \normalsize
 
@@ -1479,10 +1479,10 @@ of factors that capture aspects of personality?
 
 
 
-## xxx  The whole inventory
+##  The whole inventory
 
 
-![](bem.png){width=5}
+![](bem.png){width=450px}
 
 
 
@@ -1540,7 +1540,7 @@ bem.pc <- bem %>%
    
 
 
-## xxx  The scree plot
+##  The scree plot
 
 ```r
 (g <- ggscreeplot(bem.pc))
@@ -1556,7 +1556,7 @@ bem.pc <- bem %>%
 
 
 
-##  Zoom in to search for elbow xxx
+##  Zoom in to search for elbow
 
 Possible elbows at 3 (2 factors) and 6 (5):
 
@@ -1726,7 +1726,7 @@ sort(bem.2$uniquenesses)
 ```
 \normalsize
    
-## Comments xxx
+## Comments
 
 * Mostly high or very high (bad).
 
@@ -1898,7 +1898,7 @@ loadings %>% filter(abs(Factor2) > 0.4)
    
 
 
-## xxx  Plotting the two factors
+##  Plotting the two factors
 - A bi-plot, this time with the variables reduced in size. Looking for
 unusual individuals.
 
@@ -1906,7 +1906,8 @@ unusual individuals.
 
 
 ```r
-bem %>% select(-subno) %>% factanal(,. factors=2, scores="r") -> bem.2a
+bem %>% select(-subno) %>% 
+  factanal(factors = 2, scores = "r") -> bem.2a
 biplot(bem.2a$scores, bem.2a$loadings, cex = c(0.5, 0.5))
 ```
 
@@ -1995,7 +1996,7 @@ bem %>% slice(366) %>% glimpse()
 ```
 \normalsize
 
-## Comments xxx
+## Comments
 
 
 
@@ -2085,20 +2086,20 @@ bem_tidy %>% sample_n(12)
 
 ```
 ## # A tibble: 12 x 6
-##    subno   row trait    score  Factor1  Factor2
-##    <dbl> <int> <chr>    <dbl>    <dbl>    <dbl>
-##  1    99    61 dominant     5  0.668   -0.245  
-##  2   101    62 selfsuff     4  0.511    0.134  
-##  3   569   331 soothe       7  0.0606   0.580  
-##  4   461   260 tender       6  0.0511   0.710  
-##  5   123    78 affect       6  0.178    0.554  
-##  6   469   266 soothe       6  0.0606   0.580  
-##  7   301   175 indpt        7  0.521    0.00587
-##  8   397   223 soothe       5  0.0606   0.580  
-##  9   149    97 leaderab     5  0.765    0.0695 
-## 10   192   113 sympathy     6  0.0230   0.526  
-## 11   572   334 helpful      5  0.314    0.376  
-## 12   581   340 foullang     4 -0.00493  0.133
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1    98    60 decide       4  0.542   0.113 
+##  2   247   141 compete      4  0.450   0.0532
+##  3   104    64 decide       5  0.542   0.113 
+##  4   365   213 affect       7  0.178   0.554 
+##  5   266   154 shy          1 -0.414  -0.0654
+##  6   528   307 helpful      6  0.314   0.376 
+##  7   214   123 decide       6  0.542   0.113 
+##  8   245   139 compass      7  0.114   0.627 
+##  9   146    95 yielding     3 -0.131   0.338 
+## 10   689   354 tender       6  0.0511  0.710 
+## 11   467   265 forceful     1  0.649  -0.126 
+## 12   461   260 truthful     6  0.109   0.315
 ```
 \normalsize
    
@@ -2857,16 +2858,21 @@ km
 
 * Fit factor model: does it fit acceptably? 
 
+## Terminology
 
-
-## xxx  Specifying a factor model
-
-
-* Jargon: thing you cannot observe called **latent variable**.
+* Thing you cannot observe called **latent variable**.
 
 * Thing you *can* observe called **manifest variable**.
 
 * Model predicts latent variables from manifest variables.
+  - asserts a relationship between latent and manifest.
+
+- We need to invent names for the latent variables.
+
+
+##  Specifying a factor model
+
+
 
 * Model with one factor including all the tests:
 
@@ -2880,14 +2886,15 @@ test.model.1 <- "ability=~para+sent+word+add+dots"
 a verbal and a mathematical:
 
 ```r
-test.model.2 <- "\nverbal=~para+sent+word\nmath=~add+dots"
+test.model.2 <- "verbal=~para+sent+word
+                 math=~add+dots"
 ```
  
 
 * Note the format: really all one line between single quotes, but
 putting it on several lines makes the layout clearer.
 
-* Also note special notation `=textasciitilde` for ``this latent
+* Also note special notation `=~` for ``this latent
 variable depends on these observed variables''.  
 
 
@@ -3001,7 +3008,7 @@ anova(fit1, fit2)
 
 
 
-## xxx  Track and field data, yet again
+##  Track and field data, yet again
 
 
 * `cfa` works easier on actual data, such as the running records:
@@ -3033,7 +3040,8 @@ track %>% print(n = 6)
 \footnotesize
 
 ```r
-track.model <- "\nsprint=~m100+m200+m400+m800\ndistance=~m1500+m5000+m10000+marathon"
+track.model <- "sprint=~m100+m200+m400+m800
+                distance=~m1500+m5000+m10000+marathon"
 ```
 \normalsize
 
@@ -3074,26 +3082,33 @@ track.1
 * Idea: move middle distance races (800m, 1500m) into a third factor.
 
 
-## xxx  Factor model 2
+##  Factor model 2
 
 
 * Define factor model:
 
 
 ```r
-track.model.2 <- "\nsprint=~m100+m200+m400\nmiddle=~m800+m1500\ndistance=~m5000+m10000+marathon"
+track.model.2 <- "sprint=~m100+m200+m400
+                  middle=~m800+m1500
+                  distance=~m5000+m10000+marathon"
 ```
  
 
 
-* Fit and examine:
+* Fit:
 
-\scriptsize
 
 ```r
-track.2 <- track %>%
+track %>%
   select(-country) %>%
-  cfa(track.model.2, data = ., std.ov = T)
+  cfa(track.model.2, data = ., std.ov = T) -> track.2
+```
+
+## Examine
+
+
+```r
 track.2
 ```
 
@@ -3110,7 +3125,6 @@ track.2
 ##   Degrees of freedom                                17
 ##   P-value (Chi-square)                           0.001
 ```
-\normalsize
 
 
 * Fits  marginally better, though still badly.

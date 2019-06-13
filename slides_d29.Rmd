@@ -17,13 +17,10 @@ output:
 ```{r child="preliminaries.Rmd", echo=F}
 ```
 
-```{r bPrincomp, child="bPrincomp.Rmd"}
-
+```{r time-series, child="time-series.Rmd"}
 ```
 
-
-```{r bFactor, child="bFactor.Rmd"}
+```{r bMultiway, child="bMultiway.Rmd"}
 
 ```
-
  
