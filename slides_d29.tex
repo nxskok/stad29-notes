@@ -158,7 +158,7 @@ Uses my package \texttt{mkac} which is on Github. Install with:
 \end{Highlighting}
 \end{Shaded}
 
-Plus these. You might need to install some of them first: xxx
+Plus these. You might need to install some of them first:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -329,8 +329,8 @@ comparable. Trend again strongly significant.
 
 \end{frame}
 
-\begin{frame}{Comments xxx}
-\protect\hypertarget{comments-xxx}{}
+\begin{frame}{Comments}
+\protect\hypertarget{comments-1}{}
 
 \begin{itemize}
 \tightlist
@@ -392,7 +392,7 @@ comparable. Trend again strongly significant.
 \normalsize
 
 Slope about 0.006 degrees per year (about this many degrees over course
-of data):
+of data; pluck xxx):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -458,11 +458,11 @@ also from \texttt{mkac}:
 
 \end{frame}
 
-\begin{frame}[fragile]{Constant rate of change? xxx}
-\protect\hypertarget{constant-rate-of-change-xxx}{}
+\begin{frame}[fragile]{Constant rate of change?}
+\protect\hypertarget{constant-rate-of-change}{}
 
 Slope assumes that the rate of change is same over all years, but trend
-seemed to be accelerating: xxx
+seemed to be accelerating:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -592,8 +592,8 @@ with one column.
 
 \end{frame}
 
-\begin{frame}[fragile]{Plotting a time series xxx}
-\protect\hypertarget{plotting-a-time-series-xxx}{}
+\begin{frame}[fragile]{Plotting a time series}
+\protect\hypertarget{plotting-a-time-series}{}
 
 \texttt{autoplot} from \texttt{ggfortify} gives time plot:
 
@@ -608,7 +608,7 @@ with one column.
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-1}{}
+\protect\hypertarget{comments-2}{}
 
 \begin{itemize}
 \item
@@ -649,8 +649,8 @@ Kings time series seems to have:
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Getting it stationary}
-\protect\hypertarget{xxx-getting-it-stationary}{}
+\begin{frame}[fragile]{Getting it stationary}
+\protect\hypertarget{getting-it-stationary}{}
 
 \begin{itemize}
 \tightlist
@@ -669,10 +669,10 @@ In R, \texttt{diff}:
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Did differencing fix stationarity?}
-\protect\hypertarget{xxx-did-differencing-fix-stationarity}{}
+\begin{frame}[fragile]{Did differencing fix stationarity?}
+\protect\hypertarget{did-differencing-fix-stationarity}{}
 
-Looks stationary now: xxx
+Looks stationary now:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -722,6 +722,8 @@ from January 1946 to December 1959:
 \begin{frame}[fragile]{As a time series xxx}
 \protect\hypertarget{as-a-time-series-xxx}{}
 
+\scriptsize
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ny.ts=}\KeywordTok{ts}\NormalTok{(ny,}\DataTypeTok{freq=}\DecValTok{12}\NormalTok{,}\DataTypeTok{start=}\KeywordTok{c}\NormalTok{(}\DecValTok{1946}\NormalTok{,}\DecValTok{1}\NormalTok{))}
@@ -762,6 +764,13 @@ from January 1946 to December 1959:
 ## 1959 28.865 30.000 29.261 29.012 26.992 27.897
 \end{verbatim}
 
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{Comments xxx}
+\protect\hypertarget{comments-xxx}{}
+
 Note extras on \texttt{ts}:
 
 \begin{itemize}
@@ -778,13 +787,13 @@ Printing formats nicely.
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Time plot}
-\protect\hypertarget{xxx-time-plot}{}
+\begin{frame}[fragile]{Time plot}
+\protect\hypertarget{time-plot}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Time plot shows extra pattern: xxx
+  Time plot shows extra pattern:
 \end{itemize}
 
 \begin{Shaded}
@@ -797,8 +806,8 @@ Printing formats nicely.
 
 \end{frame}
 
-\begin{frame}{xxx Comments on time plot}
-\protect\hypertarget{xxx-comments-on-time-plot}{}
+\begin{frame}{Comments on time plot}
+\protect\hypertarget{comments-on-time-plot}{}
 
 \begin{itemize}
 \tightlist
@@ -812,11 +821,10 @@ Printing formats nicely.
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Differencing the New York births}
-\protect\hypertarget{xxx-differencing-the-new-york-births}{}
+\begin{frame}[fragile]{Differencing the New York births}
+\protect\hypertarget{differencing-the-new-york-births}{}
 
 Does differencing help here? Looks stationary, but some regular spikes:
-xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -829,10 +837,10 @@ xxx
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Decomposing a seasonal time series}
-\protect\hypertarget{xxx-decomposing-a-seasonal-time-series}{}
+\begin{frame}[fragile]{Decomposing a seasonal time series}
+\protect\hypertarget{decomposing-a-seasonal-time-series}{}
 
-A visual (using original data): xxx
+A visual (using original data):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -845,8 +853,8 @@ A visual (using original data): xxx
 
 \end{frame}
 
-\begin{frame}{xxx Decomposition bits}
-\protect\hypertarget{xxx-decomposition-bits}{}
+\begin{frame}{Decomposition bits}
+\protect\hypertarget{decomposition-bits}{}
 
 Shows:
 
@@ -869,6 +877,8 @@ Shows:
 
 Fitted seasonal part is same every year, births lowest in February and
 highest in July:
+
+\tiny
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -924,6 +934,8 @@ highest in July:
 ## 1959  0.6916162  0.7752444 -1.1097652 -0.3768197
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
 \begin{frame}[fragile]{xxx Time series basics: white noise}
@@ -972,8 +984,8 @@ Gain a missing because there is nothing before the first observation.
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Lagging white noise}
-\protect\hypertarget{xxx-lagging-white-noise}{}
+\begin{frame}[fragile]{Lagging white noise}
+\protect\hypertarget{lagging-white-noise}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1015,7 +1027,7 @@ correlation.
 
 On the other hand, this:
 
-\small
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1057,8 +1069,8 @@ On the other hand, this:
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Two steps back:}
-\protect\hypertarget{xxx-two-steps-back}{}
+\begin{frame}[fragile]{Two steps back:}
+\protect\hypertarget{two-steps-back}{}
 
 \small
 
@@ -1126,8 +1138,8 @@ Autocorrelations work best on \emph{stationary} series.
 
 \end{frame}
 
-\begin{frame}{xxx Comments on autocorrelations of kings series}
-\protect\hypertarget{xxx-comments-on-autocorrelations-of-kings-series}{}
+\begin{frame}{Comments on autocorrelations of kings series}
+\protect\hypertarget{comments-on-autocorrelations-of-kings-series}{}
 
 Negative autocorrelation at lag 1, nothing beyond that.
 
@@ -1191,22 +1203,14 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 \end{Shaded}
 
 \begin{verbatim}
-##            Jan       Feb       Mar       Apr
-## 1987   1664.81   2397.53   2840.71   3547.29
-## 1988   2499.81   5198.24   7225.14   4806.03
-## 1989   4717.02   5702.63   9957.58   5304.78
-## 1990   5921.10   5814.58  12421.25   6369.77
-## 1991   4826.64   6470.23   9638.77   8821.17
-## 1992   7615.03   9849.69  14558.40  11587.33
-## 1993  10243.24  11266.88  21826.84  17357.33
-##            May       Jun       Jul       Aug
-## 1987   3752.96   3714.74   4349.61   3566.34
-## 1988   5900.88   4951.34   6179.12   4752.15
-## 1989   6492.43   6630.80   7349.62   8176.62
-## 1990   7609.12   7224.75   8121.22   7979.25
-## 1991   8722.37  10209.48  11276.55  12552.22
-## 1992   9332.56  13082.09  16732.78  19888.61
-## 1993  15997.79  18601.53  26155.15  28586.52
+##            Jan       Feb       Mar       Apr       May       Jun       Jul       Aug
+## 1987   1664.81   2397.53   2840.71   3547.29   3752.96   3714.74   4349.61   3566.34
+## 1988   2499.81   5198.24   7225.14   4806.03   5900.88   4951.34   6179.12   4752.15
+## 1989   4717.02   5702.63   9957.58   5304.78   6492.43   6630.80   7349.62   8176.62
+## 1990   5921.10   5814.58  12421.25   6369.77   7609.12   7224.75   8121.22   7979.25
+## 1991   4826.64   6470.23   9638.77   8821.17   8722.37  10209.48  11276.55  12552.22
+## 1992   7615.03   9849.69  14558.40  11587.33   9332.56  13082.09  16732.78  19888.61
+## 1993  10243.24  11266.88  21826.84  17357.33  15997.79  18601.53  26155.15  28586.52
 ##            Sep       Oct       Nov       Dec
 ## 1987   5021.82   6423.48   7600.60  19756.21
 ## 1988   5496.43   5835.10  12600.08  28541.72
@@ -1230,12 +1234,12 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-34-1.pdf}
+\includegraphics{figure/unnamed-chunk-36-1.pdf}
 
 \end{frame}
 
-\begin{frame}{xxx Several problems:}
-\protect\hypertarget{xxx-several-problems}{}
+\begin{frame}{Several problems:}
+\protect\hypertarget{several-problems}{}
 
 \begin{itemize}
 \tightlist
@@ -1249,10 +1253,10 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Problem-fixing:}
-\protect\hypertarget{xxx-problem-fixing}{}
+\begin{frame}[fragile]{Problem-fixing:}
+\protect\hypertarget{problem-fixing}{}
 
-Fix non-constant variability first by taking logs: xxx
+Fix non-constant variability first by taking logs:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1261,7 +1265,7 @@ Fix non-constant variability first by taking logs: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-35-1.pdf}
+\includegraphics{figure/unnamed-chunk-37-1.pdf}
 
 \end{frame}
 
@@ -1276,12 +1280,12 @@ differences}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-36-1.pdf}
+\includegraphics{figure/unnamed-chunk-38-1.pdf}
 
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-2}{}
+\protect\hypertarget{comments-3}{}
 
 \begin{itemize}
 \tightlist
@@ -1303,7 +1307,7 @@ differences}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-37-1.pdf}
+\includegraphics{figure/unnamed-chunk-39-1.pdf}
 
 \end{frame}
 
@@ -1322,38 +1326,22 @@ to see which:
 \end{Shaded}
 
 \begin{verbatim}
-##              Jan         Feb         Mar
-## 1987              0.23293343  0.49068755
-## 1988 -1.90372141  0.23293343  0.49068755
-## 1989 -1.90372141  0.23293343  0.49068755
-## 1990 -1.90372141  0.23293343  0.49068755
-## 1991 -1.90372141  0.23293343  0.49068755
-## 1992 -1.90372141  0.23293343  0.49068755
-## 1993 -1.90372141  0.23293343  0.49068755
-##              Apr         May         Jun
-## 1987 -0.39700942  0.02410429  0.05074206
-## 1988 -0.39700942  0.02410429  0.05074206
-## 1989 -0.39700942  0.02410429  0.05074206
-## 1990 -0.39700942  0.02410429  0.05074206
-## 1991 -0.39700942  0.02410429  0.05074206
-## 1992 -0.39700942  0.02410429  0.05074206
-## 1993 -0.39700942  0.02410429  0.05074206
-##              Jul         Aug         Sep
-## 1987  0.13552988 -0.03710275  0.08650584
-## 1988  0.13552988 -0.03710275  0.08650584
-## 1989  0.13552988 -0.03710275  0.08650584
-## 1990  0.13552988 -0.03710275  0.08650584
-## 1991  0.13552988 -0.03710275  0.08650584
-## 1992  0.13552988 -0.03710275  0.08650584
-## 1993  0.13552988 -0.03710275  0.08650584
-##              Oct         Nov         Dec
-## 1987  0.09148236  0.47311204  0.75273614
-## 1988  0.09148236  0.47311204  0.75273614
-## 1989  0.09148236  0.47311204  0.75273614
-## 1990  0.09148236  0.47311204  0.75273614
-## 1991  0.09148236  0.47311204  0.75273614
-## 1992  0.09148236  0.47311204  0.75273614
-## 1993  0.09148236  0.47311204  0.75273614
+##              Jan         Feb         Mar         Apr         May         Jun         Jul
+## 1987              0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+## 1988 -1.90372141  0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+## 1989 -1.90372141  0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+## 1990 -1.90372141  0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+## 1991 -1.90372141  0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+## 1992 -1.90372141  0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+## 1993 -1.90372141  0.23293343  0.49068755 -0.39700942  0.02410429  0.05074206  0.13552988
+##              Aug         Sep         Oct         Nov         Dec
+## 1987 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
+## 1988 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
+## 1989 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
+## 1990 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
+## 1991 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
+## 1992 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
+## 1993 -0.03710275  0.08650584  0.09148236  0.47311204  0.75273614
 \end{verbatim}
 
 \normalsize
@@ -1371,7 +1359,7 @@ January.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-39-1.pdf}
+\includegraphics{figure/unnamed-chunk-43-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -1383,8 +1371,8 @@ January.
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Moving average}
-\protect\hypertarget{xxx-moving-average}{}
+\begin{frame}[fragile]{Moving average}
+\protect\hypertarget{moving-average}{}
 
 \begin{itemize}
 \item
@@ -1411,6 +1399,8 @@ January.
 \begin{frame}[fragile]{The series xxx}
 \protect\hypertarget{the-series-xxx}{}
 
+\small
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ma}
@@ -1434,10 +1424,12 @@ January.
 ## # … with 90 more rows
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-3}{}
+\protect\hypertarget{comments-4}{}
 
 \begin{itemize}
 \tightlist
@@ -1469,12 +1461,12 @@ Everything beyond lag 1 appears to be just chance:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-42-1.pdf}
+\includegraphics{figure/unnamed-chunk-46-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx AR process}
-\protect\hypertarget{xxx-ar-process}{}
+\begin{frame}[fragile]{AR process}
+\protect\hypertarget{ar-process}{}
 
 Another kind of time series is AR process, where each value depends on
 previous one, like this (loop):
@@ -1494,8 +1486,8 @@ previous one, like this (loop):
 
 \end{frame}
 
-\begin{frame}[fragile]{The series xxx}
-\protect\hypertarget{the-series-xxx-1}{}
+\begin{frame}[fragile]{The series}
+\protect\hypertarget{the-series}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1543,7 +1535,7 @@ previous one, like this (loop):
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-4}{}
+\protect\hypertarget{comments-5}{}
 
 \begin{itemize}
 \tightlist
@@ -1572,7 +1564,7 @@ previous one, like this (loop):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-45-1.pdf}
+\includegraphics{figure/unnamed-chunk-49-1.pdf}
 
 \end{frame}
 
@@ -1587,7 +1579,7 @@ This cuts off for an AR series: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-46-1.pdf}
+\includegraphics{figure/unnamed-chunk-50-1.pdf}
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -1602,7 +1594,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-47-1.pdf}
+\includegraphics{figure/unnamed-chunk-51-1.pdf}
 
 \end{frame}
 
@@ -1651,8 +1643,8 @@ get it, as for souvenirs):
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Anatomy of \texttt{auto.arima} output}
-\protect\hypertarget{xxx-anatomy-of-auto.arima-output}{}
+\begin{frame}[fragile]{Anatomy of \texttt{auto.arima} output}
+\protect\hypertarget{anatomy-of-auto.arima-output}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1677,8 +1669,8 @@ Comments over.
 
 \end{frame}
 
-\begin{frame}{Comments xxx}
-\protect\hypertarget{comments-xxx-1}{}
+\begin{frame}{Comments}
+\protect\hypertarget{comments-6}{}
 
 \begin{itemize}
 \tightlist
@@ -1702,8 +1694,8 @@ Comments over.
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx What other models were possible?}
-\protect\hypertarget{xxx-what-other-models-were-possible}{}
+\begin{frame}[fragile]{What other models were possible?}
+\protect\hypertarget{what-other-models-were-possible}{}
 
 Run \texttt{auto.arima} with \texttt{trace=T}:
 
@@ -1787,28 +1779,17 @@ Best fit \emph{is} white noise (no AR, no MA, no differencing).
 \end{Shaded}
 
 \begin{verbatim}
-##     Point Forecast     Lo 80    Hi 80     Lo 95
-## 101              0 -1.350869 1.350869 -2.065975
-## 102              0 -1.350869 1.350869 -2.065975
-## 103              0 -1.350869 1.350869 -2.065975
-## 104              0 -1.350869 1.350869 -2.065975
-## 105              0 -1.350869 1.350869 -2.065975
-## 106              0 -1.350869 1.350869 -2.065975
-## 107              0 -1.350869 1.350869 -2.065975
-## 108              0 -1.350869 1.350869 -2.065975
-## 109              0 -1.350869 1.350869 -2.065975
-## 110              0 -1.350869 1.350869 -2.065975
-##        Hi 95
-## 101 2.065975
-## 102 2.065975
-## 103 2.065975
-## 104 2.065975
-## 105 2.065975
-## 106 2.065975
-## 107 2.065975
-## 108 2.065975
-## 109 2.065975
-## 110 2.065975
+##     Point Forecast     Lo 80    Hi 80     Lo 95    Hi 95
+## 101              0 -1.350869 1.350869 -2.065975 2.065975
+## 102              0 -1.350869 1.350869 -2.065975 2.065975
+## 103              0 -1.350869 1.350869 -2.065975 2.065975
+## 104              0 -1.350869 1.350869 -2.065975 2.065975
+## 105              0 -1.350869 1.350869 -2.065975 2.065975
+## 106              0 -1.350869 1.350869 -2.065975 2.065975
+## 107              0 -1.350869 1.350869 -2.065975 2.065975
+## 108              0 -1.350869 1.350869 -2.065975 2.065975
+## 109              0 -1.350869 1.350869 -2.065975 2.065975
+## 110              0 -1.350869 1.350869 -2.065975 2.065975
 \end{verbatim}
 
 \normalsize
@@ -1857,12 +1838,12 @@ Forecasts all 0, since the past doesn't help to predict future.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-53-1.pdf}
+\includegraphics{figure/unnamed-chunk-58-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx AR(1)}
-\protect\hypertarget{xxx-ar1}{}
+\begin{frame}[fragile]{AR(1)}
+\protect\hypertarget{ar1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1888,8 +1869,8 @@ Oops! Thought it was MA(1), not AR(1)!
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Fit right AR(1) model:}
-\protect\hypertarget{xxx-fit-right-ar1-model}{}
+\begin{frame}[fragile]{Fit right AR(1) model:}
+\protect\hypertarget{fit-right-ar1-model}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1922,12 +1903,12 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-56-1.pdf}
+\includegraphics{figure/unnamed-chunk-61-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Comparing wrong model: xxx}
-\protect\hypertarget{comparing-wrong-model-xxx}{}
+\begin{frame}[fragile]{Comparing wrong model:}
+\protect\hypertarget{comparing-wrong-model}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1935,12 +1916,12 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-57-1.pdf}
+\includegraphics{figure/unnamed-chunk-62-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Kings}
-\protect\hypertarget{xxx-kings}{}
+\begin{frame}[fragile]{Kings}
+\protect\hypertarget{kings}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1964,8 +1945,8 @@ Oops! Thought it was MA(1), not AR(1)!
 
 \end{frame}
 
-\begin{frame}[fragile]{xxx Kings forecasts:}
-\protect\hypertarget{xxx-kings-forecasts}{}
+\begin{frame}[fragile]{Kings forecasts:}
+\protect\hypertarget{kings-forecasts}{}
 
 \small
 
@@ -1977,28 +1958,17 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Shaded}
 
 \begin{verbatim}
-##    Point Forecast    Lo 80    Hi 80    Lo 95
-## 43       67.75063 48.05479 87.44646 37.62845
-## 44       67.75063 47.30662 88.19463 36.48422
-## 45       67.75063 46.58489 88.91637 35.38042
-## 46       67.75063 45.88696 89.61429 34.31304
-## 47       67.75063 45.21064 90.29062 33.27869
-## 48       67.75063 44.55402 90.94723 32.27448
-## 49       67.75063 43.91549 91.58577 31.29793
-## 50       67.75063 43.29362 92.20763 30.34687
-## 51       67.75063 42.68718 92.81408 29.41939
-## 52       67.75063 42.09507 93.40619 28.51383
-##        Hi 95
-## 43  97.87281
-## 44  99.01703
-## 45 100.12084
-## 46 101.18822
-## 47 102.22257
-## 48 103.22678
-## 49 104.20333
-## 50 105.15439
-## 51 106.08187
-## 52 106.98742
+##    Point Forecast    Lo 80    Hi 80    Lo 95     Hi 95
+## 43       67.75063 48.05479 87.44646 37.62845  97.87281
+## 44       67.75063 47.30662 88.19463 36.48422  99.01703
+## 45       67.75063 46.58489 88.91637 35.38042 100.12084
+## 46       67.75063 45.88696 89.61429 34.31304 101.18822
+## 47       67.75063 45.21064 90.29062 33.27869 102.22257
+## 48       67.75063 44.55402 90.94723 32.27448 103.22678
+## 49       67.75063 43.91549 91.58577 31.29793 104.20333
+## 50       67.75063 43.29362 92.20763 30.34687 105.15439
+## 51       67.75063 42.68718 92.81408 29.41939 106.08187
+## 52       67.75063 42.09507 93.40619 28.51383 106.98742
 \end{verbatim}
 
 \normalsize
@@ -2014,7 +1984,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-60-1.pdf}
+\includegraphics{figure/unnamed-chunk-65-1.pdf}
 
 \end{frame}
 
@@ -2037,12 +2007,9 @@ Very complicated:
 ## ARIMA(2,1,2)(1,1,1)[12] 
 ## 
 ## Coefficients:
-##          ar1      ar2      ma1     ma2     sar1
-##       0.6539  -0.4540  -0.7255  0.2532  -0.2427
-## s.e.  0.3003   0.2429   0.3227  0.2878   0.0985
-##          sma1
-##       -0.8451
-## s.e.   0.0995
+##          ar1      ar2      ma1     ma2     sar1     sma1
+##       0.6539  -0.4540  -0.7255  0.2532  -0.2427  -0.8451
+## s.e.  0.3003   0.2429   0.3227  0.2878   0.0985   0.0995
 ## 
 ## sigma^2 estimated as 0.4076:  log likelihood=-157.45
 ## AIC=328.91   AICc=329.67   BIC=350.21
@@ -2057,7 +2024,7 @@ Very complicated:
 
 Not \emph{quite} same every year:
 
-\small
+\footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2067,80 +2034,43 @@ Not \emph{quite} same every year:
 \end{Shaded}
 
 \begin{verbatim}
-##          Point Forecast    Lo 80    Hi 80    Lo 95
-## Jan 1960       27.69056 26.87069 28.51043 26.43668
-## Feb 1960       26.07680 24.95838 27.19522 24.36632
-## Mar 1960       29.26544 28.01566 30.51523 27.35406
-## Apr 1960       27.59444 26.26555 28.92333 25.56208
-## May 1960       28.93193 27.52089 30.34298 26.77392
-## Jun 1960       28.55379 27.04381 30.06376 26.24448
-## Jul 1960       29.84713 28.23370 31.46056 27.37960
-## Aug 1960       29.45347 27.74562 31.16132 26.84155
-## Sep 1960       29.16388 27.37259 30.95517 26.42433
-## Oct 1960       29.21343 27.34498 31.08188 26.35588
-## Nov 1960       27.26221 25.31879 29.20563 24.29000
-## Dec 1960       28.06863 26.05137 30.08589 24.98349
-## Jan 1961       27.66908 25.59684 29.74132 24.49986
-## Feb 1961       26.21255 24.08615 28.33895 22.96051
-## Mar 1961       29.22612 27.04347 31.40878 25.88804
-## Apr 1961       27.58011 25.34076 29.81945 24.15533
-## May 1961       28.71354 26.41925 31.00783 25.20473
-## Jun 1961       28.21736 25.87042 30.56429 24.62803
-## Jul 1961       29.98728 27.58935 32.38521 26.31996
-## Aug 1961       29.96127 27.51330 32.40925 26.21743
-## Sep 1961       29.56515 27.06786 32.06243 25.74588
-## Oct 1961       29.54543 26.99965 32.09121 25.65200
-## Nov 1961       27.57845 24.98510 30.17181 23.61226
-## Dec 1961       28.40796 25.76792 31.04801 24.37036
-## Jan 1962       28.05431 25.33756 30.77106 23.89939
-## Feb 1962       26.55936 23.77074 29.34799 22.29453
-## Mar 1962       29.61570 26.76474 32.46667 25.25553
-## Apr 1962       27.96392 25.05574 30.87209 23.51624
-## May 1962       29.14695 26.18187 32.11202 24.61226
-## Jun 1962       28.67933 25.65625 31.70240 24.05593
-## Jul 1962       30.33348 27.25244 33.41453 25.62143
-## Aug 1962       30.21822 27.08057 33.35587 25.41960
-## Sep 1962       29.84798 26.65540 33.04056 24.96535
-## Oct 1962       29.84511 26.59882 33.09139 24.88034
-## Nov 1962       27.88196 24.58270 31.18121 22.83618
-## Dec 1962       28.70585 25.35420 32.05750 23.57995
-##             Hi 95
-## Jan 1960 28.94444
-## Feb 1960 27.78728
-## Mar 1960 31.17683
-## Apr 1960 29.62680
-## May 1960 31.08995
-## Jun 1960 30.86309
-## Jul 1960 32.31466
-## Aug 1960 32.06539
-## Sep 1960 31.90342
-## Oct 1960 32.07098
-## Nov 1960 30.23441
-## Dec 1960 31.15377
-## Jan 1961 30.83830
-## Feb 1961 29.46460
-## Mar 1961 32.56420
-## Apr 1961 31.00488
-## May 1961 32.22235
-## Jun 1961 31.80668
-## Jul 1961 33.65460
-## Aug 1961 33.70512
-## Sep 1961 33.38441
-## Oct 1961 33.43886
-## Nov 1961 31.54465
-## Dec 1961 32.44556
-## Jan 1962 32.20922
-## Feb 1962 30.82420
-## Mar 1962 33.97588
-## Apr 1962 32.41159
-## May 1962 33.68164
-## Jun 1962 33.30272
-## Jul 1962 35.04554
-## Aug 1962 35.01684
-## Sep 1962 34.73061
-## Oct 1962 34.80987
-## Nov 1962 32.92773
-## Dec 1962 33.83176
+##          Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95
+## Jan 1960       27.69056 26.87069 28.51043 26.43668 28.94444
+## Feb 1960       26.07680 24.95838 27.19522 24.36632 27.78728
+## Mar 1960       29.26544 28.01566 30.51523 27.35406 31.17683
+## Apr 1960       27.59444 26.26555 28.92333 25.56208 29.62680
+## May 1960       28.93193 27.52089 30.34298 26.77392 31.08995
+## Jun 1960       28.55379 27.04381 30.06376 26.24448 30.86309
+## Jul 1960       29.84713 28.23370 31.46056 27.37960 32.31466
+## Aug 1960       29.45347 27.74562 31.16132 26.84155 32.06539
+## Sep 1960       29.16388 27.37259 30.95517 26.42433 31.90342
+## Oct 1960       29.21343 27.34498 31.08188 26.35588 32.07098
+## Nov 1960       27.26221 25.31879 29.20563 24.29000 30.23441
+## Dec 1960       28.06863 26.05137 30.08589 24.98349 31.15377
+## Jan 1961       27.66908 25.59684 29.74132 24.49986 30.83830
+## Feb 1961       26.21255 24.08615 28.33895 22.96051 29.46460
+## Mar 1961       29.22612 27.04347 31.40878 25.88804 32.56420
+## Apr 1961       27.58011 25.34076 29.81945 24.15533 31.00488
+## May 1961       28.71354 26.41925 31.00783 25.20473 32.22235
+## Jun 1961       28.21736 25.87042 30.56429 24.62803 31.80668
+## Jul 1961       29.98728 27.58935 32.38521 26.31996 33.65460
+## Aug 1961       29.96127 27.51330 32.40925 26.21743 33.70512
+## Sep 1961       29.56515 27.06786 32.06243 25.74588 33.38441
+## Oct 1961       29.54543 26.99965 32.09121 25.65200 33.43886
+## Nov 1961       27.57845 24.98510 30.17181 23.61226 31.54465
+## Dec 1961       28.40796 25.76792 31.04801 24.37036 32.44556
+## Jan 1962       28.05431 25.33756 30.77106 23.89939 32.20922
+## Feb 1962       26.55936 23.77074 29.34799 22.29453 30.82420
+## Mar 1962       29.61570 26.76474 32.46667 25.25553 33.97588
+## Apr 1962       27.96392 25.05574 30.87209 23.51624 32.41159
+## May 1962       29.14695 26.18187 32.11202 24.61226 33.68164
+## Jun 1962       28.67933 25.65625 31.70240 24.05593 33.30272
+## Jul 1962       30.33348 27.25244 33.41453 25.62143 35.04554
+## Aug 1962       30.21822 27.08057 33.35587 25.41960 35.01684
+## Sep 1962       29.84798 26.65540 33.04056 24.96535 34.73061
+## Oct 1962       29.84511 26.59882 33.09139 24.88034 34.80987
+## Nov 1962       27.88196 24.58270 31.18121 22.83618 32.92773
+## Dec 1962       28.70585 25.35420 32.05750 23.57995 33.83176
 \end{verbatim}
 
 \normalsize
@@ -2156,7 +2086,7 @@ Not \emph{quite} same every year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-63-1.pdf}
+\includegraphics{figure/unnamed-chunk-68-1.pdf}
 
 \end{frame}
 
@@ -2206,62 +2136,34 @@ highest, Jan and Feb lowest:
 \end{Shaded}
 
 \begin{verbatim}
-##          Point Forecast     Lo 80     Hi 80
-## Jan 1994       9.578291  9.358036  9.798545
-## Feb 1994       9.754836  9.521700  9.987972
-## Mar 1994      10.286195 10.030937 10.541453
-## Apr 1994      10.028630  9.765727 10.291532
-## May 1994       9.950862  9.681555 10.220168
-## Jun 1994      10.116930  9.844308 10.389551
-## Jul 1994      10.369140 10.094251 10.644028
-## Aug 1994      10.460050 10.183827 10.736274
-## Sep 1994      10.535595 10.258513 10.812677
-## Oct 1994      10.585995 10.308386 10.863604
-## Nov 1994      11.017734 10.739793 11.295674
-## Dec 1994      11.795964 11.517817 12.074111
-## Jan 1995       9.840884  9.540241 10.141527
-## Feb 1995      10.015540  9.711785 10.319295
-## Mar 1995      10.555070 10.246346 10.863794
-## Apr 1995      10.299676  9.989043 10.610309
-## May 1995      10.225535  9.913326 10.537743
-## Jun 1995      10.393625 10.080573 10.706676
-## Jul 1995      10.647811 10.334184 10.961437
-## Aug 1995      10.740118 10.426149 11.054086
-## Sep 1995      10.816842 10.502654 11.131031
-## Oct 1995      10.868142 10.553818 11.182466
-## Nov 1995      11.300608 10.986200 11.615017
-## Dec 1995      12.079407 11.764946 12.393869
-## Jan 1996      10.124780  9.791571 10.457989
-## Feb 1996      10.299793  9.964159 10.635427
-## Mar 1996      10.839607 10.499858 11.179355
-##              Lo 95     Hi 95
-## Jan 1994  9.241440  9.915141
-## Feb 1994  9.398285 10.111386
-## Mar 1994  9.895811 10.676578
-## Apr 1994  9.626555 10.430704
-## May 1994  9.538993 10.362731
-## Jun 1994  9.699991 10.533868
-## Jul 1994  9.948734 10.789545
-## Aug 1994 10.037603 10.882498
-## Sep 1994 10.111835 10.959356
-## Oct 1994 10.161429 11.010561
-## Nov 1994 10.592660 11.442807
-## Dec 1994 11.370575 12.221353
-## Jan 1995  9.381090 10.300678
-## Feb 1995  9.550987 10.480093
-## Mar 1995 10.082918 11.027222
-## Apr 1995  9.824604 10.774749
-## May 1995  9.748053 10.703017
-## Jun 1995  9.914853 10.872396
-## Jul 1995 10.168160 11.127461
-## Aug 1995 10.259944 11.220291
-## Sep 1995 10.336333 11.297352
-## Oct 1995 10.387425 11.348859
-## Nov 1995 10.819762 11.781454
-## Dec 1995 11.598481 12.560334
-## Jan 1996  9.615181 10.634379
-## Feb 1996  9.786485 10.813101
-## Mar 1996 10.320006 11.359207
+##          Point Forecast     Lo 80     Hi 80     Lo 95     Hi 95
+## Jan 1994       9.578291  9.358036  9.798545  9.241440  9.915141
+## Feb 1994       9.754836  9.521700  9.987972  9.398285 10.111386
+## Mar 1994      10.286195 10.030937 10.541453  9.895811 10.676578
+## Apr 1994      10.028630  9.765727 10.291532  9.626555 10.430704
+## May 1994       9.950862  9.681555 10.220168  9.538993 10.362731
+## Jun 1994      10.116930  9.844308 10.389551  9.699991 10.533868
+## Jul 1994      10.369140 10.094251 10.644028  9.948734 10.789545
+## Aug 1994      10.460050 10.183827 10.736274 10.037603 10.882498
+## Sep 1994      10.535595 10.258513 10.812677 10.111835 10.959356
+## Oct 1994      10.585995 10.308386 10.863604 10.161429 11.010561
+## Nov 1994      11.017734 10.739793 11.295674 10.592660 11.442807
+## Dec 1994      11.795964 11.517817 12.074111 11.370575 12.221353
+## Jan 1995       9.840884  9.540241 10.141527  9.381090 10.300678
+## Feb 1995      10.015540  9.711785 10.319295  9.550987 10.480093
+## Mar 1995      10.555070 10.246346 10.863794 10.082918 11.027222
+## Apr 1995      10.299676  9.989043 10.610309  9.824604 10.774749
+## May 1995      10.225535  9.913326 10.537743  9.748053 10.703017
+## Jun 1995      10.393625 10.080573 10.706676  9.914853 10.872396
+## Jul 1995      10.647811 10.334184 10.961437 10.168160 11.127461
+## Aug 1995      10.740118 10.426149 11.054086 10.259944 11.220291
+## Sep 1995      10.816842 10.502654 11.131031 10.336333 11.297352
+## Oct 1995      10.868142 10.553818 11.182466 10.387425 11.348859
+## Nov 1995      11.300608 10.986200 11.615017 10.819762 11.781454
+## Dec 1995      12.079407 11.764946 12.393869 11.598481 12.560334
+## Jan 1996      10.124780  9.791571 10.457989  9.615181 10.634379
+## Feb 1996      10.299793  9.964159 10.635427  9.786485 10.813101
+## Mar 1996      10.839607 10.499858 11.179355 10.320006 11.359207
 \end{verbatim}
 
 \begin{Shaded}
@@ -2271,17 +2173,13 @@ highest, Jan and Feb lowest:
 \end{Shaded}
 
 \begin{verbatim}
-##            Jan       Feb       Mar       Apr
-## 1994  9.578291  9.754836 10.286195 10.028630
-## 1995  9.840884 10.015540 10.555070 10.299676
-## 1996 10.124780 10.299793 10.839607          
-##            May       Jun       Jul       Aug
-## 1994  9.950862 10.116930 10.369140 10.460050
-## 1995 10.225535 10.393625 10.647811 10.740118
-## 1996                                        
-##            Sep       Oct       Nov       Dec
-## 1994 10.535595 10.585995 11.017734 11.795964
-## 1995 10.816842 10.868142 11.300608 12.079407
+##            Jan       Feb       Mar       Apr       May       Jun
+## 1994  9.578291  9.754836 10.286195 10.028630  9.950862 10.116930
+## 1995  9.840884 10.015540 10.555070 10.299676 10.225535 10.393625
+## 1996 10.124780 10.299793 10.839607                              
+##            Jul       Aug       Sep       Oct       Nov       Dec
+## 1994 10.369140 10.460050 10.535595 10.585995 11.017734 11.795964
+## 1995 10.647811 10.740118 10.816842 10.868142 11.300608 12.079407
 ## 1996
 \end{verbatim}
 
@@ -2292,17 +2190,13 @@ highest, Jan and Feb lowest:
 \end{Shaded}
 
 \begin{verbatim}
-##            Jan       Feb       Mar       Apr
-## 1994  14447.70  17237.39  29324.97  22666.19
-## 1995  18786.31  22371.43  38371.49  29723.00
-## 1996  24953.76  29726.47  51001.31          
-##            May       Jun       Jul       Aug
-## 1994  20970.29  24758.64  31861.05  34893.30
-## 1995  27599.00  32650.80  42100.33  46171.49
-## 1996                                        
-##            Sep       Oct       Nov       Dec
-## 1994  37631.45  39576.66  60945.41 132715.66
-## 1995  49853.43  52477.62  80870.81 176205.71
+##            Jan       Feb       Mar       Apr       May       Jun
+## 1994  14447.70  17237.39  29324.97  22666.19  20970.29  24758.64
+## 1995  18786.31  22371.43  38371.49  29723.00  27599.00  32650.80
+## 1996  24953.76  29726.47  51001.31                              
+##            Jul       Aug       Sep       Oct       Nov       Dec
+## 1994  31861.05  34893.30  37631.45  39576.66  60945.41 132715.66
+## 1995  42100.33  46171.49  49853.43  52477.62  80870.81 176205.71
 ## 1996
 \end{verbatim}
 
@@ -2332,18 +2226,14 @@ highest, Jan and Feb lowest:
 ## [1] 80 95
 ## 
 ## $mean
-##            Jan       Feb       Mar       Apr
-## 1994  9.578291  9.754836 10.286195 10.028630
-## 1995  9.840884 10.015540 10.555070 10.299676
-## 1996 10.124780 10.299793 10.839607          
-##            May       Jun       Jul       Aug
-## 1994  9.950862 10.116930 10.369140 10.460050
-## 1995 10.225535 10.393625 10.647811 10.740118
-## 1996                                        
-##            Sep       Oct       Nov       Dec
-## 1994 10.535595 10.585995 11.017734 11.795964
-## 1995 10.816842 10.868142 11.300608 12.079407
-## 1996                                        
+##            Jan       Feb       Mar       Apr       May       Jun
+## 1994  9.578291  9.754836 10.286195 10.028630  9.950862 10.116930
+## 1995  9.840884 10.015540 10.555070 10.299676 10.225535 10.393625
+## 1996 10.124780 10.299793 10.839607                              
+##            Jul       Aug       Sep       Oct       Nov       Dec
+## 1994 10.369140 10.460050 10.535595 10.585995 11.017734 11.795964
+## 1995 10.647811 10.740118 10.816842 10.868142 11.300608 12.079407
+## 1996                                                            
 ## 
 ## $lower
 ##                80%       95%
@@ -2406,93 +2296,69 @@ highest, Jan and Feb lowest:
 ## Mar 1996 11.179355 11.359207
 ## 
 ## $x
-##            Jan       Feb       Mar       Apr
-## 1987  7.417466  7.782194  7.951809  8.173939
-## 1988  7.823970  8.556075  8.885322  8.477627
-## 1989  8.458933  8.648683  9.206089  8.576364
-## 1990  8.686278  8.668124  9.427164  8.759319
-## 1991  8.481906  8.774967  9.173549  9.084910
-## 1992  8.937879  9.195195  9.585923  9.357668
-## 1993  9.234373  9.329623  9.990896  9.761770
-##            May       Jun       Jul       Aug
-## 1987  8.230300  8.220064  8.377841  8.179295
-## 1988  8.682857  8.507414  8.728931  8.466352
-## 1989  8.778392  8.799481  8.902404  9.009034
-## 1990  8.937103  8.885268  9.002236  8.984600
-## 1991  9.073646  9.231072  9.330481  9.437653
-## 1992  9.141265  9.478999  9.725125  9.897902
-## 1993  9.680206  9.830999 10.171801 10.260691
-##            Sep       Oct       Nov       Dec
-## 1987  8.521548  8.767715  8.935982  9.891223
-## 1988  8.611854  8.671647  9.441458 10.259122
-## 1989  9.056393  9.178901  9.625877 10.435909
-## 1990  8.998762  9.045077  9.793375 10.312759
-## 1991  9.361978  9.518332  9.990679 10.715766
-## 1992 10.083029 10.142164 10.491963 11.298763
-## 1993 10.325659 10.335962 10.750093 11.558479
+##            Jan       Feb       Mar       Apr       May       Jun
+## 1987  7.417466  7.782194  7.951809  8.173939  8.230300  8.220064
+## 1988  7.823970  8.556075  8.885322  8.477627  8.682857  8.507414
+## 1989  8.458933  8.648683  9.206089  8.576364  8.778392  8.799481
+## 1990  8.686278  8.668124  9.427164  8.759319  8.937103  8.885268
+## 1991  8.481906  8.774967  9.173549  9.084910  9.073646  9.231072
+## 1992  8.937879  9.195195  9.585923  9.357668  9.141265  9.478999
+## 1993  9.234373  9.329623  9.990896  9.761770  9.680206  9.830999
+##            Jul       Aug       Sep       Oct       Nov       Dec
+## 1987  8.377841  8.179295  8.521548  8.767715  8.935982  9.891223
+## 1988  8.728931  8.466352  8.611854  8.671647  9.441458 10.259122
+## 1989  8.902404  9.009034  9.056393  9.178901  9.625877 10.435909
+## 1990  9.002236  8.984600  8.998762  9.045077  9.793375 10.312759
+## 1991  9.330481  9.437653  9.361978  9.518332  9.990679 10.715766
+## 1992  9.725125  9.897902 10.083029 10.142164 10.491963 11.298763
+## 1993 10.171801 10.260691 10.325659 10.335962 10.750093 11.558479
 ## 
 ## $series
 ## [1] "souv.log.ts"
 ## 
 ## $fitted
-##            Jan       Feb       Mar       Apr
-## 1987  7.410073  7.774460  7.943929  8.165861
-## 1988  7.737469  8.200398  8.494420  8.807962
-## 1989  8.209173  8.832180  9.049762  8.851068
-## 1990  8.548108  8.966186  9.300665  8.884112
-## 1991  8.716867  8.794359  9.412746  8.860024
-## 1992  8.899194  9.171104  9.689975  9.345013
-## 1993  9.382292  9.576494  9.877050  9.624983
-##            May       Jun       Jul       Aug
-## 1987  8.222189  8.211987  8.369630  8.171306
-## 1988  8.735935  8.554636  8.713493  8.472167
-## 1989  8.934449  8.684461  8.939090  8.722942
-## 1990  9.083565  8.946289  9.091940  9.015035
-## 1991  9.122753  9.165059  9.302968  9.322395
-## 1992  9.424726  9.402271  9.512202  9.688090
-## 1993  9.657431  9.854253 10.012085 10.153607
-##            Sep       Oct       Nov       Dec
-## 1987  8.513240  8.759186  8.927308  9.881618
-## 1988  8.791805  8.929755  9.050992 10.081222
-## 1989  9.025778  9.214826  9.667959 10.502318
-## 1990  9.152643  9.253725  9.667494 10.566558
-## 1991  9.437171  9.524619 10.106639 10.765163
-## 1992  9.785742 10.019754 10.606887 11.220778
-## 1993 10.297393 10.376320 10.790406 11.502027
+##            Jan       Feb       Mar       Apr       May       Jun
+## 1987  7.410073  7.774460  7.943929  8.165861  8.222189  8.211987
+## 1988  7.737469  8.200398  8.494420  8.807962  8.735935  8.554636
+## 1989  8.209173  8.832180  9.049762  8.851068  8.934449  8.684461
+## 1990  8.548108  8.966186  9.300665  8.884112  9.083565  8.946289
+## 1991  8.716867  8.794359  9.412746  8.860024  9.122753  9.165059
+## 1992  8.899194  9.171104  9.689975  9.345013  9.424726  9.402271
+## 1993  9.382292  9.576494  9.877050  9.624983  9.657431  9.854253
+##            Jul       Aug       Sep       Oct       Nov       Dec
+## 1987  8.369630  8.171306  8.513240  8.759186  8.927308  9.881618
+## 1988  8.713493  8.472167  8.791805  8.929755  9.050992 10.081222
+## 1989  8.939090  8.722942  9.025778  9.214826  9.667959 10.502318
+## 1990  9.091940  9.015035  9.152643  9.253725  9.667494 10.566558
+## 1991  9.302968  9.322395  9.437171  9.524619 10.106639 10.765163
+## 1992  9.512202  9.688090  9.785742 10.019754 10.606887 11.220778
+## 1993 10.012085 10.153607 10.297393 10.376320 10.790406 11.502027
 ## 
 ## $residuals
-##               Jan          Feb          Mar
-## 1987  0.007393658  0.007734578  0.007880384
-## 1988  0.086500680  0.355677770  0.390902029
-## 1989  0.249759758 -0.183497442  0.156327204
-## 1990  0.138169613 -0.298061978  0.126498707
-## 1991 -0.234960761 -0.019392105 -0.239197642
-## 1992  0.038684952  0.024091125 -0.104051475
-## 1993 -0.147918881 -0.246870842  0.113845932
-##               Apr          May          Jun
-## 1987  0.008078708  0.008111263  0.008077223
-## 1988 -0.330335699 -0.053078628 -0.047222006
-## 1989 -0.274704599 -0.156057171  0.115019554
-## 1990 -0.124793133 -0.146462326 -0.061020897
-## 1991  0.224886129 -0.049106990  0.066013439
-## 1992  0.012654844 -0.283461096  0.076727977
-## 1993  0.136787334  0.022775020 -0.023253788
-##               Jul          Aug          Sep
-## 1987  0.008211198  0.007988850  0.008307302
-## 1988  0.015437982 -0.005814548 -0.179950487
-## 1989 -0.036685983  0.286092365  0.030614769
-## 1990 -0.089703878 -0.030435015 -0.153880639
-## 1991  0.027512770  0.115258184 -0.075192996
-## 1992  0.212922849  0.209812963  0.297287851
-## 1993  0.159715936  0.107083958  0.028266617
-##               Oct          Nov          Dec
-## 1987  0.008529669  0.008674137  0.009605578
-## 1988 -0.258107829  0.390466497  0.177900145
-## 1989 -0.035925124 -0.042081989 -0.066409363
-## 1990 -0.208648543  0.125880605 -0.253799233
-## 1991 -0.006287476 -0.115960322 -0.049397837
-## 1992  0.122410050 -0.114924058  0.077984541
-## 1993 -0.040357792 -0.040312585  0.056451584
+##               Jan          Feb          Mar          Apr
+## 1987  0.007393658  0.007734578  0.007880384  0.008078708
+## 1988  0.086500680  0.355677770  0.390902029 -0.330335699
+## 1989  0.249759758 -0.183497442  0.156327204 -0.274704599
+## 1990  0.138169613 -0.298061978  0.126498707 -0.124793133
+## 1991 -0.234960761 -0.019392105 -0.239197642  0.224886129
+## 1992  0.038684952  0.024091125 -0.104051475  0.012654844
+## 1993 -0.147918881 -0.246870842  0.113845932  0.136787334
+##               May          Jun          Jul          Aug
+## 1987  0.008111263  0.008077223  0.008211198  0.007988850
+## 1988 -0.053078628 -0.047222006  0.015437982 -0.005814548
+## 1989 -0.156057171  0.115019554 -0.036685983  0.286092365
+## 1990 -0.146462326 -0.061020897 -0.089703878 -0.030435015
+## 1991 -0.049106990  0.066013439  0.027512770  0.115258184
+## 1992 -0.283461096  0.076727977  0.212922849  0.209812963
+## 1993  0.022775020 -0.023253788  0.159715936  0.107083958
+##               Sep          Oct          Nov          Dec
+## 1987  0.008307302  0.008529669  0.008674137  0.009605578
+## 1988 -0.179950487 -0.258107829  0.390466497  0.177900145
+## 1989  0.030614769 -0.035925124 -0.042081989 -0.066409363
+## 1990 -0.153880639 -0.208648543  0.125880605 -0.253799233
+## 1991 -0.075192996 -0.006287476 -0.115960322 -0.049397837
+## 1992  0.297287851  0.122410050 -0.114924058  0.077984541
+## 1993  0.028266617 -0.040357792 -0.040312585  0.056451584
 ## 
 ## attr(,"class")
 ## [1] "forecast"
@@ -2511,7 +2377,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-66-1.pdf}
+\includegraphics{figure/unnamed-chunk-71-1.pdf}
 
 \end{frame}
 
@@ -2551,7 +2417,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-68-1.pdf}
+\includegraphics{figure/unnamed-chunk-73-1.pdf}
 
 \end{frame}
 
@@ -2719,15 +2585,11 @@ def
 ## 
 ## Model:
 ## frequency ~ gender * eyewear
-##                Df Deviance    AIC    LRT  Pr(>Chi)
-## <none>               0.000 47.958                 
-## gender:eyewear  2   17.829 61.787 17.829 0.0001345
-##                   
-## <none>            
-## gender:eyewear ***
+##                Df Deviance    AIC    LRT  Pr(>Chi)    
+## <none>               0.000 47.958                     
+## gender:eyewear  2   17.829 61.787 17.829 0.0001345 ***
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 def \}
@@ -2900,8 +2762,7 @@ No longer any association. Take out interaction.
 ## gender   1   48.624  90.091  48.577 3.176e-12 ***
 ## eyewear  2  138.130 177.598 138.083 < 2.2e-16 ***
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 \}
@@ -3003,8 +2864,7 @@ That 3-way interaction comes out.
 ## ecg:smoke  1   4.8935 54.601  3.5050   0.06119 .  
 ## bmi:smoke  1   4.4689 54.176  3.0803   0.07924 .  
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 At \(\alpha=0.05\), \texttt{bmi:smoke} comes out.
@@ -3031,8 +2891,7 @@ At \(\alpha=0.05\), \texttt{bmi:smoke} comes out.
 ## ecg:bmi    1   36.562 84.270 32.094 1.469e-08 ***
 ## ecg:smoke  1   12.436 60.144  7.968  0.004762 ** 
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 \texttt{ecg:smoke} has become significant. So we have to stop.
@@ -3341,12 +3200,9 @@ Total & 13.3 & 10.9 \\
 ## 
 ## Model:
 ## freq ~ airport * airline * status
-##                        Df Deviance    AIC    LRT
-## <none>                      0.0000 183.44       
-## airport:airline:status  4   3.2166 178.65 3.2166
-##                        Pr(>Chi)
-## <none>                         
-## airport:airline:status   0.5223
+##                        Df Deviance    AIC    LRT Pr(>Chi)
+## <none>                      0.0000 183.44                
+## airport:airline:status  4   3.2166 178.65 3.2166   0.5223
 \end{verbatim}
 
 def
@@ -3369,19 +3225,13 @@ def
 ## Model:
 ## freq ~ airport + airline + status + airport:airline + airport:status + 
 ##     airline:status
-##                 Df Deviance    AIC    LRT  Pr(>Chi)
-## <none>                  3.2  178.7                 
-## airport:airline  4   6432.5 6599.9 6429.2 < 2.2e-16
-## airport:status   4    240.1  407.5  236.9 < 2.2e-16
-## airline:status   1     45.5  218.9   42.2 8.038e-11
-##                    
-## <none>             
-## airport:airline ***
-## airport:status  ***
-## airline:status  ***
+##                 Df Deviance    AIC    LRT  Pr(>Chi)    
+## <none>                  3.2  178.7                     
+## airport:airline  4   6432.5 6599.9 6429.2 < 2.2e-16 ***
+## airport:status   4    240.1  407.5  236.9 < 2.2e-16 ***
+## airline:status   1     45.5  218.9   42.2 8.038e-11 ***
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 def
@@ -3634,12 +3484,12 @@ See what we can remove:
 ## 
 ## Model:
 ## freq ~ stage * operation * xray * survival
-##                               Df Deviance    AIC
-## <none>                            0.00000 98.130
-## stage:operation:xray:survival  1  0.60266 96.732
-##                                   LRT Pr(>Chi)
-## <none>                                        
-## stage:operation:xray:survival 0.60266   0.4376
+##                               Df Deviance    AIC     LRT
+## <none>                            0.00000 98.130        
+## stage:operation:xray:survival  1  0.60266 96.732 0.60266
+##                               Pr(>Chi)
+## <none>                                
+## stage:operation:xray:survival   0.4376
 \end{verbatim}
 
 def
@@ -3667,18 +3517,12 @@ Non-significant interaction can come out.
 ##     stage:xray + operation:xray + stage:survival + operation:survival + 
 ##     xray:survival + stage:operation:xray + stage:operation:survival + 
 ##     stage:xray:survival + operation:xray:survival
-##                          Df Deviance    AIC     LRT
-## <none>                       0.60266 96.732        
-## stage:operation:xray      1  2.35759 96.487 1.75493
-## stage:operation:survival  1  1.17730 95.307 0.57465
-## stage:xray:survival       1  0.95577 95.085 0.35311
-## operation:xray:survival   1  1.23378 95.363 0.63113
-##                          Pr(>Chi)
-## <none>                           
-## stage:operation:xray       0.1853
-## stage:operation:survival   0.4484
-## stage:xray:survival        0.5524
-## operation:xray:survival    0.4269
+##                          Df Deviance    AIC     LRT Pr(>Chi)
+## <none>                       0.60266 96.732                 
+## stage:operation:xray      1  2.35759 96.487 1.75493   0.1853
+## stage:operation:survival  1  1.17730 95.307 0.57465   0.4484
+## stage:xray:survival       1  0.95577 95.085 0.35311   0.5524
+## operation:xray:survival   1  1.23378 95.363 0.63113   0.4269
 \end{verbatim}
 
 def
@@ -3705,16 +3549,11 @@ Least significant term is \texttt{stage:xray:survival}: remove.
 ##     stage:xray + operation:xray + stage:survival + operation:survival + 
 ##     xray:survival + stage:operation:xray + stage:operation:survival + 
 ##     operation:xray:survival
-##                          Df Deviance    AIC     LRT
-## <none>                       0.95577 95.085        
-## stage:operation:xray      1  3.08666 95.216 2.13089
-## stage:operation:survival  1  1.56605 93.696 0.61029
-## operation:xray:survival   1  1.55124 93.681 0.59547
-##                          Pr(>Chi)
-## <none>                           
-## stage:operation:xray       0.1444
-## stage:operation:survival   0.4347
-## operation:xray:survival    0.4403
+##                          Df Deviance    AIC     LRT Pr(>Chi)
+## <none>                       0.95577 95.085                 
+## stage:operation:xray      1  3.08666 95.216 2.13089   0.1444
+## stage:operation:survival  1  1.56605 93.696 0.61029   0.4347
+## operation:xray:survival   1  1.55124 93.681 0.59547   0.4403
 \end{verbatim}
 
 \texttt{operation:xray:survival} comes out next.
@@ -3738,25 +3577,19 @@ Least significant term is \texttt{stage:xray:survival}: remove.
 ## freq ~ stage + operation + xray + survival + stage:operation + 
 ##     stage:xray + operation:xray + stage:survival + operation:survival + 
 ##     xray:survival + stage:operation:xray + stage:operation:survival
-##                          Df Deviance    AIC    LRT
-## <none>                        1.5512 93.681       
-## xray:survival             1   1.6977 91.827 0.1464
-## stage:operation:xray      1   6.8420 96.972 5.2907
-## stage:operation:survival  1   1.9311 92.061 0.3799
-##                          Pr(>Chi)  
-## <none>                             
-## xray:survival             0.70196  
-## stage:operation:xray      0.02144 *
-## stage:operation:survival  0.53768  
+##                          Df Deviance    AIC    LRT Pr(>Chi)  
+## <none>                        1.5512 93.681                  
+## xray:survival             1   1.6977 91.827 0.1464  0.70196  
+## stage:operation:xray      1   6.8420 96.972 5.2907  0.02144 *
+## stage:operation:survival  1   1.9311 92.061 0.3799  0.53768  
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-5}{}
+\protect\hypertarget{comments-7}{}
 
 \begin{itemize}
 \item
@@ -3789,17 +3622,12 @@ Least significant term is \texttt{stage:xray:survival}: remove.
 ## freq ~ stage + operation + xray + survival + stage:operation + 
 ##     stage:xray + operation:xray + stage:survival + operation:survival + 
 ##     stage:operation:xray + stage:operation:survival
-##                          Df Deviance    AIC    LRT
-## <none>                        1.6977 91.827       
-## stage:operation:xray      1   6.9277 95.057 5.2300
-## stage:operation:survival  1   2.0242 90.154 0.3265
-##                          Pr(>Chi)  
-## <none>                             
-## stage:operation:xray       0.0222 *
-## stage:operation:survival   0.5677  
+##                          Df Deviance    AIC    LRT Pr(>Chi)  
+## <none>                        1.6977 91.827                  
+## stage:operation:xray      1   6.9277 95.057 5.2300   0.0222 *
+## stage:operation:survival  1   2.0242 90.154 0.3265   0.5677  
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 \end{frame}
@@ -3821,19 +3649,13 @@ Least significant term is \texttt{stage:xray:survival}: remove.
 ## freq ~ stage + operation + xray + survival + stage:operation + 
 ##     stage:xray + operation:xray + stage:survival + operation:survival + 
 ##     stage:operation:xray
-##                      Df Deviance     AIC     LRT
-## <none>                     2.024  90.154        
-## stage:survival        1  135.198 221.327 133.173
-## operation:survival    1    4.116  90.245   2.092
-## stage:operation:xray  1    7.254  93.384   5.230
-##                      Pr(>Chi)    
-## <none>                           
-## stage:survival         <2e-16 ***
-## operation:survival     0.1481    
-## stage:operation:xray   0.0222 *  
+##                      Df Deviance     AIC     LRT Pr(>Chi)    
+## <none>                     2.024  90.154                     
+## stage:survival        1  135.198 221.327 133.173   <2e-16 ***
+## operation:survival    1    4.116  90.245   2.092   0.1481    
+## stage:operation:xray  1    7.254  93.384   5.230   0.0222 *  
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 \end{frame}
@@ -3856,17 +3678,12 @@ Remove \texttt{operation:survival}.
 ## Model:
 ## freq ~ stage + operation + xray + survival + stage:operation + 
 ##     stage:xray + operation:xray + stage:survival + stage:operation:xray
-##                      Df Deviance     AIC    LRT
-## <none>                     4.116  90.245       
-## stage:survival        1  136.729 220.859 132.61
-## stage:operation:xray  1    9.346  93.475   5.23
-##                      Pr(>Chi)    
-## <none>                           
-## stage:survival         <2e-16 ***
-## stage:operation:xray   0.0222 *  
+##                      Df Deviance     AIC    LRT Pr(>Chi)    
+## <none>                     4.116  90.245                    
+## stage:survival        1  136.729 220.859 132.61   <2e-16 ***
+## stage:operation:xray  1    9.346  93.475   5.23   0.0222 *  
 ## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
 Finally done!

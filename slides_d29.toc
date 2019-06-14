@@ -1,2 +1,2 @@
 \beamer@sectionintoc {1}{Time Series}{2}{0}{1}
-\beamer@sectionintoc {2}{Multiway frequency tables}{86}{0}{2}
+\beamer@sectionintoc {2}{Multiway frequency tables}{87}{0}{2}

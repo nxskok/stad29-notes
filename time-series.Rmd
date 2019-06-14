@@ -9,7 +9,7 @@ library(devtools)
 install_github("nxskok/mkac")
 ```
 
-Plus these. You might need to install some of them first: xxx
+Plus these. You might need to install some of them first:
 
 ```{r, eval=F}
 library(ggfortify)
@@ -36,7 +36,7 @@ knitr::opts_chunk$set(fig.cap="")
 Global mean temperature every year since 1880: xxx
 
 \small
-```{r, message=F, warning=F, fig.height=3.6}
+```{r, message=F, warning=F, fig.height=3.3}
 temp=read_csv("temperature.csv")
 ggplot(temp, aes(x=year, y=temperature)) + 
   geom_point() + geom_smooth()
@@ -81,7 +81,7 @@ kendall_Z_adjusted(temp$temperature)
 ```
 \normalsize
 
-## Comments xxx
+## Comments
 
 - Standard Mann-Kendall assumes observations *independent*.
 - Observations close together in time often *correlated* with each other.
@@ -96,7 +96,7 @@ kendall_Z_adjusted(temp$temperature)
   * regular regression slope, if you believe straight-line regression
   * Theil-Sen slope: resistant to outliers, based on medians
   
-## Ordinary regression against time xxx
+## Ordinary regression against time  xxx
 
 \normalsize
 ```{r}
@@ -105,7 +105,7 @@ tidy(temp.lm)
 ```
 \normalsize
 
-Slope about 0.006 degrees per year (about this many degrees over course of data):
+Slope about 0.006 degrees per year (about this many degrees over course of data; pluck xxx):
 
 ```{r}
 coef(temp.lm)[2]*130
@@ -132,9 +132,9 @@ theil_sen_slope(temp$temperature)
   * Kendall correlation smaller, but P-value equally significant (often the case)
 
 
-## Constant rate of change? xxx
+## Constant rate of change?
 
-Slope assumes that the rate of change is same over all years, but trend seemed to be accelerating: xxx
+Slope assumes that the rate of change is same over all years, but trend seemed to be accelerating:
 
 ```{r, fig.height=3, message=F}
 ggplot(temp, aes(x=year, y=temperature)) + 
@@ -176,7 +176,7 @@ kings.ts
 ```
 
 
-## Plotting a time series xxx
+## Plotting a time series
 
 `autoplot` from `ggfortify` gives time plot:
 
@@ -206,7 +206,7 @@ Kings time series seems to have:
 * but constant variability
 * not stationary.
 
-## xxx  Getting it stationary
+##  Getting it stationary
 
 - Usual fix for non-stationarity is *differencing*: get new series from original one's values: 2nd - 1st, 3rd - 2nd etc.
 
@@ -216,9 +216,9 @@ In R, `diff`:
 kings.diff.ts=diff(kings.ts)
 ```
 
-## xxx  Did differencing fix stationarity?
+##  Did differencing fix stationarity?
 
-Looks stationary now: xxx
+Looks stationary now:
 
 ```{r "Differenced-Kings-Series", fig.height=3.9}
 autoplot(kings.diff.ts)
@@ -239,10 +239,14 @@ ny
 
 ## As a time series xxx
 
+\scriptsize
 ```{r}
 ny.ts=ts(ny,freq=12,start=c(1946,1))
 ny.ts
 ```
+\normalsize
+
+## Comments xxx
 
 Note extras on `ts`:
 
@@ -253,24 +257,23 @@ Note extras on `ts`:
 Printing formats nicely.
 
 
-## xxx  Time plot
+##  Time plot
 
-* Time plot shows extra pattern: xxx
+* Time plot shows extra pattern:
 
 ```{r,fig.cap="", fig.height=3.8}
 autoplot(ny.ts)
 ```
 
-## xxx  Comments on time plot
+##  Comments on time plot
 
 * steady increase (after initial drop)
 * repeating pattern each year (seasonal component).
 * Not stationary.
 
-## xxx  Differencing the New York births
+##  Differencing the New York births
 
 Does differencing help here? Looks stationary, but some regular spikes:
-xxx
 
 ```{r, fig.height=3.6}
 ny.diff.ts=diff(ny.ts)
@@ -278,17 +281,17 @@ autoplot(ny.diff.ts)
 ```
 
 
-## xxx  Decomposing a seasonal time series
+##  Decomposing a seasonal time series
 
 
-A visual (using original data): xxx
+A visual (using original data):
 
 ```{r fig.height=3.5}
 ny.d <- decompose(ny.ts) 
 ny.d %>% autoplot()
 ```
 
-## xxx  Decomposition bits
+##  Decomposition bits
 
 
 Shows:
@@ -302,11 +305,11 @@ Shows:
 
 Fitted seasonal part is same every year, births lowest in February and highest in July:
 
-
+\tiny
 ```{r}
 ny.d$seasonal
 ```
-
+\normalsize
 
 ```{r, echo=FALSE}
 set.seed(457299)
@@ -317,7 +320,7 @@ set.seed(457299)
 Each value independent random normal. Knowing one value tells you nothing about the next. "Random" process. xxx
 
 
-```{r "White-Noise", fig.height=3.5}
+```{r "White-Noise", fig.height=3.3}
 wn=rnorm(100)
 wn.ts=ts(wn)
 autoplot(wn.ts)
@@ -338,7 +341,7 @@ with_lagged
 
 Gain a missing because there is nothing before the first observation.
 
-## xxx  Lagging white noise
+##  Lagging white noise
 
 ```{r, warning=F, fig.height=4}
 tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
@@ -354,7 +357,7 @@ If you know about white noise at one time point, you know *nothing* about it at 
 
 On the other hand, this:
 
-\small
+\footnotesize
 ```{r}
 tibble(age=kings$X1) %>% 
   mutate(age_lagged=lag(age)) -> kings_with_lagged
@@ -364,12 +367,12 @@ with(kings_with_lagged, cor.test(age, age_lagged))
 
 ## xxx Correlation with next value?
 
-```{r, warning=F}
+```{r, warning=F, fig.height=4}
 ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + 
   geom_point()
 ```
 
-## xxx  Two steps back:
+##  Two steps back:
 
 \small
 ```{r}
@@ -385,7 +388,7 @@ Still a correlation two steps back, but smaller (and no longer significant).
 
 Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`. Here, white noise: xxx
 
-```{r, fig.height=3.5}
+```{r, fig.height=3.3}
 acf(wn.ts, plot=F) %>% autoplot()
 ```
 
@@ -399,7 +402,7 @@ Autocorrelations work best on *stationary* series.
 acf(kings.diff.ts, plot=F) %>% autoplot()
 ```
 
-## xxx  Comments on autocorrelations of kings series
+##  Comments on autocorrelations of kings series
 
 Negative autocorrelation at lag 1, nothing beyond that. 
 
@@ -423,6 +426,12 @@ acf(ny.diff.ts, plot=F) %>% autoplot()
 
 Monthly sales for a beach souvenir shop in Queensland, Australia:
 
+```{r, echo=F}
+w=getOption("width")
+options(width=90)
+```
+
+
 \scriptsize
 ```{r, message=F}
 souv=read_table("souvenir.txt", col_names=F)
@@ -430,21 +439,27 @@ souv.ts=ts(souv,frequency=12,start=1987)
 souv.ts
 ```
 \normalsize
+
+```{r, echo=F}
+options(width=w)
+```
+
+
 ##  Plot of souvenir sales
 
 ```{r, fig.height=4}
 autoplot(souv.ts)
 ```
 
-## xxx  Several problems:
+##  Several problems:
 
 * Mean goes up over time
 * Variability gets larger as mean gets larger
 * Not stationary
 
-## xxx  Problem-fixing:
+##  Problem-fixing:
 
-Fix non-constant variability first by taking logs: xxx
+Fix non-constant variability first by taking logs:
 
 ```{r, fig.height=3.5}
 souv.log.ts=log(souv.ts)
@@ -474,11 +489,21 @@ autoplot(souv.d)
 
 **Big** drop in one month's differences. Look at seasonal component to see which:
 
+
+```{r, echo=F}
+w=getOption("width")
+options(width=90)
+```
+
 \tiny
 ```{r}
 souv.d$seasonal
 ```
 \normalsize
+
+```{r, echo=F}
+options(width=w)
+```
 
 January.
 
@@ -492,7 +517,7 @@ acf(souv.log.diff.ts, plot=F) %>% autoplot()
 * Small negative autocorrelation at 1 and 2 months.
 
 
-## xxx  Moving average
+##  Moving average
 
 - A particular type of time series called a **moving average** or MA process captures idea of autocorrelations at a few lags but not at others.
 
@@ -508,10 +533,11 @@ tibble(e=rnorm(100)) %>%
 
 ## The series xxx
 
+\small
 ```{r}
 ma
 ```
-
+\normalsize
 
 ##  Comments
 
@@ -526,13 +552,13 @@ ma
 
 Everything beyond lag 1 appears to be just chance:
 
-```{r, fig.height=4}
+```{r, fig.height=3.5}
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
 
 
-## xxx  AR process
+##  AR process
 
 Another kind of time series is AR process, where each value depends on previous one, like this (loop):
 
@@ -547,7 +573,7 @@ for (i in 2:100)
 }
 ```
 
-## The series xxx
+## The series
 
 ```{r}
 x
@@ -572,7 +598,7 @@ acf(x, plot=F) %>% autoplot()
 
 This cuts off for an AR series: xxx
 
-```{r, fig.height=3.8}
+```{r, fig.height=3.7}
 pacf(x, plot=F) %>% autoplot()
 ```
 
@@ -604,7 +630,7 @@ Starting from a series with constant variability (eg. transform first to get it,
 * Use function `auto.arima` to estimate what kind of series best fits data.
 * Use `forecast` to see what will happen in future.
 
-## xxx  Anatomy of `auto.arima` output
+##  Anatomy of `auto.arima` output
 
 ```{r}
 auto.arima(ma$y)
@@ -612,7 +638,7 @@ auto.arima(ma$y)
 
 Comments over.
 
-## Comments xxx
+## Comments
 
 * ARIMA part tells you what kind of series you are estimated to have:
   * first number (first 0) is AR (autoregressive) part
@@ -622,7 +648,7 @@ Comments over.
 * Below that, coefficients (with SEs)
 * AICc is measure of fit (lower better)
 
-## xxx  What other models were possible?
+##  What other models were possible?
 
 Run `auto.arima` with `trace=T`:
 
@@ -645,6 +671,11 @@ wn.aa
 Best fit *is* white noise (no AR, no MA, no differencing). 
 
 ## xxx  Forecasts:
+
+```{r, echo=F}
+options(width=65)
+```
+
 
 \small
 ```{r}
@@ -670,7 +701,7 @@ autoplot(y.f)
 ```
 
 
-## xxx  AR(1)
+##  AR(1)
 
 ```{r}
 x.aa=auto.arima(x)
@@ -679,7 +710,7 @@ x.aa
 
 Oops! Thought it was MA(1), not AR(1)!
 
-## xxx Fit right AR(1) model:
+## Fit right AR(1) model:
 
 ```{r}
 x.arima=arima(x,order=c(1,0,0))
@@ -692,21 +723,21 @@ x.arima
 forecast(x.arima) %>% autoplot()
 ```
 
-## Comparing wrong model: xxx
+## Comparing wrong model:
 
 ```{r, fig.height=4}
 forecast(x.aa) %>% autoplot()
 ```
 
 
-## xxx  Kings
+##  Kings
   
 ```{r}
 kings.aa=auto.arima(kings.ts)
 kings.aa
 ```
 
-## xxx  Kings forecasts:
+##  Kings forecasts:
 
 \small
 ```{r}
@@ -740,7 +771,7 @@ ny.aa
 
 Not *quite* same every year:
 
-\small
+\footnotesize
 ```{r}
 ny.f=forecast(ny.aa,h=36)
 ny.f
