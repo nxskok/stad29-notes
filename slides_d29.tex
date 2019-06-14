@@ -158,7 +158,7 @@ Uses my package \texttt{mkac} which is on Github. Install with:
 \end{Highlighting}
 \end{Shaded}
 
-plus these, which you might need to install first:
+Plus these. You might need to install some of them first: xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -171,8 +171,8 @@ plus these, which you might need to install first:
 
 \end{frame}
 
-\begin{frame}{Time trends xxx}
-\protect\hypertarget{time-trends-xxx}{}
+\begin{frame}{Time trends}
+\protect\hypertarget{time-trends}{}
 
 \begin{itemize}
 \tightlist
@@ -197,14 +197,17 @@ plus these, which you might need to install first:
 
 Global mean temperature every year since 1880: xxx
 
+\small
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{temp=}\KeywordTok{read_csv}\NormalTok{(}\StringTok{"temperature.csv"}\NormalTok{)}
-\KeywordTok{ggplot}\NormalTok{(temp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{year, }\DataTypeTok{y=}\NormalTok{temperature)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(temp, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{year, }\DataTypeTok{y=}\NormalTok{temperature)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-6-1.pdf}
+\includegraphics{figure/unnamed-chunk-6-1.pdf} \normalsize
 
 \end{frame}
 
@@ -242,8 +245,8 @@ Global mean temperature every year since 1880: xxx
 
 \end{frame}
 
-\begin{frame}{Comments xxx}
-\protect\hypertarget{comments-xxx}{}
+\begin{frame}{Comments}
+\protect\hypertarget{comments}{}
 
 \begin{itemize}
 \tightlist
@@ -326,13 +329,22 @@ comparable. Trend again strongly significant.
 
 \end{frame}
 
-\begin{frame}{Comments}
-\protect\hypertarget{comments}{}
+\begin{frame}{Comments xxx}
+\protect\hypertarget{comments-xxx}{}
 
-P-value is very small, but adjusted one not as small as before because
-of \emph{autocorrelation} (see later). Idea: observations close together
-in time are correlated with each other, so observations not independent.
-This is correction for that.
+\begin{itemize}
+\tightlist
+\item
+  Standard Mann-Kendall assumes observations \emph{independent}.
+\item
+  Observations close together in time often \emph{correlated} with each
+  other.
+\item
+  Correlation of time series ``with itself'' called
+  \textbf{autocorrelation}.
+\item
+  Adjusted P-value above is correction for autocorrelation.
+\end{itemize}
 
 \end{frame}
 
@@ -360,37 +372,24 @@ This is correction for that.
 \begin{frame}[fragile]{Ordinary regression against time xxx}
 \protect\hypertarget{ordinary-regression-against-time-xxx}{}
 
+\normalsize
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{temp.lm=}\KeywordTok{lm}\NormalTok{(temperature}\OperatorTok{~}\NormalTok{year, }\DataTypeTok{data=}\NormalTok{temp)}
-\KeywordTok{summary}\NormalTok{(temp.lm)}
+\KeywordTok{tidy}\NormalTok{(temp.lm)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = temperature ~ year, data = temp)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.32496 -0.10117  0.00575  0.08355  0.28501 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)
-## (Intercept) 2.5794197  0.5703984   4.522 1.37e-05
-## year        0.0058631  0.0002932  19.996  < 2e-16
-##                
-## (Intercept) ***
-## year        ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.1269 on 129 degrees of freedom
-## Multiple R-squared:  0.7561, Adjusted R-squared:  0.7542 
-## F-statistic: 399.9 on 1 and 129 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)  2.58     0.570         4.52 1.37e- 5
+## 2 year         0.00586  0.000293     20.0  2.42e-41
 \end{verbatim}
+
+\normalsize
 
 Slope about 0.006 degrees per year (about this many degrees over course
 of data):
@@ -472,21 +471,18 @@ seemed to be accelerating: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-\end{verbatim}
-
 \includegraphics{figure/unnamed-chunk-13-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Pre-1970 and post-1970: xxx}
-\protect\hypertarget{pre-1970-and-post-1970-xxx}{}
+\begin{frame}[fragile]{Pre-1970 and post-1970:}
+\protect\hypertarget{pre-1970-and-post-1970}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{temp }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{time_period=}\KeywordTok{ifelse}\NormalTok{(year}\OperatorTok{<=}\DecValTok{1970}\NormalTok{, }\StringTok{"pre-1970"}\NormalTok{, }\StringTok{"post-1970"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{time_period=}
+           \KeywordTok{ifelse}\NormalTok{(year}\OperatorTok{<=}\DecValTok{1970}\NormalTok{, }\StringTok{"pre-1970"}\NormalTok{, }\StringTok{"post-1970"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{nest}\NormalTok{(}\OperatorTok{-}\NormalTok{time_period) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{theil_sen=}\KeywordTok{map_dbl}\NormalTok{(}
 \NormalTok{    data, }\OperatorTok{~}\KeywordTok{theil_sen_slope}\NormalTok{(.}\OperatorTok{$}\NormalTok{temperature)))}
@@ -596,8 +592,8 @@ with one column.
 
 \end{frame}
 
-\begin{frame}[fragile]{Plotting a time series}
-\protect\hypertarget{plotting-a-time-series}{}
+\begin{frame}[fragile]{Plotting a time series xxx}
+\protect\hypertarget{plotting-a-time-series-xxx}{}
 
 \texttt{autoplot} from \texttt{ggfortify} gives time plot:
 
@@ -653,14 +649,14 @@ Kings time series seems to have:
 
 \end{frame}
 
-\begin{frame}[fragile]{Getting it stationary}
-\protect\hypertarget{getting-it-stationary}{}
+\begin{frame}[fragile]{xxx Getting it stationary}
+\protect\hypertarget{xxx-getting-it-stationary}{}
 
 \begin{itemize}
 \tightlist
 \item
-  Usual fix for non-stationarity is \emph{differencing}: new series 2nd
-  - 1st, 3rd - 2nd etc.
+  Usual fix for non-stationarity is \emph{differencing}: get new series
+  from original one's values: 2nd - 1st, 3rd - 2nd etc.
 \end{itemize}
 
 In R, \texttt{diff}:
@@ -673,8 +669,8 @@ In R, \texttt{diff}:
 
 \end{frame}
 
-\begin{frame}[fragile]{Did differencing fix stationarity?}
-\protect\hypertarget{did-differencing-fix-stationarity}{}
+\begin{frame}[fragile]{xxx Did differencing fix stationarity?}
+\protect\hypertarget{xxx-did-differencing-fix-stationarity}{}
 
 Looks stationary now: xxx
 
@@ -688,26 +684,16 @@ Looks stationary now: xxx
 
 \end{frame}
 
-\begin{frame}[fragile]{Births per month in New York City}
-\protect\hypertarget{births-per-month-in-new-york-city}{}
+\begin{frame}[fragile]{xxx Births per month in New York City}
+\protect\hypertarget{xxx-births-per-month-in-new-york-city}{}
 
 from January 1946 to December 1959:
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{ny=}\KeywordTok{read_table}\NormalTok{(}\StringTok{"nybirths.txt"}\NormalTok{,}\DataTypeTok{col_names=}\NormalTok{F)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Parsed with column specification:
-## cols(
-##   X1 = col_double()
-## )
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{ny}
 \end{Highlighting}
 \end{Shaded}
@@ -728,6 +714,13 @@ from January 1946 to December 1959:
 ## 10  23.2
 ## # … with 158 more rows
 \end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]{As a time series xxx}
+\protect\hypertarget{as-a-time-series-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -785,8 +778,8 @@ Printing formats nicely.
 
 \end{frame}
 
-\begin{frame}[fragile]{Time plot}
-\protect\hypertarget{time-plot}{}
+\begin{frame}[fragile]{xxx Time plot}
+\protect\hypertarget{xxx-time-plot}{}
 
 \begin{itemize}
 \tightlist
@@ -800,12 +793,12 @@ Printing formats nicely.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-19-1.pdf}
+\includegraphics{figure/unnamed-chunk-20-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Comments on time plot}
-\protect\hypertarget{comments-on-time-plot}{}
+\begin{frame}{xxx Comments on time plot}
+\protect\hypertarget{xxx-comments-on-time-plot}{}
 
 \begin{itemize}
 \tightlist
@@ -819,10 +812,11 @@ Printing formats nicely.
 
 \end{frame}
 
-\begin{frame}[fragile]{Differencing the New York births}
-\protect\hypertarget{differencing-the-new-york-births}{}
+\begin{frame}[fragile]{xxx Differencing the New York births}
+\protect\hypertarget{xxx-differencing-the-new-york-births}{}
 
-Does differencing help here? xxx
+Does differencing help here? Looks stationary, but some regular spikes:
+xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -831,32 +825,28 @@ Does differencing help here? xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-20-1.pdf}
-
-Looks stationary, but some regular spikes.
+\includegraphics{figure/unnamed-chunk-21-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Decomposing a seasonal time series}
-\protect\hypertarget{decomposing-a-seasonal-time-series}{}
-
-Observations for NY births were every month. Are things the same every
-year?
+\begin{frame}[fragile]{xxx Decomposing a seasonal time series}
+\protect\hypertarget{xxx-decomposing-a-seasonal-time-series}{}
 
 A visual (using original data): xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{decompose}\NormalTok{(ny.ts) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{autoplot}\NormalTok{()}
+\NormalTok{ny.d <-}\StringTok{ }\KeywordTok{decompose}\NormalTok{(ny.ts) }
+\NormalTok{ny.d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{autoplot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-21-1.pdf}
+\includegraphics{figure/unnamed-chunk-22-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Decomposition bits}
-\protect\hypertarget{decomposition-bits}{}
+\begin{frame}{xxx Decomposition bits}
+\protect\hypertarget{xxx-decomposition-bits}{}
 
 Shows:
 
@@ -874,8 +864,8 @@ Shows:
 
 \end{frame}
 
-\begin{frame}[fragile]{The seasonal part}
-\protect\hypertarget{the-seasonal-part}{}
+\begin{frame}[fragile]{xxx The seasonal part}
+\protect\hypertarget{xxx-the-seasonal-part}{}
 
 Fitted seasonal part is same every year, births lowest in February and
 highest in July:
@@ -887,21 +877,60 @@ highest in July:
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(expr, envir, enclos): object 'ny.d' not found
+##             Jan        Feb        Mar        Apr
+## 1946 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1947 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1948 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1949 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1950 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1951 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1952 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1953 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1954 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1955 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1956 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1957 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1958 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1959 -0.6771947 -2.0829607  0.8625232 -0.8016787
+##             May        Jun        Jul        Aug
+## 1946  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1947  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1948  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1949  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1950  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1951  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1952  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1953  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1954  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1955  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1956  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1957  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1958  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1959  0.2516514 -0.1532556  1.4560457  1.1645938
+##             Sep        Oct        Nov        Dec
+## 1946  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1947  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1948  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1949  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1950  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1951  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1952  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1953  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1954  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1955  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1956  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1957  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1958  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1959  0.6916162  0.7752444 -1.1097652 -0.3768197
 \end{verbatim}
 
 \end{frame}
 
-\begin{frame}{Time series basics}
-\protect\hypertarget{time-series-basics}{}
+\begin{frame}[fragile]{xxx Time series basics: white noise}
+\protect\hypertarget{xxx-time-series-basics-white-noise}{}
 
-\end{frame}
-
-\begin{frame}[fragile]{White noise}
-\protect\hypertarget{white-noise}{}
-
-Independent random normal. Knowing one value tells you nothing about the
-next. ``Random'' process. xxx
+Each value independent random normal. Knowing one value tells you
+nothing about the next. ``Random'' process. xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -943,8 +972,8 @@ Gain a missing because there is nothing before the first observation.
 
 \end{frame}
 
-\begin{frame}[fragile]{Lagging white noise}
-\protect\hypertarget{lagging-white-noise}{}
+\begin{frame}[fragile]{xxx Lagging white noise}
+\protect\hypertarget{xxx-lagging-white-noise}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -953,12 +982,7 @@ Gain a missing because there is nothing before the first observation.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
-\end{verbatim}
-
-\includegraphics{figure/unnamed-chunk-25-1.pdf}
+\includegraphics{figure/unnamed-chunk-26-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -982,14 +1006,16 @@ Gain a missing because there is nothing before the first observation.
 
 \end{frame}
 
-\begin{frame}[fragile]{Correlation with lagged series}
-\protect\hypertarget{correlation-with-lagged-series}{}
+\begin{frame}[fragile]{xxx Correlation with lagged series}
+\protect\hypertarget{xxx-correlation-with-lagged-series}{}
 
 If you know about white noise at one time point, you know \emph{nothing}
 about it at the next. This is shown by the scatterplot and the
 correlation.
 
 On the other hand, this:
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1013,29 +1039,28 @@ On the other hand, this:
 ## 0.4009919
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
-\begin{frame}[fragile]{If one value larger, the next value (a bit) more
-likely to be larger:}
-\protect\hypertarget{if-one-value-larger-the-next-value-a-bit-more-likely-to-be-larger}{}
+\begin{frame}[fragile]{xxx Correlation with next value?}
+\protect\hypertarget{xxx-correlation-with-next-value}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(kings_with_lagged, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age_lagged, }\DataTypeTok{y=}\NormalTok{age)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(kings_with_lagged, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{age_lagged, }\DataTypeTok{y=}\NormalTok{age)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
-\end{verbatim}
-
-\includegraphics{figure/unnamed-chunk-27-1.pdf}
+\includegraphics{figure/unnamed-chunk-28-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Two steps back:}
-\protect\hypertarget{two-steps-back}{}
+\begin{frame}[fragile]{xxx Two steps back:}
+\protect\hypertarget{xxx-two-steps-back}{}
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1059,19 +1084,19 @@ likely to be larger:}
 ## 0.245676
 \end{verbatim}
 
+\normalsize
+
 Still a correlation two steps back, but smaller (and no longer
 significant).
 
 \end{frame}
 
-\begin{frame}[fragile]{Autocorrelation}
-\protect\hypertarget{autocorrelation}{}
+\begin{frame}[fragile]{xxx Autocorrelation}
+\protect\hypertarget{xxx-autocorrelation}{}
 
 Correlation of time series with \emph{itself} one, two,\ldots{} time
 steps back is useful idea, called \textbf{autocorrelation}. Make a plot
-of it with \texttt{acf} and \texttt{autoplot}:
-
-White noise: xxx
+of it with \texttt{acf} and \texttt{autoplot}. Here, white noise: xxx
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1079,7 +1104,7 @@ White noise: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-29-1.pdf}
+\includegraphics{figure/unnamed-chunk-30-1.pdf}
 
 No autocorrelations beyond chance, anywhere (except \emph{possibly} at
 lag 13).
@@ -1088,8 +1113,8 @@ Autocorrelations work best on \emph{stationary} series.
 
 \end{frame}
 
-\begin{frame}[fragile]{Kings, differenced xxx}
-\protect\hypertarget{kings-differenced-xxx}{}
+\begin{frame}[fragile]{Kings, differenced}
+\protect\hypertarget{kings-differenced}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1097,12 +1122,12 @@ Autocorrelations work best on \emph{stationary} series.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-30-1.pdf}
+\includegraphics{figure/unnamed-chunk-31-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Comments on autocorrelations of kings series}
-\protect\hypertarget{comments-on-autocorrelations-of-kings-series}{}
+\begin{frame}{xxx Comments on autocorrelations of kings series}
+\protect\hypertarget{xxx-comments-on-autocorrelations-of-kings-series}{}
 
 Negative autocorrelation at lag 1, nothing beyond that.
 
@@ -1112,14 +1137,14 @@ Negative autocorrelation at lag 1, nothing beyond that.
   If one value of differenced series positive, next one most likely
   negative.
 \item
-  If one king lives longer than predecessor, next one likely lives
+  If one monarch lives longer than predecessor, next one likely lives
   shorter.
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{NY births, differenced xxx}
-\protect\hypertarget{ny-births-differenced-xxx}{}
+\begin{frame}[fragile]{NY births, differenced}
+\protect\hypertarget{ny-births-differenced}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1127,7 +1152,7 @@ Negative autocorrelation at lag 1, nothing beyond that.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-31-1.pdf}
+\includegraphics{figure/unnamed-chunk-32-1.pdf}
 
 \end{frame}
 
@@ -1150,26 +1175,16 @@ Negative autocorrelation at lag 1, nothing beyond that.
 
 \end{frame}
 
-\begin{frame}[fragile]{Souvenir sales}
-\protect\hypertarget{souvenir-sales}{}
+\begin{frame}[fragile]{xxx Souvenir sales}
+\protect\hypertarget{xxx-souvenir-sales}{}
 
 Monthly sales for a beach souvenir shop in Queensland, Australia:
+
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{souv=}\KeywordTok{read_table}\NormalTok{(}\StringTok{"souvenir.txt"}\NormalTok{, }\DataTypeTok{col_names=}\NormalTok{F)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Parsed with column specification:
-## cols(
-##   X1 = col_double()
-## )
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{souv.ts=}\KeywordTok{ts}\NormalTok{(souv,}\DataTypeTok{frequency=}\DecValTok{12}\NormalTok{,}\DataTypeTok{start=}\DecValTok{1987}\NormalTok{)}
 \NormalTok{souv.ts}
 \end{Highlighting}
@@ -1202,10 +1217,12 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 ## 1993  30505.41  30821.33  46634.38 104660.67
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
-\begin{frame}[fragile]{Plot of souvenir sales xxx}
-\protect\hypertarget{plot-of-souvenir-sales-xxx}{}
+\begin{frame}[fragile]{Plot of souvenir sales}
+\protect\hypertarget{plot-of-souvenir-sales}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1213,12 +1230,12 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-33-1.pdf}
+\includegraphics{figure/unnamed-chunk-34-1.pdf}
 
 \end{frame}
 
-\begin{frame}{Several problems:}
-\protect\hypertarget{several-problems}{}
+\begin{frame}{xxx Several problems:}
+\protect\hypertarget{xxx-several-problems}{}
 
 \begin{itemize}
 \tightlist
@@ -1232,8 +1249,8 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 
 \end{frame}
 
-\begin{frame}[fragile]{Problem-fixing:}
-\protect\hypertarget{problem-fixing}{}
+\begin{frame}[fragile]{xxx Problem-fixing:}
+\protect\hypertarget{xxx-problem-fixing}{}
 
 Fix non-constant variability first by taking logs: xxx
 
@@ -1244,13 +1261,13 @@ Fix non-constant variability first by taking logs: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-34-1.pdf}
+\includegraphics{figure/unnamed-chunk-35-1.pdf}
 
 \end{frame}
 
 \begin{frame}[fragile]{Mean still not constant, so try taking
-differences xxx}
-\protect\hypertarget{mean-still-not-constant-so-try-taking-differences-xxx}{}
+differences}
+\protect\hypertarget{mean-still-not-constant-so-try-taking-differences}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1259,7 +1276,7 @@ differences xxx}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-35-1.pdf}
+\includegraphics{figure/unnamed-chunk-36-1.pdf}
 
 \end{frame}
 
@@ -1276,8 +1293,8 @@ differences xxx}
 
 \end{frame}
 
-\begin{frame}[fragile]{Decomposing to see the seasonal effect xxx}
-\protect\hypertarget{decomposing-to-see-the-seasonal-effect-xxx}{}
+\begin{frame}[fragile]{Decomposing to see the seasonal effect}
+\protect\hypertarget{decomposing-to-see-the-seasonal-effect}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1286,15 +1303,17 @@ differences xxx}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-36-1.pdf}
+\includegraphics{figure/unnamed-chunk-37-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-3}{}
+\begin{frame}[fragile]{xxx Comments}
+\protect\hypertarget{xxx-comments}{}
 
 \textbf{Big} drop in one month's differences. Look at seasonal component
 to see which:
+
+\tiny
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1337,12 +1356,14 @@ to see which:
 ## 1993  0.09148236  0.47311204  0.75273614
 \end{verbatim}
 
+\normalsize
+
 January.
 
 \end{frame}
 
-\begin{frame}[fragile]{Autocorrelations xxx}
-\protect\hypertarget{autocorrelations-xxx}{}
+\begin{frame}[fragile]{Autocorrelations}
+\protect\hypertarget{autocorrelations}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1350,7 +1371,7 @@ January.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-38-1.pdf}
+\includegraphics{figure/unnamed-chunk-39-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -1362,8 +1383,8 @@ January.
 
 \end{frame}
 
-\begin{frame}[fragile]{Moving average}
-\protect\hypertarget{moving-average}{}
+\begin{frame}[fragile]{xxx Moving average}
+\protect\hypertarget{xxx-moving-average}{}
 
 \begin{itemize}
 \item
@@ -1382,6 +1403,16 @@ January.
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{e_lag=}\KeywordTok{lag}\NormalTok{(e)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{y=}\NormalTok{e}\OperatorTok{+}\NormalTok{beta}\OperatorTok{*}\NormalTok{e_lag) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{y=}\KeywordTok{ifelse}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(y), }\DecValTok{0}\NormalTok{, y)) ->}\StringTok{ }\NormalTok{ma}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{The series xxx}
+\protect\hypertarget{the-series-xxx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{ma}
 \end{Highlighting}
 \end{Shaded}
@@ -1406,7 +1437,7 @@ January.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-4}{}
+\protect\hypertarget{comments-3}{}
 
 \begin{itemize}
 \tightlist
@@ -1430,20 +1461,20 @@ January.
 \begin{frame}[fragile]{ACF for MA(1) process xxx}
 \protect\hypertarget{acf-for-ma1-process-xxx}{}
 
+Everything beyond lag 1 appears to be just chance:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{acf}\NormalTok{(ma}\OperatorTok{$}\NormalTok{y, }\DataTypeTok{plot=}\NormalTok{F, }\DataTypeTok{na.rm=}\NormalTok{T) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{autoplot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-40-1.pdf}
-
-Everything beyond lag 1 appears to be just chance.
+\includegraphics{figure/unnamed-chunk-42-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{AR process}
-\protect\hypertarget{ar-process}{}
+\begin{frame}[fragile]{xxx AR process}
+\protect\hypertarget{xxx-ar-process}{}
 
 Another kind of time series is AR process, where each value depends on
 previous one, like this (loop):
@@ -1458,6 +1489,16 @@ previous one, like this (loop):
 \NormalTok{\{}
 \NormalTok{  x[i]=alpha}\OperatorTok{*}\NormalTok{x[i}\DecValTok{-1}\NormalTok{]}\OperatorTok{+}\NormalTok{e[i]}
 \NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{The series xxx}
+\protect\hypertarget{the-series-xxx-1}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{x}
 \end{Highlighting}
 \end{Shaded}
@@ -1502,7 +1543,7 @@ previous one, like this (loop):
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-5}{}
+\protect\hypertarget{comments-4}{}
 
 \begin{itemize}
 \tightlist
@@ -1522,8 +1563,8 @@ previous one, like this (loop):
 
 \end{frame}
 
-\begin{frame}[fragile]{ACF for AR(1) series xxx}
-\protect\hypertarget{acf-for-ar1-series-xxx}{}
+\begin{frame}[fragile]{ACF for AR(1) series}
+\protect\hypertarget{acf-for-ar1-series}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1531,12 +1572,12 @@ previous one, like this (loop):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-42-1.pdf}
+\includegraphics{figure/unnamed-chunk-45-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Partial autocorrelation function}
-\protect\hypertarget{partial-autocorrelation-function}{}
+\begin{frame}[fragile]{xxx Partial autocorrelation function}
+\protect\hypertarget{xxx-partial-autocorrelation-function}{}
 
 This cuts off for an AR series: xxx
 
@@ -1546,14 +1587,14 @@ This cuts off for an AR series: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-43-1.pdf}
+\includegraphics{figure/unnamed-chunk-46-1.pdf}
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
 \end{frame}
 
-\begin{frame}[fragile]{PACF for an MA series decays slowly xxx}
-\protect\hypertarget{pacf-for-an-ma-series-decays-slowly-xxx}{}
+\begin{frame}[fragile]{PACF for an MA series decays slowly}
+\protect\hypertarget{pacf-for-an-ma-series-decays-slowly}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1561,7 +1602,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-44-1.pdf}
+\includegraphics{figure/unnamed-chunk-47-1.pdf}
 
 \end{frame}
 
@@ -1610,8 +1651,8 @@ get it, as for souvenirs):
 
 \end{frame}
 
-\begin{frame}[fragile]{Anatomy of \texttt{auto.arima} output}
-\protect\hypertarget{anatomy-of-auto.arima-output}{}
+\begin{frame}[fragile]{xxx Anatomy of \texttt{auto.arima} output}
+\protect\hypertarget{xxx-anatomy-of-auto.arima-output}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1631,6 +1672,13 @@ get it, as for souvenirs):
 ## sigma^2 estimated as 0.9878:  log likelihood=-141.64
 ## AIC=287.29   AICc=287.41   BIC=292.5
 \end{verbatim}
+
+Comments over.
+
+\end{frame}
+
+\begin{frame}{Comments xxx}
+\protect\hypertarget{comments-xxx-1}{}
 
 \begin{itemize}
 \tightlist
@@ -1654,10 +1702,12 @@ get it, as for souvenirs):
 
 \end{frame}
 
-\begin{frame}[fragile]{What other models were possible?}
-\protect\hypertarget{what-other-models-were-possible}{}
+\begin{frame}[fragile]{xxx What other models were possible?}
+\protect\hypertarget{xxx-what-other-models-were-possible}{}
 
 Run \texttt{auto.arima} with \texttt{trace=T}:
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1697,6 +1747,8 @@ Run \texttt{auto.arima} with \texttt{trace=T}:
 ## AIC=287.29   AICc=287.41   BIC=292.5
 \end{verbatim}
 
+\normalsize
+
 Also possible were MA(2) and ARMA(1,1), both with AICc=273.7.
 
 \end{frame}
@@ -1723,8 +1775,10 @@ Best fit \emph{is} white noise (no AR, no MA, no differencing).
 
 \end{frame}
 
-\begin{frame}[fragile]{Forecasts:}
-\protect\hypertarget{forecasts}{}
+\begin{frame}[fragile]{xxx Forecasts:}
+\protect\hypertarget{xxx-forecasts}{}
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1756,6 +1810,8 @@ Best fit \emph{is} white noise (no AR, no MA, no differencing).
 ## 109 2.065975
 ## 110 2.065975
 \end{verbatim}
+
+\normalsize
 
 Forecasts all 0, since the past doesn't help to predict future.
 
@@ -1792,8 +1848,8 @@ Forecasts all 0, since the past doesn't help to predict future.
 
 \end{frame}
 
-\begin{frame}[fragile]{Plotting the forecasts for MA(1) xxx}
-\protect\hypertarget{plotting-the-forecasts-for-ma1-xxx}{}
+\begin{frame}[fragile]{Plotting the forecasts for MA(1)}
+\protect\hypertarget{plotting-the-forecasts-for-ma1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1801,12 +1857,12 @@ Forecasts all 0, since the past doesn't help to predict future.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-50-1.pdf}
+\includegraphics{figure/unnamed-chunk-53-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{AR(1)}
-\protect\hypertarget{ar1}{}
+\begin{frame}[fragile]{xxx AR(1)}
+\protect\hypertarget{xxx-ar1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1828,12 +1884,12 @@ Forecasts all 0, since the past doesn't help to predict future.
 ## AIC=281.97   AICc=282.1   BIC=287.16
 \end{verbatim}
 
-Oops!
+Oops! Thought it was MA(1), not AR(1)!
 
 \end{frame}
 
-\begin{frame}[fragile]{Got it wrong! Fit right AR(1) model:}
-\protect\hypertarget{got-it-wrong-fit-right-ar1-model}{}
+\begin{frame}[fragile]{xxx Fit right AR(1) model:}
+\protect\hypertarget{xxx-fit-right-ar1-model}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1857,8 +1913,8 @@ Oops!
 
 \end{frame}
 
-\begin{frame}[fragile]{Forecasts for \texttt{x} xxx}
-\protect\hypertarget{forecasts-for-x-xxx}{}
+\begin{frame}[fragile]{Forecasts for \texttt{x}}
+\protect\hypertarget{forecasts-for-x}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1866,9 +1922,12 @@ Oops!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-53-1.pdf}
+\includegraphics{figure/unnamed-chunk-56-1.pdf}
 
-Comparing wrong model: xxx
+\end{frame}
+
+\begin{frame}[fragile]{Comparing wrong model: xxx}
+\protect\hypertarget{comparing-wrong-model-xxx}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1876,12 +1935,12 @@ Comparing wrong model: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-54-1.pdf}
+\includegraphics{figure/unnamed-chunk-57-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Kings}
-\protect\hypertarget{kings}{}
+\begin{frame}[fragile]{xxx Kings}
+\protect\hypertarget{xxx-kings}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1905,8 +1964,10 @@ Comparing wrong model: xxx
 
 \end{frame}
 
-\begin{frame}[fragile]{Kings forecasts:}
-\protect\hypertarget{kings-forecasts}{}
+\begin{frame}[fragile]{xxx Kings forecasts:}
+\protect\hypertarget{xxx-kings-forecasts}{}
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1940,10 +2001,12 @@ Comparing wrong model: xxx
 ## 52 106.98742
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
-\begin{frame}[fragile]{Kings forecasts, plotted xxx}
-\protect\hypertarget{kings-forecasts-plotted-xxx}{}
+\begin{frame}[fragile]{Kings forecasts, plotted}
+\protect\hypertarget{kings-forecasts-plotted}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1951,12 +2014,16 @@ Comparing wrong model: xxx
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-57-1.pdf}
+\includegraphics{figure/unnamed-chunk-60-1.pdf}
 
 \end{frame}
 
 \begin{frame}[fragile]{NY births}
 \protect\hypertarget{ny-births}{}
+
+Very complicated:
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1981,23 +2048,20 @@ Comparing wrong model: xxx
 ## AIC=328.91   AICc=329.67   BIC=350.21
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ny.f=}\KeywordTok{forecast}\NormalTok{(ny.aa,}\DataTypeTok{h=}\DecValTok{36}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Going 36 time periods (3 years) into future.
+\normalsize
 
 \end{frame}
 
-\begin{frame}[fragile]{NY births forecasts}
-\protect\hypertarget{ny-births-forecasts}{}
+\begin{frame}[fragile]{xxx NY births forecasts}
+\protect\hypertarget{xxx-ny-births-forecasts}{}
 
 Not \emph{quite} same every year:
 
+\small
+
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{ny.f=}\KeywordTok{forecast}\NormalTok{(ny.aa,}\DataTypeTok{h=}\DecValTok{36}\NormalTok{)}
 \NormalTok{ny.f}
 \end{Highlighting}
 \end{Shaded}
@@ -2079,10 +2143,12 @@ Not \emph{quite} same every year:
 ## Dec 1962 33.83176
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
-\begin{frame}[fragile]{Plotting the forecasts xxx}
-\protect\hypertarget{plotting-the-forecasts-xxx}{}
+\begin{frame}[fragile]{Plotting the forecasts}
+\protect\hypertarget{plotting-the-forecasts}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2090,7 +2156,7 @@ Not \emph{quite} same every year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-60-1.pdf}
+\includegraphics{figure/unnamed-chunk-63-1.pdf}
 
 \end{frame}
 
@@ -2125,11 +2191,13 @@ Not \emph{quite} same every year:
 
 \end{frame}
 
-\begin{frame}[fragile]{The forecasts}
-\protect\hypertarget{the-forecasts}{}
+\begin{frame}[fragile]{xxx The forecasts}
+\protect\hypertarget{xxx-the-forecasts}{}
 
 Differenced series showed low value for January (large drop). December
 highest, Jan and Feb lowest:
+
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2430,10 +2498,12 @@ highest, Jan and Feb lowest:
 ## [1] "forecast"
 \end{verbatim}
 
+\normalsize
+
 \end{frame}
 
-\begin{frame}[fragile]{Plotting the forecasts xxx}
-\protect\hypertarget{plotting-the-forecasts-xxx-1}{}
+\begin{frame}[fragile]{Plotting the forecasts}
+\protect\hypertarget{plotting-the-forecasts-1}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2441,7 +2511,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-63-1.pdf}
+\includegraphics{figure/unnamed-chunk-66-1.pdf}
 
 \end{frame}
 
@@ -2471,8 +2541,8 @@ highest, Jan and Feb lowest:
 
 \end{frame}
 
-\begin{frame}[fragile]{Forecasts xxx}
-\protect\hypertarget{forecasts-xxx}{}
+\begin{frame}[fragile]{Forecasts}
+\protect\hypertarget{forecasts}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2481,7 +2551,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-65-1.pdf}
+\includegraphics{figure/unnamed-chunk-68-1.pdf}
 
 \end{frame}
 
@@ -3686,7 +3756,7 @@ Least significant term is \texttt{stage:xray:survival}: remove.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-6}{}
+\protect\hypertarget{comments-5}{}
 
 \begin{itemize}
 \item

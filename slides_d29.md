@@ -34,7 +34,7 @@ library(devtools)
 install_github("nxskok/mkac")
 ```
 
-plus these, which you might need to install first:
+Plus these. You might need to install some of them first: xxx
 
 
 ```r
@@ -44,7 +44,7 @@ library(tidyverse)
 library(mkac) 
 ```
 
-## Time trends xxx
+## Time trends
 
 
 
@@ -59,14 +59,16 @@ library(mkac)
 
 Global mean temperature every year since 1880: xxx
 
+\small
 
 ```r
 temp=read_csv("temperature.csv")
-ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
+ggplot(temp, aes(x=year, y=temperature)) + 
+  geom_point() + geom_smooth()
 ```
 
 ![](figure/unnamed-chunk-6-1.pdf)
-
+\normalsize
 
 ## Examining trend
 
@@ -92,7 +94,7 @@ with(temp, cor.test(temperature,year))
 ## 0.8695276
 ```
 
-## Comments xxx
+## Comments
 
 * Correlation, 0.8695, significantly different from zero. 
 * CI shows how far from zero it is.
@@ -152,9 +154,12 @@ kendall_Z_adjusted(temp$temperature)
 ```
 \normalsize
 
-## Comments
+## Comments xxx
 
-P-value is very small, but adjusted one not as small as before because of *autocorrelation* (see later). Idea: observations close together in time are correlated with each other, so observations not independent. This is correction for that.
+- Standard Mann-Kendall assumes observations *independent*.
+- Observations close together in time often *correlated* with each other.
+- Correlation of time series "with itself" called **autocorrelation**.
+- Adjusted P-value above is correction for autocorrelation.
 
 ## Examining rate of change
 
@@ -166,36 +171,21 @@ P-value is very small, but adjusted one not as small as before because of *autoc
   
 ## Ordinary regression against time xxx
 
+\normalsize
 
 ```r
 temp.lm=lm(temperature~year, data=temp)
-summary(temp.lm)
+tidy(temp.lm)
 ```
 
 ```
-## 
-## Call:
-## lm(formula = temperature ~ year, data = temp)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.32496 -0.10117  0.00575  0.08355  0.28501 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)
-## (Intercept) 2.5794197  0.5703984   4.522 1.37e-05
-## year        0.0058631  0.0002932  19.996  < 2e-16
-##                
-## (Intercept) ***
-## year        ***
-## ---
-## Signif. codes:  
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.1269 on 129 degrees of freedom
-## Multiple R-squared:  0.7561,	Adjusted R-squared:  0.7542 
-## F-statistic: 399.9 on 1 and 129 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)  2.58     0.570         4.52 1.37e- 5
+## 2 year         0.00586  0.000293     20.0  2.42e-41
 ```
+\normalsize
 
 Slope about 0.006 degrees per year (about this many degrees over course of data):
 
@@ -245,18 +235,15 @@ ggplot(temp, aes(x=year, y=temperature)) +
   geom_point() + geom_smooth()
 ```
 
-```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-```
-
 ![](figure/unnamed-chunk-13-1.pdf)
 
-## Pre-1970 and post-1970: xxx
+## Pre-1970 and post-1970:
 
 
 ```r
 temp %>% 
-  mutate(time_period=ifelse(year<=1970, "pre-1970", "post-1970")) %>% 
+  mutate(time_period=
+           ifelse(year<=1970, "pre-1970", "post-1970")) %>% 
   nest(-time_period) %>% 
   mutate(theil_sen=map_dbl(
     data, ~theil_sen_slope(.$temperature)))
@@ -353,7 +340,7 @@ kings.ts
 ```
 
 
-## Plotting a time series
+## Plotting a time series xxx
 
 `autoplot` from `ggfortify` gives time plot:
 
@@ -364,7 +351,7 @@ autoplot(kings.ts)
 
 ![](figure/Kings-Time-Series-1.pdf)
 
-## Comments
+##  Comments
 
 * "Time" here is order of monarch from William the Conqueror (1st) to George VI (last).
 
@@ -373,7 +360,7 @@ autoplot(kings.ts)
 * but lots of irregularity.
 
 
-## Stationarity
+##  Stationarity
 
 A time series is **stationary** if:
 
@@ -386,9 +373,9 @@ Kings time series seems to have:
 * but constant variability
 * not stationary.
 
-## Getting it stationary
+## xxx  Getting it stationary
 
-- Usual fix for non-stationarity is *differencing*: new series 2nd - 1st, 3rd - 2nd etc.
+- Usual fix for non-stationarity is *differencing*: get new series from original one's values: 2nd - 1st, 3rd - 2nd etc.
 
 In R, `diff`:
 
@@ -397,7 +384,7 @@ In R, `diff`:
 kings.diff.ts=diff(kings.ts)
 ```
 
-## Did differencing fix stationarity?
+## xxx  Did differencing fix stationarity?
 
 Looks stationary now: xxx
 
@@ -410,23 +397,14 @@ autoplot(kings.diff.ts)
 
 
 
-## Births per month in New York City
+## xxx  Births per month in New York City
 
 from January 1946 to December 1959:
 
+\small
 
 ```r
 ny=read_table("nybirths.txt",col_names=F)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   X1 = col_double()
-## )
-```
-
-```r
 ny
 ```
 
@@ -446,6 +424,10 @@ ny
 ## 10  23.2
 ## # … with 158 more rows
 ```
+\normalsize
+
+## As a time series xxx
+
 
 ```r
 ny.ts=ts(ny,freq=12,start=c(1946,1))
@@ -493,7 +475,8 @@ Note extras on `ts`:
 
 Printing formats nicely.
 
-## Time plot
+
+## xxx  Time plot
 
 * Time plot shows extra pattern: xxx
 
@@ -502,17 +485,18 @@ Printing formats nicely.
 autoplot(ny.ts)
 ```
 
-![](figure/unnamed-chunk-19-1.pdf)
+![](figure/unnamed-chunk-20-1.pdf)
 
-## Comments on time plot
+## xxx  Comments on time plot
 
 * steady increase (after initial drop)
 * repeating pattern each year (seasonal component).
 * Not stationary.
 
-## Differencing the New York births
+## xxx  Differencing the New York births
 
-Does differencing help here? xxx
+Does differencing help here? Looks stationary, but some regular spikes:
+xxx
 
 
 ```r
@@ -520,24 +504,23 @@ ny.diff.ts=diff(ny.ts)
 autoplot(ny.diff.ts)
 ```
 
-![](figure/unnamed-chunk-20-1.pdf)
+![](figure/unnamed-chunk-21-1.pdf)
 
-Looks stationary, but some regular spikes.
 
-## Decomposing a seasonal time series
+## xxx  Decomposing a seasonal time series
 
-Observations for NY births were every month. Are things the same every year?
 
 A visual (using original data): xxx
 
 
 ```r
-decompose(ny.ts) %>% autoplot()
+ny.d <- decompose(ny.ts) 
+ny.d %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-21-1.pdf)
+![](figure/unnamed-chunk-22-1.pdf)
 
-## Decomposition bits
+## xxx  Decomposition bits
 
 
 Shows:
@@ -547,7 +530,7 @@ Shows:
 * just the trend, going steadily up (except at the start)
 * random: what is left over ("remainder")
 
-## The seasonal part
+## xxx  The seasonal part
 
 Fitted seasonal part is same every year, births lowest in February and highest in July:
 
@@ -558,17 +541,59 @@ ny.d$seasonal
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'ny.d' not found
+##             Jan        Feb        Mar        Apr
+## 1946 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1947 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1948 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1949 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1950 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1951 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1952 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1953 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1954 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1955 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1956 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1957 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1958 -0.6771947 -2.0829607  0.8625232 -0.8016787
+## 1959 -0.6771947 -2.0829607  0.8625232 -0.8016787
+##             May        Jun        Jul        Aug
+## 1946  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1947  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1948  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1949  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1950  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1951  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1952  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1953  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1954  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1955  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1956  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1957  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1958  0.2516514 -0.1532556  1.4560457  1.1645938
+## 1959  0.2516514 -0.1532556  1.4560457  1.1645938
+##             Sep        Oct        Nov        Dec
+## 1946  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1947  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1948  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1949  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1950  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1951  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1952  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1953  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1954  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1955  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1956  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1957  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1958  0.6916162  0.7752444 -1.1097652 -0.3768197
+## 1959  0.6916162  0.7752444 -1.1097652 -0.3768197
 ```
 
 
 
 
-## Time series basics
+## xxx  Time series basics: white noise
 
-## White noise
-
-Independent random normal. Knowing one value tells you nothing about the next. "Random" process. xxx
+Each value independent random normal. Knowing one value tells you nothing about the next. "Random" process. xxx
 
 
 
@@ -583,7 +608,7 @@ autoplot(wn.ts)
 
 
 
-## Lagging a time series
+##  Lagging a time series
 
 This means moving a time series one (or more) steps back in time:
 
@@ -607,7 +632,7 @@ with_lagged
 
 Gain a missing because there is nothing before the first observation.
 
-## Lagging white noise
+## xxx  Lagging white noise
 
 
 ```r
@@ -615,12 +640,7 @@ tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
 ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
 ```
 
-```
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
-```
-
-![](figure/unnamed-chunk-25-1.pdf)
+![](figure/unnamed-chunk-26-1.pdf)
 
 ```r
 with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
@@ -641,13 +661,14 @@ with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing valu
 ```
 
 
-## Correlation with lagged series
+## xxx  Correlation with lagged series
 
 If you know about white noise at one time point, you know *nothing* about it at the next. This is shown by the scatterplot and the correlation. 
 
 
 On the other hand, this:
 
+\small
 
 ```r
 tibble(age=kings$X1) %>% 
@@ -668,23 +689,21 @@ with(kings_with_lagged, cor.test(age, age_lagged))
 ##       cor 
 ## 0.4009919
 ```
+\normalsize
 
-## If one value larger, the next value (a bit) more likely to be larger:
+## xxx Correlation with next value?
 
 
 ```r
-ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + geom_point()
+ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + 
+  geom_point()
 ```
 
-```
-## Warning: Removed 1 rows containing missing values
-## (geom_point).
-```
+![](figure/unnamed-chunk-28-1.pdf)
 
-![](figure/unnamed-chunk-27-1.pdf)
+## xxx  Two steps back:
 
-## Two steps back:
-
+\small
 
 ```r
 kings_with_lagged %>% 
@@ -705,75 +724,65 @@ kings_with_lagged %>%
 ##      cor 
 ## 0.245676
 ```
+\normalsize
 
 Still a correlation two steps back, but smaller (and no longer significant).
 
-## Autocorrelation
+## xxx  Autocorrelation
 
-Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`:
-
-White noise: xxx
+Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`. Here, white noise: xxx
 
 
 ```r
 acf(wn.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-29-1.pdf)
+![](figure/unnamed-chunk-30-1.pdf)
 
 No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
 
 Autocorrelations work best on *stationary* series.
 
-## Kings, differenced xxx
+##  Kings, differenced
 
 
 ```r
 acf(kings.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-30-1.pdf)
+![](figure/unnamed-chunk-31-1.pdf)
 
-## Comments on autocorrelations of kings series
+## xxx  Comments on autocorrelations of kings series
 
 Negative autocorrelation at lag 1, nothing beyond that. 
 
 * If one value of differenced series positive, next one most likely negative.
-* If one king lives longer than predecessor, next one likely lives shorter.
+* If one monarch lives longer than predecessor, next one likely lives shorter.
 
-## NY births, differenced xxx
+## NY births, differenced
 
 
 ```r
 acf(ny.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-31-1.pdf)
+![](figure/unnamed-chunk-32-1.pdf)
 
-## Lots of stuff:
+##  Lots of stuff:
 
 * large positive autocorrelation at 1.0 years (July one year like July last year)
 * large negative autocorrelation at 1 month.
 * smallish but significant negative autocorrelation at 0.5 year = 6 months.
 * Other stuff -- complicated.
 
-## Souvenir sales
+## xxx  Souvenir sales
 
 Monthly sales for a beach souvenir shop in Queensland, Australia:
 
+\scriptsize
 
 ```r
 souv=read_table("souvenir.txt", col_names=F)
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   X1 = col_double()
-## )
-```
-
-```r
 souv.ts=ts(souv,frequency=12,start=1987)
 souv.ts
 ```
@@ -804,23 +813,23 @@ souv.ts
 ## 1992  23933.38  25391.35  36024.80  80721.71
 ## 1993  30505.41  30821.33  46634.38 104660.67
 ```
-
-## Plot of souvenir sales xxx
+\normalsize
+##  Plot of souvenir sales
 
 
 ```r
 autoplot(souv.ts)
 ```
 
-![](figure/unnamed-chunk-33-1.pdf)
+![](figure/unnamed-chunk-34-1.pdf)
 
-## Several problems:
+## xxx  Several problems:
 
 * Mean goes up over time
 * Variability gets larger as mean gets larger
 * Not stationary
 
-## Problem-fixing:
+## xxx  Problem-fixing:
 
 Fix non-constant variability first by taking logs: xxx
 
@@ -830,9 +839,9 @@ souv.log.ts=log(souv.ts)
 autoplot(souv.log.ts)
 ```
 
-![](figure/unnamed-chunk-34-1.pdf)
+![](figure/unnamed-chunk-35-1.pdf)
 
-## Mean still not constant, so try taking differences xxx
+##  Mean still not constant, so try taking differences
 
 
 ```r
@@ -840,14 +849,14 @@ souv.log.diff.ts=diff(souv.log.ts)
 autoplot(souv.log.diff.ts)
 ```
 
-![](figure/unnamed-chunk-35-1.pdf)
+![](figure/unnamed-chunk-36-1.pdf)
 
-## Comments
+##  Comments
 
 * Now stationary
 * but clear seasonal effect.
 
-## Decomposing to see the seasonal effect xxx
+##  Decomposing to see the seasonal effect
 
 
 ```r
@@ -855,12 +864,13 @@ souv.d=decompose(souv.log.diff.ts)
 autoplot(souv.d)
 ```
 
-![](figure/unnamed-chunk-36-1.pdf)
+![](figure/unnamed-chunk-37-1.pdf)
 
-## Comments 
+## xxx  Comments 
 
 **Big** drop in one month's differences. Look at seasonal component to see which:
 
+\tiny
 
 ```r
 souv.d$seasonal
@@ -900,23 +910,24 @@ souv.d$seasonal
 ## 1992  0.09148236  0.47311204  0.75273614
 ## 1993  0.09148236  0.47311204  0.75273614
 ```
+\normalsize
 
 January.
 
-## Autocorrelations xxx
+##  Autocorrelations
 
 
 ```r
 acf(souv.log.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-38-1.pdf)
+![](figure/unnamed-chunk-39-1.pdf)
 
 * Big positive autocorrelation at 1 year (strong seasonal effect)
 * Small negative autocorrelation at 1 and 2 months.
 
 
-## Moving average
+## xxx  Moving average
 
 - A particular type of time series called a **moving average** or MA process captures idea of autocorrelations at a few lags but not at others.
 
@@ -929,6 +940,12 @@ tibble(e=rnorm(100)) %>%
   mutate(e_lag=lag(e)) %>% 
   mutate(y=e+beta*e_lag) %>% 
   mutate(y=ifelse(is.na(y), 0, y)) -> ma
+```
+
+## The series xxx
+
+
+```r
 ma
 ```
 
@@ -949,7 +966,8 @@ ma
 ## # … with 90 more rows
 ```
 
-## Comments
+
+##  Comments
 
 * `e` contains independent "random shocks". 
 * Start process at 0. 
@@ -958,19 +976,20 @@ ma
 * But `y[i]` has no shock in common with `y[i-2]`, so no lag 2 autocorrelation (or beyond).
 
 
-## ACF for MA(1) process xxx
+##  ACF for MA(1) process xxx
+
+Everything beyond lag 1 appears to be just chance:
 
 
 ```r
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-40-1.pdf)
-
-Everything beyond lag 1 appears to be just chance.
+![](figure/unnamed-chunk-42-1.pdf)
 
 
-## AR process
+
+## xxx  AR process
 
 Another kind of time series is AR process, where each value depends on previous one, like this (loop):
 
@@ -984,6 +1003,12 @@ for (i in 2:100)
 {
   x[i]=alpha*x[i-1]+e[i]
 }
+```
+
+## The series xxx
+
+
+```r
 x
 ```
 
@@ -1024,7 +1049,8 @@ x
 ## [100]  0.05862015
 ```
 
-## Comments
+
+##  Comments
 
 * Each random shock now only used for its own value of `x`
 * but `x[i]` also depends on previous value `x[i-1]`
@@ -1032,16 +1058,16 @@ x
 * *but* `x[i]` also contains multiple of `x[i-2]` and previous x's
 * so all x's correlated, but autocorrelation dying away.
 
-## ACF for AR(1) series xxx
+##  ACF for AR(1) series
 
 
 ```r
 acf(x, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-42-1.pdf)
+![](figure/unnamed-chunk-45-1.pdf)
 
-## Partial autocorrelation function
+## xxx  Partial autocorrelation function
 
 This cuts off for an AR series: xxx
 
@@ -1050,20 +1076,20 @@ This cuts off for an AR series: xxx
 pacf(x, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-43-1.pdf)
+![](figure/unnamed-chunk-46-1.pdf)
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
-## PACF for an MA series decays slowly xxx
+##  PACF for an MA series decays slowly
 
 
 ```r
 pacf(ma$y, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-44-1.pdf)
+![](figure/unnamed-chunk-47-1.pdf)
 
-## The old way of doing time series analysis
+##  The old way of doing time series analysis
 
 Starting from a series with constant variability (eg. transform first to get it, as for souvenirs):
 
@@ -1076,14 +1102,14 @@ Starting from a series with constant variability (eg. transform first to get it,
 * Do forecasts.
 
 
-## The new way of doing time series analysis (in R)
+##  The new way of doing time series analysis (in R)
 
 * Transform series if needed to get constant variability
 * Use package `forecast`.
 * Use function `auto.arima` to estimate what kind of series best fits data.
 * Use `forecast` to see what will happen in future.
 
-## Anatomy of `auto.arima` output
+## xxx  Anatomy of `auto.arima` output
 
 
 ```r
@@ -1103,6 +1129,10 @@ auto.arima(ma$y)
 ## AIC=287.29   AICc=287.41   BIC=292.5
 ```
 
+Comments over.
+
+## Comments xxx
+
 * ARIMA part tells you what kind of series you are estimated to have:
   * first number (first 0) is AR (autoregressive) part
   * second number (second 0) is amount of differencing here
@@ -1111,10 +1141,11 @@ auto.arima(ma$y)
 * Below that, coefficients (with SEs)
 * AICc is measure of fit (lower better)
 
-## What other models were possible?
+## xxx  What other models were possible?
 
 Run `auto.arima` with `trace=T`:
 
+\small
 
 ```r
 auto.arima(ma$y,trace=T)
@@ -1151,11 +1182,12 @@ auto.arima(ma$y,trace=T)
 ## sigma^2 estimated as 0.9878:  log likelihood=-141.64
 ## AIC=287.29   AICc=287.41   BIC=292.5
 ```
+\normalsize
 
 Also possible were MA(2) and ARMA(1,1), both with AICc=273.7.
 
 
-## Doing it all the new way: white noise
+##  Doing it all the new way: white noise
 
 
 ```r
@@ -1173,8 +1205,9 @@ wn.aa
 
 Best fit *is* white noise (no AR, no MA, no differencing). 
 
-## Forecasts:
+## xxx  Forecasts:
 
+\small
 
 ```r
 forecast(wn.aa)
@@ -1204,11 +1237,12 @@ forecast(wn.aa)
 ## 109 2.065975
 ## 110 2.065975
 ```
+\normalsize
 
 Forecasts all 0, since the past doesn't help to predict future.
 
 
-## MA(1)
+##  MA(1)
 
 
 ```r
@@ -1233,17 +1267,17 @@ y.aa
 y.f=forecast(y.aa)
 ```
 
-## Plotting the forecasts for MA(1) xxx
+##  Plotting the forecasts for MA(1) 
 
 
 ```r
 autoplot(y.f)
 ```
 
-![](figure/unnamed-chunk-50-1.pdf)
+![](figure/unnamed-chunk-53-1.pdf)
 
 
-## AR(1)
+## xxx  AR(1)
 
 
 ```r
@@ -1264,9 +1298,9 @@ x.aa
 ## AIC=281.97   AICc=282.1   BIC=287.16
 ```
 
-Oops!
+Oops! Thought it was MA(1), not AR(1)!
 
-## Got it wrong! Fit right AR(1) model:
+## xxx Fit right AR(1) model:
 
 
 ```r
@@ -1287,27 +1321,27 @@ x.arima
 ## sigma^2 estimated as 0.957:  log likelihood = -140.16,  aic = 286.31
 ```
 
-## Forecasts for `x` xxx
+##  Forecasts for `x`
 
 
 ```r
 forecast(x.arima) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-53-1.pdf)
+![](figure/unnamed-chunk-56-1.pdf)
 
-Comparing wrong model: xxx
+## Comparing wrong model: xxx
 
 
 ```r
 forecast(x.aa) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-54-1.pdf)
+![](figure/unnamed-chunk-57-1.pdf)
 
 
-## Kings
-
+## xxx  Kings
+  
 
 ```r
 kings.aa=auto.arima(kings.ts)
@@ -1327,8 +1361,9 @@ kings.aa
 ## AIC=344.13   AICc=344.44   BIC=347.56
 ```
 
-## Kings forecasts:
+## xxx  Kings forecasts:
 
+\small
 
 ```r
 kings.f=forecast(kings.aa)
@@ -1359,22 +1394,25 @@ kings.f
 ## 51 106.08187
 ## 52 106.98742
 ```
+\normalsize
 
-## Kings forecasts, plotted xxx
+##  Kings forecasts, plotted
 
 
 ```r
 autoplot(kings.f) + labs(x="index", y= "age at death")
 ```
 
-![](figure/unnamed-chunk-57-1.pdf)
+![](figure/unnamed-chunk-60-1.pdf)
 
 
 
 
-## NY births
+##  NY births
 
+Very complicated:
 
+\small
 
 ```r
 ny.aa=auto.arima(ny.ts)
@@ -1396,19 +1434,17 @@ ny.aa
 ## sigma^2 estimated as 0.4076:  log likelihood=-157.45
 ## AIC=328.91   AICc=329.67   BIC=350.21
 ```
+\normalsize
 
-```r
-ny.f=forecast(ny.aa,h=36)
-```
 
-Going 36 time periods (3 years) into future.
-
-## NY births forecasts
+## xxx  NY births forecasts
 
 Not *quite* same every year:
 
+\small
 
 ```r
+ny.f=forecast(ny.aa,h=36)
 ny.f
 ```
 
@@ -1488,20 +1524,20 @@ ny.f
 ## Nov 1962 32.92773
 ## Dec 1962 33.83176
 ```
+\normalsize
 
 
-
-## Plotting the forecasts xxx
+##  Plotting the forecasts
 
 
 ```r
 autoplot(ny.f)+labs(x="time", y="births")
 ```
 
-![](figure/unnamed-chunk-60-1.pdf)
+![](figure/unnamed-chunk-63-1.pdf)
 
 
-## Log-souvenir sales
+##  Log-souvenir sales
 
 
 ```r
@@ -1526,10 +1562,11 @@ souv.aa
 souv.f=forecast(souv.aa,h=27)
 ```
 
-## The forecasts
+## xxx  The forecasts
 
 Differenced series showed low value for January (large drop). December highest, Jan and Feb lowest:
 
+\scriptsize
 
 ```r
 souv.f
@@ -1821,18 +1858,19 @@ print.default(souv.f)
 ## attr(,"class")
 ## [1] "forecast"
 ```
+\normalsize
 
-## Plotting the forecasts xxx
+##  Plotting the forecasts
 
 
 ```r
 autoplot(souv.f)
 ```
 
-![](figure/unnamed-chunk-63-1.pdf)
+![](figure/unnamed-chunk-66-1.pdf)
 
 
-## Global mean temperatures, revisited
+##  Global mean temperatures, revisited
 
 
 ```r
@@ -1854,7 +1892,7 @@ temp.aa
 ## AIC=-236.67   AICc=-235.99   BIC=-219.47
 ```
 
-## Forecasts xxx
+##  Forecasts
 
 
 ```r
@@ -1862,7 +1900,7 @@ temp.f=forecast(temp.aa)
 autoplot(temp.f)+labs(x="year", y="temperature")
 ```
 
-![](figure/unnamed-chunk-65-1.pdf)
+![](figure/unnamed-chunk-68-1.pdf)
 
 
 
