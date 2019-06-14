@@ -22,3144 +22,3096 @@ output:
 
 
 
-# Principal components
+# Time Series
 
+## Packages
 
-## Principal Components
+Uses my package `mkac` which is on Github. Install with:
 
-
-* Have measurements on (possibly large) number of variables on some individuals.
-
-* Question: can we describe data using fewer variables (because original variables correlated in some way)?
-
-* Look for direction (linear combination of original variables) in which values *most spread out*. This is *first principal component*.
-
-* Second principal component then direction uncorrelated with this in which values then most spread out. And so on.
-
-
-
-
-## Principal components
-
-
-* See whether small number of principal components captures most of variation in data.
-
-* Might try to interpret principal components.
-
-* If 2 components good, can make plot of data.
-
-* (Like discriminant analysis, but no groups.)
-
-* "What are important ways that these data vary?"
-
-
-
-##  Packages
-
-You might not have installed the first of these. See over for
-instructions. 
-
-
-```r
-library(ggbiplot) # see over
-library(tidyverse)
-library(ggrepel)
-```
-
- 
-
-
-##   Installing `ggbiplot`
-
-
-* `ggbiplot` not on CRAN, so usual
-`install.packages` will not work. This is same procedure you used for `smmr` in C32:
-
-* Install package `devtools` first (once):
-
-```r
-install.packages("devtools")
-```
-
-     
-
-* Then install `ggbiplot` (once):
 
 ```r
 library(devtools)
-install_github("vqv/ggbiplot")
+install_github("nxskok/mkac")
 ```
 
-     
-
-
-
-##  Small example: 2 test scores for 8 people
-
-\small
-
-```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/test12.txt"
-test12 <- read_table2(my_url)
-test12
-```
-
-```
-## # A tibble: 8 x 3
-##   first second id   
-##   <dbl>  <dbl> <chr>
-## 1     2      9 A    
-## 2    16     40 B    
-## 3     8     17 C    
-## 4    18     43 D    
-## 5    10     25 E    
-## 6     4     10 F    
-## 7    10     27 G    
-## 8    12     30 H
-```
-
+plus these, which you might need to install first:
 
 
 ```r
-g <- ggplot(test12, aes(x = first, y = second, label = id)) +
-  geom_point() + geom_text_repel()
+library(ggfortify)
+library(forecast)
+library(tidyverse)
+library(mkac) 
 ```
 
-\normalsize
- 
-
-
-##  The plot
-
-
-```r
-g + geom_smooth(method = "lm", se = F)
-```
-
-![plot of chunk ff2](figure/ff2-1.pdf)
-
-
-##  Principal component analysis
-
-
-* Grab just the numeric columns:
-
-```r
-test12 %>% select_if(is.numeric) -> test12_numbers
-```
-     
-
-
-* Strongly correlated, so data nearly 1-dimensional:
-
-
-```r
-cor(test12_numbers)
-```
-
-```
-##           first   second
-## first  1.000000 0.989078
-## second 0.989078 1.000000
-```
-
- 
-## Finding principal components
-
-* Make a score summarizing this one dimension. Like this:
-
-
-```r
-test12.pc <- princomp(test12_numbers, cor = T)
-summary(test12.pc)
-```
-
-```
-## Importance of components:
-##                          Comp.1      Comp.2
-## Standard deviation     1.410347 0.104508582
-## Proportion of Variance 0.994539 0.005461022
-## Cumulative Proportion  0.994539 1.000000000
-```
-
- 
+## Time trends xxx
 
 
 
 
-
-## Comments
-
-
-* "Standard deviation" shows relative importance of components
-(as for LDs in discriminant analysis)
-
-* Here, first one explains almost all (99.4\%) of variability.
-
-* That is, look only at first component and ignore second.
-
-* `cor=T` standardizes all variables first. Usually wanted,
-because variables measured on different scales. (Only omit if
-variables measured on same scale and expect similar variability.)
-
-
-##   Scree plot
-
-```r
-ggscreeplot(test12.pc)
-```
-
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.pdf)
-
-   
-
-Imagine scree plot continues at zero, so 2 components is a *big*
-elbow (take one component).
-
-
-##  Component loadings
-explain how each principal component depends on (standardized)
-original variables (test scores):
-
-\footnotesize
-
-```r
-test12.pc$loadings
-```
-
-```
-## 
-## Loadings:
-##        Comp.1 Comp.2
-## first   0.707  0.707
-## second  0.707 -0.707
-## 
-##                Comp.1 Comp.2
-## SS loadings       1.0    1.0
-## Proportion Var    0.5    0.5
-## Cumulative Var    0.5    1.0
-```
-\normalsize
-   
-
-First component basically sum of (standardized) test
-scores. That is, person tends to score similarly on two tests, and a
-composite score would summarize performance.
-
-
-##  Component scores
-
-\small
-
-```r
-d <- data.frame(test12, test12.pc$scores)
-d
-```
-
-```
-##   first second id       Comp.1       Comp.2
-## 1     2      9  A -2.071819003 -0.146981782
-## 2    16     40  B  1.719862811 -0.055762223
-## 3     8     17  C -0.762289708  0.207589512
-## 4    18     43  D  2.176267535  0.042533250
-## 5    10     25  E -0.007460609  0.007460609
-## 6     4     10  F -1.734784030  0.070683441
-## 7    10     27  G  0.111909141 -0.111909141
-## 8    12     30  H  0.568313864 -0.013613668
-```
-\normalsize
-
-
-
-
-* Person A is a low scorer, very negative `comp.1` score.
-
-* Person D is high scorer, high positive `comp.1` score.
-
-* Person E average scorer, near-zero `comp.1` score.
-
-* `comp.2` says basically nothing.
-
-
-
-
-##  Plot of scores
-
-
-```r
-ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
-  geom_point() + geom_text_repel()
-```
-
-![plot of chunk score-plot](figure/score-plot-1.pdf)
+* Assess existence or nature of time trends with:
+  * correlation
+  * regression ideas.
+  * (later) time series analysis
   
-![](bPrincomp-score-plot.png)
+## World mean temperatures
 
 
-
-##  Comments
-
-
-* Vertical scale exaggerates importance of `comp.2`.
-
-* Fix up to get axes on same scale:
-
-```r
-g <- ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
-  geom_point() + geom_text_repel() +
-  coord_fixed()
-```
-
-
-
-* Shows how exam scores really spread out along one dimension:
+Global mean temperature every year since 1880: xxx
 
 
 ```r
-g
+temp=read_csv("temperature.csv")
+ggplot(temp, aes(x=year, y=temperature)) + geom_point() + geom_smooth()
 ```
 
-![plot of chunk eqsc2](figure/eqsc2-1.pdf)
+![](figure/unnamed-chunk-6-1.pdf)
 
 
+## Examining trend
 
-
-
-##  The biplot
-
-
-* Plotting variables and individuals on one plot.
-
-* Shows how components and original variables related.
-
-* Shows how individuals score on each component, and therefore
-suggests how they score on each variable.
-
-* Add `labels` option to identify individuals:
-
-```r
-g <- ggbiplot(test12.pc, labels = test12$id)
-```
-
-     
-
-
-
-##  The biplot
-![plot of chunk ff3](figure/ff3-1.pdf)
-  
-![](bPrincomp-test-biplot.png)
-
-
-
-##  Comments
-
-
-* Variables point almost same direction (left). Thus very
-negative value on `comp.1` goes with high scores on both
-tests, and test scores highly correlated.
-
-* Position of individuals on plot according to scores on
-principal components, implies values on original variables. Eg.:
-
-
-* D very negative on `comp.1`, high scorer on both tests.
-
-* A and F very positive on `comp.1`, poor scorers on
-both tests.
-
-* C positive on `comp.2`, high score on first
-test relative to second.
-
-* A negative on `comp.2`, high score on second test
-relative to first.
-
-
-
-##  Track running data
-
-Track running records (1984) for distances 100m to marathon, arranged
-by country. Countries labelled by (mostly) Internet domain names (ISO
-2-letter codes):
-
-
-
- 
-
-\scriptsize
-
-```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
-track <- read_table(my_url)
-track %>% sample_n(10)
-```
-
-```
-## # A tibble: 10 x 9
-##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
-##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1  12.2  23.2  52.9  2.02  4.24  16.7   35.4     165. ck     
-##  2  10.2  20.7  46.6  1.78  3.64  14.6   28.4     135. gr     
-##  3  10.8  21.9  49    2.02  4.24  16.3   34.7     162. ws     
-##  4  10.3  20.9  46.9  1.79  3.77  14.0   29.2     136. kr     
-##  5  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se     
-##  6  10.4  21.3  46.1  1.8   3.65  13.5   28.0     129. mx     
-##  7  10.1  20.2  44.9  1.7   3.51  13.0   27.5     129. uk     
-##  8  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. pg     
-##  9  10.2  20.2  45.4  1.76  3.6   13.3   27.9     132. pl     
-## 10  10.4  20.6  45.6  1.76  3.58  13.4   28.2     134. cz
-```
-\normalsize
- 
-
-
-##  Country names
-Also read in a table to look country names up in later:
-
-\footnotesize
-
-```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/isocodes.csv"
-iso <- read_csv(my_url)
-iso
-```
-
-```
-## # A tibble: 250 x 4
-##    Country             ISO2  ISO3    M49
-##    <chr>               <chr> <chr> <dbl>
-##  1 Afghanistan         af    afg       4
-##  2 Aland Islands       ax    ala     248
-##  3 Albania             al    alb       8
-##  4 Algeria             dz    dza      12
-##  5 American Samoa      as    asm      16
-##  6 Andorra             ad    and      20
-##  7 Angola              ao    ago      24
-##  8 Anguilla            ai    aia     660
-##  9 Antarctica          aq    ata      10
-## 10 Antigua and Barbuda ag    atg      28
-## # … with 240 more rows
-```
-\normalsize
- 
-
-
-##  Data and aims
-
-
-* 
-Times in seconds 100m--400m, in minutes for rest (800m up).
-
-* This taken care of by standardization.
-
-* 8 variables; can we summarize by fewer and gain some insight?
-
-* In particular, if 2 components tell most of story, what do we see in a plot?
-
-
-##  Fit and examine principal components
-
-
-\footnotesize
-
-```r
-track %>% select_if(is.numeric) -> track_num
-track.pc <- princomp(track_num, cor = T)
-summary(track.pc)
-```
-
-```
-## Importance of components:
-##                           Comp.1    Comp.2
-## Standard deviation     2.5733531 0.9368128
-## Proportion of Variance 0.8277683 0.1097023
-## Cumulative Proportion  0.8277683 0.9374706
-##                            Comp.3     Comp.4
-## Standard deviation     0.39915052 0.35220645
-## Proportion of Variance 0.01991514 0.01550617
-## Cumulative Proportion  0.95738570 0.97289187
-##                             Comp.5      Comp.6
-## Standard deviation     0.282630981 0.260701267
-## Proportion of Variance 0.009985034 0.008495644
-## Cumulative Proportion  0.982876903 0.991372547
-##                             Comp.7      Comp.8
-## Standard deviation     0.215451919 0.150333291
-## Proportion of Variance 0.005802441 0.002825012
-## Cumulative Proportion  0.997174988 1.000000000
-```
-\normalsize
- 
-
-
-##   Scree plot
+* Temperatures increasing on average over time, but pattern very irregular.
+* Find (Pearson) correlation with time, and test for significance:
 
 
 ```r
-ggscreeplot(track.pc)
-```
-
-![plot of chunk scree-b](figure/scree-b-1.pdf)
-
- 
-
-
-##  How many components?
-
-
-* As for discriminant analysis, look for "elbow" in scree plot.
-
-* See one here at 3 components; everything 3 and beyond is "scree".
-
-* So take 2 components.
-
-* Note difference from discriminant analysis: want "large"
-rather than "small", so go 1 step left of elbow.
-
-* Another criterion: any component with eigenvalue bigger than
-about 1 is worth including. 2nd one here has eigenvalue just less
-than 1.
-
-* Refer back to `summary`: cumulative proportion of
-variance explained for 2 components is 93.7\%, pleasantly high. 2
-components tell almost whole story.
-
-
-
-##  How do components depend on original variables?
-Loadings:
-
-\footnotesize
-
-```r
-track.pc$loadings
+with(temp, cor.test(temperature,year))
 ```
 
 ```
 ## 
-## Loadings:
-##          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8
-## m100      0.318  0.567  0.332  0.128  0.263  0.594  0.136  0.106
-## m200      0.337  0.462  0.361 -0.259 -0.154 -0.656 -0.113       
-## m400      0.356  0.248 -0.560  0.652 -0.218 -0.157              
-## m800      0.369        -0.532 -0.480  0.540        -0.238       
-## m1500     0.373 -0.140 -0.153 -0.405 -0.488  0.158  0.610  0.139
-## m5000     0.364 -0.312  0.190        -0.254  0.141 -0.591  0.547
-## m10000    0.367 -0.307  0.182        -0.133  0.219 -0.177 -0.797
-## marathon  0.342 -0.439  0.263  0.300  0.498 -0.315  0.399  0.158
+## 	Pearson's product-moment correlation
 ## 
-##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7
-## SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000
-## Proportion Var  0.125  0.125  0.125  0.125  0.125  0.125  0.125
-## Cumulative Var  0.125  0.250  0.375  0.500  0.625  0.750  0.875
-##                Comp.8
-## SS loadings     1.000
-## Proportion Var  0.125
-## Cumulative Var  1.000
-```
-\normalsize
-   
-
-
-##  Comments
-
-
-* `comp.1` loads about equally (has equal weight) on
-times over all distances.
-
-* `comp.2` has large positive loading for short
-distances, large negative for long ones.
-
-* `comp.3`: large negative for middle distance, large
-positive especially for short distances.
-
-* Country overall good at running will have lower than average record
-times at all distances, so `comp.1`
-*small*. Conversely, for countries bad at running,
-`comp.1` very positive.
-
-* Countries relatively better at sprinting (low times) will be
-*negative* on `comp.2`; countries relatively better at
-distance running *positive* on `comp.2`.
-
-
-
-##  Commands for plots
-
-
-* Principal component scores (first two). Also need country IDs.
-
-```r
-d <- data.frame(track.pc$scores,
-  country = track$country
-)
-names(d)
+## data:  temperature and year
+## t = 19.996, df = 129, p-value < 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8203548 0.9059362
+## sample estimates:
+##       cor 
+## 0.8695276
 ```
 
-```
-## [1] "Comp.1"  "Comp.2"  "Comp.3"  "Comp.4"  "Comp.5"  "Comp.6" 
-## [7] "Comp.7"  "Comp.8"  "country"
-```
+## Comments xxx
 
-```r
-g1 <- ggplot(d, aes(x = Comp.1, y = Comp.2,
-  label = country)) +
-  geom_point() + geom_text_repel() + coord_fixed()
-```
+* Correlation, 0.8695, significantly different from zero. 
+* CI shows how far from zero it is.
 
-     
+Tests for *linear* trend with *normal* data. 
 
+## Kendall correlation
 
-* Biplot:
-
-```r
-g2 <- ggbiplot(track.pc, labels = track$country)
-```
-
-   
-
-
-
-##   Principal components plot
+Alternative, Kendall (rank) correlation, which just tests for monotone trend (anything upward, anything downward) and is resistant to outliers:
 
 
 ```r
-g1
-```
-
-![plot of chunk lecce](figure/lecce-1.pdf)
-
-     
-
-
-##   Comments on principal components plot
-
-
-* Good running countries at left of plot: US, UK, Italy,
-Russia, East and West Germany.
-
-* Bad running countries at right: Western Samoa, Cook Islands.
-
-* Better sprinting countries at bottom: US, Italy, Russia,
-Brazil, Greece. `do` is Dominican Republic, where sprinting
-records relatively good, distance records very bad.
-
-* Better distance-running countries at top: Portugal, Norway,
-Turkey, Ireland, New Zealand, Mexico. `ke` is Kenya.
-
-
-
-##   Biplot
-
-
-```r
-g2
-```
-
-![plot of chunk biplot2](figure/biplot2-1.pdf)
-  
-
-
-
-##  Comments on biplot
-
-
-* Had to do some pre-work to interpret PC plot. Biplot more self-contained.
-
-* All variable arrows point right; countries on right have large
-(bad) record times overall, countries on left good overall.
-
-* Imagine that variable arrows extend negatively as well. Bottom right = bad at
-distance running, top left = good at distance running.
-
-* Top right = bad at sprinting, bottom left = good at
-sprinting.
-
-* Doesn't require so much pre-interpretation of components.
-
-
-
-
-
-##  Best 8 running countries
-
-Need to look up two-letter abbreviations in ISO table:
-
-\footnotesize
-
-```r
-d %>%
-  arrange(Comp.1) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Comp.1, country, Country) %>%
-  slice(1:8)
-```
-
-```
-##      Comp.1 country                  Country
-## 1 -3.462175      us United States of America
-## 2 -3.052104      uk           United Kingdom
-## 3 -2.752084      it                    Italy
-## 4 -2.651062      ru       Russian Federation
-## 5 -2.613964     dee             East Germany
-## 6 -2.576272     dew             West Germany
-## 7 -2.468919      au                Australia
-## 8 -2.191917      fr                   France
-```
-\normalsize
-   
-
-
-##  Worst 8 running countries
-
-\footnotesize
-
-```r
-d %>%
-  arrange(desc(Comp.1)) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Comp.1, country, Country) %>%
-  slice(1:8)
-```
-
-```
-##      Comp.1 country          Country
-## 1 10.652914      ck     Cook Islands
-## 2  7.297865      ws            Samoa
-## 3  4.297909      mt            Malta
-## 4  3.945224      pg Papua New Guinea
-## 5  3.150886      sg        Singapore
-## 6  2.787273      th         Thailand
-## 7  2.773125      id        Indonesia
-## 8  2.697066      gu             Guam
-```
-\normalsize
-   
-
-
-##  Better at distance running
-
-\footnotesize
-
-```r
-d %>%
-  arrange(desc(Comp.2)) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Comp.2, country, Country) %>%
-  slice(1:10)
-```
-
-```
-##       Comp.2 country                   Country
-## 1  1.6860391      cr                Costa Rica
-## 2  1.5791490      kp             Korea (North)
-## 3  1.5226742      ck              Cook Islands
-## 4  1.3957839      tr                    Turkey
-## 5  1.3167578      pt                  Portugal
-## 6  1.2829272      gu                      Guam
-## 7  1.0663756      no                    Norway
-## 8  0.9547437      ir Iran, Islamic Republic of
-## 9  0.9318729      nz               New Zealand
-## 10 0.8495104      mx                    Mexico
-```
-\normalsize
-   
-
-##  Better at sprinting
-
-\footnotesize
-
-```r
-d %>%
-  arrange(Comp.2) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Comp.2, country, Country) %>%
-  slice(1:10)
-```
-
-```
-##        Comp.2 country                  Country
-## 1  -2.4715736      do       Dominican Republic
-## 2  -1.9196130      ws                    Samoa
-## 3  -1.8055052      sg                Singapore
-## 4  -1.7832229      bm                  Bermuda
-## 5  -1.7386063      my                 Malaysia
-## 6  -1.6851772      th                 Thailand
-## 7  -1.1204235      us United States of America
-## 8  -0.9989821      it                    Italy
-## 9  -0.7639385      ru       Russian Federation
-## 10 -0.6470634      br                   Brazil
-```
-\normalsize
-   
-
-
-##  Plot with country names
-
-```r
-g <- d %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Comp.1, Comp.2, Country) %>%
-  ggplot(aes(x = Comp.1, y = Comp.2, label = Country)) +
-  geom_point() + geom_text_repel(size = 1) +
-  coord_fixed()
-```
-
-```
-## Warning: Column `country`/`ISO2` joining factor and character
-## vector, coercing into character vector
-```
-
-   
-
-
-##  The plot
-
-
-```r
-g
-```
-
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.pdf)
-
-   
-
-
-
-##  Principal components from correlation matrix
-Create data file like this:
-
-```
- 1        0.9705 -0.9600
- 0.9705   1      -0.9980
--0.9600  -0.9980  1
-```
-
-and read in like this:
-
-```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/cov.txt"
-mat <- read_table(my_url, col_names = F)
-mat
-```
-
-```
-## # A tibble: 3 x 3
-##       X1     X2     X3
-##    <dbl>  <dbl>  <dbl>
-## 1  1      0.970 -0.96 
-## 2  0.970  1     -0.998
-## 3 -0.96  -0.998  1
-```
-
-   
-
-
-##  Pre-processing
-A little pre-processing required:
-
-
-* Turn into matrix (from data frame)
-
-* Feed into `princomp` as `covmat=`
-
-
-```r
-mat.pc <- mat %>%
-  as.matrix() %>%
-  princomp(covmat = .)
-```
-
-   
-
-
-##  Scree plot: one component fine
-
-
-```r
-ggscreeplot(mat.pc)
-```
-
-![plot of chunk palermo](figure/palermo-1.pdf)
-  
-
-
-
-##  Component loadings
-Compare correlation matrix:
-
-\scriptsize
-
-```r
-mat
-```
-
-```
-## # A tibble: 3 x 3
-##       X1     X2     X3
-##    <dbl>  <dbl>  <dbl>
-## 1  1      0.970 -0.96 
-## 2  0.970  1     -0.998
-## 3 -0.96  -0.998  1
-```
-\normalsize
-  
-
-with component loadings
-
-\scriptsize
-
-```r
-mat.pc$loadings
+with(temp, cor.test(temperature,year,method="kendall"))
 ```
 
 ```
 ## 
-## Loadings:
-##    Comp.1 Comp.2 Comp.3
-## X1  0.573  0.812  0.112
-## X2  0.581 -0.306 -0.755
-## X3 -0.578  0.498 -0.646
+## 	Kendall's rank correlation tau
 ## 
-##                Comp.1 Comp.2 Comp.3
-## SS loadings     1.000  1.000  1.000
-## Proportion Var  0.333  0.333  0.333
-## Cumulative Var  0.333  0.667  1.000
+## data:  temperature and year
+## z = 11.776, p-value < 2.2e-16
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##       tau 
+## 0.6992574
+```
+
+Kendall correlation usually closer to 0 for same data, but here P-values comparable. Trend again strongly significant.
+
+## Mann-Kendall
+
+- Another way is via **Mann-Kendall**: Kendall correlation with time.
+
+- Use my package `mkac`:
+
+\footnotesize
+
+```r
+kendall_Z_adjusted(temp$temperature)
+```
+
+```
+## $z
+## [1] 11.77267
+## 
+## $z_star
+## [1] 4.475666
+## 
+## $ratio
+## [1] 6.918858
+## 
+## $P_value
+## [1] 0
+## 
+## $P_value_adj
+## [1] 7.617357e-06
 ```
 \normalsize
 
 ## Comments
 
-* When X1 large, X2 also large, X3 small.
+P-value is very small, but adjusted one not as small as before because of *autocorrelation* (see later). Idea: observations close together in time are correlated with each other, so observations not independent. This is correction for that.
 
-  * Then `comp.1` *positive*.
+## Examining rate of change
 
-* When X1 small, X2 small, X3 large.
+* Having seen that there *is* a change, question is "how fast is it?"
+* Examine slopes:
 
-  * Then `comp.1` *negative*.
+  * regular regression slope, if you believe straight-line regression
+  * Theil-Sen slope: resistant to outliers, based on medians
+  
+## Ordinary regression against time xxx
 
-
-##  No scores
-
-
-* With correlation matrix rather than data, no component scores
-
-  * So no principal component plot
-
-  * and no biplot. 
-
-
-
-
-
-
-
-
-# Exploratory factor analysis
-
-##  Principal components and factor analysis
-
-
-* Principal components: 
-
-
-  * Purely mathematical.
-
-  * Find eigenvalues, eigenvectors of correlation matrix.
-
-  * No testing whether observed components reproducible, or even probability model behind it.
-
-
-* Factor analysis: 
-
-
-  * some way towards fixing this (get test of appropriateness)
-
-  * In factor analysis, each variable modelled as: "common factor" (eg. verbal ability) and "specific factor" (left over).
-
-  * Choose the common factors to "best" reproduce pattern seen in correlation matrix.
-
-  * Iterative procedure, different answer from principal components.
-
-
-
-##  Packages
 
 ```r
-library(lavaan) # for confirmatory, later
-library(ggbiplot)
+temp.lm=lm(temperature~year, data=temp)
+summary(temp.lm)
+```
+
+```
+## 
+## Call:
+## lm(formula = temperature ~ year, data = temp)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.32496 -0.10117  0.00575  0.08355  0.28501 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept) 2.5794197  0.5703984   4.522 1.37e-05
+## year        0.0058631  0.0002932  19.996  < 2e-16
+##                
+## (Intercept) ***
+## year        ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1269 on 129 degrees of freedom
+## Multiple R-squared:  0.7561,	Adjusted R-squared:  0.7542 
+## F-statistic: 399.9 on 1 and 129 DF,  p-value: < 2.2e-16
+```
+
+Slope about 0.006 degrees per year (about this many degrees over course of data):
+
+
+```r
+coef(temp.lm)[2]*130
+```
+
+```
+##      year 
+## 0.7622068
+```
+
+
+## Theil-Sen slope
+
+also from `mkac`:
+
+
+```r
+theil_sen_slope(temp$temperature)
+```
+
+```
+## [1] 0.005675676
+```
+
+## Conclusions
+
+- Slopes:
+  * Linear regression: 0.005863
+  * Theil-Sen slope: 0.005676
+  * Very close.
+- Correlations:
+  * Pearson 0.8675
+  * Kendall 0.6993
+  * Kendall correlation smaller, but P-value equally significant (often the case)
+
+
+## Constant rate of change? xxx
+
+Slope assumes that the rate of change is same over all years, but trend seemed to be accelerating: xxx
+
+
+```r
+ggplot(temp, aes(x=year, y=temperature)) + 
+  geom_point() + geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](figure/unnamed-chunk-13-1.pdf)
+
+## Pre-1970 and post-1970: xxx
+
+
+```r
+temp %>% 
+  mutate(time_period=ifelse(year<=1970, "pre-1970", "post-1970")) %>% 
+  nest(-time_period) %>% 
+  mutate(theil_sen=map_dbl(
+    data, ~theil_sen_slope(.$temperature)))
+```
+
+```
+## # A tibble: 2 x 3
+##   time_period data              theil_sen
+##   <chr>       <list>                <dbl>
+## 1 pre-1970    <tibble [91 × 4]>   0.00429
+## 2 post-1970   <tibble [40 × 4]>   0.0168
+```
+
+Theil-Sen slope is very nearly *four times* as big since 1970 vs. before.
+
+
+
+
+
+## Actual time series: the Kings of England
+
+* Age at death of Kings and Queens of England since William the Conqueror (1066):
+
+
+```r
+kings=read_table("kings.txt", col_names=F)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double()
+## )
+```
+
+Data in one long column `X1`, so `kings` is data frame with one column. 
+
+## Turn into `ts` time series object
+
+
+```r
+kings.ts=ts(kings)
+kings.ts
+```
+
+```
+## Time Series:
+## Start = 1 
+## End = 42 
+## Frequency = 1 
+##       X1
+##  [1,] 60
+##  [2,] 43
+##  [3,] 67
+##  [4,] 50
+##  [5,] 56
+##  [6,] 42
+##  [7,] 50
+##  [8,] 65
+##  [9,] 68
+## [10,] 43
+## [11,] 65
+## [12,] 34
+## [13,] 47
+## [14,] 34
+## [15,] 49
+## [16,] 41
+## [17,] 13
+## [18,] 35
+## [19,] 53
+## [20,] 56
+## [21,] 16
+## [22,] 43
+## [23,] 69
+## [24,] 59
+## [25,] 48
+## [26,] 59
+## [27,] 86
+## [28,] 55
+## [29,] 68
+## [30,] 51
+## [31,] 33
+## [32,] 49
+## [33,] 67
+## [34,] 77
+## [35,] 81
+## [36,] 67
+## [37,] 71
+## [38,] 81
+## [39,] 68
+## [40,] 70
+## [41,] 77
+## [42,] 56
+```
+
+
+## Plotting a time series
+
+`autoplot` from `ggfortify` gives time plot:
+
+
+```r
+autoplot(kings.ts)
+```
+
+![](figure/Kings-Time-Series-1.pdf)
+
+## Comments
+
+* "Time" here is order of monarch from William the Conqueror (1st) to George VI (last).
+
+* Looks to be slightly increasing trend of age-at-death
+
+* but lots of irregularity.
+
+
+## Stationarity
+
+A time series is **stationary** if:
+
+* mean is constant over time
+* variability constant over time and not changing with mean.
+
+Kings time series seems to have:
+
+* non-constant mean
+* but constant variability
+* not stationary.
+
+## Getting it stationary
+
+- Usual fix for non-stationarity is *differencing*: new series 2nd - 1st, 3rd - 2nd etc.
+
+In R, `diff`:
+
+
+```r
+kings.diff.ts=diff(kings.ts)
+```
+
+## Did differencing fix stationarity?
+
+Looks stationary now: xxx
+
+
+```r
+autoplot(kings.diff.ts)
+```
+
+![](figure/Differenced-Kings-Series-1.pdf)
+
+
+
+## Births per month in New York City
+
+from January 1946 to December 1959:
+
+
+```r
+ny=read_table("nybirths.txt",col_names=F)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double()
+## )
+```
+
+```r
+ny
+```
+
+```
+## # A tibble: 168 x 1
+##       X1
+##    <dbl>
+##  1  26.7
+##  2  23.6
+##  3  26.9
+##  4  24.7
+##  5  25.8
+##  6  24.4
+##  7  24.5
+##  8  23.9
+##  9  23.2
+## 10  23.2
+## # … with 158 more rows
+```
+
+```r
+ny.ts=ts(ny,freq=12,start=c(1946,1))
+ny.ts
+```
+
+```
+##         Jan    Feb    Mar    Apr    May    Jun
+## 1946 26.663 23.598 26.931 24.740 25.806 24.364
+## 1947 21.439 21.089 23.709 21.669 21.752 20.761
+## 1948 21.937 20.035 23.590 21.672 22.222 22.123
+## 1949 21.548 20.000 22.424 20.615 21.761 22.874
+## 1950 22.604 20.894 24.677 23.673 25.320 23.583
+## 1951 23.287 23.049 25.076 24.037 24.430 24.667
+## 1952 23.798 22.270 24.775 22.646 23.988 24.737
+## 1953 24.364 22.644 25.565 24.062 25.431 24.635
+## 1954 24.657 23.304 26.982 26.199 27.210 26.122
+## 1955 24.990 24.239 26.721 23.475 24.767 26.219
+## 1956 26.217 24.218 27.914 26.975 28.527 27.139
+## 1957 26.589 24.848 27.543 26.896 28.878 27.390
+## 1958 27.132 24.924 28.963 26.589 27.931 28.009
+## 1959 26.076 25.286 27.660 25.951 26.398 25.565
+##         Jul    Aug    Sep    Oct    Nov    Dec
+## 1946 24.477 23.901 23.175 23.227 21.672 21.870
+## 1947 23.479 23.824 23.105 23.110 21.759 22.073
+## 1948 23.950 23.504 22.238 23.142 21.059 21.573
+## 1949 24.104 23.748 23.262 22.907 21.519 22.025
+## 1950 24.671 24.454 24.122 24.252 22.084 22.991
+## 1951 26.451 25.618 25.014 25.110 22.964 23.981
+## 1952 26.276 25.816 25.210 25.199 23.162 24.707
+## 1953 27.009 26.606 26.268 26.462 25.246 25.180
+## 1954 26.706 26.878 26.152 26.379 24.712 25.688
+## 1955 28.361 28.599 27.914 27.784 25.693 26.881
+## 1956 28.982 28.169 28.056 29.136 26.291 26.987
+## 1957 28.065 28.141 29.048 28.484 26.634 27.735
+## 1958 29.229 28.759 28.405 27.945 25.912 26.619
+## 1959 28.865 30.000 29.261 29.012 26.992 27.897
+```
+
+Note extras on `ts`:
+
+* Time period is 1 year
+* 12 observations per year (monthly) in `freq`
+* First observation is 1st month of 1946 in `start` xxx more
+
+Printing formats nicely.
+
+## Time plot
+
+* Time plot shows extra pattern: xxx
+
+
+```r
+autoplot(ny.ts)
+```
+
+![](figure/unnamed-chunk-19-1.pdf)
+
+## Comments on time plot
+
+* steady increase (after initial drop)
+* repeating pattern each year (seasonal component).
+* Not stationary.
+
+## Differencing the New York births
+
+Does differencing help here? xxx
+
+
+```r
+ny.diff.ts=diff(ny.ts)
+autoplot(ny.diff.ts)
+```
+
+![](figure/unnamed-chunk-20-1.pdf)
+
+Looks stationary, but some regular spikes.
+
+## Decomposing a seasonal time series
+
+Observations for NY births were every month. Are things the same every year?
+
+A visual (using original data): xxx
+
+
+```r
+decompose(ny.ts) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-21-1.pdf)
+
+## Decomposition bits
+
+
+Shows:
+
+* original series
+* a "seasonal" part: something that repeats every year
+* just the trend, going steadily up (except at the start)
+* random: what is left over ("remainder")
+
+## The seasonal part
+
+Fitted seasonal part is same every year, births lowest in February and highest in July:
+
+
+
+```r
+ny.d$seasonal
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'ny.d' not found
+```
+
+
+
+
+## Time series basics
+
+## White noise
+
+Independent random normal. Knowing one value tells you nothing about the next. "Random" process. xxx
+
+
+
+```r
+wn=rnorm(100)
+wn.ts=ts(wn)
+autoplot(wn.ts)
+```
+
+![](figure/White-Noise-1.pdf)
+
+
+
+
+## Lagging a time series
+
+This means moving a time series one (or more) steps back in time:
+
+
+```r
+x=rnorm(5)
+tibble(x) %>% mutate(x_lagged=lag(x)) -> with_lagged
+with_lagged
+```
+
+```
+## # A tibble: 5 x 2
+##         x x_lagged
+##     <dbl>    <dbl>
+## 1 -2.04     NA    
+## 2 -0.579    -2.04 
+## 3  0.608    -0.579
+## 4  0.118     0.608
+## 5  0.0563    0.118
+```
+
+Gain a missing because there is nothing before the first observation.
+
+## Lagging white noise
+
+
+```r
+tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
+ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
+```
+
+```
+## Warning: Removed 1 rows containing missing values
+## (geom_point).
+```
+
+![](figure/unnamed-chunk-25-1.pdf)
+
+```r
+with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  wn and wn_lagged
+## t = -0.16512, df = 97, p-value = 0.8692
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.213468  0.181249
+## sample estimates:
+##         cor 
+## -0.01676257
+```
+
+
+## Correlation with lagged series
+
+If you know about white noise at one time point, you know *nothing* about it at the next. This is shown by the scatterplot and the correlation. 
+
+
+On the other hand, this:
+
+
+```r
+tibble(age=kings$X1) %>% 
+  mutate(age_lagged=lag(age)) -> kings_with_lagged
+with(kings_with_lagged, cor.test(age, age_lagged))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  age and age_lagged
+## t = 2.7336, df = 39, p-value = 0.00937
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.1064770 0.6308209
+## sample estimates:
+##       cor 
+## 0.4009919
+```
+
+## If one value larger, the next value (a bit) more likely to be larger:
+
+
+```r
+ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + geom_point()
+```
+
+```
+## Warning: Removed 1 rows containing missing values
+## (geom_point).
+```
+
+![](figure/unnamed-chunk-27-1.pdf)
+
+## Two steps back:
+
+
+```r
+kings_with_lagged %>% 
+  mutate(age_lag_2=lag(age_lagged)) %>% 
+  with(., cor.test(age, age_lag_2))
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  age and age_lag_2
+## t = 1.5623, df = 38, p-value = 0.1265
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.07128917  0.51757510
+## sample estimates:
+##      cor 
+## 0.245676
+```
+
+Still a correlation two steps back, but smaller (and no longer significant).
+
+## Autocorrelation
+
+Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`:
+
+White noise: xxx
+
+
+```r
+acf(wn.ts, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-29-1.pdf)
+
+No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
+
+Autocorrelations work best on *stationary* series.
+
+## Kings, differenced xxx
+
+
+```r
+acf(kings.diff.ts, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-30-1.pdf)
+
+## Comments on autocorrelations of kings series
+
+Negative autocorrelation at lag 1, nothing beyond that. 
+
+* If one value of differenced series positive, next one most likely negative.
+* If one king lives longer than predecessor, next one likely lives shorter.
+
+## NY births, differenced xxx
+
+
+```r
+acf(ny.diff.ts, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-31-1.pdf)
+
+## Lots of stuff:
+
+* large positive autocorrelation at 1.0 years (July one year like July last year)
+* large negative autocorrelation at 1 month.
+* smallish but significant negative autocorrelation at 0.5 year = 6 months.
+* Other stuff -- complicated.
+
+## Souvenir sales
+
+Monthly sales for a beach souvenir shop in Queensland, Australia:
+
+
+```r
+souv=read_table("souvenir.txt", col_names=F)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   X1 = col_double()
+## )
+```
+
+```r
+souv.ts=ts(souv,frequency=12,start=1987)
+souv.ts
+```
+
+```
+##            Jan       Feb       Mar       Apr
+## 1987   1664.81   2397.53   2840.71   3547.29
+## 1988   2499.81   5198.24   7225.14   4806.03
+## 1989   4717.02   5702.63   9957.58   5304.78
+## 1990   5921.10   5814.58  12421.25   6369.77
+## 1991   4826.64   6470.23   9638.77   8821.17
+## 1992   7615.03   9849.69  14558.40  11587.33
+## 1993  10243.24  11266.88  21826.84  17357.33
+##            May       Jun       Jul       Aug
+## 1987   3752.96   3714.74   4349.61   3566.34
+## 1988   5900.88   4951.34   6179.12   4752.15
+## 1989   6492.43   6630.80   7349.62   8176.62
+## 1990   7609.12   7224.75   8121.22   7979.25
+## 1991   8722.37  10209.48  11276.55  12552.22
+## 1992   9332.56  13082.09  16732.78  19888.61
+## 1993  15997.79  18601.53  26155.15  28586.52
+##            Sep       Oct       Nov       Dec
+## 1987   5021.82   6423.48   7600.60  19756.21
+## 1988   5496.43   5835.10  12600.08  28541.72
+## 1989   8573.17   9690.50  15151.84  34061.01
+## 1990   8093.06   8476.70  17914.66  30114.41
+## 1991  11637.39  13606.89  21822.11  45060.69
+## 1992  23933.38  25391.35  36024.80  80721.71
+## 1993  30505.41  30821.33  46634.38 104660.67
+```
+
+## Plot of souvenir sales xxx
+
+
+```r
+autoplot(souv.ts)
+```
+
+![](figure/unnamed-chunk-33-1.pdf)
+
+## Several problems:
+
+* Mean goes up over time
+* Variability gets larger as mean gets larger
+* Not stationary
+
+## Problem-fixing:
+
+Fix non-constant variability first by taking logs: xxx
+
+
+```r
+souv.log.ts=log(souv.ts)
+autoplot(souv.log.ts)
+```
+
+![](figure/unnamed-chunk-34-1.pdf)
+
+## Mean still not constant, so try taking differences xxx
+
+
+```r
+souv.log.diff.ts=diff(souv.log.ts)
+autoplot(souv.log.diff.ts)
+```
+
+![](figure/unnamed-chunk-35-1.pdf)
+
+## Comments
+
+* Now stationary
+* but clear seasonal effect.
+
+## Decomposing to see the seasonal effect xxx
+
+
+```r
+souv.d=decompose(souv.log.diff.ts)
+autoplot(souv.d)
+```
+
+![](figure/unnamed-chunk-36-1.pdf)
+
+## Comments 
+
+**Big** drop in one month's differences. Look at seasonal component to see which:
+
+
+```r
+souv.d$seasonal
+```
+
+```
+##              Jan         Feb         Mar
+## 1987              0.23293343  0.49068755
+## 1988 -1.90372141  0.23293343  0.49068755
+## 1989 -1.90372141  0.23293343  0.49068755
+## 1990 -1.90372141  0.23293343  0.49068755
+## 1991 -1.90372141  0.23293343  0.49068755
+## 1992 -1.90372141  0.23293343  0.49068755
+## 1993 -1.90372141  0.23293343  0.49068755
+##              Apr         May         Jun
+## 1987 -0.39700942  0.02410429  0.05074206
+## 1988 -0.39700942  0.02410429  0.05074206
+## 1989 -0.39700942  0.02410429  0.05074206
+## 1990 -0.39700942  0.02410429  0.05074206
+## 1991 -0.39700942  0.02410429  0.05074206
+## 1992 -0.39700942  0.02410429  0.05074206
+## 1993 -0.39700942  0.02410429  0.05074206
+##              Jul         Aug         Sep
+## 1987  0.13552988 -0.03710275  0.08650584
+## 1988  0.13552988 -0.03710275  0.08650584
+## 1989  0.13552988 -0.03710275  0.08650584
+## 1990  0.13552988 -0.03710275  0.08650584
+## 1991  0.13552988 -0.03710275  0.08650584
+## 1992  0.13552988 -0.03710275  0.08650584
+## 1993  0.13552988 -0.03710275  0.08650584
+##              Oct         Nov         Dec
+## 1987  0.09148236  0.47311204  0.75273614
+## 1988  0.09148236  0.47311204  0.75273614
+## 1989  0.09148236  0.47311204  0.75273614
+## 1990  0.09148236  0.47311204  0.75273614
+## 1991  0.09148236  0.47311204  0.75273614
+## 1992  0.09148236  0.47311204  0.75273614
+## 1993  0.09148236  0.47311204  0.75273614
+```
+
+January.
+
+## Autocorrelations xxx
+
+
+```r
+acf(souv.log.diff.ts, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-38-1.pdf)
+
+* Big positive autocorrelation at 1 year (strong seasonal effect)
+* Small negative autocorrelation at 1 and 2 months.
+
+
+## Moving average
+
+- A particular type of time series called a **moving average** or MA process captures idea of autocorrelations at a few lags but not at others.
+
+- Here's generation of MA(1) process, with autocorrelation at lag 1 but not otherwise:
+
+
+```r
+beta=1
+tibble(e=rnorm(100)) %>% 
+  mutate(e_lag=lag(e)) %>% 
+  mutate(y=e+beta*e_lag) %>% 
+  mutate(y=ifelse(is.na(y), 0, y)) -> ma
+ma
+```
+
+```
+## # A tibble: 100 x 3
+##         e   e_lag      y
+##     <dbl>   <dbl>  <dbl>
+##  1  0.991  NA      0    
+##  2  0.469   0.991  1.46 
+##  3  0.535   0.469  1.00 
+##  4 -0.244   0.535  0.291
+##  5  1.17   -0.244  0.928
+##  6 -0.473   1.17   0.699
+##  7  1.56   -0.473  1.08 
+##  8 -0.355   1.56   1.20 
+##  9 -0.400  -0.355 -0.755
+## 10 -2.10   -0.400 -2.50 
+## # … with 90 more rows
+```
+
+## Comments
+
+* `e` contains independent "random shocks". 
+* Start process at 0. 
+* Then, each value of the time series has that time's random shock, plus a multiple of the last time's random shock. 
+* `y[i]` has shock in common with `y[i-1]`; should be a lag 1 autocorrelation. 
+* But `y[i]` has no shock in common with `y[i-2]`, so no lag 2 autocorrelation (or beyond).
+
+
+## ACF for MA(1) process xxx
+
+
+```r
+acf(ma$y, plot=F, na.rm=T) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-40-1.pdf)
+
+Everything beyond lag 1 appears to be just chance.
+
+
+## AR process
+
+Another kind of time series is AR process, where each value depends on previous one, like this (loop):
+
+
+```r
+e=rnorm(100)
+x=numeric(0)
+x[1]=0
+alpha=0.7
+for (i in 2:100)
+{
+  x[i]=alpha*x[i-1]+e[i]
+}
+x
+```
+
+```
+##   [1]  0.00000000  0.69150384 -0.27156693
+##   [4] -1.69374385 -0.04624706 -0.61289729
+##   [7]  0.26464756 -0.21493841 -1.31429232
+##  [10]  0.44277420  0.09918044  0.19080999
+##  [13] -1.02379326  0.16693770  0.98374525
+##  [16]  0.04866219  1.22331904 -0.04784703
+##  [19] -0.21367820 -0.68228901  0.25079396
+##  [22] -0.86025292  1.75818244  1.19266409
+##  [25]  0.30513461  2.41224530  1.28151011
+##  [28]  1.68979182  2.01815565  3.53754507
+##  [31]  1.85840920  2.32513921  1.77111656
+##  [34]  2.12223993  0.91095776  1.58477201
+##  [37]  2.08225425  1.09623045 -0.76369221
+##  [40] -0.70809836 -1.84439667 -0.38985352
+##  [43] -1.04265756 -0.86988314 -1.14485961
+##  [46] -3.18900426 -2.93376468 -2.16075858
+##  [49] -1.59508681 -1.74905113 -3.13933449
+##  [52] -3.02637272 -1.44218503 -1.55489860
+##  [55] -1.73928909 -2.00995900 -2.66272165
+##  [58] -3.20337770 -3.51822345 -3.07147301
+##  [61] -3.97833623 -3.76371790 -3.52532969
+##  [64] -3.45189431 -0.06074526 -0.57178351
+##  [67]  0.81558455 -0.27386449  0.75054673
+##  [70] -1.41070534 -2.60770962 -0.77008248
+##  [73] -0.44599398  0.92659720 -0.50866042
+##  [76] -0.28000966 -0.69941661 -0.87488058
+##  [79] -1.34524333 -1.24758120 -2.20687436
+##  [82] -1.55318855 -0.03079664 -0.30483692
+##  [85]  1.32564353  1.13381949  0.88141908
+##  [88]  0.19972924 -1.03973656 -0.60655913
+##  [91]  0.27269352  0.49555143  0.74140308
+##  [94]  0.41684887 -0.01247512 -0.08955967
+##  [97]  1.09794055  0.51405840  1.27608083
+## [100]  0.05862015
+```
+
+## Comments
+
+* Each random shock now only used for its own value of `x`
+* but `x[i]` also depends on previous value `x[i-1]`
+* so correlated with previous value
+* *but* `x[i]` also contains multiple of `x[i-2]` and previous x's
+* so all x's correlated, but autocorrelation dying away.
+
+## ACF for AR(1) series xxx
+
+
+```r
+acf(x, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-42-1.pdf)
+
+## Partial autocorrelation function
+
+This cuts off for an AR series: xxx
+
+
+```r
+pacf(x, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-43-1.pdf)
+
+The lag-2 autocorrelation should not be significant, and isn't.
+
+## PACF for an MA series decays slowly xxx
+
+
+```r
+pacf(ma$y, plot=F) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-44-1.pdf)
+
+## The old way of doing time series analysis
+
+Starting from a series with constant variability (eg. transform first to get it, as for souvenirs):
+
+* Assess stationarity.
+* If not stationary, take differences as many times as needed until it is.
+* Look at ACF, see if it dies off. If it does, you have MA series.
+* Look at PACF, see if that dies off. If it does, have AR series.
+* If neither dies off, probably have a mixed "ARMA" series.
+* Fit coefficients (like regression slopes).
+* Do forecasts.
+
+
+## The new way of doing time series analysis (in R)
+
+* Transform series if needed to get constant variability
+* Use package `forecast`.
+* Use function `auto.arima` to estimate what kind of series best fits data.
+* Use `forecast` to see what will happen in future.
+
+## Anatomy of `auto.arima` output
+
+
+```r
+auto.arima(ma$y)
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
+```
+
+* ARIMA part tells you what kind of series you are estimated to have:
+  * first number (first 0) is AR (autoregressive) part
+  * second number (second 0) is amount of differencing here
+  * third number (1) is MA (moving average) part
+  
+* Below that, coefficients (with SEs)
+* AICc is measure of fit (lower better)
+
+## What other models were possible?
+
+Run `auto.arima` with `trace=T`:
+
+
+```r
+auto.arima(ma$y,trace=T)
+```
+
+```
+## 
+##  ARIMA(2,0,2) with non-zero mean : Inf
+##  ARIMA(0,0,0) with non-zero mean : 345.2328
+##  ARIMA(1,0,0) with non-zero mean : 313.9535
+##  ARIMA(0,0,1) with non-zero mean : 287.9463
+##  ARIMA(0,0,0) with zero mean     : 346.0889
+##  ARIMA(1,0,1) with non-zero mean : 290.112
+##  ARIMA(0,0,2) with non-zero mean : 290.1128
+##  ARIMA(1,0,2) with non-zero mean : 291.7865
+##  ARIMA(0,0,1) with zero mean     : 287.4124
+##  ARIMA(1,0,1) with zero mean     : 289.4909
+##  ARIMA(0,0,2) with zero mean     : 289.4993
+##  ARIMA(1,0,0) with zero mean     : 312.7625
+##  ARIMA(1,0,2) with zero mean     : 290.6071
+## 
+##  Best model: ARIMA(0,0,1) with zero mean
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
+```
+
+Also possible were MA(2) and ARMA(1,1), both with AICc=273.7.
+
+
+## Doing it all the new way: white noise
+
+
+```r
+wn.aa=auto.arima(wn.ts)
+wn.aa
+```
+
+```
+## Series: wn.ts 
+## ARIMA(0,0,0) with zero mean 
+## 
+## sigma^2 estimated as 1.111:  log likelihood=-147.16
+## AIC=296.32   AICc=296.36   BIC=298.93
+```
+
+Best fit *is* white noise (no AR, no MA, no differencing). 
+
+## Forecasts:
+
+
+```r
+forecast(wn.aa)
+```
+
+```
+##     Point Forecast     Lo 80    Hi 80     Lo 95
+## 101              0 -1.350869 1.350869 -2.065975
+## 102              0 -1.350869 1.350869 -2.065975
+## 103              0 -1.350869 1.350869 -2.065975
+## 104              0 -1.350869 1.350869 -2.065975
+## 105              0 -1.350869 1.350869 -2.065975
+## 106              0 -1.350869 1.350869 -2.065975
+## 107              0 -1.350869 1.350869 -2.065975
+## 108              0 -1.350869 1.350869 -2.065975
+## 109              0 -1.350869 1.350869 -2.065975
+## 110              0 -1.350869 1.350869 -2.065975
+##        Hi 95
+## 101 2.065975
+## 102 2.065975
+## 103 2.065975
+## 104 2.065975
+## 105 2.065975
+## 106 2.065975
+## 107 2.065975
+## 108 2.065975
+## 109 2.065975
+## 110 2.065975
+```
+
+Forecasts all 0, since the past doesn't help to predict future.
+
+
+## MA(1)
+
+
+```r
+y.aa=auto.arima(ma$y)
+y.aa
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
+```
+
+```r
+y.f=forecast(y.aa)
+```
+
+## Plotting the forecasts for MA(1) xxx
+
+
+```r
+autoplot(y.f)
+```
+
+![](figure/unnamed-chunk-50-1.pdf)
+
+
+## AR(1)
+
+
+```r
+x.aa=auto.arima(x)
+x.aa
+```
+
+```
+## Series: x 
+## ARIMA(0,1,1) 
+## 
+## Coefficients:
+##           ma1
+##       -0.3544
+## s.e.   0.1062
+## 
+## sigma^2 estimated as 0.979:  log likelihood=-138.99
+## AIC=281.97   AICc=282.1   BIC=287.16
+```
+
+Oops!
+
+## Got it wrong! Fit right AR(1) model:
+
+
+```r
+x.arima=arima(x,order=c(1,0,0))
+x.arima
+```
+
+```
+## 
+## Call:
+## arima(x = x, order = c(1, 0, 0))
+## 
+## Coefficients:
+##          ar1  intercept
+##       0.7758    -0.3646
+## s.e.  0.0611     0.4220
+## 
+## sigma^2 estimated as 0.957:  log likelihood = -140.16,  aic = 286.31
+```
+
+## Forecasts for `x` xxx
+
+
+```r
+forecast(x.arima) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-53-1.pdf)
+
+Comparing wrong model: xxx
+
+
+```r
+forecast(x.aa) %>% autoplot()
+```
+
+![](figure/unnamed-chunk-54-1.pdf)
+
+
+## Kings
+
+
+```r
+kings.aa=auto.arima(kings.ts)
+kings.aa
+```
+
+```
+## Series: kings.ts 
+## ARIMA(0,1,1) 
+## 
+## Coefficients:
+##           ma1
+##       -0.7218
+## s.e.   0.1208
+## 
+## sigma^2 estimated as 236.2:  log likelihood=-170.06
+## AIC=344.13   AICc=344.44   BIC=347.56
+```
+
+## Kings forecasts:
+
+
+```r
+kings.f=forecast(kings.aa)
+kings.f
+```
+
+```
+##    Point Forecast    Lo 80    Hi 80    Lo 95
+## 43       67.75063 48.05479 87.44646 37.62845
+## 44       67.75063 47.30662 88.19463 36.48422
+## 45       67.75063 46.58489 88.91637 35.38042
+## 46       67.75063 45.88696 89.61429 34.31304
+## 47       67.75063 45.21064 90.29062 33.27869
+## 48       67.75063 44.55402 90.94723 32.27448
+## 49       67.75063 43.91549 91.58577 31.29793
+## 50       67.75063 43.29362 92.20763 30.34687
+## 51       67.75063 42.68718 92.81408 29.41939
+## 52       67.75063 42.09507 93.40619 28.51383
+##        Hi 95
+## 43  97.87281
+## 44  99.01703
+## 45 100.12084
+## 46 101.18822
+## 47 102.22257
+## 48 103.22678
+## 49 104.20333
+## 50 105.15439
+## 51 106.08187
+## 52 106.98742
+```
+
+## Kings forecasts, plotted xxx
+
+
+```r
+autoplot(kings.f) + labs(x="index", y= "age at death")
+```
+
+![](figure/unnamed-chunk-57-1.pdf)
+
+
+
+
+## NY births
+
+
+
+```r
+ny.aa=auto.arima(ny.ts)
+ny.aa
+```
+
+```
+## Series: ny.ts 
+## ARIMA(2,1,2)(1,1,1)[12] 
+## 
+## Coefficients:
+##          ar1      ar2      ma1     ma2     sar1
+##       0.6539  -0.4540  -0.7255  0.2532  -0.2427
+## s.e.  0.3003   0.2429   0.3227  0.2878   0.0985
+##          sma1
+##       -0.8451
+## s.e.   0.0995
+## 
+## sigma^2 estimated as 0.4076:  log likelihood=-157.45
+## AIC=328.91   AICc=329.67   BIC=350.21
+```
+
+```r
+ny.f=forecast(ny.aa,h=36)
+```
+
+Going 36 time periods (3 years) into future.
+
+## NY births forecasts
+
+Not *quite* same every year:
+
+
+```r
+ny.f
+```
+
+```
+##          Point Forecast    Lo 80    Hi 80    Lo 95
+## Jan 1960       27.69056 26.87069 28.51043 26.43668
+## Feb 1960       26.07680 24.95838 27.19522 24.36632
+## Mar 1960       29.26544 28.01566 30.51523 27.35406
+## Apr 1960       27.59444 26.26555 28.92333 25.56208
+## May 1960       28.93193 27.52089 30.34298 26.77392
+## Jun 1960       28.55379 27.04381 30.06376 26.24448
+## Jul 1960       29.84713 28.23370 31.46056 27.37960
+## Aug 1960       29.45347 27.74562 31.16132 26.84155
+## Sep 1960       29.16388 27.37259 30.95517 26.42433
+## Oct 1960       29.21343 27.34498 31.08188 26.35588
+## Nov 1960       27.26221 25.31879 29.20563 24.29000
+## Dec 1960       28.06863 26.05137 30.08589 24.98349
+## Jan 1961       27.66908 25.59684 29.74132 24.49986
+## Feb 1961       26.21255 24.08615 28.33895 22.96051
+## Mar 1961       29.22612 27.04347 31.40878 25.88804
+## Apr 1961       27.58011 25.34076 29.81945 24.15533
+## May 1961       28.71354 26.41925 31.00783 25.20473
+## Jun 1961       28.21736 25.87042 30.56429 24.62803
+## Jul 1961       29.98728 27.58935 32.38521 26.31996
+## Aug 1961       29.96127 27.51330 32.40925 26.21743
+## Sep 1961       29.56515 27.06786 32.06243 25.74588
+## Oct 1961       29.54543 26.99965 32.09121 25.65200
+## Nov 1961       27.57845 24.98510 30.17181 23.61226
+## Dec 1961       28.40796 25.76792 31.04801 24.37036
+## Jan 1962       28.05431 25.33756 30.77106 23.89939
+## Feb 1962       26.55936 23.77074 29.34799 22.29453
+## Mar 1962       29.61570 26.76474 32.46667 25.25553
+## Apr 1962       27.96392 25.05574 30.87209 23.51624
+## May 1962       29.14695 26.18187 32.11202 24.61226
+## Jun 1962       28.67933 25.65625 31.70240 24.05593
+## Jul 1962       30.33348 27.25244 33.41453 25.62143
+## Aug 1962       30.21822 27.08057 33.35587 25.41960
+## Sep 1962       29.84798 26.65540 33.04056 24.96535
+## Oct 1962       29.84511 26.59882 33.09139 24.88034
+## Nov 1962       27.88196 24.58270 31.18121 22.83618
+## Dec 1962       28.70585 25.35420 32.05750 23.57995
+##             Hi 95
+## Jan 1960 28.94444
+## Feb 1960 27.78728
+## Mar 1960 31.17683
+## Apr 1960 29.62680
+## May 1960 31.08995
+## Jun 1960 30.86309
+## Jul 1960 32.31466
+## Aug 1960 32.06539
+## Sep 1960 31.90342
+## Oct 1960 32.07098
+## Nov 1960 30.23441
+## Dec 1960 31.15377
+## Jan 1961 30.83830
+## Feb 1961 29.46460
+## Mar 1961 32.56420
+## Apr 1961 31.00488
+## May 1961 32.22235
+## Jun 1961 31.80668
+## Jul 1961 33.65460
+## Aug 1961 33.70512
+## Sep 1961 33.38441
+## Oct 1961 33.43886
+## Nov 1961 31.54465
+## Dec 1961 32.44556
+## Jan 1962 32.20922
+## Feb 1962 30.82420
+## Mar 1962 33.97588
+## Apr 1962 32.41159
+## May 1962 33.68164
+## Jun 1962 33.30272
+## Jul 1962 35.04554
+## Aug 1962 35.01684
+## Sep 1962 34.73061
+## Oct 1962 34.80987
+## Nov 1962 32.92773
+## Dec 1962 33.83176
+```
+
+
+
+## Plotting the forecasts xxx
+
+
+```r
+autoplot(ny.f)+labs(x="time", y="births")
+```
+
+![](figure/unnamed-chunk-60-1.pdf)
+
+
+## Log-souvenir sales
+
+
+```r
+souv.aa=auto.arima(souv.log.ts)
+souv.aa
+```
+
+```
+## Series: souv.log.ts 
+## ARIMA(2,0,0)(0,1,1)[12] with drift 
+## 
+## Coefficients:
+##          ar1     ar2     sma1   drift
+##       0.3470  0.3516  -0.5205  0.0238
+## s.e.  0.1092  0.1115   0.1700  0.0031
+## 
+## sigma^2 estimated as 0.02953:  log likelihood=24.54
+## AIC=-39.09   AICc=-38.18   BIC=-27.71
+```
+
+```r
+souv.f=forecast(souv.aa,h=27)
+```
+
+## The forecasts
+
+Differenced series showed low value for January (large drop). December highest, Jan and Feb lowest:
+
+
+```r
+souv.f
+```
+
+```
+##          Point Forecast     Lo 80     Hi 80
+## Jan 1994       9.578291  9.358036  9.798545
+## Feb 1994       9.754836  9.521700  9.987972
+## Mar 1994      10.286195 10.030937 10.541453
+## Apr 1994      10.028630  9.765727 10.291532
+## May 1994       9.950862  9.681555 10.220168
+## Jun 1994      10.116930  9.844308 10.389551
+## Jul 1994      10.369140 10.094251 10.644028
+## Aug 1994      10.460050 10.183827 10.736274
+## Sep 1994      10.535595 10.258513 10.812677
+## Oct 1994      10.585995 10.308386 10.863604
+## Nov 1994      11.017734 10.739793 11.295674
+## Dec 1994      11.795964 11.517817 12.074111
+## Jan 1995       9.840884  9.540241 10.141527
+## Feb 1995      10.015540  9.711785 10.319295
+## Mar 1995      10.555070 10.246346 10.863794
+## Apr 1995      10.299676  9.989043 10.610309
+## May 1995      10.225535  9.913326 10.537743
+## Jun 1995      10.393625 10.080573 10.706676
+## Jul 1995      10.647811 10.334184 10.961437
+## Aug 1995      10.740118 10.426149 11.054086
+## Sep 1995      10.816842 10.502654 11.131031
+## Oct 1995      10.868142 10.553818 11.182466
+## Nov 1995      11.300608 10.986200 11.615017
+## Dec 1995      12.079407 11.764946 12.393869
+## Jan 1996      10.124780  9.791571 10.457989
+## Feb 1996      10.299793  9.964159 10.635427
+## Mar 1996      10.839607 10.499858 11.179355
+##              Lo 95     Hi 95
+## Jan 1994  9.241440  9.915141
+## Feb 1994  9.398285 10.111386
+## Mar 1994  9.895811 10.676578
+## Apr 1994  9.626555 10.430704
+## May 1994  9.538993 10.362731
+## Jun 1994  9.699991 10.533868
+## Jul 1994  9.948734 10.789545
+## Aug 1994 10.037603 10.882498
+## Sep 1994 10.111835 10.959356
+## Oct 1994 10.161429 11.010561
+## Nov 1994 10.592660 11.442807
+## Dec 1994 11.370575 12.221353
+## Jan 1995  9.381090 10.300678
+## Feb 1995  9.550987 10.480093
+## Mar 1995 10.082918 11.027222
+## Apr 1995  9.824604 10.774749
+## May 1995  9.748053 10.703017
+## Jun 1995  9.914853 10.872396
+## Jul 1995 10.168160 11.127461
+## Aug 1995 10.259944 11.220291
+## Sep 1995 10.336333 11.297352
+## Oct 1995 10.387425 11.348859
+## Nov 1995 10.819762 11.781454
+## Dec 1995 11.598481 12.560334
+## Jan 1996  9.615181 10.634379
+## Feb 1996  9.786485 10.813101
+## Mar 1996 10.320006 11.359207
+```
+
+```r
+souv.f$mean
+```
+
+```
+##            Jan       Feb       Mar       Apr
+## 1994  9.578291  9.754836 10.286195 10.028630
+## 1995  9.840884 10.015540 10.555070 10.299676
+## 1996 10.124780 10.299793 10.839607          
+##            May       Jun       Jul       Aug
+## 1994  9.950862 10.116930 10.369140 10.460050
+## 1995 10.225535 10.393625 10.647811 10.740118
+## 1996                                        
+##            Sep       Oct       Nov       Dec
+## 1994 10.535595 10.585995 11.017734 11.795964
+## 1995 10.816842 10.868142 11.300608 12.079407
+## 1996
+```
+
+```r
+exp(souv.f$mean)
+```
+
+```
+##            Jan       Feb       Mar       Apr
+## 1994  14447.70  17237.39  29324.97  22666.19
+## 1995  18786.31  22371.43  38371.49  29723.00
+## 1996  24953.76  29726.47  51001.31          
+##            May       Jun       Jul       Aug
+## 1994  20970.29  24758.64  31861.05  34893.30
+## 1995  27599.00  32650.80  42100.33  46171.49
+## 1996                                        
+##            Sep       Oct       Nov       Dec
+## 1994  37631.45  39576.66  60945.41 132715.66
+## 1995  49853.43  52477.62  80870.81 176205.71
+## 1996
+```
+
+```r
+print.default(souv.f)
+```
+
+```
+## $method
+## [1] "ARIMA(2,0,0)(0,1,1)[12] with drift"
+## 
+## $model
+## Series: souv.log.ts 
+## ARIMA(2,0,0)(0,1,1)[12] with drift 
+## 
+## Coefficients:
+##          ar1     ar2     sma1   drift
+##       0.3470  0.3516  -0.5205  0.0238
+## s.e.  0.1092  0.1115   0.1700  0.0031
+## 
+## sigma^2 estimated as 0.02953:  log likelihood=24.54
+## AIC=-39.09   AICc=-38.18   BIC=-27.71
+## 
+## $level
+## [1] 80 95
+## 
+## $mean
+##            Jan       Feb       Mar       Apr
+## 1994  9.578291  9.754836 10.286195 10.028630
+## 1995  9.840884 10.015540 10.555070 10.299676
+## 1996 10.124780 10.299793 10.839607          
+##            May       Jun       Jul       Aug
+## 1994  9.950862 10.116930 10.369140 10.460050
+## 1995 10.225535 10.393625 10.647811 10.740118
+## 1996                                        
+##            Sep       Oct       Nov       Dec
+## 1994 10.535595 10.585995 11.017734 11.795964
+## 1995 10.816842 10.868142 11.300608 12.079407
+## 1996                                        
+## 
+## $lower
+##                80%       95%
+## Jan 1994  9.358036  9.241440
+## Feb 1994  9.521700  9.398285
+## Mar 1994 10.030937  9.895811
+## Apr 1994  9.765727  9.626555
+## May 1994  9.681555  9.538993
+## Jun 1994  9.844308  9.699991
+## Jul 1994 10.094251  9.948734
+## Aug 1994 10.183827 10.037603
+## Sep 1994 10.258513 10.111835
+## Oct 1994 10.308386 10.161429
+## Nov 1994 10.739793 10.592660
+## Dec 1994 11.517817 11.370575
+## Jan 1995  9.540241  9.381090
+## Feb 1995  9.711785  9.550987
+## Mar 1995 10.246346 10.082918
+## Apr 1995  9.989043  9.824604
+## May 1995  9.913326  9.748053
+## Jun 1995 10.080573  9.914853
+## Jul 1995 10.334184 10.168160
+## Aug 1995 10.426149 10.259944
+## Sep 1995 10.502654 10.336333
+## Oct 1995 10.553818 10.387425
+## Nov 1995 10.986200 10.819762
+## Dec 1995 11.764946 11.598481
+## Jan 1996  9.791571  9.615181
+## Feb 1996  9.964159  9.786485
+## Mar 1996 10.499858 10.320006
+## 
+## $upper
+##                80%       95%
+## Jan 1994  9.798545  9.915141
+## Feb 1994  9.987972 10.111386
+## Mar 1994 10.541453 10.676578
+## Apr 1994 10.291532 10.430704
+## May 1994 10.220168 10.362731
+## Jun 1994 10.389551 10.533868
+## Jul 1994 10.644028 10.789545
+## Aug 1994 10.736274 10.882498
+## Sep 1994 10.812677 10.959356
+## Oct 1994 10.863604 11.010561
+## Nov 1994 11.295674 11.442807
+## Dec 1994 12.074111 12.221353
+## Jan 1995 10.141527 10.300678
+## Feb 1995 10.319295 10.480093
+## Mar 1995 10.863794 11.027222
+## Apr 1995 10.610309 10.774749
+## May 1995 10.537743 10.703017
+## Jun 1995 10.706676 10.872396
+## Jul 1995 10.961437 11.127461
+## Aug 1995 11.054086 11.220291
+## Sep 1995 11.131031 11.297352
+## Oct 1995 11.182466 11.348859
+## Nov 1995 11.615017 11.781454
+## Dec 1995 12.393869 12.560334
+## Jan 1996 10.457989 10.634379
+## Feb 1996 10.635427 10.813101
+## Mar 1996 11.179355 11.359207
+## 
+## $x
+##            Jan       Feb       Mar       Apr
+## 1987  7.417466  7.782194  7.951809  8.173939
+## 1988  7.823970  8.556075  8.885322  8.477627
+## 1989  8.458933  8.648683  9.206089  8.576364
+## 1990  8.686278  8.668124  9.427164  8.759319
+## 1991  8.481906  8.774967  9.173549  9.084910
+## 1992  8.937879  9.195195  9.585923  9.357668
+## 1993  9.234373  9.329623  9.990896  9.761770
+##            May       Jun       Jul       Aug
+## 1987  8.230300  8.220064  8.377841  8.179295
+## 1988  8.682857  8.507414  8.728931  8.466352
+## 1989  8.778392  8.799481  8.902404  9.009034
+## 1990  8.937103  8.885268  9.002236  8.984600
+## 1991  9.073646  9.231072  9.330481  9.437653
+## 1992  9.141265  9.478999  9.725125  9.897902
+## 1993  9.680206  9.830999 10.171801 10.260691
+##            Sep       Oct       Nov       Dec
+## 1987  8.521548  8.767715  8.935982  9.891223
+## 1988  8.611854  8.671647  9.441458 10.259122
+## 1989  9.056393  9.178901  9.625877 10.435909
+## 1990  8.998762  9.045077  9.793375 10.312759
+## 1991  9.361978  9.518332  9.990679 10.715766
+## 1992 10.083029 10.142164 10.491963 11.298763
+## 1993 10.325659 10.335962 10.750093 11.558479
+## 
+## $series
+## [1] "souv.log.ts"
+## 
+## $fitted
+##            Jan       Feb       Mar       Apr
+## 1987  7.410073  7.774460  7.943929  8.165861
+## 1988  7.737469  8.200398  8.494420  8.807962
+## 1989  8.209173  8.832180  9.049762  8.851068
+## 1990  8.548108  8.966186  9.300665  8.884112
+## 1991  8.716867  8.794359  9.412746  8.860024
+## 1992  8.899194  9.171104  9.689975  9.345013
+## 1993  9.382292  9.576494  9.877050  9.624983
+##            May       Jun       Jul       Aug
+## 1987  8.222189  8.211987  8.369630  8.171306
+## 1988  8.735935  8.554636  8.713493  8.472167
+## 1989  8.934449  8.684461  8.939090  8.722942
+## 1990  9.083565  8.946289  9.091940  9.015035
+## 1991  9.122753  9.165059  9.302968  9.322395
+## 1992  9.424726  9.402271  9.512202  9.688090
+## 1993  9.657431  9.854253 10.012085 10.153607
+##            Sep       Oct       Nov       Dec
+## 1987  8.513240  8.759186  8.927308  9.881618
+## 1988  8.791805  8.929755  9.050992 10.081222
+## 1989  9.025778  9.214826  9.667959 10.502318
+## 1990  9.152643  9.253725  9.667494 10.566558
+## 1991  9.437171  9.524619 10.106639 10.765163
+## 1992  9.785742 10.019754 10.606887 11.220778
+## 1993 10.297393 10.376320 10.790406 11.502027
+## 
+## $residuals
+##               Jan          Feb          Mar
+## 1987  0.007393658  0.007734578  0.007880384
+## 1988  0.086500680  0.355677770  0.390902029
+## 1989  0.249759758 -0.183497442  0.156327204
+## 1990  0.138169613 -0.298061978  0.126498707
+## 1991 -0.234960761 -0.019392105 -0.239197642
+## 1992  0.038684952  0.024091125 -0.104051475
+## 1993 -0.147918881 -0.246870842  0.113845932
+##               Apr          May          Jun
+## 1987  0.008078708  0.008111263  0.008077223
+## 1988 -0.330335699 -0.053078628 -0.047222006
+## 1989 -0.274704599 -0.156057171  0.115019554
+## 1990 -0.124793133 -0.146462326 -0.061020897
+## 1991  0.224886129 -0.049106990  0.066013439
+## 1992  0.012654844 -0.283461096  0.076727977
+## 1993  0.136787334  0.022775020 -0.023253788
+##               Jul          Aug          Sep
+## 1987  0.008211198  0.007988850  0.008307302
+## 1988  0.015437982 -0.005814548 -0.179950487
+## 1989 -0.036685983  0.286092365  0.030614769
+## 1990 -0.089703878 -0.030435015 -0.153880639
+## 1991  0.027512770  0.115258184 -0.075192996
+## 1992  0.212922849  0.209812963  0.297287851
+## 1993  0.159715936  0.107083958  0.028266617
+##               Oct          Nov          Dec
+## 1987  0.008529669  0.008674137  0.009605578
+## 1988 -0.258107829  0.390466497  0.177900145
+## 1989 -0.035925124 -0.042081989 -0.066409363
+## 1990 -0.208648543  0.125880605 -0.253799233
+## 1991 -0.006287476 -0.115960322 -0.049397837
+## 1992  0.122410050 -0.114924058  0.077984541
+## 1993 -0.040357792 -0.040312585  0.056451584
+## 
+## attr(,"class")
+## [1] "forecast"
+```
+
+## Plotting the forecasts xxx
+
+
+```r
+autoplot(souv.f)
+```
+
+![](figure/unnamed-chunk-63-1.pdf)
+
+
+## Global mean temperatures, revisited
+
+
+```r
+temp.ts=ts(temp$temperature,start=1880)
+temp.aa=auto.arima(temp.ts)
+temp.aa
+```
+
+```
+## Series: temp.ts 
+## ARIMA(1,1,3) with drift 
+## 
+## Coefficients:
+##           ar1     ma1      ma2      ma3   drift
+##       -0.9374  0.5038  -0.6320  -0.2988  0.0067
+## s.e.   0.0835  0.1088   0.0876   0.0844  0.0025
+## 
+## sigma^2 estimated as 0.008939:  log likelihood=124.34
+## AIC=-236.67   AICc=-235.99   BIC=-219.47
+```
+
+## Forecasts xxx
+
+
+```r
+temp.f=forecast(temp.aa)
+autoplot(temp.f)+labs(x="year", y="temperature")
+```
+
+![](figure/unnamed-chunk-65-1.pdf)
+
+
+
+# Multiway frequency tables
+
+
+## Packages
+
+```r
 library(tidyverse)
 ```
 
    
 
 
-##  Example
+## Multi-way frequency analysis
 
 
-* 
-145 children given 5 tests, called PARA, SENT, WORD, ADD and DOTS. 3 linguistic tasks (paragraph comprehension, sentence completion  and word meaning), 2 mathematical ones (addition and counting dots).
+* A study of gender and eyewear-wearing finds the following frequencies:
+\begin{tabular}{lrrr}
+\hline
+Gender & Contacts & Glasses & None \\
+\hline
+Female & 121 & 32 & 129 \\
+Male & 42 & 37 & 85\\
+\hline
+\end{tabular}
 
-* Correlation matrix of scores on the tests:
+* Is there association between eyewear and gender?
 
+* Normally answer this with chisquare test (based on observed and expected frequencies from null hypothesis of no association).
+
+* Two categorical variables and a frequency.
+
+* We assess in way that generalizes to more categorical variables.
+
+
+
+
+## The data file
 
 ```
 
-para 1     0.722 0.714 0.203 0.095
-sent 0.722 1     0.685 0.246 0.181
-word 0.714 0.685 1     0.170 0.113
-add  0.203 0.246 0.170 1     0.585
-dots 0.095 0.181 0.113 0.585 1
+gender contacts glasses none
+female 121      32      129
+male   42       37      85
 
 ```
 
 
 
-* Is there small number of underlying "constructs" (unobservable) that explains this pattern of correlations?
+* This is *not tidy!*
 
+* Two variables are gender and *eyewear*, and those numbers
+all frequencies.
 
-
-##  To start: principal components
-
-Using correlation matrix. Read that first:
 
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rex2.txt"
-kids <- read_delim(my_url, " ")
-kids
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/eyewear.txt"
+eyewear <- read_delim(my_url, " ")
+eyewear
 ```
 
 ```
-## # A tibble: 5 x 6
-##   test   para  sent  word   add  dots
-##   <chr> <dbl> <dbl> <dbl> <dbl> <dbl>
-## 1 para  1     0.722 0.714 0.203 0.095
-## 2 sent  0.722 1     0.685 0.246 0.181
-## 3 word  0.714 0.685 1     0.17  0.113
-## 4 add   0.203 0.246 0.17  1     0.585
-## 5 dots  0.095 0.181 0.113 0.585 1
-```
-
-## Principal components on correlation matrix
-
-
-```r
-kids %>%
-  select_if(is.numeric) %>%
-  as.matrix() %>%
-  princomp(covmat = .) -> kids.pc
-```
-
-
-
-
-##  Scree plot
-
-```r
-ggscreeplot(kids.pc)
-```
-
-![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28-1.pdf)
-
-   
-
-
-##  Principal component results
-
-
-* Need 2 components. Loadings:
-
-\footnotesize
-
-```r
-kids.pc$loadings
-```
-
-```
-## 
-## Loadings:
-##      Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
-## para  0.534  0.245  0.114         0.795
-## sent  0.542  0.164         0.660 -0.489
-## word  0.523  0.247 -0.144 -0.738 -0.316
-## add   0.297 -0.627  0.707              
-## dots  0.241 -0.678 -0.680         0.143
-## 
-##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
-## SS loadings       1.0    1.0    1.0    1.0    1.0
-## Proportion Var    0.2    0.2    0.2    0.2    0.2
-## Cumulative Var    0.2    0.4    0.6    0.8    1.0
-```
-\normalsize
-
-## Comments
-
-* First component has a bit of everything, though especially the
-first three tests.
-
-* Second component rather more clearly `add` and `dots`.
-
-* No scores, plots since no actual data.
-
-
-##  Factor analysis
-
-
-* Specify number of factors first, get solution with exactly
-that many factors.
-
-* Includes hypothesis test, need to specify how many children
-wrote the tests.
-
-* Works from correlation matrix via `covmat` or actual
-data, like `princomp`.
-
-* Introduces extra feature, *rotation*, to make
-interpretation of loadings (factor-variable relation) easier.
-
-
-
-##  Factor analysis for the kids data
-
-
-* Create "covariance list" to include number of children who
-wrote the tests.
-
-* Feed this into `factanal`, specifying how many factors (2).
-
-
-```r
-km <- kids %>%
-  select_if(is.numeric) %>%
-  as.matrix()
-km2 <- list(cov = km, n.obs = 145)
-kids.f2 <- factanal(factors = 2, covmat = km2)
+## # A tibble: 2 x 4
+##   gender contacts glasses  none
+##   <chr>     <dbl>   <dbl> <dbl>
+## 1 female      121      32   129
+## 2 male         42      37    85
 ```
 
    
 
 
-
-##  Uniquenesses
-
+## Tidying the data
 
 ```r
-kids.f2$uniquenesses
+eyes <- eyewear %>%
+  gather(eyewear, frequency, contacts:none)
+eyes
 ```
 
 ```
-##      para      sent      word       add      dots 
-## 0.2424457 0.2997349 0.3272312 0.5743568 0.1554076
-```
-
-
-* Uniquenesses say how "unique" a variable is (size of
-specific factor). Small
-uniqueness means that the variable is summarized by a factor (good).
-
-* Very large uniquenesses are bad; `add`'s uniqueness is largest but not large enough to be worried about.
-
-* Also see "communality" for this idea, where *large* is good and *small* is bad.
-
-
-
-##  Loadings
-
-\footnotesize
-
-```r
-kids.f2$loadings
-```
-
-```
-## 
-## Loadings:
-##      Factor1 Factor2
-## [1,] 0.867          
-## [2,] 0.820   0.166  
-## [3,] 0.816          
-## [4,] 0.167   0.631  
-## [5,]         0.918  
-## 
-##                Factor1 Factor2
-## SS loadings      2.119   1.282
-## Proportion Var   0.424   0.256
-## Cumulative Var   0.424   0.680
-```
-\normalsize
-
-* Loadings show how each factor depends on variables. Blanks
-indicate "small", less than 0.1.
-
-## Comments
-
-* Factor 1 clearly the "linguistic" tasks, factor 2 clearly
-the "mathematical" ones.
-
-* Two factors together explain 68\% of variability (like
-regression R-squared).
-    
-- Which variables belong to which factor is *much* clearer than with principal components.
-
-##  Are 2 factors enough? 
-
-```r
-kids.f2$STATISTIC
-```
-
-```
-## objective 
-## 0.5810578
+## # A tibble: 6 x 3
+##   gender eyewear  frequency
+##   <chr>  <chr>        <dbl>
+## 1 female contacts       121
+## 2 male   contacts        42
+## 3 female glasses         32
+## 4 male   glasses         37
+## 5 female none           129
+## 6 male   none            85
 ```
 
 ```r
-kids.f2$dof
+xt <- xtabs(frequency ~ gender + eyewear, data = eyes)
+xt
 ```
 
 ```
-## [1] 1
-```
-
-```r
-kids.f2$PVAL
-```
-
-```
-## objective 
-##  0.445898
+##         eyewear
+## gender   contacts glasses none
+##   female      121      32  129
+##   male         42      37   85
 ```
 
    
 
-P-value not small, so 2 factors OK.
+## Modelling
 
 
-##  1 factor
+* Last table on previous page is "reconstituted" contingency table, for checking.
 
-
-```r
-kids.f1 <- factanal(factors = 1, covmat = km2)
-kids.f1$STATISTIC
-```
-
-```
-## objective 
-##  58.16534
-```
-
-```r
-kids.f1$dof
-```
-
-```
-## [1] 5
-```
-
-```r
-kids.f1$PVAL
-```
-
-```
-##    objective 
-## 2.907856e-11
-```
-
-   
-
-1 factor rejected (P-value small). Definitely need more than 1.
-
-
-##  Track running records revisited
-
-Read the data, run principal components, get biplot: 
+* Predict frequency from other factors and combos. `glm`
+with `poisson` family.
 
 
 ```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
-track <- read_table(my_url)
-track %>% select_if(is.numeric) -> track_num
-track.pc <- princomp(track_num, cor = T)
-g2 <- ggbiplot(track.pc, labels = track$country)
-```
-
-## The biplot
-
-
-```r
-g2
-```
-
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
-
-   
-
-
-
-##  Benefit of rotation
-
-
-* 100m and marathon arrows almost perpendicular, but components
-don't match anything much:
-
-
-* sprinting: bottom left and top right
-
-* distance running: top left and bottom right.
-
-
-* Can we arrange things so that components (factors) correspond
-to something meaningful?
-
-
-
-##  Track records by factor analysis
-Obtain factor scores (have actual data):
-
-\normalsize
-
-```r
-track %>%
-  select_if(is.numeric) %>%
-  factanal(2, scores = "r") -> track.f
-```
-\normalsize
-   
-
-
-##  Track data biplot
-Not so nice-looking:  
-
-```r
-biplot(track.f$scores, track.f$loadings,
-  xlabs = track$country
+eyes.1 <- glm(frequency ~ gender * eyewear,
+  data = eyes,
+  family = "poisson"
 )
 ```
-
-![plot of chunk siracusa](figure/siracusa-1.pdf)
-
-   
+def
 
 
-##  Comments
-
-
-* This time 100m "up" (factor 2), marathon "right" (factor 1).
-
-* Countries most negative on factor 2 good at sprinting.
-
-* Countries most negative on factor 1 good at distance running.
+* Called **log-linear model**.
 
 
 
-##  Rotated factor loadings
-\small
+## What can we get rid of?
+
+{\small    
 
 ```r
-track.f$loadings
+drop1(eyes.1, test = "Chisq")
 ```
 
 ```
+## Single term deletions
 ## 
-## Loadings:
-##          Factor1 Factor2
-## m100     0.291   0.914  
-## m200     0.382   0.882  
-## m400     0.543   0.744  
-## m800     0.691   0.622  
-## m1500    0.799   0.530  
-## m5000    0.901   0.394  
-## m10000   0.907   0.399  
-## marathon 0.915   0.278  
-## 
-##                Factor1 Factor2
-## SS loadings      4.112   3.225
-## Proportion Var   0.514   0.403
-## Cumulative Var   0.514   0.917
-```
-\normalsize
-
-
-## Which countries are good at sprinting or distance running?
-
-Make a data frame with the countries and scores in:
-
-
-```r
-scores <- data.frame(
-  country = track$country,
-  track.f$scores
-)
-scores %>% slice(1:6)
-```
-
-```
-##   country     Factor1    Factor2
-## 1      ar  0.33633782 -0.2651512
-## 2      au -0.49395787 -0.8121335
-## 3      at -0.74199914  0.1764151
-## 4      be -0.79602754 -0.2388525
-## 5      bm  1.46541593 -1.1704466
-## 6      br  0.07780163 -0.8871291
-```
-
- 
-
-
-##  The best sprinting countries
-Most negative on factor 2:
-
-\footnotesize
-
-```r
-scores %>%
-  arrange(Factor2) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Country, Factor1, Factor2) %>%
-  slice(1:10)
-```
-
-```
-##                     Country     Factor1    Factor2
-## 1  United States of America -0.21942697 -1.7251036
-## 2                     Italy -0.18436705 -1.4990521
-## 3        Dominican Republic  2.12906546 -1.4666402
-## 4        Russian Federation -0.32473110 -1.2236590
-## 5                   Bermuda  1.46541593 -1.1704466
-## 6            United Kingdom -0.58969058 -1.0139983
-## 7                    France -0.25301846 -0.9519162
-## 8              West Germany -0.46748876 -0.9079005
-## 9                    Canada -0.13690160 -0.8920777
-## 10                   Brazil  0.07780163 -0.8871291
-```
-\normalsize
- 
-
-
-##  The best distance-running countries
-Most negative on factor 1:
-
-\footnotesize
-
-```r
-scores %>%
-  arrange(Factor1) %>%
-  left_join(iso, by = c("country" = "ISO2")) %>%
-  select(Country, Factor1, Factor2) %>%
-  slice(1:10)
-```
-
-```
-##                      Country    Factor1     Factor2
-## 1                   Portugal -1.2509805  0.78366889
-## 2                     Norway -0.9920727  0.62299560
-## 3                New Zealand -0.9813348  0.26603491
-## 4                      Kenya -0.9749696 -0.07099477
-## 5  Iran, Islamic Republic of -0.9231505  0.50271208
-## 6                Netherlands -0.9078661  0.23948200
-## 7                    Romania -0.8178386  0.18555001
-## 8                     Mexico -0.8096291  0.51446762
-## 9                    Finland -0.8094725 -0.05705220
-## 10                   Belgium -0.7960275 -0.23885253
-```
-\normalsize
- 
-
-##  A bigger example: BEM sex role inventory
-
-
-* 369 women asked to rate themselves on 60 traits, like "self-reliant" or "shy".
-
-* Rating 1 "never or almost never true of me" to 7 ``always or
-almost always true of me''.
-
-* 60 personality traits is a lot. Can we find a smaller number
-of factors that capture aspects of personality?
-
-* The whole BEM sex role inventory on next page.
-
-
-
-##  The whole inventory
-
-
-![](bem.png){width=450px}
-
-
-
-
-##  Some of the data
-
-
-\scriptsize
-
-```r
-my_url <- "http://www.utsc.utoronto.ca/~butler/d29/factor.txt"
-bem <- read_tsv(my_url)
-bem
-```
-
-```
-## # A tibble: 369 x 45
-##    subno helpful reliant defbel yielding cheerful indpt athlet
-##    <dbl>   <dbl>   <dbl>  <dbl>    <dbl>    <dbl> <dbl>  <dbl>
-##  1     1       7       7      5        5        7     7      7
-##  2     2       5       6      6        6        2     3      3
-##  3     3       7       6      4        4        5     5      2
-##  4     4       6       6      7        4        6     6      3
-##  5     5       6       6      7        4        7     7      7
-##  6     7       5       6      7        4        6     6      2
-##  7     8       6       4      6        6        6     3      1
-##  8     9       7       6      7        5        6     7      5
-##  9    10       7       6      6        4        4     5      2
-## 10    11       7       4      7        4        7     5      2
-## # … with 359 more rows, and 37 more variables: shy <dbl>,
-## #   assert <dbl>, strpers <dbl>, forceful <dbl>, affect <dbl>,
-## #   flatter <dbl>, loyal <dbl>, analyt <dbl>, feminine <dbl>,
-## #   sympathy <dbl>, moody <dbl>, sensitiv <dbl>, undstand <dbl>,
-## #   compass <dbl>, leaderab <dbl>, soothe <dbl>, risk <dbl>,
-## #   decide <dbl>, selfsuff <dbl>, conscien <dbl>,
-## #   dominant <dbl>, masculin <dbl>, stand <dbl>, happy <dbl>,
-## #   softspok <dbl>, warm <dbl>, truthful <dbl>, tender <dbl>,
-## #   gullible <dbl>, leadact <dbl>, childlik <dbl>,
-## #   individ <dbl>, foullang <dbl>, lovchil <dbl>, compete <dbl>,
-## #   ambitiou <dbl>, gentle <dbl>
-```
-\normalsize
-   
-
-
-##  Principal components first
-\ldots to decide on number of factors:
-
-```r
-bem.pc <- bem %>%
-  select(-subno) %>%
-  princomp(cor = T)
-```
-
-   
-
-
-##  The scree plot
-
-```r
-(g <- ggscreeplot(bem.pc))
-```
-
-![plot of chunk genoa](figure/genoa-1.pdf)
-
- 
-
-
-* No obvious elbow.
-  
-
-
-
-##  Zoom in to search for elbow
-
-Possible elbows at 3 (2 factors) and 6 (5):
-
-
-```r
-g + scale_x_continuous(limits = c(0, 8))
-```
-
-![plot of chunk bem-scree-two](figure/bem-scree-two-1.pdf)
-
-
-
-
-
-##  but is 2 really good?
-
-\scriptsize
-
-```r
-summary(bem.pc)
-```
-
-```
-## Importance of components:
-##                           Comp.1    Comp.2     Comp.3     Comp.4
-## Standard deviation     2.7444993 2.2405789 1.55049106 1.43886350
-## Proportion of Variance 0.1711881 0.1140953 0.05463688 0.04705291
-## Cumulative Proportion  0.1711881 0.2852834 0.33992029 0.38697320
-##                            Comp.5     Comp.6     Comp.7
-## Standard deviation     1.30318840 1.18837867 1.15919129
-## Proportion of Variance 0.03859773 0.03209645 0.03053919
-## Cumulative Proportion  0.42557093 0.45766738 0.48820657
-##                            Comp.8     Comp.9    Comp.10
-## Standard deviation     1.07838912 1.07120568 1.04901318
-## Proportion of Variance 0.02643007 0.02607913 0.02500974
-## Cumulative Proportion  0.51463664 0.54071577 0.56572551
-##                           Comp.11    Comp.12    Comp.13
-## Standard deviation     1.03848656 1.00152287 0.97753974
-## Proportion of Variance 0.02451033 0.02279655 0.02171782
-## Cumulative Proportion  0.59023584 0.61303238 0.63475020
-##                           Comp.14   Comp.15    Comp.16
-## Standard deviation     0.95697572 0.9287543 0.92262649
-## Proportion of Variance 0.02081369 0.0196042 0.01934636
-## Cumulative Proportion  0.65556390 0.6751681 0.69451445
-##                           Comp.17   Comp.18    Comp.19
-## Standard deviation     0.90585705 0.8788668 0.86757525
-## Proportion of Variance 0.01864948 0.0175547 0.01710652
-## Cumulative Proportion  0.71316392 0.7307186 0.74782514
-##                           Comp.20    Comp.21    Comp.22
-## Standard deviation     0.84269120 0.83124925 0.80564654
-## Proportion of Variance 0.01613928 0.01570398 0.01475151
-## Cumulative Proportion  0.76396443 0.77966841 0.79441992
-##                           Comp.23    Comp.24    Comp.25
-## Standard deviation     0.78975423 0.78100835 0.77852606
-## Proportion of Variance 0.01417527 0.01386305 0.01377506
-## Cumulative Proportion  0.80859519 0.82245823 0.83623330
-##                           Comp.26    Comp.27    Comp.28
-## Standard deviation     0.74969868 0.74137885 0.72343693
-## Proportion of Variance 0.01277382 0.01249188 0.01189457
-## Cumulative Proportion  0.84900712 0.86149899 0.87339356
-##                           Comp.29    Comp.30    Comp.31
-## Standard deviation     0.71457305 0.70358645 0.69022738
-## Proportion of Variance 0.01160488 0.01125077 0.01082759
-## Cumulative Proportion  0.88499844 0.89624921 0.90707680
-##                            Comp.32     Comp.33    Comp.34
-## Standard deviation     0.654861232 0.640339974 0.63179848
-## Proportion of Variance 0.009746437 0.009318984 0.00907203
-## Cumulative Proportion  0.916823235 0.926142219 0.93521425
-##                            Comp.35     Comp.36     Comp.37
-## Standard deviation     0.616621295 0.602404917 0.570025368
-## Proportion of Variance 0.008641405 0.008247538 0.007384748
-## Cumulative Proportion  0.943855654 0.952103192 0.959487940
-##                            Comp.38     Comp.39     Comp.40
-## Standard deviation     0.560881809 0.538149460 0.530277613
-## Proportion of Variance 0.007149736 0.006581928 0.006390781
-## Cumulative Proportion  0.966637677 0.973219605 0.979610386
-##                            Comp.41     Comp.42     Comp.43
-## Standard deviation     0.512370708 0.505662309 0.480413465
-## Proportion of Variance 0.005966449 0.005811236 0.005245389
-## Cumulative Proportion  0.985576834 0.991388070 0.996633459
-##                            Comp.44
-## Standard deviation     0.384873772
-## Proportion of Variance 0.003366541
-## Cumulative Proportion  1.000000000
-```
-\normalsize
-
-
-
-##  Comments
-
-
-* Want overall fraction of variance explained (``cumulative
-proportion'') to be reasonably high.
-
-* 2 factors, 28.5\%. Terrible!
-
-* Even 56\% (10 factors) not that good!
-
-* Have to live with that.
-
-
-
-
-##  Biplot
-
-
-```r
-ggbiplot(bem.pc, alpha = 0.3)
-```
-
-![plot of chunk bem-biplot](figure/bem-biplot-1.pdf)
-  
-![](bFactor-bem-biplot.png)
-
-
-##  Comments
-
-
-* Ignore individuals for now.
-
-* Most variables point to 10 o'clock or 7 o'clock.
-
-* Suggests factor analysis with rotation will get interpretable
-factors (rotate to 6 o'clock and 9 o'clock, for example).
-
-* Try for 2-factor solution (rough interpretation, will be bad):
-
-
-```r
-bem.2 <- bem %>%
-  select(-subno) %>%
-  factanal(factors = 2)
-```
-
-
-
-* Show output in pieces (just print `bem.2` to see all of it).
-
-
-
-##  Uniquenesses, sorted
-
-\scriptsize
-
-```r
-sort(bem.2$uniquenesses)
-```
-
-```
-##  leaderab   leadact      warm    tender  dominant    gentle 
-## 0.4091894 0.4166153 0.4764762 0.4928919 0.4942909 0.5064551 
-##  forceful   strpers   compass     stand  undstand    assert 
-## 0.5631857 0.5679398 0.5937073 0.6024001 0.6194392 0.6329347 
-##    soothe    affect    decide  selfsuff  sympathy     indpt 
-## 0.6596103 0.6616625 0.6938578 0.7210246 0.7231450 0.7282742 
-##   helpful    defbel      risk   reliant   individ   compete 
-## 0.7598223 0.7748448 0.7789761 0.7808058 0.7941998 0.7942910 
-##  conscien     happy  sensitiv     loyal  ambitiou       shy 
-## 0.7974820 0.8008966 0.8018851 0.8035264 0.8101599 0.8239496 
-##  softspok  cheerful  masculin  yielding  feminine  truthful 
-## 0.8339058 0.8394916 0.8453368 0.8688473 0.8829927 0.8889983 
-##   lovchil    analyt    athlet   flatter  gullible     moody 
-## 0.8924392 0.8968744 0.9229702 0.9409500 0.9583435 0.9730607 
-##  childlik  foullang 
-## 0.9800360 0.9821662
-```
-\normalsize
-   
-## Comments
-
-* Mostly high or very high (bad).
-
-* Some smaller, eg.: Leadership ability (0.409),
-Acts like leader (0.417),
-Warm (0.476),
-Tender (0.493).
-
-* Smaller uniquenesses captured by one of our two factors.
-
-- Larger uniquenesses are not: need more factors to capture them.
-
-
-
-##  Factor loadings, some
-
-\scriptsize
-
-```r
-bem.2$loadings
-```
-
-```
-## 
-## Loadings:
-##          Factor1 Factor2
-## helpful   0.314   0.376 
-## reliant   0.453   0.117 
-## defbel    0.434   0.193 
-## yielding -0.131   0.338 
-## cheerful  0.152   0.371 
-## indpt     0.521         
-## athlet    0.267         
-## shy      -0.414         
-## assert    0.605         
-## strpers   0.657         
-## forceful  0.649  -0.126 
-## affect    0.178   0.554 
-## flatter           0.223 
-## loyal     0.151   0.417 
-## analyt    0.295   0.127 
-## feminine  0.113   0.323 
-## sympathy          0.526 
-## moody            -0.162 
-## sensitiv  0.135   0.424 
-## undstand          0.610 
-## compass   0.114   0.627 
-## leaderab  0.765         
-## soothe            0.580 
-## risk      0.442   0.161 
-## decide    0.542   0.113 
-## selfsuff  0.511   0.134 
-## conscien  0.328   0.308 
-## dominant  0.668  -0.245 
-## masculin  0.276  -0.280 
-## stand     0.607   0.172 
-## happy     0.119   0.430 
-## softspok -0.230   0.336 
-## warm              0.719 
-## truthful  0.109   0.315 
-## tender            0.710 
-## gullible -0.153   0.135 
-## leadact   0.763         
-## childlik -0.101         
-## individ   0.445         
-## foullang          0.133 
-## lovchil           0.327 
-## compete   0.450         
-## ambitiou  0.414   0.137 
-## gentle            0.702 
-## 
-##                Factor1 Factor2
-## SS loadings      6.083   5.127
-## Proportion Var   0.138   0.117
-## Cumulative Var   0.138   0.255
-```
-\normalsize
-
-
-
-##  Making a data frame
-There are too many to read easily, so make a data frame. A
-bit tricky:
-
-\footnotesize
-
-```r
-loadings <- as.data.frame(unclass(bem.2$loadings)) %>%
-  mutate(trait = rownames(bem.2$loadings))
-loadings %>% slice(1:12)
-```
-
-```
-##       Factor1      Factor2    trait
-## 1   0.3137466  0.376484908  helpful
-## 2   0.4532904  0.117140647  reliant
-## 3   0.4336574  0.192602996   defbel
-## 4  -0.1309965  0.337629288 yielding
-## 5   0.1523718  0.370530549 cheerful
-## 6   0.5212403  0.005870336    indpt
-## 7   0.2670788  0.075542858   athlet
-## 8  -0.4144579 -0.065372760      shy
-## 9   0.6049588  0.033004846   assert
-## 10  0.6569855  0.020777649  strpers
-## 11  0.6487190 -0.126405816 forceful
-## 12  0.1778911  0.553799444   affect
-```
-\normalsize
-   
-
-
-##  Pick out the big ones on factor 1
-
-Arbitrarily defining $>0.4$ or $<-0.4$ as "big":
-
-\scriptsize
-
-```r
-loadings %>% filter(abs(Factor1) > 0.4) 
-```
-
-```
-##       Factor1      Factor2    trait
-## 1   0.4532904  0.117140647  reliant
-## 2   0.4336574  0.192602996   defbel
-## 3   0.5212403  0.005870336    indpt
-## 4  -0.4144579 -0.065372760      shy
-## 5   0.6049588  0.033004846   assert
-## 6   0.6569855  0.020777649  strpers
-## 7   0.6487190 -0.126405816 forceful
-## 8   0.7654924  0.069513572 leaderab
-## 9   0.4416176  0.161238425     risk
-## 10  0.5416796  0.112807957   decide
-## 11  0.5109964  0.133626767 selfsuff
-## 12  0.6676490 -0.244855780 dominant
-## 13  0.6066864  0.171848896    stand
-## 14  0.7627129 -0.040667202  leadact
-## 15  0.4448064  0.089146147  individ
-## 16  0.4504188  0.053207281  compete
-## 17  0.4136498  0.136869589 ambitiou
-```
-\normalsize
-
-
-
-##  Factor 2, the big ones
-
-\footnotesize
-
-```r
-loadings %>% filter(abs(Factor2) > 0.4)
-```
-
-```
-##        Factor1   Factor2    trait
-## 1   0.17789112 0.5537994   affect
-## 2   0.15121266 0.4166622    loyal
-## 3   0.02301456 0.5256654 sympathy
-## 4   0.13476970 0.4242037 sensitiv
-## 5   0.09111299 0.6101294 undstand
-## 6   0.11350643 0.6272223  compass
-## 7   0.06061755 0.5802714   soothe
-## 8   0.11893011 0.4300698    happy
-## 9   0.07956978 0.7191610     warm
-## 10  0.05113807 0.7102763   tender
-## 11 -0.01873224 0.7022768   gentle
-```
-\normalsize
-   
-
-
-##  Plotting the two factors
-- A bi-plot, this time with the variables reduced in size. Looking for
-unusual individuals.
-
-- Have to run `factanal` again to get factor scores for plotting.
-
-
-```r
-bem %>% select(-subno) %>% 
-  factanal(factors = 2, scores = "r") -> bem.2a
-biplot(bem.2a$scores, bem.2a$loadings, cex = c(0.5, 0.5))
-```
-
- 
-
-- Numbers on plot are row numbers of `bem`
-data frame.
-
-
-##  The (awful) biplot
-
-![plot of chunk biplot-two-ag](figure/biplot-two-ag-1.pdf)
-
- 
-
-
-##  Comments
-
-
-* Variables mostly up ("feminine") and right ("masculine"),
-accomplished by rotation.
-
-* Some unusual individuals: 311, 214 (low on factor 2), 366
-(high on factor 2),
-359, 258
-(low on factor 1), 230 (high on factor 1).
-
-
-
-##  Individual 366
-
-\tiny
-
-```r
-bem %>% slice(366) %>% glimpse()
-```
-
-```
-## Observations: 1
-## Variables: 45
-## $ subno    <dbl> 755
-## $ helpful  <dbl> 7
-## $ reliant  <dbl> 7
-## $ defbel   <dbl> 5
-## $ yielding <dbl> 7
-## $ cheerful <dbl> 7
-## $ indpt    <dbl> 7
-## $ athlet   <dbl> 7
-## $ shy      <dbl> 2
-## $ assert   <dbl> 1
-## $ strpers  <dbl> 3
-## $ forceful <dbl> 1
-## $ affect   <dbl> 7
-## $ flatter  <dbl> 9
-## $ loyal    <dbl> 7
-## $ analyt   <dbl> 7
-## $ feminine <dbl> 7
-## $ sympathy <dbl> 7
-## $ moody    <dbl> 1
-## $ sensitiv <dbl> 7
-## $ undstand <dbl> 7
-## $ compass  <dbl> 6
-## $ leaderab <dbl> 3
-## $ soothe   <dbl> 7
-## $ risk     <dbl> 7
-## $ decide   <dbl> 7
-## $ selfsuff <dbl> 7
-## $ conscien <dbl> 7
-## $ dominant <dbl> 1
-## $ masculin <dbl> 1
-## $ stand    <dbl> 7
-## $ happy    <dbl> 7
-## $ softspok <dbl> 7
-## $ warm     <dbl> 7
-## $ truthful <dbl> 7
-## $ tender   <dbl> 7
-## $ gullible <dbl> 1
-## $ leadact  <dbl> 2
-## $ childlik <dbl> 1
-## $ individ  <dbl> 5
-## $ foullang <dbl> 7
-## $ lovchil  <dbl> 7
-## $ compete  <dbl> 7
-## $ ambitiou <dbl> 7
-## $ gentle   <dbl> 7
-```
-\normalsize
-
-## Comments
-
-
-
-* Individual 366 high on factor 2, but hard to see which traits should have high scores
-(unless we remember).
-
-* Idea: *tidy* original data frame to make easier to look
-things up.
-
-
-
-##  Tidying original data
-
-\scriptsize
-
-```r
-bem_tidy <- bem %>%
-  mutate(row = row_number()) %>%
-  gather(trait, score, c(-subno, -row))
-bem_tidy
-```
-
-```
-## # A tibble: 16,236 x 4
-##    subno   row trait   score
-##    <dbl> <int> <chr>   <dbl>
-##  1     1     1 helpful     7
-##  2     2     2 helpful     5
-##  3     3     3 helpful     7
-##  4     4     4 helpful     6
-##  5     5     5 helpful     6
-##  6     7     6 helpful     5
-##  7     8     7 helpful     6
-##  8     9     8 helpful     7
-##  9    10     9 helpful     7
-## 10    11    10 helpful     7
-## # … with 16,226 more rows
-```
-\normalsize
-   
-
-
-##  Recall data frame of loadings
-
-\footnotesize
-
-```r
-loadings %>% slice(1:10)
-```
-
-```
-##       Factor1      Factor2    trait
-## 1   0.3137466  0.376484908  helpful
-## 2   0.4532904  0.117140647  reliant
-## 3   0.4336574  0.192602996   defbel
-## 4  -0.1309965  0.337629288 yielding
-## 5   0.1523718  0.370530549 cheerful
-## 6   0.5212403  0.005870336    indpt
-## 7   0.2670788  0.075542858   athlet
-## 8  -0.4144579 -0.065372760      shy
-## 9   0.6049588  0.033004846   assert
-## 10  0.6569855  0.020777649  strpers
-```
-\normalsize
-   
-
-Want to add the factor scores for each trait to our tidy data frame
-`bem_tidy`. This is a left-join (over), matching on the column
-`trait` that is in both data frames (thus, the default):
-
-
-##  Looking up loadings
-
-\scriptsize
-
-```r
-bem_tidy %>% left_join(loadings) -> bem_tidy
-```
-
-```
-## Joining, by = "trait"
-```
-
-```r
-bem_tidy %>% sample_n(12)
-```
-
-```
-## # A tibble: 12 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1    98    60 decide       4  0.542   0.113 
-##  2   247   141 compete      4  0.450   0.0532
-##  3   104    64 decide       5  0.542   0.113 
-##  4   365   213 affect       7  0.178   0.554 
-##  5   266   154 shy          1 -0.414  -0.0654
-##  6   528   307 helpful      6  0.314   0.376 
-##  7   214   123 decide       6  0.542   0.113 
-##  8   245   139 compass      7  0.114   0.627 
-##  9   146    95 yielding     3 -0.131   0.338 
-## 10   689   354 tender       6  0.0511  0.710 
-## 11   467   265 forceful     1  0.649  -0.126 
-## 12   461   260 truthful     6  0.109   0.315
-```
-\normalsize
-   
-
-
-##  Individual 366, high on Factor 2
-So now pick out the rows of the tidy data frame that belong to
-individual 366 (`row=366`) and for which the `Factor2`
-score exceeds 0.4 in absolute value (our "big" from before):
-
-\scriptsize
-
-```r
-bem_tidy %>% filter(row == 366, abs(Factor2) > 0.4)
-```
-
-```
-## # A tibble: 11 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   755   366 affect       7  0.178    0.554
-##  2   755   366 loyal        7  0.151    0.417
-##  3   755   366 sympathy     7  0.0230   0.526
-##  4   755   366 sensitiv     7  0.135    0.424
-##  5   755   366 undstand     7  0.0911   0.610
-##  6   755   366 compass      6  0.114    0.627
-##  7   755   366 soothe       7  0.0606   0.580
-##  8   755   366 happy        7  0.119    0.430
-##  9   755   366 warm         7  0.0796   0.719
-## 10   755   366 tender       7  0.0511   0.710
-## 11   755   366 gentle       7 -0.0187   0.702
-```
-\normalsize
- 
-As expected, high scorer on these.
-
-
-##  Several individuals
-Rows 311 and 214 were *low* on Factor 2, so their scores should
-be low. Can we do them all at once?
-
-\footnotesize
-
-```r
-bem_tidy %>% filter(
-  row %in% c(366, 311, 214),
-  abs(Factor2) > 0.4
-)
-```
-
-```
-## # A tibble: 33 x 6
-##    subno   row trait    score Factor1 Factor2
-##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   369   214 affect       1  0.178    0.554
-##  2   534   311 affect       5  0.178    0.554
-##  3   755   366 affect       7  0.178    0.554
-##  4   369   214 loyal        7  0.151    0.417
-##  5   534   311 loyal        4  0.151    0.417
-##  6   755   366 loyal        7  0.151    0.417
-##  7   369   214 sympathy     4  0.0230   0.526
-##  8   534   311 sympathy     4  0.0230   0.526
-##  9   755   366 sympathy     7  0.0230   0.526
-## 10   369   214 sensitiv     7  0.135    0.424
-## # … with 23 more rows
-```
-\normalsize
-   
-
-Can we display each individual in own column?
-
-
-##  Individual by column
-Un-`tidy`, that is, `spread`:
-
-\tiny
-
-```r
-bem_tidy %>%
-  filter(
-    row %in% c(366, 311, 214),
-    abs(Factor2) > 0.4
-  ) %>%
-  select(-subno, -Factor1, -Factor2) %>%
-  spread(row, score)
-```
-
-```
-## # A tibble: 11 x 4
-##    trait    `214` `311` `366`
-##    <chr>    <dbl> <dbl> <dbl>
-##  1 affect       1     5     7
-##  2 compass      5     4     6
-##  3 gentle       2     3     7
-##  4 happy        4     3     7
-##  5 loyal        7     4     7
-##  6 sensitiv     7     4     7
-##  7 soothe       3     4     7
-##  8 sympathy     4     4     7
-##  9 tender       3     4     7
-## 10 undstand     5     3     7
-## 11 warm         1     3     7
-```
-\normalsize
- 
-366 high, 311 middling, 214 (sometimes) low.
-
-
-##  Individuals 230, 258, 359
-These were high, low, low on factor 1. Adapt code:
-
-\tiny
-
-```r
-bem_tidy %>%
-  filter(row %in% c(359, 258, 230), abs(Factor1) > 0.4) %>%
-  select(-subno, -Factor1, -Factor2) %>%
-  spread(row, score)
-```
-
-```
-## # A tibble: 17 x 4
-##    trait    `230` `258` `359`
-##    <chr>    <dbl> <dbl> <dbl>
-##  1 ambitiou     7     2     4
-##  2 assert       7     3     1
-##  3 compete      6     2     1
-##  4 decide       7     1     2
-##  5 defbel       7     1     1
-##  6 dominant     7     1     1
-##  7 forceful     7     1     1
-##  8 individ      7     3     3
-##  9 indpt        7     7     1
-## 10 leadact      7     1     1
-## 11 leaderab     7     1     1
-## 12 reliant      7     4     1
-## 13 risk         7     5     7
-## 14 selfsuff     7     4     1
-## 15 shy          2     7     5
-## 16 stand        7     1     6
-## 17 strpers      7     1     3
-```
-\normalsize
- 
-
-
-##  Is 2 factors enough?
-Suspect not:
-
-```r
-bem.2$PVAL
-```
-
-```
-##     objective 
-## 1.458183e-150
-```
-
-   
-
-2 factors resoundingly rejected. Need more. Have to go all the way to
-15 factors to not reject:
-
-
-```r
-bem.15 <- bem %>%
-  select(-subno) %>%
-  factanal(factors = 15)
-bem.15$PVAL
-```
-
-```
-## objective 
-##  0.132617
-```
-
- 
-
-Even then, only just over 50\% of variability explained.
-
-Let's have a look at the important things in those 15 factors.
-
-
-
-##  Get 15-factor loadings
-into a data frame, as before:  
-
-\small
-
-```r
-loadings <- as.data.frame(unclass(bem.15$loadings)) %>%
-  mutate(trait = rownames(bem.15$loadings))
-```
-\normalsize
-   
-
-then show the highest few loadings on each factor.
-
-
-
-##  Factor 1 (of 15)
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor1))) %>%
-  select(Factor1, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor1    trait
-## 1  0.8127595  compass
-## 2  0.6756043 undstand
-## 3  0.6611293 sympathy
-## 4  0.6408327 sensitiv
-## 5  0.5971006   soothe
-## 6  0.3481290     warm
-## 7  0.2797159   gentle
-## 8  0.2788627   tender
-## 9  0.2501505  helpful
-## 10 0.2340594 conscien
-```
-\normalsize
-   
-Compassionate, understanding, sympathetic, soothing: thoughtful of
-others. 
-
-
-
-##  Factor 2
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor2))) %>%
-  select(Factor2, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor2    trait
-## 1   0.7615492  strpers
-## 2   0.7160312 forceful
-## 3   0.6981500   assert
-## 4   0.5041921 dominant
-## 5   0.3929344 leaderab
-## 6   0.3669560    stand
-## 7   0.3507080  leadact
-## 8  -0.3131682 softspok
-## 9  -0.2866862      shy
-## 10  0.2602525   analyt
-```
-\normalsize
-   
-
-Strong personality, forceful, assertive, dominant: getting ahead. 
-
-
-
-##  Factor 3
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor3))) %>%
-  select(Factor3, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor3    trait
-## 1   0.6697542  reliant
-## 2   0.6475496 selfsuff
-## 3   0.6204018    indpt
-## 4   0.3899607  helpful
-## 5  -0.3393605 gullible
-## 6   0.3333813  individ
-## 7   0.3319003   decide
-## 8   0.3294806 conscien
-## 9   0.2877396 leaderab
-## 10  0.2804170   defbel
-```
-\normalsize
-   
-
-Self-reliant, self-sufficient, independent: going it alone.
-
-
-
-##  Factor 4
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor4))) %>%
-  select(Factor4, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor4    trait
-## 1  0.6956206   gentle
-## 2  0.6920303   tender
-## 3  0.5992467     warm
-## 4  0.4465546   affect
-## 5  0.3942568 softspok
-## 6  0.2779793  lovchil
-## 7  0.2444249 undstand
-## 8  0.2442119    happy
-## 9  0.2125905    loyal
-## 10 0.2022861   soothe
-```
-\normalsize
-   
-
-Gentle, tender, warm (affectionate): caring for others.
-
-
-
-##  Factor 5
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor5))) %>%
-  select(Factor5, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor5    trait
-## 1  0.6956846  compete
-## 2  0.6743459 ambitiou
-## 3  0.3453425     risk
-## 4  0.3423456  individ
-## 5  0.2808623   athlet
-## 6  0.2695570 leaderab
-## 7  0.2449656   decide
-## 8  0.2064415 dominant
-## 9  0.1928159  leadact
-## 10 0.1854989  strpers
-```
-\normalsize
-   
-
-Ambitious, competitive (with a bit of risk-taking and individualism):
-Being the best.
-
-
-
-##  Factor 6
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor6))) %>%
-  select(Factor6, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor6    trait
-## 1   0.8675651  leadact
-## 2   0.6078869 leaderab
-## 3   0.3378645 dominant
-## 4   0.2014835 forceful
-## 5  -0.1915632      shy
-## 6   0.1789256     risk
-## 7   0.1703440 masculin
-## 8   0.1639190   decide
-## 9   0.1594585  compete
-## 10  0.1466037   athlet
-```
-\normalsize
-   
-
-Acts like a leader, leadership ability (with a bit of Dominant):
-Taking charge.
-
-
-
-##  Factor 7
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor7))) %>%
-  select(Factor7, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor7    trait
-## 1   0.6698996    happy
-## 2   0.6667105 cheerful
-## 3  -0.5219125    moody
-## 4   0.2191425   athlet
-## 5   0.2126626     warm
-## 6   0.1719953   gentle
-## 7  -0.1640302 masculin
-## 8   0.1601472  reliant
-## 9   0.1472926 yielding
-## 10  0.1410481  lovchil
-```
-\normalsize
-   
-
-Acts like a leader, leadership ability (with a bit of Dominant):
-Taking charge.
-
-
-
-##  Factor 8
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor8))) %>%
-  select(Factor8, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor8    trait
-## 1   0.6296764   affect
-## 2   0.5158355  flatter
-## 3  -0.2512066 softspok
-## 4   0.2214623     warm
-## 5   0.1878549   tender
-## 6   0.1846225  strpers
-## 7  -0.1804838      shy
-## 8   0.1801992  compete
-## 9   0.1658105    loyal
-## 10  0.1548617  helpful
-```
-\normalsize
-   
-Affectionate, flattering: Making others feel good.
-
-
-
-##  Factor 9
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor9))) %>%
-  select(Factor9, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor9    trait
-## 1   0.8633171    stand
-## 2   0.3403294   defbel
-## 3   0.2446971  individ
-## 4   0.1941110     risk
-## 5  -0.1715481      shy
-## 6   0.1710978   decide
-## 7   0.1197126   assert
-## 8   0.1157729 conscien
-## 9   0.1120308   analyt
-## 10 -0.1115140 gullible
-```
-\normalsize
-   
-
-Taking a stand.
-
-
-
-##  Factor 10
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor10))) %>%
-  select(Factor10, trait) %>%
-  slice(1:10)
-```
-
-```
-##       Factor10    trait
-## 1   0.80751267 feminine
-## 2  -0.26378513 masculin
-## 3   0.24507184 softspok
-## 4   0.23175597 conscien
-## 5   0.20192035 selfsuff
-## 6   0.17584233 yielding
-## 7   0.14127067   gentle
-## 8   0.11282028  flatter
-## 9   0.10934531   decide
-## 10 -0.09407978  lovchil
-```
-\normalsize
-
-   
-
-Feminine. (A little bit of not-masculine!)
-
-
-
-##  Factor 11
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor11))) %>%
-  select(Factor11, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor11    trait
-## 1  0.91622589    loyal
-## 2  0.18949077   affect
-## 3  0.15883857 truthful
-## 4  0.12464529  helpful
-## 5  0.10440664   analyt
-## 6  0.10076794   tender
-## 7  0.09720457  lovchil
-## 8  0.09635223 gullible
-## 9  0.09350623 cheerful
-## 10 0.08207596 conscien
-```
-\normalsize
-   
-
-Loyal.
-
-
-
-##  Factor 12
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor12))) %>%
-  select(Factor12, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor12    trait
-## 1   0.6106933 childlik
-## 2  -0.2845004 selfsuff
-## 3  -0.2786751 conscien
-## 4   0.2588843    moody
-## 5   0.2013245      shy
-## 6  -0.1669301   decide
-## 7   0.1542031 masculin
-## 8   0.1455526 dominant
-## 9   0.1379163  compass
-## 10 -0.1297408 leaderab
-```
-\normalsize
-   
-
-Childlike. (With a bit of moody, shy, not-self-sufficient, not-conscientious.)
-
-
-
-##  Factor 13
-
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor13))) %>%
-  select(Factor13, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor13    trait
-## 1   0.5729242 truthful
-## 2  -0.2776490 gullible
-## 3   0.2631046    happy
-## 4   0.1885152     warm
-## 5  -0.1671924      shy
-## 6   0.1646031    loyal
-## 7  -0.1438127 yielding
-## 8  -0.1302900   assert
-## 9   0.1137074   defbel
-## 10 -0.1105583  lovchil
-```
-\normalsize
-   
-
-Truthful. (With a bit of happy and not-gullible.)
-
-
-
-##  Factor 14
-\footnotesize
-
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor14))) %>%
-  select(Factor14, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor14    trait
-## 1   0.4429926   decide
-## 2   0.2369714 selfsuff
-## 3   0.1945034 forceful
-## 4  -0.1862756 softspok
-## 5   0.1604175     risk
-## 6  -0.1484606  strpers
-## 7   0.1461972 dominant
-## 8   0.1279456    happy
-## 9   0.1154479  compass
-## 10  0.1054078 masculin
-```
-\normalsize
-   
-
-Decisive. (With a bit of self-sufficient and not-soft-spoken.)
-
-
-
-##  Factor 15
-\footnotesize
-
-```r
-loadings %>%
-  arrange(desc(abs(Factor15))) %>%
-  select(Factor15, trait) %>%
-  slice(1:10)
-```
-
-```
-##      Factor15    trait
-## 1  -0.3244092  compass
-## 2   0.2471884   athlet
-## 3   0.2292980 sensitiv
-## 4   0.1986878     risk
-## 5  -0.1638296   affect
-## 6   0.1632164    moody
-## 7  -0.1118135  individ
-## 8   0.1100678     warm
-## 9   0.1047347 cheerful
-## 10  0.1012342  reliant
-```
-\normalsize
-   
-
-Not-compassionate, athletic, sensitive: A mixed bag. ("Cares about self"?)
-
-
-##  Anything left out? Uniquenesses
-
-\scriptsize
-
-```r
-enframe(bem.15$uniquenesses, name="quality", value="uniq") %>%
-  arrange(desc(uniq)) %>%
-  slice(1:10)
-```
-
-```
-## # A tibble: 10 x 2
-##    quality   uniq
-##    <chr>    <dbl>
-##  1 foullang 0.914
-##  2 lovchil  0.824
-##  3 analyt   0.812
-##  4 yielding 0.791
-##  5 masculin 0.723
-##  6 athlet   0.722
-##  7 shy      0.703
-##  8 gullible 0.700
-##  9 flatter  0.663
-## 10 helpful  0.652
-```
-\normalsize
-   
-
-Uses foul language especially, also loves children and analytical. So
-could use even more factors.
-
-
-# Confirmatory factor analysis}
-
-##  Confirmatory factor analysis
-
-
-* Exploratory: what do data suggest as hidden underlying factors (in terms of variables observed)?
-
-* Confirmatory: have *theory* about how underlying factors depend on observed variables; test whether theory supported by data:
-
-
-* does theory provide *some* explanation (better than nothing)
-
-* can we do better?
-
-
-* Also can compare two theories about factors: is more complicated one significantly better than simpler one?
-
-
-
-##  Children and tests again
-
-
-
-* Previously had this correlation matrix of test scores (based on 145
-children):
-
-
-```r
-km
-```
-
-```
-##       para  sent  word   add  dots
-## [1,] 1.000 0.722 0.714 0.203 0.095
-## [2,] 0.722 1.000 0.685 0.246 0.181
-## [3,] 0.714 0.685 1.000 0.170 0.113
-## [4,] 0.203 0.246 0.170 1.000 0.585
-## [5,] 0.095 0.181 0.113 0.585 1.000
-```
- 
-
-
-* Will use package `lavaan` for confirmatory analysis.
-
-* Can use actual data or correlation matrix.
-
-* Latter (a bit) more work, as we see.
-
-
-
-
-##  Two or three steps
-
-
-* Make sure correlation matrix (if needed) is handy.
-
-* Specify factor model (from theory)
-
-* Fit factor model: does it fit acceptably? 
-
-## Terminology
-
-* Thing you cannot observe called **latent variable**.
-
-* Thing you *can* observe called **manifest variable**.
-
-* Model predicts latent variables from manifest variables.
-  - asserts a relationship between latent and manifest.
-
-- We need to invent names for the latent variables.
-
-
-##  Specifying a factor model
-
-
-
-* Model with one factor including all the tests:
-
-```r
-test.model.1 <- "ability=~para+sent+word+add+dots"
-```
- 
-
-
-* and a model that we really believe, that there are two factors,
-a verbal and a mathematical:
-
-```r
-test.model.2 <- "verbal=~para+sent+word
-                 math=~add+dots"
-```
- 
-
-* Note the format: really all one line between single quotes, but
-putting it on several lines makes the layout clearer.
-
-* Also note special notation `=~` for ``this latent
-variable depends on these observed variables''.  
-
-
-
-##  Fitting a 1-factor model
-
-
-* Need to specify model, correlation matrix, $n$ like this:
-
-
-```r
-fit1 <- cfa(test.model.1,
-  sample.cov = km,
-  sample.nobs = 145
-)
-```
- 
-
-
-* Has `summary`, or briefer version like this:
-
-\scriptsize
-
-```r
-fit1
-```
-
-```
-## lavaan 0.6-3 ended normally after 16 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         10
-## 
-##   Number of observations                           145
-## 
-##   Estimator                                         ML
-##   Model Fit Test Statistic                      59.886
-##   Degrees of freedom                                 5
-##   P-value (Chi-square)                           0.000
-```
-\normalsize
-
-* Test of fit: null "model fits" *rejected*. We can do better.
-
-
-
-##  Two-factor model
-
-\scriptsize
-
-```r
-fit2 <- cfa(test.model.2, sample.cov = km, sample.nobs = 145)
-fit2
-```
-
-```
-## lavaan 0.6-3 ended normally after 25 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         11
-## 
-##   Number of observations                           145
-## 
-##   Estimator                                         ML
-##   Model Fit Test Statistic                       2.951
-##   Degrees of freedom                                 4
-##   P-value (Chi-square)                           0.566
-```
-\normalsize
-
-
-
-* This fits OK: 2-factor model supported by the data.
-
-* 1-factor model did not fit. We really need 2 factors.
-
-* Same conclusion as from `factanal` earlier.
-
-
-
-##  Comparing models
-
-
-* Use `anova` as if this were a regression:
-
-\scriptsize
-
-```r
-anova(fit1, fit2)
-```
-
-```
-## Chi Square Difference Test
-## 
-##      Df    AIC    BIC   Chisq Chisq diff Df diff Pr(>Chisq)
-## fit2  4 1776.7 1809.4  2.9509                              
-## fit1  5 1831.6 1861.4 59.8862     56.935       1  4.504e-14
-##         
-## fit2    
-## fit1 ***
+## Model:
+## frequency ~ gender * eyewear
+##                Df Deviance    AIC    LRT  Pr(>Chi)
+## <none>               0.000 47.958                 
+## gender:eyewear  2   17.829 61.787 17.829 0.0001345
+##                   
+## <none>            
+## gender:eyewear ***
 ## ---
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-\normalsize
+def 
+}
 
 
-* 2-factor model fits significantly better than 1-factor.
-
-* No surprise!
+## Conclusions
 
 
+* `drop1` says what we can remove at this
+step. Significant = must stay.
 
-##  Track and field data, yet again
+* Cannot remove anything.
 
+* Frequency depends on `gender-wear`
+*combination*, cannot be simplified further.
 
-* `cfa` works easier on actual data, such as the running records:
+* Gender and eyewear are *associated*.
 
-\footnotesize
-
-```r
-track %>% print(n = 6)
-```
-
-```
-## # A tibble: 55 x 9
-##    m100  m200  m400  m800 m1500 m5000 m10000 marathon
-##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
-## 1  10.4  20.8  46.8  1.81  3.7   14.0   29.4     138.
-## 2  10.3  20.1  44.8  1.74  3.57  13.3   27.7     128.
-## 3  10.4  20.8  46.8  1.79  3.6   13.3   27.7     136.
-## 4  10.3  20.7  45.0  1.73  3.6   13.2   27.4     130.
-## 5  10.3  20.6  45.9  1.8   3.75  14.7   30.6     147.
-## 6  10.2  20.4  45.2  1.73  3.66  13.6   28.6     133.
-## # … with 49 more rows, and 1 more variable: country <chr>
-```
-\normalsize
+* Stop here.
 
 
-* Specify factor model. Factors seemed to be "sprinting" (up to
-800m) and "distance running" (beyond):
+## `prop.table`
+Original table:
 
-\footnotesize
+{\footnotesize
 
 ```r
-track.model <- "sprint=~m100+m200+m400+m800
-                distance=~m1500+m5000+m10000+marathon"
-```
-\normalsize
-
-
-##  Fit and examine the model
-
-
-* Fit the model. The observed variables are on different
-scales, so we should standardize them first via `std.ov`:
-
-\scriptsize
-
-```r
-track.1 <- track %>%
-  select(-country) %>%
-  cfa(track.model, data = ., std.ov = T)
-track.1
+xt
 ```
 
 ```
-## lavaan 0.6-3 ended normally after 59 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         17
-## 
-##   Number of observations                            55
-## 
-##   Estimator                                         ML
-##   Model Fit Test Statistic                      87.608
-##   Degrees of freedom                                19
-##   P-value (Chi-square)                           0.000
+##         eyewear
+## gender   contacts glasses none
+##   female      121      32  129
+##   male         42      37   85
 ```
-\normalsize
 
-
-* This fits badly. Can we do better?
-
-* Idea: move middle distance races (800m, 1500m) into a third factor.
-
-
-##  Factor model 2
-
-
-* Define factor model:
-
-
-```r
-track.model.2 <- "sprint=~m100+m200+m400
-                  middle=~m800+m1500
-                  distance=~m5000+m10000+marathon"
-```
  
+}
+Calculate eg. row proportions like this:
+
+{\small
+
+```r
+prop.table(xt, margin = 1)
+```
+
+```
+##         eyewear
+## gender    contacts   glasses      none
+##   female 0.4290780 0.1134752 0.4574468
+##   male   0.2560976 0.2256098 0.5182927
+```
+
+ 
+}
 
 
-* Fit:
+
+* `margin` says what to make add to 1.
+
+* More females wear contacts and more males wear glasses.
+
+
+
+
+## No association
+
+
+* Suppose table had been as shown below:
 
 
 ```r
-track %>%
-  select(-country) %>%
-  cfa(track.model.2, data = ., std.ov = T) -> track.2
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/eyewear2.txt"
+eyewear2 <- read_table(my_url)
+eyes2 <- eyewear2 %>% gather(eyewear, frequency, contacts:none)
+xt2 <- xtabs(frequency ~ gender + eyewear, data = eyes2)
+xt2
 ```
 
-## Examine
-
+```
+##         eyewear
+## gender   contacts glasses none
+##   female      150      30  120
+##   male         75      16   62
+```
 
 ```r
-track.2
+prop.table(xt2, margin = 1)
 ```
 
 ```
-## lavaan 0.6-3 ended normally after 72 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         19
-## 
-##   Number of observations                            55
-## 
-##   Estimator                                         ML
-##   Model Fit Test Statistic                      40.089
-##   Degrees of freedom                                17
-##   P-value (Chi-square)                           0.001
+##         eyewear
+## gender    contacts   glasses      none
+##   female 0.5000000 0.1000000 0.4000000
+##   male   0.4901961 0.1045752 0.4052288
 ```
 
-
-* Fits  marginally better, though still badly.
-
+   
 
 
-##  Comparing the two models
+* Females and males wear contacts and glasses in same proportions
+(though more females and more contact-wearers). No
+*association* between gender and eyewear.
 
 
-* Second model doesn't fit well, but is it better than first?
 
-\footnotesize
+## Analysis for revised data
 
 ```r
-anova(track.1, track.2)
+eyes.2 <- glm(frequency ~ gender * eyewear,
+  data = eyes2,
+  family = "poisson"
+)
+drop1(eyes.2, test = "Chisq")
 ```
 
 ```
-## Chi Square Difference Test
+## Single term deletions
 ## 
-##         Df    AIC    BIC  Chisq Chisq diff Df diff
-## track.2 17 535.49 573.63 40.089                   
-## track.1 19 579.01 613.13 87.608     47.519       2
-##         Pr(>Chisq)    
-## track.2               
-## track.1  4.802e-11 ***
+## Model:
+## frequency ~ gender * eyewear
+##                Df Deviance    AIC      LRT Pr(>Chi)
+## <none>            0.000000 47.467                  
+## gender:eyewear  2 0.047323 43.515 0.047323   0.9766
+```
+
+   
+
+No longer any association. Take out interaction.
+
+
+## No interaction
+{\small
+
+```r
+eyes.3 <- update(eyes.2, . ~ . - gender:eyewear)
+drop1(eyes.3, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## frequency ~ gender + eyewear
+##         Df Deviance     AIC     LRT  Pr(>Chi)    
+## <none>        0.047  43.515                      
+## gender   1   48.624  90.091  48.577 3.176e-12 ***
+## eyewear  2  138.130 177.598 138.083 < 2.2e-16 ***
 ## ---
 ## Signif. codes:  
 ## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-\normalsize
 
-* Oh yes, a lot better.
+   
+}
 
 
+* More females (gender effect)
+
+* more contact-wearers (eyewear
+effect)
+
+* no association (no interaction). 
+
+
+
+## Chest pain, being overweight and being a smoker
+
+
+* In a hospital emergency department, 176 subjects who attended
+for acute chest pain took part in a study.
+
+* Each subject had a
+normal or abnormal electrocardiogram reading (ECG), were
+overweight (as judged by BMI) or not, and were a smoker or
+not.
+
+* How are these three variables related, or not?
+
+
+
+## The data
+In modelling-friendly format:
+
+```
+
+ecg bmi smoke count
+abnormal overweight yes 47
+abnormal overweight no 10
+abnormal normalweight yes 8 
+abnormal normalweight no 6
+normal overweight yes 25 
+normal overweight no 15 
+normal normalweight yes 35
+normal normalweight no 30
+
+```
+
+
+
+## First step
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/ecg.txt"
+chest <- read_delim(my_url, " ")
+chest.1 <- glm(count ~ ecg * bmi * smoke,
+  data = chest,
+  family = "poisson"
+)
+drop1(chest.1, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## count ~ ecg * bmi * smoke
+##               Df Deviance    AIC    LRT Pr(>Chi)
+## <none>             0.0000 53.707                
+## ecg:bmi:smoke  1   1.3885 53.096 1.3885   0.2387
+```
+
+   
+
+That 3-way interaction comes out.
+
+
+## Removing the 3-way interaction
+
+```r
+chest.2 <- update(chest.1, . ~ . - ecg:bmi:smoke)
+drop1(chest.2, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## count ~ ecg + bmi + smoke + ecg:bmi + ecg:smoke + bmi:smoke
+##           Df Deviance    AIC     LRT  Pr(>Chi)    
+## <none>         1.3885 53.096                      
+## ecg:bmi    1  29.0195 78.727 27.6310 1.468e-07 ***
+## ecg:smoke  1   4.8935 54.601  3.5050   0.06119 .  
+## bmi:smoke  1   4.4689 54.176  3.0803   0.07924 .  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+
+At $\alpha=0.05$, `bmi:smoke` comes out.
+
+
+## Removing `bmi:smoke`
+
+```r
+chest.3 <- update(chest.2, . ~ . - bmi:smoke)
+drop1(chest.3, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## count ~ ecg + bmi + smoke + ecg:bmi + ecg:smoke
+##           Df Deviance    AIC    LRT  Pr(>Chi)    
+## <none>          4.469 54.176                     
+## ecg:bmi    1   36.562 84.270 32.094 1.469e-08 ***
+## ecg:smoke  1   12.436 60.144  7.968  0.004762 ** 
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+
+`ecg:smoke` has become significant. So we have to stop.
+
+
+## Understanding the final model
+
+
+* Thinking of `ecg` as "response" that might depend on
+anything else.
+
+* What is associated with `ecg`? Both `bmi` on its
+own and `smoke` on its own, but *not* the combination
+of both.
+
+* `ecg:bmi` table:
+
+```r
+xtabs(count ~ ecg + bmi, data = chest)
+```
+
+```
+##           bmi
+## ecg        normalweight overweight
+##   abnormal           14         57
+##   normal             65         40
+```
+
+     
+
+
+* Most normal weight people have a normal ECG, but a
+majority of overweight people have an *abnormal* ECG. That is,
+knowing about BMI says something about likely ECG.
+
+
+
+## `ecg:smoke`
+
+
+* `ecg:smoke` table:
+
+```r
+xtabs(count ~ ecg + smoke, data = chest)
+```
+
+```
+##           smoke
+## ecg        no yes
+##   abnormal 16  55
+##   normal   45  60
+```
+
+   
+
+
+* Most nonsmokers have a normal ECG, but smokers are about 50--50
+normal and abnormal ECG.
+
+* Don't look at `smoke:bmi` table since not significant. 
+
+
+## Simpson's paradox: the airlines example
+\begin{tabular}{|l|rr|rr|}
+\hline
+& \multicolumn{2}{|c|}{Alaska Airlines} & 
+\multicolumn{2}{|c|}{America West}\\
+Airport & On time & Delayed & On time & Delayed\\
+\hline
+Los Angeles & 497 & 62 & 694 & 117\\
+Phoenix & 221 & 12 & 4840 & 415\\
+San Diego & 212 & 20 & 383 & 65\\
+San Francisco & 503 & 102 & 320 & 129 \\
+Seattle & 1841 & 305 & 201 & 61\\
+\hline
+Total & 3274 & 501 & 6438 & 787\\
+\hline
+\end{tabular}
+\vspace{2ex}
+Use `status` as variable name for "on time/delayed".
+
+
+* Alaska: 13.3\% flights delayed ($501/(3274+501)$).
+
+* America West: 10.9\% ($787/(6438+787)$).
+
+* America West more punctual, right?
+
+
+
+## Arranging the data
+
+
+* Can only have single thing in columns, so we have to construct
+column names like this:
+\begin{small}
+
+```
+
+airport    aa_ontime aa_delayed aw_ontime aw_delayed
+LosAngeles   497          62       694        117
+Phoenix      221          12      4840        415
+SanDiego     212          20       383         65
+SanFrancisco 503         102       320        129
+Seattle     1841         305       201         61
+
+```
+
+\end{small}
+
+* Some tidying gets us the right layout, with frequencies all in
+one column and the airline and delayed/on time status separated out:
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/airlines.txt"
+airlines <- read_table2(my_url)
+punctual <- airlines %>%
+  gather(line.status, freq, contains("_")) %>%
+  separate(line.status, c("airline", "status"))
+```
+
+     
+
+
+## The data frame `punctual`
+
+
+```
+## # A tibble: 20 x 4
+##    airport      airline status   freq
+##    <chr>        <chr>   <chr>   <dbl>
+##  1 LosAngeles   aa      ontime    497
+##  2 Phoenix      aa      ontime    221
+##  3 SanDiego     aa      ontime    212
+##  4 SanFrancisco aa      ontime    503
+##  5 Seattle      aa      ontime   1841
+##  6 LosAngeles   aa      delayed    62
+##  7 Phoenix      aa      delayed    12
+##  8 SanDiego     aa      delayed    20
+##  9 SanFrancisco aa      delayed   102
+## 10 Seattle      aa      delayed   305
+## 11 LosAngeles   aw      ontime    694
+## 12 Phoenix      aw      ontime   4840
+## 13 SanDiego     aw      ontime    383
+## 14 SanFrancisco aw      ontime    320
+## 15 Seattle      aw      ontime    201
+## 16 LosAngeles   aw      delayed   117
+## 17 Phoenix      aw      delayed   415
+## 18 SanDiego     aw      delayed    65
+## 19 SanFrancisco aw      delayed   129
+## 20 Seattle      aw      delayed    61
+```
+
+   
+
+
+## Proportions delayed by airline
+
+
+* Two-step process: get appropriate subtable:
+
+```r
+xt <- xtabs(freq ~ airline + status, data = punctual)
+xt
+```
+
+```
+##        status
+## airline delayed ontime
+##      aa     501   3274
+##      aw     787   6438
+```
+
+     
+
+
+* and then calculate appropriate proportions:
+
+```r
+prop.table(xt, margin = 1)
+```
+
+```
+##        status
+## airline   delayed    ontime
+##      aa 0.1327152 0.8672848
+##      aw 0.1089273 0.8910727
+```
+
+
+
+* More of Alaska Airlines' flights delayed (13.3\% vs.\ 10.9\%).
+
+
+
+## Proportion delayed by airport, for each airline
+
+```r
+xt <- xtabs(freq ~ airline + status + airport, data = punctual)
+xp <- prop.table(xt, margin = c(1, 3))
+ftable(xp,
+  row.vars = c("airport", "airline"),
+  col.vars = "status"
+)
+```
+
+```
+##                      status    delayed     ontime
+## airport      airline                             
+## LosAngeles   aa             0.11091234 0.88908766
+##              aw             0.14426634 0.85573366
+## Phoenix      aa             0.05150215 0.94849785
+##              aw             0.07897241 0.92102759
+## SanDiego     aa             0.08620690 0.91379310
+##              aw             0.14508929 0.85491071
+## SanFrancisco aa             0.16859504 0.83140496
+##              aw             0.28730512 0.71269488
+## Seattle      aa             0.14212488 0.85787512
+##              aw             0.23282443 0.76717557
+```
+
+   
+
+## Simpson's Paradox
+
+\begin{tabular}{|l|rr|}
+\hline
+Airport & Alaska & America West\\
+\hline
+Los Angeles & 11.4 & 14.4\\
+Phoenix & 5.2 & 7.9\\
+San Diego & 8.6 & 14.5\\
+San Francisco & 16.9 & 28.7\\
+Seattle & 14.2 & 23.2 \\
+\hline
+Total & 13.3 & 10.9 \\
+\hline
+\end{tabular}
+
+
+* America West more punctual overall,
+
+* but worse at *every single* airport!
+
+* How is that possible?
+
+* Log-linear analysis sheds some light.
+
+
+
+## Model 1 and output
+
+```r
+punctual.1 <- glm(freq ~ airport * airline * status,
+  data = punctual, family = "poisson"
+)
+drop1(punctual.1, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ airport * airline * status
+##                        Df Deviance    AIC    LRT
+## <none>                      0.0000 183.44       
+## airport:airline:status  4   3.2166 178.65 3.2166
+##                        Pr(>Chi)
+## <none>                         
+## airport:airline:status   0.5223
+```
+def 
+
+
+## Remove 3-way interaction
+
+
+```r
+punctual.2 <- update(punctual.1, ~ . - airport:airline:status)
+drop1(punctual.2, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ airport + airline + status + airport:airline + airport:status + 
+##     airline:status
+##                 Df Deviance    AIC    LRT  Pr(>Chi)
+## <none>                  3.2  178.7                 
+## airport:airline  4   6432.5 6599.9 6429.2 < 2.2e-16
+## airport:status   4    240.1  407.5  236.9 < 2.2e-16
+## airline:status   1     45.5  218.9   42.2 8.038e-11
+##                    
+## <none>             
+## airport:airline ***
+## airport:status  ***
+## airline:status  ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+def 
+
+Stop here.
+
+
+## Understanding the significance
+
+
+* `airline:status`:
+
+
+```r
+xt <- xtabs(freq ~ airline + status, data = punctual)
+prop.table(xt, margin = 1)
+```
+
+```
+##        status
+## airline   delayed    ontime
+##      aa 0.1327152 0.8672848
+##      aw 0.1089273 0.8910727
+```
+
+     
+
+
+* More of Alaska Airlines' flights delayed overall.
+
+* Saw this before.
+
+
+
+## Understanding the significance (2)
+
+
+* `airport:status`:
+
+```r
+xt <- xtabs(freq ~ airport + status, data = punctual)
+prop.table(xt, margin = 1)
+```
+
+```
+##               status
+## airport           delayed     ontime
+##   LosAngeles   0.13065693 0.86934307
+##   Phoenix      0.07780612 0.92219388
+##   SanDiego     0.12500000 0.87500000
+##   SanFrancisco 0.21916509 0.78083491
+##   Seattle      0.15199336 0.84800664
+```
+
+
+
+* Flights into San Francisco (and maybe Seattle) are often late, and
+flights into Phoenix are usually on time.
+
+* Considerable variation among airports.
+
+
+
+## Understanding the significance (3)
+
+
+* `airport:airline`:
+
+```r
+xt <- xtabs(freq ~ airport + airline, data = punctual)
+prop.table(xt, margin = 2)
+```
+
+```
+##               airline
+## airport                aa         aw
+##   LosAngeles   0.14807947 0.11224913
+##   Phoenix      0.06172185 0.72733564
+##   SanDiego     0.06145695 0.06200692
+##   SanFrancisco 0.16026490 0.06214533
+##   Seattle      0.56847682 0.03626298
+```
+
+
+
+* What fraction of each airline's flights are to each airport.
+
+* Most of Alaska Airlines' flights to Seattle and San Francisco.
+
+* Most of America West's flights to Phoenix.
+
+
+
+## The resolution
+
+
+* Most of America West's flights to Phoenix, where it is easy to
+be on time.
+
+* Most of Alaska Airlines' flights to San Francisco and Seattle,
+where it is difficult to be on time.
+
+* Overall comparison looks bad for Alaska because of this.
+
+* But, *comparing like with like*, if you compare each
+airline's performance *to the same airport*, Alaska does better.
+
+* Aggregating over the very different airports was a (big)
+mistake: that was the cause of the Simpson's paradox.
+
+* Alaska Airlines is *more* punctual when you do the proper comparison.
+
+
+## Ovarian cancer: a four-way table
+
+
+* Retrospective study of ovarian cancer done in 1973.
+
+* Information about 299 women operated on for ovarian cancer 10 years previously.
+
+* Recorded:
+
+
+* stage of cancer (early or advanced)
+
+* type of operation (radical or limited)
+
+* X-ray treatment received (yes or no)
+
+* 10-year survival (yes or no)
+
+
+* Survival looks like response (suggests logistic
+regression).
+
+* Log-linear model finds any associations at all.
+
+
+## The data
+
+after tidying:
+
+{\scriptsize
+
+```
+
+stage operation xray survival freq
+early radical no no 10
+early radical no yes 41
+early radical yes no 17
+early radical yes yes 64
+early limited no no 1
+early limited no yes 13
+early limited yes no 3
+early limited yes yes 9
+advanced radical no no 38
+advanced radical no yes 6
+advanced radical yes no 64
+advanced radical yes yes 11
+advanced limited no no 3
+advanced limited no yes 1
+advanced limited yes no 13
+advanced limited yes yes 5
+
+
+```
+
+}
+
+
+
+## Stage 1
+
+hopefully looking familiar by now:
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/cancer.txt"
+cancer <- read_delim(my_url, " ")
+cancer %>% print(n = 6)
+```
+
+```
+## # A tibble: 16 x 5
+##   stage operation xray  survival  freq
+##   <chr> <chr>     <chr> <chr>    <dbl>
+## 1 early radical   no    no          10
+## 2 early radical   no    yes         41
+## 3 early radical   yes   no          17
+## 4 early radical   yes   yes         64
+## 5 early limited   no    no           1
+## 6 early limited   no    yes         13
+## # … with 10 more rows
+```
+
+```r
+cancer.1 <- glm(freq ~ stage * operation * xray * survival,
+  data = cancer, family = "poisson"
+)
+```
+def 
+
+
+## Output 1
+
+See what we can remove:
+
+
+```r
+drop1(cancer.1, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage * operation * xray * survival
+##                               Df Deviance    AIC
+## <none>                            0.00000 98.130
+## stage:operation:xray:survival  1  0.60266 96.732
+##                                   LRT Pr(>Chi)
+## <none>                                        
+## stage:operation:xray:survival 0.60266   0.4376
+```
+def 
+
+Non-significant interaction can come out.
+
+## Stage 2
+
+```r
+cancer.2 <- update(cancer.1, ~ .
+- stage:operation:xray:survival)
+drop1(cancer.2, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     xray:survival + stage:operation:xray + stage:operation:survival + 
+##     stage:xray:survival + operation:xray:survival
+##                          Df Deviance    AIC     LRT
+## <none>                       0.60266 96.732        
+## stage:operation:xray      1  2.35759 96.487 1.75493
+## stage:operation:survival  1  1.17730 95.307 0.57465
+## stage:xray:survival       1  0.95577 95.085 0.35311
+## operation:xray:survival   1  1.23378 95.363 0.63113
+##                          Pr(>Chi)
+## <none>                           
+## stage:operation:xray       0.1853
+## stage:operation:survival   0.4484
+## stage:xray:survival        0.5524
+## operation:xray:survival    0.4269
+```
+def 
+
+Least significant term is `stage:xray:survival`: remove.
+
+## Take out `stage:xray:survival`
+
+```r
+cancer.3 <- update(cancer.2, . ~ . - stage:xray:survival)
+drop1(cancer.3, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     xray:survival + stage:operation:xray + stage:operation:survival + 
+##     operation:xray:survival
+##                          Df Deviance    AIC     LRT
+## <none>                       0.95577 95.085        
+## stage:operation:xray      1  3.08666 95.216 2.13089
+## stage:operation:survival  1  1.56605 93.696 0.61029
+## operation:xray:survival   1  1.55124 93.681 0.59547
+##                          Pr(>Chi)
+## <none>                           
+## stage:operation:xray       0.1444
+## stage:operation:survival   0.4347
+## operation:xray:survival    0.4403
+```
+
+   
+
+`operation:xray:survival` comes out next.
+
+
+## Remove `operation:xray:survival`
+
+```r
+cancer.4 <- update(cancer.3, . ~ . - operation:xray:survival)
+drop1(cancer.4, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     xray:survival + stage:operation:xray + stage:operation:survival
+##                          Df Deviance    AIC    LRT
+## <none>                        1.5512 93.681       
+## xray:survival             1   1.6977 91.827 0.1464
+## stage:operation:xray      1   6.8420 96.972 5.2907
+## stage:operation:survival  1   1.9311 92.061 0.3799
+##                          Pr(>Chi)  
+## <none>                             
+## xray:survival             0.70196  
+## stage:operation:xray      0.02144 *
+## stage:operation:survival  0.53768  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+
+
+## Comments
+
+
+* `stage:operation:xray` has now become significant, so
+won't remove that.
+
+* Shows value of removing terms one at a time.
+
+* There are no higher-order interactions containing both
+`xray` and `survival`, so now we get to test (and
+remove) `xray:survival`.
+
+
+
+## Remove `xray:survival`
+
+```r
+cancer.5 <- update(cancer.4, . ~ . - xray:survival)
+drop1(cancer.5, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     stage:operation:xray + stage:operation:survival
+##                          Df Deviance    AIC    LRT
+## <none>                        1.6977 91.827       
+## stage:operation:xray      1   6.9277 95.057 5.2300
+## stage:operation:survival  1   2.0242 90.154 0.3265
+##                          Pr(>Chi)  
+## <none>                             
+## stage:operation:xray       0.0222 *
+## stage:operation:survival   0.5677  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+
+
+## Remove `stage:operation:survival`
+
+```r
+cancer.6 <- update(cancer.5, . ~ . - stage:operation:survival)
+drop1(cancer.6, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + operation:survival + 
+##     stage:operation:xray
+##                      Df Deviance     AIC     LRT
+## <none>                     2.024  90.154        
+## stage:survival        1  135.198 221.327 133.173
+## operation:survival    1    4.116  90.245   2.092
+## stage:operation:xray  1    7.254  93.384   5.230
+##                      Pr(>Chi)    
+## <none>                           
+## stage:survival         <2e-16 ***
+## operation:survival     0.1481    
+## stage:operation:xray   0.0222 *  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+
+
+## Last step?
+Remove `operation:survival`.  
+
+```r
+cancer.7 <- update(cancer.6, . ~ . - operation:survival)
+drop1(cancer.7, test = "Chisq")
+```
+
+```
+## Single term deletions
+## 
+## Model:
+## freq ~ stage + operation + xray + survival + stage:operation + 
+##     stage:xray + operation:xray + stage:survival + stage:operation:xray
+##                      Df Deviance     AIC    LRT
+## <none>                     4.116  90.245       
+## stage:survival        1  136.729 220.859 132.61
+## stage:operation:xray  1    9.346  93.475   5.23
+##                      Pr(>Chi)    
+## <none>                           
+## stage:survival         <2e-16 ***
+## stage:operation:xray   0.0222 *  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+   
+Finally done!
+
+
+## Conclusions
+
+
+* What matters is things associated with survival (survival is
+"response").
+
+* Only significant such term is `stage:survival`:
+
+```r
+xt <- xtabs(freq ~ stage + survival, data = cancer)
+prop.table(xt, margin = 1)
+```
+
+```
+##           survival
+## stage             no       yes
+##   advanced 0.8368794 0.1631206
+##   early    0.1962025 0.8037975
+```
+
+     
+
+* Most people in early stage of cancer survived, and most people
+in advanced stage did not survive.
+
+* This true *regardless* of type of operation or whether or
+not X-ray treatment was received. These things have no impact on
+survival. 
+
+
+
+## What about that other interaction?
+
+```r
+xt <- xtabs(freq ~ operation + xray + stage, data = cancer)
+ftable(prop.table(xt, margin = 3))
+```
+
+```
+##                stage   advanced      early
+## operation xray                            
+## limited   no         0.02836879 0.08860759
+##           yes        0.12765957 0.07594937
+## radical   no         0.31205674 0.32278481
+##           yes        0.53191489 0.51265823
+```
+
+   
+
+
+
+* Out of the people at each stage of cancer (since
+`margin=3` and `stage` was listed 3rd).
+
+* The association is between `stage` and `xray`
+*only for those who had the limited operation*.
+
+* For those who
+had the radical operation, there was no association between
+`stage` and `xray`.
+
+* This is of less interest than associations with
+`survival`. 
+
+
+
+## General procedure
+
+
+
+* Start with "complete model" including all possible interactions.
+
+* `drop1` gives highest-order interaction(s) remaining, remove least non-significant.
+
+* Repeat as necessary until everything significant.
+
+* Look at subtables of significant interactions.
+
+* Main effects not usually very interesting.
+
+* Interactions with "response" usually of most interest: show association with response.
+
+
+
+```
+## Error in FUN(X[[i]], ...): invalid 'name' argument
+```
+
+   
 
 
 

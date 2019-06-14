@@ -1,39 +1,24 @@
-\frametitle{Comparing the two models}
-\protect\hypertarget{comparing-the-two-models}{}
+\frametitle{General procedure}
+\protect\hypertarget{general-procedure}{}
 
 \begin{itemize}
-\tightlist
 \item
-  Second model doesn't fit well, but is it better than first?
+  Start with ``complete model'' including all possible interactions.
+\item
+  \texttt{drop1} gives highest-order interaction(s) remaining, remove
+  least non-significant.
+\item
+  Repeat as necessary until everything significant.
+\item
+  Look at subtables of significant interactions.
+\item
+  Main effects not usually very interesting.
+\item
+  Interactions with ``response'' usually of most interest: show
+  association with response.
 \end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{anova}\NormalTok{(track}\FloatTok{.1}\NormalTok{, track}\FloatTok{.2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
-## Chi Square Difference Test
-##
-##         Df    AIC    BIC  Chisq Chisq diff Df diff
-## track.2 17 535.49 573.63 40.089
-## track.1 19 579.01 613.13 87.608     47.519       2
-##         Pr(>Chisq)
-## track.2
-## track.1  4.802e-11 ***
-## ---
-## Signif. codes:
-## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Error in FUN(X[[i]], ...): invalid 'name' argument
 \end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  Oh yes, a lot better.
-\end{itemize}
 
