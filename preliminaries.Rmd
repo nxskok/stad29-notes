@@ -42,5 +42,6 @@ conflict_prefer("union", "dplyr")
 conflict_prefer("arrange", "dplyr")
 conflict_prefer("mutate", "dplyr")
 conflict_prefer("count", "dplyr")
+conflict_prefer("ggbiplot", "ggbiplot")
 ```
 

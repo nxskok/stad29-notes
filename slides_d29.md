@@ -3352,16 +3352,16 @@ probs.long %>% sample_n(10)
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    28 1     2          0.271 
-##  2    24 1     2          0.0819
-##  3    35 1     1          0.0840
-##  4    38 0     3          0.735 
-##  5    28 0     2          0.183 
-##  6    32 0     3          0.187 
-##  7    28 1     3          0.0329
-##  8    32 1     3          0.214 
-##  9    24 1     1          0.915 
-## 10    24 0     2          0.0502
+##  1    32 0     3          0.187 
+##  2    35 0     3          0.472 
+##  3    32 1     1          0.291 
+##  4    32 1     3          0.214 
+##  5    24 1     1          0.915 
+##  6    38 0     1          0.0260
+##  7    38 1     3          0.732 
+##  8    38 0     2          0.239 
+##  9    32 0     2          0.408 
+## 10    28 1     3          0.0329
 ```
 \normalsize
 
@@ -6501,15 +6501,15 @@ prepost %>% sample_n(9) # randomly chosen rows
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 b         21    28
-## 2 a         14    27
-## 3 b          7    19
-## 4 a          5    20
-## 5 b         22    31
-## 6 a         21    40
-## 7 b         14    23
-## 8 b         24    35
-## 9 a          9    25
+## 1 b         22    31
+## 2 b          9    22
+## 3 a         18    38
+## 4 a         12    30
+## 5 b         26    34
+## 6 a         14    27
+## 7 b         27    33
+## 8 a          5    20
+## 9 a          6    24
 ```
 
 
@@ -7774,11 +7774,11 @@ exercise.wide %>% sample_n(5)
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    26 lowfat    running     95   126   143
-## 2    14 nonlowfat walking     95    96   100
-## 3     6 lowfat    atrest      83    83    84
-## 4     1 nonlowfat atrest      85    85    88
-## 5    12 nonlowfat walking     93   103   104
+## 1    30 lowfat    running     99   111   150
+## 2    10 lowfat    atrest     100    97   100
+## 3    20 lowfat    walking    102   104   103
+## 4     4 nonlowfat atrest      80    82    83
+## 5     7 lowfat    atrest      87    88    90
 ```
 \normalsize
 
@@ -8830,15 +8830,7 @@ ggbiplot(peanuts.1,
 )
 ```
 
-```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
-```
+![plot of chunk unnamed-chunk-293](figure/unnamed-chunk-293-1.pdf)
 
 
 ## Installing `ggbiplot`
@@ -9085,15 +9077,7 @@ g
 ggbiplot(active.1, groups = active$job)
 ```
 
-```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
-```
+![plot of chunk unnamed-chunk-301](figure/unnamed-chunk-301-1.pdf)
 
    
 
@@ -9400,15 +9384,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops.lda, groups = crops$crop)
 ```
 
-```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
-```
+![plot of chunk unnamed-chunk-313](figure/unnamed-chunk-313-1.pdf)
 
    
 
@@ -9514,15 +9490,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops2.lda, groups = crops2$crop)
 ```
 
-```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
-```
+![plot of chunk unnamed-chunk-317](figure/unnamed-chunk-317-1.pdf)
 
    
 
@@ -11693,15 +11661,7 @@ url <-
 (g <- mds_map(url))
 ```
 
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
+![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
 \normalsize
 
 ## Comment
@@ -11799,13 +11759,18 @@ square %>%
 ```
 
 ```
-## [conflicted] `filter` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::filter
-## * stats::filter
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("filter", "dplyr")
-## * conflict_prefer("filter", "stats")
+## # A tibble: 9 x 3
+##   x     point distance
+##   <chr> <chr>    <dbl>
+## 1 A     A          0  
+## 2 B     A          1  
+## 3 D     A          1.4
+## 4 A     B          1  
+## 5 B     B          0  
+## 6 D     B          1  
+## 7 A     D          1.4
+## 8 B     D          1  
+## 9 D     D          0
 ```
 \normalsize
    
@@ -11819,32 +11784,20 @@ square %>%
   gather(point, distance, -1) %>%
   filter(x != "C", point != "C") %>%
   spread(point, distance) -> noc
-```
-
-```
-## [conflicted] `filter` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::filter
-## * stats::filter
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("filter", "dplyr")
-## * conflict_prefer("filter", "stats")
-```
-
-```r
 noc
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'noc' not found
+## # A tibble: 3 x 4
+##   x         A     B     D
+##   <chr> <dbl> <dbl> <dbl>
+## 1 A       0       1   1.4
+## 2 B       1       0   1  
+## 3 D       1.4     1   0
 ```
 
 ```r
 noc %>% write_csv("no-c.csv")
-```
-
-```
-## Error in eval(lhs, parent, parent): object 'noc' not found
 ```
 
    
@@ -11856,15 +11809,7 @@ noc %>% write_csv("no-c.csv")
 mds_map("no-c.csv")
 ```
 
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
+![plot of chunk unnamed-chunk-417](figure/unnamed-chunk-417-1.pdf)
 
    
 
@@ -11901,16 +11846,6 @@ ontario2 %>%
   spread(place, distance) %>%
   write_csv("southern-ontario.csv")
 ```
-
-```
-## [conflicted] `filter` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::filter
-## * stats::filter
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("filter", "dplyr")
-## * conflict_prefer("filter", "stats")
-```
 \normalsize
    
 
@@ -11921,15 +11856,7 @@ ontario2 %>%
 (g <- mds_map("southern-ontario.csv"))
 ```
 
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
+![plot of chunk unnamed-chunk-420](figure/unnamed-chunk-420-1.pdf)
 
    
 
@@ -11950,6 +11877,10 @@ $y$ axis.
 
 ```r
 g2 <- g + coord_fixed(xlim = c(-150, -100), ylim = c(-50, 0))
+```
+
+```
+## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 \normalsize
  
@@ -12113,13 +12044,28 @@ ontario2.3$points %>%
 ```
 
 ```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
+## # A tibble: 19 x 4
+##        V1       V2      V3 city         
+##     <dbl>    <dbl>   <dbl> <chr>        
+##  1  -38.7  122.       4.17 Barrie       
+##  2  146.   -82.8      1.53 Belleville   
+##  3 -132.   -38.9     14.1  Brantford    
+##  4  298.  -106.      -7.74 Brockville   
+##  5  397.  -104.     -22.0  Cornwall     
+##  6 -101.   -18.5     30.0  Hamilton     
+##  7   62.4  198.     -14.0  Huntsville   
+##  8  214.  -129.      10.8  Kingston     
+##  9 -123.   -15.0     -6.44 Kitchener    
+## 10 -208.   -51.6    -36.5  London       
+## 11 -129.   -19.1    155.   Niagara Falls
+## 12  146.   300.     -25.4  North Bay    
+## 13  368.    -4.30   -47.2  Ottawa       
+## 14 -145.   125.     -16.0  Owen Sound   
+## 15   82.5    0.551   -6.92 Peterborough 
+## 16 -299.   -39.4    -72.5  Sarnia       
+## 17 -117.   -16.8    123.   St Catharines
+## 18  -34.3   -4.75    15.8  Toronto      
+## 19 -388.  -116.     -99.5  Windsor
 ```
 \normalsize
    
@@ -12189,26 +12135,18 @@ cube
 
 ```r
 cube.d <- cube %>% select(-1) %>% as.dist()
-```
-
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
-```r
 cube.d
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cube.d' not found
+##     a   b   c   d   e   f   g
+## b 1.0                        
+## c 1.0 1.0                    
+## d 1.4 1.0 1.0                
+## e 1.0 1.4 1.4 1.7            
+## f 1.4 1.0 1.7 1.4 1.0        
+## g 1.4 1.7 1.0 1.4 1.0 1.4    
+## h 1.7 1.4 1.4 1.0 1.4 1.0 1.0
 ```
 
  
@@ -12225,10 +12163,6 @@ cube.d
 cube.2 <- cube.d %>% cmdscale(eig = T)
 ```
 
-```
-## Error in eval(lhs, parent, parent): object 'cube.d' not found
-```
-
    
 
 
@@ -12239,10 +12173,6 @@ cube.2 <- cube.d %>% cmdscale(eig = T)
 d <- cube.2$points %>%
   as_tibble() %>%
   mutate(corners = cube$x)
-```
-
-```
-## Error in eval(lhs, parent, parent): object 'cube.2' not found
 ```
 
    
@@ -12258,11 +12188,6 @@ g <- ggplot(d, aes(x = V1, y = V2, label = corners)) +
 
 
 ## The "cube"
-
-```
-## Error in FUN(X[[i]], ...): object 'V1' not found
-```
-
 ![plot of chunk bianconeri](figure/bianconeri-1.pdf)
 
  
@@ -12273,18 +12198,11 @@ Not good.
 
 ```r
 cube.3 <- cube.d %>% cmdscale(3, eig = T)
-```
-
-```
-## Error in eval(lhs, parent, parent): object 'cube.d' not found
-```
-
-```r
 cube.2$GOF
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cube.2' not found
+## [1] 0.639293 0.664332
 ```
 
 ```r
@@ -12292,7 +12210,7 @@ cube.3$GOF
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cube.3' not found
+## [1] 0.9143532 0.9501654
 ```
 
    
@@ -12413,16 +12331,6 @@ dd <- number.nm$points %>%
   mutate(lang = number.d$la)
 ```
 
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
-
    
 
 
@@ -12433,19 +12341,10 @@ g <- ggplot(dd, aes(x = V1, y = V2, label = lang)) +
   geom_point() + geom_text_repel()
 ```
 
-```
-## Error in ggplot(dd, aes(x = V1, y = V2, label = lang)): object 'dd' not found
-```
-
    
 
 
 ## The languages map
-
-
-```
-## Error in FUN(X[[i]], ...): object 'V1' not found
-```
 
 ![plot of chunk padova](figure/padova-1.pdf)
 
@@ -12505,50 +12404,21 @@ MDS higher too. (MDS working well.)
 
 ```r
 cube.d <- cube %>% select(-x) %>% as.dist(cube)
-```
-
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
-```r
 cube.2 <- isoMDS(cube.d, trace = F)
-```
-
-```
-## Error in isoMDS(cube.d, trace = F): object 'cube.d' not found
-```
-
-```r
 cube.2$stress
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cube.2' not found
+## [1] 17.97392
 ```
 
 ```r
 cube.3 <- isoMDS(cube.d, k = 3, trace = F)
-```
-
-```
-## Error in isoMDS(cube.d, k = 3, trace = F): object 'cube.d' not found
-```
-
-```r
 cube.3$stress
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'cube.3' not found
+## [1] 0.007819523
 ```
 \normalsize
    
@@ -12565,36 +12435,11 @@ cube.3$stress
 
 ```r
 cube2.sh <- Shepard(cube.d, cube.2$points)
-```
-
-```
-## Error in nrow(x): object 'cube.2' not found
-```
-
-```r
 g2 <- ggplot(as.data.frame(cube2.sh), aes(x = x, y = y)) +
   geom_point()
-```
-
-```
-## Error in as.data.frame(cube2.sh): object 'cube2.sh' not found
-```
-
-```r
 cube3.sh <- Shepard(cube.d, cube.3$points)
-```
-
-```
-## Error in nrow(x): object 'cube.3' not found
-```
-
-```r
 g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
   geom_point()
-```
-
-```
-## Error in as.data.frame(cube3.sh): object 'cube3.sh' not found
 ```
 \normalsize
    
@@ -12621,9 +12466,7 @@ Poor correspondence (not much trend).
 g3
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'g3' not found
-```
+![plot of chunk unnamed-chunk-443](figure/unnamed-chunk-443-1.pdf)
 
  
 Almost perfect: all actual $x=1$ go with smallest mapped distances; almost
@@ -12976,13 +12819,7 @@ g <- ggbiplot(test12.pc, labels = test12$id)
 ```
 
 ```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
+## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
 ```
 
      
@@ -13042,16 +12879,16 @@ track %>% sample_n(10)
 ## # A tibble: 10 x 9
 ##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1  10.4  20.7  45.5  1.74  3.61  13.3   27.5     131. fi     
-##  2  10.4  20.5  45.8  1.78  3.55  13.2   27.9     131. ch     
-##  3  10.3  20.6  45.9  1.8   3.75  14.7   30.6     147. bm     
-##  4  10.9  21.9  47.3  1.85  3.77  14.1   29.7     131. kp     
-##  5  10.8  21.9  49    2.02  4.24  16.3   34.7     162. ws     
-##  6  10.1  20    44.6  1.75  3.59  13.2   27.5     131. ru     
-##  7  10.4  20.8  46.8  1.81  3.7   14.0   29.4     138. ar     
-##  8  11.0  21.8  48.4  1.89  3.8   14.2   30.1     139. gu     
-##  9  10.1  20.3  44.9  1.73  3.56  13.2   27.4     130. dee    
-## 10  10.4  20.8  46.8  1.79  3.6   13.3   27.7     136. at
+##  1 10.4   20.5  45.8  1.78  3.55  13.2   27.9     131. ch     
+##  2 12.2   23.2  52.9  2.02  4.24  16.7   35.4     165. ck     
+##  3 10.1   20.2  44.9  1.7   3.51  13.0   27.5     129. uk     
+##  4 10.6   21.5  48.3  1.8   3.85  14.4   30.3     140. bg     
+##  5 10.4   21.3  47.4  1.88  3.89  15.1   31.3     158. sg     
+##  6 10.4   20.8  46.8  1.79  3.6   13.3   27.7     136. at     
+##  7  9.93  19.8  43.9  1.73  3.53  13.2   27.4     128. us     
+##  8 10.4   20.9  46.3  1.82  3.8   14.6   31.0     154. my     
+##  9 10.4   20.7  45.5  1.74  3.61  13.3   27.5     131. fi     
+## 10 10.4   21.0  46.1  1.82  3.74  13.5   27.9     131. co
 ```
 \normalsize
  
@@ -13260,13 +13097,7 @@ g2 <- ggbiplot(track.pc, labels = track$country)
 ```
 
 ```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
+## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
 ```
 
    
@@ -13349,15 +13180,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Comp.1 country                  Country
+## 1 -3.462175      us United States of America
+## 2 -3.052104      uk           United Kingdom
+## 3 -2.752084      it                    Italy
+## 4 -2.651062      ru       Russian Federation
+## 5 -2.613964     dee             East Germany
+## 6 -2.576272     dew             West Germany
+## 7 -2.468919      au                Australia
+## 8 -2.191917      fr                   France
 ```
 \normalsize
    
@@ -13376,15 +13207,15 @@ d %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Comp.1 country          Country
+## 1 10.652914      ck     Cook Islands
+## 2  7.297865      ws            Samoa
+## 3  4.297909      mt            Malta
+## 4  3.945224      pg Papua New Guinea
+## 5  3.150886      sg        Singapore
+## 6  2.787273      th         Thailand
+## 7  2.773125      id        Indonesia
+## 8  2.697066      gu             Guam
 ```
 \normalsize
    
@@ -13403,15 +13234,17 @@ d %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Comp.2 country                   Country
+## 1  1.6860391      cr                Costa Rica
+## 2  1.5791490      kp             Korea (North)
+## 3  1.5226742      ck              Cook Islands
+## 4  1.3957839      tr                    Turkey
+## 5  1.3167578      pt                  Portugal
+## 6  1.2829272      gu                      Guam
+## 7  1.0663756      no                    Norway
+## 8  0.9547437      ir Iran, Islamic Republic of
+## 9  0.9318729      nz               New Zealand
+## 10 0.8495104      mx                    Mexico
 ```
 \normalsize
    
@@ -13429,15 +13262,17 @@ d %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##        Comp.2 country                  Country
+## 1  -2.4715736      do       Dominican Republic
+## 2  -1.9196130      ws                    Samoa
+## 3  -1.8055052      sg                Singapore
+## 4  -1.7832229      bm                  Bermuda
+## 5  -1.7386063      my                 Malaysia
+## 6  -1.6851772      th                 Thailand
+## 7  -1.1204235      us United States of America
+## 8  -0.9989821      it                    Italy
+## 9  -0.7639385      ru       Russian Federation
+## 10 -0.6470634      br                   Brazil
 ```
 \normalsize
    
@@ -13457,18 +13292,6 @@ g <- d %>%
 ```
 ## Warning: Column `country`/`ISO2` joining factor and character
 ## vector, coercing into character vector
-```
-
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
 ```
 
    
@@ -13945,13 +13768,7 @@ g2 <- ggbiplot(track.pc, labels = track$country)
 ```
 
 ```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
+## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
 ```
 
 ## The biplot
@@ -14091,15 +13908,17 @@ scores %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##                     Country     Factor1    Factor2
+## 1  United States of America -0.21942697 -1.7251036
+## 2                     Italy -0.18436705 -1.4990521
+## 3        Dominican Republic  2.12906546 -1.4666402
+## 4        Russian Federation -0.32473110 -1.2236590
+## 5                   Bermuda  1.46541593 -1.1704466
+## 6            United Kingdom -0.58969058 -1.0139983
+## 7                    France -0.25301846 -0.9519162
+## 8              West Germany -0.46748876 -0.9079005
+## 9                    Canada -0.13690160 -0.8920777
+## 10                   Brazil  0.07780163 -0.8871291
 ```
 \normalsize
  
@@ -14119,15 +13938,17 @@ scores %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##                      Country    Factor1     Factor2
+## 1                   Portugal -1.2509805  0.78366889
+## 2                     Norway -0.9920727  0.62299560
+## 3                New Zealand -0.9813348  0.26603491
+## 4                      Kenya -0.9749696 -0.07099477
+## 5  Iran, Islamic Republic of -0.9231505  0.50271208
+## 6                Netherlands -0.9078661  0.23948200
+## 7                    Romania -0.8178386  0.18555001
+## 8                     Mexico -0.8096291  0.51446762
+## 9                    Finland -0.8094725 -0.05705220
+## 10                   Belgium -0.7960275 -0.23885253
 ```
 \normalsize
  
@@ -14205,18 +14026,6 @@ bem.pc <- bem %>%
   princomp(cor = T)
 ```
 
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
    
 
 
@@ -14226,9 +14035,7 @@ bem.pc <- bem %>%
 (g <- ggscreeplot(bem.pc))
 ```
 
-```
-## Error in ggscreeplot(bem.pc): object 'bem.pc' not found
-```
+![plot of chunk genoa](figure/genoa-1.pdf)
 
  
 
@@ -14262,7 +14069,67 @@ summary(bem.pc)
 ```
 
 ```
-## Error in summary(bem.pc): object 'bem.pc' not found
+## Importance of components:
+##                           Comp.1    Comp.2     Comp.3     Comp.4
+## Standard deviation     2.7444993 2.2405789 1.55049106 1.43886350
+## Proportion of Variance 0.1711881 0.1140953 0.05463688 0.04705291
+## Cumulative Proportion  0.1711881 0.2852834 0.33992029 0.38697320
+##                            Comp.5     Comp.6     Comp.7
+## Standard deviation     1.30318840 1.18837867 1.15919129
+## Proportion of Variance 0.03859773 0.03209645 0.03053919
+## Cumulative Proportion  0.42557093 0.45766738 0.48820657
+##                            Comp.8     Comp.9    Comp.10
+## Standard deviation     1.07838912 1.07120568 1.04901318
+## Proportion of Variance 0.02643007 0.02607913 0.02500974
+## Cumulative Proportion  0.51463664 0.54071577 0.56572551
+##                           Comp.11    Comp.12    Comp.13
+## Standard deviation     1.03848656 1.00152287 0.97753974
+## Proportion of Variance 0.02451033 0.02279655 0.02171782
+## Cumulative Proportion  0.59023584 0.61303238 0.63475020
+##                           Comp.14   Comp.15    Comp.16
+## Standard deviation     0.95697572 0.9287543 0.92262649
+## Proportion of Variance 0.02081369 0.0196042 0.01934636
+## Cumulative Proportion  0.65556390 0.6751681 0.69451445
+##                           Comp.17   Comp.18    Comp.19
+## Standard deviation     0.90585705 0.8788668 0.86757525
+## Proportion of Variance 0.01864948 0.0175547 0.01710652
+## Cumulative Proportion  0.71316392 0.7307186 0.74782514
+##                           Comp.20    Comp.21    Comp.22
+## Standard deviation     0.84269120 0.83124925 0.80564654
+## Proportion of Variance 0.01613928 0.01570398 0.01475151
+## Cumulative Proportion  0.76396443 0.77966841 0.79441992
+##                           Comp.23    Comp.24    Comp.25
+## Standard deviation     0.78975423 0.78100835 0.77852606
+## Proportion of Variance 0.01417527 0.01386305 0.01377506
+## Cumulative Proportion  0.80859519 0.82245823 0.83623330
+##                           Comp.26    Comp.27    Comp.28
+## Standard deviation     0.74969868 0.74137885 0.72343693
+## Proportion of Variance 0.01277382 0.01249188 0.01189457
+## Cumulative Proportion  0.84900712 0.86149899 0.87339356
+##                           Comp.29    Comp.30    Comp.31
+## Standard deviation     0.71457305 0.70358645 0.69022738
+## Proportion of Variance 0.01160488 0.01125077 0.01082759
+## Cumulative Proportion  0.88499844 0.89624921 0.90707680
+##                            Comp.32     Comp.33    Comp.34
+## Standard deviation     0.654861232 0.640339974 0.63179848
+## Proportion of Variance 0.009746437 0.009318984 0.00907203
+## Cumulative Proportion  0.916823235 0.926142219 0.93521425
+##                            Comp.35     Comp.36     Comp.37
+## Standard deviation     0.616621295 0.602404917 0.570025368
+## Proportion of Variance 0.008641405 0.008247538 0.007384748
+## Cumulative Proportion  0.943855654 0.952103192 0.959487940
+##                            Comp.38     Comp.39     Comp.40
+## Standard deviation     0.560881809 0.538149460 0.530277613
+## Proportion of Variance 0.007149736 0.006581928 0.006390781
+## Cumulative Proportion  0.966637677 0.973219605 0.979610386
+##                            Comp.41     Comp.42     Comp.43
+## Standard deviation     0.512370708 0.505662309 0.480413465
+## Proportion of Variance 0.005966449 0.005811236 0.005245389
+## Cumulative Proportion  0.985576834 0.991388070 0.996633459
+##                            Comp.44
+## Standard deviation     0.384873772
+## Proportion of Variance 0.003366541
+## Cumulative Proportion  1.000000000
 ```
 \normalsize
 
@@ -14291,13 +14158,7 @@ ggbiplot(bem.pc, alpha = 0.3)
 ```
 
 ```
-## [conflicted] `ggbiplot` found in 2 packages.
-## Either pick the one you want with `::` 
-## * ggfortify::ggbiplot
-## * ggbiplot::ggbiplot
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("ggbiplot", "ggfortify")
-## * conflict_prefer("ggbiplot", "ggbiplot")
+## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
 ```
   
 ![](bFactor-bem-biplot.png)
@@ -14322,18 +14183,6 @@ bem.2 <- bem %>%
   factanal(factors = 2)
 ```
 
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
 
 
 * Show output in pieces (just print `bem.2` to see all of it).
@@ -14349,7 +14198,22 @@ sort(bem.2$uniquenesses)
 ```
 
 ```
-## Error in sort(bem.2$uniquenesses): object 'bem.2' not found
+##  leaderab   leadact      warm    tender  dominant    gentle 
+## 0.4091894 0.4166153 0.4764762 0.4928919 0.4942909 0.5064551 
+##  forceful   strpers   compass     stand  undstand    assert 
+## 0.5631857 0.5679398 0.5937073 0.6024001 0.6194392 0.6329347 
+##    soothe    affect    decide  selfsuff  sympathy     indpt 
+## 0.6596103 0.6616625 0.6938578 0.7210246 0.7231450 0.7282742 
+##   helpful    defbel      risk   reliant   individ   compete 
+## 0.7598223 0.7748448 0.7789761 0.7808058 0.7941998 0.7942910 
+##  conscien     happy  sensitiv     loyal  ambitiou       shy 
+## 0.7974820 0.8008966 0.8018851 0.8035264 0.8101599 0.8239496 
+##  softspok  cheerful  masculin  yielding  feminine  truthful 
+## 0.8339058 0.8394916 0.8453368 0.8688473 0.8829927 0.8889983 
+##   lovchil    analyt    athlet   flatter  gullible     moody 
+## 0.8924392 0.8968744 0.9229702 0.9409500 0.9583435 0.9730607 
+##  childlik  foullang 
+## 0.9800360 0.9821662
 ```
 \normalsize
    
@@ -14377,7 +14241,58 @@ bem.2$loadings
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'bem.2' not found
+## 
+## Loadings:
+##          Factor1 Factor2
+## helpful   0.314   0.376 
+## reliant   0.453   0.117 
+## defbel    0.434   0.193 
+## yielding -0.131   0.338 
+## cheerful  0.152   0.371 
+## indpt     0.521         
+## athlet    0.267         
+## shy      -0.414         
+## assert    0.605         
+## strpers   0.657         
+## forceful  0.649  -0.126 
+## affect    0.178   0.554 
+## flatter           0.223 
+## loyal     0.151   0.417 
+## analyt    0.295   0.127 
+## feminine  0.113   0.323 
+## sympathy          0.526 
+## moody            -0.162 
+## sensitiv  0.135   0.424 
+## undstand          0.610 
+## compass   0.114   0.627 
+## leaderab  0.765         
+## soothe            0.580 
+## risk      0.442   0.161 
+## decide    0.542   0.113 
+## selfsuff  0.511   0.134 
+## conscien  0.328   0.308 
+## dominant  0.668  -0.245 
+## masculin  0.276  -0.280 
+## stand     0.607   0.172 
+## happy     0.119   0.430 
+## softspok -0.230   0.336 
+## warm              0.719 
+## truthful  0.109   0.315 
+## tender            0.710 
+## gullible -0.153   0.135 
+## leadact   0.763         
+## childlik -0.101         
+## individ   0.445         
+## foullang          0.133 
+## lovchil           0.327 
+## compete   0.450         
+## ambitiou  0.414   0.137 
+## gentle            0.702 
+## 
+##                Factor1 Factor2
+## SS loadings      6.083   5.127
+## Proportion Var   0.138   0.117
+## Cumulative Var   0.138   0.255
 ```
 \normalsize
 
@@ -14392,18 +14307,23 @@ bit tricky:
 ```r
 loadings <- as.data.frame(unclass(bem.2$loadings)) %>%
   mutate(trait = rownames(bem.2$loadings))
-```
-
-```
-## Error in as.data.frame(unclass(bem.2$loadings)): object 'bem.2' not found
-```
-
-```r
 loadings %>% slice(1:12)
 ```
 
 ```
-## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
+##       Factor1      Factor2    trait
+## 1   0.3137466  0.376484908  helpful
+## 2   0.4532904  0.117140647  reliant
+## 3   0.4336574  0.192602996   defbel
+## 4  -0.1309965  0.337629288 yielding
+## 5   0.1523718  0.370530549 cheerful
+## 6   0.5212403  0.005870336    indpt
+## 7   0.2670788  0.075542858   athlet
+## 8  -0.4144579 -0.065372760      shy
+## 9   0.6049588  0.033004846   assert
+## 10  0.6569855  0.020777649  strpers
+## 11  0.6487190 -0.126405816 forceful
+## 12  0.1778911  0.553799444   affect
 ```
 \normalsize
    
@@ -14420,13 +14340,24 @@ loadings %>% filter(abs(Factor1) > 0.4)
 ```
 
 ```
-## [conflicted] `filter` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::filter
-## * stats::filter
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("filter", "dplyr")
-## * conflict_prefer("filter", "stats")
+##       Factor1      Factor2    trait
+## 1   0.4532904  0.117140647  reliant
+## 2   0.4336574  0.192602996   defbel
+## 3   0.5212403  0.005870336    indpt
+## 4  -0.4144579 -0.065372760      shy
+## 5   0.6049588  0.033004846   assert
+## 6   0.6569855  0.020777649  strpers
+## 7   0.6487190 -0.126405816 forceful
+## 8   0.7654924  0.069513572 leaderab
+## 9   0.4416176  0.161238425     risk
+## 10  0.5416796  0.112807957   decide
+## 11  0.5109964  0.133626767 selfsuff
+## 12  0.6676490 -0.244855780 dominant
+## 13  0.6066864  0.171848896    stand
+## 14  0.7627129 -0.040667202  leadact
+## 15  0.4448064  0.089146147  individ
+## 16  0.4504188  0.053207281  compete
+## 17  0.4136498  0.136869589 ambitiou
 ```
 \normalsize
 
@@ -14441,13 +14372,18 @@ loadings %>% filter(abs(Factor2) > 0.4)
 ```
 
 ```
-## [conflicted] `filter` found in 2 packages.
-## Either pick the one you want with `::` 
-## * dplyr::filter
-## * stats::filter
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("filter", "dplyr")
-## * conflict_prefer("filter", "stats")
+##        Factor1   Factor2    trait
+## 1   0.17789112 0.5537994   affect
+## 2   0.15121266 0.4166622    loyal
+## 3   0.02301456 0.5256654 sympathy
+## 4   0.13476970 0.4242037 sensitiv
+## 5   0.09111299 0.6101294 undstand
+## 6   0.11350643 0.6272223  compass
+## 7   0.06061755 0.5802714   soothe
+## 8   0.11893011 0.4300698    happy
+## 9   0.07956978 0.7191610     warm
+## 10  0.05113807 0.7102763   tender
+## 11 -0.01873224 0.7022768   gentle
 ```
 \normalsize
    
@@ -14571,24 +14507,24 @@ things up.
 bem_tidy <- bem %>%
   mutate(row = row_number()) %>%
   gather(trait, score, c(-subno, -row))
-```
-
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
-
-```r
 bem_tidy
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'bem_tidy' not found
+## # A tibble: 16,236 x 4
+##    subno   row trait   score
+##    <dbl> <int> <chr>   <dbl>
+##  1     1     1 helpful     7
+##  2     2     2 helpful     5
+##  3     3     3 helpful     7
+##  4     4     4 helpful     6
+##  5     5     5 helpful     6
+##  6     7     6 helpful     5
+##  7     8     7 helpful     6
+##  8     9     8 helpful     7
+##  9    10     9 helpful     7
+## 10    11    10 helpful     7
+## # … with 16,226 more rows
 ```
 \normalsize
    
@@ -14603,7 +14539,17 @@ loadings %>% slice(1:10)
 ```
 
 ```
-## Error in UseMethod("slice_"): no applicable method for 'slice_' applied to an object of class "function"
+##       Factor1      Factor2    trait
+## 1   0.3137466  0.376484908  helpful
+## 2   0.4532904  0.117140647  reliant
+## 3   0.4336574  0.192602996   defbel
+## 4  -0.1309965  0.337629288 yielding
+## 5   0.1523718  0.370530549 cheerful
+## 6   0.5212403  0.005870336    indpt
+## 7   0.2670788  0.075542858   athlet
+## 8  -0.4144579 -0.065372760      shy
+## 9   0.6049588  0.033004846   assert
+## 10  0.6569855  0.020777649  strpers
 ```
 \normalsize
    
@@ -14622,7 +14568,7 @@ bem_tidy %>% left_join(loadings) -> bem_tidy
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## Joining, by = "trait"
 ```
 
 ```r
@@ -14630,7 +14576,21 @@ bem_tidy %>% sample_n(12)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 12 x 6
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1   569   331 softspok     5 -0.230   0.336 
+##  2   378   217 loyal        6  0.151   0.417 
+##  3   398   224 analyt       7  0.295   0.127 
+##  4   519   301 lovchil      7 -0.0271  0.327 
+##  5   374   216 leaderab     2  0.765   0.0695
+##  6   438   243 gullible     3 -0.153   0.135 
+##  7   107    65 gullible     4 -0.153   0.135 
+##  8    28    18 compete      4  0.450   0.0532
+##  9   314   183 leaderab     3  0.765   0.0695
+## 10   359   210 defbel       5  0.434   0.193 
+## 11   116    73 athlet       3  0.267   0.0755
+## 12   399   225 undstand     5  0.0911  0.610
 ```
 \normalsize
    
@@ -14648,7 +14608,20 @@ bem_tidy %>% filter(row == 366, abs(Factor2) > 0.4)
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 11 x 6
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1   755   366 affect       7  0.178    0.554
+##  2   755   366 loyal        7  0.151    0.417
+##  3   755   366 sympathy     7  0.0230   0.526
+##  4   755   366 sensitiv     7  0.135    0.424
+##  5   755   366 undstand     7  0.0911   0.610
+##  6   755   366 compass      6  0.114    0.627
+##  7   755   366 soothe       7  0.0606   0.580
+##  8   755   366 happy        7  0.119    0.430
+##  9   755   366 warm         7  0.0796   0.719
+## 10   755   366 tender       7  0.0511   0.710
+## 11   755   366 gentle       7 -0.0187   0.702
 ```
 \normalsize
  
@@ -14669,7 +14642,20 @@ bem_tidy %>% filter(
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 33 x 6
+##    subno   row trait    score Factor1 Factor2
+##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
+##  1   369   214 affect       1  0.178    0.554
+##  2   534   311 affect       5  0.178    0.554
+##  3   755   366 affect       7  0.178    0.554
+##  4   369   214 loyal        7  0.151    0.417
+##  5   534   311 loyal        4  0.151    0.417
+##  6   755   366 loyal        7  0.151    0.417
+##  7   369   214 sympathy     4  0.0230   0.526
+##  8   534   311 sympathy     4  0.0230   0.526
+##  9   755   366 sympathy     7  0.0230   0.526
+## 10   369   214 sensitiv     7  0.135    0.424
+## # … with 23 more rows
 ```
 \normalsize
    
@@ -14693,7 +14679,20 @@ bem_tidy %>%
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 11 x 4
+##    trait    `214` `311` `366`
+##    <chr>    <dbl> <dbl> <dbl>
+##  1 affect       1     5     7
+##  2 compass      5     4     6
+##  3 gentle       2     3     7
+##  4 happy        4     3     7
+##  5 loyal        7     4     7
+##  6 sensitiv     7     4     7
+##  7 soothe       3     4     7
+##  8 sympathy     4     4     7
+##  9 tender       3     4     7
+## 10 undstand     5     3     7
+## 11 warm         1     3     7
 ```
 \normalsize
  
@@ -14713,7 +14712,26 @@ bem_tidy %>%
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'bem_tidy' not found
+## # A tibble: 17 x 4
+##    trait    `230` `258` `359`
+##    <chr>    <dbl> <dbl> <dbl>
+##  1 ambitiou     7     2     4
+##  2 assert       7     3     1
+##  3 compete      6     2     1
+##  4 decide       7     1     2
+##  5 defbel       7     1     1
+##  6 dominant     7     1     1
+##  7 forceful     7     1     1
+##  8 individ      7     3     3
+##  9 indpt        7     7     1
+## 10 leadact      7     1     1
+## 11 leaderab     7     1     1
+## 12 reliant      7     4     1
+## 13 risk         7     5     7
+## 14 selfsuff     7     4     1
+## 15 shy          2     7     5
+## 16 stand        7     1     6
+## 17 strpers      7     1     3
 ```
 \normalsize
  
@@ -14727,7 +14745,8 @@ bem.2$PVAL
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'bem.2' not found
+##     objective 
+## 1.458183e-150
 ```
 
    
@@ -14740,26 +14759,12 @@ bem.2$PVAL
 bem.15 <- bem %>%
   select(-subno) %>%
   factanal(factors = 15)
-```
-
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
-```r
 bem.15$PVAL
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'bem.15' not found
+## objective 
+##  0.132617
 ```
 
  
@@ -14778,10 +14783,6 @@ into a data frame, as before:
 ```r
 loadings <- as.data.frame(unclass(bem.15$loadings)) %>%
   mutate(trait = rownames(bem.15$loadings))
-```
-
-```
-## Error in as.data.frame(unclass(bem.15$loadings)): object 'bem.15' not found
 ```
 \normalsize
    
@@ -14802,15 +14803,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor1    trait
+## 1  0.8127595  compass
+## 2  0.6756043 undstand
+## 3  0.6611293 sympathy
+## 4  0.6408327 sensitiv
+## 5  0.5971006   soothe
+## 6  0.3481290     warm
+## 7  0.2797159   gentle
+## 8  0.2788627   tender
+## 9  0.2501505  helpful
+## 10 0.2340594 conscien
 ```
 \normalsize
    
@@ -14831,15 +14834,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor2    trait
+## 1   0.7615492  strpers
+## 2   0.7160312 forceful
+## 3   0.6981500   assert
+## 4   0.5041921 dominant
+## 5   0.3929344 leaderab
+## 6   0.3669560    stand
+## 7   0.3507080  leadact
+## 8  -0.3131682 softspok
+## 9  -0.2866862      shy
+## 10  0.2602525   analyt
 ```
 \normalsize
    
@@ -14860,15 +14865,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor3    trait
+## 1   0.6697542  reliant
+## 2   0.6475496 selfsuff
+## 3   0.6204018    indpt
+## 4   0.3899607  helpful
+## 5  -0.3393605 gullible
+## 6   0.3333813  individ
+## 7   0.3319003   decide
+## 8   0.3294806 conscien
+## 9   0.2877396 leaderab
+## 10  0.2804170   defbel
 ```
 \normalsize
    
@@ -14889,15 +14896,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor4    trait
+## 1  0.6956206   gentle
+## 2  0.6920303   tender
+## 3  0.5992467     warm
+## 4  0.4465546   affect
+## 5  0.3942568 softspok
+## 6  0.2779793  lovchil
+## 7  0.2444249 undstand
+## 8  0.2442119    happy
+## 9  0.2125905    loyal
+## 10 0.2022861   soothe
 ```
 \normalsize
    
@@ -14918,15 +14927,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor5    trait
+## 1  0.6956846  compete
+## 2  0.6743459 ambitiou
+## 3  0.3453425     risk
+## 4  0.3423456  individ
+## 5  0.2808623   athlet
+## 6  0.2695570 leaderab
+## 7  0.2449656   decide
+## 8  0.2064415 dominant
+## 9  0.1928159  leadact
+## 10 0.1854989  strpers
 ```
 \normalsize
    
@@ -14948,15 +14959,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor6    trait
+## 1   0.8675651  leadact
+## 2   0.6078869 leaderab
+## 3   0.3378645 dominant
+## 4   0.2014835 forceful
+## 5  -0.1915632      shy
+## 6   0.1789256     risk
+## 7   0.1703440 masculin
+## 8   0.1639190   decide
+## 9   0.1594585  compete
+## 10  0.1466037   athlet
 ```
 \normalsize
    
@@ -14978,15 +14991,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor7    trait
+## 1   0.6698996    happy
+## 2   0.6667105 cheerful
+## 3  -0.5219125    moody
+## 4   0.2191425   athlet
+## 5   0.2126626     warm
+## 6   0.1719953   gentle
+## 7  -0.1640302 masculin
+## 8   0.1601472  reliant
+## 9   0.1472926 yielding
+## 10  0.1410481  lovchil
 ```
 \normalsize
    
@@ -15008,15 +15023,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor8    trait
+## 1   0.6296764   affect
+## 2   0.5158355  flatter
+## 3  -0.2512066 softspok
+## 4   0.2214623     warm
+## 5   0.1878549   tender
+## 6   0.1846225  strpers
+## 7  -0.1804838      shy
+## 8   0.1801992  compete
+## 9   0.1658105    loyal
+## 10  0.1548617  helpful
 ```
 \normalsize
    
@@ -15036,15 +15053,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor9    trait
+## 1   0.8633171    stand
+## 2   0.3403294   defbel
+## 3   0.2446971  individ
+## 4   0.1941110     risk
+## 5  -0.1715481      shy
+## 6   0.1710978   decide
+## 7   0.1197126   assert
+## 8   0.1157729 conscien
+## 9   0.1120308   analyt
+## 10 -0.1115140 gullible
 ```
 \normalsize
    
@@ -15065,15 +15084,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##       Factor10    trait
+## 1   0.80751267 feminine
+## 2  -0.26378513 masculin
+## 3   0.24507184 softspok
+## 4   0.23175597 conscien
+## 5   0.20192035 selfsuff
+## 6   0.17584233 yielding
+## 7   0.14127067   gentle
+## 8   0.11282028  flatter
+## 9   0.10934531   decide
+## 10 -0.09407978  lovchil
 ```
 \normalsize
 
@@ -15095,15 +15116,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor11    trait
+## 1  0.91622589    loyal
+## 2  0.18949077   affect
+## 3  0.15883857 truthful
+## 4  0.12464529  helpful
+## 5  0.10440664   analyt
+## 6  0.10076794   tender
+## 7  0.09720457  lovchil
+## 8  0.09635223 gullible
+## 9  0.09350623 cheerful
+## 10 0.08207596 conscien
 ```
 \normalsize
    
@@ -15124,15 +15147,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor12    trait
+## 1   0.6106933 childlik
+## 2  -0.2845004 selfsuff
+## 3  -0.2786751 conscien
+## 4   0.2588843    moody
+## 5   0.2013245      shy
+## 6  -0.1669301   decide
+## 7   0.1542031 masculin
+## 8   0.1455526 dominant
+## 9   0.1379163  compass
+## 10 -0.1297408 leaderab
 ```
 \normalsize
    
@@ -15153,15 +15178,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor13    trait
+## 1   0.5729242 truthful
+## 2  -0.2776490 gullible
+## 3   0.2631046    happy
+## 4   0.1885152     warm
+## 5  -0.1671924      shy
+## 6   0.1646031    loyal
+## 7  -0.1438127 yielding
+## 8  -0.1302900   assert
+## 9   0.1137074   defbel
+## 10 -0.1105583  lovchil
 ```
 \normalsize
    
@@ -15182,15 +15209,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor14    trait
+## 1   0.4429926   decide
+## 2   0.2369714 selfsuff
+## 3   0.1945034 forceful
+## 4  -0.1862756 softspok
+## 5   0.1604175     risk
+## 6  -0.1484606  strpers
+## 7   0.1461972 dominant
+## 8   0.1279456    happy
+## 9   0.1154479  compass
+## 10  0.1054078 masculin
 ```
 \normalsize
    
@@ -15210,15 +15239,17 @@ loadings %>%
 ```
 
 ```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
+##      Factor15    trait
+## 1  -0.3244092  compass
+## 2   0.2471884   athlet
+## 3   0.2292980 sensitiv
+## 4   0.1986878     risk
+## 5  -0.1638296   affect
+## 6   0.1632164    moody
+## 7  -0.1118135  individ
+## 8   0.1100678     warm
+## 9   0.1047347 cheerful
+## 10  0.1012342  reliant
 ```
 \normalsize
    
@@ -15237,7 +15268,19 @@ enframe(bem.15$uniquenesses, name="quality", value="uniq") %>%
 ```
 
 ```
-## Error in enframe(bem.15$uniquenesses, name = "quality", value = "uniq"): object 'bem.15' not found
+## # A tibble: 10 x 2
+##    quality   uniq
+##    <chr>    <dbl>
+##  1 foullang 0.914
+##  2 lovchil  0.824
+##  3 analyt   0.812
+##  4 yielding 0.791
+##  5 masculin 0.723
+##  6 athlet   0.722
+##  7 shy      0.703
+##  8 gullible 0.700
+##  9 flatter  0.663
+## 10 helpful  0.652
 ```
 \normalsize
    
@@ -15506,26 +15549,21 @@ scales, so we should standardize them first via `std.ov`:
 track.1 <- track %>%
   select(-country) %>%
   cfa(track.model, data = ., std.ov = T)
-```
-
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
-```r
 track.1
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'track.1' not found
+## lavaan 0.6-3 ended normally after 59 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         17
+## 
+##   Number of observations                            55
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                      87.608
+##   Degrees of freedom                                19
+##   P-value (Chi-square)                           0.000
 ```
 \normalsize
 
@@ -15558,18 +15596,6 @@ track %>%
   cfa(track.model.2, data = ., std.ov = T) -> track.2
 ```
 
-```
-## [conflicted] `select` found in 3 packages.
-## Either pick the one you want with `::` 
-## * shapes::select
-## * dplyr::select
-## * MASS::select
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("select", "shapes")
-## * conflict_prefer("select", "dplyr")
-## * conflict_prefer("select", "MASS")
-```
-
 ## Examine
 
 
@@ -15578,7 +15604,17 @@ track.2
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'track.2' not found
+## lavaan 0.6-3 ended normally after 72 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                         19
+## 
+##   Number of observations                            55
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                      40.089
+##   Degrees of freedom                                17
+##   P-value (Chi-square)                           0.001
 ```
 
 
@@ -15598,7 +15634,17 @@ anova(track.1, track.2)
 ```
 
 ```
-## Error in anova(track.1, track.2): object 'track.1' not found
+## Chi Square Difference Test
+## 
+##         Df    AIC    BIC  Chisq Chisq diff Df diff
+## track.2 17 535.49 573.63 40.089                   
+## track.1 19 579.01 613.13 87.608     47.519       2
+##         Pr(>Chisq)    
+## track.2               
+## track.1  4.802e-11 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 \normalsize
 
@@ -15826,13 +15872,7 @@ temp %>%
 ```
 
 ```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
+## Error in theil_sen_slope(.$temperature): could not find function "theil_sen_slope"
 ```
 
 Theil-Sen slope is very nearly *four times* as big since 1970 vs. before.
@@ -16178,24 +16218,18 @@ This means moving a time series one (or more) steps back in time:
 ```r
 x=rnorm(5)
 tibble(x) %>% mutate(x_lagged=lag(x)) -> with_lagged
-```
-
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
-
-```r
 with_lagged
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'with_lagged' not found
+## # A tibble: 5 x 2
+##         x x_lagged
+##     <dbl>    <dbl>
+## 1 -2.04     NA    
+## 2 -0.579    -2.04 
+## 3  0.608    -0.579
+## 4  0.118     0.608
+## 5  0.0563    0.118
 ```
 
 Gain a missing because there is nothing before the first observation.
@@ -16205,32 +16239,27 @@ Gain a missing because there is nothing before the first observation.
 
 ```r
 tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
-```
-
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
-
-```r
 ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
 ```
 
-```
-## Error in ggplot(wn_with_lagged, aes(y = wn, x = wn_lagged)): object 'wn_with_lagged' not found
-```
+![](figure/unnamed-chunk-558-1.pdf)
 
 ```r
 with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
 ```
 
 ```
-## Error in with(wn_with_lagged, cor.test(wn, wn_lagged, use = "c")): object 'wn_with_lagged' not found
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  wn and wn_lagged
+## t = -0.16512, df = 97, p-value = 0.8692
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.213468  0.181249
+## sample estimates:
+##         cor 
+## -0.01676257
 ```
 
 
@@ -16246,24 +16275,21 @@ On the other hand, this:
 ```r
 tibble(age=kings$X1) %>% 
   mutate(age_lagged=lag(age)) -> kings_with_lagged
-```
-
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
-
-```r
 with(kings_with_lagged, cor.test(age, age_lagged))
 ```
 
 ```
-## Error in with(kings_with_lagged, cor.test(age, age_lagged)): object 'kings_with_lagged' not found
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  age and age_lagged
+## t = 2.7336, df = 39, p-value = 0.00937
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.1064770 0.6308209
+## sample estimates:
+##       cor 
+## 0.4009919
 ```
 \normalsize
 
@@ -16275,9 +16301,7 @@ ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) +
   geom_point()
 ```
 
-```
-## Error in ggplot(kings_with_lagged, aes(x = age_lagged, y = age)): object 'kings_with_lagged' not found
-```
+![](figure/unnamed-chunk-560-1.pdf)
 
 ##  Two steps back:
 
@@ -16290,7 +16314,17 @@ kings_with_lagged %>%
 ```
 
 ```
-## Error in eval(lhs, parent, parent): object 'kings_with_lagged' not found
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  age and age_lag_2
+## t = 1.5623, df = 38, p-value = 0.1265
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.07128917  0.51757510
+## sample estimates:
+##      cor 
+## 0.245676
 ```
 \normalsize
 
@@ -16498,16 +16532,6 @@ tibble(e=rnorm(100)) %>%
   mutate(y=ifelse(is.na(y), 0, y)) -> ma
 ```
 
-```
-## [conflicted] `mutate` found in 2 packages.
-## Either pick the one you want with `::` 
-## * plyr::mutate
-## * dplyr::mutate
-## Or declare a preference with `conflict_prefer()`
-## * conflict_prefer("mutate", "plyr")
-## * conflict_prefer("mutate", "dplyr")
-```
-
 ## The series
 
 \small
@@ -16517,21 +16541,20 @@ ma
 ```
 
 ```
-## function (x, order, centre = TRUE) 
-## {
-##     if (abs(order - round(order)) > 1e-08) {
-##         stop("order must be an integer")
-##     }
-##     if (order%%2 == 0 && centre) {
-##         w <- c(0.5, rep(1, order - 1), 0.5)/order
-##     }
-##     else {
-##         w <- rep(1, order)/order
-##     }
-##     return(filter(x, w))
-## }
-## <bytecode: 0x55bd30595920>
-## <environment: namespace:forecast>
+## # A tibble: 100 x 3
+##         e   e_lag      y
+##     <dbl>   <dbl>  <dbl>
+##  1  0.991  NA      0    
+##  2  0.469   0.991  1.46 
+##  3  0.535   0.469  1.00 
+##  4 -0.244   0.535  0.291
+##  5  1.17   -0.244  0.928
+##  6 -0.473   1.17   0.699
+##  7  1.56   -0.473  1.08 
+##  8 -0.355   1.56   1.20 
+##  9 -0.400  -0.355 -0.755
+## 10 -2.10   -0.400 -2.50 
+## # … with 90 more rows
 ```
 \normalsize
 
@@ -16553,9 +16576,7 @@ Significant at lag 1, but beyond, just chance:
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
-```
-## Error in ma$y: object of type 'closure' is not subsettable
-```
+![](figure/unnamed-chunk-578-1.pdf)
 
 
 
@@ -16648,9 +16669,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 pacf(ma$y, plot=F) %>% autoplot()
 ```
 
-```
-## Error in ma$y: object of type 'closure' is not subsettable
-```
+![](figure/unnamed-chunk-583-1.pdf)
 
 ##  The old way of doing time series analysis
 
@@ -16680,7 +16699,16 @@ auto.arima(ma$y)
 ```
 
 ```
-## Error in ma$y: object of type 'closure' is not subsettable
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
 ```
 
 Comments over.
@@ -16706,7 +16734,35 @@ auto.arima(ma$y,trace=T)
 ```
 
 ```
-## Error in ma$y: object of type 'closure' is not subsettable
+## 
+##  ARIMA(2,0,2) with non-zero mean : Inf
+##  ARIMA(0,0,0) with non-zero mean : 345.2328
+##  ARIMA(1,0,0) with non-zero mean : 313.9535
+##  ARIMA(0,0,1) with non-zero mean : 287.9463
+##  ARIMA(0,0,0) with zero mean     : 346.0889
+##  ARIMA(1,0,1) with non-zero mean : 290.112
+##  ARIMA(0,0,2) with non-zero mean : 290.1128
+##  ARIMA(1,0,2) with non-zero mean : 291.7865
+##  ARIMA(0,0,1) with zero mean     : 287.4124
+##  ARIMA(1,0,1) with zero mean     : 289.4909
+##  ARIMA(0,0,2) with zero mean     : 289.4993
+##  ARIMA(1,0,0) with zero mean     : 312.7625
+##  ARIMA(1,0,2) with zero mean     : 290.6071
+## 
+##  Best model: ARIMA(0,0,1) with zero mean
+```
+
+```
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
 ```
 \normalsize
 
@@ -16765,26 +16821,24 @@ Forecasts all 0, since the past doesn't help to predict future.
 
 ```r
 y.aa=auto.arima(ma$y)
-```
-
-```
-## Error in ma$y: object of type 'closure' is not subsettable
-```
-
-```r
 y.aa
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'y.aa' not found
+## Series: ma$y 
+## ARIMA(0,0,1) with zero mean 
+## 
+## Coefficients:
+##          ma1
+##       0.9070
+## s.e.  0.0617
+## 
+## sigma^2 estimated as 0.9878:  log likelihood=-141.64
+## AIC=287.29   AICc=287.41   BIC=292.5
 ```
 
 ```r
 y.f=forecast(y.aa)
-```
-
-```
-## Error in forecast(y.aa): object 'y.aa' not found
 ```
 
 ##  Plotting the forecasts for MA(1) 
@@ -16794,9 +16848,7 @@ y.f=forecast(y.aa)
 autoplot(y.f)
 ```
 
-```
-## Error in autoplot(y.f): object 'y.f' not found
-```
+![](figure/unnamed-chunk-590-1.pdf)
 
 
 ##  AR(1)
