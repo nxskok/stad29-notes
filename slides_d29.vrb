@@ -18,7 +18,3 @@
   association with response.
 \end{itemize}
 
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-\end{verbatim}
-

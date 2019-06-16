@@ -33,7 +33,7 @@ knitr::opts_chunk$set(fig.cap="")
 ## World mean temperatures
 
 
-Global mean temperature every year since 1880: xxx
+Global mean temperature every year since 1880:
 
 \small
 ```{r, message=F, warning=F, fig.height=3.3}
@@ -96,19 +96,19 @@ kendall_Z_adjusted(temp$temperature)
   * regular regression slope, if you believe straight-line regression
   * Theil-Sen slope: resistant to outliers, based on medians
   
-## Ordinary regression against time  xxx
 
-\normalsize
+## Ordinary regression against time
+
 ```{r}
-temp.lm=lm(temperature~year, data=temp)
-tidy(temp.lm)
+lm(temperature~year, data=temp) %>% tidy() -> temp.tidy
+temp.tidy
 ```
-\normalsize
 
-Slope about 0.006 degrees per year (about this many degrees over course of data; pluck xxx):
+- Slope about 0.006 degrees per year 
+- about this many degrees over course of data):
 
 ```{r}
-coef(temp.lm)[2]*130
+temp.tidy %>% pluck("estimate", 2)*130
 ```
 
 
@@ -226,7 +226,7 @@ autoplot(kings.diff.ts)
 
 
 
-## xxx  Births per month in New York City
+##  Births per month in New York City
 
 from January 1946 to December 1959:
 
@@ -237,22 +237,32 @@ ny
 ```
 \normalsize
 
-## As a time series xxx
+## As a time series
 
-\scriptsize
+```{r, echo=F}
+w=getOption("width")
+options(width=100)
+```
+
+\tiny
 ```{r}
 ny.ts=ts(ny,freq=12,start=c(1946,1))
 ny.ts
 ```
 \normalsize
 
-## Comments xxx
+```{r, echo=F}
+options(width=w)
+```
+
+
+## Comments
 
 Note extras on `ts`:
 
 * Time period is 1 year
 * 12 observations per year (monthly) in `freq`
-* First observation is 1st month of 1946 in `start` xxx more
+* First observation is 1st month of 1946 in `start`
 
 Printing formats nicely.
 
@@ -301,9 +311,15 @@ Shows:
 * just the trend, going steadily up (except at the start)
 * random: what is left over ("remainder")
 
-## xxx  The seasonal part
+##  The seasonal part
 
 Fitted seasonal part is same every year, births lowest in February and highest in July:
+
+```{r, echo=F}
+w=getOption("width")
+options(width=100)
+```
+
 
 \tiny
 ```{r}
@@ -311,16 +327,21 @@ ny.d$seasonal
 ```
 \normalsize
 
+```{r, echo=F}
+options(width=w)
+```
+
+
 ```{r, echo=FALSE}
 set.seed(457299)
 ```
 
-## xxx  Time series basics: white noise
+##  Time series basics: white noise
 
-Each value independent random normal. Knowing one value tells you nothing about the next. "Random" process. xxx
+Each value independent random normal. Knowing one value tells you nothing about the next. "Random" process.
 
 
-```{r "White-Noise", fig.height=3.3}
+```{r "White-Noise", fig.height=3.0}
 wn=rnorm(100)
 wn.ts=ts(wn)
 autoplot(wn.ts)
@@ -350,7 +371,7 @@ with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing valu
 ```
 
 
-## xxx  Correlation with lagged series
+##  Correlation with lagged series
 
 If you know about white noise at one time point, you know *nothing* about it at the next. This is shown by the scatterplot and the correlation. 
 
@@ -365,7 +386,7 @@ with(kings_with_lagged, cor.test(age, age_lagged))
 ```
 \normalsize
 
-## xxx Correlation with next value?
+## Correlation with next value?
 
 ```{r, warning=F, fig.height=4}
 ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) + 
@@ -384,9 +405,9 @@ kings_with_lagged %>%
 
 Still a correlation two steps back, but smaller (and no longer significant).
 
-## xxx  Autocorrelation
+##  Autocorrelation
 
-Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`. Here, white noise: xxx
+Correlation of time series with *itself* one, two,... time steps back is useful idea, called **autocorrelation**. Make a plot of it with `acf` and `autoplot`. Here, white noise:
 
 ```{r, fig.height=3.3}
 acf(wn.ts, plot=F) %>% autoplot()
@@ -422,13 +443,13 @@ acf(ny.diff.ts, plot=F) %>% autoplot()
 * smallish but significant negative autocorrelation at 0.5 year = 6 months.
 * Other stuff -- complicated.
 
-## xxx  Souvenir sales
+##  Souvenir sales
 
 Monthly sales for a beach souvenir shop in Queensland, Australia:
 
 ```{r, echo=F}
 w=getOption("width")
-options(width=90)
+options(width=80)
 ```
 
 
@@ -485,7 +506,7 @@ souv.d=decompose(souv.log.diff.ts)
 autoplot(souv.d)
 ```
 
-## xxx  Comments 
+##  Comments 
 
 **Big** drop in one month's differences. Look at seasonal component to see which:
 
@@ -531,7 +552,7 @@ tibble(e=rnorm(100)) %>%
   mutate(y=ifelse(is.na(y), 0, y)) -> ma
 ```
 
-## The series xxx
+## The series
 
 \small
 ```{r}
@@ -548,9 +569,9 @@ ma
 * But `y[i]` has no shock in common with `y[i-2]`, so no lag 2 autocorrelation (or beyond).
 
 
-##  ACF for MA(1) process xxx
+##  ACF for MA(1) process
 
-Everything beyond lag 1 appears to be just chance:
+Significant at lag 1, but beyond, just chance:
 
 ```{r, fig.height=3.5}
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
@@ -594,9 +615,9 @@ x
 acf(x, plot=F) %>% autoplot()
 ```
 
-## xxx  Partial autocorrelation function
+##  Partial autocorrelation function
 
-This cuts off for an AR series: xxx
+This cuts off for an AR series:
 
 ```{r, fig.height=3.7}
 pacf(x, plot=F) %>% autoplot()
@@ -670,7 +691,7 @@ wn.aa
 
 Best fit *is* white noise (no AR, no MA, no differencing). 
 
-## xxx  Forecasts:
+##  Forecasts:
 
 ```{r, echo=F}
 options(width=65)
@@ -767,11 +788,11 @@ ny.aa
 \normalsize
 
 
-## xxx  NY births forecasts
+##  NY births forecasts
 
 Not *quite* same every year:
 
-\footnotesize
+\tiny
 ```{r}
 ny.f=forecast(ny.aa,h=36)
 ny.f
@@ -794,7 +815,7 @@ souv.aa
 souv.f=forecast(souv.aa,h=27)
 ```
 
-## xxx  The forecasts
+##  The forecasts
 
 Differenced series showed low value for January (large drop). December highest, Jan and Feb lowest:
 
