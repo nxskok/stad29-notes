@@ -22,6 +22,11 @@ output:
 
 ```
 
+```{r datetime, child="dates_and_times.Rmd"}
+
+```
+
+
 ```{r Regression, child="bRegression.Rmd"}
 
 ```

@@ -293,6 +293,7 @@ to 1).
 ```{r eval=F}
 library(rgl)
 es.2 <- cbind(europe.scale, 1)
+es.2
 plot3d(es.2, zlim = c(-1000, 1000))
 text3d(es.2, text = europe$City)
 ```
@@ -386,9 +387,9 @@ square %>%
 and save as .csv when we are happy:
 ```{r }
 square %>%
-  gather(point, distance, -1) %>%
+  pivot_longer(-x, names_to="point", values_to="distance") %>%
   filter(x != "C", point != "C") %>%
-  spread(point, distance) -> noc
+  pivot_wider(names_from=point, values_from=distance) -> noc
 noc
 noc %>% write_csv("no-c.csv")
 ```
@@ -429,7 +430,7 @@ ontario2 %>%
     city != "Sault Ste Marie",
     place != "Sault Ste Marie"
   ) %>%
-  spread(place, distance) %>%
+  pivot_wider(names_from=place, values_from=distance) %>%
   write_csv("southern-ontario.csv")
 ```
 \normalsize

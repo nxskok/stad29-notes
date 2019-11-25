@@ -313,6 +313,13 @@ scores %>% slice(1:6)
 ##  The best sprinting countries
 Most negative on factor 2:
 
+```{r message=F, include=F}
+my_url <- "http://www.utsc.utoronto.ca/~butler/d29/isocodes.csv"
+iso <- read_csv(my_url)
+iso
+```
+
+
 \footnotesize
 ```{r, warning=F}
 scores %>%
@@ -604,9 +611,10 @@ things up.
 
 \scriptsize
 ```{r}
-bem_tidy <- bem %>%
+bem %>%
   mutate(row = row_number()) %>%
-  gather(trait, score, c(-subno, -row))
+  pivot_longer(c(-subno, -row), names_to="trait", 
+               values_to="score") -> bem_tidy
 bem_tidy
 ```
 \normalsize
@@ -680,7 +688,7 @@ bem_tidy %>%
     abs(Factor2) > 0.4
   ) %>%
   select(-subno, -Factor1, -Factor2) %>%
-  spread(row, score)
+  pivot_wider(names_from=row, values_from=score)
 ```
 \normalsize
  
@@ -695,7 +703,7 @@ These were high, low, low on factor 1. Adapt code:
 bem_tidy %>%
   filter(row %in% c(359, 258, 230), abs(Factor1) > 0.4) %>%
   select(-subno, -Factor1, -Factor2) %>%
-  spread(row, score)
+  pivot_wider(names_from=row, values_from=score)
 ```
 \normalsize
  

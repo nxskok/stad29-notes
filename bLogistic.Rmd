@@ -77,7 +77,7 @@ rats2 <- rats %>% mutate(status = factor(status))
 * then fit model:
 
 \small
-```{r}
+```{r, error=T}
 status.1 <- glm(status ~ dose, family = "binomial", data = rats2)
 ```
 \normalsize

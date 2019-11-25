@@ -230,8 +230,8 @@ Reorganize:
 ```{r }
 prepost %>%
   mutate(subject = row_number()) %>%
-  gather(time, score, before:after,
-    factor_key = T
+  pivot_longer(before:after, names_to="time", 
+               values_to="score", names_ptypes = list(time=factor())
   ) -> prepost.long
 prepost.long %>% sample_n(8) # 8 random rows
 ```

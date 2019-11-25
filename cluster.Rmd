@@ -129,7 +129,7 @@ ones?
   
 ```{r}
 distance=function(p1,p2) {
-  sqrt((p1[1]-p2[1])^2+(p1[2]-p2[2])^2)
+  as.numeric(sqrt((p1[1]-p2[1])^2+(p1[2]-p2[2])^2))
 }
 distances=matrix(0,nrow(a),nrow(b))
 for (i in 1:nrow(a)) {
@@ -531,7 +531,7 @@ options(width=60)
 ```  
   
 ```{r}
-thediffs %>% spread(lang2,diff)
+thediffs %>% pivot_wider(names_from=lang2, values_from=diff)
 ```   
 
 and that was where we began.

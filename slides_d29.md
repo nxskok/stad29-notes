@@ -180,6 +180,7 @@ appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.
 
 ## Course material 
 
+- Dates and times
 - Regression-like things 
   - review of (multiple) regression
   - logistic regression (including multi-category responses)
@@ -191,13 +192,503 @@ appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.
 - Multivariate methods
   - discriminant analysis
   - cluster analysis
-  - multidimensional scaling
+  - (multidimensional scaling)
   - principal components
   - factor analysis
 - Miscellanea
-  - time series
-  - multiway frequency tables
+  - (time series), multiway frequency tables
+
   
+
+
+# Dates and Times
+
+## Packages for this section
+
+```r
+library(tidyverse)
+library(lubridate)
+```
+
+## Dates
+- Dates represented on computers as “days since an origin”,
+typically Jan 1, 1970, with a negative date being before the origin: 
+
+
+```r
+mydates <- c("1970-01-01", "2007-09-04", "1931-08-05")
+(somedates <- tibble(text = mydates) %>%
+  mutate(
+    d = as.Date(text),
+    numbers = as.numeric(d)
+  ))
+```
+
+```
+## # A tibble: 3 x 3
+##   text       d          numbers
+##   <chr>      <date>       <dbl>
+## 1 1970-01-01 1970-01-01       0
+## 2 2007-09-04 2007-09-04   13760
+## 3 1931-08-05 1931-08-05  -14029
+```
+
+## Doing arithmetic with dates
+
+- Dates are "actually" numbers, so can add and subtract: 
+
+
+```r
+somedates %>% mutate(plus30 = d + 30, diffs = d[2] - d)
+```
+
+```
+## # A tibble: 3 x 5
+##   text       d          numbers plus30     diffs    
+##   <chr>      <date>       <dbl> <date>     <drtn>   
+## 1 1970-01-01 1970-01-01       0 1970-01-31 13760 da…
+## 2 2007-09-04 2007-09-04   13760 2007-10-04     0 da…
+## 3 1931-08-05 1931-08-05  -14029 1931-09-04 27789 da…
+```
+
+## Reading in dates from a file
+- `read_csv` and the others can guess that you have dates, if you
+format them as year-month-day, like column 1 of this `.csv`:
+
+```
+date,status,dunno
+2011-08-03,hello,August 3 2011
+2011-11-15,still here,November 15 2011
+2012-02-01,goodbye,February 1 2012
+```
+
+- Then read them in:
+
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/c32/mydates.csv"
+ddd <- read_csv(my_url)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   date = col_date(format = ""),
+##   status = col_character(),
+##   dunno = col_character()
+## )
+```
+
+- read_csv guessed that the 1st column is dates, but not 3rd.
+
+## The data as read in
+
+
+```r
+ddd
+```
+
+```
+## # A tibble: 3 x 3
+##   date       status     dunno           
+##   <date>     <chr>      <chr>           
+## 1 2011-08-03 hello      August 3 2011   
+## 2 2011-11-15 still here November 15 2011
+## 3 2012-02-01 goodbye    February 1 2012
+```
+
+## Dates in other formats 
+
+- Preceding shows that dates should be stored as text in format
+yyyy-mm-dd (ISO standard).
+- To deal with dates in other formats, use package `lubridate` and
+convert. For example, dates in US format with month first:
+
+```r
+tibble(usdates = c("05/27/2012", "01/03/2016", "12/31/2015")) %>%
+  mutate(iso = mdy(usdates))
+```
+
+```
+## # A tibble: 3 x 2
+##   usdates    iso       
+##   <chr>      <date>    
+## 1 05/27/2012 2012-05-27
+## 2 01/03/2016 2016-01-03
+## 3 12/31/2015 2015-12-31
+```
+
+## Trying to read these as UK dates 
+
+
+```r
+tibble(usdates = c("05/27/2012", "01/03/2016", "12/31/2015")) %>%
+  mutate(uk = dmy(usdates))
+```
+
+```
+## Warning: 2 failed to parse.
+```
+
+```
+## # A tibble: 3 x 2
+##   usdates    uk        
+##   <chr>      <date>    
+## 1 05/27/2012 NA        
+## 2 01/03/2016 2016-03-01
+## 3 12/31/2015 NA
+```
+
+- For UK-format dates with month second, one of these dates is legit,
+but the other two make no sense.
+
+## Our data frame's last column:
+
+- Back to this: 
+
+
+```r
+ddd
+```
+
+```
+## # A tibble: 3 x 3
+##   date       status     dunno           
+##   <date>     <chr>      <chr>           
+## 1 2011-08-03 hello      August 3 2011   
+## 2 2011-11-15 still here November 15 2011
+## 3 2012-02-01 goodbye    February 1 2012
+```
+
+- Month, day,  year in that order.
+
+## so interpret as such
+
+
+```r
+(ddd %>% mutate(date2 = mdy(dunno)) -> d4)
+```
+
+```
+## # A tibble: 3 x 4
+##   date       status     dunno            date2     
+##   <date>     <chr>      <chr>            <date>    
+## 1 2011-08-03 hello      August 3 2011    2011-08-03
+## 2 2011-11-15 still here November 15 2011 2011-11-15
+## 3 2012-02-01 goodbye    February 1 2012  2012-02-01
+```
+
+
+## Are they really the same? 
+
+- Column `date2` was correctly converted from column `dunno`: 
+
+
+```r
+d4 %>% mutate(equal = identical(date, date2))
+```
+
+```
+## # A tibble: 3 x 5
+##   date       status    dunno        date2      equal
+##   <date>     <chr>     <chr>        <date>     <lgl>
+## 1 2011-08-03 hello     August 3 20… 2011-08-03 TRUE 
+## 2 2011-11-15 still he… November 15… 2011-11-15 TRUE 
+## 3 2012-02-01 goodbye   February 1 … 2012-02-01 TRUE
+```
+
+- The two columns of dates are all the same.
+
+## Making dates from pieces
+Starting from this file:
+
+```
+year month day
+1970 1 1
+2007 9 4
+1940 4 15
+```
+
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/c32/pieces.txt"
+dates0 <- read_delim(my_url, " ")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   year = col_double(),
+##   month = col_double(),
+##   day = col_double()
+## )
+```
+
+## Making some dates 
+
+
+```r
+dates0
+```
+
+```
+## # A tibble: 3 x 3
+##    year month   day
+##   <dbl> <dbl> <dbl>
+## 1  1970     1     1
+## 2  2007     9     4
+## 3  1940     4    15
+```
+
+```r
+dates0 %>%
+  unite(dates, day, month, year) %>%
+  mutate(d = dmy(dates)) -> newdates
+```
+
+
+## The results
+
+
+```r
+newdates
+```
+
+```
+## # A tibble: 3 x 2
+##   dates     d         
+##   <chr>     <date>    
+## 1 1_1_1970  1970-01-01
+## 2 4_9_2007  2007-09-04
+## 3 15_4_1940 1940-04-15
+```
+
+- `unite` glues things together with an underscore between them (if you
+don’t specify anything else). Syntax: first thing is new column to be
+created, other columns are what to make it out of.
+- `unite` makes the original variable columns year, month, day
+*disappear*.
+- The column `dates` is text, while `d` is a real date.
+
+## Extracting information from dates 
+
+
+```r
+newdates %>%
+  mutate(
+    mon = month(d),
+    day = day(d),
+    weekday = wday(d, label = T)
+  )
+```
+
+```
+## # A tibble: 3 x 5
+##   dates     d            mon   day weekday
+##   <chr>     <date>     <dbl> <int> <ord>  
+## 1 1_1_1970  1970-01-01     1     1 Thu    
+## 2 4_9_2007  2007-09-04     9     4 Tue    
+## 3 15_4_1940 1940-04-15     4    15 Mon
+```
+
+## Dates and times
+- Standard format for times is to put the time after the date, hours,
+minutes, seconds:
+
+```r
+(dd <- tibble(text = c(
+  "1970-01-01 07:50:01", "2007-09-04 15:30:00",
+  "1940-04-15 06:45:10", "2016-02-10 12:26:40"
+)))
+```
+
+```
+## # A tibble: 4 x 1
+##   text               
+##   <chr>              
+## 1 1970-01-01 07:50:01
+## 2 2007-09-04 15:30:00
+## 3 1940-04-15 06:45:10
+## 4 2016-02-10 12:26:40
+```
+
+## Converting text to date-times: 
+
+- Then get from this text using `ymd_hms`:
+
+```r
+dd %>% mutate(dt = ymd_hms(text))
+```
+
+```
+## # A tibble: 4 x 2
+##   text                dt                 
+##   <chr>               <dttm>             
+## 1 1970-01-01 07:50:01 1970-01-01 07:50:01
+## 2 2007-09-04 15:30:00 2007-09-04 15:30:00
+## 3 1940-04-15 06:45:10 1940-04-15 06:45:10
+## 4 2016-02-10 12:26:40 2016-02-10 12:26:40
+```
+
+
+## Timezones
+
+- Default timezone is “Universal Coordinated Time”. Change it via `tz=`
+and the name of a timezone: 
+
+
+```r
+dd %>% 
+  mutate(dt = ymd_hms(text, tz = "America/Toronto")) -> dd
+dd %>% mutate(zone = tz(dt))
+```
+
+```
+## # A tibble: 4 x 3
+##   text              dt                  zone        
+##   <chr>             <dttm>              <chr>       
+## 1 1970-01-01 07:50… 1970-01-01 07:50:01 America/Tor…
+## 2 2007-09-04 15:30… 2007-09-04 15:30:00 America/Tor…
+## 3 1940-04-15 06:45… 1940-04-15 06:45:10 America/Tor…
+## 4 2016-02-10 12:26… 2016-02-10 12:26:40 America/Tor…
+```
+
+## Extracting time parts
+- As you would expect: 
+
+```r
+dd %>%
+  select(-text) %>%
+  mutate(
+    h = hour(dt),
+    sec = second(dt),
+    min = minute(dt),
+    zone = tz(dt)
+  )
+```
+
+```
+## # A tibble: 4 x 5
+##   dt                      h   sec   min zone        
+##   <dttm>              <int> <dbl> <int> <chr>       
+## 1 1970-01-01 07:50:01     7     1    50 America/Tor…
+## 2 2007-09-04 15:30:00    15     0    30 America/Tor…
+## 3 1940-04-15 06:45:10     6    10    45 America/Tor…
+## 4 2016-02-10 12:26:40    12    40    26 America/Tor…
+```
+
+## Same times, but different time zone: 
+
+
+```r
+dd %>%
+  select(dt) %>%
+  mutate(oz = with_tz(dt, "Australia/Sydney"))
+```
+
+```
+## # A tibble: 4 x 2
+##   dt                  oz                 
+##   <dttm>              <dttm>             
+## 1 1970-01-01 07:50:01 1970-01-01 22:50:01
+## 2 2007-09-04 15:30:00 2007-09-05 05:30:00
+## 3 1940-04-15 06:45:10 1940-04-15 21:45:10
+## 4 2016-02-10 12:26:40 2016-02-11 04:26:40
+```
+
+In more detail: 
+
+
+```
+## [1] "1970-01-01 22:50:01 AEST"
+## [2] "2007-09-05 05:30:00 AEST"
+## [3] "1940-04-15 21:45:10 AEST"
+## [4] "2016-02-11 04:26:40 AEDT"
+```
+
+
+## How long between date-times?
+- We may need to calculate the time between two events. For example,
+these are the dates and times that some patients were admitted to
+and discharged from a hospital:
+
+```
+admit,discharge
+1981-12-10 22:00:00,1982-01-03 14:00:00
+2014-03-07 14:00:00,2014-03-08 09:30:00
+2016-08-31 21:00:00,2016-09-02 17:00:00
+```
+
+## Do they get read in as date-times? 
+
+- These ought to get read in and converted to date-times:
+
+
+```r
+my_url <- "http://www.utsc.utoronto.ca/~butler/c32/hospital.csv"
+stays <- read_csv(my_url)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   admit = col_datetime(format = ""),
+##   discharge = col_datetime(format = "")
+## )
+```
+
+-  and so it proves.
+
+## Subtracting the date-times
+
+- In the obvious way, this gets us an answer:
+
+```r
+stays %>% mutate(stay = discharge - admit)
+```
+
+```
+## # A tibble: 3 x 3
+##   admit               discharge           stay      
+##   <dttm>              <dttm>              <drtn>    
+## 1 1981-12-10 22:00:00 1982-01-03 14:00:00 568.0 hou…
+## 2 2014-03-07 14:00:00 2014-03-08 09:30:00  19.5 hou…
+## 3 2016-08-31 21:00:00 2016-09-02 17:00:00  44.0 hou…
+```
+
+- Number of hours; hard to interpret. 
+
+## Days
+
+- Fractional number of days would
+be better: 
+
+
+```r
+stays %>% mutate(stay_days = (discharge - admit) / ddays(1))
+```
+
+```
+## # A tibble: 3 x 3
+##   admit               discharge           stay_days
+##   <dttm>              <dttm>                  <dbl>
+## 1 1981-12-10 22:00:00 1982-01-03 14:00:00    23.7  
+## 2 2014-03-07 14:00:00 2014-03-08 09:30:00     0.812
+## 3 2016-08-31 21:00:00 2016-09-02 17:00:00     1.83
+```
+
+## Comments
+- Date-times are stored internally as seconds-since-something, so that
+subtracting two of them will give, internally, a number of seconds.
+- Just subtracting the date-times is displayed as a time (in units that R
+chooses for us).
+- Functions `ddays(1)`, `dminutes(1)` etc. will give number of seconds
+in a day or a minute, thus dividing by them will give (fractional) days,
+minutes etc.
+- This idea useful for calculating time from a start point until an event
+happens (in this case, a patient being discharged from hospital).
+
+
 
 
 # Review of (multiple) regression
@@ -578,7 +1069,7 @@ ggplot(sleep, aes(x = age, y = atst)) + geom_point() +
   scale_y_continuous(breaks = seq(420, 600, 20))
 ```
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.pdf)
+![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
 
    
 
@@ -634,7 +1125,7 @@ curvy <- read_delim(my_url, " ")
 ggplot(curvy, aes(x = xx, y = yy)) + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.pdf)
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41-1.pdf)
 
 ## Regression line, anyway
 
@@ -755,7 +1246,7 @@ No problems any more:
 ggplot(curvy.2, aes(x = .fitted, y = .resid)) + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23-1.pdf)
+![plot of chunk unnamed-chunk-46](figure/unnamed-chunk-46-1.pdf)
  
 
 
@@ -889,7 +1380,7 @@ ggplot(madeup, aes(x = x, y = log(y))) + geom_point() +
   geom_smooth()
 ```
 
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.pdf)
+![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49-1.pdf)
  
 
 Looks much straighter.
@@ -1157,7 +1648,7 @@ Apparently random. But\ldots
 ggplot(visits.1, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-34-1.pdf)
+![plot of chunk unnamed-chunk-57](figure/unnamed-chunk-57-1.pdf)
 
    
 
@@ -1174,7 +1665,7 @@ g <- ggplot(visits.1, aes(x = .fitted, y = abs(.resid))) +
 
 ## The plot
 
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36-1.pdf)
+![plot of chunk unnamed-chunk-59](figure/unnamed-chunk-59-1.pdf)
 
 
 
@@ -1228,7 +1719,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress, data = visits)
 
 
 ## Try 1
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38-1.pdf)
+![plot of chunk unnamed-chunk-61](figure/unnamed-chunk-61-1.pdf)
  
 
 
@@ -1269,7 +1760,7 @@ boxcox(timedrs + 1 ~ phyheal + menheal + stress,
 )
 ```
 
-![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40-1.pdf)
+![plot of chunk unnamed-chunk-63](figure/unnamed-chunk-63-1.pdf)
  
 
 
@@ -1360,7 +1851,7 @@ ggplot(visits.3, aes(x = .fitted, y = .resid)) +
   geom_point()
 ```
 
-![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43-1.pdf)
+![plot of chunk unnamed-chunk-66](figure/unnamed-chunk-66-1.pdf)
 
    
 
@@ -1371,7 +1862,7 @@ ggplot(visits.3, aes(x = .fitted, y = .resid)) +
 ggplot(visits.3, aes(sample = .resid)) + stat_qq() + stat_qq_line()
 ```
 
-![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44-1.pdf)
+![plot of chunk unnamed-chunk-67](figure/unnamed-chunk-67-1.pdf)
 
    
 
@@ -1383,7 +1874,7 @@ ggplot(visits.3, aes(x = .fitted, y = abs(.resid))) +
   geom_point() + geom_smooth()
 ```
 
-![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45-1.pdf)
+![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68-1.pdf)
 
    
 
@@ -2687,7 +3178,7 @@ ggplot(miners, aes(x = Exposure, y = proportion,
   geom_point() + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-85](figure/unnamed-chunk-85-1.pdf)
+![plot of chunk unnamed-chunk-108](figure/unnamed-chunk-108-1.pdf)
 \normalsize
 
 
@@ -2788,7 +3279,7 @@ ggplot(miners, aes(x = Exposure, y = proportion,
   geom_point() + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-90](figure/unnamed-chunk-90-1.pdf)
+![plot of chunk unnamed-chunk-113](figure/unnamed-chunk-113-1.pdf)
 
    
 
@@ -3017,7 +3508,7 @@ as needed.
 g
 ```
 
-![plot of chunk unnamed-chunk-101](figure/unnamed-chunk-101-1.pdf)
+![plot of chunk unnamed-chunk-124](figure/unnamed-chunk-124-1.pdf)
 
 ## Unordered responses
 
@@ -3352,16 +3843,16 @@ probs.long %>% sample_n(10)
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    32 0     3          0.187 
-##  2    35 0     3          0.472 
-##  3    32 1     1          0.291 
+##  1    28 1     2          0.271 
+##  2    38 0     3          0.735 
+##  3    24 1     2          0.0819
 ##  4    32 1     3          0.214 
-##  5    24 1     1          0.915 
-##  6    38 0     1          0.0260
-##  7    38 1     3          0.732 
-##  8    38 0     2          0.239 
-##  9    32 0     2          0.408 
-## 10    28 1     3          0.0329
+##  5    28 0     1          0.793 
+##  6    24 0     1          0.948 
+##  7    35 0     1          0.131 
+##  8    35 0     2          0.397 
+##  9    28 0     2          0.183 
+## 10    32 0     3          0.187
 ```
 \normalsize
 
@@ -3375,7 +3866,7 @@ ggplot(probs.long, aes(
   geom_point() + geom_line(aes(linetype = sex))
 ```
 
-![plot of chunk unnamed-chunk-116](figure/unnamed-chunk-116-1.pdf)
+![plot of chunk unnamed-chunk-139](figure/unnamed-chunk-139-1.pdf)
 
    
 
@@ -3607,7 +4098,7 @@ g <- ggplot(probs.long, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-123](figure/unnamed-chunk-123-1.pdf)
+![plot of chunk unnamed-chunk-146](figure/unnamed-chunk-146-1.pdf)
 
    
 
@@ -3649,7 +4140,7 @@ g <- ggplot(probs.long, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-125](figure/unnamed-chunk-125-1.pdf)
+![plot of chunk unnamed-chunk-148](figure/unnamed-chunk-148-1.pdf)
 
    
 
@@ -3945,7 +4436,7 @@ ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-134](figure/unnamed-chunk-134-1.pdf)
+![plot of chunk unnamed-chunk-157](figure/unnamed-chunk-157-1.pdf)
 
    
 
@@ -4486,7 +4977,7 @@ s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
 ggsurvplot(s, conf.int = F)
 ```
 
-![plot of chunk unnamed-chunk-155](figure/unnamed-chunk-155-1.pdf)
+![plot of chunk unnamed-chunk-178](figure/unnamed-chunk-178-1.pdf)
  
 
 ## Discussion of survival curves
@@ -4545,7 +5036,7 @@ ggcoxdiagnostics(lung.3) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-157](figure/unnamed-chunk-157-1.pdf)
+![plot of chunk unnamed-chunk-180](figure/unnamed-chunk-180-1.pdf)
 
    
 
@@ -4610,7 +5101,7 @@ survival:
 ggcoxdiagnostics(y.1) + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-160](figure/unnamed-chunk-160-1.pdf)
+![plot of chunk unnamed-chunk-183](figure/unnamed-chunk-183-1.pdf)
 
    
 
@@ -4645,7 +5136,7 @@ Not great, but less problematic than before:
 ggcoxdiagnostics(y.2) + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-162](figure/unnamed-chunk-162-1.pdf)
+![plot of chunk unnamed-chunk-185](figure/unnamed-chunk-185-1.pdf)
 
    
 
@@ -5195,7 +5686,7 @@ ggplot(vitaminb, aes(
 )) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-172](figure/unnamed-chunk-172-1.pdf)
+![plot of chunk unnamed-chunk-195](figure/unnamed-chunk-195-1.pdf)
 
    
 
@@ -5290,7 +5781,7 @@ g <- ggplot(summary, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-176](figure/unnamed-chunk-176-1.pdf)
+![plot of chunk unnamed-chunk-199](figure/unnamed-chunk-199-1.pdf)
 
 
 
@@ -5414,7 +5905,7 @@ medium engine size than for large or small.
 g
 ```
 
-![plot of chunk unnamed-chunk-181](figure/unnamed-chunk-181-1.pdf)
+![plot of chunk unnamed-chunk-204](figure/unnamed-chunk-204-1.pdf)
 
    
 
@@ -5519,7 +6010,7 @@ of `type` is different for medium-sized engines than for others:
 g
 ```
 
-![plot of chunk unnamed-chunk-185](figure/unnamed-chunk-185-1.pdf)
+![plot of chunk unnamed-chunk-208](figure/unnamed-chunk-208-1.pdf)
 
 
 
@@ -5542,7 +6033,7 @@ autonoise %>%
   )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-1.pdf)
+![plot of chunk unnamed-chunk-209](figure/unnamed-chunk-209-1.pdf)
 
 \normalsize
 
@@ -5711,11 +6202,12 @@ autonoise %>%
 
 ```
 ## # A tibble: 3 x 2
-##   size  data             
-##   <chr> <list>           
-## 1 M     <tibble [12 × 3]>
-## 2 L     <tibble [12 × 3]>
-## 3 S     <tibble [12 × 3]>
+## # Groups:   size [3]
+##   size            data
+##   <chr> <list<df[,3]>>
+## 1 M           [12 × 3]
+## 2 L           [12 × 3]
+## 3 S           [12 × 3]
 ```
 
    
@@ -5776,11 +6268,12 @@ autonoise %>%
 
 ```
 ## # A tibble: 3 x 3
-##   size  data                   p_val
-##   <chr> <list>                 <dbl>
-## 1 M     <tibble [12 × 3]> 0.00000849
-## 2 L     <tibble [12 × 3]> 0.428     
-## 3 S     <tibble [12 × 3]> 0.476
+## # Groups:   size [3]
+##   size            data      p_val
+##   <chr> <list<df[,3]>>      <dbl>
+## 1 M           [12 × 3] 0.00000849
+## 2 L           [12 × 3] 0.428     
+## 3 S           [12 × 3] 0.476
 ```
 
      
@@ -5811,6 +6304,7 @@ simple_effects
 
 ```
 ## # A tibble: 3 x 2
+## # Groups:   size [3]
 ##   size       p_val
 ##   <chr>      <dbl>
 ## 1 M     0.00000849
@@ -5844,11 +6338,12 @@ simple_effects %>%
 
 ```
 ## # A tibble: 3 x 4
+## # Groups:   size [3]
 ##   size       p_val multiplier p_val_adj
 ##   <chr>      <dbl>      <dbl>     <dbl>
 ## 1 M     0.00000849          3 0.0000255
-## 2 L     0.428               2 0.856    
-## 3 S     0.476               1 0.476
+## 2 L     0.428               3 1.28     
+## 3 S     0.476               3 1.43
 ```
 
 \normalsize
@@ -5970,10 +6465,14 @@ ci_func <- function(x) {
   tt$conf.int
 }
 autonoise %>%
-  group_by(size) %>%
-  nest() %>%
+  nest(-size) %>%
   mutate(ci = map(data, ~ ci_func(.))) %>%
   unnest(ci) -> cis
+```
+
+```
+## Warning: All elements of `...` must be named.
+## Did you want `data = c(noise, type, side)`?
 ```
 
 \normalsize
@@ -5986,15 +6485,15 @@ cis
 ```
 
 ```
-## # A tibble: 6 x 2
-##   size      ci
-##   <chr>  <dbl>
-## 1 M     -30.8 
-## 2 M     -17.6 
-## 3 L     -19.3 
-## 4 L       9.27
-## 5 S     -14.5 
-## 6 S       7.85
+## # A tibble: 6 x 3
+##   size            data     ci
+##   <chr> <list<df[,3]>>  <dbl>
+## 1 M           [12 × 3] -30.8 
+## 2 M           [12 × 3] -17.6 
+## 3 L           [12 × 3] -19.3 
+## 4 L           [12 × 3]   9.27
+## 5 S           [12 × 3] -14.5 
+## 6 S           [12 × 3]   7.85
 ```
 
 ## Procedure 
@@ -6023,18 +6522,27 @@ equivalent. (I have no idea whether that is reasonable.)
 
 
 ```r
-cis %>%
-  mutate(hilo = rep(c("lower", "upper"), 3)) %>%
-  spread(hilo, ci)
+hilooo=rep(c("lower", "upper"), 3)
+hilooo
 ```
 
 ```
-## # A tibble: 3 x 3
-##   size  lower  upper
-##   <chr> <dbl>  <dbl>
-## 1 L     -19.3   9.27
-## 2 M     -30.8 -17.6 
-## 3 S     -14.5   7.85
+## [1] "lower" "upper" "lower" "upper" "lower" "upper"
+```
+
+```r
+cis %>%
+  mutate(hilo = rep(c("lower", "upper"), 3)) %>%
+  pivot_wider(names_from=hilo, values_from=ci)
+```
+
+```
+## # A tibble: 3 x 4
+##   size            data lower  upper
+##   <chr> <list<df[,3]>> <dbl>  <dbl>
+## 1 M           [12 × 3] -30.8 -17.6 
+## 2 L           [12 × 3] -19.3   9.27
+## 3 S           [12 × 3] -14.5   7.85
 ```
 
 \normalsize
@@ -6254,9 +6762,9 @@ Need all the kickbacks in *one* column:
 
 
 ```r
-chain <- gather(chain.wide, model, kickback, A:D,
-  factor_key = T
-)
+chain.wide %>% 
+  pivot_longer(A:D, names_to = "model", names_ptypes = list(model=factor()), 
+               values_to = "kickback") -> chain
 ```
 
  
@@ -6276,24 +6784,24 @@ chain
 ##    model kickback
 ##    <fct>    <dbl>
 ##  1 A           42
-##  2 A           17
-##  3 A           24
-##  4 A           39
-##  5 A           43
-##  6 B           28
-##  7 B           50
-##  8 B           44
-##  9 B           32
-## 10 B           61
-## 11 C           57
-## 12 C           45
-## 13 C           48
-## 14 C           41
-## 15 C           54
-## 16 D           29
-## 17 D           29
-## 18 D           22
-## 19 D           34
+##  2 B           28
+##  3 C           57
+##  4 D           29
+##  5 A           17
+##  6 B           50
+##  7 C           45
+##  8 D           29
+##  9 A           24
+## 10 B           44
+## 11 C           48
+## 12 D           22
+## 13 A           39
+## 14 B           32
+## 15 C           41
+## 16 D           34
+## 17 A           43
+## 18 B           61
+## 19 C           54
 ## 20 D           30
 ```
 \normalsize
@@ -6501,15 +7009,15 @@ prepost %>% sample_n(9) # randomly chosen rows
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 b         22    31
-## 2 b          9    22
-## 3 a         18    38
-## 4 a         12    30
-## 5 b         26    34
-## 6 a         14    27
-## 7 b         27    33
-## 8 a          5    20
-## 9 a          6    24
+## 1 a         23    34
+## 2 a          5    20
+## 3 a         13    31
+## 4 a          9    25
+## 5 a         12    30
+## 6 b         14    23
+## 7 b          7    19
+## 8 b         21    28
+## 9 a         18    38
 ```
 
 
@@ -7548,7 +8056,7 @@ ggplot(dogs.long, aes(x = time, y = lh,
   stat_summary(fun.y = mean, geom = "line")
 ```
 
-![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-1.pdf)
+![plot of chunk unnamed-chunk-273](figure/unnamed-chunk-273-1.pdf)
 \normalsize
    
 
@@ -7766,7 +8274,7 @@ going to be split, and the column to make the values out of:
 \footnotesize
 
 ```r
-exercise.long %>% spread(time, pulse) -> exercise.wide
+exercise.long %>% pivot_wider(names_from=time, values_from=pulse) -> exercise.wide
 exercise.wide %>% sample_n(5)
 ```
 
@@ -7774,16 +8282,16 @@ exercise.wide %>% sample_n(5)
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    30 lowfat    running     99   111   150
-## 2    10 lowfat    atrest     100    97   100
-## 3    20 lowfat    walking    102   104   103
-## 4     4 nonlowfat atrest      80    82    83
-## 5     7 lowfat    atrest      87    88    90
+## 1    17 lowfat    walking    103   109    90
+## 2     7 lowfat    atrest      87    88    90
+## 3     3 nonlowfat atrest      97    97    94
+## 4    18 lowfat    walking     92    96   101
+## 5    11 nonlowfat walking     86    86    84
 ```
 \normalsize
 
 
-* Normally `gather` \texttt{min01, min15,
+* Normally `pivot_longer` \texttt{min01, min15,
 min30} into one column called `pulse` labelled by the
 number of minutes. But `Manova` needs it the other way.
 
@@ -7906,7 +8414,7 @@ so have the factor `exertype` with more levels going across.)
 g
 ```
 
-![plot of chunk unnamed-chunk-262](figure/unnamed-chunk-262-1.pdf)
+![plot of chunk unnamed-chunk-285](figure/unnamed-chunk-285-1.pdf)
 
    
 
@@ -8072,7 +8580,7 @@ ggplot(summ, aes(x = time, y = mean, colour = diet,
                  group = diet)) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-268](figure/unnamed-chunk-268-1.pdf)
+![plot of chunk unnamed-chunk-291](figure/unnamed-chunk-291-1.pdf)
 
    
 ## Comment on interaction plot
@@ -8307,7 +8815,7 @@ With one LD score, plot against (true) groups, eg. boxplot:
 ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-276](figure/unnamed-chunk-276-1.pdf)
+![plot of chunk unnamed-chunk-299](figure/unnamed-chunk-299-1.pdf)
 
    
 
@@ -8816,7 +9324,7 @@ g <- ggplot(mm, aes(x = LD1, y = LD2, colour = combo,
 g
 ```
 
-![plot of chunk unnamed-chunk-292](figure/unnamed-chunk-292-1.pdf)
+![plot of chunk unnamed-chunk-315](figure/unnamed-chunk-315-1.pdf)
 
    
 
@@ -8830,7 +9338,7 @@ ggbiplot(peanuts.1,
 )
 ```
 
-![plot of chunk unnamed-chunk-293](figure/unnamed-chunk-293-1.pdf)
+![plot of chunk unnamed-chunk-316](figure/unnamed-chunk-316-1.pdf)
 
 
 ## Installing `ggbiplot`
@@ -9066,7 +9574,7 @@ g <- ggplot(mm, aes(x = LD1, y = LD2, colour = job,
 g
 ```
 
-![plot of chunk unnamed-chunk-300](figure/unnamed-chunk-300-1.pdf)
+![plot of chunk unnamed-chunk-323](figure/unnamed-chunk-323-1.pdf)
 \normalsize
    
 
@@ -9077,7 +9585,7 @@ g
 ggbiplot(active.1, groups = active$job)
 ```
 
-![plot of chunk unnamed-chunk-301](figure/unnamed-chunk-301-1.pdf)
+![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
 
    
 
@@ -9106,7 +9614,7 @@ ggplot(mm, aes(x = LD1, y = LD2,  colour = job,
   geom_point() + geom_text_repel()
 ```
 
-![plot of chunk unnamed-chunk-302](figure/unnamed-chunk-302-1.pdf)
+![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
 
    
 
@@ -9384,7 +9892,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops.lda, groups = crops$crop)
 ```
 
-![plot of chunk unnamed-chunk-313](figure/unnamed-chunk-313-1.pdf)
+![plot of chunk unnamed-chunk-336](figure/unnamed-chunk-336-1.pdf)
 
    
 
@@ -9490,7 +9998,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops2.lda, groups = crops2$crop)
 ```
 
-![plot of chunk unnamed-chunk-317](figure/unnamed-chunk-317-1.pdf)
+![plot of chunk unnamed-chunk-340](figure/unnamed-chunk-340-1.pdf)
 
    
 
@@ -9717,7 +10225,7 @@ is "best" for individuals? **K-means clustering** (`kmeans`).
 
 
 ## Two made-up clusters
-![plot of chunk unnamed-chunk-323](figure/unnamed-chunk-323-1.pdf)
+![plot of chunk unnamed-chunk-346](figure/unnamed-chunk-346-1.pdf)
 
    
 
@@ -9727,7 +10235,7 @@ ones?
 
 ## Single-linkage distance
 Find the red point and the blue point that are closest together: 
-![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
+![plot of chunk unnamed-chunk-347](figure/unnamed-chunk-347-1.pdf)
 
    
 
@@ -9737,7 +10245,7 @@ closest points.
 
 ## Complete linkage
 Find the red and blue points that are farthest apart:
-![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
+![plot of chunk unnamed-chunk-348](figure/unnamed-chunk-348-1.pdf)
 
 
 
@@ -9746,7 +10254,7 @@ Complete-linkage distance is distance between farthest points.
 
 ## Ward's method
 Work out mean of each cluster and join point to its mean:
-![plot of chunk unnamed-chunk-326](figure/unnamed-chunk-326-1.pdf)
+![plot of chunk unnamed-chunk-349](figure/unnamed-chunk-349-1.pdf)
 
    
 
@@ -9757,7 +10265,7 @@ Work out (i) sum of squared distances of points from means.
 Now imagine combining the two clusters and working out overall
 mean. Join each point to this mean:
 
-![plot of chunk unnamed-chunk-327](figure/unnamed-chunk-327-1.pdf)
+![plot of chunk unnamed-chunk-350](figure/unnamed-chunk-350-1.pdf)
 
    
 Calc sum of squared distances (ii) of points to combined mean.
@@ -9880,7 +10388,7 @@ d.hc <- hclust(d, method = "single")
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-331](figure/unnamed-chunk-331-1.pdf)
+![plot of chunk unnamed-chunk-354](figure/unnamed-chunk-354-1.pdf)
 
    
 
@@ -9959,7 +10467,7 @@ d.hc <- hclust(d, method = "complete")
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-333](figure/unnamed-chunk-333-1.pdf)
+![plot of chunk unnamed-chunk-356](figure/unnamed-chunk-356-1.pdf)
 
   
 
@@ -10078,28 +10586,29 @@ names were all in one column.
 \footnotesize
 
 ```r
-lang.long <- lang %>%
-  mutate(number = row_number()) %>%
-  gather(language, name, -number) %>%
-  mutate(first = str_sub(name, 1, 1))
-lang.long %>% slice(1:11)
+lang %>% mutate(number=row_number()) %>%
+    pivot_longer(-number, names_to="language", values_to="name") %>%
+    mutate(first=str_sub(name,1,1)) -> lang.long
+lang.long %>% print(n=12)
 ```
 
 ```
-## # A tibble: 11 x 4
+## # A tibble: 110 x 4
 ##    number language name  first
 ##     <int> <chr>    <chr> <chr>
 ##  1      1 en       one   o    
-##  2      2 en       two   t    
-##  3      3 en       three t    
-##  4      4 en       four  f    
-##  5      5 en       five  f    
-##  6      6 en       six   s    
-##  7      7 en       seven s    
-##  8      8 en       eight e    
-##  9      9 en       nine  n    
-## 10     10 en       ten   t    
-## 11      1 no       en    e
+##  2      1 no       en    e    
+##  3      1 dk       en    e    
+##  4      1 nl       een   e    
+##  5      1 de       eins  e    
+##  6      1 fr       un    u    
+##  7      1 es       uno   u    
+##  8      1 it       uno   u    
+##  9      1 pl       jeden j    
+## 10      1 hu       egy   e    
+## 11      1 fi       yksi  y    
+## 12      2 en       two   t    
+## # … with 98 more rows
 ```
 \normalsize
    
@@ -10399,7 +10908,7 @@ thediff
 \scriptsize
 
 ```r
-thediff %>% spread(lang2, diff)
+thediff %>% pivot_wider(names_from=lang2, values_from=diff)
 ```
 
 ```
@@ -11146,7 +11655,7 @@ g <- ggplot(d, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-387](figure/unnamed-chunk-387-1.pdf)
+![plot of chunk unnamed-chunk-410](figure/unnamed-chunk-410-1.pdf)
 
    
 
@@ -11195,7 +11704,7 @@ plot(ontario.hc)
 rect.hclust(ontario.hc, 4)
 ```
 
-![plot of chunk unnamed-chunk-389](figure/unnamed-chunk-389-1.pdf)
+![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
 
    
 
@@ -11218,7 +11727,7 @@ plot(ontario.hc)
 rect.hclust(ontario.hc, 7)
 ```
 
-![plot of chunk unnamed-chunk-390](figure/unnamed-chunk-390-1.pdf)
+![plot of chunk unnamed-chunk-413](figure/unnamed-chunk-413-1.pdf)
 
    
 
@@ -11252,11 +11761,6 @@ Catharines, Brantford, Hamilton, Kitchener
 ![](map2.png)
 
 
-```
-## Error in FUN(X[[i]], ...): invalid 'name' argument
-```
-
-   
 
 
 
@@ -11437,7 +11941,7 @@ ggplot(europe_coord, aes(x = V1, y = V2, label = city)) +
 g
 ```
 
-![plot of chunk unnamed-chunk-399](figure/unnamed-chunk-399-1.pdf)
+![plot of chunk unnamed-chunk-421](figure/unnamed-chunk-421-1.pdf)
 
    
 
@@ -11485,7 +11989,7 @@ data frame, acquires headers `V1` and `V2`.
 mds_map("europe.csv")
 ```
 
-![plot of chunk unnamed-chunk-401](figure/unnamed-chunk-401-1.pdf)
+![plot of chunk unnamed-chunk-423](figure/unnamed-chunk-423-1.pdf)
 
    
 
@@ -11511,7 +12015,7 @@ D,1.4,1  ,1  ,0
 mds_map("square.csv")
 ```
 
-![plot of chunk unnamed-chunk-402](figure/unnamed-chunk-402-1.pdf)
+![plot of chunk unnamed-chunk-424](figure/unnamed-chunk-424-1.pdf)
 
 
 ## Drawing a map of the real Europe
@@ -11597,13 +12101,13 @@ g2 <- ggmap(map) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-408](figure/unnamed-chunk-408-1.pdf)
+![plot of chunk unnamed-chunk-430](figure/unnamed-chunk-430-1.pdf)
 
    
 
 
 ## Compare our scaling map
-![plot of chunk unnamed-chunk-409](figure/unnamed-chunk-409-1.pdf)
+![plot of chunk unnamed-chunk-431](figure/unnamed-chunk-431-1.pdf)
 
    
 
@@ -11634,6 +12138,7 @@ to 1).
 ```r
 library(rgl)
 es.2 <- cbind(europe.scale, 1)
+es.2
 plot3d(es.2, zlim = c(-1000, 1000))
 text3d(es.2, text = europe$City)
 ```
@@ -11661,7 +12166,7 @@ url <-
 (g <- mds_map(url))
 ```
 
-![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
+![plot of chunk unnamed-chunk-434](figure/unnamed-chunk-434-1.pdf)
 \normalsize
 
 ## Comment
@@ -11781,9 +12286,9 @@ and save as .csv when we are happy:
 
 ```r
 square %>%
-  gather(point, distance, -1) %>%
+  pivot_longer(-x, names_to="point", values_to="distance") %>%
   filter(x != "C", point != "C") %>%
-  spread(point, distance) -> noc
+  pivot_wider(names_from=point, values_from=distance) -> noc
 noc
 ```
 
@@ -11809,7 +12314,7 @@ noc %>% write_csv("no-c.csv")
 mds_map("no-c.csv")
 ```
 
-![plot of chunk unnamed-chunk-417](figure/unnamed-chunk-417-1.pdf)
+![plot of chunk unnamed-chunk-439](figure/unnamed-chunk-439-1.pdf)
 
    
 
@@ -11820,7 +12325,7 @@ mds_map("no-c.csv")
 g
 ```
 
-![plot of chunk unnamed-chunk-418](figure/unnamed-chunk-418-1.pdf)
+![plot of chunk unnamed-chunk-440](figure/unnamed-chunk-440-1.pdf)
 
    
 
@@ -11843,7 +12348,7 @@ ontario2 %>%
     city != "Sault Ste Marie",
     place != "Sault Ste Marie"
   ) %>%
-  spread(place, distance) %>%
+  pivot_wider(names_from=place, values_from=distance) %>%
   write_csv("southern-ontario.csv")
 ```
 \normalsize
@@ -11856,7 +12361,7 @@ ontario2 %>%
 (g <- mds_map("southern-ontario.csv"))
 ```
 
-![plot of chunk unnamed-chunk-420](figure/unnamed-chunk-420-1.pdf)
+![plot of chunk unnamed-chunk-442](figure/unnamed-chunk-442-1.pdf)
 
    
 
@@ -12045,27 +12550,27 @@ ontario2.3$points %>%
 
 ```
 ## # A tibble: 19 x 4
-##        V1       V2      V3 city         
-##     <dbl>    <dbl>   <dbl> <chr>        
-##  1  -38.7  122.       4.17 Barrie       
-##  2  146.   -82.8      1.53 Belleville   
-##  3 -132.   -38.9     14.1  Brantford    
-##  4  298.  -106.      -7.74 Brockville   
-##  5  397.  -104.     -22.0  Cornwall     
-##  6 -101.   -18.5     30.0  Hamilton     
-##  7   62.4  198.     -14.0  Huntsville   
-##  8  214.  -129.      10.8  Kingston     
-##  9 -123.   -15.0     -6.44 Kitchener    
-## 10 -208.   -51.6    -36.5  London       
-## 11 -129.   -19.1    155.   Niagara Falls
-## 12  146.   300.     -25.4  North Bay    
-## 13  368.    -4.30   -47.2  Ottawa       
-## 14 -145.   125.     -16.0  Owen Sound   
-## 15   82.5    0.551   -6.92 Peterborough 
-## 16 -299.   -39.4    -72.5  Sarnia       
-## 17 -117.   -16.8    123.   St Catharines
-## 18  -34.3   -4.75    15.8  Toronto      
-## 19 -388.  -116.     -99.5  Windsor
+##        V1       V2     V3 city         
+##     <dbl>    <dbl>  <dbl> <chr>        
+##  1  -38.7  122.      4.17 Barrie       
+##  2  146.   -82.8     1.53 Belleville   
+##  3 -132.   -38.9    14.1  Brantford    
+##  4  298.  -106.     -7.74 Brockville   
+##  5  397.  -104.    -22.0  Cornwall     
+##  6 -101.   -18.5    30.0  Hamilton     
+##  7   62.4  198.    -14.0  Huntsville   
+##  8  214.  -129.     10.8  Kingston     
+##  9 -123.   -15.0    -6.44 Kitchener    
+## 10 -208.   -51.6   -36.5  London       
+## 11 -129.   -19.1   155.   Niagara Falls
+## 12  146.   300.    -25.4  North Bay    
+## 13  368.    -4.30  -47.2  Ottawa       
+## 14 -145.   125.    -16.0  Owen Sound   
+## 15   82.5    0.551  -6.92 Peterborough 
+## 16 -299.   -39.4   -72.5  Sarnia       
+## 17 -117.   -16.8   123.   St Catharines
+## 18  -34.3   -4.75   15.8  Toronto      
+## 19 -388.  -116.    -99.5  Windsor
 ```
 \normalsize
    
@@ -12453,7 +12958,7 @@ g3 <- ggplot(as.data.frame(cube3.sh), aes(x = x, y = y)) +
 g2
 ```
 
-![plot of chunk unnamed-chunk-442](figure/unnamed-chunk-442-1.pdf)
+![plot of chunk unnamed-chunk-464](figure/unnamed-chunk-464-1.pdf)
 
    
 
@@ -12466,7 +12971,7 @@ Poor correspondence (not much trend).
 g3
 ```
 
-![plot of chunk unnamed-chunk-443](figure/unnamed-chunk-443-1.pdf)
+![plot of chunk unnamed-chunk-465](figure/unnamed-chunk-465-1.pdf)
 
  
 Almost perfect: all actual $x=1$ go with smallest mapped distances; almost
@@ -12686,7 +13191,7 @@ variables measured on same scale and expect similar variability.)
 ggscreeplot(test12.pc)
 ```
 
-![plot of chunk unnamed-chunk-449](figure/unnamed-chunk-449-1.pdf)
+![plot of chunk unnamed-chunk-471](figure/unnamed-chunk-471-1.pdf)
 
    
 
@@ -12818,10 +13323,6 @@ suggests how they score on each variable.
 g <- ggbiplot(test12.pc, labels = test12$id)
 ```
 
-```
-## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
-```
-
      
 
 
@@ -12879,16 +13380,16 @@ track %>% sample_n(10)
 ## # A tibble: 10 x 9
 ##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1 10.4   20.5  45.8  1.78  3.55  13.2   27.9     131. ch     
-##  2 12.2   23.2  52.9  2.02  4.24  16.7   35.4     165. ck     
-##  3 10.1   20.2  44.9  1.7   3.51  13.0   27.5     129. uk     
-##  4 10.6   21.5  48.3  1.8   3.85  14.4   30.3     140. bg     
-##  5 10.4   21.3  47.4  1.88  3.89  15.1   31.3     158. sg     
-##  6 10.4   20.8  46.8  1.79  3.6   13.3   27.7     136. at     
-##  7  9.93  19.8  43.9  1.73  3.53  13.2   27.4     128. us     
-##  8 10.4   20.9  46.3  1.82  3.8   14.6   31.0     154. my     
-##  9 10.4   20.7  45.5  1.74  3.61  13.3   27.5     131. fi     
-## 10 10.4   21.0  46.1  1.82  3.74  13.5   27.9     131. co
+##  1  10.6  21.4  45.7  1.76  3.73  13.8   28.8     132. in     
+##  2  10.2  20.2  45.4  1.76  3.6   13.3   27.9     132. pl     
+##  3  10.4  20.6  45.6  1.76  3.58  13.4   28.2     134. cz     
+##  4  10.2  20.4  44.5  1.73  3.53  13.2   27.6     132. dew    
+##  5  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. pg     
+##  6  10.4  20.8  46.8  1.81  3.7   14.0   29.4     138. ar     
+##  7  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se     
+##  8  10.4  21.0  45.9  1.76  3.64  13.2   27.7     132. ro     
+##  9  10.4  21.3  47.4  1.88  3.89  15.1   31.3     158. sg     
+## 10  11.0  21.8  48.4  1.89  3.8   14.2   30.1     139. gu
 ```
 \normalsize
  
@@ -13096,10 +13597,6 @@ g1 <- ggplot(d, aes(x = Comp.1, y = Comp.2,
 g2 <- ggbiplot(track.pc, labels = track$country)
 ```
 
-```
-## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
-```
-
    
 
 
@@ -13304,7 +13801,7 @@ g <- d %>%
 g
 ```
 
-![plot of chunk unnamed-chunk-463](figure/unnamed-chunk-463-1.pdf)
+![plot of chunk unnamed-chunk-485](figure/unnamed-chunk-485-1.pdf)
 
    
 
@@ -13544,7 +14041,7 @@ kids %>%
 ggscreeplot(kids.pc)
 ```
 
-![plot of chunk unnamed-chunk-469](figure/unnamed-chunk-469-1.pdf)
+![plot of chunk unnamed-chunk-491](figure/unnamed-chunk-491-1.pdf)
 
    
 
@@ -13767,10 +14264,6 @@ track.pc <- princomp(track_num, cor = T)
 g2 <- ggbiplot(track.pc, labels = track$country)
 ```
 
-```
-## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
-```
-
 ## The biplot
 
 
@@ -13778,7 +14271,7 @@ g2 <- ggbiplot(track.pc, labels = track$country)
 g2
 ```
 
-![plot of chunk unnamed-chunk-477](figure/unnamed-chunk-477-1.pdf)
+![plot of chunk unnamed-chunk-499](figure/unnamed-chunk-499-1.pdf)
 
    
 
@@ -13896,6 +14389,9 @@ scores %>% slice(1:6)
 
 ##  The best sprinting countries
 Most negative on factor 2:
+
+
+
 
 \footnotesize
 
@@ -14157,9 +14653,7 @@ proportion'') to be reasonably high.
 ggbiplot(bem.pc, alpha = 0.3)
 ```
 
-```
-## Error in plot_label(p = p, data = plot.data, label = label, label.label = label.label, : Unsupported class: princomp
-```
+![plot of chunk bem-biplot](figure/bem-biplot-1.pdf)
   
 ![](bFactor-bem-biplot.png)
 
@@ -14504,26 +14998,27 @@ things up.
 \scriptsize
 
 ```r
-bem_tidy <- bem %>%
+bem %>%
   mutate(row = row_number()) %>%
-  gather(trait, score, c(-subno, -row))
+  pivot_longer(c(-subno, -row), names_to="trait", 
+               values_to="score") -> bem_tidy
 bem_tidy
 ```
 
 ```
 ## # A tibble: 16,236 x 4
-##    subno   row trait   score
-##    <dbl> <int> <chr>   <dbl>
-##  1     1     1 helpful     7
-##  2     2     2 helpful     5
-##  3     3     3 helpful     7
-##  4     4     4 helpful     6
-##  5     5     5 helpful     6
-##  6     7     6 helpful     5
-##  7     8     7 helpful     6
-##  8     9     8 helpful     7
-##  9    10     9 helpful     7
-## 10    11    10 helpful     7
+##    subno   row trait    score
+##    <dbl> <int> <chr>    <dbl>
+##  1     1     1 helpful      7
+##  2     1     1 reliant      7
+##  3     1     1 defbel       5
+##  4     1     1 yielding     5
+##  5     1     1 cheerful     7
+##  6     1     1 indpt        7
+##  7     1     1 athlet       7
+##  8     1     1 shy          1
+##  9     1     1 assert       7
+## 10     1     1 strpers      7
 ## # … with 16,226 more rows
 ```
 \normalsize
@@ -14579,18 +15074,18 @@ bem_tidy %>% sample_n(12)
 ## # A tibble: 12 x 6
 ##    subno   row trait    score Factor1 Factor2
 ##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   569   331 softspok     5 -0.230   0.336 
-##  2   378   217 loyal        6  0.151   0.417 
-##  3   398   224 analyt       7  0.295   0.127 
-##  4   519   301 lovchil      7 -0.0271  0.327 
-##  5   374   216 leaderab     2  0.765   0.0695
-##  6   438   243 gullible     3 -0.153   0.135 
-##  7   107    65 gullible     4 -0.153   0.135 
-##  8    28    18 compete      4  0.450   0.0532
-##  9   314   183 leaderab     3  0.765   0.0695
-## 10   359   210 defbel       5  0.434   0.193 
-## 11   116    73 athlet       3  0.267   0.0755
-## 12   399   225 undstand     5  0.0911  0.610
+##  1   346   204 feminine     6  0.113   0.323 
+##  2   114    71 affect       4  0.178   0.554 
+##  3   140    89 individ      2  0.445   0.0891
+##  4   577   337 truthful     6  0.109   0.315 
+##  5    98    60 helpful      6  0.314   0.376 
+##  6   183   110 helpful      7  0.314   0.376 
+##  7    82    48 conscien     7  0.328   0.308 
+##  8   591   347 affect       7  0.178   0.554 
+##  9   463   262 selfsuff     7  0.511   0.134 
+## 10   269   157 stand        6  0.607   0.172 
+## 11   403   229 assert       5  0.605   0.0330
+## 12   441   246 tender       5  0.0511  0.710
 ```
 \normalsize
    
@@ -14646,15 +15141,15 @@ bem_tidy %>% filter(
 ##    subno   row trait    score Factor1 Factor2
 ##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
 ##  1   369   214 affect       1  0.178    0.554
-##  2   534   311 affect       5  0.178    0.554
-##  3   755   366 affect       7  0.178    0.554
-##  4   369   214 loyal        7  0.151    0.417
-##  5   534   311 loyal        4  0.151    0.417
-##  6   755   366 loyal        7  0.151    0.417
-##  7   369   214 sympathy     4  0.0230   0.526
-##  8   534   311 sympathy     4  0.0230   0.526
-##  9   755   366 sympathy     7  0.0230   0.526
-## 10   369   214 sensitiv     7  0.135    0.424
+##  2   369   214 loyal        7  0.151    0.417
+##  3   369   214 sympathy     4  0.0230   0.526
+##  4   369   214 sensitiv     7  0.135    0.424
+##  5   369   214 undstand     5  0.0911   0.610
+##  6   369   214 compass      5  0.114    0.627
+##  7   369   214 soothe       3  0.0606   0.580
+##  8   369   214 happy        4  0.119    0.430
+##  9   369   214 warm         1  0.0796   0.719
+## 10   369   214 tender       3  0.0511   0.710
 ## # … with 23 more rows
 ```
 \normalsize
@@ -14675,7 +15170,7 @@ bem_tidy %>%
     abs(Factor2) > 0.4
   ) %>%
   select(-subno, -Factor1, -Factor2) %>%
-  spread(row, score)
+  pivot_wider(names_from=row, values_from=score)
 ```
 
 ```
@@ -14683,16 +15178,16 @@ bem_tidy %>%
 ##    trait    `214` `311` `366`
 ##    <chr>    <dbl> <dbl> <dbl>
 ##  1 affect       1     5     7
-##  2 compass      5     4     6
-##  3 gentle       2     3     7
-##  4 happy        4     3     7
-##  5 loyal        7     4     7
-##  6 sensitiv     7     4     7
+##  2 loyal        7     4     7
+##  3 sympathy     4     4     7
+##  4 sensitiv     7     4     7
+##  5 undstand     5     3     7
+##  6 compass      5     4     6
 ##  7 soothe       3     4     7
-##  8 sympathy     4     4     7
-##  9 tender       3     4     7
-## 10 undstand     5     3     7
-## 11 warm         1     3     7
+##  8 happy        4     3     7
+##  9 warm         1     3     7
+## 10 tender       3     4     7
+## 11 gentle       2     3     7
 ```
 \normalsize
  
@@ -14708,30 +15203,30 @@ These were high, low, low on factor 1. Adapt code:
 bem_tidy %>%
   filter(row %in% c(359, 258, 230), abs(Factor1) > 0.4) %>%
   select(-subno, -Factor1, -Factor2) %>%
-  spread(row, score)
+  pivot_wider(names_from=row, values_from=score)
 ```
 
 ```
 ## # A tibble: 17 x 4
 ##    trait    `230` `258` `359`
 ##    <chr>    <dbl> <dbl> <dbl>
-##  1 ambitiou     7     2     4
-##  2 assert       7     3     1
-##  3 compete      6     2     1
-##  4 decide       7     1     2
-##  5 defbel       7     1     1
-##  6 dominant     7     1     1
+##  1 reliant      7     4     1
+##  2 defbel       7     1     1
+##  3 indpt        7     7     1
+##  4 shy          2     7     5
+##  5 assert       7     3     1
+##  6 strpers      7     1     3
 ##  7 forceful     7     1     1
-##  8 individ      7     3     3
-##  9 indpt        7     7     1
-## 10 leadact      7     1     1
-## 11 leaderab     7     1     1
-## 12 reliant      7     4     1
-## 13 risk         7     5     7
-## 14 selfsuff     7     4     1
-## 15 shy          2     7     5
-## 16 stand        7     1     6
-## 17 strpers      7     1     3
+##  8 leaderab     7     1     1
+##  9 risk         7     5     7
+## 10 decide       7     1     2
+## 11 selfsuff     7     4     1
+## 12 dominant     7     1     1
+## 13 stand        7     1     6
+## 14 leadact      7     1     1
+## 15 individ      7     3     3
+## 16 compete      6     2     1
+## 17 ambitiou     7     2     4
 ```
 \normalsize
  
@@ -15703,7 +16198,7 @@ ggplot(temp, aes(x=year, y=temperature)) +
   geom_point() + geom_smooth()
 ```
 
-![](figure/unnamed-chunk-534-1.pdf)
+![](figure/unnamed-chunk-557-1.pdf)
 \normalsize
 
 ## Examining trend
@@ -15773,7 +16268,20 @@ kendall_Z_adjusted(temp$temperature)
 ```
 
 ```
-## Error in kendall_Z_adjusted(temp$temperature): could not find function "kendall_Z_adjusted"
+## $z
+## [1] 11.77267
+## 
+## $z_star
+## [1] 4.475666
+## 
+## $ratio
+## [1] 6.918858
+## 
+## $P_value
+## [1] 0
+## 
+## $P_value_adj
+## [1] 7.617357e-06
 ```
 \normalsize
 
@@ -15832,7 +16340,7 @@ theil_sen_slope(temp$temperature)
 ```
 
 ```
-## Error in theil_sen_slope(temp$temperature): could not find function "theil_sen_slope"
+## [1] 0.005675676
 ```
 
 ## Conclusions
@@ -15857,7 +16365,7 @@ ggplot(temp, aes(x=year, y=temperature)) +
   geom_point() + geom_smooth()
 ```
 
-![](figure/unnamed-chunk-541-1.pdf)
+![](figure/unnamed-chunk-564-1.pdf)
 
 ## Pre-1970 and post-1970:
 
@@ -15872,7 +16380,16 @@ temp %>%
 ```
 
 ```
-## Error in theil_sen_slope(.$temperature): could not find function "theil_sen_slope"
+## Warning: All elements of `...` must be named.
+## Did you want `data = c(X1, Year, temperature, year)`?
+```
+
+```
+## # A tibble: 2 x 3
+##   time_period           data theil_sen
+##   <chr>       <list<df[,4]>>     <dbl>
+## 1 pre-1970          [91 × 4]   0.00429
+## 2 post-1970         [40 × 4]   0.0168
 ```
 
 Theil-Sen slope is very nearly *four times* as big since 1970 vs. before.
@@ -16097,7 +16614,7 @@ Printing formats nicely.
 autoplot(ny.ts)
 ```
 
-![](figure/unnamed-chunk-550-1.pdf)
+![](figure/unnamed-chunk-573-1.pdf)
 
 ##  Comments on time plot
 
@@ -16115,7 +16632,7 @@ ny.diff.ts=diff(ny.ts)
 autoplot(ny.diff.ts)
 ```
 
-![](figure/unnamed-chunk-551-1.pdf)
+![](figure/unnamed-chunk-574-1.pdf)
 
 
 ##  Decomposing a seasonal time series
@@ -16129,7 +16646,7 @@ ny.d <- decompose(ny.ts)
 ny.d %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-552-1.pdf)
+![](figure/unnamed-chunk-575-1.pdf)
 
 ##  Decomposition bits
 
@@ -16242,7 +16759,7 @@ tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
 ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
 ```
 
-![](figure/unnamed-chunk-558-1.pdf)
+![](figure/unnamed-chunk-581-1.pdf)
 
 ```r
 with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
@@ -16301,7 +16818,7 @@ ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) +
   geom_point()
 ```
 
-![](figure/unnamed-chunk-560-1.pdf)
+![](figure/unnamed-chunk-583-1.pdf)
 
 ##  Two steps back:
 
@@ -16339,7 +16856,7 @@ Correlation of time series with *itself* one, two,... time steps back is useful 
 acf(wn.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-562-1.pdf)
+![](figure/unnamed-chunk-585-1.pdf)
 
 No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
 
@@ -16352,7 +16869,7 @@ Autocorrelations work best on *stationary* series.
 acf(kings.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-563-1.pdf)
+![](figure/unnamed-chunk-586-1.pdf)
 
 ##  Comments on autocorrelations of kings series
 
@@ -16368,7 +16885,7 @@ Negative autocorrelation at lag 1, nothing beyond that.
 acf(ny.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-564-1.pdf)
+![](figure/unnamed-chunk-587-1.pdf)
 
 ##  Lots of stuff:
 
@@ -16422,7 +16939,7 @@ souv.ts
 autoplot(souv.ts)
 ```
 
-![](figure/unnamed-chunk-568-1.pdf)
+![](figure/unnamed-chunk-591-1.pdf)
 
 ##  Several problems:
 
@@ -16440,7 +16957,7 @@ souv.log.ts=log(souv.ts)
 autoplot(souv.log.ts)
 ```
 
-![](figure/unnamed-chunk-569-1.pdf)
+![](figure/unnamed-chunk-592-1.pdf)
 
 ##  Mean still not constant, so try taking differences
 
@@ -16450,7 +16967,7 @@ souv.log.diff.ts=diff(souv.log.ts)
 autoplot(souv.log.diff.ts)
 ```
 
-![](figure/unnamed-chunk-570-1.pdf)
+![](figure/unnamed-chunk-593-1.pdf)
 
 ##  Comments
 
@@ -16465,7 +16982,7 @@ souv.d=decompose(souv.log.diff.ts)
 autoplot(souv.d)
 ```
 
-![](figure/unnamed-chunk-571-1.pdf)
+![](figure/unnamed-chunk-594-1.pdf)
 
 ##  Comments 
 
@@ -16511,7 +17028,7 @@ January.
 acf(souv.log.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-575-1.pdf)
+![](figure/unnamed-chunk-598-1.pdf)
 
 * Big positive autocorrelation at 1 year (strong seasonal effect)
 * Small negative autocorrelation at 1 and 2 months.
@@ -16542,18 +17059,18 @@ ma
 
 ```
 ## # A tibble: 100 x 3
-##         e   e_lag      y
-##     <dbl>   <dbl>  <dbl>
-##  1  0.991  NA      0    
-##  2  0.469   0.991  1.46 
-##  3  0.535   0.469  1.00 
-##  4 -0.244   0.535  0.291
-##  5  1.17   -0.244  0.928
-##  6 -0.473   1.17   0.699
-##  7  1.56   -0.473  1.08 
-##  8 -0.355   1.56   1.20 
-##  9 -0.400  -0.355 -0.755
-## 10 -2.10   -0.400 -2.50 
+##         e  e_lag      y
+##     <dbl>  <dbl>  <dbl>
+##  1  0.991 NA      0    
+##  2  0.469  0.991  1.46 
+##  3  0.535  0.469  1.00 
+##  4 -0.244  0.535  0.291
+##  5  1.17  -0.244  0.928
+##  6 -0.473  1.17   0.699
+##  7  1.56  -0.473  1.08 
+##  8 -0.355  1.56   1.20 
+##  9 -0.400 -0.355 -0.755
+## 10 -2.10  -0.400 -2.50 
 ## # … with 90 more rows
 ```
 \normalsize
@@ -16576,7 +17093,7 @@ Significant at lag 1, but beyond, just chance:
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-578-1.pdf)
+![](figure/unnamed-chunk-601-1.pdf)
 
 
 
@@ -16647,7 +17164,7 @@ x
 acf(x, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-581-1.pdf)
+![](figure/unnamed-chunk-604-1.pdf)
 
 ##  Partial autocorrelation function
 
@@ -16658,7 +17175,7 @@ This cuts off for an AR series:
 pacf(x, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-582-1.pdf)
+![](figure/unnamed-chunk-605-1.pdf)
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -16669,7 +17186,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 pacf(ma$y, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-583-1.pdf)
+![](figure/unnamed-chunk-606-1.pdf)
 
 ##  The old way of doing time series analysis
 
@@ -16848,7 +17365,7 @@ y.f=forecast(y.aa)
 autoplot(y.f)
 ```
 
-![](figure/unnamed-chunk-590-1.pdf)
+![](figure/unnamed-chunk-613-1.pdf)
 
 
 ##  AR(1)
@@ -16902,7 +17419,7 @@ x.arima
 forecast(x.arima) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-593-1.pdf)
+![](figure/unnamed-chunk-616-1.pdf)
 
 ## Comparing wrong model:
 
@@ -16911,7 +17428,7 @@ forecast(x.arima) %>% autoplot()
 forecast(x.aa) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-594-1.pdf)
+![](figure/unnamed-chunk-617-1.pdf)
 
 
 ##  Kings
@@ -16966,7 +17483,7 @@ kings.f
 autoplot(kings.f) + labs(x="index", y= "age at death")
 ```
 
-![](figure/unnamed-chunk-597-1.pdf)
+![](figure/unnamed-chunk-620-1.pdf)
 
 
 
@@ -17057,7 +17574,7 @@ ny.f
 autoplot(ny.f)+labs(x="time", y="births")
 ```
 
-![](figure/unnamed-chunk-600-1.pdf)
+![](figure/unnamed-chunk-623-1.pdf)
 
 
 ##  Log-souvenir sales
@@ -17326,7 +17843,7 @@ print.default(souv.f)
 autoplot(souv.f)
 ```
 
-![](figure/unnamed-chunk-603-1.pdf)
+![](figure/unnamed-chunk-626-1.pdf)
 
 
 ##  Global mean temperatures, revisited
@@ -17359,7 +17876,7 @@ temp.f=forecast(temp.aa)
 autoplot(temp.f)+labs(x="year", y="temperature")
 ```
 
-![](figure/unnamed-chunk-605-1.pdf)
+![](figure/unnamed-chunk-628-1.pdf)
 
 
 
@@ -17437,7 +17954,8 @@ my_url <- "http://www.utsc.utoronto.ca/~butler/d29/eyewear.txt"
 
 ```r
 eyewear %>%
-  gather(eyewear, frequency, contacts:none) -> eyes
+  pivot_longer(contacts:none, names_to="eyewear", 
+               values_to="frequency") -> eyes
 eyes
 ```
 
@@ -17446,10 +17964,10 @@ eyes
 ##   gender eyewear  frequency
 ##   <chr>  <chr>        <dbl>
 ## 1 female contacts       121
-## 2 male   contacts        42
-## 3 female glasses         32
-## 4 male   glasses         37
-## 5 female none           129
+## 2 female glasses         32
+## 3 female none           129
+## 4 male   contacts        42
+## 5 male   glasses         37
 ## 6 male   none            85
 ```
 

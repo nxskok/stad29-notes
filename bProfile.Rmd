@@ -361,13 +361,13 @@ going to be split, and the column to make the values out of:
 
 \footnotesize
 ```{r}
-exercise.long %>% spread(time, pulse) -> exercise.wide
+exercise.long %>% pivot_wider(names_from=time, values_from=pulse) -> exercise.wide
 exercise.wide %>% sample_n(5)
 ```
 \normalsize
 
 
-* Normally `gather` \texttt{min01, min15,
+* Normally `pivot_longer` \texttt{min01, min15,
 min30} into one column called `pulse` labelled by the
 number of minutes. But `Manova` needs it the other way.
 

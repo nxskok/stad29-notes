@@ -951,8 +951,7 @@ ci_func <- function(x) {
   tt$conf.int
 }
 autonoise %>%
-  group_by(size) %>%
-  nest() %>%
+  nest(-size) %>%
   mutate(ci = map(data, ~ ci_func(.))) %>%
   unnest(ci) -> cis
 ```
@@ -990,9 +989,11 @@ equivalent. (I have no idea whether that is reasonable.)
 \small
 
 ```{r}
+hilooo=rep(c("lower", "upper"), 3)
+hilooo
 cis %>%
   mutate(hilo = rep(c("lower", "upper"), 3)) %>%
-  spread(hilo, ci)
+  pivot_wider(names_from=hilo, values_from=ci)
 ```
 
 \normalsize
@@ -1172,9 +1173,9 @@ chain.wide
 Need all the kickbacks in *one* column:
 
 ```{r }
-chain <- gather(chain.wide, model, kickback, A:D,
-  factor_key = T
-)
+chain.wide %>% 
+  pivot_longer(A:D, names_to = "model", names_ptypes = list(model=factor()), 
+               values_to = "kickback") -> chain
 ```
 
  

@@ -413,11 +413,10 @@ names were all in one column.
 ## Tidy, and extract first letter
 \footnotesize
 ```{r}
-lang.long <- lang %>%
-  mutate(number = row_number()) %>%
-  gather(language, name, -number) %>%
-  mutate(first = str_sub(name, 1, 1))
-lang.long %>% slice(1:11)
+lang %>% mutate(number=row_number()) %>%
+    pivot_longer(-number, names_to="language", values_to="name") %>%
+    mutate(first=str_sub(name,1,1)) -> lang.long
+lang.long %>% print(n=12)
 ```
 \normalsize
    
@@ -596,7 +595,7 @@ options(width = 60)
  
 \scriptsize
 ```{r}
-thediff %>% spread(lang2, diff)
+thediff %>% pivot_wider(names_from=lang2, values_from=diff)
 ```
 \normalsize
    
@@ -1169,13 +1168,7 @@ Catharines, Brantford, Hamilton, Kitchener
 
 ![](map2.png)
 
-```{r echo=F, warning=F}
-pkgs <- names(sessionInfo()$otherPkgs)
-pkgs <- paste("package:", pkgs, sep = "")
-x <- lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
-```
 
-   
 
 
 

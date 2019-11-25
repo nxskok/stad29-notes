@@ -61,7 +61,8 @@ my_url <- "http://www.utsc.utoronto.ca/~butler/d29/eyewear.txt"
 ##  Tidying the data
 ```{r size="footnotesize"}
 eyewear %>%
-  gather(eyewear, frequency, contacts:none) -> eyes
+  pivot_longer(contacts:none, names_to="eyewear", 
+               values_to="frequency") -> eyes
 eyes
 ```
 

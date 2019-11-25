@@ -5,7 +5,7 @@ show: slides_d29.pdf
 
 
 
-#CHAPTERS = slides_d29 bOutline bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim\
+#CHAPTERS = slides_d29 preminiaries bOutline dates_and_times bRegression bRscript bLogistic bSurvival bAnova bAncova bManova bProfile bDiscrim\
 #bCluster bMDS bPrincomp bFactor timeseries bMultiway bggplot
 
 RMDS = $(wildcard *.Rmd)
@@ -20,9 +20,7 @@ slides_d29.tex: slides_d29.md
                 --pdf-engine xelatex --self-contained 
 
 
-slides_d29.md: slides_d29.Rmd bRegression.Rmd bLogistic.Rmd bSurvival.Rmd bAnova.Rmd bAncova.Rmd bManova.Rmd bProfile.Rmd\
-               bDiscrim.Rmd bCluster.Rmd bMDS.Rmd bPrincomp.Rmd bFactor.Rmd time-series.Rmd\
-               bMultiway.Rmd preliminaries.Rmd
+slides_d29.md: slides_d29.Rmd preliminaries.Rmd bOutline.Rmd dates_and_times.Rmd bRegression.Rmd bLogistic.Rmd bSurvival.Rmd bAnova.Rmd bAncova.Rmd bManova.Rmd bProfile.Rmd bDiscrim.Rmd bCluster.Rmd bMDS.Rmd bPrincomp.Rmd bFactor.Rmd time-series.Rmd bMultiway.Rmd preliminaries.Rmd
 	Rscript -e "knitr::knit('slides_d29.Rmd')"
 
 %.R: %.Rmd

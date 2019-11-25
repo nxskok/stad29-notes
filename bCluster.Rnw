@@ -397,9 +397,9 @@ names were all in one column.
 \begin{frame}[fragile]{Tidy, and extract first letter}
   
 <<size="footnotesize">>=
-lang.long = lang %>% mutate(number=row_number()) %>%
-    gather(language,name,-number) %>%
-    mutate(first=str_sub(name,1,1))
+lang %>% mutate(number=row_number()) %>%
+    pivot_longer(-number, names_to="language", values_to="name") %>%
+    mutate(first=str_sub(name,1,1)) -> lang.long
 lang.long %>% print(n=12)
 @   
   

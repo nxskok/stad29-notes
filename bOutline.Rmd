@@ -155,6 +155,7 @@ appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.
 
 ## Course material 
 
+- Dates and times
 - Regression-like things 
   - review of (multiple) regression
   - logistic regression (including multi-category responses)
@@ -166,10 +167,10 @@ appropriate accommodations: (416) 287-7560 or by e-mail: `ability@utsc.utoronto.
 - Multivariate methods
   - discriminant analysis
   - cluster analysis
-  - multidimensional scaling
+  - (multidimensional scaling)
   - principal components
   - factor analysis
 - Miscellanea
-  - time series
-  - multiway frequency tables
+  - (time series), multiway frequency tables
+
   
