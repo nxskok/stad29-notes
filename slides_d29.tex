@@ -439,7 +439,8 @@ of the ideas, or the expression of the ideas \ldots{} of another.
 \begin{itemize}
 \tightlist
 \item
-  Dates are ``actually'' numbers, so can add and subtract:
+  Dates are ``actually'' numbers, so can add and subtract (difference is
+  2007 date in \texttt{d} minus others):
 \end{itemize}
 
 \begin{Shaded}
@@ -1040,9 +1041,17 @@ admit,discharge
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{stays }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{stay_days =}\NormalTok{ (discharge }\OperatorTok{-}\StringTok{ }\NormalTok{admit) }\OperatorTok{/}\StringTok{ }\KeywordTok{ddays}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\CommentTok{# stays %>% }
+\CommentTok{#   mutate(stay_days = (discharge - admit) / ddays(1))}
+\NormalTok{stays }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{stay_days =} \KeywordTok{as.period}\NormalTok{(admit }\OperatorTok{%--%}\StringTok{ }\NormalTok{discharge) }\OperatorTok{/}\StringTok{ }\KeywordTok{days}\NormalTok{(}\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## estimate only: convert to intervals for accuracy
+\end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 3 x 3
@@ -1051,6 +1060,38 @@ admit,discharge
 ## 1 1981-12-10 22:00:00 1982-01-03 14:00:00    23.7  
 ## 2 2014-03-07 14:00:00 2014-03-08 09:30:00     0.812
 ## 3 2016-08-31 21:00:00 2016-09-02 17:00:00     1.83
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Completed days}
+\protect\hypertarget{completed-days}{}
+
+\begin{itemize}
+\tightlist
+\item
+  Pull out with \texttt{day()} etc, as for a date-time
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stays }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{stay =} \KeywordTok{as.period}\NormalTok{(admit }\OperatorTok{%--%}\StringTok{ }\NormalTok{discharge),}
+    \DataTypeTok{stay_days =} \KeywordTok{day}\NormalTok{(stay),}
+    \DataTypeTok{stay_hours =} \KeywordTok{hour}\NormalTok{(stay)}
+\NormalTok{    ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{starts_with}\NormalTok{(}\StringTok{"stay"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   stay          stay_days stay_hours
+##   <Period>          <dbl>      <int>
+## 1 23d 16H 0M 0S        23         16
+## 2 19H 30M 0S            0         19
+## 3 1d 20H 0M 0S          1         20
 \end{verbatim}
 
 \end{frame}
@@ -1069,9 +1110,13 @@ admit,discharge
 \item
   Functions \texttt{ddays(1)}, \texttt{dminutes(1)} etc. will give
   number of seconds in a day or a minute, thus dividing by them will
-  give (fractional) days, minutes etc.
+  give (fractional) days, minutes etc. This works for things like
+  days/minutes with equal numbers of seconds, but not months/years.
 \item
-  This idea useful for calculating time from a start point until an
+  Better: convert to a ``period'', then divide by \texttt{days(1)},
+  \texttt{months(1)} etc.
+\item
+  These ideas useful for calculating time from a start point until an
   event happens (in this case, a patient being discharged from
   hospital).
 \end{itemize}
@@ -1552,8 +1597,8 @@ Marks confidence interval for mean for all \(x\):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-40-1.pdf}
-\caption{plot of chunk unnamed-chunk-40}
+\includegraphics{figure/unnamed-chunk-41-1.pdf}
+\caption{plot of chunk unnamed-chunk-41}
 \end{figure}
 
 \end{frame}
@@ -1627,8 +1672,8 @@ Different data:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-41-1.pdf}
-\caption{plot of chunk unnamed-chunk-41}
+\includegraphics{figure/unnamed-chunk-42-1.pdf}
+\caption{plot of chunk unnamed-chunk-42}
 \end{figure}
 
 \end{frame}
@@ -1784,8 +1829,8 @@ No problems any more:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-46-1.pdf}
-\caption{plot of chunk unnamed-chunk-46}
+\includegraphics{figure/unnamed-chunk-47-1.pdf}
+\caption{plot of chunk unnamed-chunk-47}
 \end{figure}
 
 \end{frame}
@@ -1953,8 +1998,8 @@ Seems to be faster-than-linear growth, maybe exponential growth.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-49-1.pdf}
-\caption{plot of chunk unnamed-chunk-49}
+\includegraphics{figure/unnamed-chunk-50-1.pdf}
+\caption{plot of chunk unnamed-chunk-50}
 \end{figure}
 
 Looks much straighter.
@@ -2279,8 +2324,8 @@ Apparently random. But\ldots
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-57-1.pdf}
-\caption{plot of chunk unnamed-chunk-57}
+\includegraphics{figure/unnamed-chunk-58-1.pdf}
+\caption{plot of chunk unnamed-chunk-58}
 \end{figure}
 
 \end{frame}
@@ -2306,8 +2351,8 @@ page):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-59-1.pdf}
-\caption{plot of chunk unnamed-chunk-59}
+\includegraphics{figure/unnamed-chunk-60-1.pdf}
+\caption{plot of chunk unnamed-chunk-60}
 \end{figure}
 
 \end{frame}
@@ -2372,8 +2417,8 @@ page):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-61-1.pdf}
-\caption{plot of chunk unnamed-chunk-61}
+\includegraphics{figure/unnamed-chunk-62-1.pdf}
+\caption{plot of chunk unnamed-chunk-62}
 \end{figure}
 
 \end{frame}
@@ -2425,8 +2470,8 @@ page):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-63-1.pdf}
-\caption{plot of chunk unnamed-chunk-63}
+\includegraphics{figure/unnamed-chunk-64-1.pdf}
+\caption{plot of chunk unnamed-chunk-64}
 \end{figure}
 
 \end{frame}
@@ -2543,8 +2588,8 @@ page):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-66-1.pdf}
-\caption{plot of chunk unnamed-chunk-66}
+\includegraphics{figure/unnamed-chunk-67-1.pdf}
+\caption{plot of chunk unnamed-chunk-67}
 \end{figure}
 
 \end{frame}
@@ -2560,8 +2605,8 @@ page):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-67-1.pdf}
-\caption{plot of chunk unnamed-chunk-67}
+\includegraphics{figure/unnamed-chunk-68-1.pdf}
+\caption{plot of chunk unnamed-chunk-68}
 \end{figure}
 
 \end{frame}
@@ -2578,8 +2623,8 @@ page):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-68-1.pdf}
-\caption{plot of chunk unnamed-chunk-68}
+\includegraphics{figure/unnamed-chunk-69-1.pdf}
+\caption{plot of chunk unnamed-chunk-69}
 \end{figure}
 
 \end{frame}
@@ -4191,7 +4236,7 @@ Data in aligned columns with more than one space between, so:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-108-1.pdf} \normalsize
+\includegraphics{figure/unnamed-chunk-109-1.pdf} \normalsize
 
 \end{frame}
 
@@ -4316,8 +4361,8 @@ Data in aligned columns with more than one space between, so:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-113-1.pdf}
-\caption{plot of chunk unnamed-chunk-113}
+\includegraphics{figure/unnamed-chunk-114-1.pdf}
+\caption{plot of chunk unnamed-chunk-114}
 \end{figure}
 
 \end{frame}
@@ -4591,8 +4636,8 @@ frame), and predict from that:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-124-1.pdf}
-\caption{plot of chunk unnamed-chunk-124}
+\includegraphics{figure/unnamed-chunk-125-1.pdf}
+\caption{plot of chunk unnamed-chunk-125}
 \end{figure}
 
 \end{frame}
@@ -4999,16 +5044,16 @@ or
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    28 1     2          0.271 
-##  2    38 0     3          0.735 
-##  3    24 1     2          0.0819
-##  4    32 1     3          0.214 
-##  5    28 0     1          0.793 
-##  6    24 0     1          0.948 
-##  7    35 0     1          0.131 
-##  8    35 0     2          0.397 
-##  9    28 0     2          0.183 
-## 10    32 0     3          0.187
+##  1    28 0     3         0.0236 
+##  2    28 1     3         0.0329 
+##  3    35 0     3         0.472  
+##  4    38 1     1         0.0162 
+##  5    28 0     2         0.183  
+##  6    38 1     2         0.252  
+##  7    35 0     2         0.397  
+##  8    32 1     3         0.214  
+##  9    24 0     3         0.00181
+## 10    38 0     2         0.239
 \end{verbatim}
 
 \normalsize
@@ -5030,8 +5075,8 @@ or
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-139-1.pdf}
-\caption{plot of chunk unnamed-chunk-139}
+\includegraphics{figure/unnamed-chunk-140-1.pdf}
+\caption{plot of chunk unnamed-chunk-140}
 \end{figure}
 
 \end{frame}
@@ -5303,8 +5348,8 @@ Same P-value as before, so we haven't changed anything important.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-146-1.pdf}
-\caption{plot of chunk unnamed-chunk-146}
+\includegraphics{figure/unnamed-chunk-147-1.pdf}
+\caption{plot of chunk unnamed-chunk-147}
 \end{figure}
 
 \end{frame}
@@ -5356,8 +5401,8 @@ Same P-value as before, so we haven't changed anything important.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-148-1.pdf}
-\caption{plot of chunk unnamed-chunk-148}
+\includegraphics{figure/unnamed-chunk-149-1.pdf}
+\caption{plot of chunk unnamed-chunk-149}
 \end{figure}
 
 \end{frame}
@@ -5736,8 +5781,8 @@ This looks good (with only 12 points):
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-157-1.pdf}
-\caption{plot of chunk unnamed-chunk-157}
+\includegraphics{figure/unnamed-chunk-158-1.pdf}
+\caption{plot of chunk unnamed-chunk-158}
 \end{figure}
 
 \end{frame}
@@ -6389,8 +6434,8 @@ Take out \texttt{ph.karno} and \texttt{wt.loss} as well.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-178-1.pdf}
-\caption{plot of chunk unnamed-chunk-178}
+\includegraphics{figure/unnamed-chunk-179-1.pdf}
+\caption{plot of chunk unnamed-chunk-179}
 \end{figure}
 
 \end{frame}
@@ -6465,8 +6510,8 @@ No problems here:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-180-1.pdf}
-\caption{plot of chunk unnamed-chunk-180}
+\includegraphics{figure/unnamed-chunk-181-1.pdf}
+\caption{plot of chunk unnamed-chunk-181}
 \end{figure}
 
 \end{frame}
@@ -6547,8 +6592,8 @@ Down-and-up indicates incorrect relationship between age and survival:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-183-1.pdf}
-\caption{plot of chunk unnamed-chunk-183}
+\includegraphics{figure/unnamed-chunk-184-1.pdf}
+\caption{plot of chunk unnamed-chunk-184}
 \end{figure}
 
 \end{frame}
@@ -6594,8 +6639,8 @@ Not great, but less problematic than before:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-185-1.pdf}
-\caption{plot of chunk unnamed-chunk-185}
+\includegraphics{figure/unnamed-chunk-186-1.pdf}
+\caption{plot of chunk unnamed-chunk-186}
 \end{figure}
 
 \end{frame}
@@ -7233,8 +7278,8 @@ darkbrown lightbrown  darkblond lightblond
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-195-1.pdf}
-\caption{plot of chunk unnamed-chunk-195}
+\includegraphics{figure/unnamed-chunk-196-1.pdf}
+\caption{plot of chunk unnamed-chunk-196}
 \end{figure}
 
 \end{frame}
@@ -7354,8 +7399,8 @@ darkbrown lightbrown  darkblond lightblond
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-199-1.pdf}
-\caption{plot of chunk unnamed-chunk-199}
+\includegraphics{figure/unnamed-chunk-200-1.pdf}
+\caption{plot of chunk unnamed-chunk-200}
 \end{figure}
 
 Lines basically parallel, indicating no interaction.
@@ -7494,8 +7539,8 @@ those of standard silencers.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-204-1.pdf}
-\caption{plot of chunk unnamed-chunk-204}
+\includegraphics{figure/unnamed-chunk-205-1.pdf}
+\caption{plot of chunk unnamed-chunk-205}
 \end{figure}
 
 \end{frame}
@@ -7610,8 +7655,8 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-208-1.pdf}
-\caption{plot of chunk unnamed-chunk-208}
+\includegraphics{figure/unnamed-chunk-209-1.pdf}
+\caption{plot of chunk unnamed-chunk-209}
 \end{figure}
 
 \end{frame}
@@ -7637,8 +7682,8 @@ The lines are definitely \emph{not} parallel, showing that the effect of
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-209-1.pdf}
-\caption{plot of chunk unnamed-chunk-209}
+\includegraphics{figure/unnamed-chunk-210-1.pdf}
+\caption{plot of chunk unnamed-chunk-210}
 \end{figure}
 
 \normalsize
@@ -8791,14 +8836,14 @@ b 9 22
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
 ## 1 a         23    34
-## 2 a          5    20
-## 3 a         13    31
-## 4 a          9    25
-## 5 a         12    30
-## 6 b         14    23
-## 7 b          7    19
-## 8 b         21    28
-## 9 a         18    38
+## 2 b         22    31
+## 3 a          9    25
+## 4 a         12    30
+## 5 a         21    40
+## 6 a          5    20
+## 7 a         18    38
+## 8 b         27    33
+## 9 b         24    35
 \end{verbatim}
 
 \end{frame}
@@ -10059,7 +10104,7 @@ This says:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-273-1.pdf} \normalsize
+\includegraphics{figure/unnamed-chunk-274-1.pdf} \normalsize
 
 \end{frame}
 
@@ -10322,11 +10367,11 @@ Separated by \emph{tabs}:
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    17 lowfat    walking    103   109    90
-## 2     7 lowfat    atrest      87    88    90
-## 3     3 nonlowfat atrest      97    97    94
-## 4    18 lowfat    walking     92    96   101
-## 5    11 nonlowfat walking     86    86    84
+## 1    18 lowfat    walking     92    96   101
+## 2     6 lowfat    atrest      83    83    84
+## 3     4 nonlowfat atrest      80    82    83
+## 4    24 nonlowfat running     87   132   120
+## 5    30 lowfat    running     99   111   150
 \end{verbatim}
 
 \normalsize
@@ -10487,8 +10532,8 @@ Separated by \emph{tabs}:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-285-1.pdf}
-\caption{plot of chunk unnamed-chunk-285}
+\includegraphics{figure/unnamed-chunk-286-1.pdf}
+\caption{plot of chunk unnamed-chunk-286}
 \end{figure}
 
 \end{frame}
@@ -10696,8 +10741,8 @@ text under
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-291-1.pdf}
-\caption{plot of chunk unnamed-chunk-291}
+\includegraphics{figure/unnamed-chunk-292-1.pdf}
+\caption{plot of chunk unnamed-chunk-292}
 \end{figure}
 
 \end{frame}
@@ -10981,8 +11026,8 @@ With one LD score, plot against (true) groups, eg. boxplot:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-299-1.pdf}
-\caption{plot of chunk unnamed-chunk-299}
+\includegraphics{figure/unnamed-chunk-300-1.pdf}
+\caption{plot of chunk unnamed-chunk-300}
 \end{figure}
 
 \end{frame}
@@ -11594,8 +11639,8 @@ First and third quartiles for three response variables:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-315-1.pdf}
-\caption{plot of chunk unnamed-chunk-315}
+\includegraphics{figure/unnamed-chunk-316-1.pdf}
+\caption{plot of chunk unnamed-chunk-316}
 \end{figure}
 
 \end{frame}
@@ -11613,8 +11658,8 @@ First and third quartiles for three response variables:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-316-1.pdf}
-\caption{plot of chunk unnamed-chunk-316}
+\includegraphics{figure/unnamed-chunk-317-1.pdf}
+\caption{plot of chunk unnamed-chunk-317}
 \end{figure}
 
 \end{frame}
@@ -11912,7 +11957,7 @@ Everyone correctly classified.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-323-1.pdf} \normalsize
+\includegraphics{figure/unnamed-chunk-324-1.pdf} \normalsize
 
 \end{frame}
 
@@ -11927,8 +11972,8 @@ Everyone correctly classified.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-324-1.pdf}
-\caption{plot of chunk unnamed-chunk-324}
+\includegraphics{figure/unnamed-chunk-325-1.pdf}
+\caption{plot of chunk unnamed-chunk-325}
 \end{figure}
 
 \end{frame}
@@ -11965,8 +12010,8 @@ Make \texttt{label} be identifier of person. Now need legend:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-325-1.pdf}
-\caption{plot of chunk unnamed-chunk-325}
+\includegraphics{figure/unnamed-chunk-326-1.pdf}
+\caption{plot of chunk unnamed-chunk-326}
 \end{figure}
 
 \end{frame}
@@ -12305,8 +12350,8 @@ picking out the ones where things are not certain:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-336-1.pdf}
-\caption{plot of chunk unnamed-chunk-336}
+\includegraphics{figure/unnamed-chunk-337-1.pdf}
+\caption{plot of chunk unnamed-chunk-337}
 \end{figure}
 
 \textbackslash{}begin\{frame\}{[}figure{]}\{Comments\}
@@ -12438,8 +12483,8 @@ A bit more clustered:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-340-1.pdf}
-\caption{plot of chunk unnamed-chunk-340}
+\includegraphics{figure/unnamed-chunk-341-1.pdf}
+\caption{plot of chunk unnamed-chunk-341}
 \end{figure}
 
 \end{frame}
@@ -12697,8 +12742,8 @@ We did this the wrong way around, though!
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-346-1.pdf}
-\caption{plot of chunk unnamed-chunk-346}
+\includegraphics{figure/unnamed-chunk-347-1.pdf}
+\caption{plot of chunk unnamed-chunk-347}
 \end{figure}
 
 How to measure distance between set of red points and set of blue ones?
@@ -12709,7 +12754,7 @@ How to measure distance between set of red points and set of blue ones?
 \protect\hypertarget{single-linkage-distance}{}
 
 Find the red point and the blue point that are closest together:
-\includegraphics{figure/unnamed-chunk-347-1.pdf}
+\includegraphics{figure/unnamed-chunk-348-1.pdf}
 
 Single-linkage distance between 2 clusters is distance between their
 closest points.
@@ -12720,7 +12765,7 @@ closest points.
 \protect\hypertarget{complete-linkage}{}
 
 Find the red and blue points that are farthest apart:
-\includegraphics{figure/unnamed-chunk-348-1.pdf}
+\includegraphics{figure/unnamed-chunk-349-1.pdf}
 
 Complete-linkage distance is distance between farthest points.
 
@@ -12730,7 +12775,7 @@ Complete-linkage distance is distance between farthest points.
 \protect\hypertarget{wards-method}{}
 
 Work out mean of each cluster and join point to its mean:
-\includegraphics{figure/unnamed-chunk-349-1.pdf}
+\includegraphics{figure/unnamed-chunk-350-1.pdf}
 
 Work out (i) sum of squared distances of points from means.
 
@@ -12744,8 +12789,8 @@ Join each point to this mean:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-350-1.pdf}
-\caption{plot of chunk unnamed-chunk-350}
+\includegraphics{figure/unnamed-chunk-351-1.pdf}
+\caption{plot of chunk unnamed-chunk-351}
 \end{figure}
 
 Calc sum of squared distances (ii) of points to combined mean.
@@ -12881,8 +12926,8 @@ Dissimilarities for language data were how many number names had
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-354-1.pdf}
-\caption{plot of chunk unnamed-chunk-354}
+\includegraphics{figure/unnamed-chunk-355-1.pdf}
+\caption{plot of chunk unnamed-chunk-355}
 \end{figure}
 
 \end{frame}
@@ -12982,8 +13027,8 @@ Dissimilarities for language data were how many number names had
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-356-1.pdf}
-\caption{plot of chunk unnamed-chunk-356}
+\includegraphics{figure/unnamed-chunk-357-1.pdf}
+\caption{plot of chunk unnamed-chunk-357}
 \end{figure}
 
 \end{frame}
@@ -14403,8 +14448,8 @@ Compared to 3-cluster solution:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-410-1.pdf}
-\caption{plot of chunk unnamed-chunk-410}
+\includegraphics{figure/unnamed-chunk-411-1.pdf}
+\caption{plot of chunk unnamed-chunk-411}
 \end{figure}
 
 \end{frame}
@@ -14462,8 +14507,8 @@ Compared to 3-cluster solution:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-412-1.pdf}
-\caption{plot of chunk unnamed-chunk-412}
+\includegraphics{figure/unnamed-chunk-413-1.pdf}
+\caption{plot of chunk unnamed-chunk-413}
 \end{figure}
 
 \end{frame}
@@ -14494,8 +14539,8 @@ Compared to 3-cluster solution:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-413-1.pdf}
-\caption{plot of chunk unnamed-chunk-413}
+\includegraphics{figure/unnamed-chunk-414-1.pdf}
+\caption{plot of chunk unnamed-chunk-414}
 \end{figure}
 
 \end{frame}
@@ -14727,8 +14772,8 @@ that you can ignore:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-421-1.pdf}
-\caption{plot of chunk unnamed-chunk-421}
+\includegraphics{figure/unnamed-chunk-422-1.pdf}
+\caption{plot of chunk unnamed-chunk-422}
 \end{figure}
 
 \end{frame}
@@ -14794,8 +14839,8 @@ that you can ignore:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-423-1.pdf}
-\caption{plot of chunk unnamed-chunk-423}
+\includegraphics{figure/unnamed-chunk-424-1.pdf}
+\caption{plot of chunk unnamed-chunk-424}
 \end{figure}
 
 \end{frame}
@@ -14835,8 +14880,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-424-1.pdf}
-\caption{plot of chunk unnamed-chunk-424}
+\includegraphics{figure/unnamed-chunk-425-1.pdf}
+\caption{plot of chunk unnamed-chunk-425}
 \end{figure}
 
 \end{frame}
@@ -14944,8 +14989,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-430-1.pdf}
-\caption{plot of chunk unnamed-chunk-430}
+\includegraphics{figure/unnamed-chunk-431-1.pdf}
+\caption{plot of chunk unnamed-chunk-431}
 \end{figure}
 
 \end{frame}
@@ -14955,8 +15000,8 @@ D,1.4,1  ,1  ,0
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-431-1.pdf}
-\caption{plot of chunk unnamed-chunk-431}
+\includegraphics{figure/unnamed-chunk-432-1.pdf}
+\caption{plot of chunk unnamed-chunk-432}
 \end{figure}
 
 \end{frame}
@@ -15030,7 +15075,7 @@ D,1.4,1  ,1  ,0
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-434-1.pdf} \normalsize
+\includegraphics{figure/unnamed-chunk-435-1.pdf} \normalsize
 
 \end{frame}
 
@@ -15211,8 +15256,8 @@ and save as .csv when we are happy:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-439-1.pdf}
-\caption{plot of chunk unnamed-chunk-439}
+\includegraphics{figure/unnamed-chunk-440-1.pdf}
+\caption{plot of chunk unnamed-chunk-440}
 \end{figure}
 
 \end{frame}
@@ -15228,8 +15273,8 @@ and save as .csv when we are happy:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-440-1.pdf}
-\caption{plot of chunk unnamed-chunk-440}
+\includegraphics{figure/unnamed-chunk-441-1.pdf}
+\caption{plot of chunk unnamed-chunk-441}
 \end{figure}
 
 Get rid of Thunder Bay and Sault Ste Marie.
@@ -15274,8 +15319,8 @@ Get rid of Thunder Bay and Sault Ste Marie.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-442-1.pdf}
-\caption{plot of chunk unnamed-chunk-442}
+\includegraphics{figure/unnamed-chunk-443-1.pdf}
+\caption{plot of chunk unnamed-chunk-443}
 \end{figure}
 
 Geographically about right.
@@ -16010,8 +16055,8 @@ MDS higher too. (MDS working well.)
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-464-1.pdf}
-\caption{plot of chunk unnamed-chunk-464}
+\includegraphics{figure/unnamed-chunk-465-1.pdf}
+\caption{plot of chunk unnamed-chunk-465}
 \end{figure}
 
 Poor correspondence (not much trend).
@@ -16029,8 +16074,8 @@ Poor correspondence (not much trend).
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-465-1.pdf}
-\caption{plot of chunk unnamed-chunk-465}
+\includegraphics{figure/unnamed-chunk-466-1.pdf}
+\caption{plot of chunk unnamed-chunk-466}
 \end{figure}
 
 Almost perfect: all actual \(x=1\) go with smallest mapped distances;
@@ -16306,8 +16351,8 @@ instructions.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-471-1.pdf}
-\caption{plot of chunk unnamed-chunk-471}
+\includegraphics{figure/unnamed-chunk-472-1.pdf}
+\caption{plot of chunk unnamed-chunk-472}
 \end{figure}
 
 Imagine scree plot continues at zero, so 2 components is a \emph{big}
@@ -17023,8 +17068,8 @@ Need to look up two-letter abbreviations in ISO table:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-485-1.pdf}
-\caption{plot of chunk unnamed-chunk-485}
+\includegraphics{figure/unnamed-chunk-486-1.pdf}
+\caption{plot of chunk unnamed-chunk-486}
 \end{figure}
 
 \end{frame}
@@ -17326,8 +17371,8 @@ Using correlation matrix. Read that first:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-491-1.pdf}
-\caption{plot of chunk unnamed-chunk-491}
+\includegraphics{figure/unnamed-chunk-492-1.pdf}
+\caption{plot of chunk unnamed-chunk-492}
 \end{figure}
 
 \end{frame}
@@ -17618,8 +17663,8 @@ Read the data, run principal components, get biplot:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-499-1.pdf}
-\caption{plot of chunk unnamed-chunk-499}
+\includegraphics{figure/unnamed-chunk-500-1.pdf}
+\caption{plot of chunk unnamed-chunk-500}
 \end{figure}
 
 \end{frame}
@@ -19883,7 +19928,7 @@ Global mean temperature every year since 1880:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-557-1.pdf} \normalsize
+\includegraphics{figure/unnamed-chunk-558-1.pdf} \normalsize
 
 \end{frame}
 
@@ -20147,7 +20192,7 @@ seemed to be accelerating:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-564-1.pdf}
+\includegraphics{figure/unnamed-chunk-565-1.pdf}
 
 \end{frame}
 
@@ -20468,7 +20513,7 @@ Printing formats nicely.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-573-1.pdf}
+\includegraphics{figure/unnamed-chunk-574-1.pdf}
 
 \end{frame}
 
@@ -20499,7 +20544,7 @@ Does differencing help here? Looks stationary, but some regular spikes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-574-1.pdf}
+\includegraphics{figure/unnamed-chunk-575-1.pdf}
 
 \end{frame}
 
@@ -20515,7 +20560,7 @@ A visual (using original data):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-575-1.pdf}
+\includegraphics{figure/unnamed-chunk-576-1.pdf}
 
 \end{frame}
 
@@ -20645,7 +20690,7 @@ Gain a missing because there is nothing before the first observation.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-581-1.pdf}
+\includegraphics{figure/unnamed-chunk-582-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -20716,7 +20761,7 @@ On the other hand, this:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-583-1.pdf}
+\includegraphics{figure/unnamed-chunk-584-1.pdf}
 
 \end{frame}
 
@@ -20767,7 +20812,7 @@ of it with \texttt{acf} and \texttt{autoplot}. Here, white noise:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-585-1.pdf}
+\includegraphics{figure/unnamed-chunk-586-1.pdf}
 
 No autocorrelations beyond chance, anywhere (except \emph{possibly} at
 lag 13).
@@ -20785,7 +20830,7 @@ Autocorrelations work best on \emph{stationary} series.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-586-1.pdf}
+\includegraphics{figure/unnamed-chunk-587-1.pdf}
 
 \end{frame}
 
@@ -20815,7 +20860,7 @@ Negative autocorrelation at lag 1, nothing beyond that.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-587-1.pdf}
+\includegraphics{figure/unnamed-chunk-588-1.pdf}
 
 \end{frame}
 
@@ -20885,7 +20930,7 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-591-1.pdf}
+\includegraphics{figure/unnamed-chunk-592-1.pdf}
 
 \end{frame}
 
@@ -20916,7 +20961,7 @@ Fix non-constant variability first by taking logs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-592-1.pdf}
+\includegraphics{figure/unnamed-chunk-593-1.pdf}
 
 \end{frame}
 
@@ -20931,7 +20976,7 @@ differences}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-593-1.pdf}
+\includegraphics{figure/unnamed-chunk-594-1.pdf}
 
 \end{frame}
 
@@ -20958,7 +21003,7 @@ differences}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-594-1.pdf}
+\includegraphics{figure/unnamed-chunk-595-1.pdf}
 
 \end{frame}
 
@@ -21010,7 +21055,7 @@ January.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-598-1.pdf}
+\includegraphics{figure/unnamed-chunk-599-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -21112,7 +21157,7 @@ Significant at lag 1, but beyond, just chance:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-601-1.pdf}
+\includegraphics{figure/unnamed-chunk-602-1.pdf}
 
 \end{frame}
 
@@ -21206,7 +21251,7 @@ previous one, like this (loop):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-604-1.pdf}
+\includegraphics{figure/unnamed-chunk-605-1.pdf}
 
 \end{frame}
 
@@ -21221,7 +21266,7 @@ This cuts off for an AR series:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-605-1.pdf}
+\includegraphics{figure/unnamed-chunk-606-1.pdf}
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -21236,7 +21281,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-606-1.pdf}
+\includegraphics{figure/unnamed-chunk-607-1.pdf}
 
 \end{frame}
 
@@ -21480,7 +21525,7 @@ Forecasts all 0, since the past doesn't help to predict future.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-613-1.pdf}
+\includegraphics{figure/unnamed-chunk-614-1.pdf}
 
 \end{frame}
 
@@ -21545,7 +21590,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-616-1.pdf}
+\includegraphics{figure/unnamed-chunk-617-1.pdf}
 
 \end{frame}
 
@@ -21558,7 +21603,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-617-1.pdf}
+\includegraphics{figure/unnamed-chunk-618-1.pdf}
 
 \end{frame}
 
@@ -21626,7 +21671,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-620-1.pdf}
+\includegraphics{figure/unnamed-chunk-621-1.pdf}
 
 \end{frame}
 
@@ -21728,7 +21773,7 @@ Not \emph{quite} same every year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-623-1.pdf}
+\includegraphics{figure/unnamed-chunk-624-1.pdf}
 
 \end{frame}
 
@@ -22019,7 +22064,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-626-1.pdf}
+\includegraphics{figure/unnamed-chunk-627-1.pdf}
 
 \end{frame}
 
@@ -22059,7 +22104,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-628-1.pdf}
+\includegraphics{figure/unnamed-chunk-629-1.pdf}
 
 \end{frame}
 

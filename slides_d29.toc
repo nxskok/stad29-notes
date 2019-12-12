@@ -1,17 +1,17 @@
 \beamer@sectionintoc {1}{Course Outline}{2}{0}{1}
 \beamer@sectionintoc {2}{Dates and Times}{12}{0}{2}
-\beamer@sectionintoc {3}{Review of (multiple) regression}{37}{0}{3}
-\beamer@sectionintoc {4}{Logistic regression (ordinal/nominal response)}{120}{0}{4}
-\beamer@sectionintoc {5}{Survival analysis}{203}{0}{5}
-\beamer@sectionintoc {6}{Analysis of variance}{246}{0}{6}
-\beamer@sectionintoc {7}{Analysis of covariance}{317}{0}{7}
-\beamer@sectionintoc {8}{Multivariate ANOVA}{337}{0}{8}
-\beamer@sectionintoc {9}{Repeated measures by profile analysis}{357}{0}{9}
-\beamer@sectionintoc {10}{Discriminant analysis}{392}{0}{10}
-\beamer@sectionintoc {11}{Cluster analysis}{457}{0}{11}
-\beamer@sectionintoc {12}{Multidimensional scaling}{536}{0}{12}
-\beamer@sectionintoc {13}{Principal components}{594}{0}{13}
-\beamer@sectionintoc {14}{Exploratory factor analysis}{637}{0}{14}
-\beamer@sectionintoc {15}{Confirmatory factor analysis\}}{709}{0}{15}
-\beamer@sectionintoc {16}{Time Series}{723}{0}{16}
-\beamer@sectionintoc {17}{Multiway frequency tables}{808}{0}{17}
+\beamer@sectionintoc {3}{Review of (multiple) regression}{38}{0}{3}
+\beamer@sectionintoc {4}{Logistic regression (ordinal/nominal response)}{121}{0}{4}
+\beamer@sectionintoc {5}{Survival analysis}{204}{0}{5}
+\beamer@sectionintoc {6}{Analysis of variance}{247}{0}{6}
+\beamer@sectionintoc {7}{Analysis of covariance}{318}{0}{7}
+\beamer@sectionintoc {8}{Multivariate ANOVA}{338}{0}{8}
+\beamer@sectionintoc {9}{Repeated measures by profile analysis}{358}{0}{9}
+\beamer@sectionintoc {10}{Discriminant analysis}{393}{0}{10}
+\beamer@sectionintoc {11}{Cluster analysis}{458}{0}{11}
+\beamer@sectionintoc {12}{Multidimensional scaling}{537}{0}{12}
+\beamer@sectionintoc {13}{Principal components}{595}{0}{13}
+\beamer@sectionintoc {14}{Exploratory factor analysis}{638}{0}{14}
+\beamer@sectionintoc {15}{Confirmatory factor analysis\}}{710}{0}{15}
+\beamer@sectionintoc {16}{Time Series}{724}{0}{16}
+\beamer@sectionintoc {17}{Multiway frequency tables}{809}{0}{17}

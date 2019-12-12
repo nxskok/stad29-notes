@@ -21,7 +21,7 @@ mydates <- c("1970-01-01", "2007-09-04", "1931-08-05")
 
 ## Doing arithmetic with dates
 
-- Dates are "actually" numbers, so can add and subtract: 
+- Dates are "actually" numbers, so can add and subtract (difference is 2007 date in `d` minus others): 
 
 ```{r, paged.print=T}
 somedates %>% mutate(plus30 = d + 30, diffs = d[2] - d)
@@ -247,8 +247,27 @@ stays %>% mutate(stay = discharge - admit)
 be better: 
 
 ```{r, paged.print=T}
-stays %>% mutate(stay_days = (discharge - admit) / ddays(1))
+# stays %>% 
+#   mutate(stay_days = (discharge - admit) / ddays(1))
+stays %>% 
+  mutate(
+    stay_days = as.period(admit %--% discharge) / days(1))
 ```
+
+## Completed days
+
+- Pull out with `day()` etc, as for a date-time
+
+```{r}
+stays %>% 
+  mutate(
+    stay = as.period(admit %--% discharge),
+    stay_days = day(stay),
+    stay_hours = hour(stay)
+    ) %>%
+  select(starts_with("stay"))
+```
+
 
 ## Comments
 - Date-times are stored internally as seconds-since-something, so that
@@ -257,7 +276,8 @@ subtracting two of them will give, internally, a number of seconds.
 chooses for us).
 - Functions `ddays(1)`, `dminutes(1)` etc. will give number of seconds
 in a day or a minute, thus dividing by them will give (fractional) days,
-minutes etc.
-- This idea useful for calculating time from a start point until an event
+minutes etc. This works for things like days/minutes with equal numbers of seconds, but not months/years.
+- Better: convert to a "period", then divide by `days(1)`, `months(1)` etc.
+- These ideas useful for calculating time from a start point until an event
 happens (in this case, a patient being discharged from hospital).
 
