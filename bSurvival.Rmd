@@ -182,7 +182,7 @@ ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 
 ## Predicted survival probs 
 - The function we use is called
-`survfit`, though actually works rather like
+`surv_fit`, though actually works rather like
 `predict`. 
 - First create a data frame of values to predict from. We'll do all
 combos of ages 20 and 40, treatment and not, using
@@ -227,7 +227,8 @@ vs.\ not)
 
 * Would be nice to see this on a graph. This is `ggsurvplot` from package `survminer`:
 ```{r }
-g <- ggsurvplot(s, conf.int = F)
+s1 <- do.call(survfit, list(formula=dance.1, newdata=dance.new, data=dance))
+g <- ggsurvplot(s1, conf.int = F)
 ```
 
 - uses "strata" thus (`dance.new`): 
@@ -480,7 +481,8 @@ s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
 
 ## The plot 
 ```{r fig.height=3.8}
-ggsurvplot(s, conf.int = F)
+s1 <- do.call(survfit, list(formula = lung.3, data = lung.complete, newdata = lung.new))
+ggsurvplot(s1, conf.int = F)
 ```
  
 

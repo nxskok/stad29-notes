@@ -121,6 +121,8 @@ ones?
 
 
 ## Single-linkage distance
+
+
 Find the red point and the blue point that are closest together: 
 ```{r echo=F,fig.height=3.1}
 distances <- crossdist(a$x, a$y, b$x, b$y)

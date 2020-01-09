@@ -9,9 +9,9 @@
 \beamer@sectionintoc {9}{Repeated measures by profile analysis}{358}{0}{9}
 \beamer@sectionintoc {10}{Discriminant analysis}{393}{0}{10}
 \beamer@sectionintoc {11}{Cluster analysis}{458}{0}{11}
-\beamer@sectionintoc {12}{Multidimensional scaling}{537}{0}{12}
-\beamer@sectionintoc {13}{Principal components}{595}{0}{13}
-\beamer@sectionintoc {14}{Exploratory factor analysis}{638}{0}{14}
-\beamer@sectionintoc {15}{Confirmatory factor analysis\}}{710}{0}{15}
-\beamer@sectionintoc {16}{Time Series}{724}{0}{16}
-\beamer@sectionintoc {17}{Multiway frequency tables}{809}{0}{17}
+\beamer@sectionintoc {12}{\texttt {\{r\ bMDS,\ child="bMDS.Rmd"\}}}{537}{0}{12}
+\beamer@sectionintoc {13}{Principal components}{538}{0}{13}
+\beamer@sectionintoc {14}{Exploratory factor analysis}{581}{0}{14}
+\beamer@sectionintoc {15}{Confirmatory factor analysis\}}{653}{0}{15}
+\beamer@sectionintoc {16}{Time Series}{667}{0}{16}
+\beamer@sectionintoc {17}{Multiway frequency tables}{752}{0}{17}

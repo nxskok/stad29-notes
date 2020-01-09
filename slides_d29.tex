@@ -160,8 +160,8 @@
 \item
   E-mail: \texttt{butler@utsc.utoronto.ca}
 \item
-  Office hours: Monday 11:00-13:00. I am often around otherwise. See if
-  I'm in. Or make an appointment. E-mail always good.
+  Office hours: Wednesday 11:00-12:00. Or make an appointment. E-mail
+  always good.
 \item
   Course website: \href{http://ritsokiguess.site/STAD29/}{link}.
 \item
@@ -5044,16 +5044,16 @@ or
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    28 0     3         0.0236 
-##  2    28 1     3         0.0329 
-##  3    35 0     3         0.472  
-##  4    38 1     1         0.0162 
-##  5    28 0     2         0.183  
-##  6    38 1     2         0.252  
-##  7    35 0     2         0.397  
-##  8    32 1     3         0.214  
-##  9    24 0     3         0.00181
-## 10    38 0     2         0.239
+##  1    35 0     1          0.131 
+##  2    38 1     2          0.252 
+##  3    24 0     2          0.0502
+##  4    35 0     2          0.397 
+##  5    24 1     2          0.0819
+##  6    32 1     2          0.495 
+##  7    32 0     3          0.187 
+##  8    32 1     1          0.291 
+##  9    38 1     3          0.732 
+## 10    28 0     3          0.0236
 \end{verbatim}
 
 \normalsize
@@ -5793,8 +5793,8 @@ This looks good (with only 12 points):
 \begin{itemize}
 \tightlist
 \item
-  The function we use is called \texttt{survfit}, though actually works
-  rather like \texttt{predict}.
+  The function we use is called \texttt{surv\_fit}, though actually
+  works rather like \texttt{predict}.
 \item
   First create a data frame of values to predict from. We'll do all
   combos of ages 20 and 40, treatment and not, using \texttt{crossing}
@@ -5877,7 +5877,8 @@ in \texttt{dance.new}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{g <-}\StringTok{ }\KeywordTok{ggsurvplot}\NormalTok{(s, }\DataTypeTok{conf.int =}\NormalTok{ F)}
+\NormalTok{s1 <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(survfit, }\KeywordTok{list}\NormalTok{(}\DataTypeTok{formula=}\NormalTok{dance}\FloatTok{.1}\NormalTok{, }\DataTypeTok{newdata=}\NormalTok{dance.new, }\DataTypeTok{data=}\NormalTok{dance))}
+\NormalTok{g <-}\StringTok{ }\KeywordTok{ggsurvplot}\NormalTok{(s1, }\DataTypeTok{conf.int =}\NormalTok{ F)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6428,7 +6429,8 @@ Take out \texttt{ph.karno} and \texttt{wt.loss} as well.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggsurvplot}\NormalTok{(s, }\DataTypeTok{conf.int =}\NormalTok{ F)}
+\NormalTok{s1 <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(survfit, }\KeywordTok{list}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ lung}\FloatTok{.3}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ lung.complete, }\DataTypeTok{newdata =}\NormalTok{ lung.new))}
+\KeywordTok{ggsurvplot}\NormalTok{(s1, }\DataTypeTok{conf.int =}\NormalTok{ F)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8835,15 +8837,15 @@ b 9 22
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 a         23    34
-## 2 b         22    31
-## 3 a          9    25
-## 4 a         12    30
-## 5 a         21    40
-## 6 a          5    20
-## 7 a         18    38
-## 8 b         27    33
-## 9 b         24    35
+## 1 b         26    34
+## 2 a         23    34
+## 3 b         12    26
+## 4 b          9    22
+## 5 a          5    20
+## 6 a         10    23
+## 7 a         14    27
+## 8 a          9    25
+## 9 b         14    23
 \end{verbatim}
 
 \end{frame}
@@ -10367,11 +10369,11 @@ Separated by \emph{tabs}:
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1    18 lowfat    walking     92    96   101
-## 2     6 lowfat    atrest      83    83    84
-## 3     4 nonlowfat atrest      80    82    83
-## 4    24 nonlowfat running     87   132   120
-## 5    30 lowfat    running     99   111   150
+## 1     3 nonlowfat atrest      97    97    94
+## 2    11 nonlowfat walking     86    86    84
+## 3    30 lowfat    running     99   111   150
+## 4     2 nonlowfat atrest      90    92    93
+## 5     7 lowfat    atrest      87    88    90
 \end{verbatim}
 
 \normalsize
@@ -13734,7 +13736,7 @@ A lot of output, so look at these individually.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 29 44 24
+## [1] 40 25 32
 \end{verbatim}
 
 \begin{itemize}
@@ -13750,10 +13752,10 @@ A lot of output, so look at these individually.
 \end{Shaded}
 
 \begin{verbatim}
-##        birth      death     infant
-## 1  0.4737967 -0.4878149  0.2466440
-## 2 -0.9593341 -0.4322350 -0.8904328
-## 3  1.1862748  1.3818738  1.3344318
+##        birth      death      infant
+## 1 -1.0376994 -0.3289046 -0.90669032
+## 2  1.1780071  1.3323130  1.32732200
+## 3  0.3768062 -0.6297388  0.09639258
 \end{verbatim}
 
 \begin{itemize}
@@ -13775,7 +13777,7 @@ A lot of output, so look at these individually.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 14.96356 25.13922 26.78049
+## [1] 17.21617 28.32560 21.53020
 \end{verbatim}
 
 Cluster 1 compact relative to others (countries in cluster 1 more
@@ -13788,10 +13790,10 @@ similar).
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 2 2 2 2 2 2 3 2 1 1 2 3 2 2 2 2 2 2 2 2 2 3 1 2 2 1 1 3
-## [29] 2 1 2 1 1 2 2 1 1 1 3 3 1 1 3 3 1 3 3 3 1 2 2 2 2 2 2 1
-## [57] 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 2 3 2 1 1 3 1 2 1
-## [85] 3 3 3 3 1 3 3 3 3 3 1 3 3
+##  [1] 3 1 1 1 1 1 2 1 3 3 1 2 1 1 1 1 1 1 1 1 1 2 2 1 3 3 3 2
+## [29] 1 3 1 3 3 1 1 3 3 3 2 2 3 3 2 2 3 2 2 2 3 1 1 1 1 1 1 3
+## [57] 3 3 3 3 1 1 1 1 1 1 1 1 1 1 3 3 3 3 3 1 2 1 3 3 2 3 1 3
+## [85] 2 2 2 2 3 2 2 2 2 2 3 2 2
 \end{verbatim}
 
 The cluster membership for each of the 97 countries.
@@ -13837,21 +13839,11 @@ Write function to extract them:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Albania"              "Czechoslovakia"       "Hungary"             
-##  [4] "Romania"              "USSR"                 "Ukrainian_SSR"       
-##  [7] "Chile"                "Uruguay"              "Finland"             
-## [10] "France"               "Greece"               "Italy"               
-## [13] "Norway"               "Spain"                "Switzerland"         
-## [16] "Austria"              "Canada"               "Israel"              
-## [19] "Kuwait"               "China"                "Korea"               
-## [22] "Singapore"            "Thailand"             "Bulgaria"            
-## [25] "Former_E._Germany"    "Poland"               "Yugoslavia"          
-## [28] "Byelorussia_SSR"      "Argentina"            "Venezuela"           
-## [31] "Belgium"              "Denmark"              "Germany"             
-## [34] "Ireland"              "Netherlands"          "Portugal"            
-## [37] "Sweden"               "U.K."                 "Japan"               
-## [40] "U.S.A."               "Bahrain"              "United_Arab_Emirates"
-## [43] "Hong_Kong"            "Sri_Lanka"
+##  [1] "Bolivia"      "Mexico"       "Afghanistan"  "Iran"         "Bangladesh"  
+##  [6] "Gabon"        "Ghana"        "Namibia"      "Sierra_Leone" "Swaziland"   
+## [11] "Uganda"       "Zaire"        "Cambodia"     "Nepal"        "Angola"      
+## [16] "Congo"        "Ethiopia"     "Gambia"       "Malawi"       "Mozambique"  
+## [21] "Nigeria"      "Somalia"      "Sudan"        "Tanzania"     "Zambia"
 \end{verbatim}
 
 \normalsize
@@ -13868,14 +13860,17 @@ Write function to extract them:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Bolivia"      "Mexico"       "Afghanistan" 
-##  [4] "Bangladesh"   "Gabon"        "Ghana"       
-##  [7] "Namibia"      "Sierra_Leone" "Swaziland"   
-## [10] "Uganda"       "Zaire"        "Cambodia"    
-## [13] "Nepal"        "Angola"       "Congo"       
-## [16] "Ethiopia"     "Gambia"       "Malawi"      
-## [19] "Mozambique"   "Nigeria"      "Somalia"     
-## [22] "Sudan"        "Tanzania"     "Zambia"
+##  [1] "Albania"      "Ecuador"      "Paraguay"    
+##  [4] "Kuwait"       "Oman"         "Turkey"      
+##  [7] "India"        "Mongolia"     "Pakistan"    
+## [10] "Algeria"      "Botswana"     "Egypt"       
+## [13] "Libya"        "Morocco"      "South_Africa"
+## [16] "Zimbabwe"     "Brazil"       "Columbia"    
+## [19] "Guyana"       "Peru"         "Venezuela"   
+## [22] "Bahrain"      "Iraq"         "Jordan"      
+## [25] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [28] "Malaysia"     "Philippines"  "Vietnam"     
+## [31] "Kenya"        "Tunisia"
 \end{verbatim}
 
 \end{frame}
@@ -13890,16 +13885,26 @@ Write function to extract them:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Ecuador"      "Paraguay"     "Iran"        
-##  [4] "Oman"         "Turkey"       "India"       
-##  [7] "Mongolia"     "Pakistan"     "Algeria"     
-## [10] "Botswana"     "Egypt"        "Libya"       
-## [13] "Morocco"      "South_Africa" "Zimbabwe"    
-## [16] "Brazil"       "Columbia"     "Guyana"      
-## [19] "Peru"         "Iraq"         "Jordan"      
-## [22] "Lebanon"      "Saudi_Arabia" "Indonesia"   
-## [25] "Malaysia"     "Philippines"  "Vietnam"     
-## [28] "Kenya"        "Tunisia"
+##  [1] "Czechoslovakia"       "Hungary"             
+##  [3] "Romania"              "USSR"                
+##  [5] "Ukrainian_SSR"        "Chile"               
+##  [7] "Uruguay"              "Finland"             
+##  [9] "France"               "Greece"              
+## [11] "Italy"                "Norway"              
+## [13] "Spain"                "Switzerland"         
+## [15] "Austria"              "Canada"              
+## [17] "Israel"               "China"               
+## [19] "Korea"                "Singapore"           
+## [21] "Thailand"             "Bulgaria"            
+## [23] "Former_E._Germany"    "Poland"              
+## [25] "Yugoslavia"           "Byelorussia_SSR"     
+## [27] "Argentina"            "Belgium"             
+## [29] "Denmark"              "Germany"             
+## [31] "Ireland"              "Netherlands"         
+## [33] "Portugal"             "Sweden"              
+## [35] "U.K."                 "Japan"               
+## [37] "U.S.A."               "United_Arab_Emirates"
+## [39] "Hong_Kong"            "Sri_Lanka"
 \end{verbatim}
 
 \end{frame}
@@ -13931,9 +13936,9 @@ Write function to extract them:
 \begin{verbatim}
 ##      second
 ## first  1  2  3
-##     1  1  0 28
-##     2  0 40  4
-##     3 24  0  0
+##     1 40  0  0
+##     2  0 24  1
+##     3  4  0 28
 \end{verbatim}
 
 \normalsize
@@ -14081,7 +14086,7 @@ total within-group sums of squares. ``For each number of clusters, run
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 24  8 30 15 18  2
+## [1] 17 24 13 20 13 10
 \end{verbatim}
 
 \begin{Shaded}
@@ -14092,12 +14097,12 @@ total within-group sums of squares. ``For each number of clusters, run
 
 \begin{verbatim}
 ##        birth      death     infant
-## 1  0.4160993 -0.5169988  0.2648754
-## 2  1.3043848  2.1896567  1.9470306
-## 3 -1.1737104 -0.1856375 -0.9534370
-## 4 -0.4357690 -1.1438599 -0.7281108
-## 5  1.2092406  0.7441347  1.0278003
-## 6 -0.2199722  2.1116577 -0.4544435
+## 1  1.2049466  0.6972333  1.0165097
+## 2  0.4160993 -0.5169988  0.2648754
+## 3 -1.1458296  0.2636810 -0.9301055
+## 4 -1.1331101 -0.4617719 -0.9428918
+## 5 -0.3548334 -1.1812663 -0.7096686
+## 6  1.1700347  2.1719052  1.6537224
 \end{verbatim}
 
 \end{frame}
@@ -14117,18 +14122,18 @@ total within-group sums of squares. ``For each number of clusters, run
 
 \begin{verbatim}
 ## # A tibble: 10 x 2
-##    country           cluster
-##    <chr>               <int>
-##  1 Tunisia                 1
-##  2 Bahrain                 4
-##  3 Thailand                4
-##  4 Jordan                  1
-##  5 Romania                 3
-##  6 Angola                  2
-##  7 Sudan                   5
-##  8 Bolivia                 5
-##  9 Former_E._Germany       3
-## 10 Iraq                    1
+##    country     cluster
+##    <chr>         <int>
+##  1 Swaziland         1
+##  2 Switzerland       4
+##  3 Philippines       2
+##  4 Guyana            2
+##  5 Finland           4
+##  6 Vietnam           2
+##  7 Paraguay          2
+##  8 Portugal          4
+##  9 Mongolia          2
+## 10 Oman              2
 \end{verbatim}
 
 \end{frame}
@@ -14146,14 +14151,11 @@ average:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Ecuador"      "Paraguay"     "Oman"        
-##  [4] "Turkey"       "India"        "Mongolia"    
-##  [7] "Pakistan"     "Algeria"      "Egypt"       
-## [10] "Libya"        "Morocco"      "South_Africa"
-## [13] "Zimbabwe"     "Brazil"       "Guyana"      
-## [16] "Peru"         "Iraq"         "Jordan"      
-## [19] "Lebanon"      "Saudi_Arabia" "Indonesia"   
-## [22] "Philippines"  "Vietnam"      "Tunisia"
+##  [1] "Iran"       "Bangladesh" "Botswana"   "Gabon"     
+##  [5] "Ghana"      "Namibia"    "Swaziland"  "Uganda"    
+##  [9] "Zaire"      "Cambodia"   "Nepal"      "Congo"     
+## [13] "Kenya"      "Nigeria"    "Sudan"      "Tanzania"  
+## [17] "Zambia"
 \end{verbatim}
 
 \end{frame}
@@ -14172,9 +14174,14 @@ High on everything:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Afghanistan"  "Sierra_Leone" "Angola"      
-## [4] "Ethiopia"     "Gambia"       "Malawi"      
-## [7] "Mozambique"   "Somalia"
+##  [1] "Ecuador"      "Paraguay"     "Oman"        
+##  [4] "Turkey"       "India"        "Mongolia"    
+##  [7] "Pakistan"     "Algeria"      "Egypt"       
+## [10] "Libya"        "Morocco"      "South_Africa"
+## [13] "Zimbabwe"     "Brazil"       "Guyana"      
+## [16] "Peru"         "Iraq"         "Jordan"      
+## [19] "Lebanon"      "Saudi_Arabia" "Indonesia"   
+## [22] "Philippines"  "Vietnam"      "Tunisia"
 \end{verbatim}
 
 \normalsize
@@ -14194,20 +14201,12 @@ Low on everything, though death rate close to average: \footnotesize
 
 \begin{verbatim}
 ##  [1] "Czechoslovakia"    "Hungary"          
-##  [3] "Romania"           "USSR"             
-##  [5] "Ukrainian_SSR"     "Uruguay"          
-##  [7] "Finland"           "France"           
-##  [9] "Greece"            "Italy"            
-## [11] "Norway"            "Spain"            
-## [13] "Switzerland"       "Austria"          
-## [15] "Canada"            "Bulgaria"         
-## [17] "Former_E._Germany" "Poland"           
-## [19] "Yugoslavia"        "Byelorussia_SSR"  
-## [21] "Belgium"           "Denmark"          
-## [23] "Germany"           "Ireland"          
-## [25] "Netherlands"       "Portugal"         
-## [27] "Sweden"            "U.K."             
-## [29] "Japan"             "U.S.A."
+##  [3] "Romania"           "Ukrainian_SSR"    
+##  [5] "Norway"            "Korea"            
+##  [7] "Bulgaria"          "Former_E._Germany"
+##  [9] "Belgium"           "Denmark"          
+## [11] "Germany"           "Sweden"           
+## [13] "U.K."
 \end{verbatim}
 
 \normalsize
@@ -14226,14 +14225,16 @@ Low on everything, especially death rate: \small
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Albania"              "Chile"               
-##  [3] "Israel"               "Kuwait"              
-##  [5] "China"                "Singapore"           
-##  [7] "Thailand"             "Argentina"           
-##  [9] "Columbia"             "Venezuela"           
-## [11] "Bahrain"              "United_Arab_Emirates"
-## [13] "Hong_Kong"            "Malaysia"            
-## [15] "Sri_Lanka"
+##  [1] "USSR"            "Uruguay"        
+##  [3] "Finland"         "France"         
+##  [5] "Greece"          "Italy"          
+##  [7] "Spain"           "Switzerland"    
+##  [9] "Austria"         "Canada"         
+## [11] "Poland"          "Yugoslavia"     
+## [13] "Byelorussia_SSR" "Argentina"      
+## [15] "Ireland"         "Netherlands"    
+## [17] "Portugal"        "Japan"          
+## [19] "U.S.A."          "Hong_Kong"
 \end{verbatim}
 
 \normalsize
@@ -14252,12 +14253,13 @@ Higher than average on everything, though not the highest:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Bolivia"    "Iran"       "Bangladesh"
-##  [4] "Botswana"   "Gabon"      "Ghana"     
-##  [7] "Namibia"    "Swaziland"  "Uganda"    
-## [10] "Zaire"      "Cambodia"   "Nepal"     
-## [13] "Congo"      "Kenya"      "Nigeria"   
-## [16] "Sudan"      "Tanzania"   "Zambia"
+##  [1] "Albania"              "Chile"               
+##  [3] "Israel"               "Kuwait"              
+##  [5] "China"                "Singapore"           
+##  [7] "Thailand"             "Columbia"            
+##  [9] "Venezuela"            "Bahrain"             
+## [11] "United_Arab_Emirates" "Malaysia"            
+## [13] "Sri_Lanka"
 \end{verbatim}
 
 \end{frame}
@@ -14274,7 +14276,10 @@ Very high death rate, just below average on all else:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Mexico" "Korea"
+##  [1] "Bolivia"      "Mexico"       "Afghanistan" 
+##  [4] "Sierra_Leone" "Angola"       "Ethiopia"    
+##  [7] "Gambia"       "Malawi"       "Mozambique"  
+## [10] "Somalia"
 \end{verbatim}
 
 \end{frame}
@@ -14291,9 +14296,9 @@ Very high death rate, just below average on all else:
 \begin{verbatim}
 ##      six
 ## three  1  2  3  4  5  6
-##     1 24  0  0  2  3  0
-##     2  0  0 30 13  0  1
-##     3  0  8  0  0 15  1
+##     1  0  0 13 20  7  0
+##     2 15  0  0  0  0 10
+##     3  2 24  0  0  6  0
 \end{verbatim}
 
 Compared to 3-cluster solution:
@@ -14347,7 +14352,7 @@ Compared to 3-cluster solution:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 21.687195  8.851811  1.773006
+## [1] 17.407851  8.743023  1.000331
 \end{verbatim}
 
 \begin{Shaded}
@@ -14358,9 +14363,9 @@ Compared to 3-cluster solution:
 
 \begin{verbatim}
 ##              LD1        LD2        LD3
-## birth  2.6879695  1.1224202  1.9483853
-## death  0.6652712 -2.7213044  0.6049358
-## infant 2.1111801  0.7650912 -2.3542296
+## birth  -2.088306  1.6066337 -1.7791031
+## death  -1.359398 -2.5075513 -0.6581161
+## infant -1.184993  0.4780262  2.2687506
 \end{verbatim}
 
 \normalsize
@@ -14402,10 +14407,10 @@ Compared to 3-cluster solution:
 ## Observations: 97
 ## Variables: 5
 ## $ country <fct> Albania, Czechoslovakia, Hungar…
-## $ cluster <int> 4, 3, 3, 3, 3, 3, 5, 4, 1, 1, 3…
-## $ LD1     <dbl> -2.74034473, -5.01874312, -4.97…
-## $ LD2     <dbl> 2.2311427, -2.5427640, -3.62910…
-## $ LD3     <dbl> -0.086392118, 0.067491502, -0.1…
+## $ cluster <int> 5, 3, 3, 3, 4, 3, 6, 5, 2, 2, 4…
+## $ LD1     <dbl> 2.8215814, 3.3109528, 3.0010047…
+## $ LD2     <dbl> 1.983429, -2.796716, -3.891051,…
+## $ LD3     <dbl> 0.13334944, -0.19415639, -0.025…
 \end{verbatim}
 
 \normalsize
@@ -14575,1544 +14580,8 @@ Compared to 3-cluster solution:
 
 \end{frame}
 
-\hypertarget{multidimensional-scaling}{%
-\section{Multidimensional scaling}\label{multidimensional-scaling}}
-
-\begin{frame}[fragile]{Multidimensional Scaling}
-\protect\hypertarget{multidimensional-scaling-1}{}
-
-\begin{itemize}
-\item
-  Have distances between individuals.
-\item
-  Want to draw a picture (map) in 2 dimensions showing individuals so
-  that distances (or order of distances) as close together as possible.
-  (Or maybe 3 with \texttt{rgl}.)
-\item
-  If want to preserve actual distances, called \emph{metric
-  multidimensional scaling} (in R, \texttt{cmdscale}).
-\item
-  If only want to preserve order of distances, called \emph{non-metric
-  multidimensional scaling} (in R, \texttt{isoMDS} in package
-  \texttt{MASS}).
-\item
-  Metric scaling has solution that can be worked out exactly.
-\item
-  Non-metric only has iterative solution.
-\item
-  Assess quality of fit, see whether use of resulting map is reasonable.
-  (Try something obviously 3-dimensional and assess its failure.)
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Packages}
-\protect\hypertarget{packages-8}{}
-
-The usual, plus some new stuff:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(MASS)}
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(ggrepel)}
-\KeywordTok{library}\NormalTok{(ggmap)}
-\KeywordTok{library}\NormalTok{(shapes)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Metric scaling: European cities}
-\protect\hypertarget{metric-scaling-european-cities}{}
-
-CSV file \texttt{europe.csv} contains road distances (in km) between 16
-European cities. Can we reproduce a map of Europe from these distances?
-
-Read in data:
-
-\scriptsize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/europe.csv"}
-\NormalTok{europe <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Parsed with column specification:
-## cols(
-##   City = col_character(),
-##   Amsterdam = col_double(),
-##   Athens = col_double(),
-##   Barcelona = col_double(),
-##   Berlin = col_double(),
-##   Cologne = col_double(),
-##   Copenhagen = col_double(),
-##   Edinburgh = col_double(),
-##   Geneva = col_double(),
-##   London = col_double(),
-##   Madrid = col_double(),
-##   Marseille = col_double(),
-##   Munich = col_double(),
-##   Paris = col_double(),
-##   Prague = col_double(),
-##   Rome = col_double(),
-##   Vienna = col_double()
-## )
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-13}{}
-
-\scriptsize
-
-\begin{verbatim}
-## # A tibble: 16 x 17
-##    City  Amsterdam Athens Barcelona Berlin Cologne Copenhagen
-##    <chr>     <dbl>  <dbl>     <dbl>  <dbl>   <dbl>      <dbl>
-##  1 Amst…         0   3082      1639    649     280        904
-##  2 Athe…      3082      0      3312   2552    2562       3414
-##  3 Barc…      1639   3312         0   1899    1539       2230
-##  4 Berl…       649   2552      1899      0     575        743
-##  5 Colo…       280   2562      1539    575       0        730
-##  6 Cope…       904   3414      2230    743     730          0
-##  7 Edin…      1180   3768      2181   1727    1206       1864
-##  8 Gene…      1014   2692       758   1141     765       1531
-##  9 Lond…       494   3099      1512   1059     538       1196
-## 10 Madr…      1782   3940       628   2527    1776       2597
-## 11 Mars…      1323   2997       515   1584    1208       1914
-## 12 Muni…       875   2210      1349    604     592       1204
-## 13 Paris       515   3140      1125   1094     508       1329
-## 14 Prag…       973   2198      1679    354     659       1033
-## 15 Rome       1835   2551      1471   1573    1586       2352
-## 16 Vien…      1196   1886      1989    666     915       1345
-## # … with 10 more variables: Edinburgh <dbl>, Geneva <dbl>,
-## #   London <dbl>, Madrid <dbl>, Marseille <dbl>, Munich <dbl>,
-## #   Paris <dbl>, Prague <dbl>, Rome <dbl>, Vienna <dbl>
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Multidimensional scaling}
-\protect\hypertarget{multidimensional-scaling-2}{}
-
-\begin{itemize}
-\item
-  Create distance object first using all but first column of
-  \texttt{europe}. \texttt{europe} has distances in it already, so make
-  into \texttt{dist} with \texttt{as.dist}.
-\item
-  Then run multidimensional scaling and look at result:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{europe }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{City) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{() ->}\StringTok{ }\NormalTok{europe.d}
-\NormalTok{europe.scale <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(europe.d)}
-\KeywordTok{head}\NormalTok{(europe.scale)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                   [,1]      [,2]
-## Amsterdam  -348.162277  528.2657
-## Athens     2528.610410 -509.5208
-## Barcelona  -695.970779 -984.6093
-## Berlin      384.178025  634.5239
-## Cologne       5.153446  356.7230
-## Copenhagen -187.104072 1142.5926
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  This is a \texttt{matrix} of \(x\) and \(y\) coordinates.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{As a data frame; make picture}
-\protect\hypertarget{as-a-data-frame-make-picture}{}
-
-We know how to plot data frames, so make one first. This gives a warning
-that you can ignore:
-
-\normalsize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{europe.scale }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City) ->}\StringTok{ }\NormalTok{europe_coord}
-\KeywordTok{ggplot}\NormalTok{(europe_coord, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ city)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{() ->}\StringTok{ }\NormalTok{g}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{The map}
-\protect\hypertarget{the-map}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-422-1.pdf}
-\caption{plot of chunk unnamed-chunk-422}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[fragile]{Making a function}
-\protect\hypertarget{making-a-function}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Idea: given input distance matrix (as stored in a CSV file), output a
-  map (like the one on the previous page).
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mds_map <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(filename) \{}
-\NormalTok{  x <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(filename)}
-\NormalTok{  x }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{as.dist}\NormalTok{() ->}\StringTok{ }\NormalTok{dist }
-\NormalTok{  x.scale <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(dist) }\CommentTok{# this is a matrix}
-\NormalTok{  x.scale }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\CommentTok{# cols called V1 and V2}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{place =} \KeywordTok{row.names}\NormalTok{(x.scale)) ->}\StringTok{ }\NormalTok{x_coord}
-  \KeywordTok{ggplot}\NormalTok{(x_coord, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ place)) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{() }\OperatorTok{+}
-\StringTok{    }\KeywordTok{coord_fixed}\NormalTok{()}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-27}{}
-
-\begin{itemize}
-\item
-  Use \texttt{select\_if} to pick out all the numerical columns (no
-  text), whichever they are.
-\item
-  \texttt{x.scale} is matrix with no column headers. Turn into data
-  frame, acquires headers \texttt{V1} and \texttt{V2}.
-\item
-  Get place names from \texttt{cmdscale} output.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Does it work?}
-\protect\hypertarget{does-it-work}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mds_map}\NormalTok{(}\StringTok{"europe.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-424-1.pdf}
-\caption{plot of chunk unnamed-chunk-424}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[fragile]{A square}
-\protect\hypertarget{a-square}{}
-
-\begin{itemize}
-\tightlist
-\item
-  The data, in \texttt{square.csv}:
-\end{itemize}
-
-\footnotesize
-
-\begin{verbatim}
-x,A  ,B  ,C  ,D
-A,0  ,1  ,1  ,1.4
-B,1  ,0  ,1.4,1
-C,1  ,1.4,0  ,1
-D,1.4,1  ,1  ,0
-\end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  The map:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mds_map}\NormalTok{(}\StringTok{"square.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-425-1.pdf}
-\caption{plot of chunk unnamed-chunk-425}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[fragile]{Drawing a map of the real Europe}
-\protect\hypertarget{drawing-a-map-of-the-real-europe}{}
-
-\begin{itemize}
-\item
-  Works with package \texttt{ggmap}.
-\item
-  First find latitudes and longitudes of our cities, called
-  \emph{geocoding}:
-\end{itemize}
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{latlong <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(europe}\OperatorTok{$}\NormalTok{City)}
-\NormalTok{latlong <-}\StringTok{ }\KeywordTok{bind_cols}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City, latlong)}
-\NormalTok{latlong }\OperatorTok{%>%}\StringTok{ }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\small
-
-\begin{verbatim}
-## # A tibble: 6 x 3
-##   city         lon   lat
-##   <chr>      <dbl> <dbl>
-## 1 Amsterdam   4.90  52.4
-## 2 Athens     23.7   38.0
-## 3 Barcelona   2.17  41.4
-## 4 Berlin     13.4   52.5
-## 5 Cologne     6.96  50.9
-## 6 Copenhagen 12.6   55.7
-\end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  Just so you know, there is a limit of 2500 queries per day (it queries
-  Google Maps).
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Making the map}
-\protect\hypertarget{making-the-map}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Get a map of Europe from Google Maps (specify what you want a map of
-  any way you can in Google Maps). This one centres the map on the city
-  shown and zooms it so all the cities appear (I had to experiment):
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{map <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\StringTok{"Memmingen DE"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{5}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Plot the map with \texttt{ggmap}. This is \texttt{ggplot}, so add
-  anything to it that you would add to a \texttt{ggplot}, such as cities
-  we want to show:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g2 <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(map) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ latlong, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat),}
-    \DataTypeTok{shape =} \DecValTok{3}\NormalTok{, }\DataTypeTok{colour =} \StringTok{"red"}
-\NormalTok{  )}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  We don't have a default data frame or \texttt{aes} for our
-  \texttt{geom\_point}, so have to specify one.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{The real Europe with our cities}
-\protect\hypertarget{the-real-europe-with-our-cities}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-431-1.pdf}
-\caption{plot of chunk unnamed-chunk-431}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Compare our scaling map}
-\protect\hypertarget{compare-our-scaling-map}{}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-432-1.pdf}
-\caption{plot of chunk unnamed-chunk-432}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Comments}
-\protect\hypertarget{comments-28}{}
-
-\begin{itemize}
-\item
-  North-south not quite right: Edinburgh and Copenhagen on same
-  latitude, also Amsterdam and Berlin; Athens should be south of Rome.
-\item
-  Rotating clockwise by about 45 degrees should fix that.
-\item
-  General point: MDS only uses distances, so answer can be ``off'' by
-  rotation (as here) or reflection (flipping over, say exchanging west
-  and east while leaving north and south same).
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Exploring the map by plotting in 3 dimensions}
-\protect\hypertarget{exploring-the-map-by-plotting-in-3-dimensions}{}
-
-\begin{itemize}
-\item
-  Package \texttt{rgl} makes 3D plots.
-\item
-  We have to fake up a 3rd dimension (by setting all its values to 1).
-\item
-  Try this code:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(rgl)}
-\NormalTok{es}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(europe.scale, }\DecValTok{1}\NormalTok{)}
-\NormalTok{es}\FloatTok{.2}
-\KeywordTok{plot3d}\NormalTok{(es}\FloatTok{.2}\NormalTok{, }\DataTypeTok{zlim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1000}\NormalTok{, }\DecValTok{1000}\NormalTok{))}
-\KeywordTok{text3d}\NormalTok{(es}\FloatTok{.2}\NormalTok{, }\DataTypeTok{text =}\NormalTok{ europe}\OperatorTok{$}\NormalTok{City)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\item
-  Opens a graphics window with the cities plotted and named.
-\item
-  Click and hold left mouse button to rotate plot. ``Rotate away'' 3rd
-  dimension to get a possible map (that preserves distances).
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Ontario, the same way}
-\protect\hypertarget{ontario-the-same-way}{}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{url <-}\StringTok{ }
-\StringTok{  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
-\end{Highlighting}
-\end{Shaded}
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(url))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{figure/unnamed-chunk-435-1.pdf} \normalsize
-
-\end{frame}
-
-\begin{frame}{Comment}
-\protect\hypertarget{comment-1}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Thunder Bay and Sault Ste Marie dominate the picture since they are so
-  far away from everywhere else.
-\item
-  Remove them and just look at everywhere else.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Removing points}
-\protect\hypertarget{removing-points}{}
-
-\begin{itemize}
-\item
-  Messy: have to find which rows and columns contain those cities, then
-  remove just those rows and columns.
-\item
-  Better:
-
-  \begin{itemize}
-  \item
-    ``tidy'' the distance matrix
-  \item
-    then remove rows we don't need
-  \item
-    then ``untidy'' it again
-  \item
-    save into .csv file
-  \end{itemize}
-\item
-  Illustrate with easier data first.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Square data}
-\protect\hypertarget{square-data}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/square.csv"}
-\NormalTok{square <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url)}
-\NormalTok{square}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 4 x 5
-##   x         A     B     C     D
-##   <chr> <dbl> <dbl> <dbl> <dbl>
-## 1 A       0     1     1     1.4
-## 2 B       1     0     1.4   1  
-## 3 C       1     1.4   0     1  
-## 4 D       1.4   1     1     0
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}[fragile]{Make tidy}
-\protect\hypertarget{make-tidy}{}
-
-\scriptsize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{square }\OperatorTok{%>%}\StringTok{ }\KeywordTok{gather}\NormalTok{(point, distance, }\OperatorTok{-}\NormalTok{x)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 16 x 3
-##    x     point distance
-##    <chr> <chr>    <dbl>
-##  1 A     A          0  
-##  2 B     A          1  
-##  3 C     A          1  
-##  4 D     A          1.4
-##  5 A     B          1  
-##  6 B     B          0  
-##  7 C     B          1.4
-##  8 D     B          1  
-##  9 A     C          1  
-## 10 B     C          1.4
-## 11 C     C          0  
-## 12 D     C          1  
-## 13 A     D          1.4
-## 14 B     D          1  
-## 15 C     D          1  
-## 16 D     D          0
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Remove all references to point C}
-\protect\hypertarget{remove-all-references-to-point-c}{}
-
-In column \texttt{x} or \texttt{point}:
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{square }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{gather}\NormalTok{(point, distance, }\DecValTok{-1}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(x }\OperatorTok{!=}\StringTok{ "C"}\NormalTok{, point }\OperatorTok{!=}\StringTok{ "C"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 9 x 3
-##   x     point distance
-##   <chr> <chr>    <dbl>
-## 1 A     A          0  
-## 2 B     A          1  
-## 3 D     A          1.4
-## 4 A     B          1  
-## 5 B     B          0  
-## 6 D     B          1  
-## 7 A     D          1.4
-## 8 B     D          1  
-## 9 D     D          0
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Put back as distance matrix}
-\protect\hypertarget{put-back-as-distance-matrix}{}
-
-and save as .csv when we are happy:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{square }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\OperatorTok{-}\NormalTok{x, }\DataTypeTok{names_to=}\StringTok{"point"}\NormalTok{, }\DataTypeTok{values_to=}\StringTok{"distance"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(x }\OperatorTok{!=}\StringTok{ "C"}\NormalTok{, point }\OperatorTok{!=}\StringTok{ "C"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{names_from=}\NormalTok{point, }\DataTypeTok{values_from=}\NormalTok{distance) ->}\StringTok{ }\NormalTok{noc}
-\NormalTok{noc}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 3 x 4
-##   x         A     B     D
-##   <chr> <dbl> <dbl> <dbl>
-## 1 A       0       1   1.4
-## 2 B       1       0   1  
-## 3 D       1.4     1   0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{noc }\OperatorTok{%>%}\StringTok{ }\KeywordTok{write_csv}\NormalTok{(}\StringTok{"no-c.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{Make map of square-without-C}
-\protect\hypertarget{make-map-of-square-without-c}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mds_map}\NormalTok{(}\StringTok{"no-c.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-440-1.pdf}
-\caption{plot of chunk unnamed-chunk-440}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[fragile]{Back to Ontario}
-\protect\hypertarget{back-to-ontario}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-441-1.pdf}
-\caption{plot of chunk unnamed-chunk-441}
-\end{figure}
-
-Get rid of Thunder Bay and Sault Ste Marie.
-
-\end{frame}
-
-\begin{frame}[fragile]{Tidy, remove, untidy}
-\protect\hypertarget{tidy-remove-untidy}{}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ }
-\StringTok{  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"}
-\NormalTok{ontario2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url) }
-\NormalTok{ontario2 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{gather}\NormalTok{(city, distance, }\DecValTok{-1}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}
-\NormalTok{    city }\OperatorTok{!=}\StringTok{ "Thunder Bay"}\NormalTok{,}
-\NormalTok{    place }\OperatorTok{!=}\StringTok{ "Thunder Bay"}\NormalTok{,}
-\NormalTok{    city }\OperatorTok{!=}\StringTok{ "Sault Ste Marie"}\NormalTok{,}
-\NormalTok{    place }\OperatorTok{!=}\StringTok{ "Sault Ste Marie"}
-\NormalTok{  ) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{names_from=}\NormalTok{place, }\DataTypeTok{values_from=}\NormalTok{distance) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{write_csv}\NormalTok{(}\StringTok{"southern-ontario.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Map of Southern Ontario}
-\protect\hypertarget{map-of-southern-ontario}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(g <-}\StringTok{ }\KeywordTok{mds_map}\NormalTok{(}\StringTok{"southern-ontario.csv"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-443-1.pdf}
-\caption{plot of chunk unnamed-chunk-443}
-\end{figure}
-
-Geographically about right.
-
-\end{frame}
-
-\begin{frame}[fragile]{What about that cluster of points?}
-\protect\hypertarget{what-about-that-cluster-of-points}{}
-
-\begin{itemize}
-\item
-  Plot looks generally good, but what about that cluster of points?
-\item
-  ``Zoom in'' on area between \(-150\) and \(-100\) on \(x\) axis,
-  \(-50\) to 0 on \(y\) axis.
-\item
-  Code below overrides the \texttt{coord\_fixed} we had before.
-\end{itemize}
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g2 <-}\StringTok{ }\NormalTok{g }\OperatorTok{+}\StringTok{ }\KeywordTok{coord_fixed}\NormalTok{(}\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{150}\NormalTok{, }\DecValTok{-100}\NormalTok{), }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{50}\NormalTok{, }\DecValTok{0}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Zoomed-in plot}
-\protect\hypertarget{zoomed-in-plot}{}
-
-Ignore the arrows to points off the map:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/spal-1.pdf}
-\caption{plot of chunk spal}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}[fragile]{Does that make sense?}
-\protect\hypertarget{does-that-make-sense}{}
-
-\begin{itemize}
-\item
-  Get a Google map of the area, with the points labelled.
-\item
-  First geocode the cities of interest:
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cities <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}
-  \StringTok{"Kitchener ON"}\NormalTok{, }\StringTok{"Hamilton ON"}\NormalTok{, }\StringTok{"Niagara Falls ON"}\NormalTok{,}
-  \StringTok{"St Catharines ON"}\NormalTok{, }\StringTok{"Brantford ON"}
-\NormalTok{)}
-\NormalTok{latlong <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(cities)}
-\NormalTok{latlong <-}\StringTok{ }\KeywordTok{bind_cols}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ cities, latlong) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{print}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 5 x 3
-##   city               lon   lat
-##   <chr>            <dbl> <dbl>
-## 1 Kitchener ON     -80.5  43.5
-## 2 Hamilton ON      -79.9  43.3
-## 3 Niagara Falls ON -79.1  43.1
-## 4 St Catharines ON -79.2  43.2
-## 5 Brantford ON     -80.3  43.1
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Get Google map}
-\protect\hypertarget{get-google-map}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Get a Google map of the area (experiment with zoom):
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{map <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\StringTok{"Hamilton ON"}\NormalTok{, }\DataTypeTok{zoom =} \DecValTok{8}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Plot map with cities marked.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Making the R Google map}
-\protect\hypertarget{making-the-r-google-map}{}
-
-Plot the map, plus the cities, plus labels for the cities:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggmap}\NormalTok{(map) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ latlong,}
-    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ lon, }\DataTypeTok{y =}\NormalTok{ lat),}
-    \DataTypeTok{shape =} \DecValTok{3}\NormalTok{, }\DataTypeTok{colour =} \StringTok{"red"}
-\NormalTok{  ) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}
-    \DataTypeTok{data =}\NormalTok{ latlong,}
-    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ city)}
-\NormalTok{  ) ->}\StringTok{ }\NormalTok{gmap}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}{MDS and Google map side by side}
-\protect\hypertarget{mds-and-google-map-side-by-side}{}
-
-\includegraphics[width=0.48\textwidth,height=\textheight]{g2.png}
-\includegraphics[width=0.48\textwidth,height=\textheight]{gmap.png}
-
-St Catharines and Niagara Falls should be the \emph{other} side of
-Hamilton!
-
-\end{frame}
-
-\begin{frame}[fragile]{Quality of fit}
-\protect\hypertarget{quality-of-fit}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Read in ``southern Ontario'' data set from file. Calling
-  \texttt{cmdscale} with \texttt{eig=T} gives more info:
-\end{itemize}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/southern-ontario.csv"}
-\NormalTok{ontario2 <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(my_url)}
-\NormalTok{ontario2}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\NormalTok{ontario2 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{eig =}\NormalTok{ T)}
-\KeywordTok{names}\NormalTok{(ontario2}\FloatTok{.2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "points" "eig"    "x"      "ac"     "GOF"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ontario2}\FloatTok{.2}\OperatorTok{$}\NormalTok{GOF}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.8381590 0.8914059
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ontario2}\FloatTok{.3}\NormalTok{ <-}\StringTok{ }\NormalTok{ontario2 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{cmdscale}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DataTypeTok{eig =}\NormalTok{ T)}
-\NormalTok{ontario2}\FloatTok{.3}\OperatorTok{$}\NormalTok{GOF}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.8852559 0.9414948
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-29}{}
-
-\begin{itemize}
-\item
-  Coordinates now in \texttt{points}.
-\item
-  \texttt{GOF} is R-squared-like measure saying how well map distances
-  match real ones. Higher is better.
-\item
-  For Ontario road distances, \texttt{GOF} better for 3 dimensions than
-  2, presumably to accommodate St Catharines and Niagara Falls?
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{3-dimensional coordinates, cities attached}
-\protect\hypertarget{dimensional-coordinates-cities-attached}{}
-
-\tiny
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ontario2}\FloatTok{.3}\OperatorTok{$}\NormalTok{points }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{city =}\NormalTok{ ontario2}\OperatorTok{$}\NormalTok{x)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 19 x 4
-##        V1       V2     V3 city         
-##     <dbl>    <dbl>  <dbl> <chr>        
-##  1  -38.7  122.      4.17 Barrie       
-##  2  146.   -82.8     1.53 Belleville   
-##  3 -132.   -38.9    14.1  Brantford    
-##  4  298.  -106.     -7.74 Brockville   
-##  5  397.  -104.    -22.0  Cornwall     
-##  6 -101.   -18.5    30.0  Hamilton     
-##  7   62.4  198.    -14.0  Huntsville   
-##  8  214.  -129.     10.8  Kingston     
-##  9 -123.   -15.0    -6.44 Kitchener    
-## 10 -208.   -51.6   -36.5  London       
-## 11 -129.   -19.1   155.   Niagara Falls
-## 12  146.   300.    -25.4  North Bay    
-## 13  368.    -4.30  -47.2  Ottawa       
-## 14 -145.   125.    -16.0  Owen Sound   
-## 15   82.5    0.551  -6.92 Peterborough 
-## 16 -299.   -39.4   -72.5  Sarnia       
-## 17 -117.   -16.8   123.   St Catharines
-## 18  -34.3   -4.75   15.8  Toronto      
-## 19 -388.  -116.    -99.5  Windsor
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{RGL code for 3 dimensions}
-\protect\hypertarget{rgl-code-for-3-dimensions}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(rgl)}
-\KeywordTok{plot3d}\NormalTok{(ontario2}\FloatTok{.3}\OperatorTok{$}\NormalTok{points)}
-\KeywordTok{text3d}\NormalTok{(ontario2}\FloatTok{.3}\OperatorTok{$}\NormalTok{points, }\DataTypeTok{text =}\NormalTok{ ontario2}\OperatorTok{$}\NormalTok{x)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}[fragile]{A cube}
-\protect\hypertarget{a-cube}{}
-
-\begin{verbatim}
-
-a-----b
-|\    |\
-| c---- d
-| |   | |
-e-|---f |
- \|    \|
-  g-----h
-\end{verbatim}
-
-Cube has side length 1, so distance across diagonal on same face is
-\(\sqrt{2}\simeq 1.4\) and ``long'' diagonal of cube is
-\(\sqrt{3}\simeq 1.7\). \vspace{3ex}
-
-Try MDS on this obviously 3-dimensional data.
-
-\end{frame}
-
-\begin{frame}[fragile]{Cube data as distances}
-\protect\hypertarget{cube-data-as-distances}{}
-
-\footnotesize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/cube.txt"}
-\NormalTok{cube <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
-\NormalTok{cube}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 8 x 9
-##   x         a     b     c     d     e     f     g     h
-##   <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-## 1 a       0    NA    NA    NA    NA    NA      NA    NA
-## 2 b       1     0    NA    NA    NA    NA      NA    NA
-## 3 c       1     1     0    NA    NA    NA      NA    NA
-## 4 d       1.4   1     1     0    NA    NA      NA    NA
-## 5 e       1     1.4   1.4   1.7   0    NA      NA    NA
-## 6 f       1.4   1     1.7   1.4   1     0      NA    NA
-## 7 g       1.4   1.7   1     1.4   1     1.4     0    NA
-## 8 h       1.7   1.4   1.4   1     1.4   1       1     0
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Making \texttt{dist\ object}}
-\protect\hypertarget{making-dist-object}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube.d <-}\StringTok{ }\NormalTok{cube }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{()}
-\NormalTok{cube.d}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     a   b   c   d   e   f   g
-## b 1.0                        
-## c 1.0 1.0                    
-## d 1.4 1.0 1.0                
-## e 1.0 1.4 1.4 1.7            
-## f 1.4 1.0 1.7 1.4 1.0        
-## g 1.4 1.7 1.0 1.4 1.0 1.4    
-## h 1.7 1.4 1.4 1.0 1.4 1.0 1.0
-\end{verbatim}
-
-\end{frame}
-
-\begin{frame}[fragile]{MDS and plotting commands}
-\protect\hypertarget{mds-and-plotting-commands}{}
-
-\begin{itemize}
-\tightlist
-\item
-  By default in 2 dimensions; save the extra stuff for later:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\NormalTok{cube.d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\DataTypeTok{eig =}\NormalTok{ T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Make data frame to plot, remembering the points to plot are in
-  \texttt{points} now:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{d <-}\StringTok{ }\NormalTok{cube}\FloatTok{.2}\OperatorTok{$}\NormalTok{points }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{corners =}\NormalTok{ cube}\OperatorTok{$}\NormalTok{x)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Plot points labelled by our names for the corners:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(d, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ corners)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}{The ``cube''}
-\protect\hypertarget{the-cube}{}
-
-\begin{figure}
-\centering
-\includegraphics{figure/bianconeri-1.pdf}
-\caption{plot of chunk bianconeri}
-\end{figure}
-
-Not good.
-
-\end{frame}
-
-\begin{frame}[fragile]{2 and 3 dimensions}
-\protect\hypertarget{and-3-dimensions}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube}\FloatTok{.3}\NormalTok{ <-}\StringTok{ }\NormalTok{cube.d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DataTypeTok{eig =}\NormalTok{ T)}
-\NormalTok{cube}\FloatTok{.2}\OperatorTok{$}\NormalTok{GOF}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.639293 0.664332
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube}\FloatTok{.3}\OperatorTok{$}\NormalTok{GOF}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.9143532 0.9501654
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Really need 3rd dimension to represent cube.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Non-metric scaling}
-\protect\hypertarget{non-metric-scaling}{}
-
-\begin{itemize}
-\item
-  Sometimes distances not meaningful \emph{as distances}
-\item
-  Only order matters: closest should be closest, farthest farthest on
-  map, but how much further doesn't matter.
-\item
-  Non-metric scaling, aims to minimize \textbf{stress}, measure of lack
-  of fit.
-\item
-  Example: languages. Make map based on ``similarity'' of number names,
-  without requiring that 1 is ``eight times better'' than 8.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{The languages}
-\protect\hypertarget{the-languages}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Recall language data (from cluster analysis): 1--10, measure
-  dissimilarity between two languages by how many number names
-  \emph{differ} in first letter:
-\end{itemize}
-
-\scriptsize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_url <-}\StringTok{ "http://www.utsc.utoronto.ca/~butler/d29/languages.txt"}
-\NormalTok{number.d <-}\StringTok{ }\KeywordTok{read_table}\NormalTok{(my_url)}
-\NormalTok{number.d}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 11 x 12
-##    la       en    no    dk    nl    de    fr    es    it    pl
-##    <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-##  1 en        0     2     2     7     6     6     6     6     7
-##  2 no        2     0     1     5     4     6     6     6     7
-##  3 dk        2     1     0     6     5     6     5     5     6
-##  4 nl        7     5     6     0     5     9     9     9    10
-##  5 de        6     4     5     5     0     7     7     7     8
-##  6 fr        6     6     6     9     7     0     2     1     5
-##  7 es        6     6     5     9     7     2     0     1     3
-##  8 it        6     6     5     9     7     1     1     0     4
-##  9 pl        7     7     6    10     8     5     3     4     0
-## 10 hu        9     8     8     8     9    10    10    10    10
-## 11 fi        9     9     9     9     9     9     9     8     9
-## # … with 2 more variables: hu <dbl>, fi <dbl>
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Non-metric scaling}
-\protect\hypertarget{non-metric-scaling-1}{}
-
-\begin{itemize}
-\item
-  Turn language dissimilarities into \texttt{dist} object
-\item
-  Run through \texttt{isoMDS} from \texttt{MASS} package; works like
-  \texttt{cmdscale}.
-\item
-  Map only reproduces \emph{relative} closeness of languages.
-\end{itemize}
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{number.d }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as.dist}\NormalTok{() ->}\StringTok{ }\NormalTok{d}
-\NormalTok{d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{isoMDS}\NormalTok{() ->}\StringTok{ }\NormalTok{number.nm}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## initial  value 12.404671 
-## iter   5 value 5.933653
-## iter  10 value 5.300747
-## final  value 5.265236 
-## converged
-\end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{points} for plotting, \texttt{stress} measure of fit (lower
-  better).
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Results}
-\protect\hypertarget{results-3}{}
-
-\begin{itemize}
-\tightlist
-\item
-  Stress is very low (5\%, good):
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{number.nm}\OperatorTok{$}\NormalTok{stress}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 5.265236
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  Familiar process: make a data frame to plot. Use name \texttt{dd} for
-  data frame this time since used \texttt{d} for distance object:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dd <-}\StringTok{ }\NormalTok{number.nm}\OperatorTok{$}\NormalTok{points }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lang =}\NormalTok{ number.d}\OperatorTok{$}\NormalTok{la)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{itemize}
-\tightlist
-\item
-  Make plot:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(dd, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ V1, }\DataTypeTok{y =}\NormalTok{ V2, }\DataTypeTok{label =}\NormalTok{ lang)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_text_repel}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\end{frame}
-
-\begin{frame}{The languages map}
-\protect\hypertarget{the-languages-map}{}
-
-\begin{figure}
-\centering
-\includegraphics{figure/padova-1.pdf}
-\caption{plot of chunk padova}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Comments}
-\protect\hypertarget{comments-30}{}
-
-\begin{itemize}
-\item
-  Tight clusters: Italian-Spanish-French, English-Danish-Norwegian.
-\item
-  Dutch and German close to English group.
-\item
-  Polish close to French group.
-\item
-  Hungarian, Finnish distant from everything else and each other!
-\item
-  Similar conclusions as from the cluster analysis.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Shepard diagram}
-\protect\hypertarget{shepard-diagram}{}
-
-\begin{itemize}
-\item
-  Stress for languages data was 5.3\%, very low.
-\item
-  How do observed dissimilarities and map distances correspond?
-\item
-  For low stress, expect larger dissimilarity to go with larger map
-  distance, almost all the time.
-\item
-  Not necessarily a linear trend since non-metric MDS works with
-  \emph{order} of values.
-\item
-  Actual dissimilarity on \(x\)-axis; map distances on \(y\)-axis.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Shepard diagram for languages}
-\protect\hypertarget{shepard-diagram-for-languages}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{Shepard}\NormalTok{(d, number.nm}\OperatorTok{$}\NormalTok{points) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/parma-1.pdf}
-\caption{plot of chunk parma}
-\end{figure}
-
-Actual dissimilarity \(x\) between higher: mapped distance \(y\) from
-MDS higher too. (MDS working well.)
-
-\end{frame}
-
-\begin{frame}[fragile]{Cube, revisited}
-\protect\hypertarget{cube-revisited}{}
-
-\small
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube.d <-}\StringTok{ }\NormalTok{cube }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{x) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.dist}\NormalTok{(cube)}
-\NormalTok{cube}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\KeywordTok{isoMDS}\NormalTok{(cube.d, }\DataTypeTok{trace =}\NormalTok{ F)}
-\NormalTok{cube}\FloatTok{.2}\OperatorTok{$}\NormalTok{stress}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 17.97392
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube}\FloatTok{.3}\NormalTok{ <-}\StringTok{ }\KeywordTok{isoMDS}\NormalTok{(cube.d, }\DataTypeTok{k =} \DecValTok{3}\NormalTok{, }\DataTypeTok{trace =}\NormalTok{ F)}
-\NormalTok{cube}\FloatTok{.3}\OperatorTok{$}\NormalTok{stress}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.007819523
-\end{verbatim}
-
-\normalsize
-
-\begin{itemize}
-\item
-  Stress is 18\% for 2 dimensions, basically 0\% for 3.
-\item
-  Three dimensions correct, two dimensions bad.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]{Shepard diagrams}
-\protect\hypertarget{shepard-diagrams}{}
-
-\normalsize
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cube2.sh <-}\StringTok{ }\KeywordTok{Shepard}\NormalTok{(cube.d, cube}\FloatTok{.2}\OperatorTok{$}\NormalTok{points)}
-\NormalTok{g2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(cube2.sh), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-\NormalTok{cube3.sh <-}\StringTok{ }\KeywordTok{Shepard}\NormalTok{(cube.d, cube}\FloatTok{.3}\OperatorTok{$}\NormalTok{points)}
-\NormalTok{g3 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(cube3.sh), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Shepard diagram for 2-dimensional cube}
-\protect\hypertarget{shepard-diagram-for-2-dimensional-cube}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-465-1.pdf}
-\caption{plot of chunk unnamed-chunk-465}
-\end{figure}
-
-Poor correspondence (not much trend).
-
-\end{frame}
-
-\begin{frame}[fragile]{Shepard diagram for 3-dimensional cube}
-\protect\hypertarget{shepard-diagram-for-3-dimensional-cube}{}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g3}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{figure/unnamed-chunk-466-1.pdf}
-\caption{plot of chunk unnamed-chunk-466}
-\end{figure}
-
-Almost perfect: all actual \(x=1\) go with smallest mapped distances;
-almost all \(x=1.7\) go with largest.
-
-\end{frame}
-
-\begin{frame}{Guidelines for stress values, in \%}
-\protect\hypertarget{guidelines-for-stress-values-in}{}
-
-Smaller is better:
-
-\begin{tabular}{lp{3in}}
-Stress value & Interpretation \\
-\hline
-Less than 5 & Excellent: no prospect of misinterpretation (rarely achieved)\\
-5--10 & Good: most distances reproduced well, small prospect of false inferences\\
-10--20 & Fair: usable, but some distances misleading.\\
-More than 20 & Poor: may be dangerous to interpret\\
-\hline
-\end{tabular}
-
-\begin{itemize}
-\item
-  Languages: stress in ``good'' range.
-\item
-  Cube:
-
-  \begin{itemize}
-  \item
-    2 dimensions ``fair'', almost ``poor'';
-  \item
-    3 dimensions, ``excellent''.
-  \end{itemize}
-\end{itemize}
-
-\end{frame}
+\hypertarget{r-bmds-childbmds.rmd}{%
+\section{\texorpdfstring{\texttt{\{r\ bMDS,\ child="bMDS.Rmd"\}}}{\{r bMDS, child="bMDS.Rmd"\}}}\label{r-bmds-childbmds.rmd}}
 
 \hypertarget{principal-components}{%
 \section{Principal components}\label{principal-components}}
@@ -16158,7 +14627,7 @@ More than 20 & Poor: may be dangerous to interpret\\
 \end{frame}
 
 \begin{frame}[fragile]{Packages}
-\protect\hypertarget{packages-9}{}
+\protect\hypertarget{packages-8}{}
 
 You might not have installed the first of these. See over for
 instructions.
@@ -16322,7 +14791,7 @@ instructions.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-31}{}
+\protect\hypertarget{comments-27}{}
 
 \begin{itemize}
 \item
@@ -16351,8 +14820,8 @@ instructions.
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-472-1.pdf}
-\caption{plot of chunk unnamed-chunk-472}
+\includegraphics{figure/unnamed-chunk-420-1.pdf}
+\caption{plot of chunk unnamed-chunk-420}
 \end{figure}
 
 Imagine scree plot continues at zero, so 2 components is a \emph{big}
@@ -16455,7 +14924,7 @@ would summarize performance.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-32}{}
+\protect\hypertarget{comments-28}{}
 
 \begin{itemize}
 \item
@@ -16529,7 +14998,7 @@ would summarize performance.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-33}{}
+\protect\hypertarget{comments-29}{}
 
 \begin{itemize}
 \item
@@ -16572,18 +15041,19 @@ country. Countries labelled by (mostly) Internet domain names (ISO
 
 \begin{verbatim}
 ## # A tibble: 10 x 9
-##     m100  m200  m400  m800 m1500 m5000 m10000 marathon country
-##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <chr>  
-##  1  10.6  21.4  45.7  1.76  3.73  13.8   28.8     132. in     
-##  2  10.2  20.2  45.4  1.76  3.6   13.3   27.9     132. pl     
-##  3  10.4  20.6  45.6  1.76  3.58  13.4   28.2     134. cz     
-##  4  10.2  20.4  44.5  1.73  3.53  13.2   27.6     132. dew    
-##  5  11.0  21.8  47.9  1.9   4.01  14.7   31.4     148. pg     
-##  6  10.4  20.8  46.8  1.81  3.7   14.0   29.4     138. ar     
-##  7  10.2  20.6  45.6  1.77  3.61  13.3   27.9     131. se     
-##  8  10.4  21.0  45.9  1.76  3.64  13.2   27.7     132. ro     
-##  9  10.4  21.3  47.4  1.88  3.89  15.1   31.3     158. sg     
-## 10  11.0  21.8  48.4  1.89  3.8   14.2   30.1     139. gu
+##     m100  m200  m400  m800 m1500 m5000 m10000 marathon
+##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
+##  1 10.4   20.9  46.3  1.82  3.8   14.6   31.0     154.
+##  2 10.3   20.6  45.9  1.8   3.75  14.7   30.6     147.
+##  3 10.1   20.3  44.9  1.73  3.56  13.2   27.4     130.
+##  4 10.6   21.5  47.8  1.84  3.92  14.7   30.8     149.
+##  5 10.2   20.7  46.6  1.78  3.64  14.6   28.4     135.
+##  6 10.4   21.3  46.1  1.8   3.65  13.5   28.0     129.
+##  7 12.2   23.2  52.9  2.02  4.24  16.7   35.4     165.
+##  8 10.3   20.8  45.9  1.79  3.64  13.4   27.7     129.
+##  9  9.93  19.8  43.9  1.73  3.53  13.2   27.4     128.
+## 10 10.1   20    44.6  1.75  3.59  13.2   27.5     131.
+## # … with 1 more variable: country <chr>
 \end{verbatim}
 
 \normalsize
@@ -16762,7 +15232,7 @@ Loadings:
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-34}{}
+\protect\hypertarget{comments-30}{}
 
 \begin{itemize}
 \item
@@ -17068,8 +15538,8 @@ Need to look up two-letter abbreviations in ISO table:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-486-1.pdf}
-\caption{plot of chunk unnamed-chunk-486}
+\includegraphics{figure/unnamed-chunk-434-1.pdf}
+\caption{plot of chunk unnamed-chunk-434}
 \end{figure}
 
 \end{frame}
@@ -17198,7 +15668,7 @@ with component loadings
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-35}{}
+\protect\hypertarget{comments-31}{}
 
 \begin{itemize}
 \item
@@ -17278,7 +15748,7 @@ analysis}\label{exploratory-factor-analysis}}
 \end{frame}
 
 \begin{frame}[fragile]{Packages}
-\protect\hypertarget{packages-10}{}
+\protect\hypertarget{packages-9}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -17371,8 +15841,8 @@ Using correlation matrix. Read that first:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-492-1.pdf}
-\caption{plot of chunk unnamed-chunk-492}
+\includegraphics{figure/unnamed-chunk-440-1.pdf}
+\caption{plot of chunk unnamed-chunk-440}
 \end{figure}
 
 \end{frame}
@@ -17415,7 +15885,7 @@ Using correlation matrix. Read that first:
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-36}{}
+\protect\hypertarget{comments-32}{}
 
 \begin{itemize}
 \item
@@ -17540,7 +16010,7 @@ Using correlation matrix. Read that first:
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-37}{}
+\protect\hypertarget{comments-33}{}
 
 \begin{itemize}
 \item
@@ -17663,8 +16133,8 @@ Read the data, run principal components, get biplot:
 
 \begin{figure}
 \centering
-\includegraphics{figure/unnamed-chunk-500-1.pdf}
-\caption{plot of chunk unnamed-chunk-500}
+\includegraphics{figure/unnamed-chunk-448-1.pdf}
+\caption{plot of chunk unnamed-chunk-448}
 \end{figure}
 
 \end{frame}
@@ -17728,7 +16198,7 @@ Not so nice-looking:
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-38}{}
+\protect\hypertarget{comments-34}{}
 
 \begin{itemize}
 \item
@@ -18080,7 +16550,7 @@ Possible elbows at 3 (2 factors) and 6 (5):
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-39}{}
+\protect\hypertarget{comments-35}{}
 
 \begin{itemize}
 \item
@@ -18116,7 +16586,7 @@ Possible elbows at 3 (2 factors) and 6 (5):
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-40}{}
+\protect\hypertarget{comments-36}{}
 
 \begin{itemize}
 \item
@@ -18181,7 +16651,7 @@ Possible elbows at 3 (2 factors) and 6 (5):
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-41}{}
+\protect\hypertarget{comments-37}{}
 
 \begin{itemize}
 \item
@@ -18409,7 +16879,7 @@ Arbitrarily defining \(>0.4\) or \(<-0.4\) as ``big'':
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-42}{}
+\protect\hypertarget{comments-38}{}
 
 \begin{itemize}
 \item
@@ -18488,7 +16958,7 @@ Arbitrarily defining \(>0.4\) or \(<-0.4\) as ``big'':
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-43}{}
+\protect\hypertarget{comments-39}{}
 
 \begin{itemize}
 \item
@@ -18595,18 +17065,18 @@ Want to add the factor scores for each trait to our tidy data frame
 ## # A tibble: 12 x 6
 ##    subno   row trait    score Factor1 Factor2
 ##    <dbl> <int> <chr>    <dbl>   <dbl>   <dbl>
-##  1   346   204 feminine     6  0.113   0.323 
-##  2   114    71 affect       4  0.178   0.554 
-##  3   140    89 individ      2  0.445   0.0891
-##  4   577   337 truthful     6  0.109   0.315 
-##  5    98    60 helpful      6  0.314   0.376 
-##  6   183   110 helpful      7  0.314   0.376 
-##  7    82    48 conscien     7  0.328   0.308 
-##  8   591   347 affect       7  0.178   0.554 
-##  9   463   262 selfsuff     7  0.511   0.134 
-## 10   269   157 stand        6  0.607   0.172 
-## 11   403   229 assert       5  0.605   0.0330
-## 12   441   246 tender       5  0.0511  0.710
+##  1   536   313 softspok     6 -0.230   0.336 
+##  2   109    66 compete      4  0.450   0.0532
+##  3   292   170 helpful      7  0.314   0.376 
+##  4    56    35 compass      7  0.114   0.627 
+##  5   547   317 analyt       4  0.295   0.127 
+##  6   120    75 ambitiou     2  0.414   0.137 
+##  7   689   354 compete      5  0.450   0.0532
+##  8   202   114 forceful     2  0.649  -0.126 
+##  9   337   198 assert       5  0.605   0.0330
+## 10    69    39 decide       3  0.542   0.113 
+## 11   425   241 sympathy     7  0.0230  0.526 
+## 12   529   308 undstand     6  0.0911  0.610
 \end{verbatim}
 
 \normalsize
@@ -19557,15 +18027,17 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \end{Shaded}
 
 \begin{verbatim}
-## lavaan 0.6-3 ended normally after 16 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         10
-## 
-##   Number of observations                           145
+## lavaan 0.6-5 ended normally after 16 iterations
 ## 
 ##   Estimator                                         ML
-##   Model Fit Test Statistic                      59.886
+##   Optimization method                           NLMINB
+##   Number of free parameters                         10
+##                                                       
+##   Number of observations                           145
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                59.886
 ##   Degrees of freedom                                 5
 ##   P-value (Chi-square)                           0.000
 \end{verbatim}
@@ -19593,15 +18065,17 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \end{Shaded}
 
 \begin{verbatim}
-## lavaan 0.6-3 ended normally after 25 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         11
-## 
-##   Number of observations                           145
+## lavaan 0.6-5 ended normally after 25 iterations
 ## 
 ##   Estimator                                         ML
-##   Model Fit Test Statistic                       2.951
+##   Optimization method                           NLMINB
+##   Number of free parameters                         11
+##                                                       
+##   Number of observations                           145
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                 2.951
 ##   Degrees of freedom                                 4
 ##   P-value (Chi-square)                           0.566
 \end{verbatim}
@@ -19637,7 +18111,7 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \end{Shaded}
 
 \begin{verbatim}
-## Chi Square Difference Test
+## Chi-Squared Difference Test
 ## 
 ##      Df    AIC    BIC   Chisq Chisq diff Df diff Pr(>Chisq)
 ## fit2  4 1776.7 1809.4  2.9509                              
@@ -19735,15 +18209,17 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \end{Shaded}
 
 \begin{verbatim}
-## lavaan 0.6-3 ended normally after 59 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         17
-## 
-##   Number of observations                            55
+## lavaan 0.6-5 ended normally after 59 iterations
 ## 
 ##   Estimator                                         ML
-##   Model Fit Test Statistic                      87.608
+##   Optimization method                           NLMINB
+##   Number of free parameters                         17
+##                                                       
+##   Number of observations                            55
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                87.608
 ##   Degrees of freedom                                19
 ##   P-value (Chi-square)                           0.000
 \end{verbatim}
@@ -19802,15 +18278,17 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \end{Shaded}
 
 \begin{verbatim}
-## lavaan 0.6-3 ended normally after 72 iterations
-## 
-##   Optimization method                           NLMINB
-##   Number of free parameters                         19
-## 
-##   Number of observations                            55
+## lavaan 0.6-5 ended normally after 72 iterations
 ## 
 ##   Estimator                                         ML
-##   Model Fit Test Statistic                      40.089
+##   Optimization method                           NLMINB
+##   Number of free parameters                         19
+##                                                       
+##   Number of observations                            55
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                40.089
 ##   Degrees of freedom                                17
 ##   P-value (Chi-square)                           0.001
 \end{verbatim}
@@ -19841,7 +18319,7 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \end{Shaded}
 
 \begin{verbatim}
-## Chi Square Difference Test
+## Chi-Squared Difference Test
 ## 
 ##         Df    AIC    BIC  Chisq Chisq diff Df diff
 ## track.2 17 535.49 573.63 40.089                   
@@ -19868,7 +18346,7 @@ analysis\}}\label{confirmatory-factor-analysis}}
 \section{Time Series}\label{time-series}}
 
 \begin{frame}[fragile]{Packages}
-\protect\hypertarget{packages-11}{}
+\protect\hypertarget{packages-10}{}
 
 Uses my package \texttt{mkac} which is on Github. Install with:
 
@@ -19928,7 +18406,7 @@ Global mean temperature every year since 1880:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-558-1.pdf} \normalsize
+\includegraphics{figure/unnamed-chunk-506-1.pdf} \normalsize
 
 \end{frame}
 
@@ -19967,7 +18445,7 @@ Global mean temperature every year since 1880:
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-44}{}
+\protect\hypertarget{comments-40}{}
 
 \begin{itemize}
 \tightlist
@@ -20051,7 +18529,7 @@ comparable. Trend again strongly significant.
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-45}{}
+\protect\hypertarget{comments-41}{}
 
 \begin{itemize}
 \tightlist
@@ -20192,7 +18670,7 @@ seemed to be accelerating:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-565-1.pdf}
+\includegraphics{figure/unnamed-chunk-513-1.pdf}
 
 \end{frame}
 
@@ -20334,7 +18812,7 @@ with one column.
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-46}{}
+\protect\hypertarget{comments-42}{}
 
 \begin{itemize}
 \item
@@ -20480,7 +18958,7 @@ from January 1946 to December 1959:
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-47}{}
+\protect\hypertarget{comments-43}{}
 
 Note extras on \texttt{ts}:
 
@@ -20513,7 +18991,7 @@ Printing formats nicely.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-574-1.pdf}
+\includegraphics{figure/unnamed-chunk-522-1.pdf}
 
 \end{frame}
 
@@ -20544,7 +19022,7 @@ Does differencing help here? Looks stationary, but some regular spikes:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-575-1.pdf}
+\includegraphics{figure/unnamed-chunk-523-1.pdf}
 
 \end{frame}
 
@@ -20560,7 +19038,7 @@ A visual (using original data):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-576-1.pdf}
+\includegraphics{figure/unnamed-chunk-524-1.pdf}
 
 \end{frame}
 
@@ -20690,7 +19168,7 @@ Gain a missing because there is nothing before the first observation.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-582-1.pdf}
+\includegraphics{figure/unnamed-chunk-530-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -20761,7 +19239,7 @@ On the other hand, this:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-584-1.pdf}
+\includegraphics{figure/unnamed-chunk-532-1.pdf}
 
 \end{frame}
 
@@ -20812,7 +19290,7 @@ of it with \texttt{acf} and \texttt{autoplot}. Here, white noise:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-586-1.pdf}
+\includegraphics{figure/unnamed-chunk-534-1.pdf}
 
 No autocorrelations beyond chance, anywhere (except \emph{possibly} at
 lag 13).
@@ -20830,7 +19308,7 @@ Autocorrelations work best on \emph{stationary} series.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-587-1.pdf}
+\includegraphics{figure/unnamed-chunk-535-1.pdf}
 
 \end{frame}
 
@@ -20860,7 +19338,7 @@ Negative autocorrelation at lag 1, nothing beyond that.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-588-1.pdf}
+\includegraphics{figure/unnamed-chunk-536-1.pdf}
 
 \end{frame}
 
@@ -20930,7 +19408,7 @@ Monthly sales for a beach souvenir shop in Queensland, Australia:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-592-1.pdf}
+\includegraphics{figure/unnamed-chunk-540-1.pdf}
 
 \end{frame}
 
@@ -20961,7 +19439,7 @@ Fix non-constant variability first by taking logs:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-593-1.pdf}
+\includegraphics{figure/unnamed-chunk-541-1.pdf}
 
 \end{frame}
 
@@ -20976,12 +19454,12 @@ differences}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-594-1.pdf}
+\includegraphics{figure/unnamed-chunk-542-1.pdf}
 
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-48}{}
+\protect\hypertarget{comments-44}{}
 
 \begin{itemize}
 \tightlist
@@ -21003,12 +19481,12 @@ differences}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-595-1.pdf}
+\includegraphics{figure/unnamed-chunk-543-1.pdf}
 
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-49}{}
+\protect\hypertarget{comments-45}{}
 
 \textbf{Big} drop in one month's differences. Look at seasonal component
 to see which:
@@ -21055,7 +19533,7 @@ January.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-599-1.pdf}
+\includegraphics{figure/unnamed-chunk-547-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -21125,7 +19603,7 @@ January.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-50}{}
+\protect\hypertarget{comments-46}{}
 
 \begin{itemize}
 \tightlist
@@ -21157,7 +19635,7 @@ Significant at lag 1, but beyond, just chance:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-602-1.pdf}
+\includegraphics{figure/unnamed-chunk-550-1.pdf}
 
 \end{frame}
 
@@ -21222,7 +19700,7 @@ previous one, like this (loop):
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-51}{}
+\protect\hypertarget{comments-47}{}
 
 \begin{itemize}
 \tightlist
@@ -21251,7 +19729,7 @@ previous one, like this (loop):
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-605-1.pdf}
+\includegraphics{figure/unnamed-chunk-553-1.pdf}
 
 \end{frame}
 
@@ -21266,7 +19744,7 @@ This cuts off for an AR series:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-606-1.pdf}
+\includegraphics{figure/unnamed-chunk-554-1.pdf}
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -21281,7 +19759,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-607-1.pdf}
+\includegraphics{figure/unnamed-chunk-555-1.pdf}
 
 \end{frame}
 
@@ -21357,7 +19835,7 @@ Comments over.
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-52}{}
+\protect\hypertarget{comments-48}{}
 
 \begin{itemize}
 \tightlist
@@ -21525,7 +20003,7 @@ Forecasts all 0, since the past doesn't help to predict future.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-614-1.pdf}
+\includegraphics{figure/unnamed-chunk-562-1.pdf}
 
 \end{frame}
 
@@ -21590,7 +20068,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-617-1.pdf}
+\includegraphics{figure/unnamed-chunk-565-1.pdf}
 
 \end{frame}
 
@@ -21603,7 +20081,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-618-1.pdf}
+\includegraphics{figure/unnamed-chunk-566-1.pdf}
 
 \end{frame}
 
@@ -21671,7 +20149,7 @@ Oops! Thought it was MA(1), not AR(1)!
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-621-1.pdf}
+\includegraphics{figure/unnamed-chunk-569-1.pdf}
 
 \end{frame}
 
@@ -21773,7 +20251,7 @@ Not \emph{quite} same every year:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-624-1.pdf}
+\includegraphics{figure/unnamed-chunk-572-1.pdf}
 
 \end{frame}
 
@@ -22064,7 +20542,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-627-1.pdf}
+\includegraphics{figure/unnamed-chunk-575-1.pdf}
 
 \end{frame}
 
@@ -22104,7 +20582,7 @@ highest, Jan and Feb lowest:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{figure/unnamed-chunk-629-1.pdf}
+\includegraphics{figure/unnamed-chunk-577-1.pdf}
 
 \end{frame}
 
@@ -22112,7 +20590,7 @@ highest, Jan and Feb lowest:
 \section{Multiway frequency tables}\label{multiway-frequency-tables}}
 
 \begin{frame}[fragile]{Packages}
-\protect\hypertarget{packages-12}{}
+\protect\hypertarget{packages-11}{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -22364,7 +20842,7 @@ Calculate eg. row proportions like this:
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-53}{}
+\protect\hypertarget{comments-49}{}
 
 \begin{itemize}
 \item
@@ -22421,7 +20899,7 @@ Calculate eg. row proportions like this:
 \end{frame}
 
 \begin{frame}{Comments}
-\protect\hypertarget{comments-54}{}
+\protect\hypertarget{comments-50}{}
 
 \begin{itemize}
 \tightlist
@@ -22521,7 +20999,7 @@ No longer any association. Take out interaction.
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-14}{}
+\protect\hypertarget{the-data-13}{}
 
 In modelling-friendly format:
 
@@ -23177,7 +21655,7 @@ Stop here.
 \end{frame}
 
 \begin{frame}[fragile]{The data}
-\protect\hypertarget{the-data-15}{}
+\protect\hypertarget{the-data-14}{}
 
 after tidying:
 
@@ -23385,7 +21863,7 @@ Least significant term is \texttt{stage:xray:survival}: remove.
 \end{frame}
 
 \begin{frame}[fragile]{Comments}
-\protect\hypertarget{comments-55}{}
+\protect\hypertarget{comments-51}{}
 
 \begin{itemize}
 \item
