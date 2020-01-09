@@ -14,14 +14,25 @@ slides_d29.pdf: slides_d29.tex
 	lualatex --interaction=nonstopmode slides_d29
 	lualatex --interaction=nonstopmode slides_d29
 
+outline_d29.pdf: outline_d29.tex
+	lualatex --interaction=nonstopmode outline_d29
+	lualatex --interaction=nonstopmode outline_d29
+
 slides_d29.tex: slides_d29.md 
 	/usr/lib/rstudio/bin/pandoc/pandoc +RTS -K512m -RTS slides_d29.md --to beamer --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash\
                 --output slides_d29.tex --slide-level 2 --variable theme=AnnArbor --variable colortheme=dove --highlight-style tango\
                 --pdf-engine xelatex --self-contained 
 
+outline_d29.tex: outline_d29.md 
+	/usr/lib/rstudio/bin/pandoc/pandoc +RTS -K512m -RTS outline_d29.md --to beamer --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash\
+                --output outline_d29.tex --slide-level 2 --variable theme=AnnArbor --variable colortheme=dove --highlight-style tango\
+                --pdf-engine xelatex --self-contained 
 
 slides_d29.md: slides_d29.Rmd preliminaries.Rmd bOutline.Rmd dates_and_times.Rmd bRegression.Rmd bLogistic.Rmd bSurvival.Rmd bAnova.Rmd bAncova.Rmd bManova.Rmd bProfile.Rmd bDiscrim.Rmd bCluster.Rmd bMDS.Rmd bPrincomp.Rmd bFactor.Rmd time-series.Rmd bMultiway.Rmd preliminaries.Rmd
 	Rscript -e "knitr::knit('slides_d29.Rmd')"
+	
+outline_d29.md: slides_d29.Rmd  preliminaries.Rmd bOutline.Rmd
+	Rscript -e "knitr::knit('outline_d29.Rmd')"
 
 %.R: %.Rmd
 	Rscript -e "knitr::purl(\"$^\")"
