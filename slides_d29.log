@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (TeX Live 2020)  (format=lualatex 2020.7.22)  28 JUL 2020 15:43
+This is LuaHBTeX, Version 1.12.0 (TeX Live 2020)  (format=lualatex 2020.7.22)  28 JUL 2020 16:26
  restricted system commands enabled.
 **slides_d29.tex
 (./slides_d29.tex
@@ -4710,7 +4710,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (400.39317pt too high) detected at line 8915
+Overfull \vbox (428.19318pt too high) detected at line 8921
  []
 
 
@@ -4739,7 +4739,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (87.98305pt too high) detected at line 9027
+Overfull \vbox (87.98305pt too high) detected at line 9033
  []
 
 
@@ -4752,7 +4752,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (217.45421pt too high) detected at line 9074
+Overfull \vbox (217.45421pt too high) detected at line 9080
  []
 
 
@@ -4788,7 +4788,7 @@ Overfull \hbox (45.15514pt too wide) in paragraph at lines 22--22
  []
 
 )
-Overfull \vbox (15.49281pt too high) detected at line 9144
+Overfull \vbox (15.49281pt too high) detected at line 9150
  []
 
 
@@ -4852,7 +4852,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (2.02747pt too high) detected at line 9284
+Overfull \vbox (2.02747pt too high) detected at line 9290
  []
 
 
@@ -4865,7 +4865,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (326.18843pt too high) detected at line 9339
+Overfull \vbox (326.18843pt too high) detected at line 9345
  []
 
 
@@ -4923,7 +4923,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.40363pt too high) detected at line 9482
+Overfull \vbox (4.40363pt too high) detected at line 9488
  []
 
 
@@ -5045,7 +5045,7 @@ Overfull \hbox (2.73389pt too wide) in paragraph at lines 24--25
  []
 
 )
-Overfull \vbox (42.49411pt too high) detected at line 9768
+Overfull \vbox (42.49411pt too high) detected at line 9774
  []
 
 
@@ -5097,7 +5097,7 @@ Overfull \hbox (36.57571pt too wide) in paragraph at lines 56--57
  []
 
 )
-Overfull \vbox (73.53755pt too high) detected at line 9884
+Overfull \vbox (73.53755pt too high) detected at line 9890
  []
 
 
@@ -5119,7 +5119,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (31.15236pt too high) detected at line 9970
+Overfull \vbox (31.15236pt too high) detected at line 9976
  []
 
 
@@ -5231,7 +5231,7 @@ Overfull \hbox (27.67963pt too wide) in paragraph at lines 73--74
  []
 
 )
-Overfull \vbox (81.38878pt too high) detected at line 10182
+Overfull \vbox (81.38878pt too high) detected at line 10188
  []
 
 
@@ -5298,7 +5298,7 @@ Overfull \hbox (24.09048pt too wide) in paragraph at lines 77--78
  []
 
 )
-Overfull \vbox (89.85199pt too high) detected at line 10285
+Overfull \vbox (89.85199pt too high) detected at line 10291
  []
 
 
@@ -5342,7 +5342,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 10391.
+(amsmath)                 on input line 10397.
 
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5417,7 +5417,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (8.59312pt too high) detected at line 10673
+Overfull \vbox (8.59312pt too high) detected at line 10679
  []
 
 
@@ -5439,7 +5439,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.70581pt too high) detected at line 10753
+Overfull \vbox (4.70581pt too high) detected at line 10759
  []
 
 
@@ -5525,7 +5525,7 @@ Overfull \hbox (54.3683pt too wide) in paragraph at lines 17--17
  []
 
 )
-Overfull \vbox (19.80551pt too high) detected at line 10925
+Overfull \vbox (19.80551pt too high) detected at line 10931
  []
 
 
@@ -5576,7 +5576,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 File: slides_d29_files/figure-beamer/nachwazzo-1.pdf Graphic file (type pdf)
 <use slides_d29_files/figure-beamer/nachwazzo-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/nachwazzo-1.pdf  used on
- input line 11068.
+ input line 11074.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5631,7 +5631,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/cabazzo-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (43.99315pt too high) detected at line 11214
+Overfull \vbox (43.99315pt too high) detected at line 11220
  []
 
 
@@ -5744,7 +5744,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (17.18233pt too high) detected at line 11481
+Overfull \vbox (17.18233pt too high) detected at line 11487
  []
 
 
@@ -5759,7 +5759,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 File: slides_d29_files/figure-beamer/charlecombe-1.pdf Graphic file (type pdf)
 <use slides_d29_files/figure-beamer/charlecombe-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/charlecombe-1.pdf  used 
-on input line 11488.
+on input line 11494.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5913,7 +5913,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.38614pt too high) detected at line 11923
+Overfull \vbox (10.38614pt too high) detected at line 11929
  []
 
 
@@ -5942,7 +5942,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (184.99632pt too high) detected at line 12035
+Overfull \vbox (184.99632pt too high) detected at line 12041
  []
 
 
@@ -5955,7 +5955,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (254.47034pt too high) detected at line 12096
+Overfull \vbox (254.47034pt too high) detected at line 12102
  []
 
 
@@ -6117,7 +6117,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.62262pt too high) detected at line 12580
+Overfull \vbox (4.62262pt too high) detected at line 12586
  []
 
 
@@ -6303,7 +6303,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (17.07526pt too high) detected at line 13073
+Overfull \vbox (17.07526pt too high) detected at line 13079
  []
 
 
@@ -6361,7 +6361,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (11.48534pt too high) detected at line 13221
+Overfull \vbox (11.48534pt too high) detected at line 13227
  []
 
 
@@ -6381,7 +6381,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.6059pt too high) detected at line 13273
+Overfull \vbox (10.6059pt too high) detected at line 13279
  []
 
 
@@ -6439,7 +6439,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (0.40688pt too high) detected at line 13475
+Overfull \vbox (0.40688pt too high) detected at line 13481
  []
 
 
@@ -6452,7 +6452,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (7.65044pt too high) detected at line 13517
+Overfull \vbox (7.65044pt too high) detected at line 13523
  []
 
 
@@ -6474,7 +6474,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (3.67804pt too high) detected at line 13605
+Overfull \vbox (3.67804pt too high) detected at line 13611
  []
 
 
@@ -6505,7 +6505,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (2.79227pt too high) detected at line 13720
+Overfull \vbox (2.79227pt too high) detected at line 13726
  []
 
 
@@ -6595,7 +6595,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/graziani-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (7.69131pt too high) detected at line 13908
+Overfull \vbox (7.69131pt too high) detected at line 13914
  []
 
 
@@ -6633,7 +6633,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (0.1939pt too high) detected at line 14020
+Overfull \vbox (0.1939pt too high) detected at line 14026
  []
 
 
@@ -6718,7 +6718,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/unnamed-chunk-326-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (1.58653pt too high) detected at line 14150
+Overfull \vbox (1.58653pt too high) detected at line 14156
  []
 
 
@@ -6750,7 +6750,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <nesta.pdf, id=4464, 722.7pt x 360.34625pt>
 File: nesta.pdf Graphic file (type pdf)
 <use nesta.pdf>
-Package luatex.def Info: nesta.pdf  used on input line 14239.
+Package luatex.def Info: nesta.pdf  used on input line 14245.
 (luatex.def)             Requested size: 209.47838pt x 104.44824pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -6841,7 +6841,7 @@ Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-337-1.pdf
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
-Overfull \vbox (50.14354pt too high) detected at line 14464
+Overfull \vbox (50.14354pt too high) detected at line 14470
  []
 
 
@@ -6915,7 +6915,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.5871pt too high) detected at line 14646
+Overfull \vbox (10.5871pt too high) detected at line 14652
  []
 
 
@@ -6928,7 +6928,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.07512pt too high) detected at line 14676
+Overfull \vbox (4.07512pt too high) detected at line 14682
  []
 
 
@@ -7009,7 +7009,7 @@ File: slides_d29_files/figure-beamer/unnamed-chunk-347-1.pdf Graphic file (type
 pdf)
 <use slides_d29_files/figure-beamer/unnamed-chunk-347-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-347-1.pdf 
- used on input line 14839.
+ used on input line 14845.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7025,7 +7025,7 @@ File: slides_d29_files/figure-beamer/unnamed-chunk-348-1.pdf Graphic file (type
 pdf)
 <use slides_d29_files/figure-beamer/unnamed-chunk-348-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-348-1.pdf 
- used on input line 14850.
+ used on input line 14856.
 (luatex.def)             Requested size: 342.29358pt x 106.01591pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7041,7 +7041,7 @@ File: slides_d29_files/figure-beamer/unnamed-chunk-349-1.pdf Graphic file (type
 pdf)
 <use slides_d29_files/figure-beamer/unnamed-chunk-349-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-349-1.pdf 
- used on input line 14860.
+ used on input line 14866.
 (luatex.def)             Requested size: 342.29358pt x 115.99948pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7057,7 +7057,7 @@ File: slides_d29_files/figure-beamer/unnamed-chunk-350-1.pdf Graphic file (type
 pdf)
 <use slides_d29_files/figure-beamer/unnamed-chunk-350-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-350-1.pdf 
- used on input line 14870.
+ used on input line 14876.
 (luatex.def)             Requested size: 342.29358pt x 109.34378pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7073,7 +7073,7 @@ File: slides_d29_files/figure-beamer/unnamed-chunk-351-1.pdf Graphic file (type
 pdf)
 <use slides_d29_files/figure-beamer/unnamed-chunk-351-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-351-1.pdf 
- used on input line 14882.
+ used on input line 14888.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7108,7 +7108,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (36.03838pt too high) detected at line 15000
+Overfull \vbox (36.03838pt too high) detected at line 15006
  []
 
 
@@ -7249,7 +7249,7 @@ Overfull \hbox (50.93607pt too wide) in alignment at lines 20--42
  []
 
 )
-Overfull \vbox (19.5168pt too high) detected at line 15258
+Overfull \vbox (19.5168pt too high) detected at line 15264
  []
 
 
@@ -7262,7 +7262,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (9.38612pt too high) detected at line 15295
+Overfull \vbox (9.38612pt too high) detected at line 15301
  []
 
 
@@ -7284,7 +7284,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (4.33385pt too high) detected at line 15375
+Overfull \vbox (4.33385pt too high) detected at line 15381
  []
 
 
@@ -7306,7 +7306,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (11.84708pt too high) detected at line 15461
+Overfull \vbox (11.84708pt too high) detected at line 15467
  []
 
 
@@ -7364,7 +7364,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (1194.97131pt too high) detected at line 15759
+Overfull \vbox (1194.97131pt too high) detected at line 15765
  []
 
 
@@ -7404,7 +7404,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (1155.85358pt too high) detected at line 15969
+Overfull \vbox (1155.85358pt too high) detected at line 15975
  []
 
 
@@ -7498,7 +7498,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (79.13795pt too high) detected at line 16203
+Overfull \vbox (79.13795pt too high) detected at line 16209
  []
 
 
@@ -7590,7 +7590,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (30.26276pt too high) detected at line 16430
+Overfull \vbox (30.26276pt too high) detected at line 16436
  []
 
 
@@ -7728,10 +7728,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <map1.png, id=5372, 1084.05pt x 722.7pt>
 File: map1.png Graphic file (type png)
 <use map1.png>
-Package luatex.def Info: map1.png  used on input line 16773.
+Package luatex.def Info: map1.png  used on input line 16779.
 (luatex.def)             Requested size: 342.28809pt x 228.19205pt.
 
-Overfull \vbox (10.18117pt too high) detected at line 16773
+Overfull \vbox (10.18117pt too high) detected at line 16779
  []
 
 
@@ -7804,10 +7804,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <map2.png, id=5441, 1084.05pt x 722.7pt>
 File: map2.png Graphic file (type png)
 <use map2.png>
-Package luatex.def Info: map2.png  used on input line 16860.
+Package luatex.def Info: map2.png  used on input line 16866.
 (luatex.def)             Requested size: 342.28809pt x 228.19205pt.
 
-Overfull \vbox (10.18117pt too high) detected at line 16860
+Overfull \vbox (10.18117pt too high) detected at line 16866
  []
 
 
@@ -7945,7 +7945,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (25.72925pt too high) detected at line 17185
+Overfull \vbox (25.72925pt too high) detected at line 17191
  []
 
 
@@ -7970,7 +7970,7 @@ File: bPrincomp-score-plot.png Graphic file (type png)
 Package luatex.def Info: bPrincomp-score-plot.png  used on input line 13.
 (luatex.def)             Requested size: 249.43542pt x 249.43542pt.
 )
-Overfull \vbox (196.26846pt too high) detected at line 17201
+Overfull \vbox (196.26846pt too high) detected at line 17207
  []
 
 
@@ -8010,15 +8010,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 File: slides_d29_files/figure-beamer/ff3-1.pdf Graphic file (type pdf)
 <use slides_d29_files/figure-beamer/ff3-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/ff3-1.pdf  used on input
- line 17267.
+ line 17273.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 <bPrincomp-test-biplot.png, id=5630, 433.62pt x 433.62pt>
 File: bPrincomp-test-biplot.png Graphic file (type png)
 <use bPrincomp-test-biplot.png>
-Package luatex.def Info: bPrincomp-test-biplot.png  used on input line 17267.
+Package luatex.def Info: bPrincomp-test-biplot.png  used on input line 17273.
 (luatex.def)             Requested size: 249.43542pt x 249.43542pt.
 
-Overfull \vbox (176.14197pt too high) detected at line 17267
+Overfull \vbox (176.14197pt too high) detected at line 17273
  []
 
 
@@ -8050,7 +8050,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (2623.38933pt too high) detected at line 17620
+Overfull \vbox (2623.38933pt too high) detected at line 17626
  []
 
 
@@ -8070,7 +8070,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (11.23112pt too high) detected at line 17674
+Overfull \vbox (11.23112pt too high) detected at line 17680
  []
 
 
@@ -8108,7 +8108,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (40.76813pt too high) detected at line 17751
+Overfull \vbox (40.76813pt too high) detected at line 17757
  []
 
 
@@ -8290,7 +8290,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/palermo-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (23.71028pt too high) detected at line 18186
+Overfull \vbox (23.71028pt too high) detected at line 18192
  []
 
 
@@ -8550,7 +8550,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (6.07332pt too high) detected at line 18825
+Overfull \vbox (6.07332pt too high) detected at line 18831
  []
 
 
@@ -8563,7 +8563,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (6.07332pt too high) detected at line 18864
+Overfull \vbox (6.07332pt too high) detected at line 18870
  []
 
 
@@ -8584,10 +8584,10 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <bem.png, id=6172, 624.3325pt x 411.5375pt>
 File: bem.png Graphic file (type png)
 <use bem.png>
-Package luatex.def Info: bem.png  used on input line 18890.
+Package luatex.def Info: bem.png  used on input line 18896.
 (luatex.def)             Requested size: 338.77309pt x 223.30702pt.
 
-Overfull \vbox (5.29614pt too high) detected at line 18890
+Overfull \vbox (5.29614pt too high) detected at line 18896
  []
 
 
@@ -92170,7 +92170,7 @@ Overfull \hbox (308.86371pt too wide) in alignment at lines 32869--33689
  []
 
 )
-Overfull \vbox (3369.76671pt too high) detected at line 52584
+Overfull \vbox (3369.76671pt too high) detected at line 52590
  []
 
 
@@ -92226,7 +92226,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/bem-scree-two-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (379.09312pt too high) detected at line 52712
+Overfull \vbox (379.09312pt too high) detected at line 52718
  []
 
 
@@ -92258,7 +92258,7 @@ File: bFactor-bem-biplot.png Graphic file (type png)
 Package luatex.def Info: bFactor-bem-biplot.png  used on input line 12.
 (luatex.def)             Requested size: 249.43542pt x 249.43542pt.
 )
-Overfull \vbox (182.66846pt too high) detected at line 52744
+Overfull \vbox (182.66846pt too high) detected at line 52750
  []
 
 
@@ -92297,7 +92297,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (291.92912pt too high) detected at line 52896
+Overfull \vbox (291.92912pt too high) detected at line 52902
  []
 
 
@@ -92310,7 +92310,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (7.39633pt too high) detected at line 52935
+Overfull \vbox (7.39633pt too high) detected at line 52941
  []
 
 
@@ -92323,7 +92323,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.97406pt too high) detected at line 52977
+Overfull \vbox (10.97406pt too high) detected at line 52983
  []
 
 
@@ -92358,7 +92358,7 @@ File: slides_d29_files/figure-beamer/biplot-two-ag-1.pdf Graphic file (type pdf)
 
 <use slides_d29_files/figure-beamer/biplot-two-ag-1.pdf>
 Package luatex.def Info: slides_d29_files/figure-beamer/biplot-two-ag-1.pdf  use
-d on input line 53045.
+d on input line 53051.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -92377,7 +92377,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (123.85912pt too high) detected at line 53124
+Overfull \vbox (123.85912pt too high) detected at line 53130
  []
 
 
@@ -92397,7 +92397,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (23036.80255pt too high) detected at line 69401
+Overfull \vbox (23036.80255pt too high) detected at line 69407
  []
 
 
@@ -92428,7 +92428,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (3.82187pt too high) detected at line 69523
+Overfull \vbox (3.82187pt too high) detected at line 69529
  []
 
 
@@ -92441,7 +92441,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (284.33609pt too high) detected at line 69587
+Overfull \vbox (284.33609pt too high) detected at line 69593
  []
 
 
@@ -92472,7 +92472,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (24.57361pt too high) detected at line 69715
+Overfull \vbox (24.57361pt too high) detected at line 69721
  []
 
 
@@ -92494,7 +92494,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (8.79378pt too high) detected at line 69774
+Overfull \vbox (8.79378pt too high) detected at line 69780
  []
 
 
@@ -92534,7 +92534,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (8.79378pt too high) detected at line 69927
+Overfull \vbox (8.79378pt too high) detected at line 69933
  []
 
 
@@ -92547,7 +92547,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.92903pt too high) detected at line 69966
+Overfull \vbox (10.92903pt too high) detected at line 69972
  []
 
 
@@ -92560,7 +92560,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (10.92903pt too high) detected at line 70005
+Overfull \vbox (10.92903pt too high) detected at line 70011
  []
 
 
@@ -92700,7 +92700,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (45.33913pt too high) detected at line 70544
+Overfull \vbox (45.33913pt too high) detected at line 70550
  []
 
 
@@ -92740,7 +92740,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (25.60265pt too high) detected at line 70725
+Overfull \vbox (25.60265pt too high) detected at line 70731
  []
 
 
@@ -92762,7 +92762,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (0.92152pt too high) detected at line 70791
+Overfull \vbox (0.92152pt too high) detected at line 70797
  []
 
 
@@ -92831,7 +92831,7 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 31--31
  []
 
 )
-Overfull \vbox (2.00557pt too high) detected at line 70934
+Overfull \vbox (2.00557pt too high) detected at line 70940
  []
 
 
@@ -92971,7 +92971,7 @@ Overfull \hbox (46.84415pt too wide) in paragraph at lines 104--105
  []
 
 )
-Overfull \vbox (903.11163pt too high) detected at line 71279
+Overfull \vbox (903.11163pt too high) detected at line 71285
  []
 
 
@@ -92993,7 +92993,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (459.01833pt too high) detected at line 71369
+Overfull \vbox (459.01833pt too high) detected at line 71375
  []
 
 
@@ -93066,7 +93066,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 \openout4 = slides_d29.vrb
  (./slides_d2
 9.vrb)
-Overfull \vbox (1884.31833pt too high) detected at line 71655
+Overfull \vbox (1884.31833pt too high) detected at line 71661
  []
 
 
@@ -93165,7 +93165,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (39.81883pt too high) detected at line 71844
+Overfull \vbox (39.81883pt too high) detected at line 71850
  []
 
 
@@ -93218,7 +93218,7 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 31--31
  []
 
 )
-Overfull \vbox (136.4408pt too high) detected at line 71926
+Overfull \vbox (136.4408pt too high) detected at line 71932
  []
 
 
@@ -93276,7 +93276,7 @@ Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-534-1.pdf
  used on input line 14.
 (luatex.def)             Requested size: 342.29358pt x 112.67163pt.
 )
-Overfull \vbox (8.93575pt too high) detected at line 72033
+Overfull \vbox (8.93575pt too high) detected at line 72039
  []
 
 
@@ -93470,7 +93470,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (1031.15831pt too high) detected at line 72427
+Overfull \vbox (1031.15831pt too high) detected at line 72433
  []
 
 
@@ -93519,7 +93519,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (140.21758pt too high) detected at line 72524
+Overfull \vbox (140.21758pt too high) detected at line 72530
  []
 
 
@@ -93627,7 +93627,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (164.54665pt too high) detected at line 72735
+Overfull \vbox (164.54665pt too high) detected at line 72741
  []
 
 
@@ -93790,7 +93790,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (82.21988pt too high) detected at line 73067
+Overfull \vbox (82.21988pt too high) detected at line 73073
  []
 
 
@@ -93830,7 +93830,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (1790.26512pt too high) detected at line 73358
+Overfull \vbox (1790.26512pt too high) detected at line 73364
  []
 
 
@@ -94103,7 +94103,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [776
 
 ]
-Overfull \vbox (2.198pt too high) detected at line 74144
+Overfull \vbox (2.198pt too high) detected at line 74150
  []
 
 
@@ -94333,11 +94333,11 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 \tf@snm=\write9
 
 \openout9 = slides_d29.snm
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 74901.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 74901.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 74907.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 74907.
 (./slides_d29.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 74901.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 74901.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 74907.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 74907.
 
 Package rerunfilecheck Info: File `slides_d29.out' has not changed.
 (rerunfilecheck)             Checksum: FEEA29F68C811A3EE09A7CA15295C966;2836.
@@ -94353,7 +94353,7 @@ te, 1 pdf_dest, 58 pdf_colorstack nodes
    avail lists: 1:8,2:229307,3:33433,4:248,5:9795,6:33308,7:1113866,8:25,9:19499
 9,10:34,11:29485
  48877 multiletter control sequences out of 65536+600000
- 102 fonts using 27175083 bytes
+ 102 fonts using 27175171 bytes
  59i,15n,118p,797b,1669s stack positions out of 5000i,500n,10000p,200000b,100000s
 </home/ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans12-oblique.otf></h
 ome/ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono12-regular.otf></home
@@ -94371,7 +94371,7 @@ nts/opentype/public/lm/lmmono10-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts
 /opentype/public/lm/lmsans8-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts/ope
 ntype/public/lm/lmsans10-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts/openty
 pe/public/lm/lmsans12-regular.otf>
-Output written on slides_d29.pdf (801 pages, 3106408 bytes).
+Output written on slides_d29.pdf (801 pages, 3106435 bytes).
 
 PDF statistics: 8324 PDF objects out of 8907 (max. 8388607)
  7141 compressed objects within 72 object streams

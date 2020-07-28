@@ -181,7 +181,7 @@ ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 
 ## Predicted survival probs 
 - The function we use is called
-`surv_fit`, though actually works rather like
+`survfit`, though actually works rather like
 `predict`. 
 - First create a data frame of values to predict from. We'll do all
 combos of ages 20 and 40, treatment and not, using
