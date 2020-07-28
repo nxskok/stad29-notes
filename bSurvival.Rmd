@@ -114,12 +114,11 @@ dance
 ## Examine response and fit model
 
 
-* Response variable (has to be outside data frame): 
+* Response variable: 
 
 \small
 ```{r}
-mth <- with(dance, Surv(Months, Quit))
-mth
+dance %>% mutate(mth = Surv(Months, Quit)) -> dance
 ```
 \normalsize
 
@@ -227,8 +226,7 @@ vs.\ not)
 
 * Would be nice to see this on a graph. This is `ggsurvplot` from package `survminer`:
 ```{r }
-s1 <- do.call(survfit, list(formula=dance.1, newdata=dance.new, data=dance))
-g <- ggsurvplot(s1, conf.int = F)
+g <- ggsurvplot(s, conf.int = F)
 ```
 
 - uses "strata" thus (`dance.new`): 
@@ -356,7 +354,9 @@ names(lung.complete)
 - Event was death, goes with `status` of 2:
  
 ```{r }
-resp <- with(lung.complete, Surv(time, status == 2))
+lung.complete %>% 
+   mutate(resp = Surv(time, status == 2)) ->
+   lung.complete
 lung.1 <- coxph(resp ~ . - inst - time - status,
   data = lung.complete
 )
@@ -481,8 +481,7 @@ s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
 
 ## The plot 
 ```{r fig.height=3.8}
-s1 <- do.call(survfit, list(formula = lung.3, data = lung.complete, newdata = lung.new))
-ggsurvplot(s1, conf.int = F)
+ggsurvplot(s, conf.int = F)
 ```
  
 
@@ -539,7 +538,7 @@ age <- seq(20, 60, 5)
 survtime <- c(10, 12, 11, 21, 15, 20, 8, 9, 11)
 stat <- c(1, 1, 1, 1, 0, 1, 1, 1, 1)
 d <- tibble(age, survtime, stat)
-y <- with(d, Surv(survtime, stat))
+d %>% mutate(y = Surv(survtime, stat)) -> d
 ```
 
      

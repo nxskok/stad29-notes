@@ -56,7 +56,7 @@ dose status
 ```{r}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rat.txt"
 rats <- read_delim(my_url, " ")
-glimpse(rats)
+rats
 ```
  
 
@@ -838,7 +838,7 @@ brands.1 <- multinom(brand ~ age + sex, data = brandpref)
 
 
 * Unfortunately `drop1` seems not to work:
-```{r }
+```{r, error=TRUE}
 drop1(brands.1, test = "Chisq", trace = 0)
 ```
 

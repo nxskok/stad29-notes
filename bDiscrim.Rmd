@@ -80,7 +80,7 @@ difference in seed yield and weight based on whether they were high
 or low fertilizer.
 \end{minipage}\hfill
 \begin{minipage}[t][][b]{0.55\textwidth}
-\includegraphics[width=0.9\textwidth, valign=t]{berzani}
+\includegraphics[width=0.9\textwidth]{berzani}
 \end{minipage}
 
 ## Basic discriminant analysis
@@ -416,9 +416,9 @@ small `w`.
 ## Predict typical LD1 scores
 First and third quartiles for three response variables:
 ```{r }
-quartiles <- peanuts %>%
-  select(y:w) %>%
-  map_df(quantile, c(0.25, 0.75))
+peanuts %>%
+   select(y:w) %>%
+summarize(across(everything(), ~quantile(., c(0.25, 0.75)))) -> quartiles
 quartiles
 new <- with(quartiles, crossing(y, smk, w))
 ```
@@ -752,7 +752,7 @@ ggsave("nesta.pdf", g, "pdf")
 \end{minipage}\hfill
 \begin{minipage}[t][][b]{0.68\linewidth}
 
-\includegraphics[width=0.9\textwidth, valign=t]{nesta}
+\includegraphics[width=0.9\textwidth]{nesta}
        
 \end{minipage}
 

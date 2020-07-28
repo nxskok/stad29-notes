@@ -773,13 +773,11 @@ returning P-value:
 ```{r }
 aov_pval <- function(x) {
   noise.1 <- aov(noise ~ type, data = x)
-  gg <- glance(noise.1)
-  gg$p.value
+  gg <- tidy(noise.1)
+  gg$p.value[1]
 }
 ```
-
      
-
 
 * Test it:
 ```{r }
@@ -1080,7 +1078,7 @@ models B and C are industrial models.
 * Compare two industrial models: $H_0: \mu_B-\mu_C=0$.
 
 * Compare average of two home models vs.\ average of two
-industrial models: $H_0: {1\over2}(\mu_A+\mu_D)-{1\over
+industrial models: $H_0: \frac{1}{2}(\mu_A+\mu_D)-{1\over
 2}(\mu_B+\mu_C)=0$ or $H_0: 0.5\mu_A-0.5\mu_B-0.5\mu_C+0.5\mu_D=0$.
 
 * Note that coefficients of contrasts add to 0, and right-hand

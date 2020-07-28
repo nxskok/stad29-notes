@@ -68,12 +68,12 @@ dogs.1 <- lm(response ~ drug, data = dogs)
 ## The repeated measures MANOVA
 
 Get list of response variable names; we call them `times`. Save
-in data frame.
+in data frame. 
 
 \footnotesize 
-```{r }
+```{r, error=TRUE}
 times <- colnames(response)
-times.df <- data.frame(times)
+times.df <- data.frame(times=factor(times))
 dogs.2 <- Manova(dogs.1,
   idata = times.df,
   idesign = ~times
@@ -216,11 +216,11 @@ no longer be significant.
 
 * Go back to original "wide" `dogs` data frame.
 
-```{r size="footnotesize"}
+```{r size="footnotesize", error=TRUE}
 response <- with(dogs, cbind(lh1, lh3, lh5)) # excl time 0
 dogs.1 <- lm(response ~ drug, data = dogs)
 times <- colnames(response)
-times.df <- data.frame(times)
+times.df <- data.frame(times=factor(times))
 dogs.2 <- Manova(dogs.1,
   idata = times.df,
   idesign = ~times
@@ -232,7 +232,7 @@ dogs.2 <- Manova(dogs.1,
 ## Results and comments
 
 \footnotesize
-```{r}
+```{r, error=TRUE}
 dogs.2
 ```
  
@@ -399,12 +399,12 @@ exercise.1 <- lm(response ~ diet * exertype,
 
 
 
-* Run this through `Manova`:
+* Run this through `Manova`: 
 
 \small
-```{r }
+```{r, error=TRUE}
 times <- colnames(response)
-times.df <- data.frame(times)
+times.df <- data.frame(times=factor(times))
 exercise.2 <- Manova(exercise.1, 
                      idata = times.df, 
                      idesign = ~times)
@@ -516,7 +516,7 @@ before, but I have different data now:
 response <- with(runners.wide, cbind(min01, min15, min30))
 runners.1 <- lm(response ~ diet, data = runners.wide)
 times <- colnames(response)
-times.df <- data.frame(times)
+times.df <- data.frame(times=factor(times))
 runners.2 <- Manova(runners.1,
   idata = times.df,
   idesign = ~times
