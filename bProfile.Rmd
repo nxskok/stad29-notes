@@ -188,8 +188,8 @@ value originally came from labelled by `timex`, and then:
 ```{r fig.height=3}
 ggplot(dogs.long, aes(x = time, y = lh, 
                       colour = drug, group = drug)) +
-  stat_summary(fun.y = mean, geom = "point") +
-  stat_summary(fun.y = mean, geom = "line")
+  stat_summary(fun = mean, geom = "point") +
+  stat_summary(fun = mean, geom = "line")
 ```
 \normalsize
    

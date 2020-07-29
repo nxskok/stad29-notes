@@ -596,8 +596,8 @@ g <- ggplot(autonoise, aes(
   x = size, y = noise,
   colour = type, group = type
 )) +
-  stat_summary(fun.y = mean, geom = "point") +
-  stat_summary(fun.y = mean, geom = "line")
+  stat_summary(fun = mean, geom = "point") +
+  stat_summary(fun = mean, geom = "line")
 ```
 
      
