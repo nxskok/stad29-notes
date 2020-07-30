@@ -489,6 +489,8 @@ that obese rats have larger kidneys than lean ones.
 * Bottom line: diet has no effect on kidney size once you control
 for size of rat.
 
+* residuals******************
+
 
 ## The auto noise data
 In 1973, the President of Texaco cited an automobile filter
