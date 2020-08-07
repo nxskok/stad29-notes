@@ -310,13 +310,12 @@ Use $\alpha=0.05$.
 
 
 
-## `pairwise.t.test` 
+## `pairwise.t.test`
 
 \tiny
 ```{r }
-attach(hairpain)
-pairwise.t.test(pain, hair, p.adj = "none")
-pairwise.t.test(pain, hair, p.adj = "holm")
+with(hairpain, pairwise.t.test(pain, hair, p.adj = "none"))
+with(hairpain, pairwise.t.test(pain, hair, p.adj = "holm"))
 ```
 \normalsize
 
@@ -369,11 +368,14 @@ into size classes `lean` and `obese`.
 
 
 * Read in data:
+
+\small
+
 ```{r }
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/vitaminb.txt"
 vitaminb <- read_delim(my_url, " ")
 ```
-
+\normalsize
      
 
 
@@ -489,7 +491,88 @@ that obese rats have larger kidneys than lean ones.
 * Bottom line: diet has no effect on kidney size once you control
 for size of rat.
 
-* residuals******************
+## Assessing assumptions: residuals
+
+- In two-way ANOVA, not many observations per treatment group.
+- Difficult to check for normality / equal spreads.
+- *But*, any regular ANOVA also a regression.
+- Use regression residual ideas.
+- In ANOVA, one fitted value per treatment group (based on means).
+- Residual: observation minus fitted value.
+
+## Previous ANOVA as regression
+
+\scriptsize
+
+```{r}
+vitaminb.3 <- lm(kidneyweight ~ ratsize + diet, data = vitaminb)
+summary(vitaminb.3)
+```
+\normalsize
+
+## Reproduce ANOVA
+
+\small
+
+```{r}
+drop1(vitaminb.3, test = "F")
+```
+
+\normalsize
+
+- ANOVA and regression `drop1` output always the same.
+- this time, ANOVA and regression `summary` output have same P-values, but only because categorical variables both have two levels.
+
+
+## Are the residuals normal?
+
+```{r}
+ggplot(vitaminb.3, aes(sample=.resid)) + 
+  stat_qq() + stat_qq_line()
+```
+
+## Residuals against fitted
+
+```{r}
+ggplot(vitaminb.3, aes(x=.fitted, y=.resid)) + geom_point()
+```
+
+## Comments
+
+- 2 rat sizes, 2 diets: only $2 \times 2 = 4$ different fitted values
+- larger fitted values have greater spread (fan-out, transformation?)
+- add residuals to data to plot residuals against size, diet (`augment` from `broom`):
+
+```{r}
+vitaminb.3 %>% augment(vitaminb) -> vitaminb.3a
+```
+
+- explanatory `ratsize`, `diet` categorical, so plot resid vs. them with *boxplots*.
+
+## Residuals vs rat size 
+
+```{r}
+ggplot(vitaminb.3a, aes(x = ratsize, y = .resid)) + 
+  geom_boxplot()
+```
+
+## Residuals vs diet
+
+```{r}
+ggplot(vitaminb.3a, aes(x = diet, y = .resid)) + 
+  geom_boxplot()
+```
+
+## Comments
+
+- there are low outliers on the plot against diet
+- residuals for obese rats seem more spread out than for lean rats
+- case for transformation of rat weights
+- however, story from our analysis very clear:
+    - rat size strongly significant
+    - diet nowhere near significant
+- and so expect transformation to make no difference to conclusions.
+
 
 
 ## The auto noise data
@@ -679,7 +762,9 @@ autonoise %>%
 
 
 ## Simple effect of filter type for medium cars
-{\small
+
+\small
+
 ```{r }
 autonoise %>%
   filter(size == "M") %>%
@@ -688,7 +773,7 @@ autonoise %>%
 ```
 
    
-}
+\normalsize
 
 
 
@@ -729,31 +814,12 @@ autonoise %>%
 
 * No significant difference again. 
 
-## Or\ldots 
-
-```{r, echo=F}
-options(width=60)
-```
-
-
-use `glance` from `broom`:
-
-\small
-```{r}
-autonoise %>%
-  filter(size == "L") %>%
-  aov(noise ~ type, data = .) %>%
-  glance()
-```
-\normalsize
-
-- P-value same as from `summary` output.
-
 
 ## All at once, using split/apply/combine
+
 The "split" part:
 
-```{r }
+```{r}
 autonoise %>%
   group_by(size) %>%
   nest()
@@ -799,7 +865,7 @@ autonoise %>%
 
 * Apply this function to each of the nested data frames (one per
 engine size):
-```{r }
+```{r}
 autonoise %>%
   group_by(size) %>%
   nest() %>%
@@ -841,15 +907,12 @@ simple_effects
 
 
 * When testing simple effects, doing several tests at once. (In
-this case, 3.)
+this case, 3.) Have to adjust P-values for this. Eg.\ Holm:
 
-* Have to adjust P-values for this. Eg.\ Holm:
-
-\small
+\footnotesize
 
 ```{r}
-simple_effects %>%
-  arrange(p_val) %>%
+simple_effects %>% ungroup() %>% arrange(p_val) %>%
   mutate(multiplier = 4 - row_number()) %>%
   mutate(p_val_adj = p_val * multiplier)
 ```
@@ -858,7 +921,7 @@ simple_effects %>%
 
      
 
-\begin{footnotesize}
+\footnotesize
 
 * No change in rejection decisions.
 
@@ -867,7 +930,8 @@ medium cars, and not sig.\ different for other sizes.
 
 * Octel filters never significantly worse than standard
 ones. 
-\end{footnotesize}
+
+\normalsize
 
 
 
@@ -917,17 +981,18 @@ Same idea as for simple effect test:
 autonoise %>%
   filter(size == "S") %>%
   t.test(noise ~ type, data = .) %>%
-  .[["conf.int"]]
+  pluck("conf.int")
 ```
 
  
 
 ## CI for medium cars
+
 ```{r }
 autonoise %>%
   filter(size == "M") %>%
   t.test(noise ~ type, data = .) %>%
-  .[["conf.int"]]
+  pluck("conf.int")
 ```
 
  
@@ -937,21 +1002,22 @@ autonoise %>%
 autonoise %>%
   filter(size == "L") %>%
   t.test(noise ~ type, data = .) %>%
-  .[["conf.int"]]
+  pluck("conf.int")
 ```
 
  
 
 
 ## Or, all at once: split/apply/combine
-\scriptsize
+
+
 ```{r}
 ci_func <- function(x) {
   tt <- t.test(noise ~ type, data = x)
   tt$conf.int
 }
-autonoise %>%
-  nest(-size) %>%
+autonoise %>% group_by(size) %>%
+  nest() %>% 
   mutate(ci = map(data, ~ ci_func(.))) %>%
   unnest(ci) -> cis
 ```
@@ -989,10 +1055,9 @@ equivalent. (I have no idea whether that is reasonable.)
 \small
 
 ```{r}
-hilooo=rep(c("lower", "upper"), 3)
-hilooo
+hilos=c("lower", "upper")
 cis %>%
-  mutate(hilo = rep(c("lower", "upper"), 3)) %>%
+  mutate(hilo = hilos) %>%
   pivot_wider(names_from=hilo, values_from=ci)
 ```
 
@@ -1170,11 +1235,13 @@ chain.wide
 
 
 ## Tidying
+
 Need all the kickbacks in *one* column:
 
 ```{r }
 chain.wide %>% 
-  pivot_longer(A:D, names_to = "model", names_ptypes = list(model=factor()), 
+  pivot_longer(A:D, names_to = "model", 
+               names_ptypes = list(model=factor()), 
                values_to = "kickback") -> chain
 ```
 
@@ -1245,13 +1312,14 @@ chain %>%
   summarize(mean.kick = mean(kickback)) %>%
   arrange(desc(mean.kick))
 ```
-\normalsize
- 
+
+\small
 
 * Home models A \& D have less kickback than industrial ones B \& C.
 
 * Makes sense because industrial users should get training to cope
 with additional kickback.
 
-
+\normalsize
+ 
 
