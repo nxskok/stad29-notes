@@ -515,7 +515,7 @@ summary(vitaminb.3)
 \small
 
 ```{r}
-drop1(vitaminb.3, test = "F")
+tidy(drop1(vitaminb.3, test = "F"))
 ```
 
 \normalsize

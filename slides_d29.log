@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (TeX Live 2020)  (format=lualatex 2020.8.28)  28 AUG 2020 21:45
+This is LuaHBTeX, Version 1.12.0 (TeX Live 2020)  (format=lualatex 2020.8.28)  28 AUG 2020 22:02
  restricted system commands enabled.
 **slides_d29.tex
 (./slides_d29.tex
@@ -1864,12 +1864,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-41-1.pdf, id=629, 722.7pt x 216.81
+<slides_d29_files/figure-beamer/unnamed-chunk-80-1.pdf, id=629, 722.7pt x 216.81
 pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-41-1.pdf Graphic file (type p
+File: slides_d29_files/figure-beamer/unnamed-chunk-80-1.pdf Graphic file (type p
 df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-41-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-41-1.pdf  
+<use slides_d29_files/figure-beamer/unnamed-chunk-80-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-80-1.pdf  
 used on input line 18.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -1879,7 +1879,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [57
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-41-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-80-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1916,12 +1916,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-42-1.pdf, id=678, 722.7pt x 274.02
+<slides_d29_files/figure-beamer/unnamed-chunk-81-1.pdf, id=678, 722.7pt x 274.02
 374pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-42-1.pdf Graphic file (type p
+File: slides_d29_files/figure-beamer/unnamed-chunk-81-1.pdf Graphic file (type p
 df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-42-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-42-1.pdf  
+<use slides_d29_files/figure-beamer/unnamed-chunk-81-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-81-1.pdf  
 used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 129.78632pt.
 )
@@ -1931,7 +1931,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [61
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-42-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-81-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -1990,12 +1990,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-47-1.pdf, id=743, 722.7pt x 244.91
+<slides_d29_files/figure-beamer/unnamed-chunk-86-1.pdf, id=743, 722.7pt x 244.91
 5pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-47-1.pdf Graphic file (type p
+File: slides_d29_files/figure-beamer/unnamed-chunk-86-1.pdf Graphic file (type p
 df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-47-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-47-1.pdf  
+<use slides_d29_files/figure-beamer/unnamed-chunk-86-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-86-1.pdf  
 used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 115.99948pt.
 )
@@ -2005,7 +2005,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [67
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-47-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-86-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2088,12 +2088,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-50-1.pdf, id=837, 722.7pt x 230.86
+<slides_d29_files/figure-beamer/unnamed-chunk-89-1.pdf, id=837, 722.7pt x 230.86
 25pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-50-1.pdf Graphic file (type p
+File: slides_d29_files/figure-beamer/unnamed-chunk-89-1.pdf Graphic file (type p
 df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-50-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-50-1.pdf  
+<use slides_d29_files/figure-beamer/unnamed-chunk-89-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-89-1.pdf  
 used on input line 17.
 (luatex.def)             Requested size: 342.29358pt x 109.34378pt.
 )
@@ -2103,7 +2103,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [75
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-50-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-89-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9> not available
@@ -2222,12 +2222,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-58-1.pdf, id=971, 722.7pt x 252.94
+<slides_d29_files/figure-beamer/unnamed-chunk-97-1.pdf, id=971, 722.7pt x 252.94
 5pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-58-1.pdf Graphic file (type p
+File: slides_d29_files/figure-beamer/unnamed-chunk-97-1.pdf Graphic file (type p
 df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-58-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-58-1.pdf  
+<use slides_d29_files/figure-beamer/unnamed-chunk-97-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-97-1.pdf  
 used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -2237,7 +2237,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [88
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-58-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-97-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2247,12 +2247,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [89
 
 ]
-<slides_d29_files/figure-beamer/unnamed-chunk-60-1.pdf, id=995, 722.7pt x 310.15
+<slides_d29_files/figure-beamer/unnamed-chunk-99-1.pdf, id=995, 722.7pt x 310.15
 875pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-60-1.pdf Graphic file (type p
+File: slides_d29_files/figure-beamer/unnamed-chunk-99-1.pdf Graphic file (type p
 df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-60-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-60-1.pdf  
+<use slides_d29_files/figure-beamer/unnamed-chunk-99-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-99-1.pdf  
 used on input line 2329.
 (luatex.def)             Requested size: 342.29358pt x 146.90099pt.
 
@@ -2262,7 +2262,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [90
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-60-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-99-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2281,13 +2281,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [92
 
 ]
-<slides_d29_files/figure-beamer/unnamed-chunk-62-1.pdf, id=1031, 722.7pt x 325.2
-15pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-62-1.pdf Graphic file (type p
-df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-62-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-62-1.pdf  
-used on input line 2391.
+<slides_d29_files/figure-beamer/unnamed-chunk-101-1.pdf, id=1031, 722.7pt x 325.
+215pt>
+File: slides_d29_files/figure-beamer/unnamed-chunk-101-1.pdf Graphic file (type 
+pdf)
+<use slides_d29_files/figure-beamer/unnamed-chunk-101-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-101-1.pdf 
+ used on input line 2391.
 (luatex.def)             Requested size: 342.29358pt x 154.0321pt.
 
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2296,7 +2296,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [93
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-62-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-101-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2308,13 +2308,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-64-1.pdf, id=1055, 722.7pt x 252.9
-45pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-64-1.pdf Graphic file (type p
-df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-64-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-64-1.pdf  
-used on input line 13.
+<slides_d29_files/figure-beamer/unnamed-chunk-103-1.pdf, id=1055, 722.7pt x 252.
+945pt>
+File: slides_d29_files/figure-beamer/unnamed-chunk-103-1.pdf Graphic file (type 
+pdf)
+<use slides_d29_files/figure-beamer/unnamed-chunk-103-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-103-1.pdf 
+ used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2323,7 +2323,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [95
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-64-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-103-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2360,13 +2360,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-67-1.pdf, id=1106, 722.7pt x 252.9
-45pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-67-1.pdf Graphic file (type p
-df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-67-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-67-1.pdf  
-used on input line 11.
+<slides_d29_files/figure-beamer/unnamed-chunk-106-1.pdf, id=1106, 722.7pt x 252.
+945pt>
+File: slides_d29_files/figure-beamer/unnamed-chunk-106-1.pdf Graphic file (type 
+pdf)
+<use slides_d29_files/figure-beamer/unnamed-chunk-106-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-106-1.pdf 
+ used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2375,16 +2375,16 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [100
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-67-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-106-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-68-1.pdf, id=1121, 722.7pt x 274.0
-2374pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-68-1.pdf Graphic file (type p
-df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-68-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-68-1.pdf  
-used on input line 10.
+<slides_d29_files/figure-beamer/unnamed-chunk-107-1.pdf, id=1121, 722.7pt x 274.
+02374pt>
+File: slides_d29_files/figure-beamer/unnamed-chunk-107-1.pdf Graphic file (type 
+pdf)
+<use slides_d29_files/figure-beamer/unnamed-chunk-107-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-107-1.pdf 
+ used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 129.78632pt.
 )
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2393,16 +2393,16 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [101
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-68-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-107-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-69-1.pdf, id=1136, 722.7pt x 252.9
-45pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-69-1.pdf Graphic file (type p
-df)
-<use slides_d29_files/figure-beamer/unnamed-chunk-69-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-69-1.pdf  
-used on input line 11.
+<slides_d29_files/figure-beamer/unnamed-chunk-108-1.pdf, id=1136, 722.7pt x 252.
+945pt>
+File: slides_d29_files/figure-beamer/unnamed-chunk-108-1.pdf Graphic file (type 
+pdf)
+<use slides_d29_files/figure-beamer/unnamed-chunk-108-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-108-1.pdf 
+ used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -2411,7 +2411,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [102
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-69-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-108-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -2962,12 +2962,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-109-1.pdf, id=1714, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-148-1.pdf, id=1714, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-109-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-148-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-109-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-109-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-148-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-148-1.pdf 
  used on input line 14.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -2977,7 +2977,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [163
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-109-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-148-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3007,12 +3007,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-114-1.pdf, id=1755, 722.7pt x 234.
+<slides_d29_files/figure-beamer/unnamed-chunk-153-1.pdf, id=1755, 722.7pt x 234.
 8775pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-114-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-153-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-114-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-114-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-153-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-153-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 111.2454pt.
 )
@@ -3022,7 +3022,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [167
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-114-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-153-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3101,12 +3101,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-125-1.pdf, id=1843, 722.7pt x 274.
+<slides_d29_files/figure-beamer/unnamed-chunk-164-1.pdf, id=1843, 722.7pt x 274.
 02374pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-125-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-164-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-125-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-125-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-164-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-164-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 129.78632pt.
 )
@@ -3116,7 +3116,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [176
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-125-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-164-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3241,12 +3241,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-140-1.pdf, id=1976, 722.7pt x 201.
+<slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf, id=1976, 722.7pt x 201.
 75375pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-140-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-140-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-140-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf 
  used on input line 14.
 (luatex.def)             Requested size: 342.29358pt x 95.55695pt.
 )
@@ -3256,7 +3256,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [190
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-140-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -3370,12 +3370,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-147-1.pdf, id=2073, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf, id=2073, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-147-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-147-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-147-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -3385,7 +3385,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [200
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-147-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3397,12 +3397,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-149-1.pdf, id=2097, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-188-1.pdf, id=2097, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-149-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-188-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-149-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-149-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-188-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-188-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -3412,7 +3412,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [202
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-149-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-188-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3530,12 +3530,12 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 18--18
 []\TU/lmtt/m/n/10.95 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'[] 
  []
 
-<slides_d29_files/figure-beamer/unnamed-chunk-158-1.pdf, id=2230, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-197-1.pdf, id=2230, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-158-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-197-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-158-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-158-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-197-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-197-1.pdf 
  used on input line 20.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -3545,7 +3545,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [216
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-158-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-197-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3766,12 +3766,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf, id=2448, 722.7pt x 274.
+<slides_d29_files/figure-beamer/unnamed-chunk-218-1.pdf, id=2448, 722.7pt x 274.
 02374pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-218-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-218-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-218-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 129.78632pt.
 )
@@ -3781,7 +3781,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [238
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-179-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-218-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3806,12 +3806,12 @@ Overfull \hbox (8.37831pt too wide) in paragraph at lines 18--18
 []\TU/lmtt/m/n/10.95 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'[] 
  []
 
-<slides_d29_files/figure-beamer/unnamed-chunk-181-1.pdf, id=2480, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-220-1.pdf, id=2480, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-181-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-220-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-181-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-181-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-220-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-220-1.pdf 
  used on input line 20.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -3821,7 +3821,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [241
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-181-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-220-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3842,12 +3842,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-184-1.pdf, id=2517, 722.7pt x 244.
+<slides_d29_files/figure-beamer/unnamed-chunk-223-1.pdf, id=2517, 722.7pt x 244.
 915pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-184-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-223-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-184-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-184-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-223-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-223-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 115.99948pt.
 )
@@ -3857,7 +3857,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [244
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-184-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-223-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -3869,12 +3869,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf, id=2543, 722.7pt x 230.
+<slides_d29_files/figure-beamer/unnamed-chunk-225-1.pdf, id=2543, 722.7pt x 230.
 8625pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-225-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-225-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-225-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 109.34378pt.
 )
@@ -3884,7 +3884,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [246
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-186-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-225-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -4085,12 +4085,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-196-1.pdf, id=2758, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-235-1.pdf, id=2758, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-196-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-235-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-196-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-196-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-235-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-235-1.pdf 
  used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -4100,7 +4100,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [268
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-196-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-235-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
 Overfull \hbox (45.15514pt too wide) in paragraph at lines 22--22
@@ -4145,12 +4145,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-200-1.pdf, id=2800, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-239-1.pdf, id=2800, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-200-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-239-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-200-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-200-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-239-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-239-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -4160,7 +4160,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [272
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-200-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-239-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -4197,12 +4197,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-204-1.pdf, id=2850, 722.7pt x 361.
+<slides_d29_files/figure-beamer/unnamed-chunk-243-1.pdf, id=2850, 722.7pt x 361.
 35pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-204-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-243-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-204-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-204-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-243-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-243-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 171.14679pt.
 )
@@ -4212,15 +4212,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [277
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-204-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-243-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-205-1.pdf, id=2865, 722.7pt x 361.
+<slides_d29_files/figure-beamer/unnamed-chunk-244-1.pdf, id=2865, 722.7pt x 361.
 35pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-205-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-244-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-205-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-205-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-244-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-244-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 171.14679pt.
 )
@@ -4230,7 +4230,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [278
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-205-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-244-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -4242,12 +4242,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-207-1.pdf, id=2888, 722.7pt x 361.
+<slides_d29_files/figure-beamer/unnamed-chunk-246-1.pdf, id=2888, 722.7pt x 361.
 35pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-207-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-246-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-207-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-207-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-246-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-246-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 171.14679pt.
 )
@@ -4257,15 +4257,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [280
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-207-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-246-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-208-1.pdf, id=2902, 722.7pt x 361.
+<slides_d29_files/figure-beamer/unnamed-chunk-247-1.pdf, id=2902, 722.7pt x 361.
 35pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-208-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-247-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-208-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-208-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-247-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-247-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 171.14679pt.
 )
@@ -4275,7 +4275,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [281
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-208-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-247-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -4316,12 +4316,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-212-1.pdf, id=2953, 722.7pt x 194.
+<slides_d29_files/figure-beamer/unnamed-chunk-251-1.pdf, id=2953, 722.7pt x 194.
 7275pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-212-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-251-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-212-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-212-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-251-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-251-1.pdf 
  used on input line 18.
 (luatex.def)             Requested size: 342.29358pt x 92.2291pt.
 )
@@ -4331,7 +4331,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [286
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-212-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-251-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -4361,12 +4361,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-216-1.pdf, id=2995, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-255-1.pdf, id=2995, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-216-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-255-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-216-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-216-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-255-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-255-1.pdf 
  used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -4376,7 +4376,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [290
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-216-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-255-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
 Overfull \hbox (30.98012pt too wide) in paragraph at lines 22--22
@@ -4384,12 +4384,12 @@ Overfull \hbox (30.98012pt too wide) in paragraph at lines 22--22
 roups` argument)[] 
  []
 
-<slides_d29_files/figure-beamer/unnamed-chunk-217-1.pdf, id=3009, 722.7pt x 158.
+<slides_d29_files/figure-beamer/unnamed-chunk-256-1.pdf, id=3009, 722.7pt x 158.
 5925pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-217-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-256-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-217-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-217-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-256-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-256-1.pdf 
  used on input line 24.
 (luatex.def)             Requested size: 342.29358pt x 75.11441pt.
 )
@@ -4399,7 +4399,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [291
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-217-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-256-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -5274,12 +5274,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-279-1.pdf, id=3855, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-318-1.pdf, id=3855, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-279-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-318-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-279-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-279-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-318-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-318-1.pdf 
  used on input line 15.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -5289,7 +5289,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [379
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-279-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-318-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5418,12 +5418,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-291-1.pdf, id=3994, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf, id=3994, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-291-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-291-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-291-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -5433,7 +5433,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [393
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-291-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5487,12 +5487,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-297-1.pdf, id=4054, 722.7pt x 194.
+<slides_d29_files/figure-beamer/unnamed-chunk-336-1.pdf, id=4054, 722.7pt x 194.
 7275pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-297-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-336-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-297-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-297-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-336-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-336-1.pdf 
  used on input line 18.
 (luatex.def)             Requested size: 342.29358pt x 92.2291pt.
 )
@@ -5502,7 +5502,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [399
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-297-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-336-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -5604,12 +5604,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-305-1.pdf, id=4174, 722.7pt x 244.
+<slides_d29_files/figure-beamer/unnamed-chunk-344-1.pdf, id=4174, 722.7pt x 244.
 915pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-305-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-344-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-305-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-305-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-344-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-344-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 115.99948pt.
 )
@@ -5619,7 +5619,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [411
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-305-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-344-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5806,12 +5806,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-321-1.pdf, id=4353, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf, id=4353, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-321-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-321-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-321-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf 
  used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -5821,15 +5821,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [430
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-321-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-322-1.pdf, id=4367, 722.7pt x 237.
+<slides_d29_files/figure-beamer/unnamed-chunk-361-1.pdf, id=4367, 722.7pt x 237.
 88875pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-322-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-361-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-322-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-322-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-361-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-361-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 112.67163pt.
 )
@@ -5839,7 +5839,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [431
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-322-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-361-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5943,12 +5943,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-329-1.pdf, id=4479, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-368-1.pdf, id=4479, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-329-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-368-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-329-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-329-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-368-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-368-1.pdf 
  used on input line 16.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -5958,15 +5958,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [442
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-329-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-368-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf, id=4493, 722.7pt x 310.
+<slides_d29_files/figure-beamer/unnamed-chunk-369-1.pdf, id=4493, 722.7pt x 310.
 15875pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-369-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-369-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-369-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 146.90099pt.
 )
@@ -5976,7 +5976,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [443
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-330-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-369-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -5988,12 +5988,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-331-1.pdf, id=4517, 722.7pt x 201.
+<slides_d29_files/figure-beamer/unnamed-chunk-370-1.pdf, id=4517, 722.7pt x 201.
 75375pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-331-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-370-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-331-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-331-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-370-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-370-1.pdf 
  used on input line 14.
 (luatex.def)             Requested size: 342.29358pt x 95.55695pt.
 )
@@ -6003,7 +6003,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [445
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-331-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-370-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -6116,12 +6116,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/piacentini-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-342-1.pdf, id=4642, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-381-1.pdf, id=4642, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-342-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-381-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-342-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-342-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-381-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-381-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -6135,7 +6135,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [457
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-342-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-381-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -6172,12 +6172,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 <./slides_d29_files/figure-beamer/nedved-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-346-1.pdf, id=4688, 722.7pt x 259.
+<slides_d29_files/figure-beamer/unnamed-chunk-385-1.pdf, id=4688, 722.7pt x 259.
 97125pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-346-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-385-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-346-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-346-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-385-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-385-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 123.1306pt.
 )
@@ -6187,7 +6187,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [461
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-346-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-385-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -6287,12 +6287,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 [472
 
 ]
-<slides_d29_files/figure-beamer/unnamed-chunk-352-1.pdf, id=4804, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-391-1.pdf, id=4804, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-352-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-391-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-352-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-352-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-391-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-391-1.pdf 
  used on input line 12739.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 
@@ -6302,13 +6302,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [473
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-352-1.pdf>]
-<slides_d29_files/figure-beamer/unnamed-chunk-353-1.pdf, id=4818, 722.7pt x 223.
+<./slides_d29_files/figure-beamer/unnamed-chunk-391-1.pdf>]
+<slides_d29_files/figure-beamer/unnamed-chunk-392-1.pdf, id=4818, 722.7pt x 223.
 83624pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-353-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-392-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-353-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-353-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-392-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-392-1.pdf 
  used on input line 12750.
 (luatex.def)             Requested size: 342.29358pt x 106.01591pt.
 
@@ -6318,13 +6318,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [474
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-353-1.pdf>]
-<slides_d29_files/figure-beamer/unnamed-chunk-354-1.pdf, id=4832, 722.7pt x 244.
+<./slides_d29_files/figure-beamer/unnamed-chunk-392-1.pdf>]
+<slides_d29_files/figure-beamer/unnamed-chunk-393-1.pdf, id=4832, 722.7pt x 244.
 915pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-354-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-393-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-354-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-354-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-393-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-393-1.pdf 
  used on input line 12760.
 (luatex.def)             Requested size: 342.29358pt x 115.99948pt.
 
@@ -6334,13 +6334,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [475
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-354-1.pdf>]
-<slides_d29_files/figure-beamer/unnamed-chunk-355-1.pdf, id=4846, 722.7pt x 230.
+<./slides_d29_files/figure-beamer/unnamed-chunk-393-1.pdf>]
+<slides_d29_files/figure-beamer/unnamed-chunk-394-1.pdf, id=4846, 722.7pt x 230.
 8625pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-355-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-394-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-355-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-355-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-394-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-394-1.pdf 
  used on input line 12770.
 (luatex.def)             Requested size: 342.29358pt x 109.34378pt.
 
@@ -6350,13 +6350,13 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [476
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-355-1.pdf>]
-<slides_d29_files/figure-beamer/unnamed-chunk-356-1.pdf, id=4864, 722.7pt x 252.
+<./slides_d29_files/figure-beamer/unnamed-chunk-394-1.pdf>]
+<slides_d29_files/figure-beamer/unnamed-chunk-395-1.pdf, id=4864, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-356-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-395-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-356-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-356-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-395-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-395-1.pdf 
  used on input line 12782.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 
@@ -6366,7 +6366,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [477
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-356-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-395-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -6409,12 +6409,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf, id=4918, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-399-1.pdf, id=4918, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-399-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-399-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-399-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -6424,7 +6424,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [482
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-360-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-399-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -6452,12 +6452,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-362-1.pdf, id=4960, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-401-1.pdf, id=4960, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-362-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-401-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-362-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-362-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-401-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-401-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -6467,7 +6467,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [486
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-362-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-401-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
 <slides_d29_files/figure-beamer/wardo-1.pdf, id=4975, 722.7pt x 289.08pt>
@@ -6970,12 +6970,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-416-1.pdf, id=5443, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-455-1.pdf, id=5443, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-416-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-455-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-416-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-416-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-455-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-455-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -6985,7 +6985,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [536
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-416-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-455-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7023,12 +7023,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-418-1.pdf, id=5485, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-457-1.pdf, id=5485, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-418-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-457-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-418-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-418-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-457-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-457-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -7038,7 +7038,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [540
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-418-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-457-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -7048,12 +7048,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-419-1.pdf, id=5510, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-458-1.pdf, id=5510, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-419-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-458-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-419-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-419-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-458-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-458-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -7063,7 +7063,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [542
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-419-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-458-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -7188,12 +7188,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-425-1.pdf, id=5650, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-464-1.pdf, id=5650, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-425-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-464-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-425-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-425-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-464-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-464-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -7203,7 +7203,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [556
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-425-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-464-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7504,12 +7504,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-439-1.pdf, id=5929, 722.7pt x 397.
+<slides_d29_files/figure-beamer/unnamed-chunk-478-1.pdf, id=5929, 722.7pt x 397.
 485pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-439-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-478-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-439-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-439-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-478-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-478-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 188.26147pt.
 )
@@ -7519,7 +7519,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [582
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-439-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-478-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7635,12 +7635,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-445-1.pdf, id=6058, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-484-1.pdf, id=6058, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-445-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-484-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-445-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-445-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-484-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-484-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -7650,7 +7650,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [595
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-445-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-484-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -7741,12 +7741,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-453-1.pdf, id=6164, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-492-1.pdf, id=6164, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-453-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-492-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-453-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-453-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-492-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-492-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -7756,7 +7756,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [606
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-453-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-492-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -8503,12 +8503,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-511-1.pdf, id=6862, 722.7pt x 237.
+<slides_d29_files/figure-beamer/unnamed-chunk-550-1.pdf, id=6862, 722.7pt x 237.
 88875pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-511-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-550-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-511-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-511-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-550-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-550-1.pdf 
  used on input line 16.
 (luatex.def)             Requested size: 342.29358pt x 112.67163pt.
 )
@@ -8518,7 +8518,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [678
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-511-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-550-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
 Overfull \hbox (8.37831pt too wide) in paragraph at lines 31--31
@@ -8604,12 +8604,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-518-1.pdf, id=6961, 722.7pt x 216.
+<slides_d29_files/figure-beamer/unnamed-chunk-557-1.pdf, id=6961, 722.7pt x 216.
 81pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-518-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-557-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-518-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-518-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-557-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-557-1.pdf 
  used on input line 14.
 (luatex.def)             Requested size: 342.29358pt x 102.68806pt.
 )
@@ -8619,7 +8619,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [688
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-518-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-557-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -8744,12 +8744,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-527-1.pdf, id=7090, 722.7pt x 274.
+<slides_d29_files/figure-beamer/unnamed-chunk-566-1.pdf, id=7090, 722.7pt x 274.
 02374pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-527-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-566-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-527-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-527-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-566-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-566-1.pdf 
  used on input line 16.
 (luatex.def)             Requested size: 342.29358pt x 129.78632pt.
 )
@@ -8759,7 +8759,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [700
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-527-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-566-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -8769,12 +8769,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-528-1.pdf, id=7114, 722.7pt x 259.
+<slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf, id=7114, 722.7pt x 259.
 97125pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-528-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-528-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-528-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf 
  used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 123.1306pt.
 )
@@ -8784,15 +8784,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [702
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-528-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-529-1.pdf, id=7128, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-568-1.pdf, id=7128, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-529-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-568-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-529-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-529-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-568-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-568-1.pdf 
  used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -8802,7 +8802,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [703
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-529-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-568-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -8850,12 +8850,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-535-1.pdf, id=7183, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf, id=7183, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-535-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-535-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-535-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 
@@ -8875,7 +8875,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [708
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-535-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -8887,12 +8887,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-537-1.pdf, id=7206, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-576-1.pdf, id=7206, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-537-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-576-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-537-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-537-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-576-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-576-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -8902,7 +8902,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [710
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-537-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-576-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -8914,12 +8914,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-539-1.pdf, id=7231, 722.7pt x 237.
+<slides_d29_files/figure-beamer/unnamed-chunk-578-1.pdf, id=7231, 722.7pt x 237.
 88875pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-539-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-578-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-539-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-539-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-578-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-578-1.pdf 
  used on input line 14.
 (luatex.def)             Requested size: 342.29358pt x 112.67163pt.
 )
@@ -8933,15 +8933,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [712
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-539-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-578-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-540-1.pdf, id=7245, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-579-1.pdf, id=7245, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-540-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-579-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-540-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-540-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-579-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-579-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -8951,7 +8951,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [713
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-540-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-579-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -8961,12 +8961,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-541-1.pdf, id=7268, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf, id=7268, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-541-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-541-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-541-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -8976,7 +8976,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [715
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-541-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -8995,12 +8995,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-545-1.pdf, id=7300, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-584-1.pdf, id=7300, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-545-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-584-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-545-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-545-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-584-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-584-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9010,7 +9010,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [718
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-545-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-584-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -9020,12 +9020,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-546-1.pdf, id=7323, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-585-1.pdf, id=7323, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-546-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-585-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-546-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-546-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-585-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-585-1.pdf 
  used on input line 13.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -9035,15 +9035,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [720
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-546-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-585-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-547-1.pdf, id=7338, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-586-1.pdf, id=7338, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-547-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-586-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-547-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-547-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-586-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-586-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9053,7 +9053,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [721
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-547-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-586-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -9063,12 +9063,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-548-1.pdf, id=7362, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-587-1.pdf, id=7362, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-548-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-587-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-548-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-548-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-587-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-587-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9078,7 +9078,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [723
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-548-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-587-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9090,12 +9090,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-552-1.pdf, id=7385, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-591-1.pdf, id=7385, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-552-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-591-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-552-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-552-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-591-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-591-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9105,7 +9105,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [725
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-552-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-591-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9135,12 +9135,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-555-1.pdf, id=7426, 722.7pt x 252.
+<slides_d29_files/figure-beamer/unnamed-chunk-594-1.pdf, id=7426, 722.7pt x 252.
 945pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-555-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-594-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-555-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-555-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-594-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-594-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 119.80275pt.
 )
@@ -9150,7 +9150,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [729
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-555-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-594-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9184,12 +9184,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-558-1.pdf, id=7469, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-597-1.pdf, id=7469, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-558-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-597-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-558-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-558-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-597-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-597-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9199,15 +9199,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [733
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-558-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-597-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-559-1.pdf, id=7483, 722.7pt x 266.
+<slides_d29_files/figure-beamer/unnamed-chunk-598-1.pdf, id=7483, 722.7pt x 266.
 9975pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-559-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-598-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-559-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-559-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-598-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-598-1.pdf 
  used on input line 12.
 (luatex.def)             Requested size: 342.29358pt x 126.45845pt.
 )
@@ -9217,15 +9217,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [734
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-559-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-598-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-560-1.pdf, id=7497, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-599-1.pdf, id=7497, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-560-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-599-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-560-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-560-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-599-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-599-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9235,7 +9235,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [735
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-560-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-599-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -9310,12 +9310,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf, id=7585, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-606-1.pdf, id=7585, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-606-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-606-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-606-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9325,7 +9325,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [744
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-567-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-606-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9352,12 +9352,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-570-1.pdf, id=7617, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-609-1.pdf, id=7617, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-570-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-609-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-570-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-570-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-609-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-609-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9367,15 +9367,15 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [747
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-570-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-609-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-571-1.pdf, id=7631, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-610-1.pdf, id=7631, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-571-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-610-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-571-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-571-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-610-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-610-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9385,7 +9385,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [748
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-571-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-610-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9406,12 +9406,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf, id=7663, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-613-1.pdf, id=7663, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-613-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-613-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-613-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9421,7 +9421,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [751
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-574-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-613-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9446,12 +9446,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-577-1.pdf, id=7697, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-616-1.pdf, id=7697, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-577-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-616-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-577-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-577-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-616-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-616-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9461,7 +9461,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [754
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-577-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-616-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9486,12 +9486,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf, id=7729, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-619-1.pdf, id=7729, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-619-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-619-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-619-1.pdf 
  used on input line 10.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9501,7 +9501,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [757
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-580-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-619-1.pdf>]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
@@ -9513,12 +9513,12 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb
-<slides_d29_files/figure-beamer/unnamed-chunk-582-1.pdf, id=7752, 722.7pt x 289.
+<slides_d29_files/figure-beamer/unnamed-chunk-621-1.pdf, id=7752, 722.7pt x 289.
 08pt>
-File: slides_d29_files/figure-beamer/unnamed-chunk-582-1.pdf Graphic file (type 
+File: slides_d29_files/figure-beamer/unnamed-chunk-621-1.pdf Graphic file (type 
 pdf)
-<use slides_d29_files/figure-beamer/unnamed-chunk-582-1.pdf>
-Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-582-1.pdf 
+<use slides_d29_files/figure-beamer/unnamed-chunk-621-1.pdf>
+Package luatex.def Info: slides_d29_files/figure-beamer/unnamed-chunk-621-1.pdf 
  used on input line 11.
 (luatex.def)             Requested size: 342.29358pt x 136.91742pt.
 )
@@ -9528,7 +9528,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 [759
 
-<./slides_d29_files/figure-beamer/unnamed-chunk-582-1.pdf>]
+<./slides_d29_files/figure-beamer/unnamed-chunk-621-1.pdf>]
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -9641,7 +9641,19 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb
+Overfull \hbox (2.62956pt too wide) in paragraph at lines 18--18
+[]\TU/lmtt/m/n/10.95 ## Warning in tidy.anova(drop1(eyes.2, test = "Chisq")): Th
+e[] 
+ []
+
+
+Overfull \hbox (25.62456pt too wide) in paragraph at lines 18--18
+[]\TU/lmtt/m/n/10.95 ## following column names in ANOVA output were not recogniz
+ed or[] 
+ []
+
+)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -9748,7 +9760,7 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 ]
 \openout4 = slides_d29.vrb
  (./slides_d29.vrb)
-Overfull \vbox (1.30511pt too high) detected at line 21221
+Overfull \vbox (1.30511pt too high) detected at line 21257
  []
 
 
@@ -9785,7 +9797,37 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 
 ]
 \openout4 = slides_d29.vrb
- (./slides_d29.vrb)
+ (./slides_d29.vrb
+Overfull \hbox (25.62456pt too wide) in paragraph at lines 17--17
+[]\TU/lmtt/m/n/10.95 ## Warning in tidy.anova(drop1(punctual.1, test = "Chisq"))
+: The[] 
+ []
+
+
+Overfull \hbox (25.62456pt too wide) in paragraph at lines 17--17
+[]\TU/lmtt/m/n/10.95 ## following column names in ANOVA output were not recogniz
+ed or[] 
+ []
+
+
+Overfull \hbox (14.12706pt too wide) in paragraph at lines 25--25
+[]\TU/lmtt/m/n/10.95 ##   term                      df Deviance   AIC   LRT p.va
+lue[] 
+ []
+
+
+Overfull \hbox (14.12706pt too wide) in paragraph at lines 25--25
+[]\TU/lmtt/m/n/10.95 ##   <chr>                  <dbl>    <dbl> <dbl> <dbl>   <d
+bl>[] 
+ []
+
+
+Overfull \hbox (14.12706pt too wide) in paragraph at lines 25--25
+[]\TU/lmtt/m/n/10.95 ## 2 airport:airline:status     4 3.22e+ 0  179.  3.22   0.
+522[] 
+ []
+
+)
 Overfull \hbox (15.73341pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -9978,11 +10020,11 @@ Overfull \hbox (15.73341pt too wide) has occurred while \output is active
 \tf@snm=\write9
 
 \openout9 = slides_d29.snm
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 21937.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 21937.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 22027.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 22027.
 (./slides_d29.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 21937.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 21937.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 22027.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 22027.
 
 Package rerunfilecheck Info: File `slides_d29.out' has not changed.
 (rerunfilecheck)             Checksum: FEEA29F68C811A3EE09A7CA15295C966;2836.
@@ -9998,7 +10040,7 @@ te, 1 pdf_dest, 58 pdf_colorstack nodes
    avail lists: 1:4,2:762,3:5006,4:248,5:668,6:408,7:20271,8:25,9:1375,10:18,11:
 176
  47426 multiletter control sequences out of 65536+600000
- 102 fonts using 27175171 bytes
+ 102 fonts using 27174907 bytes
  59i,15n,118p,797b,1685s stack positions out of 5000i,500n,10000p,200000b,200000s
 </home/ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></ho
 me/ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans12-oblique.otf></home/
@@ -10016,7 +10058,7 @@ nts/opentype/public/lm/lmmono10-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts
 /opentype/public/lm/lmsans8-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts/ope
 ntype/public/lm/lmsans10-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts/openty
 pe/public/lm/lmsans12-regular.otf>
-Output written on slides_d29.pdf (809 pages, 2909272 bytes).
+Output written on slides_d29.pdf (809 pages, 2912740 bytes).
 
 PDF statistics: 8417 PDF objects out of 8907 (max. 8388607)
  7217 compressed objects within 73 object streams
