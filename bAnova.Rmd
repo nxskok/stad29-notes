@@ -323,8 +323,8 @@ with(hairpain, pairwise.t.test(pain, hair, p.adj = "holm"))
 
 \tiny
 ```{r }
-pairwise.t.test(pain, hair, p.adj = "fdr")
-pairwise.t.test(pain, hair, p.adj = "bon")
+with(hairpain, pairwise.t.test(pain, hair, p.adj = "fdr"))
+with(hairpain, pairwise.t.test(pain, hair, p.adj = "bon"))
 ```
 
 \normalsize 
