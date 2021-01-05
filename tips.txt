@@ -1,0 +1,10 @@
+open slides_d29.Rmd
+save as <chapter>_slides.Rmd
+change title to chapter title
+get rid of author
+remove section heading in actual file
+keep prelims and right chapter
+knit
+
+repeat
+  
