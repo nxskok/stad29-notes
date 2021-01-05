@@ -1,13 +1,3 @@
-# Multiway frequency tables
-
-
-##  Packages
-```{r eval=F}
-library(tidyverse)
-```
-
-   
-
 
 ## Multi-way frequency analysis
 

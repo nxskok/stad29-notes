@@ -1,0 +1,2039 @@
+This is LuaHBTeX, Version 1.12.0 (TeX Live 2020)  (format=lualatex 2020.11.16)  4 JAN 2021 21:37
+ restricted system commands enabled.
+**bAnova_slides.tex
+(./bAnova_slides.tex
+LaTeX2e <2020-10-01> patch level 2
+Lua module: luaotfload-main 2020-09-02 3.15 luaotfload entry point
+Lua module: luaotfload-init 2020-09-02 3.15 luaotfload submodule / initializatio
+n
+Lua module: lualibs 2020-08-31 2.72 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2020-08-31 2.72 ConTeXt Lua libraries -- extended c
+ollection.
+Lua module: luaotfload-log 2020-09-02 3.15 luaotfload submodule / logging
+Lua module: luaotfload-parsers 2020-09-02 3.15 luaotfload submodule / parsers
+Lua module: luaotfload-configuration 2020-09-02 3.15 luaotfload submodule / conf
+ig file reader
+luaotfload | conf : Root cache directory is "/home/ken/.TinyTeX/texmf-var/luatex
+-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2020-08-31.lua" from kpse-res
+olved path "/home/ken/.TinyTeX/texmf-dist/tex/luatex/luaotfload/fontloader-2020-
+08-31.lua".
+Lua-only attribute luaotfload@noligature = 1
+Lua-only attribute luaotfload@syllabe = 2
+luaotfload | init : Context OpenType loader version 0x1.8e353f7ced917p+1
+Lua module: luaotfload-fallback 2020-09-02 3.15 luaotfload submodule / fallback
+Lua module: luaotfload-multiscript 2020-09-02 3.15 luaotfload submodule / multis
+cript
+Lua module: luaotfload-script 2020-09-02 3.15 luaotfload submodule / Script help
+ers
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' at position 1 in `glyph_stream_provider'.
+Lua module: luaotfload-loaders 2020-09-02 3.15 luaotfload submodule / callback h
+andling
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua module: luaotfload-database 2020-09-02 3.15 luaotfload submodule / database
+Lua module: luaotfload-unicode 2020-09-02 3.15 luaotfload submodule / Unicode he
+lpers
+Lua module: luaotfload-colors 2020-09-02 3.15 luaotfload submodule / color
+Lua-only attribute luaotfload_color_attribute = 3
+Lua module: luaotfload-resolvers 2020-09-02 3.15 luaotfload submodule / resolver
+s
+luaotfload | conf : Root cache directory is "/home/ken/.TinyTeX/texmf-var/luatex
+-cache/generic/names".
+Lua module: luaotfload-features 2020-09-02 3.15 luaotfload submodule / features
+Lua module: luaotfload-harf-define 2020-09-02 3.15 luaotfload submodule / HarfBu
+zz font loading
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_truetype_file'.
+Lua module: luaotfload-harf-plug 2020-09-02 3.15 luaotfload submodule / HarfBuzz
+ shaping
+Inserting `Harf pre_output_filter callback' at position 1 in `pre_output_filter'
+.
+Inserting `Harf wrapup_run callback' at position 1 in `wrapup_run'.
+Inserting `Harf finish_pdffile callback' at position 1 in `finish_pdffile'.
+Inserting `Harf glyph_info callback' at position 1 in `glyph_info'.
+Lua module: luaotfload-letterspace 2020-09-02 3.15 luaotfload submodule / letter
+spacing
+Lua module: luaotfload-embolden 2020-09-02 3.15 luaotfload submodule / embolden
+Lua module: luaotfload-notdef 2020-09-02 3.15 luaotfload submodule / notdef
+Lua module: luaotfload-suppress 2020-09-02 3.15 luaotfload submodule / suppress
+Lua module: luaotfload-szss 2020-09-02 3.15 luaotfload submodule / Special featu
+re handling
+Lua module: luaotfload-auxiliary 2020-09-02 3.15 luaotfload submodule / auxiliar
+y functions
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.set_font_index' at position 2 in `luaotfload.patch_fon
+t'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 3 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 4 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.aux.set_xheight' at position 5 in `luaotfload.patch_font'.
+Lua module: luaotfload-tounicode 2020-09-02 3.15 luaotfload submodule / tounicod
+e
+Inserting `luaotfload.rewrite_fontname' at position 6 in `luaotfload.patch_font'
+. L3 programming layer <2020-10-27> xparse <2020-03-03> (/home/ken/.TinyTeX/tex
+mf-dist/tex/latex/beamer/beamer.cls
+Document Class: beamer 2020/07/22 v3.59 A class for typesetting presentations
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasemodes.sty (/home/ken/
+.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count171
+)
+\beamer@tempbox=\box47
+\beamer@tempcount=\count172
+\c@beamerpauses=\count173
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasedecode.sty
+\beamer@slideinframe=\count174
+\beamer@minimum=\count175
+\beamer@decode@box=\box48
+)
+\beamer@commentbox=\box49
+\beamer@modecount=\count176
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/iftex/ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\headdp=\dimen138
+\footheight=\dimen139
+\sidebarheight=\dimen140
+\beamer@tempdim=\dimen141
+\beamer@finalheight=\dimen142
+\beamer@animht=\dimen143
+\beamer@animdp=\dimen144
+\beamer@animwd=\dimen145
+\beamer@leftmargin=\dimen146
+\beamer@rightmargin=\dimen147
+\beamer@leftsidebar=\dimen148
+\beamer@rightsidebar=\dimen149
+\beamer@boxsize=\dimen150
+\beamer@vboxoffset=\dimen151
+\beamer@descdefault=\dimen152
+\beamer@descriptionwidth=\dimen153
+\beamer@lastskip=\skip47
+\beamer@areabox=\box50
+\beamer@animcurrent=\box51
+\beamer@animshowbox=\box52
+\beamer@sectionbox=\box53
+\beamer@logobox=\box54
+\beamer@linebox=\box55
+\beamer@sectioncount=\count177
+\beamer@subsubsectionmax=\count178
+\beamer@subsectionmax=\count179
+\beamer@sectionmax=\count180
+\beamer@totalheads=\count181
+\beamer@headcounter=\count182
+\beamer@partstartpage=\count183
+\beamer@sectionstartpage=\count184
+\beamer@subsectionstartpage=\count185
+\beamer@animationtempa=\count186
+\beamer@animationtempb=\count187
+\beamer@xpos=\count188
+\beamer@ypos=\count189
+\beamer@ypos@offset=\count190
+\beamer@showpartnumber=\count191
+\beamer@currentsubsection=\count192
+\beamer@coveringdepth=\count193
+\beamer@sectionadjust=\count194
+\beamer@tocsectionnumber=\count195
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseoptions.sty (/home/ke
+n/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+))
+\beamer@paperwidth=\skip48
+\beamer@paperheight=\skip49
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count196
+\Gm@cntv=\count197
+\c@Gm@tempcnt=\count198
+\Gm@bindingoffset=\dimen154
+\Gm@wd@mp=\dimen155
+\Gm@odd@mp=\dimen156
+\Gm@even@mp=\dimen157
+\Gm@layoutwidth=\dimen158
+\Gm@layoutheight=\dimen159
+\Gm@layouthoffset=\dimen160
+\Gm@layoutvoffset=\dimen161
+\Gm@dimlist=\toks16
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /home/ken/.TinyTeX/texmf-var/l
+uatex-cache/generic/names/luaotfload-names.luc) (/home/ken/.TinyTeX/texmf-dist/
+tex/latex/pgf/basiclayer/pgfcore.sty (/home/ken/.TinyTeX/texmf-dist/tex/latex/g
+raphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 105.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2020/10/05 v1.2a Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen162
+\Gin@req@width=\dimen163
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/home/ke
+n/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/home/ken/.TinyTeX/te
+xmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks17
+\pgfutil@tempdima=\dimen164
+\pgfutil@tempdimb=\dimen165
+
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box56
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/ho
+me/ken/.TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2020/10/01 v3.1.6a (3.1.6a)
+)) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2020/10/01 v3.1.6a (3.1.6a)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks18
+\pgfkeys@temptoks=\toks19
+
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks20
+))
+\pgf@x=\dimen166
+\pgf@y=\dimen167
+\pgf@xa=\dimen168
+\pgf@ya=\dimen169
+\pgf@xb=\dimen170
+\pgf@yb=\dimen171
+\pgf@xc=\dimen172
+\pgf@yc=\dimen173
+\pgf@xd=\dimen174
+\pgf@yd=\dimen175
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count199
+\c@pgf@countb=\count266
+\c@pgf@countc=\count267
+\c@pgf@countd=\count268
+\t@pgf@toka=\toks21
+\t@pgf@tokb=\toks22
+\t@pgf@tokc=\toks23
+\pgf@sys@id@count=\count269
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2020/10/01 v3.1.6a (3.1.6a)
+)
+Driver file for pgf: pgfsys-luatex.def
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+File: pgfsys-luatex.def 2020/10/01 v3.1.6a (3.1.6a)
+
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2020/10/01 v3.1.6a (3.1.6a)
+)))
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgfsyssoftpath@smallbuffer@items=\count270
+\pgfsyssoftpath@bigbuffer@items=\count271
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2020/10/01 v3.1.6a (3.1.6a)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/ken
+/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (/home/ken/.Tiny
+TeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/ken/.TinyTeX/t
+exmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen176
+\pgfmath@count=\count272
+\pgfmath@box=\box57
+\pgfmath@toks=\toks24
+\pgfmath@stack@operand=\toks25
+\pgfmath@stack@operation=\toks26
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex))) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmat
+hfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count273
+)) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgf@picminx=\dimen177
+\pgf@picmaxx=\dimen178
+\pgf@picminy=\dimen179
+\pgf@picmaxy=\dimen180
+\pgf@pathminx=\dimen181
+\pgf@pathmaxx=\dimen182
+\pgf@pathminy=\dimen183
+\pgf@pathmaxy=\dimen184
+\pgf@xx=\dimen185
+\pgf@xy=\dimen186
+\pgf@yx=\dimen187
+\pgf@yy=\dimen188
+\pgf@zx=\dimen189
+\pgf@zy=\dimen190
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgf@path@lastx=\dimen191
+\pgf@path@lasty=\dimen192
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgf@shorten@end@additional=\dimen193
+\pgf@shorten@start@additional=\dimen194
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgfpic=\box58
+\pgf@hbox=\box59
+\pgf@layerbox@main=\box60
+\pgf@picture@serial@count=\count274
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgflinewidth=\dimen195
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgf@pt@x=\dimen196
+\pgf@pt@y=\dimen197
+\pgf@pt@temp=\dimen198
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgfarrowsep=\dimen199
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgf@max=\dimen256
+\pgf@sys@shading@range@num=\count275
+\pgf@shadingcount=\count276
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+\pgfexternal@startupbox=\box61
+))
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2020/10/01 v3.1.6a (3.1.6a)
+))) (/home/ken/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty
+Package: xxcolor 2003/10/24 ver 0.1
+\XC@nummixins=\count277
+\XC@countmixins=\count278
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packag
+e
+with kernel methods
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks27
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen257
+\Hy@linkcounter=\count279
+\Hy@pagecounter=\count280
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count281
+Package hyperref Info: Option `unicode' set `true' on input line 4338.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2020-05-15 v7.00e Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4338.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4338.
+Package hyperref Info: Option `implicit' set `false' on input line 4338.
+Package hyperref Info: Hyper figures OFF on input line 4464.
+Package hyperref Info: Link nesting OFF on input line 4469.
+Package hyperref Info: Hyper index ON on input line 4472.
+Package hyperref Info: Plain pages OFF on input line 4479.
+Package hyperref Info: Backreferencing OFF on input line 4484.
+Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
+Package hyperref Info: Bookmarks ON on input line 4717.
+\c@Hy@tempcnt=\count282
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5076.
+\XeTeXLinkMargin=\dimen258
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+
+))
+\Fld@menulength=\count283
+\Field@Width=\dimen259
+\Fld@charsize=\dimen260
+Package hyperref Info: Hyper figures OFF on input line 6347.
+Package hyperref Info: Link nesting OFF on input line 6352.
+Package hyperref Info: Hyper index ON on input line 6355.
+Package hyperref Info: backreferencing OFF on input line 6362.
+Package hyperref Info: Link coloring OFF on input line 6367.
+Package hyperref Info: Link coloring with OCG OFF on input line 6372.
+Package hyperref Info: PDF/A mode OFF on input line 6377.
+LaTeX Info: Redefining \ref on input line 6417.
+LaTeX Info: Redefining \pageref on input line 6421.
+\Hy@abspage=\count284
+
+Package hyperref Message: Stopped early.
+
+)
+Package hyperref Info: Driver (autodetected): hluatex.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2020-05-15 v7.00e Hyperref driver for luaTeX
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery package
+
+with kernel methods
+)
+\Fld@listcount=\count285
+\c@bookmark@seq@number=\count286
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+(/home/ken/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
+6.
+)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaserequires.sty (/hom
+e/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasecompatibility.sty) (/home/
+ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasefont.sty (/home/ken/.TinyTeX
+/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks28
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty (/
+home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
+)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasemisc.sty) (/home/k
+en/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.sty) (/home/ken/.T
+inyTeX/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+\beamer@argscount=\count287
+\beamer@lastskipcover=\skip50
+\beamer@trivlistdepth=\count288
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetitle.sty) (/home/k
+en/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasesection.sty
+\c@lecture=\count289
+\c@part=\count290
+\c@section=\count291
+\c@subsection=\count292
+\c@subsubsection=\count293
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseframe.sty
+\beamer@framebox=\box62
+\beamer@frametitlebox=\box63
+\beamer@zoombox=\box64
+\beamer@zoomcount=\count294
+\beamer@zoomframecount=\count295
+\beamer@frametextheight=\dimen261
+\c@subsectionslide=\count296
+\beamer@frametopskip=\skip51
+\beamer@framebottomskip=\skip52
+\beamer@frametopskipautobreak=\skip53
+\beamer@framebottomskipautobreak=\skip54
+\beamer@envbody=\toks29
+\framewidth=\dimen262
+\c@framenumber=\count297
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseverbatim.sty
+\beamer@verbatimfileout=\write4
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseframesize.sty
+\beamer@splitbox=\box65
+\beamer@autobreakcount=\count298
+\beamer@autobreaklastheight=\dimen263
+\beamer@frametitletoks=\toks30
+\beamer@framesubtitletoks=\toks31
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseframecomponents.sty
+\beamer@footins=\box66
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasecolor.sty) (/home/k
+en/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasenotes.sty
+\beamer@frameboxcopy=\box67
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetoc.sty) (/home/ken
+/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetemplates.sty
+\beamer@sbttoks=\toks32
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseauxtemplates.sty (/ho
+me/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseboxes.sty
+\bmb@box=\box68
+\bmb@colorbox=\box69
+\bmb@boxshadow=\box70
+\bmb@boxshadowball=\box71
+\bmb@boxshadowballlarge=\box72
+\bmb@temp=\dimen264
+\bmb@dima=\dimen265
+\bmb@dimb=\dimen266
+\bmb@prevheight=\dimen267
+)
+\beamer@blockheadheight=\dimen268
+)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbaselocalstructure.sty
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks33
+)
+\c@figure=\count299
+\c@table=\count300
+\abovecaptionskip=\skip55
+\belowcaptionskip=\skip56
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasenavigation.sty
+\beamer@section@min@dim=\dimen269
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetheorems.sty (/home
+/ken/.TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip57
+For additional information on amsmath, use the `?' option.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks34
+\ex@=\dimen270
+)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen271
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count301
+LaTeX Info: Redefining \frac on input line 236.
+\uproot@=\count302
+\leftroot@=\count303
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count304
+\DOTSCASE@=\count305
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box73
+\strutbox@=\box74
+\big@size=\dimen272
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count306
+\c@MaxMatrixCols=\count307
+\dotsspace@=\muskip17
+\c@parentequation=\count308
+\dspbrk@lvl=\count309
+\tag@help=\toks35
+\row@=\count310
+\column@=\count311
+\maxfields@=\count312
+\andhelp@=\toks36
+\eqnshift@=\dimen273
+\alignsep@=\dimen274
+\tagshift@=\dimen275
+\tagwidth@=\dimen276
+\totwidth@=\dimen277
+\lineht@=\dimen278
+\@envbody=\toks37
+\multlinegap=\skip58
+\multlinetaggap=\skip59
+\mathdisplay@stack=\toks38
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks39
+\thm@bodyfont=\toks40
+\thm@headfont=\toks41
+\thm@notefont=\toks42
+\thm@headpunct=\toks43
+\thm@preskip=\skip60
+\thm@postskip=\skip61
+\thm@headsep=\skip62
+\dth@everypar=\toks44
+)
+\c@theorem=\count313
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)) (/home
+/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerthemedefault.sty (/home/ken/.Ti
+nyTeX/texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty) (/home/ken/.TinyT
+eX/texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty) (/home/ken/.TinyTeX
+/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
+\beamer@dima=\dimen279
+\beamer@dimb=\dimen280
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty)))
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfpages.sty
+Package: pgfpages 2011/01/05 ver 0.02
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count314
+\calc@Bcount=\count315
+\calc@Adimen=\dimen281
+\calc@Bdimen=\dimen282
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count316
+\calc@Cskip=\skip65
+)
+\pgf@logicalpages=\count317
+\pgf@firstshipout=\count318
+\pgf@lastshipout=\count319
+\pgf@currentshipout=\count320
+\pgf@cpn=\count321
+\pgf@shipoutnextto=\count322
+\pgfphysicalheight=\dimen283
+\pgfphysicalwidth=\dimen284
+\pgfpages@shipoutbox=\box75
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty (/home
+/ken/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-10-27 L3 programming layer (loader) 
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2020-09-24 L3 backend support: PDF output (LuaTeX)
+\l__kernel_color_stack_int=\count323
+\l__pdf_internal_box=\box76
+))
+Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-luatex.sty
+Package: unicode-math-luatex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLa
+TeX
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2020-10-27 L3 Experimental document command parser
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2020-10-27 LaTeX2e option processing using LaTeX3 keys
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2020/02/21 2.7i Font selection for XeLaTeX and LuaLaTeX (/
+home/ken/.TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
+Package: fontspec-luatex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count324
+\l__fontspec_language_int=\count325
+\l__fontspec_strnum_int=\count326
+\l__fontspec_tmp_int=\count327
+\l__fontspec_tmpa_int=\count328
+\l__fontspec_tmpb_int=\count329
+\l__fontspec_tmpc_int=\count330
+\l__fontspec_em_int=\count331
+\l__fontspec_emdef_int=\count332
+\l__fontspec_strong_int=\count333
+\l__fontspec_strongdef_int=\count334
+\l__fontspec_tmpa_dim=\dimen285
+\l__fontspec_tmpb_dim=\dimen286
+\l__fontspec_tmpc_dim=\dimen287
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/home/ken/
+.TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+)) (/home/ken/.TinyTeX/texmf-dist/tex/lualatex/lualatex-math/lualatex-math.sty
+Package: lualatex-math 2020/09/25 v1.9 Patches for mathematics typesetting with 
+LuaLaTeX
+Lua module: lualatex-math 2013/08/03 1.3 Patches for mathematics typesetting wit
+h LuaLaTeX)
+\g__um_fam_int=\count335
+\g__um_fonts_used_int=\count336
+\l__um_primecount_int=\count337
+\g__um_primekern_muskip=\muskip18
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerthemeAnnArbor.sty (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamercolorthemewolverine.sty)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/beamer/beamercolorthemedove.sty) (/home/ken/.TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2020-06-15 v2.0f non-zero parskip adjustments
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count338
+\FV@InFile=\read3
+\FV@TabBox=\box77
+\c@FancyVerbLine=\count339
+\FV@StepNumber=\count340
+\FV@OutFile=\write5
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip66
+\fb@frw=\dimen288
+\fb@frh=\dimen289
+\FrameRule=\dimen290
+\FrameSep=\dimen291
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip67
+\LTright=\skip68
+\LTpre=\skip69
+\LTpost=\skip70
+\LTchunksize=\count341
+\LTcapwidth=\dimen292
+\LT@head=\box78
+\LT@firsthead=\box79
+\LT@foot=\box80
+\LT@lastfoot=\box81
+\LT@cols=\count342
+\LT@rows=\count343
+\c@LT@tables=\count344
+\c@LT@chunks=\count345
+\LT@p@ftn=\toks45
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen293
+\lightrulewidth=\dimen294
+\cmidrulewidth=\dimen295
+\belowrulesep=\dimen296
+\belowbottomsep=\dimen297
+\aboverulesep=\dimen298
+\abovetopsep=\dimen299
+\cmidrulesep=\dimen300
+\cmidrulekern=\dimen301
+\defaultaddspace=\dimen302
+\@cmidla=\count346
+\@cmidlb=\count347
+\@aboverulesep=\dimen303
+\@belowrulesep=\dimen304
+\@thisruleclass=\count348
+\@lastruleclass=\count349
+\@thisrulewidth=\dimen305
+) (/home/ken/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen306
+\captionmargin@=\dimen307
+\captionwidth=\dimen308
+\caption@tempdima=\dimen309
+\caption@indent=\dimen310
+\caption@parindent=\dimen311
+\caption@hangindent=\dimen312
+Package caption Info: beamer document class detected.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/caption/caption-beamer.sto
+File: caption-beamer.sto 2020/08/22 v2.0 Adaption of the caption package to the 
+beamer document classes (AR)
+))
+\c@caption@flags=\count350
+\c@continuedfloat=\count351
+Package caption Info: hyperref package is loaded.
+Package caption Info: Hyperref support is turned off
+(caption)             because hyperref has stopped early.
+Package caption Info: longtable package is loaded.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)) (/home/ken/.TinyTeX/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count352
+\mult@box=\box82
+\multicol@leftmargin=\dimen313
+\c@unbalance=\count353
+\c@collectmore=\count354
+\doublecol@number=\count355
+\multicoltolerance=\count356
+\multicolpretolerance=\count357
+\full@width=\dimen314
+\page@free=\dimen315
+\premulticols=\dimen316
+\postmulticols=\dimen317
+\multicolsep=\skip71
+\multicolbaselineskip=\skip72
+\partial@page=\box83
+\last@line=\box84
+\maxbalancingoverflow=\dimen318
+\mult@rightbox=\box85
+\mult@grightbox=\box86
+\mult@gfirstbox=\box87
+\mult@firstbox=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\@tempa=\box122
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\c@minrows=\count358
+\c@columnbadness=\count359
+\c@finalcolumnbadness=\count360
+\last@try=\dimen319
+\multicolovershoot=\dimen320
+\multicolundershoot=\dimen321
+\mult@nat@firstbox=\box126
+\colbreak@box=\box127
+\mc@col@check@num=\count361
+) (./bAnova_slides.aux)
+\openout1 = bAnova_slides.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 154.
+LaTeX Font Info:    ... okay on input line 154.
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(10.95pt, 342.29536pt, 10.95pt)
+* v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
+* \paperwidth=364.19536pt
+* \paperheight=273.14662pt
+* \textwidth=342.29536pt
+* \textheight=244.6939pt
+* \oddsidemargin=-61.31999pt
+* \evensidemargin=-61.31999pt
+* \topmargin=-72.26999pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=11.0pt
+* \footskip=14.22636pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
+5.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+
+))
+Package hyperref Info: Link coloring OFF on input line 154.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/home/ken/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count362
+)
+LaTeX Info: Redefining \ref on input line 154.
+LaTeX Info: Redefining \pageref on input line 154.
+LaTeX Info: Redefining \nameref on input line 154.
+(./bAnova_slides.out) (./bAnova_slides.out)
+\@outlinefile=\write6
+
+\openout6 = bAnova_slides.out
+
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator-basic-dictionary
+-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator-bibliography-dic
+tionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator-environment-dict
+ionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator-months-dictionar
+y-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator-numbers-dictiona
+ry-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+)
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/translator/translator-theorem-dictiona
+ry-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+)
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 154.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 154.
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(0)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,FontAdjustment={\__um_luatex_copy_fontd
+imens:
+(fontspec)             },BoldFont={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[1.03015890977869]"[latinmodern-math.otf]:mode=base;
+script=math;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.03015890977869]"[latinmodern-math.otf]:mode=base;
+script=math;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: 
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
+(Font)              scaled to size 11.28015pt on input line 154.
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(1)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=9.3075-},{Size=6.57
+-9.3075,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.57,Font=latinmodern
+-math.otf,Style=MathScriptScript}},FontAdjustment={\__um_luatex_copy_fontdimens:
+
+(fontspec)             },BoldFont={latinmodern-math.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <9.3075->s*[1.03015890977869]"[latinmodern-math.otf]:mode
+=base;script=math;language=dflt;"<6.57-9.3075>s*[1.03015890977869]"[latinmodern-
+math.otf]:mode=base;script=math;language=dflt;+ssty=0;"<-6.57>s*[1.0301589097786
+9]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.03015890977869]"[latinmodern-math.otf]:mode=base;
+script=math;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: 
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 11.28015pt on input line 154.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input 
+line 154.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input
+ line 154.
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030261925669668.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030261925669668.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030261925669668.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030261925669668.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030261925669668.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(2)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=9.3075-},{Size=6.57
+-9.3075,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.57,Font=latinmodern
+-math.otf,Style=MathScriptScript}},FontAdjustment={\__um_luatex_copy_fontdimens:
+
+(fontspec)             },BoldFont={latinmodern-math.otf},ScaleAgain=1.0001,FontA
+djustment={\fontdimen
+(fontspec)             8\font =7.63666pt\relax \fontdimen 9\font
+(fontspec)             =4.44437pt\relax \fontdimen 10\font =5.00838pt\relax
+(fontspec)             \fontdimen 11\font =7.73817pt\relax \fontdimen 12\font
+(fontspec)             =3.89165pt\relax \fontdimen 13\font =4.09468pt\relax
+(fontspec)             \fontdimen 14\font =4.09468pt\relax \fontdimen 15\font
+(fontspec)             =3.25995pt\relax \fontdimen 16\font =2.7862pt\relax
+(fontspec)             \fontdimen 17\font =2.7862pt\relax \fontdimen 18\font
+(fontspec)             =2.82004pt\relax \fontdimen 19\font =2.25603pt\relax
+(fontspec)             \fontdimen 22\font =2.82004pt\relax \fontdimen 20\font
+(fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <9.3075->s*[1.030261925669668]"[latinmodern-math.otf]:mod
+e=base;script=math;language=dflt;"<6.57-9.3075>s*[1.030261925669668]"[latinmoder
+n-math.otf]:mode=base;script=math;language=dflt;+ssty=0;"<-6.57>s*[1.03026192566
+9668]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: \fontdimen 8\font
+(fontspec)             =7.63666pt\relax \fontdimen 9\font =4.44437pt\relax
+(fontspec)             \fontdimen 10\font =5.00838pt\relax \fontdimen 11\font
+(fontspec)             =7.73817pt\relax \fontdimen 12\font =3.89165pt\relax
+(fontspec)             \fontdimen 13\font =4.09468pt\relax \fontdimen 14\font
+(fontspec)             =4.09468pt\relax \fontdimen 15\font =3.25995pt\relax
+(fontspec)             \fontdimen 16\font =2.7862pt\relax \fontdimen 17\font
+(fontspec)             =2.7862pt\relax \fontdimen 18\font =2.82004pt\relax
+(fontspec)             \fontdimen 19\font =2.25603pt\relax \fontdimen 22\font
+(fontspec)             =2.82004pt\relax \fontdimen 20\font =0pt\relax
+(fontspec)             \fontdimen 21\font =0pt\relax 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.030261925669668]"[latinmodern-math.otf]:mode=base
+;script=math;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: \fontdimen 8\font
+(fontspec)             =7.63666pt\relax \fontdimen 9\font =4.44437pt\relax
+(fontspec)             \fontdimen 10\font =5.00838pt\relax \fontdimen 11\font
+(fontspec)             =7.73817pt\relax \fontdimen 12\font =3.89165pt\relax
+(fontspec)             \fontdimen 13\font =4.09468pt\relax \fontdimen 14\font
+(fontspec)             =4.09468pt\relax \fontdimen 15\font =3.25995pt\relax
+(fontspec)             \fontdimen 16\font =2.7862pt\relax \fontdimen 17\font
+(fontspec)             =2.7862pt\relax \fontdimen 18\font =2.82004pt\relax
+(fontspec)             \fontdimen 19\font =2.25603pt\relax \fontdimen 22\font
+(fontspec)             =2.82004pt\relax \fontdimen 20\font =0pt\relax
+(fontspec)             \fontdimen 21\font =0pt\relax 
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input
+ line 154.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 154.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input
+ line 154.
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030055893887712.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030055893887712.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030055893887712.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030055893887712.
+
+
+Package fontspec Info: latinmodern-math scale = 1.03015890977869.
+
+
+Package fontspec Info: latinmodern-math scale = 1.030055893887712.
+
+
+Package fontspec Info: Font family 'latinmodern-math.otf(3)' created for font
+(fontspec)             'latinmodern-math.otf' with options
+(fontspec)             [Scale=MatchLowercase,Renderer=Basic,BoldItalicFont={},It
+alicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=9.3075-},{Size=6.57
+-9.3075,Font=latinmodern-math.otf,Style=MathScript},{Size=-6.57,Font=latinmodern
+-math.otf,Style=MathScriptScript}},FontAdjustment={\__um_luatex_copy_fontdimens:
+
+(fontspec)             },BoldFont={latinmodern-math.otf},ScaleAgain=0.9999,FontA
+djustment={\fontdimen
+(fontspec)             8\font =0.4512pt\relax \fontdimen 9\font
+(fontspec)             =2.25603pt\relax \fontdimen 10\font =1.88377pt\relax
+(fontspec)             \fontdimen 11\font =1.25209pt\relax \fontdimen 12\font
+(fontspec)             =6.76808pt\relax \fontdimen 13\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <9.3075->s*[1.030055893887712]"[latinmodern-math.otf]:mod
+e=base;script=math;language=dflt;"<6.57-9.3075>s*[1.030055893887712]"[latinmoder
+n-math.otf]:mode=base;script=math;language=dflt;+ssty=0;"<-6.57>s*[1.03005589388
+7712]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: \fontdimen 8\font
+(fontspec)             =0.4512pt\relax \fontdimen 9\font =2.25603pt\relax
+(fontspec)             \fontdimen 10\font =1.88377pt\relax \fontdimen 11\font
+(fontspec)             =1.25209pt\relax \fontdimen 12\font =6.76808pt\relax
+(fontspec)             \fontdimen 13\font =0pt\relax 
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.030055893887712]"[latinmodern-math.otf]:mode=base
+;script=math;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             and font adjustment code:
+(fontspec)             \__um_luatex_copy_fontdimens: \fontdimen 8\font
+(fontspec)             =0.4512pt\relax \fontdimen 9\font =2.25603pt\relax
+(fontspec)             \fontdimen 10\font =1.88377pt\relax \fontdimen 11\font
+(fontspec)             =1.25209pt\relax \fontdimen 12\font =6.76808pt\relax
+(fontspec)             \fontdimen 13\font =0pt\relax 
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 15
+4.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input
+ line 154.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 154.
+
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input
+ line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.8961pt on input line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.64008pt on input line 154.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 15
+4.
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 11.28131pt on input line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.89691pt on input line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.64066pt on input line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 11.27914pt on input line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.8954pt on input line 154.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.63957pt on input line 154.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 154.
+
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 154.
+
+(/home/ken/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+(./bAnova_slides.nav) [1
+
+{/home/ken/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+
+]
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 10.30151pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.21106pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.15076pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.30258pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.2118pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.15129pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 10.3006pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 7.21042pt on input line 192.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.1503pt on input line 192.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 192.
+
+Overfull \vbox (1.64488pt too high) detected at line 192
+ []
+
+[3
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 7.
+) [4
+
+] [5
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [6
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8.
+) [7
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/tartuffo-1.pdf, id=95, 722.7pt x 252.945pt>
+File: bAnova_slides_files/figure-beamer/tartuffo-1.pdf Graphic file (type pdf)
+<use bAnova_slides_files/figure-beamer/tartuffo-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/tartuffo-1.pdf  used 
+on input line 9.
+(luatex.def)             Requested size: 342.29358pt x 119.80275pt.
+) [8
+
+<./bAnova_slides_files/figure-beamer/tartuffo-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 18.
+) [9
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 13.
+) [10
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [11
+
+] [12
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (42.68513pt too high) detected at line 459
+ []
+
+[13
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (0.83397pt too high) detected at line 492
+ []
+
+[14
+
+] [15
+
+] [16
+
+] [17
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <6> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 7.
+) [18
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [19
+
+] [20
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (86.2292pt too high) detected at line 722
+ []
+
+[21
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (217.45421pt too high) detected at line 767
+ []
+
+[22
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-12-1.pdf, id=242, 722.7pt x 216
+.81pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-12-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-12-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-12-1.pd
+f  used on input line 12.
+(luatex.def)             Requested size: 342.29358pt x 102.68806pt.
+) [23
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-12-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb
+Overfull \hbox (45.15514pt too wide) in paragraph at lines 21--21
+[]\TU/lmtt/m/n/9 ## `summarise()` regrouping output by 'ratsize' (override with `.groups` argument)[] 
+ []
+
+)
+Overfull \vbox (15.49281pt too high) detected at line 833
+ []
+
+[24
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [25
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [26
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-16-1.pdf, id=284, 722.7pt x 266
+.9975pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-16-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-16-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-16-1.pd
+f  used on input line 9.
+(luatex.def)             Requested size: 342.29358pt x 126.45845pt.
+) [27
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-16-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb) [28
+
+] [29
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <8> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 7.
+)
+Overfull \vbox (37.09312pt too high) detected at line 998
+ []
+
+[30
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [31
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-20-1.pdf, id=335, 722.7pt x 361
+.35pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-20-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-20-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-20-1.pd
+f  used on input line 10.
+(luatex.def)             Requested size: 342.29358pt x 171.14679pt.
+) [32
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-20-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-21-1.pdf, id=349, 722.7pt x 361
+.35pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-21-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-21-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-21-1.pd
+f  used on input line 9.
+(luatex.def)             Requested size: 342.29358pt x 171.14679pt.
+) [33
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-21-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb) [34
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-23-1.pdf, id=372, 722.7pt x 361
+.35pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-23-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-23-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-23-1.pd
+f  used on input line 10.
+(luatex.def)             Requested size: 342.29358pt x 171.14679pt.
+) [35
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-23-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-24-1.pdf, id=387, 722.7pt x 361
+.35pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-24-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-24-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-24-1.pd
+f  used on input line 10.
+(luatex.def)             Requested size: 342.29358pt x 171.14679pt.
+) [36
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-24-1.pdf>] [37
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (15.62747pt too high) detected at line 1160
+ []
+
+[38
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (326.18843pt too high) detected at line 1213
+ []
+
+[39
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [40
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-28-1.pdf, id=437, 722.7pt x 194
+.7275pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-28-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-28-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-28-1.pd
+f  used on input line 17.
+(luatex.def)             Requested size: 342.29358pt x 92.2291pt.
+) [41
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-28-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb) [42
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (111.43712pt too high) detected at line 1332
+ []
+
+[43
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [44
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+<bAnova_slides_files/figure-beamer/unnamed-chunk-32-1.pdf, id=479, 722.7pt x 216
+.81pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-32-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-32-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-32-1.pd
+f  used on input line 12.
+(luatex.def)             Requested size: 342.29358pt x 102.68806pt.
+) [45
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-32-1.pdf>]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.
+vrb
+Overfull \hbox (30.98012pt too wide) in paragraph at lines 21--21
+[]\TU/lmtt/m/n/9 ## `summarise()` regrouping output by 'size' (override with `.g
+roups` argument)[] 
+ []
+
+<bAnova_slides_files/figure-beamer/unnamed-chunk-33-1.pdf, id=493, 722.7pt x 158
+.5925pt>
+File: bAnova_slides_files/figure-beamer/unnamed-chunk-33-1.pdf Graphic file (typ
+e pdf)
+<use bAnova_slides_files/figure-beamer/unnamed-chunk-33-1.pdf>
+Package luatex.def Info: bAnova_slides_files/figure-beamer/unnamed-chunk-33-1.pd
+f  used on input line 23.
+(luatex.def)             Requested size: 342.29358pt x 75.11441pt.
+) [46
+
+<./bAnova_slides_files/figure-beamer/unnamed-chunk-33-1.pdf>] [47
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [48
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [49
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+Overfull \hbox (54.3683pt too wide) in paragraph at lines 16--16
+[]\TU/lmtt/m/n/10.95 ## `summarise()` ungrouping output (override with `.groups`
+ argument)[] 
+ []
+
+) [50
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [51
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+Overfull \hbox (9.58858pt too wide) in paragraph at lines 16--17
+[]\TU/lmss/m/n/10.95 size|  
+ []
+
+
+Overfull \hbox (2.73389pt too wide) in paragraph at lines 23--24
+[]\TU/lmss/m/n/10.95 M|  
+ []
+
+)
+Overfull \vbox (42.49411pt too high) detected at line 1593
+ []
+
+[52
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [53
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+Overfull \hbox (9.58858pt too wide) in paragraph at lines 22--23
+[]\TU/lmss/m/n/10.95 size|  
+ []
+
+
+Overfull \hbox (15.62831pt too wide) in paragraph at lines 26--27
+ []\TU/lmss/m/n/10.95 p_val|
+ []
+
+
+Overfull \hbox (2.73389pt too wide) in paragraph at lines 31--32
+[]\TU/lmss/m/n/10.95 M|  
+ []
+
+
+Overfull \hbox (36.57571pt too wide) in paragraph at lines 37--38
+ []\TU/lmss/m/n/10.95 0.0000085|
+ []
+
+
+Overfull \hbox (36.57571pt too wide) in paragraph at lines 46--47
+ []\TU/lmss/m/n/10.95 0.4282210|
+ []
+
+
+Overfull \hbox (36.57571pt too wide) in paragraph at lines 55--56
+ []\TU/lmss/m/n/10.95 0.4761786|
+ []
+
+)
+Overfull \vbox (73.53755pt too high) detected at line 1705
+ []
+
+[54
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [55
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [56
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [57
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [58
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [59
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [60
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [61
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [62
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+Overfull \hbox (9.58858pt too wide) in paragraph at lines 12--13
+[]\TU/lmss/m/n/10.95 size|  
+ []
+
+
+Overfull \hbox (2.73389pt too wide) in paragraph at lines 21--22
+[]\TU/lmss/m/n/10.95 M|  
+ []
+
+
+Overfull \hbox (33.15463pt too wide) in paragraph at lines 27--28
+ \TU/lmss/m/n/10.95 30.757842|
+ []
+
+
+Overfull \hbox (2.73389pt too wide) in paragraph at lines 30--31
+[]\TU/lmss/m/n/10.95 M|  
+ []
+
+
+Overfull \hbox (33.15463pt too wide) in paragraph at lines 36--37
+ \TU/lmss/m/n/10.95 17.575492|
+ []
+
+
+Overfull \hbox (33.15463pt too wide) in paragraph at lines 45--46
+ \TU/lmss/m/n/10.95 19.270673|
+ []
+
+
+Overfull \hbox (27.67963pt too wide) in paragraph at lines 54--55
+ []\TU/lmss/m/n/10.95 9.270673|
+ []
+
+
+Overfull \hbox (33.15463pt too wide) in paragraph at lines 63--64
+ \TU/lmss/m/n/10.95 14.517462|
+ []
+
+
+Overfull \hbox (27.67963pt too wide) in paragraph at lines 72--73
+ []\TU/lmss/m/n/10.95 7.850795|
+ []
+
+)
+Overfull \vbox (81.38878pt too high) detected at line 1979
+ []
+
+[63
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [64
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb
+Overfull \hbox (8.16264pt too wide) in paragraph at lines 25--26
+[]\TU/lmss/m/n/10 size|  
+ []
+
+
+Overfull \hbox (11.25157pt too wide) in paragraph at lines 29--30
+ []\TU/lmss/m/n/10 lower|
+ []
+
+
+Overfull \hbox (1.90263pt too wide) in paragraph at lines 36--37
+[]\TU/lmss/m/n/10 M|  
+ []
+
+
+Overfull \hbox (27.51157pt too wide) in paragraph at lines 42--43
+ \TU/lmss/m/n/10 30.75784|
+ []
+
+
+Overfull \hbox (29.09048pt too wide) in paragraph at lines 44--45
+ \TU/lmss/m/n/10 17.575492|
+ []
+
+
+Overfull \hbox (27.51157pt too wide) in paragraph at lines 53--54
+ \TU/lmss/m/n/10 19.27067|
+ []
+
+
+Overfull \hbox (24.09048pt too wide) in paragraph at lines 55--56
+ []\TU/lmss/m/n/10 9.270673|
+ []
+
+
+Overfull \hbox (27.51157pt too wide) in paragraph at lines 64--65
+ \TU/lmss/m/n/10 14.51746|
+ []
+
+
+Overfull \hbox (24.09048pt too wide) in paragraph at lines 66--67
+ []\TU/lmss/m/n/10 7.850795|
+ []
+
+)
+Overfull \vbox (52.07199pt too high) detected at line 2068
+ []
+
+[65
+
+] [66
+
+] [67
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [68
+
+] [69
+
+]
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 2163.
+
+[70
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [71
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [72
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [73
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [74
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [75
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [76
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [77
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 2435.
+
+Overfull \vbox (56.09312pt too high) detected at line 2435
+ []
+
+[78
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb) [79
+
+]
+\openout4 = bAnova_slides.vrb
+ (./bAnova_slides.vrb)
+Overfull \vbox (5.09534pt too high) detected at line 2513
+ []
+
+[80
+
+]
+\tf@nav=\write7
+
+\openout7 = bAnova_slides.nav
+\tf@toc=\write8
+
+\openout8 = bAnova_slides.toc
+\tf@snm=\write9
+
+\openout9 = bAnova_slides.snm
+(./bAnova_slides.aux)
+Package rerunfilecheck Info: File `bAnova_slides.out' has not changed.
+(rerunfilecheck)             Checksum: 004C81982D678A8309D2EB22ED16E9B2;149.
+)
+
+Here is how much of LuaTeX's memory you used:
+ 31345 strings out of 479040
+ 125086,1144653 words of node,token memory allocated
+ 7626 words of node memory still in use:
+   95 hlist, 14 vlist, 22 rule, 11 disc, 9 local_par, 257 glue, 42 kern, 60 pena
+lty, 346 glyph, 222 attribute, 72 glue_spec, 222 attribute_list, 1 shape, 5 writ
+e, 1 pdf_dest, 80 pdf_colorstack nodes
+   avail lists: 1:2,2:640,3:1020,4:370,5:285,6:118,7:4729,8:25,9:933,10:34,11:22
+9
+ 48564 multiletter control sequences out of 65536+600000
+ 90 fonts using 23891031 bytes
+ 107i,16n,118p,517b,620s stack positions out of 5000i,500n,10000p,200000b,200000s
+</home/ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans12-oblique.otf></h
+ome/ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></home/
+ken/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono12-regular.otf></home/ken
+/.TinyTeX/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></home/k
+en/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/ken/.Ti
+nyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/ken/.TinyTe
+X/texmf-dist/fonts/opentype/public/lm/lmmono9-regular.otf></home/ken/.TinyTeX/te
+xmf-dist/fonts/opentype/public/lm/lmmono10-italic.otf></home/ken/.TinyTeX/texmf-
+dist/fonts/opentype/public/lm/lmmono10-regular.otf></home/ken/.TinyTeX/texmf-dis
+t/fonts/opentype/public/lm/lmmonolt10-bold.otf></home/ken/.TinyTeX/texmf-dist/fo
+nts/opentype/public/lm/lmsans10-oblique.otf></home/ken/.TinyTeX/texmf-dist/fonts
+/opentype/public/lm-math/latinmodern-math.otf></home/ken/.TinyTeX/texmf-dist/fon
+ts/opentype/public/lm/lmsans10-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts/
+opentype/public/lm/lmsans8-regular.otf></home/ken/.TinyTeX/texmf-dist/fonts/open
+type/public/lm/lmsans12-regular.otf>
+Output written on bAnova_slides.pdf (80 pages, 219451 bytes).
+
+PDF statistics: 926 PDF objects out of 1000 (max. 8388607)
+ 762 compressed objects within 8 object streams
+ 240 named destinations out of 1000 (max. 131072)
+ 44 words of extra memory for PDF output out of 10000 (max. 100000000)
+

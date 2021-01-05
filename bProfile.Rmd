@@ -1,6 +1,4 @@
 
-# Repeated measures by profile analysis
-
 ## Repeated measures by profile analysis 
 
 

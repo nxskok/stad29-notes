@@ -1,6 +1,4 @@
 
-# Multivariate ANOVA
-
 ## Multivariate analysis of variance
 
 

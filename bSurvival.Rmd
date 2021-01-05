@@ -1,5 +1,3 @@
-# Survival analysis
-
 
 ## Survival analysis
 
