@@ -1,6 +1,6 @@
 ---
-title: "Analysis of Covariance"
-author: ""
+title: "STAC33: Introduction to Applied Statistics"
+author: "Course outline"
 header-includes:
    - \usepackage{multicol}
 output: 
@@ -13,14 +13,10 @@ output:
 ---
 
 
-
 ```{r child="preliminaries.Rmd", echo=F}
 ```
 
 
-
-```{r ancova, child="bAncova.Rmd"}
-
+```{r, child="outline_c33_online.Rmd"}
 ```
 
- 

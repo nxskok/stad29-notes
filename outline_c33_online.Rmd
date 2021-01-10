@@ -1,34 +1,35 @@
 ## This course
 
--   STAD29 / STA 1007, Statistics for the Life and Social Sciences
+-   STAC33, Introduction to Applied Statistics
 
 -   Online:
 
-    -   2 hours or so of recorded lectures / week, asynchronous (watch when you like)
-    -   1 hour of live tutorial / week, Monday afternoon, on Zoom
+    -   2-3 hours of recorded lectures / week, asynchronous (watch when you like)
+    -   1 hour of live tutorial / week, Monday morning, on Zoom
     -   "office hours" also on Zoom, by appointment
 
 -   Instructor:
 
     -   Ken Butler, `ken.butler@utoronto.ca`
     -   I like sharing what I know about applied statistics and the use of R
-    -   This course will help you develop further skills to analyze data.
+    -   This course will help you develop the skills to use software to analyze data, and to communicate the results.
     -   Effective communication of results is key, since in applied work you are always trying to convince someone of what you found
     -   I want you to demonstrate your understanding and insight about the data you're working with
     -   I will help you to work towards this.
 
 ## Prerequisites
 
-- If you are taking this course as STAD29, you *must* have completed STAC32.
-- If you are taking this course as STA 1007: 
-  - it is best if you know about R and the Tidyverse, at least up to the level of running regressions.
-  - please reach out to me as soon as you can so that I can learn something about your background.
-
-
+- You *need* a second Statistics course that covers statistical inference from a mathematical viewpoint,
+one of these:
+  - STAB57
+  - STA 248
+  - STA 261
+- I check prerequisites.
+- You need STAB57 for the Statistics Minor/Major/Specialist programs.
 
 ## Getting help
 
--   Option 1: come to tutorial and ask me.
+-   Option 1: come to tutorial and ask the TA.
 
 -   Option 2: Quercus discussion board:
 
@@ -40,58 +41,55 @@
 
 -   Option 3: I am also willing to meet at other times on Zoom if you want to chat. I will set up a mechanism for you to make an appointment.
 
-
 ## E-mail
 
 -   Use a U of T email (so that I know who you are)
--   Use a suitable subject, eg "STAD29" 
+-   Use a suitable subject, eg "STAC33" 
+-   Begin with "Dear Dr Butler"
 -   State *clearly* how I can help you. (The quicker I can figure this out, the better your chances of a quick reply.)
 -   Include your name (as U of T knows it) *and* student number
--   I aim to reply within one working day.
+-   I aim to reply within one working day, but with so many of you in the course, it may take longer.
 
 ## Course objectives
 
--   You will learn about a number of more advanced statistical methods:
-    - what each method is useful for
-    - how to run it in R
-    - what the results tell you.
+-   You will learn how to use software to analyze data, and to communicate what you found.
 
 -   This will be assessed through assignments (approximately weekly).
 
     -   Some questions will ask for software output, and some for explanation.
     -   The grading will reward evidence of clear understanding and insight.
 
+-   Along the way you will learn how to use R Notebooks and how to turn these into reports.
+
 ## Course materials
 
 The first thing on each line is a link:
 
--   [Quercus](https://q.utoronto.ca/): lecture videos, hand in assignments, receive grades.
+-   [Quercus](https://q.utoronto.ca/): lecture videos, hand in assignments/projects, receive grades.
 
--   [Course website](http://ritsokiguess.site/STAD29/): course news, reminders, lecture notes and code, assignment solutions, other stuff I want to share with you
+-   [Course website](http://ritsokiguess.site/STAC33/): course news, reminders, lecture notes and code, assignment solutions, other stuff I want to share with you
 
 -   [Problems and Solutions in Applied Statistics](http://ritsokiguess.site/pasias/): what it says; PASIAS for short.
 
 -   [Computer requirements](https://www.viceprovoststudents.utoronto.ca/covid-19/tech-requirements-online-learning/)
 
     -   to get the most out of tutorials, you will want a working camera and microphone
-    -   as in C32, can use `rstudio.cloud` (needs only web browser) or install R and R Studio on your computer.
+    -   can use `rstudio.cloud` (needs only web browser) or install R and R Studio on your computer. Instructions in lecture notes.
 
 -   [Reference: R for Data Science](https://r4ds.had.co.nz/)
 
 ## Assessment
 
 -   Assignments: weekly.
-    - 10 total, due in weeks 2 through 11. Best 8 count (12.5% each).
+    - 10 total, due in weeks 3 through 12. Best 8 count, total 80% (12.5% each).
     - available on Tuesdays, due on Thursdays at 11:59pm
     - based on the previous week's recorded lectures
+    - you have a certain amount of time (eg 3 hours) between the time you open an assignment and the time you need to have handed it in.
     - these assignments are like little take-home exams, so *do not ask for or expect to get help on the assignments themselves*. The time to get help is at tutorial or by working through the practice problems that I will attach to each recorded lecture.
-- for those taking this course as STA 1007, you will also need to complete a project using data from your field of study and illustrating a statistical method that you learned in this course. 
-  - assessment for you: 80% assignments (10% each), 20% project.
-  - project is due on the last day of classes (Apr 12).
-
+   
 ## Grading
 
--   The work you hand in will be graded out of 10 on this scale:
+-   Assignments and projects will be graded out of 10 on this scale:
 
     -   6/10 or less: Falls short of expectations for this course, with serious errors in coding or absent or deficient explanations.
     -   7/10: As expected in this course. May be small coding errors or misconceptions.
@@ -99,7 +97,7 @@ The first thing on each line is a link:
     -   9/10: Excellent work, showing clear understanding throughout.
     -   10/10 (rare): Excellent work that shows additional insight.
 
--   Grader will also give feedback on how you can improve for the next assignment.
+-   Graders will also give feedback on how you can improve for the next assignment.
 
 -   Grades are the grader's best assessment of the quality of the work, and are unlikely to change on appeal.
 
@@ -113,27 +111,28 @@ The first thing on each line is a link:
 -   There are no make-up assessments.
 -   Things may change during the semester. I reserve the right to make changes to this course outline as we proceed, including taking class votes if needed.
 
-
-
 ## Course material
 
-- More about regression
-- Logistic regression
-- Survival analysis
-- ANOVA revisited
-- Analysis of covariance
-- Multivariate ANOVA
-- Repeated measures
-- Discriminant analysis
-- Cluster analysis
-- Principal components
-- Factor analysis
-- Time series (if we have time)
-- Multiway frequency tables
+-   Installation / connection for R
+-   Reading data files (of different sorts)
+-   Making graphs
+-   Numerical summaries
+-   Statistical inference
+-   Reports
+-   Tidying and organizing data
+-   Case studies
+-   Functions
+-   Dates and times
+-   Miscellaneous tasks
+-   Vector and matrix algebra in R
+-   The bootstrap
+-   Bayesian statistics with Stan
+
+
 
 ## Accessibility statement
 
-> Students with diverse learning styles and needs are welcome in this course. In particular, if you have a disability/health consideration that may require accommodations, please feel free to approach me and/or the AccessAbility Services Office as soon as possible. I will work with you and AccessAbility Services to ensure you can achieve your learning goals in this course. Enquiries are confidential. The UTSC AccessAbility Services staff (located in S302) are available by appointment to assess specific needs, provide referrals and arrange appropriate accommodations: (416) 287-7560 or by e-mail at `ability@utsc.utoronto.ca`.
+> Students with diverse learning styles and needs are welcome in this course. In particular, if you have a disability/health consideration that may require accommodations, please feel free to approach me and/or the AccessAbility Services Office as soon as possible. I will work with you and AccessAbility Services to ensure you can achieve your learning goals in this course. Enquiries are confiden- tial. The UTSC AccessAbility Services staff (located in S302) are available by appointment to assess specific needs, provide referrals and arrange appropriate accommodations: (416) 287-7560 or by e-mail at `ability@utsc.utoronto.ca`.
 
 ## Expectations 1/3
 
@@ -142,7 +141,7 @@ The first thing on each line is a link:
 
 ## Expectations 2/3
 
--   You may freely use anything that you learn from the lecture notes, PASIAS, solutions to previous assignments, or from conversation with me.
+-   You may freely use anything that you learn from the lecture notes, PASIAS, solutions to previous assignments, or from conversation with the TAs or me.
 -   Anything from outside the course, for example, material you find on the Internet, **must be cited**. You can do this by giving the URL that it came from, for example "according to `https://r4ds.had.co.nz/data-import.html`", and then say whatever it is you learned from there. If you learned it in another course, say which course, but be aware that things may be done differently in other courses (see first point on next page).
 -   If you want credit for any ideas that come from outside the course materials, you *must* say where they came from.
 -   Citation is a way of making sure that people get credit for ideas that are theirs; not citing when you should is a way of erasing someone's point of view.
@@ -153,5 +152,3 @@ The first thing on each line is a link:
 -   If you tell me you're having trouble, I will not judge you or think less of you. I hope you'll extend me the same grace. (From [here](https://econf20.classes.andrewheiss.com/syllabus/).)
 -   [This (video)](https://twitter.com/i/status/1293543531496308736).
 -   I am doing my best to give you an opportunity to learn something that will help you in your future. I would like you to take that opportunity.
-
-

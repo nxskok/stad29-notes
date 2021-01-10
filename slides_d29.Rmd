@@ -17,14 +17,11 @@ output:
 ```{r child="preliminaries.Rmd", echo=F}
 ```
 
-
 ```{r outline,child="bOutline.Rmd"}
 
 ```
 
-```{r datetime, child="dates_and_times.Rmd"}
-
-```
+Get course content in here somewhere
 
 
 ```{r Regression, child="bRegression.Rmd"}
@@ -59,37 +56,46 @@ output:
 
 ```
 
+ 
+
 ```{r bProfile, child="bProfile.Rmd"}
 
 ```
+
+ 
 
 ```{r bDiscrim, child="bDiscrim.Rmd"}
 
 ```
 
-
+ 
 
 ```{r bCluster, child="bCluster.Rmd"}
 
 ```
 
-# ```{r bMDS, child="bMDS.Rmd"}``` 
+ 
 
+```{r bMDS, child="bMDS.Rmd"}
+
+```
+ 
 ```{r bPrincomp, child="bPrincomp.Rmd"}
 
 ```
 
+ 
 
 ```{r bFactor, child="bFactor.Rmd"}
 
 ```
 
-
-
-```{r time-series, child="time-series.Rmd"}
-```
+include time series notes here
 
 ```{r bMultiway, child="bMultiway.Rmd"}
 
 ```
- 
+
+make DONE slide
+
+
