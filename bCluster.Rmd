@@ -1,5 +1,3 @@
-# Cluster analysis
-
 ## Cluster Analysis
 
 

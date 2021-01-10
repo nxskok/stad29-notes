@@ -517,8 +517,8 @@ autonoise.2$`size:type`
 <<>>=
 g=ggplot(autonoise,aes(x=size,y=noise,
     colour=type,group=type))+
-  stat_summary(fun.y=mean,geom="point")+
-  stat_summary(fun.y=mean,geom="line")
+  stat_summary(fun=mean,geom="point")+
+  stat_summary(fun=mean,geom="line")
 @     
   \end{itemize}
   
@@ -943,7 +943,7 @@ cis %>% mutate(hilo=rep(c("lower","upper"),3)) %>%
   \item In example, compare two home models: $H_0: \mu_A-\mu_D=0$.
   \item Compare two industrial models: $H_0: \mu_B-\mu_C=0$.
   \item Compare average of two home models vs.\ average of two
-    industrial models: $H_0: {1\over2}(\mu_A+\mu_D)-{1\over
+    industrial models: $H_0: \frac{1}{2}(\mu_A+\mu_D)-{1\over
       2}(\mu_B+\mu_C)=0$ or $H_0: 0.5\mu_A-0.5\mu_B-0.5\mu_C+0.5\mu_D=0$.
   \item Note that coefficients of contrasts add to 0, and right-hand
     side is 0.

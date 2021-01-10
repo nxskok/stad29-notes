@@ -1,13 +1,3 @@
-# Multiway frequency tables
-
-
-##  Packages
-```{r eval=F}
-library(tidyverse)
-```
-
-   
-
 
 ## Multi-way frequency analysis
 
@@ -102,7 +92,7 @@ eyes.1 <- glm(frequency ~ gender * eyewear,
 
 \small    
 ```{r }
-drop1(eyes.1, test = "Chisq")
+tidy(drop1(eyes.1, test = "Chisq"))
 ```
  
 nothing!
@@ -182,7 +172,7 @@ eyes.2 <- glm(frequency ~ gender * eyewear,
   data = eyes2,
   family = "poisson"
 )
-drop1(eyes.2, test = "Chisq")
+tidy(drop1(eyes.2, test = "Chisq"))
 ```
 
    
@@ -194,7 +184,7 @@ No longer any association. Take out interaction.
 \small
 ```{r }
 eyes.3 <- update(eyes.2, . ~ . - gender:eyewear)
-drop1(eyes.3, test = "Chisq")
+tidy(drop1(eyes.3, test = "Chisq"))
 ```
 \normalsize
    
@@ -252,7 +242,7 @@ chest.1 <- glm(count ~ ecg * bmi * smoke,
   data = chest,
   family = "poisson"
 )
-drop1(chest.1, test = "Chisq")
+tidy(drop1(chest.1, test = "Chisq"))
 ```
 \normalsize
    
@@ -264,7 +254,7 @@ That 3-way interaction comes out.
 \small
 ```{r}
 chest.2 <- update(chest.1, . ~ . - ecg:bmi:smoke)
-drop1(chest.2, test = "Chisq")
+tidy(drop1(chest.2, test = "Chisq"))
 ```
 \normalsize
    
@@ -276,7 +266,7 @@ At $\alpha=0.05$, `bmi:smoke` comes out.
 \small
 ```{r}
 chest.3 <- update(chest.2, . ~ . - bmi:smoke)
-drop1(chest.3, test = "Chisq")
+tidy(drop1(chest.3, test = "Chisq"))
 ```
 \normalsize
    
@@ -476,7 +466,7 @@ Total & 13.3 & 10.9 \\
 punctual.1 <- glm(freq ~ airport * airline * status,
   data = punctual, family = "poisson"
 )
-drop1(punctual.1, test = "Chisq")
+tidy(drop1(punctual.1, test = "Chisq"))
 ```
  
 
@@ -486,7 +476,7 @@ drop1(punctual.1, test = "Chisq")
 \footnotesize
 ```{r}
 punctual.2 <- update(punctual.1, ~ . - airport:airline:status)
-drop1(punctual.2, test = "Chisq")
+tidy(drop1(punctual.2, test = "Chisq"))
 ```
 \normalsize
 
@@ -653,7 +643,7 @@ See what we can remove:
 
 \scriptsize
 ```{r}
-drop1(cancer.1, test = "Chisq")
+tidy(drop1(cancer.1, test = "Chisq"))
 ```
 \normalsize
 
@@ -664,7 +654,7 @@ Non-significant interaction can come out.
 \scriptsize
 ```{r}
 cancer.2 <- update(cancer.1, . ~ . - stage:operation:xray:survival)
-drop1(cancer.2, test = "Chisq")
+tidy(drop1(cancer.2, test = "Chisq"))
 ```
 \normalsize
 
@@ -675,7 +665,7 @@ Least significant term is `stage:xray:survival`: remove.
 \scriptsize
 ```{r}
 cancer.3 <- update(cancer.2, . ~ . - stage:xray:survival)
-drop1(cancer.3, test = "Chisq")
+tidy(drop1(cancer.3, test = "Chisq"))
 ```
 \normalsize
    
@@ -688,7 +678,7 @@ drop1(cancer.3, test = "Chisq")
 \scriptsize
 ```{r}
 cancer.4 <- update(cancer.3, . ~ . - operation:xray:survival)
-drop1(cancer.4, test = "Chisq")
+tidy(drop1(cancer.4, test = "Chisq"))
 ```
 \normalsize
    
@@ -713,7 +703,7 @@ remove) `xray:survival`.
 \scriptsize
 ```{r}
 cancer.5 <- update(cancer.4, . ~ . - xray:survival)
-drop1(cancer.5, test = "Chisq")
+tidy(drop1(cancer.5, test = "Chisq"))
 ```
 \normalsize
    
@@ -724,7 +714,7 @@ drop1(cancer.5, test = "Chisq")
 \scriptsize
 ```{r}
 cancer.6 <- update(cancer.5, . ~ . - stage:operation:survival)
-drop1(cancer.6, test = "Chisq")
+tidy(drop1(cancer.6, test = "Chisq"))
 ```
 \normalsize
    
@@ -736,7 +726,7 @@ Remove `operation:survival`.
 \footnotesize
 ```{r size="footnotesize"}
 cancer.7 <- update(cancer.6, . ~ . - operation:survival)
-drop1(cancer.7, test = "Chisq")
+tidy(drop1(cancer.7, test = "Chisq"))
 ```
 \normalsize
    

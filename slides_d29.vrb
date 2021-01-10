@@ -1,20 +1,20 @@
-\frametitle{General procedure}
-\protect\hypertarget{general-procedure}{}
-
+\frametitle{The right way around}
+\protect\hypertarget{the-right-way-around}{}
 \begin{itemize}
 \item
-  Start with ``complete model'' including all possible interactions.
+  \emph{First}, do a MANOVA to see whether any of the groups differ
+  significantly on any of the variables.
 \item
-  \texttt{drop1} gives highest-order interaction(s) remaining, remove
-  least non-significant.
+  \emph{If the MANOVA is significant}, do a discriminant analysis in the
+  hopes of understanding how the groups are different.
 \item
-  Repeat as necessary until everything significant.
+  For remote-sensing data (without Clover):
 \item
-  Look at subtables of significant interactions.
+  LD1 a fair bit more important than LD2 (definitely ignore LD3).
 \item
-  Main effects not usually very interesting.
+  LD1 depends mostly on \texttt{x1}, on which Cotton was high and Corn
+  was low.
 \item
-  Interactions with ``response'' usually of most interest: show
-  association with response.
+  Discriminant analysis in MANOVA plays the same kind of role that Tukey
+  does in ANOVA.
 \end{itemize}
-

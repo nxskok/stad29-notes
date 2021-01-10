@@ -665,7 +665,7 @@ Exposure definitely has effect on severity of disease.
   \item What (if anything) can we drop from model with \texttt{exposure}?
     
 <<>>=
-drop1(sev.1,test="Chisq")
+tidy(drop1(sev.1,test="Chisq"))
 @     
 
 \item Nothing. Exposure definitely has effect.

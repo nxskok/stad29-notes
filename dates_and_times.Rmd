@@ -258,7 +258,9 @@ stays %>%
 
 - Pull out with `day()` etc, as for a date-time
 
-```{r}
+error here ****
+
+```{r, error=TRUE}
 stays %>% 
   mutate(
     stay = as.period(admit %--% discharge),

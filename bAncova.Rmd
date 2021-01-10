@@ -1,6 +1,4 @@
 
-# Analysis of covariance
-
 ## Analysis of covariance
 
 

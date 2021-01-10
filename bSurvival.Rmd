@@ -1,5 +1,3 @@
-# Survival analysis
-
 
 ## Survival analysis
 
@@ -114,12 +112,11 @@ dance
 ## Examine response and fit model
 
 
-* Response variable (has to be outside data frame): 
+* Response variable: 
 
 \small
 ```{r}
-mth <- with(dance, Surv(Months, Quit))
-mth
+dance %>% mutate(mth = Surv(Months, Quit)) -> dance
 ```
 \normalsize
 
@@ -182,7 +179,7 @@ ggcoxdiagnostics(dance.1) + geom_smooth(se = F)
 
 ## Predicted survival probs 
 - The function we use is called
-`surv_fit`, though actually works rather like
+`survfit`, though actually works rather like
 `predict`. 
 - First create a data frame of values to predict from. We'll do all
 combos of ages 20 and 40, treatment and not, using
@@ -227,10 +224,14 @@ vs.\ not)
 
 * Would be nice to see this on a graph. This is `ggsurvplot` from package `survminer`:
 ```{r }
+<<<<<<< HEAD
 s1 <- do.call(survfit, list(formula=dance.1, 
                             newdata=dance.new, 
                             data=dance))
 g <- ggsurvplot(s1, conf.int = F)
+=======
+g <- ggsurvplot(s, conf.int = F)
+>>>>>>> 35890879ec51e4ffb93fb5fa7b2a58b87ba432ad
 ```
 
 ## "Strata" (groups)
@@ -360,7 +361,9 @@ names(lung.complete)
 - Event was death, goes with `status` of 2:
  
 ```{r }
-resp <- with(lung.complete, Surv(time, status == 2))
+lung.complete %>% 
+   mutate(resp = Surv(time, status == 2)) ->
+   lung.complete
 lung.1 <- coxph(resp ~ . - inst - time - status,
   data = lung.complete
 )
@@ -482,6 +485,7 @@ lung.new
 
  
 
+<<<<<<< HEAD
 ## Making the plot 
 ```{r fig.height=3.2}
 s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
@@ -489,6 +493,11 @@ s1 <- do.call(survfit, list(formula = lung.3,
                             data = lung.complete, 
                             newdata = lung.new))
 g <- ggsurvplot(s1, conf.int = F)
+=======
+## The plot 
+```{r fig.height=3.8}
+ggsurvplot(s, conf.int = F)
+>>>>>>> 35890879ec51e4ffb93fb5fa7b2a58b87ba432ad
 ```
  
 ## The plot
@@ -551,7 +560,7 @@ age <- seq(20, 60, 5)
 survtime <- c(10, 12, 11, 21, 15, 20, 8, 9, 11)
 stat <- c(1, 1, 1, 1, 0, 1, 1, 1, 1)
 d <- tibble(age, survtime, stat)
-y <- with(d, Surv(survtime, stat))
+d %>% mutate(y = Surv(survtime, stat)) -> d
 ```
 
      

@@ -1,67 +1,14 @@
-mktextfm phvr7t
-mktextfm phvr7t
-mktextfm phvr7t
-mktextfm pzdr
-mktextfm psyr
-mktextfm phvr7t
-mktextfm phvb8t
-mktextfm phvb8t
-mktextfm phvr8t
-mktextfm phvr8t
-mktextfm phvr7t
-mktextfm phvr7t
-mktextfm pzdr
-mktextfm psyr
-mktextfm phvr7t
-mktextfm phvb8t
-mktextfm phvb8t
-mktextfm phvr8t
-mktextfm phvr8t
-mktextfm phvr7t
-mktextfm phvr7t
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm phvr8t
-mktextfm ptmb8t
-mktextfm ptmb8t
-mktextfm phvr7t
-mktextfm phvro8t
-mktextfm phvr7t
-mktextfm pzdr
-mktextfm psyr
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm phvb8t
-mktextfm phvb8t
-mktextfm phvr8t
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm pzdr
-mktextfm phvro8t
-mktextfm nullfont
-mktextfm phvr7t
-mktextfm pzdr
-mktextfm psyr
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm phvb8t
-mktextfm phvb8t
-mktextfm phvr8t
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm pzdr
-mktextfm phvro8t
-mktextfm nullfont
-mktextfm phvr7t
-mktextfm pzdr
-mktextfm psyr
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm phvb8t
-mktextfm phvb8t
-mktextfm phvr8t
-mktextfm phvr7t
-mktextfm phvr8t
-mktextfm pzdr
-mktextfm phvro8t
-mktextfm nullfont
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 phvro8t
+mktexpk --mfmode / --bdpi 600 --mag 0+414/600 --dpi 414 pcrr7t
+mktexpk --mfmode / --bdpi 600 --mag 0+240/600 --dpi 240 phvr8t
+mktexpk --mfmode / --bdpi 600 --mag 0+591/600 --dpi 591 pcrr7t
+mktexpk --mfmode / --bdpi 600 --mag 0+420/600 --dpi 420 pzdr
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 phvr8t
+mktexpk --mfmode / --bdpi 600 --mag 1+264/600 --dpi 864 phvb8t
+mktexpk --mfmode / --bdpi 600 --mag 0+414/600 --dpi 414 pcrr7t
+mktexpk --mfmode / --bdpi 600 --mag 0+591/600 --dpi 591 pcrr7t
+mktexpk --mfmode / --bdpi 600 --mag 0+240/600 --dpi 240 phvr8t
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 phvro8t
+mktexpk --mfmode / --bdpi 600 --mag 0+420/600 --dpi 420 pzdr
+mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 phvr8t
+mktexpk --mfmode / --bdpi 600 --mag 1+264/600 --dpi 864 phvb8t

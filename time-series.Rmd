@@ -1,5 +1,3 @@
-# Time Series
-
 ## Packages
 
 Uses my package `mkac` which is on Github. Install with:
