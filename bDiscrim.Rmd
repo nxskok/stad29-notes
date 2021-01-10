@@ -446,6 +446,7 @@ cbind(new, pp$x) %>% arrange(LD1)
 
 
 
+
 * Very negative LD1 score with large `y` and small
 `w`
 
