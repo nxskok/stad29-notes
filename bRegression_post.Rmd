@@ -197,6 +197,7 @@ Once useful regression exists, use it for prediction:
 * Make new data frame with these values for `age`
 ```{r }
 my.age <- c(10, 5)
+my.age
 ages.new <- tibble(age = my.age)
 ages.new
 ```
@@ -207,7 +208,9 @@ ages.new
 * Feed into `predict`:
 ```{r }
 pc <- predict(sleep.1, ages.new, interval = "c")
+cbind(ages.new, pc)
 pp <- predict(sleep.1, ages.new, interval = "p")
+cbind(ages.new, pp)
 ```
  
 
@@ -217,6 +220,8 @@ pp <- predict(sleep.1, ages.new, interval = "p")
 ## The intervals
 Confidence intervals for mean response:
 ```{r }
+ages.new
+pc
 cbind(ages.new, pc)
 ```
  
@@ -562,10 +567,11 @@ Model as a whole strongly significant even though R-sq not very big (lots of dat
 
 ```{r }
 tidy(visits.1)
+summary(visits.1)
 ```
  
 
-The physical health and stress variables initely help to predict the number of visits, but *with those in the model* we don't need `menheal`.
+The physical health and stress variables definitely help to predict the number of visits, but *with those in the model* we don't need `menheal`.
 However, look at prediction of `timedrs` from `menheal` by itself:
 
 
@@ -921,8 +927,9 @@ punting
 \small
 ```{r}
 punting.1 <- lm(punt ~ left + right + fred, data = punting)
-glance(punting.1)
-tidy(punting.1)
+summary(punting.1)
+# glance(punting.1)
+# tidy(punting.1)
 ```
 \normalsize
 
@@ -958,6 +965,7 @@ with each other (bad, at least confusing).
 \small
 ```{r }
 punting.2 <- lm(punt ~ right, data = punting)
+summary(punting.2)
 anova(punting.2, punting.1)
 ```
  
@@ -1006,7 +1014,7 @@ from `broom`.
 \footnotesize
 ```{r }
 punting.2 %>% augment(punting) -> punting.2.aug
-punting.2.aug %>% slice(1:8)
+punting.2.aug
 ```
 \normalsize
    
