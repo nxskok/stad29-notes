@@ -55,6 +55,7 @@ dose status
 
 ```{r}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rat.txt"
+# my_url <- "rat.txt"
 rats <- read_delim(my_url, " ")
 rats
 ```
@@ -149,6 +150,7 @@ dose lived died
 \footnotesize
 ```{r}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/rat2.txt"
+# my_url <- "rat2.txt"
 rat2 <- read_delim(my_url, " ")
 rat2
 ```
@@ -246,6 +248,7 @@ cbind(rat2, p)
 ```{r size="footnotesize"}
 my_url <- 
   "http://www.utsc.utoronto.ca/~butler/d29/sepsis.txt"
+# my_url <- "sepsis.txt"
 sepsis <- read_delim(my_url, " ")
 ```
  
