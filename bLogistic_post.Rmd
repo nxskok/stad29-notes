@@ -828,6 +828,7 @@ g
 `read_csv` will work):
 ```{r }
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/mlogit.csv"
+# my_url <- "mlogit.csv"
 brandpref <- read_csv(my_url)
 ```
  
@@ -860,6 +861,7 @@ like `polr`.
 
 ```{r }
 brands.1 <- multinom(brand ~ age + sex, data = brandpref)
+brands.1
 ```
  
 
@@ -936,6 +938,8 @@ Create data frame with various age and sex:
 ```{r}
 ages <- c(24, 28, 32, 35, 38)
 sexes <- factor(0:1)
+ages
+sexes
 new <- crossing(age = ages, sex = sexes)
 new
 ```
@@ -946,6 +950,7 @@ new
 ## Making predictions
 ```{r }
 p <- predict(brands.1, new, type = "probs")
+class(p)
 probs <- cbind(new, p)
 ```
 
@@ -990,14 +995,14 @@ colour and gender by plotting symbol.
 * First need tidy data frame, by familiar process:
 ```{r }
 probs %>%
-  gather(brand, probability, -(age:sex)) -> probs.long
+  pivot_longer(-(age:sex), names_to = "brand", values_to = "probability") -> probs.long
 ```
 
 ## The tidy data (random sample of rows)
 
 \small
 ```{r}
-probs.long %>% sample_n(10)
+probs.long 
 ```
 \normalsize
 
@@ -1055,10 +1060,13 @@ brandpref %>%
   group_by(age, sex, brand) %>%
   summarize(Freq = n()) %>%
   ungroup() -> b
-b %>% slice(1:6)
+b
 ```
 
-   
+```{r }
+brandpref %>%
+  count(age, sex, brand) 
+```   
 
 ## Fitting models, almost the same
 
@@ -1162,7 +1170,7 @@ g <- ggplot(probs.long, aes(
   x = age, y = probability,
   colour = brand, shape = sex
 )) +
-  geom_line(aes(linetype = sex)) +
+  geom_line(aes(linetype = sex)) + 
   geom_point(data = brands, aes(y = proportion))
 ```
 
