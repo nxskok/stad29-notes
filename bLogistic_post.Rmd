@@ -70,6 +70,7 @@ rats
 \small
 ```{r}
 rats2 <- rats %>% mutate(status = factor(status))
+rats2
 ```
 \normalsize
    
@@ -113,6 +114,7 @@ tests of significance of individual $x$'s
 ## Output part 2: predicted survival probs
 ```{r }
 p <- predict(status.1, type = "response")
+p
 cbind(rats, p)
 ```
  
@@ -210,7 +212,28 @@ p <- predict(rat2.1, type = "response")
 cbind(rat2, p)
 ```
  
+aside
 
+```{r}
+rat2
+```
+
+one rat per row?
+
+```{r}
+rat2 %>% pivot_longer(-dose, names_to = "status", values_to = "freq") %>% 
+  uncount(freq) -> rat2x
+rat2x
+```
+
+run logistic regression
+
+```{r}
+rat2x.1 <- glm(factor(status)~dose, data = rat2x, family = "binomial")
+summary(rat2x.1)
+```
+
+end of aside
 
 ## Comments
 
@@ -327,6 +350,7 @@ factors (or being older)
 ```{r size="footnotesize"}
 sepsis.pred <- predict(sepsis.2, type = "response")
 d <- data.frame(sepsis, sepsis.pred)
+d
 myrows <- c(4, 1, 2, 11, 32)
 slice(d, myrows)
 ```
@@ -549,6 +573,7 @@ Data in aligned columns with more than one space between, so:
 \small
 ```{r }
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/miners-tab.txt"
+my_url <- "miners-tab.txt"
 freqs <- read_table(my_url)
 ```
 \normalsize
@@ -565,7 +590,7 @@ freqs
 ## Tidying and row proportions
 ```{r }
 freqs %>%
-  gather(Severity, Freq, None:Severe) %>%
+  pivot_longer(None:Severe, names_to = "Severity", values_to = "Freq") %>%
   group_by(Exposure) %>%
   mutate(proportion = Freq / sum(Freq)) -> miners
 ```
@@ -716,7 +741,9 @@ options(width = 70)
  
 ```{r size="small"}
 sev.new <- tibble(Exposure = freqs$Exposure)
+sev.new
 pr <- predict(sev.1, sev.new, type = "p")
+pr
 miners.pred <- cbind(sev.new, pr)
 miners.pred
 ```
@@ -736,7 +763,7 @@ goes down, Severe goes up (sharply for high exposure).
 * Usual `gather`, plus a bit:
 ```{r size="small"}
 miners.pred %>%
-  gather(Severity, probability, -Exposure) %>%
+  pivot_longer(-Exposure, names_to = "Severity", values_to = "probability") %>%
   mutate(sev_ord = fct_inorder(Severity)) -> preds
 ```
 
@@ -748,7 +775,7 @@ miners.pred %>%
 
 \footnotesize
 ```{r}
-preds %>% slice(1:15)
+preds 
 ```
 \normalsize
    
