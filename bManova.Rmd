@@ -83,6 +83,8 @@ Neither response depends significantly on fertilizer. But\ldots
 response variables against *each other*, labelling points by
 which fertilizer group they're from.
 
+\footnotesize
+
 - First, create data frame with points $(31,14)$ and $(38,10)$ (why? Later):
 
 ```{r size="footnotesize"}
@@ -102,6 +104,7 @@ g <- ggplot(hilo, aes(x = yield, y = weight,
             aes(x = line_x, y = line_y, colour = NULL))
 ```
 
+\normalsize
 
 ## The plot
 ```{r charlecombe, echo=F, fig.height=4}
@@ -130,12 +133,21 @@ no `fertilizer` (previous `colour`), so have to unset.
 
 
 * Is difference found by diagonal line significant? MANOVA finds out.
-```{r size="footnotesize"}
+
+\footnotesize
+
+```{r, echo=FALSE}
+options(width = 60)
+```
+
+
+```{r}
 response <- with(hilo, cbind(yield, weight))
 hilo.1 <- manova(response ~ fertilizer, data = hilo)
 summary(hilo.1)
 ```
- 
+
+\normalsize 
 
 * Yes! Difference between groups is *diagonally*, not just up/down
 (weight) or left-right (yield). The *yield-weight combination* matters.
