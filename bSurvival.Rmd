@@ -224,8 +224,17 @@ vs.\ not)
 
 * Would be nice to see this on a graph. This is `ggsurvplot` from package `survminer`:
 ```{r }
+<<<<<<< HEAD
+s1 <- do.call(survfit, list(formula=dance.1, 
+                            newdata=dance.new, 
+                            data=dance))
+g <- ggsurvplot(s1, conf.int = F)
+=======
 g <- ggsurvplot(s, conf.int = F)
+>>>>>>> 35890879ec51e4ffb93fb5fa7b2a58b87ba432ad
 ```
+
+## "Strata" (groups)
 
 - uses "strata" thus (`dance.new`): 
 
@@ -471,23 +480,38 @@ sexes <- c(1, 2)
 ph.ecogs <- 0:3
 lung.new <- crossing(sex = sexes, ph.ecog = ph.ecogs)
 lung.new
-s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
 ```
 \normalsize
 
  
 
+<<<<<<< HEAD
+## Making the plot 
+```{r fig.height=3.2}
+s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
+s1 <- do.call(survfit, list(formula = lung.3, 
+                            data = lung.complete, 
+                            newdata = lung.new))
+g <- ggsurvplot(s1, conf.int = F)
+=======
 ## The plot 
 ```{r fig.height=3.8}
 ggsurvplot(s, conf.int = F)
+>>>>>>> 35890879ec51e4ffb93fb5fa7b2a58b87ba432ad
 ```
  
+## The plot
+
+```{r, fig.height=3.8}
+g
+```
+
 
 ## Discussion of survival curves
 
 
 * Best survival is teal-blue curve, stratum 5, females with
-(`ph.ecog`) score 0.
+`ph.ecog` score 0.
 
 * Next best: blue, stratum 6, females with score 1, and
 red, stratum 1, males score 0.

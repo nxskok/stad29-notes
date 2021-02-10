@@ -23,6 +23,8 @@ output:
 
 
 
+
+
 # Course Outline
 
 ## Course and instructor
@@ -3876,16 +3878,16 @@ probs.long %>% sample_n(10)
 ## # A tibble: 10 x 4
 ##      age sex   brand probability
 ##    <dbl> <fct> <chr>       <dbl>
-##  1    35 0     1          0.131 
-##  2    38 1     2          0.252 
-##  3    24 0     2          0.0502
-##  4    35 0     2          0.397 
-##  5    24 1     2          0.0819
-##  6    32 1     2          0.495 
-##  7    32 0     3          0.187 
-##  8    32 1     1          0.291 
-##  9    38 1     3          0.732 
-## 10    28 0     3          0.0236
+##  1    38 0     2          0.239 
+##  2    28 1     1          0.696 
+##  3    38 1     2          0.252 
+##  4    32 0     3          0.187 
+##  5    32 0     1          0.405 
+##  6    24 1     2          0.0819
+##  7    35 0     2          0.397 
+##  8    38 1     3          0.732 
+##  9    24 1     1          0.915 
+## 10    35 1     3          0.484
 ```
 \normalsize
 
@@ -4546,9 +4548,13 @@ vs.\ not)
 * Would be nice to see this on a graph. This is `ggsurvplot` from package `survminer`:
 
 ```r
-s1 <- do.call(survfit, list(formula=dance.1, newdata=dance.new, data=dance))
+s1 <- do.call(survfit, list(formula=dance.1, 
+                            newdata=dance.new, 
+                            data=dance))
 g <- ggsurvplot(s1, conf.int = F)
 ```
+
+## "Strata" (groups)
 
 - uses "strata" thus (`dance.new`): 
 
@@ -4997,29 +5003,35 @@ lung.new
 ## 7     2       2
 ## 8     2       3
 ```
-
-```r
-s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
-```
 \normalsize
 
  
 
-## The plot 
+## Making the plot 
 
 ```r
-s1 <- do.call(survfit, list(formula = lung.3, data = lung.complete, newdata = lung.new))
-ggsurvplot(s1, conf.int = F)
+s <- survfit(lung.3, data = lung.complete, newdata = lung.new)
+s1 <- do.call(survfit, list(formula = lung.3, 
+                            data = lung.complete, 
+                            newdata = lung.new))
+g <- ggsurvplot(s1, conf.int = F)
+```
+ 
+## The plot
+
+
+```r
+g
 ```
 
-![plot of chunk unnamed-chunk-179](figure/unnamed-chunk-179-1.pdf)
- 
+![plot of chunk unnamed-chunk-180](figure/unnamed-chunk-180-1.pdf)
+
 
 ## Discussion of survival curves
 
 
 * Best survival is teal-blue curve, stratum 5, females with
-(`ph.ecog`) score 0.
+`ph.ecog` score 0.
 
 * Next best: blue, stratum 6, females with score 1, and
 red, stratum 1, males score 0.
@@ -5071,7 +5083,7 @@ ggcoxdiagnostics(lung.3) + geom_smooth(se = F)
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-![plot of chunk unnamed-chunk-181](figure/unnamed-chunk-181-1.pdf)
+![plot of chunk unnamed-chunk-182](figure/unnamed-chunk-182-1.pdf)
 
    
 
@@ -5136,7 +5148,7 @@ survival:
 ggcoxdiagnostics(y.1) + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-184](figure/unnamed-chunk-184-1.pdf)
+![plot of chunk unnamed-chunk-185](figure/unnamed-chunk-185-1.pdf)
 
    
 
@@ -5171,7 +5183,7 @@ Not great, but less problematic than before:
 ggcoxdiagnostics(y.2) + geom_smooth(se = F)
 ```
 
-![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-1.pdf)
+![plot of chunk unnamed-chunk-187](figure/unnamed-chunk-187-1.pdf)
 
    
 
@@ -5721,7 +5733,7 @@ ggplot(vitaminb, aes(
 )) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-196](figure/unnamed-chunk-196-1.pdf)
+![plot of chunk unnamed-chunk-197](figure/unnamed-chunk-197-1.pdf)
 
    
 
@@ -5816,7 +5828,7 @@ g <- ggplot(summary, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-200](figure/unnamed-chunk-200-1.pdf)
+![plot of chunk unnamed-chunk-201](figure/unnamed-chunk-201-1.pdf)
 
 
 
@@ -5940,7 +5952,7 @@ medium engine size than for large or small.
 g
 ```
 
-![plot of chunk unnamed-chunk-205](figure/unnamed-chunk-205-1.pdf)
+![plot of chunk unnamed-chunk-206](figure/unnamed-chunk-206-1.pdf)
 
    
 
@@ -6045,7 +6057,7 @@ of `type` is different for medium-sized engines than for others:
 g
 ```
 
-![plot of chunk unnamed-chunk-209](figure/unnamed-chunk-209-1.pdf)
+![plot of chunk unnamed-chunk-210](figure/unnamed-chunk-210-1.pdf)
 
 
 
@@ -6068,7 +6080,7 @@ autonoise %>%
   )) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-210](figure/unnamed-chunk-210-1.pdf)
+![plot of chunk unnamed-chunk-211](figure/unnamed-chunk-211-1.pdf)
 
 \normalsize
 
@@ -7044,15 +7056,15 @@ prepost %>% sample_n(9) # randomly chosen rows
 ## # A tibble: 9 x 3
 ##   drug  before after
 ##   <chr>  <dbl> <dbl>
-## 1 b         26    34
-## 2 a         23    34
-## 3 b         12    26
-## 4 b          9    22
-## 5 a          5    20
-## 6 a         10    23
-## 7 a         14    27
-## 8 a          9    25
-## 9 b         14    23
+## 1 b          7    19
+## 2 b         24    35
+## 3 a         23    34
+## 4 a          6    24
+## 5 b         26    34
+## 6 a         14    27
+## 7 b         14    23
+## 8 b         12    26
+## 9 b         27    33
 ```
 
 
@@ -8091,7 +8103,7 @@ ggplot(dogs.long, aes(x = time, y = lh,
   stat_summary(fun.y = mean, geom = "line")
 ```
 
-![plot of chunk unnamed-chunk-274](figure/unnamed-chunk-274-1.pdf)
+![plot of chunk unnamed-chunk-275](figure/unnamed-chunk-275-1.pdf)
 \normalsize
    
 
@@ -8317,11 +8329,11 @@ exercise.wide %>% sample_n(5)
 ## # A tibble: 5 x 6
 ##      id diet      exertype min01 min15 min30
 ##   <dbl> <chr>     <chr>    <dbl> <dbl> <dbl>
-## 1     3 nonlowfat atrest      97    97    94
-## 2    11 nonlowfat walking     86    86    84
+## 1     6 lowfat    atrest      83    83    84
+## 2     3 nonlowfat atrest      97    97    94
 ## 3    30 lowfat    running     99   111   150
-## 4     2 nonlowfat atrest      90    92    93
-## 5     7 lowfat    atrest      87    88    90
+## 4    25 nonlowfat running     94   110   116
+## 5    15 nonlowfat walking     89    96    95
 ```
 \normalsize
 
@@ -8449,7 +8461,7 @@ so have the factor `exertype` with more levels going across.)
 g
 ```
 
-![plot of chunk unnamed-chunk-286](figure/unnamed-chunk-286-1.pdf)
+![plot of chunk unnamed-chunk-287](figure/unnamed-chunk-287-1.pdf)
 
    
 
@@ -8615,7 +8627,7 @@ ggplot(summ, aes(x = time, y = mean, colour = diet,
                  group = diet)) + geom_point() + geom_line()
 ```
 
-![plot of chunk unnamed-chunk-292](figure/unnamed-chunk-292-1.pdf)
+![plot of chunk unnamed-chunk-293](figure/unnamed-chunk-293-1.pdf)
 
    
 ## Comment on interaction plot
@@ -8850,7 +8862,7 @@ With one LD score, plot against (true) groups, eg. boxplot:
 ggplot(d, aes(x = fertilizer, y = LD1)) + geom_boxplot()
 ```
 
-![plot of chunk unnamed-chunk-300](figure/unnamed-chunk-300-1.pdf)
+![plot of chunk unnamed-chunk-301](figure/unnamed-chunk-301-1.pdf)
 
    
 
@@ -9359,7 +9371,7 @@ g <- ggplot(mm, aes(x = LD1, y = LD2, colour = combo,
 g
 ```
 
-![plot of chunk unnamed-chunk-316](figure/unnamed-chunk-316-1.pdf)
+![plot of chunk unnamed-chunk-317](figure/unnamed-chunk-317-1.pdf)
 
    
 
@@ -9373,7 +9385,7 @@ ggbiplot(peanuts.1,
 )
 ```
 
-![plot of chunk unnamed-chunk-317](figure/unnamed-chunk-317-1.pdf)
+![plot of chunk unnamed-chunk-318](figure/unnamed-chunk-318-1.pdf)
 
 
 ## Installing `ggbiplot`
@@ -9609,7 +9621,7 @@ g <- ggplot(mm, aes(x = LD1, y = LD2, colour = job,
 g
 ```
 
-![plot of chunk unnamed-chunk-324](figure/unnamed-chunk-324-1.pdf)
+![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
 \normalsize
    
 
@@ -9620,7 +9632,7 @@ g
 ggbiplot(active.1, groups = active$job)
 ```
 
-![plot of chunk unnamed-chunk-325](figure/unnamed-chunk-325-1.pdf)
+![plot of chunk unnamed-chunk-326](figure/unnamed-chunk-326-1.pdf)
 
    
 
@@ -9649,7 +9661,7 @@ ggplot(mm, aes(x = LD1, y = LD2,  colour = job,
   geom_point() + geom_text_repel()
 ```
 
-![plot of chunk unnamed-chunk-326](figure/unnamed-chunk-326-1.pdf)
+![plot of chunk unnamed-chunk-327](figure/unnamed-chunk-327-1.pdf)
 
    
 
@@ -9927,7 +9939,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops.lda, groups = crops$crop)
 ```
 
-![plot of chunk unnamed-chunk-337](figure/unnamed-chunk-337-1.pdf)
+![plot of chunk unnamed-chunk-338](figure/unnamed-chunk-338-1.pdf)
 
    
 
@@ -10033,7 +10045,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 ggbiplot(crops2.lda, groups = crops2$crop)
 ```
 
-![plot of chunk unnamed-chunk-341](figure/unnamed-chunk-341-1.pdf)
+![plot of chunk unnamed-chunk-342](figure/unnamed-chunk-342-1.pdf)
 
    
 
@@ -10260,7 +10272,7 @@ is "best" for individuals? **K-means clustering** (`kmeans`).
 
 
 ## Two made-up clusters
-![plot of chunk unnamed-chunk-347](figure/unnamed-chunk-347-1.pdf)
+![plot of chunk unnamed-chunk-348](figure/unnamed-chunk-348-1.pdf)
 
    
 
@@ -10272,7 +10284,7 @@ ones?
 
 
 Find the red point and the blue point that are closest together: 
-![plot of chunk unnamed-chunk-348](figure/unnamed-chunk-348-1.pdf)
+![plot of chunk unnamed-chunk-349](figure/unnamed-chunk-349-1.pdf)
 
    
 
@@ -10282,7 +10294,7 @@ closest points.
 
 ## Complete linkage
 Find the red and blue points that are farthest apart:
-![plot of chunk unnamed-chunk-349](figure/unnamed-chunk-349-1.pdf)
+![plot of chunk unnamed-chunk-350](figure/unnamed-chunk-350-1.pdf)
 
 
 
@@ -10291,7 +10303,7 @@ Complete-linkage distance is distance between farthest points.
 
 ## Ward's method
 Work out mean of each cluster and join point to its mean:
-![plot of chunk unnamed-chunk-350](figure/unnamed-chunk-350-1.pdf)
+![plot of chunk unnamed-chunk-351](figure/unnamed-chunk-351-1.pdf)
 
    
 
@@ -10302,7 +10314,7 @@ Work out (i) sum of squared distances of points from means.
 Now imagine combining the two clusters and working out overall
 mean. Join each point to this mean:
 
-![plot of chunk unnamed-chunk-351](figure/unnamed-chunk-351-1.pdf)
+![plot of chunk unnamed-chunk-352](figure/unnamed-chunk-352-1.pdf)
 
    
 Calc sum of squared distances (ii) of points to combined mean.
@@ -10425,7 +10437,7 @@ d.hc <- hclust(d, method = "single")
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-355](figure/unnamed-chunk-355-1.pdf)
+![plot of chunk unnamed-chunk-356](figure/unnamed-chunk-356-1.pdf)
 
    
 
@@ -10504,7 +10516,7 @@ d.hc <- hclust(d, method = "complete")
 plot(d.hc)
 ```
 
-![plot of chunk unnamed-chunk-357](figure/unnamed-chunk-357-1.pdf)
+![plot of chunk unnamed-chunk-358](figure/unnamed-chunk-358-1.pdf)
 
   
 
@@ -11695,7 +11707,7 @@ g <- ggplot(d, aes(
 g
 ```
 
-![plot of chunk unnamed-chunk-411](figure/unnamed-chunk-411-1.pdf)
+![plot of chunk unnamed-chunk-412](figure/unnamed-chunk-412-1.pdf)
 
    
 
@@ -11744,7 +11756,7 @@ plot(ontario.hc)
 rect.hclust(ontario.hc, 4)
 ```
 
-![plot of chunk unnamed-chunk-413](figure/unnamed-chunk-413-1.pdf)
+![plot of chunk unnamed-chunk-414](figure/unnamed-chunk-414-1.pdf)
 
    
 
@@ -11767,7 +11779,7 @@ plot(ontario.hc)
 rect.hclust(ontario.hc, 7)
 ```
 
-![plot of chunk unnamed-chunk-414](figure/unnamed-chunk-414-1.pdf)
+![plot of chunk unnamed-chunk-415](figure/unnamed-chunk-415-1.pdf)
 
    
 
@@ -11996,7 +12008,7 @@ variables measured on same scale and expect similar variability.)
 ggscreeplot(test12.pc)
 ```
 
-![plot of chunk unnamed-chunk-420](figure/unnamed-chunk-420-1.pdf)
+![plot of chunk unnamed-chunk-421](figure/unnamed-chunk-421-1.pdf)
 
    
 
@@ -12607,7 +12619,7 @@ g <- d %>%
 g
 ```
 
-![plot of chunk unnamed-chunk-434](figure/unnamed-chunk-434-1.pdf)
+![plot of chunk unnamed-chunk-435](figure/unnamed-chunk-435-1.pdf)
 
    
 
@@ -12847,7 +12859,7 @@ kids %>%
 ggscreeplot(kids.pc)
 ```
 
-![plot of chunk unnamed-chunk-440](figure/unnamed-chunk-440-1.pdf)
+![plot of chunk unnamed-chunk-441](figure/unnamed-chunk-441-1.pdf)
 
    
 
@@ -13077,7 +13089,7 @@ g2 <- ggbiplot(track.pc, labels = track$country)
 g2
 ```
 
-![plot of chunk unnamed-chunk-448](figure/unnamed-chunk-448-1.pdf)
+![plot of chunk unnamed-chunk-449](figure/unnamed-chunk-449-1.pdf)
 
    
 
@@ -15012,7 +15024,7 @@ ggplot(temp, aes(x=year, y=temperature)) +
   geom_point() + geom_smooth()
 ```
 
-![](figure/unnamed-chunk-506-1.pdf)
+![](figure/unnamed-chunk-507-1.pdf)
 \normalsize
 
 ## Examining trend
@@ -15179,7 +15191,7 @@ ggplot(temp, aes(x=year, y=temperature)) +
   geom_point() + geom_smooth()
 ```
 
-![](figure/unnamed-chunk-513-1.pdf)
+![](figure/unnamed-chunk-514-1.pdf)
 
 ## Pre-1970 and post-1970:
 
@@ -15428,7 +15440,7 @@ Printing formats nicely.
 autoplot(ny.ts)
 ```
 
-![](figure/unnamed-chunk-522-1.pdf)
+![](figure/unnamed-chunk-523-1.pdf)
 
 ##  Comments on time plot
 
@@ -15446,7 +15458,7 @@ ny.diff.ts=diff(ny.ts)
 autoplot(ny.diff.ts)
 ```
 
-![](figure/unnamed-chunk-523-1.pdf)
+![](figure/unnamed-chunk-524-1.pdf)
 
 
 ##  Decomposing a seasonal time series
@@ -15460,7 +15472,7 @@ ny.d <- decompose(ny.ts)
 ny.d %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-524-1.pdf)
+![](figure/unnamed-chunk-525-1.pdf)
 
 ##  Decomposition bits
 
@@ -15573,7 +15585,7 @@ tibble(wn) %>% mutate(wn_lagged=lag(wn)) -> wn_with_lagged
 ggplot(wn_with_lagged, aes(y=wn, x=wn_lagged))+geom_point()
 ```
 
-![](figure/unnamed-chunk-530-1.pdf)
+![](figure/unnamed-chunk-531-1.pdf)
 
 ```r
 with(wn_with_lagged, cor.test(wn, wn_lagged, use="c")) # ignore the missing value
@@ -15632,7 +15644,7 @@ ggplot(kings_with_lagged, aes(x=age_lagged, y=age)) +
   geom_point()
 ```
 
-![](figure/unnamed-chunk-532-1.pdf)
+![](figure/unnamed-chunk-533-1.pdf)
 
 ##  Two steps back:
 
@@ -15670,7 +15682,7 @@ Correlation of time series with *itself* one, two,... time steps back is useful 
 acf(wn.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-534-1.pdf)
+![](figure/unnamed-chunk-535-1.pdf)
 
 No autocorrelations beyond chance, anywhere (except *possibly* at lag 13).
 
@@ -15683,7 +15695,7 @@ Autocorrelations work best on *stationary* series.
 acf(kings.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-535-1.pdf)
+![](figure/unnamed-chunk-536-1.pdf)
 
 ##  Comments on autocorrelations of kings series
 
@@ -15699,7 +15711,7 @@ Negative autocorrelation at lag 1, nothing beyond that.
 acf(ny.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-536-1.pdf)
+![](figure/unnamed-chunk-537-1.pdf)
 
 ##  Lots of stuff:
 
@@ -15753,7 +15765,7 @@ souv.ts
 autoplot(souv.ts)
 ```
 
-![](figure/unnamed-chunk-540-1.pdf)
+![](figure/unnamed-chunk-541-1.pdf)
 
 ##  Several problems:
 
@@ -15771,7 +15783,7 @@ souv.log.ts=log(souv.ts)
 autoplot(souv.log.ts)
 ```
 
-![](figure/unnamed-chunk-541-1.pdf)
+![](figure/unnamed-chunk-542-1.pdf)
 
 ##  Mean still not constant, so try taking differences
 
@@ -15781,7 +15793,7 @@ souv.log.diff.ts=diff(souv.log.ts)
 autoplot(souv.log.diff.ts)
 ```
 
-![](figure/unnamed-chunk-542-1.pdf)
+![](figure/unnamed-chunk-543-1.pdf)
 
 ##  Comments
 
@@ -15796,7 +15808,7 @@ souv.d=decompose(souv.log.diff.ts)
 autoplot(souv.d)
 ```
 
-![](figure/unnamed-chunk-543-1.pdf)
+![](figure/unnamed-chunk-544-1.pdf)
 
 ##  Comments 
 
@@ -15842,7 +15854,7 @@ January.
 acf(souv.log.diff.ts, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-547-1.pdf)
+![](figure/unnamed-chunk-548-1.pdf)
 
 * Big positive autocorrelation at 1 year (strong seasonal effect)
 * Small negative autocorrelation at 1 and 2 months.
@@ -15907,7 +15919,7 @@ Significant at lag 1, but beyond, just chance:
 acf(ma$y, plot=F, na.rm=T) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-550-1.pdf)
+![](figure/unnamed-chunk-551-1.pdf)
 
 
 
@@ -15978,7 +15990,7 @@ x
 acf(x, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-553-1.pdf)
+![](figure/unnamed-chunk-554-1.pdf)
 
 ##  Partial autocorrelation function
 
@@ -15989,7 +16001,7 @@ This cuts off for an AR series:
 pacf(x, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-554-1.pdf)
+![](figure/unnamed-chunk-555-1.pdf)
 
 The lag-2 autocorrelation should not be significant, and isn't.
 
@@ -16000,7 +16012,7 @@ The lag-2 autocorrelation should not be significant, and isn't.
 pacf(ma$y, plot=F) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-555-1.pdf)
+![](figure/unnamed-chunk-556-1.pdf)
 
 ##  The old way of doing time series analysis
 
@@ -16179,7 +16191,7 @@ y.f=forecast(y.aa)
 autoplot(y.f)
 ```
 
-![](figure/unnamed-chunk-562-1.pdf)
+![](figure/unnamed-chunk-563-1.pdf)
 
 
 ##  AR(1)
@@ -16233,7 +16245,7 @@ x.arima
 forecast(x.arima) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-565-1.pdf)
+![](figure/unnamed-chunk-566-1.pdf)
 
 ## Comparing wrong model:
 
@@ -16242,7 +16254,7 @@ forecast(x.arima) %>% autoplot()
 forecast(x.aa) %>% autoplot()
 ```
 
-![](figure/unnamed-chunk-566-1.pdf)
+![](figure/unnamed-chunk-567-1.pdf)
 
 
 ##  Kings
@@ -16297,7 +16309,7 @@ kings.f
 autoplot(kings.f) + labs(x="index", y= "age at death")
 ```
 
-![](figure/unnamed-chunk-569-1.pdf)
+![](figure/unnamed-chunk-570-1.pdf)
 
 
 
@@ -16388,7 +16400,7 @@ ny.f
 autoplot(ny.f)+labs(x="time", y="births")
 ```
 
-![](figure/unnamed-chunk-572-1.pdf)
+![](figure/unnamed-chunk-573-1.pdf)
 
 
 ##  Log-souvenir sales
@@ -16657,7 +16669,7 @@ print.default(souv.f)
 autoplot(souv.f)
 ```
 
-![](figure/unnamed-chunk-575-1.pdf)
+![](figure/unnamed-chunk-576-1.pdf)
 
 
 ##  Global mean temperatures, revisited
@@ -16690,7 +16702,7 @@ temp.f=forecast(temp.aa)
 autoplot(temp.f)+labs(x="year", y="temperature")
 ```
 
-![](figure/unnamed-chunk-577-1.pdf)
+![](figure/unnamed-chunk-578-1.pdf)
 
 
 
