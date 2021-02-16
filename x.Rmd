@@ -58,7 +58,6 @@ dogs <- read_table(my_url)
 ```{r size="small"}
 dogs
 response <- with(dogs, cbind(lh0, lh1, lh3, lh5))
-response
 dogs.1 <- lm(response ~ drug, data = dogs)
 ```
  
@@ -77,9 +76,7 @@ options(width = 70)
 \footnotesize 
 ```{r, error=TRUE}
 times <- colnames(response)
-times
 times.df <- data.frame(times=factor(times))
-times.df
 dogs.2 <- Manova(dogs.1,
   idata = times.df,
   idesign = ~times
@@ -105,7 +102,7 @@ for the two drugs.
 
 \scriptsize
 ```{r }
-dogs 
+dogs %>% slice(1:6)
 ```
  
 \normalsize
@@ -195,7 +192,6 @@ value originally came from labelled by `timex`, and then:
 
 \small
 ```{r fig.height=4}
-# dogs.long
 ggplot(dogs.long, aes(x = time, y = lh, 
                       colour = drug, group = drug)) +
   stat_summary(fun = mean, geom = "point") +
@@ -327,7 +323,6 @@ why the `drug` effect is not quite significant.
 library(lme4)
 # dogs.long
 dogs.2=lmer(lh~drug*time+(1|dog),data=dogs.long)
-# dogs.2
 ```
 
 - note specification of random effect: each dog has "random intercept" that moves log-histamine up or down for that dog over all times
@@ -389,7 +384,7 @@ exercise.long <- read_tsv(url)
 
 \footnotesize
 ```{r}
-exercise.long 
+exercise.long %>% slice(1:8)
 ```
 \normalsize
    
@@ -412,14 +407,9 @@ going to be split, and the column to make the values out of:
 
 \footnotesize
 ```{r}
-# wrong
-# exercise.long %>% select(-id) %>% 
-#   pivot_wider(names_from=time, 
-#                               values_from=pulse) -> exercise.wide
-
 exercise.long %>% pivot_wider(names_from=time, 
                               values_from=pulse) -> exercise.wide
-exercise.wide
+exercise.wide %>% sample_n(5)
 ```
 \normalsize
 
@@ -461,9 +451,7 @@ exercise.1 <- lm(response ~ diet * exertype,
 \small
 ```{r, error=TRUE}
 times <- colnames(response)
-# times
 times.df <- data.frame(times=factor(times))
-# times.df
 exercise.2 <- Manova(exercise.1, 
                      idata = times.df, 
                      idesign = ~times)
@@ -507,7 +495,6 @@ lines, and make *separate* plots for each
 * `ggplot` again. Using *long* data frame:
 
 ```{r }
-exercise.long
 g <- ggplot(exercise.long, aes(
   x = time, y = pulse,
   group = id
@@ -623,7 +610,6 @@ runners.wide %>%
     mean = mean(pulse),
     sd = sd(pulse)
   ) -> summ
-summ
 ```
 
  
@@ -660,7 +646,7 @@ time: `diet` by `time` interaction.
 
 * We went to trouble of finding means by group, so making
 interaction plot is now mainly easy:
-```{r}
+```{r fig.height=2.7}
 ggplot(summ, aes(x = time, y = mean, colour = diet,
                  group = diet)) + geom_point() + geom_line()
 ```
