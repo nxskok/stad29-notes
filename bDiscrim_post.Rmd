@@ -38,8 +38,14 @@ to demonstrate:
 ```{r}
 library(tidyverse)
 library(MASS)
+library(ggrepel)
+library(ggbiplot)
 library(conflicted)
 conflict_prefer("select", "dplyr")
+conflict_prefer("arrange", "dplyr")
+conflict_prefer("summarize", "dplyr")
+conflict_prefer("filter", "dplyr")
+conflict_prefer("mutate", "dplyr")
 d <- tibble(x = rnorm(10), y = rnorm(10))
 d
 d %>% select(y)
@@ -487,7 +493,6 @@ cbind(new, pp$x) %>% arrange(LD2)
 
 ## Plot LD1 vs.\ LD2, labelling by combo
 ```{r}
-library(ggrepel)
 g <- ggplot(mm, aes(x = LD1, y = LD2, colour = combo, 
                     label = combo)) + geom_point() +
   geom_text_repel() + guides(colour = F)
