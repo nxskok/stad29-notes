@@ -854,14 +854,14 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 
 
 ## Biplot
-```{r fig.height=3.5}
+```{r fig.height=3}
 ggbiplot(crops.lda, groups = crops$crop)
 ```
 
    
 
 
-\begin{frame}[figure]{Comments}
+## Comments
 
 
 * Corn high on LD1 (right).
@@ -915,7 +915,7 @@ crops2.lda$scaling
 ## Plot
 
 A bit more clustered:
-```{r nedved,fig.height=3.1}
+```{r nedved,fig.height=4.5}
 ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
   geom_point()
 ```
@@ -925,7 +925,7 @@ ggplot(mm, aes(x = LD1, y = LD2, colour = crop)) +
 
 
 ## Biplot
-```{r fig.height=3.6}
+```{r fig.height=2.9}
 ggbiplot(crops2.lda, groups = crops2$crop)
 ```
 
@@ -944,7 +944,7 @@ table(obs = crops2$crop, pred = crops2.pred$class)
 Better.
 
 
-## Posterior probs, the wrong ones
+## Posterior probs (some)
 ```{r echo=F}
 options(width = 60)
 ```
@@ -957,7 +957,7 @@ data.frame(obs = crops2$crop, pred = crops2.pred$class, post) %>%
 ```
 \normalsize
 
-
+## Comments
 
 * These were the misclassified ones, but the posterior probability
 of being correct was not usually too low. 
