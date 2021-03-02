@@ -397,7 +397,7 @@ rect.hclust(d.hc, 3)
 
 Original data:
 
-\tiny
+\footnotesize
 ```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/one-ten.txt"
 lang <- read_delim(my_url, " ")
@@ -475,7 +475,7 @@ letter of Norwegian word.
 
 ## Counting the different ones
 
-\footnotesize
+\small
 ```{r }
 english %>%
   left_join(norwegian, by = "number") %>%
@@ -485,7 +485,7 @@ english %>%
 
 or
 
-\footnotesize
+\small
 ```{r }
 english %>%
   left_join(norwegian, by = "number") %>%
@@ -664,8 +664,7 @@ measurement scale (arbitrary).
 
 
 ```{r size="footnotesize"}
-vital %>% 
-  mutate(across(where(is.numeric), ~scale(.))) -> vital.s
+vital %>% mutate_if(is.numeric, ~scale(.)) -> vital.s
 ```
 
    
