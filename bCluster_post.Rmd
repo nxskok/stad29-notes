@@ -265,6 +265,7 @@ options(width = 60)
 \footnotesize
 ```{r size="scriptsize",message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
+# my_url <- "languages.txt"
 (number.d <- read_table(my_url))
 ```
 \normalsize
@@ -275,9 +276,9 @@ my_url <- "http://www.utsc.utoronto.ca/~butler/d29/languages.txt"
 
 ## Making a distance object
 ```{r size="footnotesize"}
-d <- number.d %>%
+number.d %>%
   select(-la) %>%
-  as.dist()
+  as.dist() -> d
 d
 class(d)
 ```
@@ -369,7 +370,7 @@ cutree(d.hc, 3)
 
 \footnotesize
 ```{r}
-cutree(d.hc, 3) %>% enframe(name="country", value="cluster")
+cutree(d.hc, 3) %>% enframe(name="language", value="cluster")
 ```
 \scriptsize
      
@@ -397,9 +398,10 @@ rect.hclust(d.hc, 3)
 
 Original data:
 
-\footnotesize
+\tiny
 ```{r message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/one-ten.txt"
+# my_url <- "one-ten.txt"
 lang <- read_delim(my_url, " ")
 lang
 ```
@@ -416,7 +418,7 @@ names were all in one column.
 lang %>% mutate(number=row_number()) %>%
     pivot_longer(-number, names_to="language", values_to="name") %>%
     mutate(first=str_sub(name,1,1)) -> lang.long
-lang.long %>% print(n=12)
+lang.long 
 ```
 \normalsize
    
@@ -475,7 +477,7 @@ letter of Norwegian word.
 
 ## Counting the different ones
 
-\small
+\footnotesize
 ```{r }
 english %>%
   left_join(norwegian, by = "number") %>%
@@ -485,7 +487,7 @@ english %>%
 
 or
 
-\small
+\footnotesize
 ```{r }
 english %>%
   left_join(norwegian, by = "number") %>%
@@ -533,6 +535,7 @@ countdiff <- function(lang.1, lang.2, d) {
 
 ```{r }
 countdiff("en", "no", lang.long)
+countdiff("fr", "it", lang.long)
 countdiff("en", "en", lang.long)
 ```
 
@@ -567,7 +570,7 @@ pairs <- crossing(lang = languages, lang2 = languages)
 
 \scriptsize
 ```{r}
-pairs %>% slice(1:12)
+pairs 
 ```
 \normalsize
 
@@ -664,7 +667,8 @@ measurement scale (arbitrary).
 
 
 ```{r size="footnotesize"}
-vital %>% mutate_if(is.numeric, ~scale(.)) -> vital.s
+vital %>% 
+  mutate(across(where(is.numeric), ~scale(.))) -> vital.s
 ```
 
    
