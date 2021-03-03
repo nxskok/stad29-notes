@@ -988,20 +988,15 @@ Compared to 3-cluster solution:
 
 
 
-* most of cluster 1 gone to (new) cluster 1
+* most of (old) cluster 3 gone to (new) cluster 2
 
-* cluster 2 split into clusters 3 and 4 (two types of "richer" countries)
+* cluster 1 split into clusters 3 and 4 (two types of "richer" countries)
 
 * cluster 3 split into clusters 2 and 5 (two types of "poor"
 countries, divided by death rate).
 
-* cluster 6 (Mexico and Korea) was split before.
-
-
 ## Getting a picture from `kmeans`
 
-
-* Use multidimensional scaling (later)
 
 * Use discriminant analysis on clusters found, treating them as
 "known" groups.
@@ -1026,7 +1021,7 @@ vital.lda$scaling
 ```
 \normalsize
 
-* LD1 is some of everything, but not so much death rate
+* LD1 is some of everything
 (high=poor, low=rich).
 
 * LD2 mainly death rate, high or low.
@@ -1061,7 +1056,7 @@ g <- ggplot(d, aes(
   x = LD1, y = LD2, colour = factor(cluster),
   label = country
 )) + geom_point() +
-  geom_text_repel(size = 2) + guides(colour = F)
+  geom_text_repel(size = 2, max.overlaps = Inf) + guides(colour = F)
 ```
 
    
@@ -1069,7 +1064,7 @@ g <- ggplot(d, aes(
 
 
 ## The plot
-```{r fig.height=3.7}
+```{r fig.height=5}
 g
 ```
 
