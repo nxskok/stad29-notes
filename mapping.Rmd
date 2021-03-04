@@ -1,0 +1,92 @@
+trying a map of ontario
+
+```{r}
+# library(openstreetmap)
+library(tmaptools)
+library(leaflet)
+library(tidyverse)
+library(conflicted)
+```
+
+my locations
+
+```{r}
+my_url <- 
+  "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+ontario <- read_csv(my_url)
+ontario
+```
+
+make a dataframe of lats and longs
+
+```{r}
+tibble(place = ontario$place) %>% 
+  mutate(prov = "ON") %>% 
+  mutate(place1 = str_c(place, " ", prov)) %>% 
+  rowwise() %>% 
+  mutate(ll = list(geocode_OSM(place1))) -> d
+d %>% unnest_wider(ll) %>% 
+  unnest_wider(coords) -> coords
+```
+
+```{r}
+d %>% unnest_wider(ll) %>% 
+  unnest_wider(coords) -> coords
+```
+
+make a map with the coords
+
+```{r}
+leaflet(data = coords) %>% 
+  addTiles() %>% 
+  addCircleMarkers(lng = ~x, lat = ~y)
+```
+
+cluster analysis
+
+```{r}
+ontario.d <- ontario %>% select(-1) %>% as.dist()
+ontario.hc <- hclust(ontario.d, method = "ward.D")
+```
+
+7 clusters
+
+```{r fig.height=4} 
+plot(ontario.hc)
+rect.hclust(ontario.hc, 7)
+```
+
+get the clusters and combine the ones I want
+
+```{r}
+tibble(place = ontario$place, cluster = cutree(ontario.hc, 7)) -> clusters
+clusters %>% arrange(cluster)
+```
+
+combine clusters 6 and 7 with 4
+combine clusters 2 and 3
+make named divisions
+
+```{r}
+clusters %>% 
+  mutate(division = fct_collapse(factor(cluster),
+                                "north" = c("4", "6", "7"),
+                                "east" = c("2", "3"),
+                                "west" = "5",
+                                "central" = "1")) %>% 
+  arrange(division) -> divisions
+divisions
+```
+
+add the divisions to coords, matching by place
+
+```{r}
+pal <- colorFactor("Set1", divisions$division)
+
+coords %>% left_join(divisions) %>% 
+  select(place, x, y, division) %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(lng = ~x, lat = ~y, color = ~pal(division))
+```
+
