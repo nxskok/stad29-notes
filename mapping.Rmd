@@ -1,23 +1,27 @@
-trying a map of ontario
+Trying a map of ontario
+
+The Ontario hockey divisions (the last example for cluster analysis) came with a very bad map. Can we do better?
+
+Packages (including some new ones):
 
 ```{r}
-# library(openstreetmap)
 library(tmaptools)
 library(leaflet)
 library(tidyverse)
 library(conflicted)
 ```
 
-my locations
+Ontario road distances
 
 ```{r}
 my_url <- 
   "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+# my_url <- "ontario-road-distances.csv"
 ontario <- read_csv(my_url)
 ontario
 ```
 
-make a dataframe of lats and longs
+Grab the places, and find their latitudes and longitudes ("geocode"). Save the geocoded places (this is the slowest part):
 
 ```{r}
 tibble(place = ontario$place) %>% 
@@ -25,13 +29,15 @@ tibble(place = ontario$place) %>%
   mutate(place1 = str_c(place, " ", prov)) %>% 
   rowwise() %>% 
   mutate(ll = list(geocode_OSM(place1))) -> d
-d %>% unnest_wider(ll) %>% 
-  unnest_wider(coords) -> coords
 ```
 
+untangle the lats and longs:
+
 ```{r}
+d
 d %>% unnest_wider(ll) %>% 
   unnest_wider(coords) -> coords
+coords
 ```
 
 make a map with the coords
@@ -39,8 +45,14 @@ make a map with the coords
 ```{r}
 leaflet(data = coords) %>% 
   addTiles() %>% 
-  addCircleMarkers(lng = ~x, lat = ~y)
+  addCircleMarkers(lng = ~x, lat = ~y) -> locs
+locs
 ```
+
+```{r}
+# mapview::mapshot(locs, file = "map1.png")
+```
+
 
 cluster analysis
 
@@ -49,7 +61,7 @@ ontario.d <- ontario %>% select(-1) %>% as.dist()
 ontario.hc <- hclust(ontario.d, method = "ward.D")
 ```
 
-7 clusters
+7 clusters:
 
 ```{r fig.height=4} 
 plot(ontario.hc)
@@ -63,8 +75,8 @@ tibble(place = ontario$place, cluster = cutree(ontario.hc, 7)) -> clusters
 clusters %>% arrange(cluster)
 ```
 
-combine clusters 6 and 7 with 4
-combine clusters 2 and 3
+combine clusters 6 and 7 with 4 ("north")
+combine clusters 2 and 3 ("east")
 make named divisions
 
 ```{r}
@@ -87,6 +99,24 @@ coords %>% left_join(divisions) %>%
   select(place, x, y, division) %>% 
   leaflet() %>% 
   addTiles() %>% 
-  addCircleMarkers(lng = ~x, lat = ~y, color = ~pal(division))
+  addCircleMarkers(lng = ~x, lat = ~y, color = ~pal(division)) -> divmap
+divmap
+```
+
+```{r}
+# mapview::mapshot(divmap, file = "map2.png")
+```
+
+The same idea gets a map of the original seven clusters:
+
+```{r}
+pal <- colorFactor("Set1", divisions$cluster)
+coords %>% left_join(divisions) %>% 
+  select(place, x, y, cluster) %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(lng = ~x, lat = ~y, color = ~pal(cluster)) -> divmap
+divmap
+```
 ```
 
