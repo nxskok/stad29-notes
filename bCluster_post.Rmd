@@ -639,6 +639,7 @@ Birth, death and infant mortality rates for 97 countries (variables not dissimil
 ## Reading in
 ```{r }
 url <- "http://www.utsc.utoronto.ca/~butler/d29/birthrate.txt"
+# url <- "birthrate.txt"
 vital <- read_table(url)
 ```
 
@@ -669,6 +670,7 @@ measurement scale (arbitrary).
 ```{r size="footnotesize"}
 vital %>% 
   mutate(across(where(is.numeric), ~scale(.))) -> vital.s
+vital.s
 ```
 
    
@@ -719,6 +721,7 @@ has much higher than average.
 ## Cluster sums of squares and membership
 ```{r }
 vital.km3$withinss
+vital.km3$tot.withinss
 ```
  
 
@@ -737,6 +740,7 @@ vital.3 <- tibble(
   country = vital.s$country,
   cluster = vital.km3$cluster
 )
+vital.3
 ```
 
    
@@ -870,6 +874,7 @@ clusters, run `ss` on it", so `map_dbl`.
 ```{r}
 tibble(clusters = 2:20) %>%
   mutate(wss = map_dbl(clusters, ~ss(., vital.s))) -> ssd
+ssd
 ```
 \normalsize
    
@@ -919,7 +924,7 @@ vital.6 <- tibble(
   country = vital.s$country,
   cluster = vital.km6$cluster
 )
-vital.6 %>% sample_n(10)
+vital.6 
 ```
 
    
@@ -1004,7 +1009,6 @@ countries, divided by death rate).
 ## Getting a picture from `kmeans`
 
 
-* Use multidimensional scaling (later)
 
 * Use discriminant analysis on clusters found, treating them as
 "known" groups.
@@ -1049,6 +1053,7 @@ d <- data.frame(
   cluster = vital.km6$cluster, 
   vital.pred$x
 )
+d
 glimpse(d)
 ```
 \normalsize
@@ -1064,7 +1069,7 @@ g <- ggplot(d, aes(
   x = LD1, y = LD2, colour = factor(cluster),
   label = country
 )) + geom_point() +
-  geom_text_repel(size = 2) + guides(colour = F)
+  geom_text_repel(size = 3<) + guides(colour = F)
 ```
 
    
@@ -1072,7 +1077,7 @@ g <- ggplot(d, aes(
 
 
 ## The plot
-```{r fig.height=3.7}
+```{r, fig.width=12, fig.height=10}
 g
 ```
 
@@ -1107,7 +1112,9 @@ An Ontario hockey league has teams in 21 cities. How can we arrange those teams 
 ```{r message=F}
 my_url <- 
   "http://www.utsc.utoronto.ca/~butler/d29/ontario-road-distances.csv"
+# my_url <- "ontario-road-distances.csv"
 ontario <- read_csv(my_url)
+ontario
 ontario.d <- ontario %>% select(-1) %>% as.dist()
 ontario.hc <- hclust(ontario.d, method = "ward.D")
 ```
