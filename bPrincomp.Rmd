@@ -194,7 +194,6 @@ ggplot(d, aes(x = Comp.1, y = Comp.2, label = id)) +
   geom_point() + geom_text_repel()
 ```
   
-![](bPrincomp-score-plot.png)
 
 
 

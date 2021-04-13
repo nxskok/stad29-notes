@@ -754,7 +754,7 @@ vital.km3b = vital.s %>% select(-4) %>%
   
 ```{r}
 ss=function(i,d) {
-    km = d %>% select_if(is.numeric) %>%
+    km = d %>% select(where(is.numeric)) %>%
         kmeans(i,nstart=20)
     km$tot.withinss
 }
@@ -768,13 +768,13 @@ re-use it later.
 ## Constructing within-cluster SS
     
   Make a data frame with desired numbers of clusters, and fill it with
-  the total within-group sums of squares. "For each number of
-  clusters, run `ss`", so `map_dbl`.
+  the total within-group sums of squares. `ss` takes a single number of clusters (not a vector of numbers), so run `rowwise`.
   
 ```{r}
-ssd = tibble(clusters=2:20) %>%
-    mutate(wss=map_dbl(clusters,ss,vital.s)) %>% 
-    print(n=10)
+tibble(clusters=2:20) %>%
+  rowwise() %>% 
+  mutate(wss = ss(clusters, vital.s)) -> ssd
+ssd
 ```   
 
 

@@ -84,7 +84,7 @@ kendall_Z_adjusted(temp$temperature)
 - Standard Mann-Kendall assumes observations *independent*.
 - Observations close together in time often *correlated* with each other.
 - Correlation of time series "with itself" called **autocorrelation**.
-- Adjusted P-value above is correction for autocorrelation.
+- Adjusted P-value above is correction for autocorrelation (via Hamed-Rao).
 
 ## Examining rate of change
 
@@ -145,9 +145,9 @@ ggplot(temp, aes(x=year, y=temperature)) +
 temp %>% 
   mutate(time_period=
            ifelse(year<=1970, "pre-1970", "post-1970")) %>% 
-  nest(-time_period) %>% 
-  mutate(theil_sen=map_dbl(
-    data, ~theil_sen_slope(.$temperature)))
+  nest_by(time_period) %>%
+  rowwise() %>% 
+  mutate(theil_sen = theil_sen_slope(data$temperature))
 ```
 
 Theil-Sen slope is very nearly *four times* as big since 1970 vs. before.

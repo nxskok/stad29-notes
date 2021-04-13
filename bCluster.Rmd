@@ -846,7 +846,7 @@ of input data frame:
 ```{r }
 ss <- function(i, d) {
   d %>%
-    select_if(is.numeric) %>%
+    select(where(is.numeric)) %>%
     kmeans(i, nstart = 20) -> km
   km$tot.withinss
 }
@@ -860,13 +860,15 @@ re-use it later.
 
 ## Constructing within-cluster SS
 Make a data frame with desired numbers of clusters, and fill it with
-the total within-group sums of squares. "For each number of
-clusters, run `ss` on it", so `map_dbl`.
+the total within-group sums of squares. `ss` expects a single number of clusters, not a vector of several, so run `rowwise`:
+
 
 \normalsize
 ```{r}
 tibble(clusters = 2:20) %>%
-  mutate(wss = map_dbl(clusters, ~ss(., vital.s))) -> ssd
+  rowwise() %>% 
+  mutate(wss = ss(clusters, vital.s)) -> ssd
+ssd
 ```
 \normalsize
    
@@ -875,7 +877,7 @@ tibble(clusters = 2:20) %>%
 
 ## Scree plot
 
-```{r favalli,fig.height=3.4}
+```{r favalli,fig.height=4.5}
 ggplot(ssd, aes(x = clusters, y = wss)) + geom_point() +
   geom_line()
 ```

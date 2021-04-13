@@ -865,16 +865,10 @@ autonoise %>%
 engine size):
 ```{r}
 autonoise %>%
-  group_by(size) %>%
-  nest() %>%
-  mutate(p_val = map_dbl(data, ~ aov_pval(.)))
+  nest_by(size) %>% 
+  rowwise() %>% 
+  mutate(p_val = aov_pval(data))
 ```
-
-     
-
-* `map_dbl` because `aov_pval` returns a decimal
-number (a `dbl`). Investigate what happens if you use
-`map` instead.
 
 
 
@@ -887,11 +881,11 @@ answer. Don't need it any more:
 \small
 
 ```{r}
-simple_effects <- autonoise %>%
-  group_by(size) %>%
-  nest() %>%
-  mutate(p_val = map_dbl(data, ~ aov_pval(.))) %>%
-  select(-data)
+autonoise %>%
+  nest_by(size) %>% 
+  rowwise() %>% 
+  mutate(p_val = aov_pval(data)) %>% 
+  select(-data) -> simple_effects
 simple_effects
 ```
 
@@ -1014,10 +1008,11 @@ ci_func <- function(x) {
   tt <- t.test(noise ~ type, data = x)
   tt$conf.int
 }
-autonoise %>% group_by(size) %>%
-  nest() %>% 
-  mutate(ci = map(data, ~ ci_func(.))) %>%
-  unnest(ci) -> cis
+
+autonoise %>% nest_by(size) %>%
+  rowwise() %>% 
+  mutate(ci = list(ci_func(data))) %>%
+  unnest_wider(ci) -> cis
 ```
 
 \normalsize
@@ -1033,12 +1028,11 @@ cis
 * Function to get CI of difference in noise means for types
 of filter on input data frame
 
-* Group by `size`, nest (mini-df per size)
+* Nest by `size` (mini-df `data` per size)
 
-* Calculate CI for each thing in `data` (ie.\ each
-`size`). `map`: CI is two numbers long
+* Calculate CI for each thing in `data`: CI is two numbers long
 
-* `unnest` `ci` column to see two numbers
+* `unnest` `ci` column (wider) to see two numbers
 in each CI.
 
 
@@ -1053,10 +1047,7 @@ equivalent. (I have no idea whether that is reasonable.)
 \small
 
 ```{r}
-hilos=c("lower", "upper")
-cis %>%
-  mutate(hilo = hilos) %>%
-  pivot_wider(names_from=hilo, values_from=ci)
+cis
 ```
 
 \normalsize
