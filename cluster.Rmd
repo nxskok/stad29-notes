@@ -409,10 +409,10 @@ names were all in one column.
 ## Tidy, and extract first letter
   
 ```{r}
-lang.long = lang %>% mutate(number=row_number()) %>%
-    gather(language,name,-number) %>%
-    mutate(first=str_sub(name,1,1))
-lang.long %>% print(n=12)
+lang %>% mutate(number=row_number()) %>%
+  pivot_longer(-number, names_to = "language", values_to = "name")  %>% 
+  mutate(first=str_sub(name,1,1)) -> lang.long
+lang.long
 ```   
   
 
@@ -427,7 +427,7 @@ lang.long %>% print(n=12)
   - First get the lines for English:
     
 ```{r}
-english = lang.long %>% filter(language=="en")
+lang.long %>% filter(language=="en") -> english
 english
 ```     
   
@@ -437,7 +437,7 @@ english
 ## And then the lines for Norwegian
   
 ```{r}
-norwegian = lang.long %>% filter(language=="no")
+lang.long %>% filter(language=="no") -> norwegian
 norwegian
 ```   
 
@@ -501,25 +501,25 @@ countdiff("en","no",lang.long)
 options(width=50)
 ```     
 ```{r}
-languages=names(lang)
+languages <- names(lang)
 languages
 ```     
 
 - and then all *pairs* of languages:
   
 ```{r}
-pairs=crossing(lang=languages, lang2=languages) %>% print(n=12)
+pairs <- crossing(lang=languages, lang2=languages) %>% print(n=12)
 ```   
   
   
 
 
-## Run `countdiff for all those language pairs`
+## Run `countdiff` for all those language pairs
   
 ```{r}
-thediffs = pairs %>% 
-    mutate(diff=map2_int(lang,lang2,countdiff,lang.long)) %>% 
-    print(n=12)
+pairs %>% 
+    mutate(diff=map2_int(lang,lang2,countdiff,lang.long)) -> thediffs
+thediffs
 ```   
   
 
