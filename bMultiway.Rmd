@@ -58,7 +58,7 @@ eyes
 
 ## Making tidy data back into a table
 
-- use `spread`
+- use `pivot_wider`
 - or this (we use it again later):
 
 ```{r}
