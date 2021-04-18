@@ -92,7 +92,7 @@ eyes.1 <- glm(frequency ~ gender * eyewear,
 
 \small    
 ```{r }
-tidy(drop1(eyes.1, test = "Chisq"))
+drop1(eyes.1, test = "Chisq")
 ```
  
 nothing!
@@ -150,7 +150,9 @@ prop.table(xt, margin = 1)
 ```{r, message=F}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/eyewear2.txt"
 eyewear2 <- read_table(my_url)
-eyes2 <- eyewear2 %>% gather(eyewear, frequency, contacts:none)
+eyewear2 %>% 
+   pivot_longer(contacts:none, names_to = "eyewear", 
+                values_to = "frequency") -> eyes2
 xt2 <- xtabs(frequency ~ gender + eyewear, data = eyes2)
 xt2
 prop.table(xt2, margin = 1)
@@ -172,7 +174,7 @@ eyes.2 <- glm(frequency ~ gender * eyewear,
   data = eyes2,
   family = "poisson"
 )
-tidy(drop1(eyes.2, test = "Chisq"))
+drop1(eyes.2, test = "Chisq")
 ```
 
    
@@ -184,7 +186,7 @@ No longer any association. Take out interaction.
 \small
 ```{r }
 eyes.3 <- update(eyes.2, . ~ . - gender:eyewear)
-tidy(drop1(eyes.3, test = "Chisq"))
+drop1(eyes.3, test = "Chisq")
 ```
 \normalsize
    
@@ -242,7 +244,7 @@ chest.1 <- glm(count ~ ecg * bmi * smoke,
   data = chest,
   family = "poisson"
 )
-tidy(drop1(chest.1, test = "Chisq"))
+drop1(chest.1, test = "Chisq")
 ```
 \normalsize
    
@@ -254,7 +256,7 @@ That 3-way interaction comes out.
 \small
 ```{r}
 chest.2 <- update(chest.1, . ~ . - ecg:bmi:smoke)
-tidy(drop1(chest.2, test = "Chisq"))
+drop1(chest.2, test = "Chisq")
 ```
 \normalsize
    
@@ -266,7 +268,7 @@ At $\alpha=0.05$, `bmi:smoke` comes out.
 \small
 ```{r}
 chest.3 <- update(chest.2, . ~ . - bmi:smoke)
-tidy(drop1(chest.3, test = "Chisq"))
+drop1(chest.3, test = "Chisq")
 ```
 \normalsize
    
@@ -373,15 +375,16 @@ airlines <- read_table2(my_url)
 ## Tidying 
 
 * Some tidying gets us the right layout, with frequencies all in
-one column and the airline and delayed/on time status separated out: 
+one column and the airline and delayed/on time status separated out. This uses one of the fancy versions of `pivot_longer`:
+
 ```{r message=F, size="small"}
 airlines %>%
-  gather(line.status, freq, contains("_")) %>%
-  separate(line.status, c("airline", "status")) -> punctual
+   pivot_longer(-airport, 
+                names_to = c("airline", "status"), 
+                names_sep = "_", 
+                values_to = "freq" ) -> punctual
 ```
 
-- See how this works by running it one line at a time.
-     
 
 
 ##  The data frame `punctual`
@@ -466,7 +469,7 @@ Total & 13.3 & 10.9 \\
 punctual.1 <- glm(freq ~ airport * airline * status,
   data = punctual, family = "poisson"
 )
-tidy(drop1(punctual.1, test = "Chisq"))
+drop1(punctual.1, test = "Chisq")
 ```
  
 
@@ -476,7 +479,7 @@ tidy(drop1(punctual.1, test = "Chisq"))
 \footnotesize
 ```{r}
 punctual.2 <- update(punctual.1, ~ . - airport:airline:status)
-tidy(drop1(punctual.2, test = "Chisq"))
+drop1(punctual.2, test = "Chisq")
 ```
 \normalsize
 
@@ -643,7 +646,7 @@ See what we can remove:
 
 \scriptsize
 ```{r}
-tidy(drop1(cancer.1, test = "Chisq"))
+drop1(cancer.1, test = "Chisq")
 ```
 \normalsize
 
@@ -654,7 +657,7 @@ Non-significant interaction can come out.
 \scriptsize
 ```{r}
 cancer.2 <- update(cancer.1, . ~ . - stage:operation:xray:survival)
-tidy(drop1(cancer.2, test = "Chisq"))
+drop1(cancer.2, test = "Chisq")
 ```
 \normalsize
 
@@ -665,7 +668,7 @@ Least significant term is `stage:xray:survival`: remove.
 \scriptsize
 ```{r}
 cancer.3 <- update(cancer.2, . ~ . - stage:xray:survival)
-tidy(drop1(cancer.3, test = "Chisq"))
+drop1(cancer.3, test = "Chisq")
 ```
 \normalsize
    
@@ -678,7 +681,7 @@ tidy(drop1(cancer.3, test = "Chisq"))
 \scriptsize
 ```{r}
 cancer.4 <- update(cancer.3, . ~ . - operation:xray:survival)
-tidy(drop1(cancer.4, test = "Chisq"))
+drop1(cancer.4, test = "Chisq")
 ```
 \normalsize
    
@@ -703,7 +706,7 @@ remove) `xray:survival`.
 \scriptsize
 ```{r}
 cancer.5 <- update(cancer.4, . ~ . - xray:survival)
-tidy(drop1(cancer.5, test = "Chisq"))
+drop1(cancer.5, test = "Chisq")
 ```
 \normalsize
    
@@ -714,7 +717,7 @@ tidy(drop1(cancer.5, test = "Chisq"))
 \scriptsize
 ```{r}
 cancer.6 <- update(cancer.5, . ~ . - stage:operation:survival)
-tidy(drop1(cancer.6, test = "Chisq"))
+drop1(cancer.6, test = "Chisq")
 ```
 \normalsize
    
@@ -726,7 +729,7 @@ Remove `operation:survival`.
 \footnotesize
 ```{r size="footnotesize"}
 cancer.7 <- update(cancer.6, . ~ . - operation:survival)
-tidy(drop1(cancer.7, test = "Chisq"))
+drop1(cancer.7, test = "Chisq")
 ```
 \normalsize
    

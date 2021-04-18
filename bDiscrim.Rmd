@@ -200,7 +200,7 @@ change in LD1 score for 1-unit change in variables.
 
 ```{r}
 hilo %>% select(-fertilizer) %>% 
-   map_df(~quantile(., c(0.25, 0.75)))
+   summarize(across(everything(), ~quantile(., c(0.25, 0.75))))
 ```
 
 * Here, IQRs both 2.2, *identical*, so 1-unit change in each variable
