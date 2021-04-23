@@ -73,7 +73,7 @@ kids
 
 ```{r}
 kids %>%
-  select_if(is.numeric) %>%
+  select(where(is.numeric)) %>%
   as.matrix() %>%
   princomp(covmat = .) -> kids.pc
 ```
@@ -137,7 +137,7 @@ wrote the tests.
 
 ```{r }
 km <- kids %>%
-  select_if(is.numeric) %>%
+  select(where(is.numeric)) %>%
   as.matrix()
 km2 <- list(cov = km, n.obs = 145)
 kids.f2 <- factanal(factors = 2, covmat = km2)
@@ -218,7 +218,7 @@ Read the data, run principal components, get biplot:
 ```{r, message=FALSE}
 my_url <- "http://www.utsc.utoronto.ca/~butler/d29/men_track_field.txt"
 track <- read_table(my_url)
-track %>% select_if(is.numeric) -> track_num
+track %>% select(where(is.numeric)) -> track_num
 track.pc <- princomp(track_num, cor = T)
 g2 <- ggbiplot(track.pc, labels = track$country)
 ```
@@ -256,7 +256,7 @@ Obtain factor scores (have actual data):
 \normalsize
 ```{r track-factor-biplot}
 track %>%
-  select_if(is.numeric) %>%
+  select(where(is.numeric)) %>%
   factanal(2, scores = "r") -> track.f
 ```
 \normalsize

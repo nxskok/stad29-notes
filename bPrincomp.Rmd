@@ -95,7 +95,7 @@ g + geom_smooth(method = "lm", se = F)
 
 * Grab just the numeric columns:
 ```{r}
-test12 %>% select_if(is.numeric) -> test12_numbers
+test12 %>% select(where(is.numeric)) -> test12_numbers
 ```
      
 
@@ -329,7 +329,7 @@ options(width = 50)
 
 \footnotesize
 ```{r scree-a}
-track %>% select_if(is.numeric) -> track_num
+track %>% select(where(is.numeric)) -> track_num
 track.pc <- princomp(track_num, cor = T)
 summary(track.pc)
 ```

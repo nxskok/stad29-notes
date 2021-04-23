@@ -24,8 +24,8 @@ skim(athletes)
 ```
 
 ```{r s}
-s=skim(athletes)
-s %>% filter(variable=="Ht")
+s <- skim(athletes)
+s %>% filter(skim_variable=="Ht")
 
 ```
 
@@ -41,6 +41,6 @@ skim(pittsburgh)
 ```
 
 ```{r}
-pittsburgh %>% mutate_if(is.character,as.factor) %>% skim()
+pittsburgh %>% mutate(across(where(is.character), ~as.factor(.))) %>% skim()
 ```
 
